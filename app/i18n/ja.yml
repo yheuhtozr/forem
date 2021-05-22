@@ -1,0 +1,51 @@
+---
+v:
+  actions:
+    copy:
+      text: コピーしました
+      title: 記事の URL をクリップボードにコピー
+    more:
+      title: その他…
+      aria_label: ドロップダウンを開閉
+    share:
+      Facebook:
+        text: Facebook にシェア
+      HackerNews:
+        text: Hacker News にシェア
+      LinkedIn:
+        text: LinkedIn にシェア
+      Reddit:
+        text: Reddit にシェア
+      Twitter:
+        text: Twitter にシェア
+        query: "%{article}（%{author}）"
+      link: 記事をシェア
+      report: 通報する
+  articles:
+    read_next: 次に読みたい
+    series:
+      subtitle: "%{slug}（%{size}）"
+      size: !!pl
+        n: 全%1部
+      published: "%{date}に公開"
+      inbetween:
+        num: "︙"
+        text: !!pl
+          n: …%1部分…
+        title: すべて表示
+  reactions:
+    like:
+      title: ハート
+      aria_label: いいね
+    unicorn:
+      title: Unicorn
+      aria_label: React with unicorn
+    readingList:
+      title: 保存
+      aria_label: 必読記事に追加
+
+date:
+  readable:
+    no_year: "%_m月%_d日"
+    with_year: "%y年%_m月%_d日"
+    full_year: "%Y年%_m月%_d日"

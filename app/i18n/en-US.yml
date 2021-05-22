@@ -1,0 +1,52 @@
+---
+v:
+  actions:
+    copy:
+      text: Copied to Clipboard
+      title: Copy article link to the clipboard
+    more:
+      title: More...
+      aria_label: Toggle dropdown menu
+    share:
+      Facebook:
+        text: Share to Facebook
+      HackerNews:
+        text: Share to Hacker News
+      LinkedIn:
+        text: Share to LinkedIn
+      Reddit:
+        text: Share to Reddit
+      Twitter:
+        text: Share to Twitter
+        query: "%{article} by %{author}"
+      link: Share Post
+      report: Report Abuse
+  articles:
+    read_next: Read next
+    series:
+      subtitle: "%{slug} (%{size})"
+      size: !!pl
+        n: "%1 Part Series"
+      published: Published %{date}
+      inbetween:
+        num: "..."
+        text: !!pl
+          1: one more part...
+          n: "%1 more parts..."
+        title: View more
+  reactions:
+    like:
+      title: Heart
+      aria_label: Like
+    unicorn:
+      title: Unicorn
+      aria_label: React with unicorn
+    readingList:
+      title: Saved
+      aria_label: Add to reading list
+
+date:
+  readable:
+    no_year: "%b %-d"
+    with_year: "%b %-d '%y"
+    full_year: "%b %-d, %Y"
