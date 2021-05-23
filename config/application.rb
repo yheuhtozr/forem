@@ -67,10 +67,10 @@ module PracticalDeveloper
     # To improve security, Rails embeds the purpose and expiry metadata inside encrypted or signed cookies value.
     config.action_dispatch.use_cookies_with_metadata = false
 
+    # Forked: I18n setup
     config.i18n.available_locales = %i[ja en-US]
     config.i18n.enforce_available_locales = true
     config.i18n.default_locale = :ja
-    config.i18n.fallbacks = true
 
     # After-initialize checker to add routes to reserved words
     config.after_initialize do
