@@ -18,7 +18,7 @@ v:
         text: Reddit にシェア
       Twitter:
         text: Twitter にシェア
-        query: "%{article}（%{author}）"
+        query: "%{article} (%{author})"
       link: 記事をシェア
       report: 通報する
   articles:
@@ -26,13 +26,19 @@ v:
     series:
       subtitle: "%{slug}（%{size}）"
       size: !!pl
-        n: 全%1部
+        n: 全 %1 部
       published: "%{date}に公開"
       inbetween:
         num: "︙"
         text: !!pl
-          n: …%1部分…
+          n: …（%1 部分）…
         title: すべて表示
+  podcasts:
+    statuses:
+      unreachable: ポッドキャストの feed_url にアクセスできません
+      unparsable: ポッドキャストの rss がパースできません
+      unplayable: このポッドキャストはブラウザ上で再生できない可能性があります
+      ssl_failed: 取得しようとしたポッドキャストの feed_url の SSL 証明書が検証に失敗しました
   reactions:
     like:
       title: ハート
