@@ -22,24 +22,59 @@ v:
       link: 記事をシェア
       report: 通報する
   articles:
-    read_next: 次に読みたい
+    comments:
+      subtitle: !html
+        "みんなの声%{start}（%{count}）%{end}"
+      hidden: !html
+        非表示にされているコメントがあります（<a href="/faq">詳細</a>）
+      subscribe: 投稿
+      view: !pl
+        n: すべてのコメントを見る（%1 件）
+    conduct:
+      aria_label: 倫理的措置
+      code: Code of Conduct
+      report: 通報する
+    save:
+      title: 切り抜き帳に保存
+      aria_label: 切り抜き帳に保存
+      initial: 保存
+      success: 保存済
     series:
       subtitle: "%{slug}（%{size}）"
-      size: !!pl
+      size: !pl
         n: 全 %1 部
       published: "%{date}に公開"
       inbetween:
         num: "︙"
-        text: !!pl
+        text: !pl
           n: …（%1 部分）…
         title: すべて表示
+    for_org: !html
+      "%{start} による %{end}%{org}%{start} の記事%{end}"
+    missing: 記事は公開終了しました
+    read_next: 次に読みたい
+    reading_time: !pl
+      n: "%1 分で読める"
+  campaign:
+    subtitle: Stories (%{count})
+    view: See all posts
+  comments:
+    summary:
+      title: コメント
+      count: !pl # TODO: pl_html
+        n: "\_コメント"
+      empty: "コメントを寄せる"
   podcasts:
     statuses:
       unreachable: ポッドキャストの feed_url にアクセスできません
       unparsable: ポッドキャストの rss がパースできません
       unplayable: このポッドキャストはブラウザ上で再生できない可能性があります
-      ssl_failed: 取得しようとしたポッドキャストの feed_url の SSL 証明書が検証に失敗しました
+      ssl_failed: ポッドキャストの feed_url に対する SSL 証明書が検証できませんでした
   reactions:
+    summary:
+      title: リアクション
+      count: !pl # TODO: pl_html
+        n: "\_反響"
     like:
       title: ハート
       aria_label: いいね
@@ -48,7 +83,11 @@ v:
       aria_label: React with unicorn
     readingList:
       title: 保存
-      aria_label: 必読記事に追加
+      aria_label: 切り抜き帳に追加
+  search:
+    empty: 一致する結果がありません
+  sponsor:
+    seek: Become a sponsor
 
 date:
   readable:

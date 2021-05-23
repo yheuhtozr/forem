@@ -22,18 +22,50 @@ v:
       link: Share Post
       report: Report Abuse
   articles:
-    read_next: Read next
+    comments:
+      subtitle: !html
+        "Discussion %{start}(%{count})%{end}"
+      hidden: !html
+        Some comments have been hidden by the post's author - <a href="/faq">find out more</a>
+      subscribe: Subscribe
+      view: !pl
+        n: View full discussion (%1 comments)
+    conduct:
+      aria_label: Conduct controls
+      code: Code of Conduct
+      report: Report abuse
+    save:
+      title: Save to reading list
+      aria_label: Save to reading list
+      initial: Save
+      success: Saved
     series:
       subtitle: "%{slug} (%{size})"
-      size: !!pl
+      size: !pl
         n: "%1 Part Series"
       published: Published %{date}
       inbetween:
         num: "..."
-        text: !!pl
+        text: !pl
           1: one more part...
           n: "%1 more parts..."
         title: View more
+    for_org: !html
+      "%{start} for %{end}%{org}"
+    missing: Article No Longer Available
+    read_next: Read next
+    reading_time: !pl
+      n: "%1 min read"
+  campaign:
+    subtitle: Stories (%{count})
+    view: See all posts
+  comments:
+    summary:
+      title: Comments
+      count: !pl # TODO: pl_html
+        1: "\_comment"
+        n: "\_comments"
+      empty: "Add\_Comment"
   podcasts:
     statuses:
       unreachable: Podcast's feed_url is not reachable
@@ -41,6 +73,11 @@ v:
       unplayable: This podcast may not be playable in the browser
       ssl_failed: SSL certificate verify failed while fetching podcast's feed_url
   reactions:
+    summary:
+      title: Reactions
+      count: !pl # TODO: pl_html
+        1: "\_reaction"
+        n: "\_reactions"
     like:
       title: Heart
       aria_label: Like
@@ -50,6 +87,10 @@ v:
     readingList:
       title: Saved
       aria_label: Add to reading list
+  search:
+    empty: No results match that query
+  sponsor:
+    seek: Become a sponsor
 
 date:
   readable:
