@@ -48,7 +48,7 @@
             href='https://twitter.com/intent/tweet?text="<%= t.v.actions.share.Twitter.query(
                                                                article: u(@article.title.strip),
                                                                author: @article.user.twitter_username ? "@#{@article.user.twitter_username}" : @article.user.name,
-                                                             ) %> <%= u SiteConfig.twitter_hashtag %> <%= article_url(@article) %>'>
+                                                             ) %> <%= u Settings::General.twitter_hashtag %> <%= article_url(@article) %>'>
             <% t.v.actions.share.Twitter.text %>
           </a>
           <a
