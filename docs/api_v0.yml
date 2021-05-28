@@ -1054,7 +1054,7 @@ components:
           type: string
           nullable: true
         joined_at:
-          description: Date of joining (formatted with strftime `"%b %e, %Y"`)
+          description: Date of joining (formatted with strftime `R18n.t.date.json`)
           type: string
         profile_image:
           description: Profile image (320x320)

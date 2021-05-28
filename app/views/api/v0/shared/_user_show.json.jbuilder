@@ -12,5 +12,5 @@ json.extract!(
   :location,
 )
 
-json.joined_at     user.created_at.strftime("%b %e, %Y")
+json.joined_at     user.created_at.strftime(R18n.t.date.json)
 json.profile_image Images::Profile.call(user.profile_image_url, length: 320)

@@ -9,7 +9,7 @@
 
   <% if @article.any_comments_hidden %>
     <p class="fs-s color-base-60 mb-4">
-      <%= t.v.articles.comments.hidden %>
+      <%= t.v.comments.hidden start: tag("a", { href: "/faq" }, true), end: "</a>".html_safe %>
     </p>
   <% end %>
 

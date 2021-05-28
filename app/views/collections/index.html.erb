@@ -1,4 +1,4 @@
-<% title_string = "#{@user.name}'s Series" %>
+<% title_string = t.v.series.heading user: @user.name %>
 
 <%= content_for :page_meta do %>
   <%= render "collections/meta", title_string: title_string %>
@@ -19,7 +19,7 @@
         </div>
       <% end %>
     <% else %>
-      <p>This user doesn't have any series</p>
+      <p><%= t.v.series.empty %></p>
     <% end %>
   </div>
 </main>

@@ -1,4 +1,4 @@
-<% title_string = "#{@collection.slug} Series' Articles" %>
+<% title_string = t.v.series.list.heading series: @collection.slug %>
 
 <%= content_for :page_meta do %>
   <%= render "collections/meta", title_string: title_string %>
@@ -17,7 +17,7 @@
           <%= render "articles/single_story", story: article.decorate, featured: article.main_image.present? %>
         <% end %>
       <% else %>
-        <p>This series doesn't have any articles</p>
+        <p><%= t.v.series.list.empty %></p>
       <% end %>
     </div>
   </div>
