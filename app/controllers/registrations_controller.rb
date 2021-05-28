@@ -44,7 +44,7 @@ class RegistrationsController < Devise::RegistrationsController
       end
     else
       redirect_to new_user_registration_path(state: "email_signup")
-      flash[:notice] = "You must complete the recaptcha ✅"
+      flash[:notice] = R18n.t.v.auth.error.recaptcha
     end
   end
   # rubocop:enable Metrics/CyclomaticComplexity
@@ -72,7 +72,7 @@ class RegistrationsController < Devise::RegistrationsController
     return if allow_list.empty? || allow_list.include?(domain)
 
     resource.email = nil
-    resource.errors.add(:email, "is not included in allowed domains.")
+    resource.errors.add(:email, R18n.t.v.auth.error.domain)
   end
 
   def resolve_profile_field_issues

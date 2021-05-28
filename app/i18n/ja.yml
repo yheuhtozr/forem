@@ -26,6 +26,10 @@ v:
       link: 記事をシェア
       report: 通報する
   articles:
+    meta:
+      description: An article from the community
+    actions:
+      aria_label: Article actions
     comments:
       subtitle: !html みんなの声%{start}（%{count}）%{end}
       hidden: !html 非表示にされているコメントがあります（<a href="/faq">詳細</a>）
@@ -62,11 +66,85 @@ v:
         text: !pl
           n: …（%1 部分）…
         title: すべて表示
+    unpublished:
+      subtitle: Unpublished Post.
+      text: " This URL is public but secret, so share at your own discretion."
+      edit: Click to edit
+    co_authors: !html with %{names}
+    crossposted:
+      text: Originally published at %{start}%{url}%{end}%{on}
+      on: " on %{date}"
+    edited: Updated on %{date}
     for_org: !html "%{start} による %{end}%{org}%{start} の記事%{end}"
     missing: 記事は公開終了しました
     read_next: 次に読みたい
     reading_time: !pl
       n: "%1 分で読める"
+  auth:
+    create:
+      aria_label: Create new account
+      text: Create new account
+    creator:
+      text: Almost there!
+      desc: Let's create an admin account for your community.
+      submit: Create admin account
+    login:
+      aria_label: Log in
+      text: Log in
+      continue: Continue
+      forgot: I forgot my password
+    provider:
+      text: "%{action} with %{provider}"
+      login: Continue
+      signup: Sign up
+      email:
+        icon: email
+        text: Sign up with Email
+    register:
+      errors: !pl
+        1: Whoops, we found problem
+        n: Whoops, we found problems
+      error:
+        recaptcha: You must complete the recaptcha ✅
+        domain: is not included in allowed domains.
+      allow:
+        one: Registration restricted to <strong>@%{domain}</strong> emails.
+        list: Registration restricted to the following emails
+      create: Create your account
+      field:
+        name:
+          aria_label: Name
+          label: Name
+        username:
+          aria_label: Username
+          label: Username
+        email:
+          aria_label: Email
+          label: Email
+        password:
+          aria_label: Password
+          label: Password
+        confirm:
+          aria_label: Password Confirmation
+          label: Password Confirmation
+        required: "* - required"
+      secret:
+        label: New Forem Secret
+        placeholder: As provided by your Forem host
+      submit: Sign up
+    wizard:
+      meta:
+        title: Let's get started with Forem
+      heading: Let's start your Forem journey
+      step_1: Create an account. It will be the first super admin account.
+      step_2: !html Once you sign up below, you can configure your community at %{start}%{path}%{end}.
+      step_3: There is lots you can do as an admin, but there is a learning curve.
+      step_4: Please reach out to the Forem team if you are unsure about anything!
+      step_5: For Empowering Community 🌱
+    tagline: Log in to customize your experience and get involved.
+    title:
+      text: !html <a href="/">%{name}</a> is a community of %{maybe_size}amazing %{label} # TODO: handling label may require full inflection support, and perhaps DB i18n
+      size: "%1 "
   campaign:
     subtitle: Stories (%{count})
     view: See all posts
@@ -104,6 +182,8 @@ v:
         button: Submit Change
         text: "Preview Image URL: "
         placeholder: New Thumbnail URL
+  hamburger:
+    icon: Close
   index:
     heading: Posts
     sort:
@@ -117,6 +197,22 @@ v:
     meta:
       rss: "%{name} RSS Feed"
   loading: loading...
+  logo:
+    color_1:
+      label: Brand color 1
+      desc: Used for backgrounds, borders etc.
+      select:
+        aria_label: Brand color 1 color selector
+        label: Brand color 1 color select
+    color_2:
+      label: Brand color 2
+      desc: !html Used for texts (usually put on <em>Brand color 1</em>).
+      select:
+        aria_label: Brand color 2 color selector
+        label: Brand color 2 color select
+    preview:
+      icon: App logo
+      text: "Preview:"
   manager:
     heading: Manage %{title}
     error:
@@ -138,6 +234,10 @@ v:
       text_1: Write your own tweet about the post, describing personally why you wrote it or why people might find it useful. We may retweet you.
       text_2: !html 'Share to link aggregators such as <a href="https://www.reddit.com">Reddit</a>. Try to choose the most topic-specific subreddits, such as <a href="https://www.reddit.com/r/javascript">/r/javascript</a> or <a href="https://www.reddit.com/r/python">/r/python</a>, etc. <em>Warning: jerks and trolls may be lurking.</em>'
       text_3: Share with your co-workers or local communities. Ask people to leave questions for you in the comments. It's a great way to spark additional discussion.
+  pins:
+    pinned: 📌 Pinned! (pinned posts display chronologically, 5 max)
+    removed: 🗑 Pin removed
+    error: You can only have five pins
   podcasts:
     statuses:
       unreachable: ポッドキャストの feed_url にアクセスできません
@@ -174,8 +274,26 @@ v:
       oldest: Oldest
     meta:
       title: Search Results
+      description: "%{site} => Search Results"
   sponsor:
     seek: Become a sponsor
+  stats:
+    meta:
+      title: Stats for Your Article
+    heading: !html Stats for "%{article}"
+    period:
+      aria_label: Analytics period
+      week: Week
+      month: Month
+      infinity: Infinity
+    readers: Readers Summary
+    followers: New Followers Summary
+    reactions: Reactions Summary ❤🦄🔖
+    comments: Comments Summary 💬
+    traffic:
+      text: Traffic Source Summary 🚦
+      source: Source
+      views: Views
   sticky:
     default_cta: Learn more
     default_summary: Posts in this tag # dubious message content

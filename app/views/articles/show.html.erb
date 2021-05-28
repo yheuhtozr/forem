@@ -64,12 +64,12 @@
     <meta property="og:type" content="article" />
     <meta property="og:url" content="<%= article_url(@article) %>" />
     <meta property="og:title" content="<%= @article.title %>" />
-    <meta property="og:description" content="<%= @article.description || "An article from the community" %>" />
+    <meta property="og:description" content="<%= @article.description || t.v.articles.meta.description %>" />
     <meta property="og:site_name" content="<%= community_name %>" />
     <meta name="twitter:site" content="@<%= Settings::General.social_media_handles["twitter"] %>">
     <meta name="twitter:creator" content="@<%= @user.twitter_username %>">
     <meta name="twitter:title" content="<%= @article.title %>">
-    <meta name="twitter:description" content="<%= @article.description || "An article from the community" %>">
+    <meta name="twitter:description" content="<%= @article.description || t.v.articles.meta.description %>">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:widgets:new-embed-design" content="on">
     <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1">
@@ -91,7 +91,7 @@
 <% end %>
 
 <div class="crayons-layout crayons-layout--3-cols crayons-layout--article">
-  <aside class="crayons-layout__sidebar-left" aria-label="Article actions">
+  <aside class="crayons-layout__sidebar-left" aria-label="<%= t.v.articles.actions.aria_label %>">
     <%= render "articles/actions" %>
   </aside>
 
@@ -99,15 +99,15 @@
     <div class="article-wrapper">
       <% if !@article.published %>
         <div class="crayons-notice crayons-notice--danger mb-4" aria-live="polite">
-          <strong>Unpublished Post.</strong> This URL is public but secret, so share at your own discretion.
+          <strong><%= t.v.articles.unpublished.subtitle %></strong><%= t.v.articles.unpublished.text %>
           <% if user_signed_in? %>
-            <a id="author-click-to-edit" href="<%= @article.path %>/edit" class="fw-bold" display="none">Click to edit</a>
+            <a id="author-click-to-edit" href="<%= @article.path %>/edit" class="fw-bold" display="none"><%= t.v.articles.unpublished.edit %></a>
           <% end %>
         </div>
       <% end %>
 
       <% if @article.video_state == "PROGRESSING" %>
-        <div class="crayons-notice crayons-notice--warning mb-4" aria-live="polite">⏳ Video Transcoding In Progress ⏳</div>
+        <div class="crayons-notice crayons-notice--warning mb-4" aria-live="polite"><%= t.v.editor.video.progress.heading %></div>
       <% end %>
 
       <article class="crayons-card crayons-article mb-4"
@@ -160,24 +160,24 @@
                   <%= local_date(@article.published_timestamp, show_year: @article.displayable_published_at.year != Time.current.year) %>
                 <% end %>
                 <% if @article.co_author_ids.present? %>
-                  <em>with <%= @article.co_author_name_and_path.html_safe %></em>
+                  <em><%= t.v.articles.co_authors names: @article.co_author_name_and_path.html_safe %></em>
                 <% end %>
 
                 <% if should_show_crossposted_on?(@article) %>
-                  <em>
-                    Originally published at
-                    <a href="<%= @article.canonical_url || @article.feed_source_url %>" style="color:#1395b8"><%= get_host_without_www(@article.canonical_url || @article.feed_source_url) %></a>
-                    <% if @article.crossposted_at %>
-                      on
-                      <%= local_date(@article.originally_published_at || @article.published_at, show_year: (@article.originally_published_at || @article.published_at).year != Time.current.year) %>
-                    <% end %>
-                  </em>
+                  ・<em><%= t.v.articles.crossposted.text(
+                             start: tag("a", { href: @article.canonical_url || @article.feed_source_url, style: "color:#1395b8" }, true),
+                             end: "</a>".html_safe,
+                             url: get_host_without_www(@article.canonical_url || @article.feed_source_url),
+                             on: t.v.articles.crossposted.on(
+                                   date: local_date(@article.originally_published_at || @article.published_at, show_year: (@article.originally_published_at || @article.published_at).year != Time.current.year)
+                                 ) if @article.crossposted_at,
+                  ) %></em>
                 <% end %>
                 <% if should_show_updated_on?(@article) %>
-                  ・<em>Updated on <%= local_date(@article.edited_at, show_year: @article.edited_at.year != Time.current.year) %></em>
+                  ・<em><%= t.v.articles.edited date: local_date(@article.edited_at, show_year: @article.edited_at.year != Time.current.year) %></em>
                 <% end %>
 
-                <span class="mr-4">・<%= @article.reading_time < 1 ? 1 : @article.reading_time %> min read</span>
+                <span class="mr-4">・<%= v.t.articles.reading_time(@article.reading_time < 1 ? 1 : @article.reading_time) %></span>
               </span>
               <span id="action-space" class="mb-4 s:mb-0"></span>
             </div>
