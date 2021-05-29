@@ -509,5 +509,5 @@ date:
   json: "%Y年%_m月%e日"
   readable:
     no_year: "%-m月%-d日"
-    with_year: "%y年%-m月%-d日"
+    with_year: "'%y年%-m月%-d日"
     full_year: "%Y年%-m月%-d日"

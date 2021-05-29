@@ -168,16 +168,20 @@
                              start: tag("a", { href: @article.canonical_url || @article.feed_source_url, style: "color:#1395b8" }, true),
                              end: "</a>".html_safe,
                              url: get_host_without_www(@article.canonical_url || @article.feed_source_url),
-                             on: t.v.articles.crossposted.on(
-                                   date: local_date(@article.originally_published_at || @article.published_at, show_year: (@article.originally_published_at || @article.published_at).year != Time.current.year)
-                                 ) if @article.crossposted_at,
-                  ) %></em>
+                             on: if @article.crossposted_at
+                                   t.v.articles.crossposted.on(
+                                     date: local_date(@article.originally_published_at || @article.published_at, show_year: (@article.originally_published_at || @article.published_at).year != Time.current.year),
+                                   )
+                                 else
+                                   ""
+                                 end,
+                           ) %></em>
                 <% end %>
                 <% if should_show_updated_on?(@article) %>
                   ・<em><%= t.v.articles.edited date: local_date(@article.edited_at, show_year: @article.edited_at.year != Time.current.year) %></em>
                 <% end %>
 
-                <span class="mr-4">・<%= v.t.articles.reading_time(@article.reading_time < 1 ? 1 : @article.reading_time) %></span>
+                <span class="mr-4">・<%= t.v.articles.reading_time(@article.reading_time < 1 ? 1 : @article.reading_time) %></span>
               </span>
               <span id="action-space" class="mb-4 s:mb-0"></span>
             </div>
