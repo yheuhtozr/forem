@@ -494,6 +494,10 @@ v:
   sticky:
     default_cta: Learn more
     default_summary: Posts in this tag # dubious message content
+  tags:
+    error:
+      length: is too long (maximum is 30 characters)
+      chars: contains non-ASCII characters
   user:
     org:
       company_size: Employees
