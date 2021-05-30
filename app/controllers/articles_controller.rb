@@ -259,6 +259,8 @@ class ArticlesController < ApplicationController
       allowed_params << :organization_id
     end
 
+    params["article"]["tag_list"] = Tag.smart_tr params["article"]["tag_list"]
+
     params.require(:article).permit(allowed_params)
   end
 

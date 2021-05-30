@@ -13,15 +13,17 @@ const KEYS = {
   DELETE: 'Backspace',
 };
 
-const NAVIGATION_KEYS = [
-  KEYS.COMMA,
-  KEYS.DELETE,
-  KEYS.LEFT,
-  KEYS.RIGHT,
-  KEYS.TAB,
-];
+// const NAVIGATION_KEYS = [
+//   KEYS.COMMA,
+//   KEYS.DELETE,
+//   KEYS.LEFT,
+//   KEYS.RIGHT,
+//   KEYS.TAB,
+// ];
 
-const LETTERS_NUMBERS = /[a-z0-9]/i;
+// turned off until coming up a way not affecting dead keys
+// broadest tag format character range (with lazy apostrophe) cf. /app/modesl/tag.rb
+// const TAG_CHARACTERS = /['\p{XIDC}\p{No}\u00B7\u05F3\u05F4\u0F0B\u200C\u200D]/u;
 
 /* TODO: Remove all instances of this.props.listing
    and refactor this component to be more generic */
@@ -196,12 +198,12 @@ export class Tags extends Component {
       ) {
         this.clearSelectedSearchResult();
       }
-    } else if (
-      !LETTERS_NUMBERS.test(e.key) &&
+    } /*else if (
+      !TAG_CHARACTERS.test(e.key) &&
       !NAVIGATION_KEYS.includes(e.key)
     ) {
       e.preventDefault();
-    }
+    }*/
   };
 
   handleRulesClick = (e) => {
@@ -380,6 +382,7 @@ export class Tags extends Component {
     } = this.props;
     const { activeElement } = document;
     const searchResultsRows = searchResults.map((tag, index) => (
+      // eslint-disable-next-line react/jsx-key
       <div
         tabIndex="-1"
         role="button"

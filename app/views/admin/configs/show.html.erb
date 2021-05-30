@@ -1082,7 +1082,8 @@
                                  class: "crayons-textfield",
                                  value: Settings::General.sidebar_tags.join(","),
                                  placeholder: Constants::Settings::General::DETAILS[:sidebar_tags][:placeholder],
-                                 pattern: "[a-z0-9,]+" %>
+                                 # full tag format but also allows apostrophe (auto-conversion)
+                                 pattern: %q/(?:(?:['\p{XIDS}\p{Nd}\p{No}](?:['\p{XIDC}\p{No}\u00B7\u05F3\u05F4\u0F0B\u200C\u200D]*['\p{XIDC}\p{No}\u0F0B])?)?(?:,|$))+/ %>
             </div>
 
             <%= render "form_submission", f: f %>

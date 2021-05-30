@@ -28,6 +28,8 @@ class Article < ApplicationRecord
   # The date that we began limiting the number of user mentions in an article.
   MAX_USER_MENTION_LIVE_AT = Time.utc(2021, 4, 7).freeze
 
+  has_many :base_tags, through: :taggings, source: :tag, class_name: "Tag" # override
+
   has_many :mentions, as: :mentionable, inverse_of: :mentionable, dependent: :destroy
   has_many :comments, as: :commentable, inverse_of: :commentable, dependent: :nullify
   has_many :html_variant_successes, dependent: :nullify
@@ -616,7 +618,7 @@ class Article < ApplicationRecord
     # check tags names aren't too long and don't contain non alphabet characters
     tag_list.each do |tag|
       new_tag = Tag.new(name: tag)
-      new_tag.validate_name
+      new_tag.quick_validate
       new_tag.errors.messages[:name].each { |message| errors.add(:tag, "\"#{tag}\" #{message}") }
     end
   end

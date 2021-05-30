@@ -497,7 +497,7 @@ v:
   tags:
     error:
       length: is too long (maximum is 30 characters)
-      chars: contains non-ASCII characters
+      chars: contains punctuation/whitespace, or starts/ends with an incomplete spelling
   user:
     org:
       company_size: Employees
