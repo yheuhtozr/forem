@@ -71,11 +71,11 @@ class Tag < ActsAsTaggableOn::Tag
   end
 
   def validate_name
-    errors.add(:name, R18n.t.v.tags.error.length) if name.length > 30
+    errors.add(:name, R18n.t.v.tags.error.length.to_s) if name.length > 30
     # [:alnum:] is not used here because it supports diacritical characters.
     # If we decide to allow diacritics in the future, we should replace the
     # following regex with [:alnum:].
-    errors.add(:name, R18n.t.v.tags.error.chars) unless name.match?(/\A[[a-z0-9]]+\z/i)
+    errors.add(:name, R18n.t.v.tags.error.chars.to_s) unless name.match?(/\A[[a-z0-9]]+\z/i)
   end
 
   def errors_as_sentence

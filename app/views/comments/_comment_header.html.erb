@@ -15,9 +15,9 @@
       <%= inline_svg_tag("small-overflow-horizontal.svg", aria: true, class: "crayons-icon pointer-events-none", title: t.v.comments.menu.icon) %>
     </button>
     <ul class="crayons-dropdown p-1 right-1 s:right-0 s:left-auto fs-base dropdown">
-      <li><a href="<%= URL.comment(comment) %>" class="crayons-link crayons-link--block permalink-copybtn" aria-label="<%= t.v.comments.menu.copy.aria_label user: comment.user.name %>" data-no-instant></a><%= t.v.comments.menu.copy.text %></li>
+      <li><a href="<%= URL.comment(comment) %>" class="crayons-link crayons-link--block permalink-copybtn" aria-label="<%= t.v.comments.menu.copy.aria_label user: comment.user.name %>" data-no-instant><%= t.v.comments.menu.copy.text %></a></li>
       <li class="comment-actions hidden" data-user-id="<%= comment.user_id %>" data-action="settings-button" data-path="<%= URL.comment(comment) %>/settings" aria-label="<%= t.v.comments.menu.settings.aria_label user: comment.user.name %>"></li>
-      <% action = t.v.comments.menu.action[comment.hidden_by_commentable_user ? "unhide" : "hide"] %>
+      <% action = t.v.comments.menu.action[comment.hidden_by_commentable_user ? :unhide : :hide] %>
       <li class="comment-actions hidden" data-action="hide-button" data-commentable-user-id="<%= commentable.user_id %>" data-user-id="<%= comment.user_id %>">
         <a href="#" class="crayons-link crayons-link--block hide-comment" data-hide-type="<%= action.downcase %>" data-comment-id="<%= comment.id %>" aria-label="<%= t.v.comments.menu.action.aria_label action: action, user: comment.user.name %>">
           <%= action %>

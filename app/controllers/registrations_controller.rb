@@ -72,7 +72,7 @@ class RegistrationsController < Devise::RegistrationsController
     return if allow_list.empty? || allow_list.include?(domain)
 
     resource.email = nil
-    resource.errors.add(:email, R18n.t.v.auth.error.domain)
+    resource.errors.add(:email, R18n.t.v.auth.error.domain.to_s)
   end
 
   def resolve_profile_field_issues
