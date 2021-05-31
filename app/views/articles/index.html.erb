@@ -44,10 +44,12 @@
         <nav class="crayons-tabs hidden s:flex" aria-label="<%= t.v.index.sort.aria_label %>">
           <ul class="crayons-tabs__list">
             <li>
-              <a data-text="Feed" href="<%= list_path %>/" class="crayons-tabs__item <%= "crayons-tabs__item--current" if %w[week month year infinity latest].exclude?(params[:timeframe]) %>" aria-current="<%= "page" if %w[week month year infinity latest].exclude?(params[:timeframe]) %>"></a>
+              <a data-text="Feed" href="<%= list_path %>/" class="crayons-tabs__item <%= "crayons-tabs__item--current" if %w[week month year infinity latest].exclude?(params[:timeframe]) %>" aria-current="<%= "page" if %w[week month year infinity latest].exclude?(params[:timeframe]) %>">
+                <%= t.v.index.sort.feed %>
+              </a>
             </li>
             <li>
-              <a data-text="Week" href="<%= list_path %>/top/week" class="crayons-tabs__item <%= "crayons-tabs__item--current" if timeframe_check("week") %>" aria-current="<%= "page" if timeframe_check("week") %>"><%= t.v.index.sort.feed %></a>
+              <a data-text="Week" href="<%= list_path %>/top/week" class="crayons-tabs__item <%= "crayons-tabs__item--current" if timeframe_check("week") %>" aria-current="<%= "page" if timeframe_check("week") %>"><%= t.v.index.sort.week %></a>
             </li>
             <li>
               <a data-text="Month" href="<%= list_path %>/top/month" class="crayons-tabs__item <%= "crayons-tabs__item--current" if timeframe_check("month") %>" aria-current="<%= "page" if timeframe_check("month") %>"><%= t.v.index.sort.month %></a>
