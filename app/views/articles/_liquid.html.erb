@@ -1,3 +1,4 @@
+<% _t = t.v.articles %>
 <% if article %>
 <div class='ltag__link'>
   <% if article.video && article.cloudinary_video_url %>
@@ -15,7 +16,7 @@
   <a href='<%= article.path %>' class='ltag__link__link'>
     <div class='ltag__link__content'>
       <h2><%= title %></h2>
-      <h3><%= article.user.name %> ・ <%= article.readable_publish_date %> ・ <%= t.v.articles.reading_time(article.reading_time < 2 ? 1 : article.reading_time) %></h3>
+      <h3><%= article.user.name %> ・ <%= article.readable_publish_date %> ・ <%= _t.reading_time(article.reading_time < 2 ? 1 : article.reading_time) %></h3>
       <div class='ltag__link__taglist'>
       <% article.tag_list.each do |t| %>
         <span class='ltag__link__tag'>#<%= t %></span>
@@ -28,7 +29,7 @@
 <div class='ltag__link'>
   <div class='ltag__link__content'>
     <div class='missing'>
-      <h2><%= t.v.articles.missing %></h2>
+      <h2><%= _t.missing %></h2>
     </div>
   </div>
 </div>

@@ -1,3 +1,4 @@
+<% _t = t.v.actions %>
 <div class="crayons-article-actions print-hidden">
   <div class="crayons-article-actions__inner">
     <% if @article.published? %>
@@ -29,61 +30,61 @@
     <% end %>
 
     <div class="align-center m:relative">
-      <button id="article-show-more-button" class="dropbtn crayons-btn crayons-btn--ghost-dimmed crayons-btn--icon-rounded" aria-label="<%= t.v.actions.more.aria_label %>">
-        <%= inline_svg_tag("overflow-horizontal.svg", aria: true, class: "dropdown-icon crayons-icon", title: t.v.actions.more.title) %>
+      <button id="article-show-more-button" class="dropbtn crayons-btn crayons-btn--ghost-dimmed crayons-btn--icon-rounded" aria-label="<%= _t.more.aria_label %>">
+        <%= inline_svg_tag("overflow-horizontal.svg", aria: true, class: "dropdown-icon crayons-icon", title: _t.more.title) %>
       </button>
       <div class="crayons-dropdown p-1 right-1 left-1 s:left-auto bottom-100 m:bottom-0 m:right-auto m:left-100 fs-base">
         <clipboard-copy for="article-copy-link-input" aria-live="polite" aria-controls="article-copy-link-announcer" class="dropdown-link-row">
           <div class="flex items-center">
             <input type="text" id="article-copy-link-input" value="<%= article_url(@article) %>" class="crayons-textfield" readonly />
-            <%= inline_svg_tag("copy.svg", aria: true, id: "article-copy-icon", class: "crayons-icon mx-2 shrink-0", title: t.v.actions.copy.title) %>
+            <%= inline_svg_tag("copy.svg", aria: true, id: "article-copy-icon", class: "crayons-icon mx-2 shrink-0", title: _t.copy.title) %>
           </div>
-          <div id="article-copy-link-announcer" class="crayons-notice crayons-notice--success my-2 p-1" aria-live="polite" hidden><%= t.v.actions.copy.text %></div>
+          <div id="article-copy-link-announcer" class="crayons-notice crayons-notice--success my-2 p-1" aria-live="polite" hidden><%= _t.copy.text %></div>
         </clipboard-copy>
         <web-share-wrapper shareurl="<%= article_url(@article) %>" sharetext="<%= @article.title %>" template="web-share-button">
           <a
             target="_blank"
             class="dropdown-link-row crayons-link crayons-link--block"
             rel="noopener"
-            href='https://twitter.com/intent/tweet?text="<%= t.v.actions.share.Twitter.query(
+            href='https://twitter.com/intent/tweet?text="<%= _t.share.Twitter.query(
                                                                article: u(@article.title.strip),
                                                                author: @article.user.twitter_username ? "@#{@article.user.twitter_username}" : @article.user.name,
                                                              ) %> <%= u Settings::General.twitter_hashtag %> <%= article_url(@article) %>'>
-            <% t.v.actions.share.Twitter.text %>
+            <% _t.share.Twitter.text %>
           </a>
           <a
             target="_blank"
             class="dropdown-link-row crayons-link crayons-link--block"
             rel="noopener"
             href="https://www.linkedin.com/shareArticle?mini=true&url=<%= article_url(@article) %>&title=<%= @article.title %>&summary=<%= @article.description %>&source=<%= community_name %>">
-            <% t.v.actions.share.LinkedIn.text %>
+            <% _t.share.LinkedIn.text %>
           </a>
           <a
             target="_blank"
             class="dropdown-link-row crayons-link crayons-link--block"
             rel="noopener"
             href="https://www.reddit.com/submit?url=<%= article_url(@article) %>&title=<%= @article.title %>">
-            <% t.v.actions.share.Reddit.text %>
+            <% _t.share.Reddit.text %>
           </a>
           <a
             target="_blank"
             class="dropdown-link-row crayons-link crayons-link--block"
             rel="noopener"
             href="https://news.ycombinator.com/submitlink?u=<%= article_url(@article) %>&t=<%= @article.title %>">
-            <% t.v.actions.share.HackerNews.text %>
+            <% _t.share.HackerNews.text %>
           </a>
           <a
             target="_blank"
             class="dropdown-link-row crayons-link crayons-link--block"
             rel="noopener"
             href="https://www.facebook.com/sharer.php?u=<%= article_url(@article) %>">
-            <% t.v.actions.share.Facebook.text %>
+            <% _t.share.Facebook.text %>
           </a>
         </web-share-wrapper>
         <template id="web-share-button">
-          <a href="#" class="dropdown-link-row crayons-link crayons-link--block"><% t.v.actions.share.link %></a>
+          <a href="#" class="dropdown-link-row crayons-link crayons-link--block"><% _t.share.link %></a>
         </template>
-        <a href="/report-abuse" class="dropdown-link-row crayons-link crayons-link--block"><% t.v.actions.share.report %></a>
+        <a href="/report-abuse" class="dropdown-link-row crayons-link crayons-link--block"><% _t.share.report %></a>
       </div>
     </div>
   </div>

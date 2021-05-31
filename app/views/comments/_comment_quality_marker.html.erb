@@ -1,12 +1,13 @@
+<% _t = t.v.comments.quality %>
 <% if decorated_comment.low_quality %>
   <div class="crayons-notice crayons-notice--warning low-quality-comment-marker">
-    <%= t.v.comments.quality.low %> <a href="/code-of-conduct"><strong><%= t.v.comments.quality.conduct %></strong></a>
+    <%= _t.low %> <a href="/code-of-conduct"><strong><%= _t.conduct %></strong></a>
   </div>
 <% end %>
 
 <% if comment.hidden_by_commentable_user %>
   <div class="low-quality-comment-marker comment__quality-marker">
-    <%= inline_svg_tag("info.svg", aria: true, class: "crayons-icon mr-2", title: t.v.comments.quality.hidden.icon) %>
-    <%= t.v.comments.quality.hidden.text %>
+    <%= inline_svg_tag("info.svg", aria: true, class: "crayons-icon mr-2", title: _t.hidden.icon) %>
+    <%= _t.hidden.text %>
   </div>
 <% end %>

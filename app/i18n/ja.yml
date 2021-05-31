@@ -525,6 +525,9 @@ v:
       meta:
         title: Subscriptions %{title}
       heading: Subscriptions
+      subhead:
+        text: !html "%{for} %{source}"
+        for: for
       empty: You don't have any subscribers for this %{kind} yet...
     summary:
       reactions: Total post reactions

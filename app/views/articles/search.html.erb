@@ -1,3 +1,4 @@
+<% _t = t.v.search.sort %>
 <%= content_for :page_meta do %>
   <%= render "articles/search/meta" %>
 <% end %>
@@ -14,16 +15,16 @@
     <div class="block s:flex items-center space-between">
       <h1 class="crayons-title"><%= t.v.search.heading %></h1>
 
-      <nav id="sorting-option-tabs" class="crayons-tabs crayons-tabs--wrapped ml-auto" aria-label="<%= t.v.search.sort.heading %>">
+      <nav id="sorting-option-tabs" class="crayons-tabs crayons-tabs--wrapped ml-auto" aria-label="<%= _t.heading %>">
         <ul class="crayons-tabs__list">
           <li>
-            <a data-text="<%= t.v.search.sort.relevance %>" href="javascript:;" class="crayons-tabs__item <%= "crayons-tabs__item--current" if @current_ordering == :relevance %>" aria-current="page"><%= t.v.search.sort.relevance %></a>
+            <a data-text="<%= _t.relevance %>" href="javascript:;" class="crayons-tabs__item <%= "crayons-tabs__item--current" if @current_ordering == :relevance %>" aria-current="page"><%= _t.relevance %></a>
           </li>
           <li>
-            <a data-text="<%= t.v.search.sort.newest %>" href="javascript:;" class="crayons-tabs__item <%= "crayons-tabs__item--current" if @current_ordering == :newest %>" data-sort-by="published_at" data-sort-direction="desc"><%= t.v.search.sort.newest %></a>
+            <a data-text="<%= _t.newest %>" href="javascript:;" class="crayons-tabs__item <%= "crayons-tabs__item--current" if @current_ordering == :newest %>" data-sort-by="published_at" data-sort-direction="desc"><%= _t.newest %></a>
           </li>
           <li>
-            <a data-text="<%= t.v.search.sort.oldest %>" href="javascript:;" class="crayons-tabs__item <%= "crayons-tabs__item--current" if @current_ordering == :oldest %>" data-sort-by="published_at" data-sort-direction="asc"><%= t.v.search.sort.oldest %></a>
+            <a data-text="<%= _t.oldest %>" href="javascript:;" class="crayons-tabs__item <%= "crayons-tabs__item--current" if @current_ordering == :oldest %>" data-sort-by="published_at" data-sort-direction="asc"><%= _t.oldest %></a>
           </li>
         </ul>
       </nav>

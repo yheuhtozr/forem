@@ -1,4 +1,5 @@
-<% title_string = t.v.series.heading user: @user.name %>
+<% _t = t.v.series %>
+<% title_string = _t.heading user: @user.name %>
 
 <%= content_for :page_meta do %>
   <%= render "collections/meta", title_string: title_string %>
@@ -19,7 +20,7 @@
         </div>
       <% end %>
     <% else %>
-      <p><%= t.v.series.empty %></p>
+      <p><%= _t.empty %></p>
     <% end %>
   </div>
 </main>

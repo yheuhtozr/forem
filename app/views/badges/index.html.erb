@@ -1,9 +1,10 @@
-<% title t.v.badges.meta.title %>
+<% _t = t.v.badges %>
+<% title _t.meta.title %>
 
 <div class="blank-space"></div>
 <div class="container article">
-  <h1 style="text-align: center;"><%= t.v.badges.heading %></h1>
-  <p style="text-align: center; max-width: 96%;"><%= t.v.badges.desc %></p>
+  <h1 style="text-align: center;"><%= _t.heading %></h1>
+  <p style="text-align: center; max-width: 96%;"><%= _t.desc %></p>
   <div class="body sticker-book">
     <% @badges.each do |badge| %>
     <a href="/badge/<%= badge.slug %>">

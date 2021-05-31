@@ -1,3 +1,4 @@
+<% _t = t.v.auth.login %>
 <%= form_for(User.new, as: :user, url: session_path(:user), data: { testid: "login-form" }) do |f| %>
   <div class="crayons-field mb-3">
     <%= f.label :email, class: "crayons-field__label" %>
@@ -15,11 +16,11 @@
   </div>
 
   <div class="actions pt-3">
-    <%= f.submit t.v.auth.login.continue, class: "crayons-btn crayons-btn--l w-100" %>
+    <%= f.submit _t.continue, class: "crayons-btn crayons-btn--l w-100" %>
   </div>
 <% end %>
 <p class="pt-6 fs-s align-center">
   <a href="<%= new_password_path(:user) %>">
-    <%= t.v.auth.login.forgot %>
+    <%= _t.forgot %>
   </a>
 </p>

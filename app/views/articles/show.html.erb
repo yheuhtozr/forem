@@ -1,3 +1,4 @@
+<% _t = t.v.articles %>
 <% title @article.title_with_query_preamble(user_signed_in?) %>
 
 <%= render "shared/payment_pointer", user: @article.user %>
@@ -64,12 +65,12 @@
     <meta property="og:type" content="article" />
     <meta property="og:url" content="<%= article_url(@article) %>" />
     <meta property="og:title" content="<%= @article.title %>" />
-    <meta property="og:description" content="<%= @article.description || t.v.articles.meta.description %>" />
+    <meta property="og:description" content="<%= @article.description || _t.meta.description %>" />
     <meta property="og:site_name" content="<%= community_name %>" />
     <meta name="twitter:site" content="@<%= Settings::General.social_media_handles["twitter"] %>">
     <meta name="twitter:creator" content="@<%= @user.twitter_username %>">
     <meta name="twitter:title" content="<%= @article.title %>">
-    <meta name="twitter:description" content="<%= @article.description || t.v.articles.meta.description %>">
+    <meta name="twitter:description" content="<%= @article.description || _t.meta.description %>">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:widgets:new-embed-design" content="on">
     <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1">
@@ -91,7 +92,7 @@
 <% end %>
 
 <div class="crayons-layout crayons-layout--3-cols crayons-layout--article">
-  <aside class="crayons-layout__sidebar-left" aria-label="<%= t.v.articles.actions.aria_label %>">
+  <aside class="crayons-layout__sidebar-left" aria-label="<%= _t.actions.aria_label %>">
     <%= render "articles/actions" %>
   </aside>
 
@@ -99,9 +100,9 @@
     <div class="article-wrapper">
       <% if !@article.published %>
         <div class="crayons-notice crayons-notice--danger mb-4" aria-live="polite">
-          <strong><%= t.v.articles.unpublished.subtitle %></strong><%= t.v.articles.unpublished.text %>
+          <strong><%= _t.unpublished.subtitle %></strong><%= _t.unpublished.text %>
           <% if user_signed_in? %>
-            <a id="author-click-to-edit" href="<%= @article.path %>/edit" class="fw-bold" display="none"><%= t.v.articles.unpublished.edit %></a>
+            <a id="author-click-to-edit" href="<%= @article.path %>/edit" class="fw-bold" display="none"><%= _t.unpublished.edit %></a>
           <% end %>
         </div>
       <% end %>
@@ -160,16 +161,16 @@
                   <%= local_date(@article.published_timestamp, show_year: @article.displayable_published_at.year != Time.current.year) %>
                 <% end %>
                 <% if @article.co_author_ids.present? %>
-                  <em><%= t.v.articles.co_authors names: @article.co_author_name_and_path.html_safe %></em>
+                  <em><%= _t.co_authors names: @article.co_author_name_and_path.html_safe %></em>
                 <% end %>
 
                 <% if should_show_crossposted_on?(@article) %>
-                  ・<em><%= t.v.articles.crossposted.text(
+                  ・<em><%= _t.crossposted.text(
                              start: tag("a", { href: @article.canonical_url || @article.feed_source_url, style: "color:#1395b8" }, true),
                              end: "</a>".html_safe,
                              url: get_host_without_www(@article.canonical_url || @article.feed_source_url),
                              on: if @article.crossposted_at
-                                   t.v.articles.crossposted.on(
+                                   _t.crossposted.on(
                                      date: local_date(@article.originally_published_at || @article.published_at, show_year: (@article.originally_published_at || @article.published_at).year != Time.current.year),
                                    )
                                  else
@@ -178,10 +179,10 @@
                            ) %></em>
                 <% end %>
                 <% if should_show_updated_on?(@article) %>
-                  ・<em><%= t.v.articles.edited date: local_date(@article.edited_at, show_year: @article.edited_at.year != Time.current.year) %></em>
+                  ・<em><%= _t.edited date: local_date(@article.edited_at, show_year: @article.edited_at.year != Time.current.year) %></em>
                 <% end %>
 
-                <span class="mr-4">・<%= t.v.articles.reading_time(@article.reading_time < 1 ? 1 : @article.reading_time) %></span>
+                <span class="mr-4">・<%= _t.reading_time(@article.reading_time < 1 ? 1 : @article.reading_time) %></span>
               </span>
               <span id="action-space" class="mb-4 s:mb-0"></span>
             </div>

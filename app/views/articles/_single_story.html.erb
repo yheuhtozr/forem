@@ -1,3 +1,4 @@
+<% _t = t.v.articles %>
 <div class="crayons-story <% if featured == true %>crayons-story--featured<% end %>" data-content-user-id="<%= story.user_id %>">
   <a href="<%= story.path %>" aria-labelledby="article-link-<%= story.id %>" class="crayons-story__hidden-navigation-link"><%= story.title %></a>
   <% if featured == true %>
@@ -40,7 +41,7 @@
             </a>
             <% if story.cached_organization && !@organization_article_index %>
             <span>
-              <%= t.v.articles.for_org(
+              <%= _t.for_org(
                     start: tag("span", { class: %w[crayons-story__tertiary fw-normal] }, true),
                     end: "</span>".html_safe,
                     org: tag.a(story.cached_organization.name, href: "/#{story.cached_organization.slug}", class: %w[crayons-story__secondary fw-medium]),
@@ -101,11 +102,11 @@
         </div>
         <div class="crayons-story__save">
           <small class="crayons-story__tertiary fs-xs mr-2">
-            <%= t.v.articles.reading_time(story.reading_time < 1 ? 1 : story.reading_time) %>
+            <%= _t.reading_time(story.reading_time < 1 ? 1 : story.reading_time) %>
           </small>
-          <button type="button" id="article-save-button-<%= story.id %>" class="crayons-btn crayons-btn--secondary crayons-btn--s bookmark-button" data-reactable-id="<%= story.id %>" aria-label="<%= t.v.articles.save.aria_label %>" title="<%= t.v.articles.save.title %>">
-            <span class="bm-initial"><%= t.v.articles.save.initial %></span>
-            <span class="bm-success"><%= t.v.articles.save.success %></span>
+          <button type="button" id="article-save-button-<%= story.id %>" class="crayons-btn crayons-btn--secondary crayons-btn--s bookmark-button" data-reactable-id="<%= story.id %>" aria-label="<%= _t.save.aria_label %>" title="<%= _t.save.title %>">
+            <span class="bm-initial"><%= _t.save.initial %></span>
+            <span class="bm-success"><%= _t.save.success %></span>
           </button>
         </div>
       </div>

@@ -1,23 +1,24 @@
+<% _t = t.v.articles.delete %>
 <div class="crayons-layout crayons-layout--limited-l gap-0">
   <div class="crayons-card crayons-card--secondary text-styles text-styles--secondary text-padding -mb-1 mx-3 m:mx-6 mt-3">
     <%= @article.title %>
   </div>
   <div class="crayons-card text-padding">
-    <h1 class="crayons-subtitle-1 mb-2"><%= t.v.article.delete.heading %></h1>
+    <h1 class="crayons-subtitle-1 mb-2"><%= _t.heading %></h1>
     <p class="fs-l mb-4">
-      <%= t.v.article.delete.desc.text(
+      <%= _t.desc.text(
             start: tag("a", { data: { no_instant: "" }, href: "#{@article.path}/edit" }, true),
             end: "</a>".html_safe,
-            action: @article.published ? t.v.article.delete.desc.unpublish : t.v.article.delete.desc.edit,
+            action: @article.published ? _t.desc.unpublish : _t.desc.edit,
           ) %>
     </p>
 
     <%= form_tag "/articles/#{@article.id}", method: :delete do %>
-      <button class="crayons-btn crayons-btn--danger"><%= t.v.article.delete.action.button %></button>
+      <button class="crayons-btn crayons-btn--danger"><%= _t.action.button %></button>
       <a data-no-instant href="<%= @article.path %>/edit" class="crayons-btn crayons-btn--secondary">
-        <%= @article.published ? t.v.article.delete.action.unpublish : t.v.article.delete.action.edit %>
+        <%= @article.published ? _t.action.unpublish : _t.action.edit %>
       </a>
-      <a data-no-instant href="<%= dashboard_path %>" class="crayons-btn crayons-btn--ghost"><%= t.v.article.delete.action.cancel %></a>
+      <a data-no-instant href="<%= dashboard_path %>" class="crayons-btn crayons-btn--ghost"><%= _t.action.cancel %></a>
     <% end %>
   </div>
 </div>

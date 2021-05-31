@@ -1,4 +1,5 @@
-<% title_string = t.v.series.list.heading series: @collection.slug %>
+<% _t = t.v.series.list %>
+<% title_string = _t.heading series: @collection.slug %>
 
 <%= content_for :page_meta do %>
   <%= render "collections/meta", title_string: title_string %>
@@ -17,7 +18,7 @@
           <%= render "articles/single_story", story: article.decorate, featured: article.main_image.present? %>
         <% end %>
       <% else %>
-        <p><%= t.v.series.list.empty %></p>
+        <p><%= _t.empty %></p>
       <% end %>
     </div>
   </div>

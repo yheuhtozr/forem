@@ -49,7 +49,7 @@ class CreditsController < ApplicationController
     @purchaser.spent_credits_count = @purchaser.credits.spent.size
     @purchaser.unspent_credits_count = @purchaser.credits.unspent.size
     @purchaser.save
-    redirect_to credits_path, notice: t.v.credits.messages.done(@number_to_purchase)
+    redirect_to credits_path, notice: R18n.t.v.credits.messages.done(@number_to_purchase)
   end
 
   private
@@ -90,7 +90,7 @@ class CreditsController < ApplicationController
     Payments::Customer.charge(
       customer: @customer,
       amount: generate_cost,
-      description: t.v.credits.messages.charge(@number_to_purchase),
+      description: R18n.t.v.credits.messages.charge(@number_to_purchase),
       card_id: @card&.id,
     )
   end

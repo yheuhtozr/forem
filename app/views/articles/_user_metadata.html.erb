@@ -1,10 +1,11 @@
+<% _t = t.v.user %>
 <div class="user-metadata-details">
   <ul class="user-metadata-details-inner">
       <% if @organization %>
         <% if @organization.location.present? %>
           <li>
             <div class="key">
-              <%= t.v.user.org.location %>
+              <%= _t.org.location %>
             </div>
             <div class="value">
               <%= sanitize @organization.location %>
@@ -14,7 +15,7 @@
         <% if @organization.company_size.present? %>
           <li>
             <div class="key">
-              <%= t.v.user.org.company_size %>
+              <%= _t.org.company_size %>
             </div>
             <div class="value">
               <%= @organization.company_size %>
@@ -24,7 +25,7 @@
         <% if @organization.email.present? %>
           <li>
             <div class="key">
-              <%= t.v.user.org.email %>
+              <%= _t.org.email %>
             </div>
             <div class="value">
               <a href="mailto:<%= sanitize @organization.email %>"><%= sanitize @organization.email %></a>
@@ -36,7 +37,7 @@
       <% if @user.email_public && context != "sidebar" %>
         <li>
           <div class="key">
-            <%= t.v.user.email %>
+            <%= _t.email %>
           </div>
           <div class="value">
             <a href="mailto:<%= @user.email %>"><%= @user.email %></a>
@@ -46,10 +47,10 @@
       <% if @user.employment_title.present? %>
         <li>
           <div class="key">
-            <%= t.v.user.employment.title %>
+            <%= _t.employment.key %>
           </div>
           <div class="value">
-            <%= t.v.user.employment.title(
+            <%= _t.employment.title(
                   title: @user.employment_title,
                   at_start: tag("span", { class: %w[opacity-50] }, true),
                   at_end: "</span>".html_safe,
@@ -63,7 +64,7 @@
       <% if @user.location.present? %>
         <li>
           <div class="key">
-            <%= t.v.user.location %>
+            <%= _t.location %>
           </div>
           <div class="value">
             <%= @user.location %>
@@ -73,7 +74,7 @@
       <% if @user.education.present? %>
         <li>
           <div class="key">
-            <%= t.v.user.education %>
+            <%= _t.education %>
           </div>
           <ul class="value">
             <%= @user.education %>
@@ -83,7 +84,7 @@
     <% end %>
     <li>
       <div class="key">
-        <%= t.v.user.created_at %>
+        <%= _t.created_at %>
       </div>
       <div class="value">
         <%= local_date(@user.created_at) %>

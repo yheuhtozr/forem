@@ -1,12 +1,13 @@
+<% _t = t.v.credits.ledger %>
 <table class="ledger">
   <caption>Purchase history</caption>
 
   <thead>
     <tr>
-      <th><%= t.v.credits.ledger.category %></th>
-      <th><%= t.v.credits.ledger.item %></th>
-      <th><%= t.v.credits.ledger.cost %></th>
-      <th><%= t.v.credits.ledger.date %></th>
+      <th><%= _t.category %></th>
+      <th><%= _t.item %></th>
+      <th><%= _t.cost %></th>
+      <th><%= _t.date %></th>
     </tr>
   </thead>
 
@@ -20,14 +21,14 @@
         <% end %>
           <td>
             <% if item.purchase %>
-              <%= item.purchase.instance_of?(Listing) ? t.v.credits.ledger.class.listing : item.purchase.class.name.titleize %>
+              <%= item.purchase.instance_of?(Listing) ? _t.class.listing : item.purchase.class.name.titleize %>
             <% end %>
           </td>
           <td>
             <% if item.purchase %>
               <%= render "ledger_#{item.purchase.class.name.underscore}", purchase: item.purchase %>
             <% else %>
-              <span><%= t.v.credits.ledger.misc %></span>
+              <span><%= _t.misc %></span>
             <% end %>
           </td>
           <td class="cost"><%= item.cost %></td>

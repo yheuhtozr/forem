@@ -1,11 +1,12 @@
+<% _t = t.v.comments.orphan %>
 <div class="comments-container comments-dedicated-page-container">
-  <h3><%= t.v.comments.orphan.heading %></h3>
+  <h3><%= _t.heading %></h3>
   <div class="single-comment-node root">
     <% @user ||= @root_comment.user %>
     <% if @root_comment.blank? || @root_comment.deleted %>
       <div class="inner-comment">
         <div class="body">
-          <%= t.v.comments.orphan.deleted %>
+          <%= _t.deleted %>
         </div>
       </div>
     <% else %>
@@ -52,8 +53,8 @@
         <div class="actions">
           <% if @root_comment.user_id == current_user&.id %>
             <span class="current-user-actions">
-              <a href="<%= @root_comment.path %>/delete_confirm" class="edit-butt" rel="nofollow"><%= t.v.comments.orphan.delete %></a>
-              <a href="<%= @root_comment.path %>/edit" class="edit-butt" rel="nofollow"><%= t.v.comments.orphan.edit %></a>
+              <a href="<%= @root_comment.path %>/delete_confirm" class="edit-butt" rel="nofollow"><%= _t.delete %></a>
+              <a href="<%= @root_comment.path %>/edit" class="edit-butt" rel="nofollow"><%= _t.edit %></a>
             </span>
           <% end %>
         </div>

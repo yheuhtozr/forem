@@ -1,16 +1,17 @@
+<% _t = t.v.dashboard.article %>
 <div class="js-dashboard-story single-article <%= "single-article-unpublished" unless article.published %> <%= "single-article-archived hidden" if article.archived %>">
   <div class="dashboard-collection-org-details">
     <% if article.organization_id %>
       <span class="dashboard-top-pill"><%= article.organization&.name %></span>
     <% end %>
     <% if article.collection_id %>
-      <span class="dashboard-top-pill"><%= t.v.dashboard.article.series_html series: article.series %></span>
+      <span class="dashboard-top-pill"><%= _t.series_html series: article.series %></span>
     <% end %>
   </div>
 
   <div class="js-ellipsis-menu relative inline-block float-right">
     <button class="crayons-btn crayons-btn--ghost crayons-btn--s crayons-btn--icon js-ellipsis-menu-trigger">
-      <%= inline_svg_tag("overflow-horizontal.svg", aria: true, class: "crayons-icon", title: t.v.dashboard.article.more.icon) %>
+      <%= inline_svg_tag("overflow-horizontal.svg", aria: true, class: "crayons-icon", title: _t.more.icon) %>
     </button>
 
     <div class="crayons-dropdown top-100 right-0 z-10 align-left js-ellipsis-menu-dropdown p-1">
@@ -18,22 +19,22 @@
         <%= f.hidden_field :archived, value: !article.archived %>
 
         <button type="submit" class="crayons-link crayons-link--block w-100 border-0 bg-transparent">
-          <%= t.v.dashboard.article[article.archived ? :unarchive : :archive] %>
+          <%= _t[article.archived ? :unarchive : :archive] %>
         </button>
       <% end %>
     </div>
   </div>
 
-  <a href="<%= article.current_state_path %>"><h2><%= t.v.dashboard.article.heading.text archived: article.archived ? t.v.dashboard.article.heading.archived : "", title: sanitize_and_decode(article.title) %></h2></a>
+  <a href="<%= article.current_state_path %>"><h2><%= _t.heading.text archived: article.archived ? _t.heading.archived : "", title: sanitize_and_decode(article.title) %></h2></a>
   <div class="dashboard-meta-details">
     <% if article.published %>
       <span>
-        <%= t.v.dashboard.article.published_html date: tag.time(article.readable_publish_date, datetime: article.published_timestamp) %>
+        <%= _t.published_html date: tag.time(article.readable_publish_date, datetime: article.published_timestamp) %>
       </span>
 
       <% if article.edited? %>
         <span>
-          · <%= t.v.dashboard.article.edited_html date: tag.time(article.readable_edit_date, datetime: article.edited_at.utc.iso8601) %>
+          · <%= _t.edited_html date: tag.time(article.readable_edit_date, datetime: article.edited_at.utc.iso8601) %>
         </span>
       <% end %>
 
@@ -44,44 +45,44 @@
   </div>
   <div class="dashboard-actions">
     <% if !article.published %>
-      <a href="<%= article.current_state_path %>" class="crayons-btn"><%= t.v.dashboard.article.draft %></a>
+      <a href="<%= article.current_state_path %>" class="crayons-btn"><%= _t.draft %></a>
     <% end %>
-    <a href="<%= article.path %>/edit" class="crayons-btn"><%= t.v.dashboard.article.edit.text %></a>
+    <a href="<%= article.path %>/edit" class="crayons-btn"><%= _t.edit.text %></a>
     <% if manage_view %>
-      <a href="<%= article.path %>/delete_confirm" data-no-instant class="crayons-btn crayons-btn--danger"><%= t.v.dashboard.article.delete %></a>
+      <a href="<%= article.path %>/delete_confirm" data-no-instant class="crayons-btn crayons-btn--danger"><%= _t.delete %></a>
       <% if article.profile_pins.any? %>
         <%= form_for(article.profile_pins.first) do |f| %>
-          <button class="crayons-btn crayons-btn--secondary"><%= t.v.dashboard.article.unpin %></button>
+          <button class="crayons-btn crayons-btn--secondary"><%= _t.unpin %></button>
         <% end %>
       <% else %>
         <%= form_for(ProfilePin.new) do |f| %>
           <%= f.hidden_field :pinnable_id, value: article.id %>
-          <button class="crayons-btn"><%= t.v.dashboard.article.pin.button %></button>
+          <button class="crayons-btn"><%= _t.pin.button %></button>
         <% end %>
       <% end %>
     <% elsif article.published %>
-      <a href="<%= article.path %>/manage" class="crayons-btn"><%= t.v.dashboard.article.manage.text %></a>
+      <a href="<%= article.path %>/manage" class="crayons-btn"><%= _t.manage.text %></a>
     <% elsif @user == article.user %>
-      <a href="<%= article.path %>/delete_confirm" data-no-instant class="crayons-btn crayons-btn--danger"><%= t.v.dashboard.article.delete %></a>
+      <a href="<%= article.path %>/delete_confirm" data-no-instant class="crayons-btn crayons-btn--danger"><%= _t.delete %></a>
     <% end %>
 
-    <a href="<%= article.path %>/stats" data-no-instant class="crayons-btn"><%= t.v.dashboard.article.stats %></a>
+    <a href="<%= article.path %>/stats" data-no-instant class="crayons-btn"><%= _t.stats %></a>
 
     <% if article.published %>
       <span id="pageviews-<%= article.id %>" class="crayons-btn dashboard-pageviews-indicator" data-analytics-pageviews data-article-id="<%= article.id %>">
         <span class="page-views-count">
           <% pvs = article.page_views_count %>
-          <%= t.v.dashboard.article.views.text count: pvs, scale: tag.span(pvs > 25 ? tag.span(pvs, class: %w[value]) : t.v.dashboard.article.views.u_25, class: %w[value]) %>
+          <%= _t.views.text count: pvs, scale: tag.span(pvs > 25 ? tag.span(pvs, class: %w[value]) : _t.views.u_25, class: %w[value]) %>
         </span>
         //
         <span class="reactions-count">
           <% prs = article.public_reactions_count %>
-          <%= t.v.dashboard.article.reactions.text count: prs, num: tag.span(prs, class: %w[value]) %>
+          <%= _t.reactions.text count: prs, num: tag.span(prs, class: %w[value]) %>
         </span>
         //
         <span class="comments-count">
           <% pcs = article.comments_count %>
-          <%= t.v.dashboard.article.comments.text count: pcs, num: tag.span(pcs, class: %w[value]) %>
+          <%= _t.comments.text count: pcs, num: tag.span(pcs, class: %w[value]) %>
         </span>
       </span>
     <% end %>
@@ -89,8 +90,8 @@
   <% if organization && org_admin %>
     <%= form_for(article) do |f| %>
       <input type="hidden" name="destination" value="/dashboard/organization/<%= organization.id %>" />
-      <%= t.v.dashboard.article.author_is %><%= f.select(:user_id, options_for_select(organization.users.pluck(:name, :id), article.user_id)) %>
-      <%= f.submit t.v.dashboard.article.submit, class: "crayons-btn crayons-btn--secondary" %>
+      <%= _t.author_is %><%= f.select(:user_id, options_for_select(organization.users.pluck(:name, :id), article.user_id)) %>
+      <%= f.submit _t.submit, class: "crayons-btn crayons-btn--secondary" %>
     <% end %>
   <% end %>
 </div>

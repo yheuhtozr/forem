@@ -1,3 +1,4 @@
+<% _t = t.v.dashboard.posts %>
 <% title t.v.dashboard.heading %>
 
 <main id="main-content">
@@ -14,15 +15,15 @@
 
     <div class="crayons-layout__content flex flex-col">
       <div class="flex items-center justify-between mb-3">
-        <h2 class="hidden m:block crayons-subtitle-2"><%= t.v.dashboard.posts.heading %></h2>
+        <h2 class="hidden m:block crayons-subtitle-2"><%= _t.heading %></h2>
 
         <div class="flex flex-wrap">
           <% if params[:which] != "organization" %>
             <% if @articles.any?(&:archived) %>
-              <%= link_to t.v.dashboard.posts.archived, "javascript:;", id: "toggleArchivedLink", class: "crayons-btn crayons-btn--outlined ml-2 whitespace-nowrap my-1" %>
+              <%= link_to _t.archived, "javascript:;", id: "toggleArchivedLink", class: "crayons-btn crayons-btn--outlined ml-2 whitespace-nowrap my-1" %>
             <% end %>
             <% if @articles.any? %>
-              <%= select_tag "dashboard_sort", options_for_select(sort_options.map { |(_v, k)| [t.v.dashboard.post.option[k], k] }, params[:sort]), 'aria-label': t.v.dashboard.posts.option.aria_label, class: "crayons-select w-auto ml-2 my-1" %>
+              <%= select_tag "dashboard_sort", options_for_select(sort_options.map { |(_v, k)| [_t.option[k], k] }, params[:sort]), 'aria-label': _t.option.aria_label, class: "crayons-select w-auto ml-2 my-1" %>
             <% end %>
           <% end %>
 
@@ -30,7 +31,7 @@
             <select id="dashboard_author" class="crayons-select w-auto ml-2 my-1">
               <option value="/dashboard" <%= "selected" if params[:which].blank? %>></option>
               <% @organizations.each do |org| %>
-                <option value="/dashboard/organization/<%= org.id %>" <%= "selected" if params[:org_id].to_i == org.id %>><%= t.v.dashboard.posts.org name: org.name, num: org.articles_count %></option>
+                <option value="/dashboard/organization/<%= org.id %>" <%= "selected" if params[:org_id].to_i == org.id %>><%= _t.org name: org.name, num: org.articles_count %></option>
               <% end %>
             </select>
           <% end %>
@@ -59,8 +60,8 @@
               <% image_url = Images::Optimizer.call(Settings::General.mascot_image_url, width: 300, crop: "imagga_scale") %>
               <%= image_tag(image_url, class: "sloan mb-7", alt: "Mascot image") %>
             <% end %>
-            <p class="mb-6"><%= t.v.dashboard.posts.empty.desc %></p>
-            <p><a href="/new" class="crayons-btn crayons-btn--l"><%= t.v.dashboard.posts.empty.button %></a></p>
+            <p class="mb-6"><%= _t.empty.desc %></p>
+            <p><a href="/new" class="crayons-btn crayons-btn--l"><%= _t.empty.button %></a></p>
           </div>
         </div>
       <% end %>

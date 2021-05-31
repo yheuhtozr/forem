@@ -1,11 +1,12 @@
+<% _t = t.v.comments.footer %>
 <footer class="comment__footer print-hidden">
   <button
     class="crayons-btn crayons-btn--ghost crayons-btn--icon-left crayons-btn--s mr-1 reaction-like inline-flex reaction-button"
     id="button-for-comment-<%= comment.id %>"
     data-comment-id="<%= comment.id %>"
-    title="<%= t.v.comments.footer.heart.title %>">
-    <%= inline_svg_tag("small-heart.svg", aria: true, class: "crayons-icon reaction-icon not-reacted", title: t.v.comments.footer.heart.icon) %>
-    <%= inline_svg_tag("small-heart-filled.svg", aria: true, class: "crayons-icon reaction-icon--like reaction-icon reacted", title: t.v.comments.footer.heart.icon) %>
+    title="<%= _t.heart.title %>">
+    <%= inline_svg_tag("small-heart.svg", aria: true, class: "crayons-icon reaction-icon not-reacted", title: _t.heart.icon) %>
+    <%= inline_svg_tag("small-heart-filled.svg", aria: true, class: "crayons-icon reaction-icon--like reaction-icon reacted", title: _t.heart.icon) %>
     <span class="reactions-count">
       <%= comment.public_reactions_count if comment.public_reactions_count.positive? %>
     </span>
@@ -21,13 +22,13 @@
       data-comment-id="<%= comment.id %>"
       data-path="<%= commentable.path %>/comments/<%= comment.id_code_generated %>"
       rel="nofollow">
-      <%= inline_svg_tag("small-comment.svg", aria: true, class: "crayons-icon reaction-icon not-reacted", title: t.v.comments.footer.reply.icon) %>
-      <span class="hidden m:inline-block"><%= t.v.comments.footer.reply.text %></span>
+      <%= inline_svg_tag("small-comment.svg", aria: true, class: "crayons-icon reaction-icon not-reacted", title: _t.reply.icon) %>
+      <span class="hidden m:inline-block"><%= _t.reply.text %></span>
     </a>
   <% else %>
     <span class="fs-s inline-flex items-center fs-italic color-base-50 pl-1">
-      <%= inline_svg_tag("small-thread.svg", aria: true, class: "crayons-icon", title: t.v.comments.footer.thread.icon) %>
-      <%= t.v.comments.footer.thread.text %>
+      <%= inline_svg_tag("small-thread.svg", aria: true, class: "crayons-icon", title: _t.thread.icon) %>
+      <%= _t.thread.text %>
     </span>
   <% end %>
 

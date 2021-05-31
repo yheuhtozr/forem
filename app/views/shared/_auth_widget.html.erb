@@ -1,3 +1,4 @@
+<% _t = t.v.auth %>
 <div class="crayons-card crayons-card--secondary p-4">
   <h2 class="fs-l fw-bold mb-2">
     <%= render "shared/authentication_title" %>
@@ -6,11 +7,11 @@
     <% if Settings::Community.tagline.present? %>
       <%= Settings::Community.tagline %>
     <% else %>
-      <%= t.v.auth.tagline %>
+      <%= _t.tagline %>
     <% end %>
   </p>
   <div>
-    <a href="<%= sign_up_path(state: "new-user") %>" class="crayons-btn w-100 mb-2" aria-label="<%= t.v.auth.create.aria_label %>"><%= t.v.auth.create.text %></a>
-    <a href="<%= sign_up_path %>" class="crayons-btn crayons-btn--ghost-brand w-100" aria-label="<%= t.v.auth.login.aria_label %>"><%= t.v.auth.login.text %></a>
+    <a href="<%= sign_up_path(state: "new-user") %>" class="crayons-btn w-100 mb-2" aria-label="<%= _t.create.aria_label %>"><%= _t.create.text %></a>
+    <a href="<%= sign_up_path %>" class="crayons-btn crayons-btn--ghost-brand w-100" aria-label="<%= _t.login.aria_label %>"><%= _t.login.text %></a>
   </div>
 </div>

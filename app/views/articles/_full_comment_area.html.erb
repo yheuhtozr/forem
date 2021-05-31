@@ -1,9 +1,10 @@
+<% _t = t.v.articles.comments %>
 <% cache("whole-comment-area-#{@article.id}-#{@article.last_comment_at}-#{@article.show_comments}", expires_in: 2.hours) do %>
   <section id="comments" data-updated-at="<%= Time.current %>" class="text-padding mb-4 border-t-1 border-0 border-solid border-base-10">
     <% if @article.show_comments %>
       <header class="relative flex justify-between items-center mb-6">
         <h2 class="crayons-subtitle-1">
-          <%= t.v.articles.comments.subtitle(
+          <%= _t.subtitle(
                 start: tag("span", { class: "js-comments-count", data: { comments_count: @article.comments_count } }, true),
                 end: "</span>".html_safe,
                 count: @article.comments_count,
@@ -11,7 +12,7 @@
         </h2>
         <div id="comment-subscription" class="print-hidden">
           <div role="presentation" class="crayons-btn-group">
-            <span class="crayons-btn crayons-btn--outlined"><%= t.v.articles.comments.subscribe %></span>
+            <span class="crayons-btn crayons-btn--outlined"><%= _t.subscribe %></span>
           </div>
         </div>
       </header>

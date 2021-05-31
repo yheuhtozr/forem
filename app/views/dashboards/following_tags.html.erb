@@ -1,3 +1,4 @@
+<% _t = t.v.dashboard.following_tags %>
 <% title t.v.dashboard.meta.title(site: community_name) %>
 
 <div id="index-container"
@@ -19,8 +20,8 @@
           <%= javascript_packs_with_chunks_tag "dashboardTagsDisableUnchangedButtons", defer: true %>
 
           <div class="crayons-notice p-4 px-6 mb-4 mx-2 m:mx-0" aria-live="polite">
-              <%= t.v.dashboard.following_tags.adjust %>
-              <span class="crayons-indicator crayons-indicator--outlined crayons-indicator--accent ml-3"><%= t.v.dashboard.following_tags.default %></span>
+              <%= _t.adjust %>
+              <span class="crayons-indicator crayons-indicator--outlined crayons-indicator--accent ml-3"><%= _t.default %></span>
           </div>
           <div id="following-wrapper" class="grid gap-3 m:gap-4 s:grid-cols-2 l:grid-cols-3 px-2 m:px-0">
             <% negative_follow_shown_once = false %>
@@ -34,7 +35,7 @@
                       <span class="crayons-tag__prefix">#</span><%= tag.name %>
                     </a>
                     <% if follow.explicit_points < 0 %>
-                      <span class="crayons-indicator crayons-indicator--critical crayons-indicator--outlined" title="<%= t.v.dashboard.following_tags.anti.title %>"><%= t.v.dashboard.following_tags.anti.text %></span>
+                      <span class="crayons-indicator crayons-indicator--critical crayons-indicator--outlined" title="<%= _t.anti.title %>"><%= _t.anti.text %></span>
                     <% end %>
                   </h3>
 
@@ -44,7 +45,7 @@
 
                   <%= fields(follow) do |f| %>
                     <%= f.hidden_field(:id, name: "follows[][id]", form: "follows_update_form", id: "follow_id_#{follow.followable}") %>
-                    <%= f.number_field(:explicit_points, step: :any, required: true, class: "crayons-textfield flex-1 fs-s", name: "follows[][explicit_points]", form: "follows_update_form", "aria-label": t.v.dashboard.following_tags.number.aria_label(name: follow.followable),
+                    <%= f.number_field(:explicit_points, step: :any, required: true, class: "crayons-textfield flex-1 fs-s", name: "follows[][explicit_points]", form: "follows_update_form", "aria-label": _t.number.aria_label(name: follow.followable),
                                                          id: "explicit_points_#{follow.followable}") %>
                   <% end %>
                 </div>
@@ -53,10 +54,10 @@
           </div>
 
           <%= form_with url: bulk_update_follows_path, method: :patch, local: true, class: "sticky bg-base-10 pt-3 pb-1 z-elevate", html: { style: "bottom: 0;margin-left:-1px" }, id: "follows_update_form" do |f| %>
-            <button type="submit" class="crayons-btn crayons-btn--m mb-3" name="commit"><%= t.v.dashboard.following_tags.update %></button>
+            <button type="submit" class="crayons-btn crayons-btn--m mb-3" name="commit"><%= _t.update %></button>
           <% end %>
         <% else %>
-          <div class="p-9 crayons-card crayons-card--secondary align-center fs-l h-100 flex items-center justify-center"><%= t.v.dashboard.following_tags.empty %></div>
+          <div class="p-9 crayons-card crayons-card--secondary align-center fs-l h-100 flex items-center justify-center"><%= _t.empty %></div>
         <% end %>
         <%= render "sublist" %>
       </div>

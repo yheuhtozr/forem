@@ -1,11 +1,12 @@
-<% title t.v.dashboard.analytics.meta.title %>
+<% _t = t.v.dashboard.analytics %>
+<% title _t.meta.title %>
 
 <main id="main-content">
   <div class="dashboard-container analytics-container crayons-layout" id="user-dashboard">
     <div class="crayons-card p-3 mt-5">
-      <h1 class="fs-4xl fw-medium"><%= t.v.dashboard.analytics.heading name: @user_or_org.name %></h1>
-      <p><%= t.v.dashboard.analytics.desc_1 members: Settings::Community.member_label %></p>
-      <p><%= t.v.dashboard.analytics.desc_2 members: Settings::Community.member_label %></p>
+      <h1 class="fs-4xl fw-medium"><%= _t.heading name: @user_or_org.name %></h1>
+      <p><%= _t.desc_1 members: Settings::Community.member_label %></p>
+      <p><%= _t.desc_2 members: Settings::Community.member_label %></p>
     </div>
 
     <%= render "shared/stats" %>

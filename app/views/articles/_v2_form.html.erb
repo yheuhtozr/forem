@@ -1,3 +1,4 @@
+<% _t = t.v.editor %>
 <style>
   body {
     padding-top: 0 !important;
@@ -49,7 +50,7 @@
       </span>
 
       <div class="crayons-field__label">
-        <span class="hidden s:inline-block mr-2"><%= t.v.editor.create %></span>
+        <span class="hidden s:inline-block mr-2"><%= _t.create %></span>
         <% if organizations && organizations.size > 0 %>
           <select name="article[organization_id]" id="article_publish_under_org" class="crayons-select w-auto mt-0">
             <%= options_for_select({ "Personal" => "" }.merge(organizations.pluck(:name, :id).to_h), article.organization_id || "") %>
@@ -60,17 +61,17 @@
       <nav class="crayons-article-form__tabs crayons-tabs ml-auto" aria-label="View post modes">
         <ul class="crayons-tabs__list">
           <li>
-            <button data-text="Edit" class="crayons-tabs__item crayons-tabs__item--current" type="button" aria-current="page"><%= t.v.editor.edit %></button>
+            <button data-text="Edit" class="crayons-tabs__item crayons-tabs__item--current" type="button" aria-current="page"><%= _t.edit %></button>
           </li>
           <li>
-            <button data-text="Preview" class="crayons-tabs__item " type="button"><%= t.v.editor.preview %></button>
+            <button data-text="Preview" class="crayons-tabs__item " type="button"><%= _t.preview %></button>
           </li>
         </ul>
       </nav>
 
       <div class="crayons-article-form__close">
-        <a href="/" class="crayons-btn crayons-btn--ghost-dimmed crayons-btn--icon" title="<%= t.v.editor.close.title %>">
-          <%= inline_svg_tag("x.svg", aria: true, class: "crayons-icon", title: t.v.editor.close.icon) %>
+        <a href="/" class="crayons-btn crayons-btn--ghost-dimmed crayons-btn--icon" title="<%= _t.close.title %>">
+          <%= inline_svg_tag("x.svg", aria: true, class: "crayons-icon", title: _t.close.icon) %>
         </a>
       </div>
     </div>
@@ -84,13 +85,13 @@
             <% end %>
             <button class="crayons-btn crayons-btn--outlined mr-2">
               <label for="cover-image-input">
-                <% if article.main_image.present? %><%= t.v.editor.cover.change %><% else %><%= t.v.editor.cover.add %><% end %>
+                <% if article.main_image.present? %><%= _t.cover.change %><% else %><%= _t.cover.add %><% end %>
               </label>
               <input id="cover-image-input" type="file" accept="image/*" class="w-100 h-100 absolute left-0 right-0 top-0 bottom-0 overflow-hidden opacity-0 cursor-pointer" data-max-file-size-mb="25">
             </button>
           </div>
           <div class="crayons-article-form__title">
-            <textarea class="crayons-textfield crayons-textfield--ghost fs-3xl m:fs-4xl l:fs-5xl fw-bold s:fw-heavy lh-tight" type="text" id="article-form-title" placeholder="<%= t.v.editor.new_title %>" autocomplete="off"><%= article.title %></textarea>
+            <textarea class="crayons-textfield crayons-textfield--ghost fs-3xl m:fs-4xl l:fs-5xl fw-bold s:fw-heavy lh-tight" type="text" id="article-form-title" placeholder="<%= _t.new_title %>" autocomplete="off"><%= article.title %></textarea>
           </div>
         </div>
       <% end %>
