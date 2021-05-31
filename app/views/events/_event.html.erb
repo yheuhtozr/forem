@@ -1,3 +1,4 @@
+<% _t = t.v.events %>
 <style>
   .container .event {
     padding: 20px;
@@ -59,17 +60,17 @@
     <img src="<%= optimized_image_url(event.cover_image_url, width: 500) %>" alt="event image" loading="lazy" />
   </div>
   <div class="event-details">
-    <h3><a href="/events/<%= event.slug %>"><%= event.category %>: <%= event.title %></a></h3>
+    <h3><a href="/events/<%= event.slug %>"><%= _t.heading category: event.category, title: event.title %></a></h3>
     <p>
-      Date: <span class="utc-date" data-datetime="<%= event.starts_at.strftime("%d %B %Y %H:%M UTC") %>">&nbsp;</span>
+      <%= _t.date %><span class="utc-date" data-datetime="<%= event.starts_at.strftime("%d %B %Y %H:%M UTC") %>">&nbsp;</span>
       <br>
-      Time: <span class="utc-time" data-datetime="<%= event.starts_at.strftime("%d %B %Y %H:%M UTC") %>">&nbsp;</span>
+      <%= _t.time %><span class="utc-time" data-datetime="<%= event.starts_at.strftime("%d %B %Y %H:%M UTC") %>">&nbsp;</span>
       - <span class="utc-time" data-datetime="<%= event.ends_at.strftime("%d %B %Y %H:%M UTC") %>">&nbsp;</span>
       <br>
-      Location: <a href="<%= event.location_url %>"><%= event.location_name %></a>
+      <%= _t.location %><a href="<%= event.location_url %>"><%= event.location_name %></a>
     </p>
-    <div title="Add to Calendar" class="addeventatc">
-      Add to Calendar
+    <div title="<%= _t.calendar.title %>" class="addeventatc">
+      <%= _t.calendar.text %>
       <span class="start utc"><%= event.starts_at.strftime("%d %B %Y %H:%M UTC") %></span>
       <span class="end utc"><%= event.ends_at.strftime("%d %B %Y %H:%M UTC") %></span>
       <span class="timezone">America/New_York</span>
@@ -82,7 +83,7 @@
       <span class="description">
         <%= event.description_html&.html_safe %>
         ------
-        Link to attend - <%= event.location_url %>
+        <%= _t.calendar.link url: event.location_url %>
       </span>
     </div>
   </div>

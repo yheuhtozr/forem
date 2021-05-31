@@ -1,4 +1,5 @@
-<% title "Feedback" %>
+<% _t = t.v.feedback %>
+<% title _t.meta.title %>
 <% cache(release_adjusted_cache_key("feedback-messages-lander-styling")) do %>
   <style>
     <%= Rails.application.assets["feedback_messages.css"].to_s.html_safe %>
@@ -6,10 +7,10 @@
 <% end %>
 <div class="dialog">
   <div>
-    <h2>Thank you for your report.</h2>
-    <h3><a href="/">Return to home page</a></h3>
+    <h2><%= _t.heading %></h2>
+    <h3><a href="/"><%= _t.home %></a></h3>
     <p>
-      Questions? Send an email to <%= email_link %>
+      <%= _t.desc email: email_link %>
     </p>
   </div>
 </div>

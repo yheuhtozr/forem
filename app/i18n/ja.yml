@@ -532,6 +532,14 @@ v:
       listings: Listings created
       credits: Credits available
       lt_500: < 500
+  deep_links:
+    subtitle: Opening the mobile app...
+    alert:
+      subtitle: Whoops! Did you get stuck trying to open the mobile app?
+      desc: !html Make sure it's installed and try again. If the problem persists contact %{email}
+      back: Take me back
+      again: Try again
+      install: Install the app
   editor:
     heading:
       edit: Edit Post
@@ -555,6 +563,56 @@ v:
         button: Submit Change
         text: "Preview Image URL: "
         placeholder: New Thumbnail URL
+  email_subscriptions:
+    unsubscribe:
+      heading: You have been unsubscribed from %{type}. 😔
+      desc: You will no longer receive emails like this. If you'd like to re-subscribe or manage your full email preferences, please %{link}.
+      link: click here
+    invalid:
+      heading: Token expired or invalid
+      desc: Please %{signin} to manage your email preferences.
+      signin: sign-in
+  events:
+    meta:
+      title: "%{event} - %{site}"
+      description: "%{site} | Events"
+    list:
+      meta:
+        title: "%{site} EVENTS"
+        description: "%{site} Events"
+        og:
+          title: "%{site} Events"
+          description: Community events.
+      heading: Upcoming Events
+      empty: There are no upcoming events currently scheduled
+      past: Past Events
+    heading: "%{category}: %{title}"
+    all: " All EVENTS "
+    date: "Date: "
+    time: "Time: "
+    location: "Location: "
+    calendar:
+      title: Add to Calendar
+      text: Add to Calendar
+      link: Link to attend - %{url}
+  feedback:
+    meta:
+      title: Feedback
+    heading: Thank you for your report.
+    desc: Questions? Send an email to %{email}
+    home: Return to home page
+    form:
+      rude_or_vulgar: Rude or vulgar
+      harassment: Harassment or hate speech
+      spam: Spam or copyright issue
+      listings: Inappropriate listings message/category
+      other: Other
+      url: Reported URL
+      message:
+        subtitle: Message
+        desc: Please provide any additional information or context that will help us understand and handle the situation.
+        placeholder: "..."
+      submit: Send Feedback
   hamburger:
     icon: Close
   index:
