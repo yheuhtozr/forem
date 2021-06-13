@@ -19,7 +19,7 @@
     <% @organizations.find_each do |org| %>
       <div class="existing-credits">
         <div class="existing-credits-status">
-          <%= _t.status.org name: org.name, start: tag("span", { id: "org-credits-number" }, true), count: org.unspent_credits_count, end: "</span>".html_safe %></span>
+          <%= _t.status.org name: org.name, num: tag.span(org.unspent_credits_count, id: "org-credits-number"), count: org.unspent_credits_count %></span>
         </div>
         <a id="org-credits-purchase-link" href="<%= purchase_credits_path(organization_id: org.id) %>" data-no-instant>
           <%= _t.purchase %>

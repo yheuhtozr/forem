@@ -166,9 +166,7 @@
 
                 <% if should_show_crossposted_on?(@article) %>
                   ・<em><%= _t.crossposted.text(
-                             start: tag("a", { href: @article.canonical_url || @article.feed_source_url, style: "color:#1395b8" }, true),
-                             end: "</a>".html_safe,
-                             url: get_host_without_www(@article.canonical_url || @article.feed_source_url),
+                             url: link_to(get_host_without_www(@article.canonical_url || @article.feed_source_url), @article.canonical_url || @article.feed_source_url, style: "color:#1395b8"),
                              on: if @article.crossposted_at
                                    _t.crossposted.on(
                                      date: local_date(@article.originally_published_at || @article.published_at, show_year: (@article.originally_published_at || @article.published_at).year != Time.current.year),

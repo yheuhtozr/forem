@@ -1,3 +1,4 @@
+<% _t = t.v.comments.hidden %>
 <div class="align-center">
   <% if @comments_to_show_count && @article.comments_count > @comments_to_show_count %>
     <div class="mb-4">
@@ -9,7 +10,7 @@
 
   <% if @article.any_comments_hidden %>
     <p class="fs-s color-base-60 mb-4">
-      <%= t.v.comments.hidden start: tag("a", { href: "/faq" }, true), end: "</a>".html_safe %>
+      <%= _t.text info: link_to(_t.info, "/faq") %>
     </p>
   <% end %>
 

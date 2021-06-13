@@ -7,7 +7,7 @@
     <%= _t.step_1 %>
   </p>
   <p class="mb-4">
-    <%= _t.step_2 start: tag("a", { href: admin_config_path }, true), end: "</a>".html_safe, path: admin_config_path) %>
+    <%= _t.step_2 path: link_to(admin_config_path, admin_config_path) %>
   </p>
   <p class="mb-4">
     <%= _t.step_3 %>

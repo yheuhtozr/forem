@@ -64,9 +64,7 @@
           <p class="color-base-60">
             <%= _t.parent.metadata(
                   name: @commentable.is_a?(PodcastEpisode) ? @commentable.podcast.name : @commentable.user.name,
-                  start: tag("span", { class: %w[published-at] }, true),
-                  on: @commentable.published_at ? _t.parent.date(date: @commentable.published_at.strftime(t.date.comment)) : "",
-                  end: "</span>".html_safe,
+                  on: tag.span(@commentable.published_at ? _t.parent.date(date: @commentable.published_at.strftime(t.date.comment)) : "", class: %w[published-at]),
                 ) %>
           </p>
         </div>
