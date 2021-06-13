@@ -1,13 +1,7 @@
 # Retrieved from https://github.com/svenfuchs/rails-i18n/blob/67d72ccf469c7e5aa50838b0090219bf579f2626/rails/locale/en-US.yml
+# dirty fix for failing error fallbacks
 ---
 en-US:
-  activerecord:
-    errors:
-      messages:
-        record_invalid: 'Validation failed: %{errors}'
-        restrict_dependent_destroy:
-          has_one: Cannot delete record because a dependent %{record} exists
-          has_many: Cannot delete record because dependent %{record} exist
   date:
     abbr_day_names:
     - Sun
@@ -109,7 +103,7 @@ en-US:
       year: Year
   errors:
     format: "%{attribute} %{message}"
-    messages:
+    messages: &messages
       accepted: must be accepted
       blank: can't be blank
       confirmation: doesn't match %{attribute}
@@ -214,3 +208,11 @@ en-US:
       long: "%B %d, %Y %I:%M %p"
       short: "%d %b %I:%M %p"
     pm: pm
+  activerecord:
+    errors:
+      messages:
+        <<: *messages
+        record_invalid: 'Validation failed: %{errors}'
+        restrict_dependent_destroy:
+          has_one: Cannot delete record because a dependent %{record} exists
+          has_many: Cannot delete record because dependent %{record} exist

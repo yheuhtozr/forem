@@ -1,13 +1,7 @@
 # Retrieved from https://github.com/svenfuchs/rails-i18n/blob/67d72ccf469c7e5aa50838b0090219bf579f2626/rails/locale/ja.yml
+# dirty fix for failing error fallbacks
 ---
 ja:
-  activerecord:
-    errors:
-      messages:
-        record_invalid: 'バリデーションに失敗しました: %{errors}'
-        restrict_dependent_destroy:
-          has_one: "%{record}が存在しているので削除できません"
-          has_many: "%{record}が存在しているので削除できません"
   date:
     abbr_day_names:
     - 日
@@ -109,7 +103,7 @@ ja:
       year: 年
   errors:
     format: "%{attribute}%{message}"
-    messages:
+    messages: &messages
       accepted: を受諾してください
       blank: を入力してください
       confirmation: と%{attribute}の入力が一致しません
@@ -206,3 +200,11 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
+  activerecord:
+    errors:
+      messages:
+        <<: *messages
+        record_invalid: 'バリデーションに失敗しました: %{errors}'
+        restrict_dependent_destroy:
+          has_one: "%{record}が存在しているので削除できません"
+          has_many: "%{record}が存在しているので削除できません"
