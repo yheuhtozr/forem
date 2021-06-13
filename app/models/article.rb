@@ -516,7 +516,7 @@ class Article < ApplicationRecord
     fixed_body_markdown = MarkdownProcessor::Fixer::FixAll.call(body_markdown || "")
     parsed = FrontMatterParser::Parser.new(:md).call(fixed_body_markdown)
     parsed_markdown = MarkdownProcessor::Parser.new(parsed.content, source: self, user: user)
-    self.reading_time = parsed_markdown.calculate_reading_time
+    self.reading_time = parsed_markdown.word_char_count
     self.processed_html = parsed_markdown.finalize
 
     if parsed.front_matter.any?

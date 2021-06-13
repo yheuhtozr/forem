@@ -79,7 +79,7 @@ v:
     missing: Article No Longer Available
     read_next: Read next
     reading_time: !pl
-      n: "%1 min read"
+      n: "%1 words/chars"
   auth:
     create:
       aria_label: Create new account

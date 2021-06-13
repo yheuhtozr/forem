@@ -182,7 +182,12 @@
                   ・<em><%= _t.edited date: local_date(@article.edited_at, show_year: @article.edited_at.year != Time.current.year) %></em>
                 <% end %>
 
-                <span class="mr-4">・<%= _t.reading_time(@article.reading_time < 1 ? 1 : @article.reading_time) %></span>
+                <% cdiv, cmod = @article.reading_time.divmod(100) %>
+                <span class="mr-4">・<%= _t.reading_time(if cdiv < 1
+                                                          100
+                                                        else
+                                                          cdiv * 100 + (cmod >= 50 ? 100 : 0)
+                                                        end) %></span>
               </span>
               <span id="action-space" class="mb-4 s:mb-0"></span>
             </div>

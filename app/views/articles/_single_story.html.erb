@@ -102,7 +102,12 @@
         </div>
         <div class="crayons-story__save">
           <small class="crayons-story__tertiary fs-xs mr-2">
-            <%= _t.reading_time(story.reading_time < 1 ? 1 : story.reading_time) %>
+            <% cdiv, cmod = story.reading_time.divmod(100) %>
+            <%= _t.reading_time(if cdiv < 1
+                                  100
+                                else
+                                  cdiv * 100 + (cmod >= 50 ? 100 : 0)
+                                end) %>
           </small>
           <button type="button" id="article-save-button-<%= story.id %>" class="crayons-btn crayons-btn--secondary crayons-btn--s bookmark-button" data-reactable-id="<%= story.id %>" aria-label="<%= _t.save.aria_label %>" title="<%= _t.save.title %>">
             <span class="bm-initial"><%= _t.save.initial %></span>

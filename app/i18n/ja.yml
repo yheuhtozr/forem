@@ -78,7 +78,7 @@ v:
     missing: 記事は公開終了しました
     read_next: 次に読みたい
     reading_time: !pl
-      n: "%1 分で読める"
+      n: "約 %1 字/語"
   auth:
     create:
       aria_label: Create new account
