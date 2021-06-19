@@ -32,7 +32,7 @@ class StoriesController < ApplicationController
   end
 
   def search
-    @query = "...searching"
+    @query = I18n.t("stories_controller.searching")
     @article_index = true
     @current_ordering = current_search_results_ordering
     set_surrogate_key_header "articles-page-with-query"
@@ -343,7 +343,7 @@ class StoriesController < ApplicationController
       name: @user.name,
       email: @user.email_public ? @user.email : nil,
       jobTitle: @user.employment_title.presence,
-      description: @user.summary.presence || "404 bio not found",
+      description: @user.summary.presence || I18n.t("stories_controller.404_bio_not_found"),
       worksFor: [user_works_for].compact,
       alumniOf: @user.education.presence
     }.reject { |_, v| v.blank? }
@@ -406,7 +406,7 @@ class StoriesController < ApplicationController
       url: URL.organization(@organization),
       image: Images::Profile.call(@organization.profile_image_url, length: 320),
       name: @organization.name,
-      description: @organization.summary.presence || "404 bio not found"
+      description: @organization.summary.presence || I18n.t("stories_controller.404_bio_not_found")
     }
   end
 

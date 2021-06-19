@@ -13,7 +13,7 @@ module ChatChannels
     def call
       channel = ChatChannel.find_by(slug: slug)
       if channel
-        raise "Blocked channel" if channel.status == "blocked"
+        raise I18n.t("services.chat_channels.find_or_create.blocked_channel") if channel.status == "blocked"
 
         channel.update(status: "active")
       else

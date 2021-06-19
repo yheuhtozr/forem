@@ -25,14 +25,14 @@ module Admin
       bump_listing(@listing.cost) if listing_params[:action] == "bump"
       update_listing_details
       clear_listings_cache
-      flash[:success] = "Listing updated successfully"
+      flash[:success] = I18n.t("admin.listings_controller.listing_updated_successful")
       redirect_to edit_admin_listing_path(@listing)
     end
 
     def destroy
       @listing = Listing.find(params[:id])
       @listing.destroy
-      flash[:warning] = "'#{@listing.title}' was destroyed successfully"
+      flash[:warning] = I18n.t("admin.listings_controller.was_destroyed_successfull", listing_title: @listing.title)
       redirect_to admin_listings_path
     end
 

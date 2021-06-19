@@ -768,12 +768,958 @@ v:
       title: !html "%{title}%{at_start} at %{at_end}%{start}%{employer}%{end}"
     location: Location
 
+common:
+  error: 'Error: %{errors}'
+  error_friendly: 😭 %{errors}
+  success_settings: Successfully updated settings.
+admin:
+  articles_controller:
+    article_saved: Article saved!
+  badge_achievements_controller:
+    badge_achievement_has_been: Badge achievement has been deleted!
+    badges_are_being_rewarded: Badges are being rewarded. The task will finish shortly.
+    congrats: Congrats!
+    please_choose_a_badge_to_a: Please choose a badge to award
+  badges_controller:
+    badge_has_been_created: Badge has been created!
+    badge_has_been_updated: Badge has been updated!
+  broadcasts_controller:
+    broadcast_has_been_created: Broadcast has been created!
+    broadcast_has_been_deleted: Broadcast has been deleted!
+    broadcast_has_been_updated: Broadcast has been updated!
+    something_went_wrong_with: Something went wrong with deleting the broadcast.
+  chat_channels_controller:
+    channel_not_deleted_becaus: Channel NOT deleted, because it still has users.
+    channel_was_successfully_d: Channel was successfully deleted.
+  consumer_apps_controller:
+    has_been_created: '%{app_app_bundle} has been created!'
+    has_been_deleted: '%{app_app_bundle} has been deleted!'
+    has_been_updated: '%{app_app_bundle} has been updated!'
+    something_went_wrong_with: Something went wrong with deleting %{app_app_bundle}.
+  display_ads_controller:
+    display_ad_has_been_create: Display Ad has been created!
+    display_ad_has_been_delete: Display Ad has been deleted!
+    display_ad_has_been_update: Display Ad has been updated!
+    something_went_wrong_with: Something went wrong with deleting the Display Ad.
+  events_controller:
+    description_pre_requisite: '*Description* *Pre-requisites:* *Bio*'
+    successfully_created_event: 'Successfully created event: %{event_title}'
+    was_successfully_updated: '%{event_title} was successfully updated'
+  html_variants_controller:
+    fork: '%{fork_name} FORK-%{rand_10_000}'
+    html_variant_has_been_crea: HTML Variant has been created!
+    html_variant_has_been_dele: HTML Variant has been deleted!
+    html_variant_has_been_upda: HTML Variant has been updated!
+    something_went_wrong_with: Something went wrong with deleting the HTML Variant.
+  invitations_controller:
+    invitation_was_not_sent_th: 'Invitation was not sent. There is already a registered user with the email: %{email}'
+    the_invitation_has_been_de: The invitation has been deleted.
+    the_invite_has_been_sent_t: The invite has been sent to the user's email.
+  listing_categories_controller:
+    listing_category_has_been: Listing Category has been created!
+    listing_category_has_been2: Listing Category has been updated!
+    listing_category_has_been3: Listing Category has been deleted!
+  listings_controller:
+    listing_updated_successful: Listing updated successfully
+    was_destroyed_successfull: '''%{listing_title}'' was destroyed successfully'
+  mods_controller:
+    now_has_trusted_role: '%{user_username} now has Trusted role!'
+  navigation_links_controller:
+    navigation_link_deleted: Navigation Link %{navigation_link_name} deleted
+    successfully_created_navig: 'Successfully created navigation link: %{navigation_link_name}'
+    successfully_updated_navig: 'Successfully updated navigation link: %{navigation_link_name}'
+  organization_memberships_controller:
+    organization_does_not_exis: 'Organization #%{organization_membership_pa} does not exist. Perhaps a typo?'
+    something_went_wrong_with: 'Something went wrong with removing the user from org #%{organization_membership_or}'
+    user_was_successfully_adde: User was successfully added to %{organization_name}
+    user_was_successfully_remo: 'User was successfully removed from org #%{organization_membership_or}'
+    user_was_successfully_upda: User was successfully updated to %{organization_membership_ty}
+  organizations_controller:
+    sucessfully_updated_credit: Sucessfully updated credits
+  pages_controller:
+    a_page_that_describes_how: A page that describes how to behave on this platform
+    a_page_that_describes_the: A page that describes the privacy policy
+    a_page_that_describes_the2: A page that describes the terms of use for the application
+    code_of_conduct: Code of Conduct
+    page_has_been_successfully: Page has been successfully updated.
+    page_has_been_successfully2: Page has been successfully created.
+    page_has_been_successfully3: Page has been successfully deleted.
+    privacy_policy: Privacy Policy
+    terms_of_use: Terms of Use
+  podcasts_controller:
+    new_owner_added: New owner added!
+    no_such_user: No such user
+    podcast_s_episodes_fetchin: 'Podcast''s episodes fetching was scheduled (%{podcast_title}, #%{podcast_id})'
+    podcast_updated: Podcast updated
+  profile_field_groups_controller:
+    group_deleted: Group %{profile_field_group_name} deleted
+    group_updated: Group %{profile_field_group_name} updated
+    successfully_created_group: 'Successfully created group: %{profile_field_group_name}'
+  profile_fields_controller:
+    profile_field_created: Profile field %{profile_field_label} created
+    profile_field_deleted: Profile field %{profile_field_label} deleted
+    profile_field_updated: Profile field %{profile_field_label} updated
+  response_templates_controller:
+    response_template_saved_su: 'Response Template: "%{response_template_title}" saved successfully.'
+    the_response_template_was: The response template "%{response_template_title}" was updated.
+    the_response_template_was2: The response template "%{response_template_title}" was deleted.
+  secrets_controller:
+    not_in_vault: Not In Vault
+    secret_was_successfully_up: Secret %{params_key_name} was successfully updated in Vault.
+    value: '%{secret_value_first_8}******'
+  settings_controller:
+    my_username_is_and_this_ac: My username is @%{current_user_username} and this action is 100% safe and appropriate.
+    the_confirmation_key_does: The confirmation key does not match
+  sponsorships_controller:
+    sponsorship_has_been_creat: Sponsorship has been created!
+    sponsorship_was_not_destro: Sponsorship was not destroyed
+    sponsorship_was_successful: Sponsorship was successfully updated
+    sponsorship_was_successful2: Sponsorship was successfully destroyed
+  tags:
+    moderators_controller:
+      error_user_id_was_not_foun: |-
+        Error: User ID #%{user_id} was not found,
+                  or their account has errors: %{errors}
+      id_was_removed_as_a_tag_m: '@%{user_username} - ID #%{user_id} was removed as a tag moderator.'
+      was_added_as_a_tag_moderat: '%{user_username} was added as a tag moderator!'
+  tags_controller:
+    tag_has_been_created: Tag has been created!
+    tag_successfully_updated: '%{tag_name} tag successfully updated!'
+    the_tag_update_failed: 'The tag update failed: %{tag_errors_as_sentence}'
+  tools_controller:
+    article_was_successfully_b: 'Article #%{params_bust_article} was successfully busted'
+    user_was_successfully_bust: 'User #%{params_bust_user} was successfully busted'
+    was_successfully_busted: '%{params_dead_link} was successfully busted'
+  users_controller:
+    data_exported_to_the_the_j: Data exported to the %{receiver}. The job will complete momentarily.
+    email_failed_to_send: Email failed to send!
+    email_verification_mailer: Email Verification Mailer sent!
+    never: Never
+    role_has_been_successfully: 'Role: %{role_to_s_humanize_titleca} has been successfully removed from the user!'
+    the_identity_was_successfu: The %{identity_provider_capitali} identity was successfully deleted and backed up.
+    the_page: the page
+    this_user_is_being_banishe: This user is being banished in the background. The job will complete soon.
+    unlocked_user_account: Unlocked User account!
+    user_has_been_updated: User has been updated
+  welcome_controller:
+    title_welcome_thread_v0_p: |
+      ---
+      title: Welcome Thread - v0
+      published: false
+      description: Introduce yourself to the community!
+      tags: welcome
+      ---
+
+      Hey there! Welcome to %{settings_community_communi}!
+
+      ![WELCOME TO THE INTERNET](https://slack-imgs.com/?c=1&url=http%3A%2F%2Fmedia0.giphy.com%2Fmedia%2FzhbrTTpmSCYog%2Fgiphy-downsized.gif)
+
+      Leave a comment below to introduce yourself to the community!✌️
+api:
+  v0:
+    analytics_controller:
+      date_parameters_start_or_e: Date parameters 'start' or 'end' must be in the format of 'yyyy-mm-dd'
+      required_start_parameter_i: Required 'start' parameter is missing
+    articles_controller:
+      article_param_must_be_a_js: article param must be a JSON object. You provided article as a %{params_article_class_name}
+    follows_controller:
+      followed_users: followed %{user_ids_count} users
+    health_checks_controller:
+      app_is_up: App is up!
+      database_connected: Database connected
+      database_not_connected: Database NOT connected!
+      redis_connected: Redis connected
+      redis_not_connected: Redis NOT connected!
+    listings_controller:
+      not_enough_available_credi: Not enough available credits
+api_secrets_controller:
+  an_error_occurred_please_t: 'An error occurred. Please try again or send an email to: %{settings_general_email_add}'
+  your_api_key_has_been_gene: 'Your API Key has been generated: %{secret_secret}'
+  your_api_key_has_been_revo: Your API Key has been revoked.
+application_controller:
+  error_bad_request: 'Error: Bad Request'
+  error_not_authorized: 'Error: not authorized'
+  please_sign_in: Please sign in
+articles_controller:
+  article_was_successfully_d: Article was successfully deleted.
+concerns:
+  development_dependency_checks:
+    sidekiq_is_not_running_and: Sidekiq is not running and is needed for the app to function properly.                            Use bin/startup to start the application properly.
+  edge_cache_safety_checks:
+    cannot_use: You may not use current_user in this cached code path.
+  image_uploads:
+    too_long: filename too long - the max is %{max} characters.
+    is_not_file: invalid file type. Please upload a valid image.
+  verify_setup_completed:
+    notice: !html Setup not completed yet, missing %{missing}. Please visit %{link}.
+confirmations_controller:
+  email_sent: Email sent! Please contact support at %{email} if you are having trouble receiving your confirmation instructions.
+decorators:
+  article_decorator:
+    discuss: discuss
+    tagged_with: ' Tagged with %{cached_tag_list}.'
+  podcast_episode_decorator:
+    discuss: discuss
+devices_controller:
+  not_found: Not Found
+email_subscriptions_controller:
+  badge_notifications: badge notifications
+  comment_notifications: comment notifications
+  connect_messages: '%{community} connect messages'
+  digest_emails: '%{community} digest emails'
+  follower_notifications: follower notifications
+  mention_notifications: mention notifications
+  this_list: this list
+  unread_notifications: unread notifications
+errors:
+  fastly_config:
+    configs_must_be_an_array_o: 'configs: must be an Array of Strings'
+    invalid_fastly_config_only: Invalid Fastly config - %{invalid_config}. Only %{valid_configs_join} are valid.
+feedback_messages_controller:
+  error_fill: 'Make sure the forms are filled. 🤖 Other possible errors: %{errors}'
+  n_a: N/A
+  your_report_is_submitted: Your report is submitted
+follows_controller:
+  already_followed: already followed
+  daily_account_follow_limit: Daily account follow limit reached!
+  followed: followed
+  unfollowed: unfollowed
+github_repos_controller:
+  github_repository_not_foun: GitHub repository not found
+  github_unauthorized: 'GitHub Unauthorized: %{e_message}'
+helpers:
+  application_helper:
+    all_posts: All posts
+    app_logo: App logo
+    deleted_user: '[Deleted User]'
+    latest_posts: Latest posts
+    required: Required
+    title_text: '%{title} - %{timeframe}'
+    top_posts_this_month: Top posts this month
+    top_posts_this_week: Top posts this week
+    top_posts_this_year: Top posts this year
+  articles_helper:
+    logo: '%{service_name} logo'
+    most_comments: Most Comments
+    most_reactions: Most Reactions
+    most_views: Most Views
+    recently_created: Recently Created
+    recently_published: Recently Published
+  authentication_helper:
+    any_of_those: any of those
+    email_password: Email & Password
+    reminder_you_used_to_authe: 'Reminder: you used %{auth_method} to authenticate your account, so please use %{verb} to sign in if prompted.'
+    that: that
+    you_cannot_do_this_until_y: You cannot do this until you disable Invite Only Mode
+  comments_helper:
+    ask_me_anything: Ask Me Anything
+    author: Author
+    like: Like
+    nbsp_like: '&nbsp;like'
+    nbsp_likes: '&nbsp;likes'
+  feedback_messages_helper:
+    code_of_conduct_violation: '%{community} Code of Conduct Violation'
+    courtesy_notice_from: Courtesy Notice from %{community}
+    offender: |
+      Hello,
+
+      It has been brought to our attention that you have violated the %{community} Code of Conduct and/or Terms of Use.
+
+      If this behavior continues, we may need to suspend your %{community} account.
+
+      If you think that there's been a mistake, please reply to this email and we will take another look.
+
+      %{community} Team
+    reporter: |
+      Hi there,
+      Thank you for flagging content that may be in violation of the %{community} Code of Conduct and/or our Terms of Use. We are looking into your report and will take appropriate
+      action.
+      We appreciate your help as we work to foster a positive and inclusive environment for all!
+      %{community} Team
+    affected: |
+      Hi there,
+
+      We noticed some comments (made by others) on your post that violate the %{community} Code of Conduct and/or our Terms of Use. We have zero tolerance for such behavior and are
+      taking appropriate action.
+
+      Thanks for being awesome, and please don't hesitate to email us with any questions! We welcome all feedback and ideas as we continue working to foster an open and inclusive community.
+
+      %{community} Team
+    report: '%{community} Report'
+  listing_helper:
+    option: !pl
+      1: '%{cl_name} (%{count} Credit)'
+      n: '%{cl_name} (%{count} Credits)'
+  organization_helper:
+    option: '%{org_name} (%{unspent})'
+  rate_limit_checker_helper:
+    how_many_changes_can_someo: How many changes can someone make to their user account within any 30 second period?
+    how_many_comments_can_some: How many comments can someone create within any 30 second period?
+    how_many_emails_can_we_sen: How many emails can we send to someone within any 2 minute period?
+    how_many_images_can_someon: How many images can someone upload within any 30 second period?
+    how_many_listings_can_some: How many listings can someone create within any 1 minute period?
+    how_many_organizations_can: How many organizations can someone create within any 5 minute period?
+    how_many_people_can_someon: How many people can someone follow in a day?
+    how_many_posts_can_someone: How many posts can someone create within any 30 second period?
+    how_many_thing_s_can_a_new: How many %{thing} can a new member (%{timeframe} or less) create within any 5 minute period?
+    how_many_times_can_someone: How many times can someone react to a post or comment within any 30 second period?
+    how_many_times_can_someone2: How many times can someone report abuse within any 5 minute period?
+    how_many_times_can_someone3: How many times can someone @-mention other users in a post or comment?
+    how_many_times_can_someone4: How many times can someone subscribe to a mailing list within any 30 second period?
+    how_many_times_can_we_send: How many times can we send a confirmation email to someone within a 2 minute period?
+    how_many_updates_can_someo: How many updates can someone make within any 30 second period? Update API docs when changed.
+    limit_number_of_changes_so: Limit number of changes someone can make to their account
+    limit_number_of_comments_c: Limit number of comments created
+    limit_number_of_comments_c2: Limit number of comments created by a new member
+    limit_number_of_confirmati: Limit number of confirmation emails we send
+    limit_number_of_followers: Limit number of followers someone can follow daily
+    limit_number_of_general_em: Limit number of general emails we send
+    limit_number_of_images_upl: Limit number of images uploaded
+    limit_number_of_listings_c: Limit number of listings created
+    limit_number_of_mentions_i: Limit number of @-mentions in a post or comment
+    limit_number_of_organizati: Limit number of organizations created
+    limit_number_of_posts_crea: Limit number of posts created
+    limit_number_of_posts_crea2: Limit number of posts created by a new member
+    limit_number_of_reactions: Limit number of reactions to a post or comment
+    limit_number_of_times_some: Limit number of times someone can report abuse
+    limit_number_of_times_some2: Limit number of times someone can subscribe to mailing list liquid tag
+    limit_number_of_updates_to: Limit number of updates to a post
+  settings_helper:
+    advanced: Advanced
+    beginner: Beginner
+    expert: Expert
+    mid_level: Mid-level
+    novice: Novice
+  social_link_helper:
+    n_a: N/A
+image_uploads_controller:
+  a_server_error_has_occurre: A server error has occurred!
+lib:
+  constants:
+    settings:
+      authentication:
+        add_the_secret_key_for_goo: Add the secret key for Google reCAPTCHA, which is used for reporting abuse
+        add_the_site_key_for_googl: Add the site key for Google reCAPTCHA, which is used for reporting abuse
+        dev_to_forem_com_codenewbi: dev.to, forem.com, codenewbie.org
+        do_you_want_to_display_the: Do you want to display the list of allowed domains, or keep it private?
+        how_can_users_sign_in: How can users sign in?
+        only_users_invited_by_emai: Only users invited by email can join this community.
+        people_will_be_required_to: |-
+          People will be required to fill out a captcha when
+                    they're creating a new account in your community
+        restrict_registration_to_o: Restrict registration to only certain emails? (comma-separated list)
+        the_api_key_portion_of_con: The "API key" portion of consumer keys in the Twitter developer portal.
+        the_api_secret_key_portion: The "API secret key" portion of consumer keys in the Twitter developer portal.
+        the_app_bundle_code_for_th: The "App Bundle" code for the Authentication Service configured in the Apple Developer Portal
+        the_app_id_portion_of_the: The "App ID" portion of the Basic Settings section of the App page on the Facebook Developer Portal
+        the_app_secret_portion_of: The "App Secret" portion of the Basic Settings section of the App page on the Facebook Developer Portal
+        the_client_id_portion_of_t: The "Client ID" portion of the GitHub Oauth Apps portal
+        the_client_secret_portion: The "Client Secret" portion of the GitHub Oauth Apps portal
+        the_key_id_from_the_authen: The "Key ID" from the Authentication Service configured in the Apple Developer Portal
+        the_pem_key_from_the_authe: The "PEM" key from the Authentication Service configured in the Apple Developer Portal
+        the_team_id_of_your_apple: The "Team ID" of your Apple Developer Account
+        what_is_the_google_recaptc: What is the Google reCAPTCHA site key?
+        what_is_the_google_recaptc2: What is the Google reCAPTCHA secret key?
+      campaign:
+        campaign_sidebar_enabled_o: Campaign sidebar enabled or not
+        campaign_stories_show_up_o: Campaign stories show up on sidebar with approval?
+        hero_htmlvariant_name: Hero HtmlVariant name
+        https_url_com_lander: https://url.com/lander
+        list_of_campaign_tags_comm: 'List of campaign tags: comma separated, letters only e.g. shecoded,theycoded'
+        posts_with_which_tags_will: Posts with which tags will be featured in the campaign sidebar (comma separated, letters only)
+        sets_the_expiry_time_for_a: Sets the expiry time for articles (in weeks) to be displayed in campaign sidebar
+        share_your_project: Share your project
+        this_text_populates_the_ca: This text populates the call to action button on the campaign sidebar
+        url_campaign_sidebar_image: URL campaign sidebar image will link to
+        used_at_the_top_of_the_cam: Used at the top of the campaign sidebar
+      community:
+        used_in_meta_description_t: Used in meta description tags etc.
+        a_fabulous_community_of_ki: A fabulous community of kind and welcoming people.
+        used_in_the_title_tags_acr: Used in the title tags across the site alongside
+          the community name
+        used_as_the_primary_name_f: Used as the primary name for your Forem, e.g.
+          DEV, DEV Community, The DEV Community, etc.
+        new_forem: New Forem
+        used_to_mark_the_year_this: Used to mark the year this forem was started.
+        used_to_determine_what_a_m: Used to determine what a member will be called
+          e.g developer, hobbyist etc.
+        user: user
+        account_id_which_acts_as_a: Account ID which acts as automated 'staff'—
+          used principally for welcome thread.
+        used_in_signup_modal: Used in signup modal.
+        we_re_a_place_where_coders: We're a place where coders share, stay up-to-date
+          and grow their careers.
+      general:
+        a_secure_token: a secure token
+        always_show_suggested_user: Always show suggested users as suggested people to follow even when auto-suggestion is available
+        api_key_used_to_connect_ma: API key used to connect Mailchimp account. Found in Mailchimp backend
+        background_for_onboarding: Background for onboarding splash page
+        community_moderators_newsl: Community Moderators Newsletter ID
+        community_sponsors: Community Sponsors
+        determines_how_often_perio: Determines how often periodic email digests are sent
+        determines_the_heading_tex: Determines the heading text of the main sponsors sidebar above the list of sponsors.
+        determines_which_tags_are: Determines which tags are shown on the homepage righthand sidebar
+        determines_which_tags_are2: |-
+          Determines which tags are suggested to new users during onboarding (comma
+                    separated, letters only)
+        determines_which_users_are: >-
+          Determines which users are suggested to follow to new users during onboarding (comma separated, letters only). Please note that these users will be shown as a fallback if no
+          recently-active commenters or producers can be suggested
+        devcommunity: '#DEVCommunity'
+        email_address: Email address
+        google_analytics_tracking: Google Analytics Tracking ID, e.g. UA-71991000-1
+        list_of_valid_comma_separa: List of valid, comma-separated tags e.g. help,discuss,explainlikeimfive,meta
+        list_of_valid_keywords_com: 'List of valid keywords: comma separated, letters only e.g. engineering, development'
+        list_of_valid_tags_comma_s: 'List of valid tags: comma separated, letters only e.g. beginners,javascript,ruby,swift,kotlin'
+        list_of_valid_usernames_co: 'List of valid usernames: comma separated, letters only e.g. ben,jess,peter,maestromac,andy,liana'
+        main_newsletter_id_also_kn: Main Newsletter ID, also known as Audience ID
+        price_for_extra_large_cred: Price for extra large credit purchase (1000 credits or more).
+        price_for_large_credit_pur: Price for large credit purchase (100 - 999 credits).
+        price_for_medium_credit_pu: Price for medium credit purchase (10 - 99 credits).
+        price_for_small_credit_pur: Price for small credit purchase (<10 credits).
+        public_stripe_key_for_rece: 'Public Stripe key for receiving payments. See: https://stripe.com/docs/keys'
+        secret_key_used_to_allow_a: Secret key used to allow AWS video encoding through the VideoStatesController
+        secret_stripe_key_for_rece: 'Secret Stripe key for receiving payments. See: https://stripe.com/docs/keys'
+        sustaining_members_newslet: Sustaining Members Newsletter ID
+        tag_moderators_newsletter: Tag Moderators Newsletter ID
+        used_as_a_fallback_to_the: Used as a fallback to the SVG. Recommended minimum of 512x512px for PWA support
+        used_as_the_main_image_in: Used as the main image in social networks and OpenGraph. Recommended aspect ratio of 16:9 (600x337px,1200x675px)
+        used_as_the_mascot_image: Used as the mascot image.
+        used_as_the_site_favicon: Used as the site favicon
+        used_as_the_svg_logo_of_th: Used as the SVG logo of the community
+        used_as_the_twitter_hashta: Used as the twitter hashtag of the community
+        used_for_site_wide_web_mon: 'Used for site-wide web monetization. See: https://github.com/thepracticaldev/dev.to/pull/6345'
+        used_to_authenticate_with: Used to authenticate with your health check endpoints.
+        user_id_of_the_mascot_acco: User ID of the Mascot account
+      rate_limit:
+        individual_case_insensitiv: Individual (case insensitive) phrases that trigger spam alerts, comma separated.
+        the_number_of_days_a_user: The number of days a user is considered new. The default is 3 days, but you can disable this entirely by inputting 0.
+        used_cars_near_you_pokemon: used cars near you, pokemon go hack
+      user_experience:
+        basic_rich_or_compact: basic, rich, or compact
+        determines_background_bord: Determines background/border of buttons etc. Must be dark enough to contrast with white text.
+        determines_the_default_rea: Determines the default reading font (registered users can change this in their UX settings)
+        determines_which_default_f: Determines which default feed the users sees (rich content, more minimal, etc.)
+        minimum_score_needed_for_a: Minimum score needed for a post to show up on the unauthenticated home page.
+        minimum_score_needed_for_a2: Minimum score needed for a post to show up on default tag page.
+liquid_tags:
+  asciinema_tag:
+    invalid_asciinema_id: 'Invalid Asciinema ID: %{id}'
+  blogcast_tag:
+    invalid_blogcast_id: Invalid Blogcast Id
+  codepen_tag:
+    invalid_codepen_url: Invalid CodePen URL
+    invalid_options: Invalid Options
+  codesandbox_tag:
+    codesandbox_error_invalid: 'CodeSandbox Error: Invalid ID'
+    codesandbox_error_invalid2: 'CodeSandbox Error: Invalid options'
+  dotnet_fiddle_tag:
+    invalid_dotnetfiddle_url: Invalid DotnetFiddle URL
+  gist_tag:
+    invalid_filename: Invalid Filename
+    invalid_gist_link_you_must: 'Invalid Gist link: You must provide a Gist link'
+  git_pitch_tag:
+    invalid_gitpitch_url: Invalid GitPitch URL
+  github_tag:
+    github_issue_tag:
+      comment_for: Comment for
+      commented_on: commented on
+      invalid_github_issue_pull: Invalid GitHub issue, pull request or comment link
+      posted_on: posted on
+    github_readme_tag:
+      github_tag_invalid_options: 'GitHub tag: invalid options: %{options_valid_options} - supported options: %{valid_options}'
+      invalid_github_repository: Invalid GitHub repository path or URL
+  glitch_tag:
+    invalid_glitch_id: Invalid Glitch ID
+    invalid_options: Invalid Options
+  instagram_tag:
+    invalid_instagram_id: Invalid Instagram Id
+  js_fiddle_tag:
+    invalid_jsfiddle_url: Invalid JSFiddle URL
+    invalid_options: Invalid Options
+  jsitor_tag:
+    invalid_jsitor_link_please: Invalid JSitor link. Please read the editor guide for more information
+  kotlin_tag:
+    invalid_kotlin_playground: Invalid Kotlin Playground URL
+  link_tag:
+    the_article_you_re_looking: 'The article you''re looking for does not exist: {% link %{slug} %}'
+  liquid_tag_base:
+    invalid_context_this_liqui: Invalid context. This liquid tag can only be used in %{valid_contexts}.
+    no_source_found: No source found
+  listing_tag:
+    invalid_url_or_slug_listin: Invalid URL or slug. Listing not found.
+  medium_tag:
+    invalid_link_url_or_link_u: Invalid link URL or link URL does not exist
+  next_tech_tag:
+    invalid_next_tech_share_ur: Invalid Next Tech share URL
+  null_tag:
+    liquid_tag_is_disabled: Liquid#%{tag_name} tag is disabled
+  organization_tag:
+    invalid_organization_slug: Invalid organization slug
+  parler_tag:
+    invalid_parler_url: Invalid Parler URL
+  podcast_tag:
+    invalid_podcast_link: Invalid podcast link
+  poll_tag:
+    invalid_poll_id: Invalid poll ID
+  reddit_tag:
+    invalid_reddit_link: 'Invalid Reddit link: %{url}'
+  replit_tag:
+    invalid_replit_id: Invalid replit Id
+  runkit_tag:
+    runkit_tag_is_invalid: Runkit tag is invalid
+  slideshare_tag:
+    invalid_slideshare_key: Invalid Slideshare Key
+  soundcloud_tag:
+    invalid_soundcloud_url_try: 'Invalid Soundcloud URL - try taking off any URL params: ''?something=value'''
+  speakerdeck_tag:
+    invalid_speakerdeck_id: Invalid Speakerdeck Id
+  spotify_tag:
+    invalid_spotify_link_be_su: Invalid Spotify Link - Be sure you're using the uri of a specific track, album, artist, playlist, or podcast episode.
+  stackblitz_tag:
+    invalid_options: Invalid Options
+    invalid_stackblitz_id: Invalid Stackblitz Id
+  stackery_tag:
+    stackery_missing_owner_and: Stackery - Missing owner and/or repository name arguments
+  stackexchange_tag:
+    couldn_t_find_a_post_with: 'Couldn''t find a post with that ID: {% %{tag_name} %{input} %}'
+    invalid_stack_exchange_id: 'Invalid Stack Exchange ID: {% %{tag_name} %{input} %}'
+    invalid_stack_exchange_sit: 'Invalid Stack Exchange site: {% %{tag_name} %{input} %}'
+  tag_tag:
+    invalid_tag_name: invalid tag name
+  tweet_tag:
+    invalid_twitter_id: Invalid Twitter Id
+  twitter_timeline_tag:
+    invalid_twitter_timeline_u: Invalid Twitter Timeline URL
+  wikipedia_tag:
+    couldn_t_find_the_section: Couldn't find the section of the Wikipedia article - %{input}
+    couldn_t_find_the_wikipedi: 'Couldn''t find the Wikipedia article - %{input}: %{response_detail}'
+    invalid_wikipedia_url: Invalid Wikipedia URL
+  youtube_tag:
+    invalid_youtube_id: Invalid YouTube ID
+listings_controller:
+  listing_was_successfully_d: Listing was successfully deleted.
+  not_enough_available_credi: Not enough available credits
+mailers:
+  digest_mailer:
+    digest: Digest
+    more_top_posts: more top %{community_name} posts
+    more_top_posts_based_on_yo: more top %{community_name} posts based on your interests
+    more_top_reads_from_the_co: more top reads from the community
+    more_trending_posts: more trending %{community_name} posts
+    more_trending_posts_picked: more trending %{community_name} posts picked for you
+    other_posts_you_might_like: other posts you might like
+    other_posts_you_might_like2: other %{community_name} posts you might like
+    other_top_posts: other top %{community_name} posts
+    other_trending_posts: other trending %{community_name} posts
+  notify_mailer:
+    account_deletion_confirma: '%{community} - Account Deletion Confirmation'
+    account_deletion_requeste: '%{community} - Account Deletion Requested'
+    congrats_you_re_now_a_trus: Congrats! You're now a "trusted" user on %{community}!
+    congrats_you_re_the_modera: 'Congrats! You''re the moderator for #%{tag_name}'
+    just_followed_you_on: just followed you on %{community}
+    just_mentioned_you_in_thei: '%{mentioner_name} just mentioned you in their %{mentionable_type}'
+    just_messaged_you: '%{message_user_name} just messaged you'
+    organization_deletion_con: '%{community} - Organization Deletion Confirmation'
+    replied_to_your: '%{comment_user_name} replied to your %{comment_parent_type}'
+    thanks_for_your_report_on: Thanks for your report on %{community}
+    the_export_of_your_content: The export of your content is ready
+    you_are_invited_to_the_cha: You are invited to the %{channel} channel as moderator.
+    you_are_invited_to_the_cha2: You are invited to the %{channel} channel.
+    you_have_unread_notificat: !pl
+      n: 🔥 You have %{count} unread notifications on %{community}
+    you_just_got_a_badge: You just got a badge
+    your_video_upload_is_compl: Your video upload is complete
+  verification_mailer:
+    email_verification: '%{community} Email Verification <%{email}>'
+    verify_your_account_owners: Verify Your %{community} Account Ownership
+messages_controller:
+  message_was_deleted: Message was deleted
+  message_was_edited: Message was edited
+  you_can_not_do_that_becaus: You can not do that because you are suspended
+models:
+  api_secret:
+    api_secret_limit_of_20_per: API secret limit of 20 per user has been reached
+  application_record:
+    could_not_infer_a_decorato: Could not infer a decorator for %{called_on_class_name}.
+  article:
+    a_post_by: A post by %{user_name}
+    cannot_be_added_by_member: cannot be added by member without permission
+    cannot_be_set_to_true_if_v: cannot be set to true if video is still processing
+    cannot_search_tags_for: 'Cannot search tags for: %{tag_inspect}'
+    cannot_search_tags_for2: 'Cannot search tags for: %{tags_inspect}'
+    co_author_ids_must_be_uniq: co-author IDs must be unique
+    exceed_the_maximum_of_4_ta: exceed the maximum of 4 tags
+    is_too_long: is too long.
+    must_be_entered_in_dd_mm_y: must be entered in DD/MM/YYYY format with current or past date
+    must_be_one_you_have_permi: must be one you have permission to post to
+    must_be_valid_user_ids: must be valid user IDs
+    must_not_be_the_same_user: must not be the same user as the author
+    must_not_have_spaces: must not have spaces
+    published: Published
+    user_suspended_for_too_man: User suspended for too many spammy articles, triggered by autovomit.
+    you_cannot_mention_more_th: You cannot mention more than %{settings_ratelimit_mention} users in a post!
+  broadcast:
+    you_can_only_have_one_acti: You can only have one active announcement broadcast
+  chat_channel:
+    private_group_chat: ' private group chat'
+  chat_channel_membership:
+    is_not_allowed_in_chat: is not allowed in chat
+    pattern: chat between|and
+  comment:
+    deleted: '[deleted]'
+    hidden_by_post_author: '[hidden by post author]'
+    is_not_valid: is not valid.
+    user_suspended_for_too_man: User suspended for too many spammy articles, triggered by autovomit.
+    you_cannot_mention_more_th: You cannot mention more than %{settings_ratelimit_mention} users in a comment!
+  custom_profile_field:
+    maximum_number_of_custom_p: maximum number of custom profile fields exceeded
+  event:
+    must_be_after_start_date: must be after start date
+  feedback_message:
+    you_previously_reported_t: (you) previously reported this URL.
+  github_issue:
+    issue_comment_not_found: Issue comment %{issue_id} not found
+    issue_not_found: Issue %{issue_id} not found
+  html_variant:
+    cannot_change_once_publish: cannot change once published and approved
+  identity:
+    no_email_msg: No email found. Please relink your %{provider} account to avoid errors.
+  listing:
+    exceed_the_maximum_of_8_ta: exceed the maximum of 8 tags
+    has_too_many_linebreaks_no: has too many linebreaks. No more than 12 allowed.
+    is_not_allowed_to_include: is not allowed to include images.
+    is_not_allowed_to_include2: is not allowed to include liquid tags.
+  mention:
+    is_not_valid: is not valid.
+  message:
+    must_be_part_of_channel: Must be part of channel.
+    something_went_wrong: Something went wrong
+    you_are_not_a_participant: You are not a participant of this chat channel.
+  organization:
+    integer_only_no_sign_allow: Integer only. No sign allowed.
+    is_taken: is taken.
+    value_s_is_a_reserved_wor: '%<value>s is a reserved word. Contact site admins for help registering your organization.'
+  organization_membership:
+    private_group_chat: '@%{organization_slug} private group chat'
+  page:
+    is_taken: is taken.
+  podcast:
+    is_taken: is taken.
+    slug_is_reserved: slug is reserved
+  podcast_episode_appearance:
+    provided_role_is_not_valid: provided role is not valid
+  poll_skip:
+    cannot_vote_more_than_once: cannot vote more than once in one poll
+  poll_vote:
+    cannot_vote_more_than_once: cannot vote more than once in one poll
+  profile_pin:
+    cannot_have_more_than_five: cannot have more than five total pinned posts
+    must_have_proper_permissio: must have proper permissions for pin
+  rating_vote:
+    is_not_permitted_to_take_t: is not permitted to take this action.
+  reaction:
+    is_not_valid: is not valid.
+  response_template:
+    cannot_have_a_user_id_asso: cannot have a user ID associated.
+    comment_templates_must_use: Comment templates must use Markdown as its content type.
+    email_templates_must_use_p: Email templates must use plain text or HTML as its content type.
+    response_template_limit_of: Response template limit of 30 per user has been reached
+  settings:
+    campaign:
+      share_your_project: Share your project
+    community:
+      new_forem: New Forem
+      user: user
+    general:
+      community_sponsors: Community Sponsors
+      the_community_mascot: The community mascot
+    user_experience:
+      must_be_be_a_3_or_6_charac: 'must be be a 3 or 6 character hex (starting with #)'
+  sponsorship:
+    the_tag_is_already_sponsor: The tag is already sponsored
+    you_can_have_only_one_spon: You can have only one sponsorship of %{metal_levels_join}
+  tag_adjustment:
+    4_tags_max_per_article: 4 tags max per article.
+    does_not_have_privilege_to: does not have privilege to adjust these tags
+    selected_for_removal_is_no: selected for removal is not a current live tag.
+    unique: can't be an already adjusted tag
+  tweet:
+    tweet_not_found: Tweet not found
+  user:
+    confirmation_could_not_be: confirmation could not be sent. %{e_message}
+    doesn_t_match_password_con: doesn't match password confirmation
+    has_been_banished: has been banished.
+    invalid_config_font: '%<value>s is not a valid font selection'
+    is_not_a_valid_rss_atom_fe: is not a valid RSS/Atom feed
+    is_taken: '%{data_value} is taken.'
+    is_taken2: is taken.
+    user_could_not_be_saved: User could not be saved. %{e_message}
+    username_is_reserved: username is reserved
+    value_s_is_not_a_valid_na: '%<value>s is not a valid navbar value'
+    value_s_is_not_a_valid_th: '%<value>s is not a valid theme'
+    value_s_must_be_either_v1: '%<value>s must be either v1 or v2'
+  user_subscription:
+    can_t_subscribe_with_an_ap: Can't subscribe with an Apple private relay. Please update email.
+    source_not_found_please_ma: Source not found. Please make sure your %{user_subscription_sourceab} is active!
+    user_subscriptions_are_not: User subscriptions are not enabled for the source.
+moderations_controller:
+  community_mods_team: 'Community Mods: Team%'
+omniauth_callbacks_controller:
+  log_in_error: 'Log in error: %{e}'
+  username_taken: username has already been taken
+organizations_controller:
+  your_org_secret_was_update: Your org secret was updated
+  your_organization_deletion: 'Your organization: "%{organization_name}" deletion is scheduled. You''ll be notified when it''s deleted.'
+  your_organization_was_not: |-
+    Your organization was not deleted; you must be an admin, the only member in the organization,
+          and have no articles connected to the organization.
+  your_organization_was_succ: Your organization was successfully created and you are an admin.
+  your_organization_was_succ2: Your organization was successfully updated.
+podcasts_controller:
+  podcast_suggested: Podcast suggested
+policies:
+  application_policy:
+    must_be_logged_in: must be logged in
+    you_must_be_logged_in: You must be logged in
+  liquid_tag_policy:
+    no_user_found: No user found
+    user_is_not_permitted_to_u: User is not permitted to use this liquid tag
+profiles_controller:
+  your_profile_has_been_upda: Your profile has been updated
+pusher_controller:
+  forbidden: Forbidden
+queries:
+  articles:
+    active_threads_query:
+      default_tags: discuss
+rating_votes_controller:
+  not_upserted_successfully: Not Upserted Successfully
+response_templates_controller:
+  response_template_error: 'Response template error: %{response_template_errors_a}'
+  your_response_template_was: Your response template "%{response_template_title}" was created.
+  your_response_template_was2: Your response template "%{response_template_title}" was deleted.
+  your_response_template_was3: Your response template "%{response_template_title}" was updated.
+services:
+  analytics_service:
+    you_can_t_view_this_articl: You can't view this article's stats
+  article_with_video_creation_service:
+    unpublished_video: Unpublished Video ~ %{rand_100_000_to_s_26}
+  authentication:
+    providers:
+      apple:
+        name: '%{first} %{last}'
+      provider_is_not_available: Provider %{name} is not available!
+      provider_is_not_enabled: Provider %{name} is not enabled!
+  badges:
+    award_beloved_comment:
+      you_re_famous_this_is_the: You're famous! [This is the comment](%{comment}) for which you're being recognized. 😄
+    award_streak:
+      16_weeks_you_ve_achieved_t: 16 weeks! You've achieved the longest writing streak possible. This makes you eligible for special quests in the future. Keep up the amazing contributions to our community!
+      congrats_on_achieving_this: Congrats on achieving this streak! Consistent writing is hard. The next streak badge you can get is the %{weeks} Week Badge. 😉
+    award_yearly_club:
+      message: !pl
+        1: Happy %{community} birthday! Can you believe it's been %{count} year already?!
+        n: Happy %{community} birthday! Can you believe it's been %{count} years already?!
+    congrats: Congrats!!!
+    thank_you: Thank you so much for your contributions!
+  broadcasts:
+    welcome_notification:
+      generator:
+        welcome: 'Welcome Notification: %{key}'
+  chat_channels:
+    create_with_users:
+      direct_chat_between: Direct chat between %{usernames_join_and}
+      invalid_direct_channel: Invalid direct channel
+      new_channel: New Channel
+    find_or_create:
+      blocked_channel: Blocked channel
+    send_invitation:
+      sent: !pl
+        0: No invitations sent. Check for username typos.
+        1: '%{count} invitations sent.'
+        n: '%{count} invitations sent.'
+  error_messages:
+    clean:
+      there_was_a_problem_parsin: There was a problem parsing the front-matter YAML. Perhaps you need to escape a quote or a colon or something. Email %{s} if you are having trouble.
+  feeds:
+    import:
+      no_count: no count
+  html:
+    parser:
+      enter_fullscreen_mode: Enter fullscreen mode
+      exit_fullscreen_mode: Exit fullscreen mode
+  mailchimp:
+    bot:
+      member_in_compliance_state: Member In Compliance State
+  markdown_processor:
+    parser:
+      invalid_markdown_detected: Invalid markdown detected!
+  medium_article_retrieval_service:
+    is_not_a_valid_date: '%{published_time} is not a valid date: %{e}'
+  moderator:
+    banish_user:
+      spam_account: spam account
+    manage_activity_and_roles:
+      need_super: You need super admin status to take this action
+    merge_user:
+      the_user_being_deleted_alr: The user being deleted already has two identities. Are you sure this is the right user to be deleted? If so, a super admin will need to do this from the console to be safe.
+      you_cannot_merge_the_same: You cannot merge the same two user id#s
+  notifications:
+    new_comment:
+      send:
+        re: 'Re: %{comment_parent_or_root_art}'
+  payments:
+    customer:
+      usd: usd
+  profile_fields:
+    add_base_fields:
+      a_short_bio: A short bio...
+      display_email_on_profile: Display email on profile
+      halifax_nova_scotia: Halifax, Nova Scotia
+      https_yoursite_com: https://yoursite.com
+      location: Location
+      summary: Summary
+      website_url: Website URL
+    add_branding_fields:
+      brand_color_1: Brand color 1
+      brand_color_2: Brand color 2
+      used_for_backgrounds_borde: Used for backgrounds, borders etc.
+      used_for_texts_usually_put: Used for texts (usually put on Brand color 1).
+    add_link_fields:
+      behance_url: Behance URL
+      dribbble_url: Dribbble URL
+      facebook_url: Facebook URL
+      gitlab_url: GitLab URL
+      instagram_url: Instagram URL
+      linkedin_url: LinkedIn URL
+      mastodon_url: Mastodon URL
+      medium_url: Medium URL
+      stackoverflow_url: StackOverflow URL
+      twitch_url: Twitch URL
+      youtube_url: Youtube URL
+    add_work_fields:
+      acme_inc: Acme Inc.
+      education: Education
+      employer_name: Employer name
+      employer_url: Employer URL
+      employment_title: Employment title
+      https_dev_com: https://dev.com
+      junior_frontend_engineer: Junior Frontend Engineer
+  rate_limit_checker:
+    invalid_cache_key_no_uniqu: 'Invalid Cache Key: no unique component present'
+    rate_limit_reached_try_aga: Rate limit reached, try again in %{retry_after} seconds
+  slack:
+    messengers:
+      article_fetched_feed:
+        new_article_retrieved_via: |
+          New Article Retrieved via RSS: %{title}
+          %{url}
+      article_published:
+        new_article_published_titl: |
+          New Article Published: %{title}
+          %{url}
+      feedback:
+        anonymous_report: '*Anonymous report:'
+        final_message: |-
+          %{user_detail}
+          Category: %{category}
+          Internal Report: %{reports_url}
+          *_ Reported URL: %{reported_url} _*
+          -----
+          *Message:* %{message}
+        logged_in_user_reporter_u: |
+          *Logged in user:*
+          reporter: %{username} - %{url}
+          email: <mailto:%{email}|%{email}>
+      potential_spammer:
+        potential_spam_user_url_s: |
+          Potential spam user! %{url}
+      sponsorship:
+        user_s_bought_a_type_s_sp: |
+          %{user} bought a %{type} sponsorship for %{organization}
+  tag_moderators:
+    add:
+      mods: '#%{tag_name} mods'
+  user_subscriptions:
+    create_from_controller_params:
+      source_not_found: Source not found.
+      subscriber_email_mismatch: Subscriber email mismatch.
+  users:
+    create_mascot_account:
+      mascot: Mascot
+      mascot_already_set: Mascot already set
+    remove_role:
+      admins_cannot_remove_roles: Admins cannot remove roles from themselves.
+      super_admin_roles_cannot_b: Super Admin roles cannot be removed.
+      there_was_an_issue_removin: There was an issue removing this role. %{e_message}
+social_previews_controller:
+  fonts: Roboto|Roboto+Condensed
+stories_controller:
+  404_bio_not_found: 404 bio not found
+  searching: ...searching
+stripe_active_cards_controller:
+  can_t_remove_card_if_you_h: Can't remove card if you have an active membership. Please cancel your membership first.
+  there_was_a_problem_updati: There was a problem updating your billing info.
+  your_billing_information_h: Your billing information has been updated
+  your_card_has_been_success: Your card has been successfully removed.
+tag_adjustments_controller:
+  failure: 'Failure: %{tag_adjustment_errors_full}'
+  tag_adjustment_destroyed: Tag adjustment destroyed
+tags_controller:
+  tag_successfully_updated: 'Tag successfully updated! 👍 '
+uploaders:
+  base_uploader:
+    gif_contains_too_many_fram: GIF contains too many frames. Max frame count allowed is %{frame_max}.
+    image_processing_timed_out: Image processing timed out.
+users_controller:
+  error: 'An error occurred. Please try again or send an email to: %{email}'
+  is_no_longer_an_admin: '%{unadminable_name} is no longer an admin.'
+  is_no_longer_part_of_your: '%{removable_name} is no longer part of your organization.'
+  is_now_an_admin: '%{adminable_name} is now an admin.'
+  please_provide_an_email_to: Please, provide an email to delete your account.
+  please_provide_an_email_to2: Please, provide an email to delete your account
+  the_export_will_be_emailed: ' The export will be emailed to you shortly.'
+  the_given_organization_sec: The given organization secret was invalid.
+  username_cannot_be_blank: Username cannot be blank
+  you_have_already_requested: You have already requested account deletion. Please, check your email for further instructions.
+  you_have_joined_the_organi: You have joined the %{organization_name} organization.
+  you_have_left_your_organiz: You have left your organization.
+  you_have_requested_account: You have requested account deletion. Please, check your email for further instructions.
+  you_must_be_logged_in_to_p: You must be logged in to proceed with account deletion.
+  your_account_deletion_is_s: Your account deletion is scheduled. You'll be notified when it's deleted.
+  your_account_was_successfu: Your %{provider_official_name} account was successfully removed.
+  your_config_has_been_updat: Your config has been updated. Refresh to see all changes.
+  your_profile_was_successfu: Your profile was successfully updated.
+  your_token_has_expired_ple: Your token has expired, please request a new one. Tokens only last for 12 hours after account deletion is initiated.
+validators:
+  bytesize_validator:
+    maximum_must_be_a_non_neg: ':maximum must be a non-negative Integer'
+    specify_the_maximum_option: Specify the :maximum option.
+  color_contrast_validator:
+    must_be_darker_for_accessi: must be darker for accessibility
+  emoji_only_validator:
+    contains_non_emoji_charact: contains non-emoji characters or invalid emoji
+  profile_validator:
+    is_not_a_valid_hex_color: is not a valid hex color
+    is_too_long: is too long
+    is_too_long_maximum: 'is too long (maximum: %{max_text_area_length})'
+    is_too_long_maximum2: 'is too long (maximum: %{max_text_field_length})'
+  valid_domain_csv_validator:
+    must_be_a_comma_separated: must be a comma-separated list of valid domains
+video_states_controller:
+  related_article_not_found: Related article not found
+  video_state_updated: Video state updated
+
 class: # TODO
   Article: article
 
 date:
   comment: "%B %d, %Y"
+  github: '%b %d, %Y'
   json: "%b %e, %Y"
+  medium: '%b %-d, %Y'
+  reddit: "%b %e '%y"
   readable:
     no_year: "%b %-d"
     with_year: "%b %-d '%y"

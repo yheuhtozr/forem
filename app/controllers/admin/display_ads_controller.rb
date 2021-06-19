@@ -27,7 +27,7 @@ module Admin
       @display_ad = DisplayAd.new(display_ad_params)
 
       if @display_ad.save
-        flash[:success] = "Display Ad has been created!"
+        flash[:success] = I18n.t("admin.display_ads_controller.display_ad_has_been_create")
         redirect_to admin_display_ads_path
       else
         flash[:danger] = @display_ad.errors_as_sentence
@@ -39,7 +39,7 @@ module Admin
       @display_ad = DisplayAd.find(params[:id])
 
       if @display_ad.update(display_ad_params)
-        flash[:success] = "Display Ad has been updated!"
+        flash[:success] = I18n.t("admin.display_ads_controller.display_ad_has_been_update")
         redirect_to admin_display_ads_path
       else
         flash[:danger] = @display_ad.errors_as_sentence
@@ -51,10 +51,10 @@ module Admin
       @display_ad = DisplayAd.find(params[:id])
 
       if @display_ad.destroy
-        flash[:success] = "Display Ad has been deleted!"
+        flash[:success] = I18n.t("admin.display_ads_controller.display_ad_has_been_delete")
         redirect_to admin_display_ads_path
       else
-        flash[:danger] = "Something went wrong with deleting the Display Ad."
+        flash[:danger] = I18n.t("admin.display_ads_controller.something_went_wrong_with")
         render :edit
       end
     end

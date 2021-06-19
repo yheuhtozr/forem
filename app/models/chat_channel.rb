@@ -54,7 +54,7 @@ class ChatChannel < ApplicationRecord
   end
 
   def private_org_channel?
-    channel_name.to_s.ends_with?(" private group chat") # e.g. @devteam private group chat
+    channel_name.to_s.ends_with?(I18n.t("models.chat_channel.private_group_chat")) # e.g. @devteam private group chat
   end
 
   def clear_channel

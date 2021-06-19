@@ -20,7 +20,7 @@ module Admin
       authorize @app
 
       if @app.save
-        flash[:success] = "#{@app.app_bundle} has been created!"
+        flash[:success] = I18n.t("admin.consumer_apps_controller.has_been_created", app_app_bundle: @app.app_bundle)
         redirect_to admin_consumer_apps_path
       else
         flash[:danger] = @app.errors_as_sentence
@@ -33,7 +33,7 @@ module Admin
       authorize @app
 
       if @app.update(consumer_app_params)
-        flash[:success] = "#{@app.app_bundle} has been updated!"
+        flash[:success] = I18n.t("admin.consumer_apps_controller.has_been_updated", app_app_bundle: @app.app_bundle)
         redirect_to admin_consumer_apps_path
       else
         flash[:danger] = @app.errors_as_sentence
@@ -46,10 +46,11 @@ module Admin
       authorize @app
 
       if @app.destroy
-        flash[:success] = "#{@app.app_bundle} has been deleted!"
+        flash[:success] = I18n.t("admin.consumer_apps_controller.has_been_deleted", app_app_bundle: @app.app_bundle)
         redirect_to admin_consumer_apps_path
       else
-        flash[:danger] = "Something went wrong with deleting #{@app.app_bundle}."
+        flash[:danger] =
+          I18n.t("admin.consumer_apps_controller.something_went_wrong_with", app_app_bundle: @app.app_bundle)
         render :edit
       end
     end

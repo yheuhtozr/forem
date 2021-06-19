@@ -5,16 +5,17 @@ module Admin
     def index; end
 
     def bust_cache
-      flash[:success] = if params[:dead_link]
-                          handle_dead_path
-                          "#{params[:dead_link]} was successfully busted"
-                        elsif params[:bust_user]
-                          handle_user_cache
-                          "User ##{params[:bust_user]} was successfully busted"
-                        elsif params[:bust_article]
-                          handle_article_cache
-                          "Article ##{params[:bust_article]} was successfully busted"
-                        end
+      flash[:success] =
+        if params[:dead_link]
+          handle_dead_path
+          I18n.t("admin.tools_controller.was_successfully_busted", params_dead_link: params[:dead_link])
+        elsif params[:bust_user]
+          handle_user_cache
+          I18n.t("admin.tools_controller.user_was_successfully_bust", params_bust_user: params[:bust_user])
+        elsif params[:bust_article]
+          handle_article_cache
+          I18n.t("admin.tools_controller.article_was_successfully_b", params_bust_article: params[:bust_article])
+        end
       redirect_to admin_tools_path
     rescue StandardError => e
       flash[:danger] = e.message

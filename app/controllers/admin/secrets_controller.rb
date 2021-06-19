@@ -11,7 +11,12 @@ module Admin
       @vault_enabled = AppSecrets.vault_enabled?
       @secrets = AppSecrets::SETTABLE_SECRETS.map do |key|
         secret_value = AppSecrets[key]
-        secret_value = secret_value.present? ? "#{secret_value.first(8)}******" : "Not In Vault"
+        secret_value = if secret_value.present?
+                         I18n.t("admin.secrets_controller.value",
+                                secret_value_first_8: secret_value.first(8))
+                       else
+                         I18n.t("admin.secrets_controller.not_in_vault")
+                       end
         [key, secret_value]
       end
     end
@@ -19,7 +24,8 @@ module Admin
     def update
       AppSecrets[params[:key_name]] = params[:key_value]
 
-      flash[:success] = "Secret #{params[:key_name]} was successfully updated in Vault."
+      flash[:success] =
+        I18n.t("admin.secrets_controller.secret_was_successfully_up", params_key_name: params[:key_name])
       redirect_to admin_secrets_path
     end
 

@@ -82,14 +82,14 @@ class Listing < ApplicationRecord
     markdown_string = body_markdown.to_s
     if markdown_string.scan(/(?=\n)/).count > 12
       errors.add(:body_markdown,
-                 "has too many linebreaks. No more than 12 allowed.")
+                 I18n.t("models.listing.has_too_many_linebreaks_no"))
     end
-    errors.add(:body_markdown, "is not allowed to include images.") if markdown_string.include?("![")
-    errors.add(:body_markdown, "is not allowed to include liquid tags.") if markdown_string.include?("{% ")
+    errors.add(:body_markdown, I18n.t("models.listing.is_not_allowed_to_include")) if markdown_string.include?("![")
+    errors.add(:body_markdown, I18n.t("models.listing.is_not_allowed_to_include2")) if markdown_string.include?("{% ")
   end
 
   def validate_tags
-    errors.add(:tag_list, "exceed the maximum of 8 tags") if tag_list.length > 8
+    errors.add(:tag_list, I18n.t("models.listing.exceed_the_maximum_of_8_ta")) if tag_list.length > 8
   end
 
   def create_slug

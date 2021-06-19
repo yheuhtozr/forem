@@ -3,22 +3,22 @@ module ProfileFields
     include FieldDefinition
 
     group "Basic" do
-      field "Display email on profile",
+      field I18n.t("services.profile_fields.add_base_fields.display_email_on_profile"),
             :check_box,
             display_area: "settings_only"
-      field "Website URL",
+      field I18n.t("services.profile_fields.add_base_fields.website_url"),
             :text_field,
-            placeholder: "https://yoursite.com",
+            placeholder: I18n.t("services.profile_fields.add_base_fields.https_yoursite_com"),
             display_area: "header",
             show_in_onboarding: true
-      field "Summary",
+      field I18n.t("services.profile_fields.add_base_fields.summary"),
             :text_area,
-            placeholder: "A short bio...",
+            placeholder: I18n.t("services.profile_fields.add_base_fields.a_short_bio"),
             display_area: "header",
             show_in_onboarding: true
-      field "Location",
+      field I18n.t("services.profile_fields.add_base_fields.location"),
             :text_field,
-            placeholder: "Halifax, Nova Scotia",
+            placeholder: I18n.t("services.profile_fields.add_base_fields.halifax_nova_scotia"),
             display_area: "header",
             show_in_onboarding: true
     end

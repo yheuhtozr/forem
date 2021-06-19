@@ -19,11 +19,7 @@ module ChatChannels
         end
         users = User.where(username: usernames)
         invitations_sent = chat_channel.invite_users(users: users, membership_role: "member", inviter: current_user)
-        message = if invitations_sent.zero?
-                    "No invitations sent. Check for username typos."
-                  else
-                    "#{invitations_sent} #{'invitation'.pluralize(invitations_sent)} sent."
-                  end
+        message = I18n.t("services.chat_channels.send_invitation.sent", count: invitations_sent)
       end
       message
     end

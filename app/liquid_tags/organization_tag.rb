@@ -23,7 +23,7 @@ class OrganizationTag < LiquidTagBase
 
   def parse_slug_to_organization(organization)
     organization = Organization.find_by(slug: organization)
-    raise StandardError, "Invalid organization slug" if organization.nil?
+    raise StandardError, I18n.t("liquid_tags.organization_tag.invalid_organization_slug") if organization.nil?
 
     organization
   end

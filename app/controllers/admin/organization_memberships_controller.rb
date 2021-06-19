@@ -5,7 +5,9 @@ module Admin
     def update
       organization_membership = OrganizationMembership.find_by(id: params[:id])
       if organization_membership.update(organization_membership_params)
-        flash[:success] = "User was successfully updated to #{organization_membership.type_of_user}"
+        flash[:success] =
+          I18n.t("admin.organization_memberships_controller.user_was_successfully_upda",
+                 organization_membership_ty: organization_membership.type_of_user)
       else
         flash[:danger] = organization_membership.errors.full_messages
       end
@@ -16,9 +18,12 @@ module Admin
       organization_membership = OrganizationMembership.new(organization_membership_params)
       organization = Organization.find_by(id: organization_membership_params[:organization_id])
       if organization && organization_membership.save
-        flash[:success] = "User was successfully added to #{organization.name}"
+        flash[:success] =
+          I18n.t("admin.organization_memberships_controller.user_was_successfully_adde",
+                 organization_name: organization.name)
       elsif organization.blank?
-        message = "Organization ##{organization_membership_params[:organization_id]} does not exist. Perhaps a typo?"
+        message = I18n.t("admin.organization_memberships_controller.organization_does_not_exis",
+                         organization_membership_pa: organization_membership_params[:organization_id])
         flash[:danger] = message
       else
         flash[:danger] = organization_membership.errors.full_messages
@@ -29,9 +34,12 @@ module Admin
     def destroy
       organization_membership = OrganizationMembership.find_by(id: params[:id])
       if organization_membership.destroy
-        flash[:success] = "User was successfully removed from org ##{organization_membership.organization_id}"
+        flash[:success] =
+          I18n.t("admin.organization_memberships_controller.user_was_successfully_remo",
+                 organization_membership_or: organization_membership.organization_id)
       else
-        message = "Something went wrong with removing the user from org ##{organization_membership.organization_id}"
+        message = I18n.t("admin.organization_memberships_controller.something_went_wrong_with",
+                         organization_membership_or: organization_membership.organization_id)
         flash[:danger] = message
       end
       redirect_to admin_user_path(organization_membership.user_id)

@@ -21,7 +21,8 @@ module Admin
       return unless params[:fork_id]
 
       @fork = HtmlVariant.find(params[:fork_id])
-      @html_variant.name = "#{@fork.name} FORK-#{rand(10_000)}"
+      @html_variant.name = I18n.t("admin.html_variants_controller.fork", fork_name: @fork.name,
+                                                                         rand_10_000: rand(10_000))
       @html_variant.html = @fork.html
     end
 
@@ -39,7 +40,7 @@ module Admin
       @html_variant.user_id = current_user.id
 
       if @html_variant.save
-        flash[:success] = "HTML Variant has been created!"
+        flash[:success] = I18n.t("admin.html_variants_controller.html_variant_has_been_crea")
         redirect_to admin_html_variants_path(state: "mine")
       else
         flash[:danger] = @html_variant.errors_as_sentence
@@ -51,7 +52,7 @@ module Admin
       @html_variant = HtmlVariant.find(params[:id])
 
       if @html_variant.update(html_variant_params)
-        flash[:success] = "HTML Variant has been updated!"
+        flash[:success] = I18n.t("admin.html_variants_controller.html_variant_has_been_upda")
         redirect_to edit_admin_html_variant_path(@html_variant)
       else
         flash[:danger] = @html_variant.errors_as_sentence
@@ -63,10 +64,10 @@ module Admin
       @html_variant = HtmlVariant.find(params[:id])
 
       if @html_variant.destroy
-        flash[:success] = "HTML Variant has been deleted!"
+        flash[:success] = I18n.t("admin.html_variants_controller.html_variant_has_been_dele")
         redirect_to admin_html_variants_path
       else
-        flash[:danger] = "Something went wrong with deleting the HTML Variant."
+        flash[:danger] = I18n.t("admin.html_variants_controller.something_went_wrong_with")
         render :edit
       end
     end

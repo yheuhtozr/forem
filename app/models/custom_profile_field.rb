@@ -11,6 +11,6 @@ class CustomProfileField < ApplicationRecord
   def validate_maximum_count
     return if profile.custom_profile_fields.count < 5
 
-    errors.add(:profile_id, "maximum number of custom profile fields exceeded")
+    errors.add(:profile_id, I18n.t("models.custom_profile_field.maximum_number_of_custom_p"))
   end
 end

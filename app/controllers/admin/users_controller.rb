@@ -30,7 +30,7 @@ module Admin
         .includes(:organization)
       @last_email_verification_date = @user.email_authorizations
         .where.not(verified_at: nil)
-        .order(created_at: :desc).first&.verified_at || "Never"
+        .order(created_at: :desc).first&.verified_at || I18n.t("admin.users_controller.never")
     end
 
     def update
@@ -51,7 +51,9 @@ module Admin
                                           resource_type: resource_type,
                                           admin: current_user)
       if response.success
-        flash[:success] = "Role: #{role.to_s.humanize.titlecase} has been successfully removed from the user!"
+        flash[:success] =
+          I18n.t("admin.users_controller.role_has_been_successfully",
+                 role_to_s_humanize_titleca: role.to_s.humanize.titlecase)
       else
         flash[:danger] = response.error_message
       end
@@ -62,7 +64,7 @@ module Admin
       @user = User.find(params[:id])
       begin
         Moderator::ManageActivityAndRoles.handle_user_roles(admin: current_user, user: @user, user_params: user_params)
-        flash[:success] = "User has been updated"
+        flash[:success] = I18n.t("admin.users_controller.user_has_been_updated")
       rescue StandardError => e
         flash[:danger] = e.message
       end
@@ -80,13 +82,13 @@ module Admin
         receiver = "user"
       end
       ExportContentWorker.perform_async(user.id, email)
-      flash[:success] = "Data exported to the #{receiver}. The job will complete momentarily."
+      flash[:success] = I18n.t("admin.users_controller.data_exported_to_the_the_j", receiver: receiver)
       redirect_to edit_admin_user_path(user.id)
     end
 
     def banish
       Moderator::BanishUserWorker.perform_async(current_user.id, params[:id].to_i)
-      flash[:success] = "This user is being banished in the background. The job will complete soon."
+      flash[:success] = I18n.t("admin.users_controller.this_user_is_being_banishe")
       redirect_to edit_admin_user_path(params[:id])
     end
 
@@ -94,7 +96,8 @@ module Admin
       @user = User.find(params[:id])
       begin
         Moderator::DeleteUser.call(user: @user)
-        link = helpers.tag.a("the page", href: admin_users_gdpr_delete_requests_path, data: { "no-instant" => true })
+        link = helpers.tag.a(I18n.t("admin.users_controller.the_page"), href: admin_users_gdpr_delete_requests_path,
+                                                                        data: { "no-instant" => true })
         message = "@#{@user.username} (email: #{@user.email.presence || 'no email'}, user_id: #{@user.id}) " \
           "has been fully deleted. " \
           "If this is a GDPR delete, delete them from Mailchimp & Google Analytics " \
@@ -131,7 +134,9 @@ module Admin
         # We should delete them when a user unlinks their GitHub account.
         @user.github_repos.destroy_all if identity.provider.to_sym == :github
 
-        flash[:success] = "The #{identity.provider.capitalize} identity was successfully deleted and backed up."
+        flash[:success] =
+          I18n.t("admin.users_controller.the_identity_was_successfu",
+                 identity_provider_capitali: identity.provider.capitalize)
       rescue StandardError => e
         flash[:danger] = e.message
       end
@@ -142,23 +147,23 @@ module Admin
       if NotifyMailer.with(params).user_contact_email.deliver_now
         redirect_back(fallback_location: users_path)
       else
-        flash[:danger] = "Email failed to send!"
+        flash[:danger] = I18n.t("admin.users_controller.email_failed_to_send")
       end
     end
 
     def verify_email_ownership
       if VerificationMailer.with(user_id: params[:user_id]).account_ownership_verification_email.deliver_now
-        flash[:success] = "Email Verification Mailer sent!"
+        flash[:success] = I18n.t("admin.users_controller.email_verification_mailer")
         redirect_back(fallback_location: admin_users_path)
       else
-        flash[:danger] = "Email failed to send!"
+        flash[:danger] = I18n.t("admin.users_controller.email_failed_to_send")
       end
     end
 
     def unlock_access
       @user = User.find(params[:id])
       @user.unlock_access!
-      flash[:success] = "Unlocked User account!"
+      flash[:success] = I18n.t("admin.users_controller.unlocked_user_account")
       redirect_to admin_user_path(@user)
     end
 

@@ -13,7 +13,7 @@ module Moderator
     end
 
     def merge
-      raise "You cannot merge the same two user id#s" if @delete_user.id == @keep_user.id
+      raise I18n.t("services.moderator.merge_user.you_cannot_merge_the_same") if @delete_user.id == @keep_user.id
 
       handle_identities
       merge_content
@@ -31,9 +31,7 @@ module Moderator
     private
 
     def handle_identities
-      error_message = "The user being deleted already has two identities. " \
-        "Are you sure this is the right user to be deleted? " \
-        "If so, a super admin will need to do this from the console to be safe."
+      error_message = I18n.t("services.moderator.merge_user.the_user_being_deleted_alr")
       raise error_message if @delete_user.identities.count.positive?
 
       return true if

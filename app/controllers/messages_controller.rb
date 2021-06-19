@@ -39,7 +39,7 @@ class MessagesController < ApplicationController
     end
 
     if @message.destroy
-      render json: { status: "success", message: "Message was deleted" }
+      render json: { status: "success", message: I18n.t("messages_controller.message_was_deleted") }
     else
       render json: {
         status: "error",
@@ -64,7 +64,7 @@ class MessagesController < ApplicationController
           Honeybadger.notify(e)
         end
       end
-      render json: { status: "success", message: "Message was edited" }
+      render json: { status: "success", message: I18n.t("messages_controller.message_was_edited") }
     else
       render json: {
         status: "error",
@@ -95,7 +95,7 @@ class MessagesController < ApplicationController
           status: "error",
           message: {
             chat_channel_id: message_params[:chat_channel_id],
-            message: "You can not do that because you are suspended",
+            message: I18n.t("messages_controller.you_can_not_do_that_becaus"),
             type: "error"
           }
         }, status: :unauthorized

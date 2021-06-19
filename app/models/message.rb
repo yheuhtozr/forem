@@ -179,17 +179,17 @@ class Message < ApplicationRecord
     return unless chat_channel
 
     user_ok = chat_channel.status == "active" && (chat_channel.has_member?(user) || chat_channel.channel_type == "open")
-    errors.add(:base, "You are not a participant of this chat channel.") unless user_ok
+    errors.add(:base, I18n.t("models.message.you_are_not_a_participant")) unless user_ok
   end
 
   def channel_permission
-    errors.add(:base, "Must be part of channel.") if chat_channel_id.blank?
+    errors.add(:base, I18n.t("models.message.must_be_part_of_channel")) if chat_channel_id.blank?
 
     channel = chat_channel || ChatChannel.find(chat_channel_id)
     return if channel.open?
 
-    errors.add(:base, "You are not a participant of this chat channel.") unless channel.has_member?(user)
-    errors.add(:base, "Something went wrong") if channel.status == "blocked"
+    errors.add(:base, I18n.t("models.message.you_are_not_a_participant")) unless channel.has_member?(user)
+    errors.add(:base, I18n.t("models.message.something_went_wrong")) if channel.status == "blocked"
   end
 
   def rich_link_article(link)

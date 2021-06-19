@@ -1,15 +1,17 @@
 module Articles
   class ActiveThreadsQuery
-    DEFAULT_OPTIONS = {
-      tags: ["discuss"],
-      time_ago: nil,
-      count: 10
-    }.with_indifferent_access.freeze
-
     MINIMUM_SCORE = -4
 
+    def self.default_options
+      {
+        tags: I18n.t("queries.articles.active_threads_query.default_tags").split(","),
+        time_ago: nil,
+        count: 10
+      }.with_indifferent_access
+    end
+
     def self.call(relation: Article.published, **options)
-      options = DEFAULT_OPTIONS.merge(options)
+      options = default_options.merge(options)
       tags, time_ago, count = options.values_at(:tags, :time_ago, :count)
 
       relation = relation.limit(count)

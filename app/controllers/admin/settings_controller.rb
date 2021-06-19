@@ -1,7 +1,5 @@
 module Admin
   class SettingsController < Admin::ApplicationController
-    MISMATCH_ERROR = "The confirmation key does not match".freeze
-
     before_action :extra_authorization_and_confirmation, only: [:create]
 
     layout "admin"
@@ -20,11 +18,11 @@ module Admin
     end
 
     def confirmation_text
-      "My username is @#{current_user.username} and this action is 100% safe and appropriate."
+      I18n.t("admin.settings_controller.my_username_is_and_this_ac", current_user_username: current_user.username)
     end
 
     def raise_confirmation_mismatch_error
-      raise ActionController::BadRequest.new, MISMATCH_ERROR
+      raise ActionController::BadRequest.new, I18n.t("admin.settings_controller.the_confirmation_key_does")
     end
   end
 end

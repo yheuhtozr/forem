@@ -3,15 +3,15 @@ module ProfileFields
     include FieldDefinition
 
     group "Branding" do
-      field "Brand color 1",
+      field I18n.t("services.profile_fields.add_branding_fields.brand_color_1"),
             :color_field,
             placeholder: "#000000",
-            description: "Used for backgrounds, borders etc.",
+            description: I18n.t("services.profile_fields.add_branding_fields.used_for_backgrounds_borde"),
             display_area: "settings_only"
-      field "Brand color 2",
+      field I18n.t("services.profile_fields.add_branding_fields.brand_color_2"),
             :color_field,
             placeholder: "#000000",
-            description: "Used for texts (usually put on Brand color 1).",
+            description: I18n.t("services.profile_fields.add_branding_fields.used_for_texts_usually_put"),
             display_area: "settings_only"
     end
   end
