@@ -1,4 +1,5 @@
+<% _t = t.v.listings %>
 <p id="notice"><%= notice %></p>
 
-<%= link_to "Edit", edit_listing_path(@listing) %> |
-<%= link_to "Back", listings_path %>
+<%= link_to _t.to_edit, edit_listing_path(@listing) %> |
+<%= link_to _t.back, listings_path %>

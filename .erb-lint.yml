@@ -33,6 +33,9 @@ linters:
           - '**/app/views/articles/index.html.erb'
       Layout/TrailingEmptyLines:
         Enabled: false
+      Lint/FloatComparison:
+        Exclude:
+          - '**/app/views/moderations/actions_panel.html.erb'
       Lint/UselessAssignment:
         Enabled: false
       Rails/OutputSafety:

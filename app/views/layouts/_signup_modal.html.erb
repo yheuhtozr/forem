@@ -1,3 +1,4 @@
+<% _t = t.v.main.modal %>
 <div id="global-signup-modal" class="authentication-modal hidden">
 <div class="authentication-modal__container">
   <figure class="authentication-modal__image-container">
@@ -9,21 +10,21 @@
       <% if Settings::Community.tagline.present? %>
         <%= Settings::Community.tagline %>
       <% else %>
-        We’d love for you to be a part of this community.
+        <%= _t.desc %>
       <% end %>
     </p>
   </div>
   <div class="authentication-modal__actions">
-    <a href="<%= sign_up_path %>" class="crayons-btn" aria-label="Log in" data-no-instant>
-      Log in
+    <a href="<%= sign_up_path %>" class="crayons-btn" aria-label="<%= _t.login.aria_label %>" data-no-instant>
+      <%= _t.login.text %>
     </a>
-    <a href="<%= sign_up_path(state: "new-user") %>" class="crayons-btn crayons-btn--ghost-brand" aria-label="Create new account" data-no-instant>
-      Create new account
+    <a href="<%= sign_up_path(state: "new-user") %>" class="crayons-btn crayons-btn--ghost-brand" aria-label="<%= _t.create.aria_label %>" data-no-instant>
+      <%= _t.create.text %>
     </a>
   </div>
   <footer class="authentication-modal__footer">
     <p class="authentication-modal__footer-label">
-      We strive for transparency and don't collect excess data.
+      <%= _t.footer %>
     </p>
   </footer>
   </div>

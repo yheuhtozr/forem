@@ -1,3 +1,4 @@
+<% _t = t.v.main %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -77,7 +78,7 @@
         <div id="active-broadcast" class="broadcast-wrapper"></div>
         <div id="message-notice"></div>
         <div class="app-shell-loader">
-          loading...
+          <%= t.v.loading %>
         </div>
     <% end %>
   <% end %>
@@ -109,12 +110,12 @@
         <a href="<%= URL.deep_link(request.path) %>" target="_blank" class="flex items-center flex-1">
           <%= inline_svg_tag("logo-forem-app.svg", aria_hidden: true, class: "crayons-icon crayons-icon--default", width: 32, height: 32) %>
           <div class="flex flex-col pl-3">
-            <span class="">Forem</span>
-            <span class="">Open with the Forem app</span>
+            <span class=""><%= _t.forem %></span>
+            <span class=""><%= _t.forem_app %></span>
           </div>
         </a>
         <button type="button" class="runtime-banner__dismiss crayons-btn crayons-btn--ghost crayons-btn--icon crayons-btn--inverted crayons-btn--s">
-          <%= inline_svg_tag("x.svg", aria: true, class: "crayons-icon", title: "Dismiss banner: Open with the Forem app") %>
+          <%= inline_svg_tag("x.svg", aria: true, class: "crayons-icon", title: _t.forem_icon) %>
         </button>
       </div>
     </div>
