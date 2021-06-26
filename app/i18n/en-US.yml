@@ -746,9 +746,7 @@ v:
         subtitle: Bump your listing
         button: Bump listing
         desc: You can bump your listing for the same price as the original listing
-        last: "Last Published/Bumped: %1 ago" # TODO: better ago translation
-      expired: Expired %1 ago
-      expires_in: Expires in %1
+        last: "Last Published/Bumped: %1"
       notice: You can only edit title/body/tags of drafts or within the first 24 hours of listing or bumping
       not_published:
         text: !html This listing is %{not} published.
@@ -2085,5 +2083,4 @@ date:
     full_year: "%b %-d, %Y"
 
 datetime:
-  ago: "%{time} ago"
   tweet: "%H:%M %p - %d %b %Y"

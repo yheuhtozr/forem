@@ -77,7 +77,7 @@
         </header>
         <div class="flex items-center">
           <%= f.submit _t.bump.button, class: "crayons-btn crayons-btn--secondary mr-4" %>
-          <p class="color-base-70"><%= _t.bump.last time_ago_in_words(@listing.bumped_at) %></p>
+          <p class="color-base-70"><%= _t.bump.last time_ago_in_words(@listing.bumped_at, scope: :'datetime.distance_in_words_ago') %></p>
         </div>
         <input type="hidden" name="listing[action]" value="bump" />
       <% end %>
@@ -98,14 +98,14 @@
     <div class="crayons-card crayons-card--secondary p-3 m:p-4 mb-2 m:mb-4">
       <p>
         <% if (@listing.natural_expiration_date) < Date.today %>
-          <%= _t.expired time_ago_in_words(@listing.natural_expiration_date) %>
+          <%= time_ago_in_words @listing.natural_expiration_date, scope: :'datetime.expired_ago' %>
         <% else %>
-          <%= _t.expires_in time_ago_in_words(@listing.natural_expiration_date) %>
+          <%= time_ago_in_words @listing.natural_expiration_date, scope: :'datetime.expires_in' %>
         <% end %>
       </p>
       <% if @listing.bumped_at %>
         <p class="pt-3 mt-3 border-t-1 border-solid border-0 border-base-10">
-          <%= _t.bump.last time_ago_in_words(@listing.bumped_at) %>
+          <%= _t.bump.last time_ago_in_words(@listing.bumped_at, scope: :'datetime.distance_in_words_ago') %>
         </p>
       <% end %>
     </div>

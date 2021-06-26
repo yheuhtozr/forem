@@ -22,7 +22,7 @@
             <tr>
               <td class="fw-medium"><a href=<%= user_profile_path(subscriber.username) %> <%= "#{subscriber.name} DEV profile" %>><%= subscriber.name %></a></td>
               <td><a href="<%= "mailto: #{subscription.subscriber_email}" %>"><%= subscription.subscriber_email %></a></td>
-              <td class="fs-s color-base-60"><%= t.v.datetime.ago time: time_ago_in_words(subscription.created_at) %></td>
+              <td class="fs-s color-base-60"><%= time_ago_in_words subscription.created_at, scope: :'datetime.distance_in_words_ago' %></td>
             </tr>
           <% end %>
         </tbody>
