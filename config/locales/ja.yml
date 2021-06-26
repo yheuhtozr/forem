@@ -23,7 +23,7 @@
 #
 # Instead, surround them with single quotes.
 #
-# eother:
+# en:
 #   'true': 'foo'
 #
 # To learn more, please read the Rails Internationalization guide
@@ -56,10 +56,10 @@ ja:
         other: "%{count}年弱前"
       half_a_minute: 30秒ほど前
       less_than_x_seconds:
-        1: 1秒以内
+        one: 1秒以内
         other: "%{count}秒弱前"
       less_than_x_minutes:
-        1: 1分以内
+        one: 1分以内
         other: "%{count}分弱前"
       over_x_years:
         other: "%{count}年以上前"
