@@ -1,3 +1,4 @@
+<% _t = t.v.users %>
 <% title @user.name %>
 
 <%= render "shared/payment_pointer", user: @user %>
@@ -29,12 +30,12 @@
           <div class="profile-header__actions">
             <div class="profile-dropdown mr-2 relative" data-username="<%= @user.username %>">
               <button id="user-profile-dropdown" class="crayons-btn crayons-btn--ghost-dimmed crayons-btn--icon">
-                <%= inline_svg_tag("overflow-horizontal.svg", class: "dropdown-icon crayons-icon", aria: true, title: "Toggle dropdown menu") %>
+                <%= inline_svg_tag("overflow-horizontal.svg", class: "dropdown-icon crayons-icon", aria: true, title: _t.dropdown) %>
               </button>
 
               <div id="user-profile-dropdownmenu" class="crayons-dropdown top-100 right-0 p-1">
                 <% if user_signed_in? %>
-                  <a href="javascript:void(0);" id="user-profile-dropdownmenu-block-button" data-profile-user-id="<%= @user.id %>" class="border-none crayons-link crayons-link--block">Block @<%= @user.username %></a>
+                  <a href="javascript:void(0);" id="user-profile-dropdownmenu-block-button" data-profile-user-id="<%= @user.id %>" class="border-none crayons-link crayons-link--block"><%= _t.block user: @user.username %></a>
                   <a
                     href="javascript:void(0);"
                     id="user-profile-dropdownmenu-flag-button"
@@ -42,7 +43,7 @@
                     data-profile-user-name="@<%= @user.username %>"
                     data-is-user-flagged="<%= @is_user_flagged %>"
                     class="border-none crayons-link crayons-link--block">
-                    <%= @flag_status ? "Unflag" : "Flag" %> @<%= @user.username %>
+                    <%= _t[@flag_status ? :unflag : :flag](user: @user.username) %>
                   </a>
                   <%= javascript_packs_with_chunks_tag "profileDropdown", defer: true %>
                 <% end %>
@@ -51,48 +52,47 @@
             </div>
             <% if user_signed_in? %>
               <a href="/connect/@<%= @user.username %>" class="hidden mr-2" id="user-connect-redirect">
-                <button class="chat-action-button crayons-btn crayons-btn--outlined hidden" id="modal-opener">Chat</button>
+                <button class="chat-action-button crayons-btn crayons-btn--outlined hidden" id="modal-opener"><%= _t.chat %></button>
               </a>
             <% end %>
-            <button id="user-follow-butt" class="crayons-btn whitespace-nowrap follow-action-button user-profile-follow-button" data-info='{"id":<%= @user.id %>,"className":"<%= @user.class.name %>"}'>Follow</button>
+            <button id="user-follow-butt" class="crayons-btn whitespace-nowrap follow-action-button user-profile-follow-button" data-info='{"id":<%= @user.id %>,"className":"<%= @user.class.name %>"}'><%= _t.follow %></button>
           </div>
         </div>
 
         <div class="profile-header__details">
           <h1 class="crayons-title fw-heavy mb-2"><%= @user.name %></h1>
-          <p class="fs-base m:fs-l color-base-90 mb-4 mx-auto max-w-100 m:max-w-75"><%= @user.summary.presence || ["404 bio not found"].sample %></p>
+          <p class="fs-base m:fs-l color-base-90 mb-4 mx-auto max-w-100 m:max-w-75"><%= @user.summary.presence || [_t.empty].sample %></p>
 
           <div class="profile-header__meta">
             <% if @user.location.present? %>
               <span class="profile-header__meta__item">
-                <%= inline_svg_tag("location.svg", aria: true, class: "crayons-icon mr-2 shrink-0", title: "Location") %>
+                <%= inline_svg_tag("location.svg", aria: true, class: "crayons-icon mr-2 shrink-0", title: _t.location_icon) %>
                 <%= @user.location %>
               </span>
             <% end %>
 
             <span class="profile-header__meta__item">
-              <%= inline_svg_tag("cake.svg", aria: true, class: "crayons-icon mr-2 shrink-0", title: "Joined") %>
-              Joined on&nbsp;
-              <%= local_date(@user.created_at) %>
+              <%= inline_svg_tag("cake.svg", aria: true, class: "crayons-icon mr-2 shrink-0", title: _t.joined.icon) %>
+              <%= _t.joined.text date: local_date(@user.created_at) %>
             </span>
 
             <% if @user.email_public %>
               <a href="mailto:<%= @user.email %>" class="profile-header__meta__item">
-                <%= inline_svg_tag("email.svg", class: "crayons-icon mr-2 shrink-0", aria: true, title: "Email address") %>
+                <%= inline_svg_tag("email.svg", class: "crayons-icon mr-2 shrink-0", aria: true, title: _t.email_icon) %>
                 <%= @user.email %>
               </a>
             <% end %>
 
             <% if @user.website_url.present? %>
               <a href="<%= @user.website_url %>" target="_blank" rel="noopener me" class="profile-header__meta__item">
-                <%= inline_svg_tag("link-external.svg", class: "crayons-icon mr-2 shrink-0", aria: true, title: "Personal website") %>
+                <%= inline_svg_tag("link-external.svg", class: "crayons-icon mr-2 shrink-0", aria: true, title: _t.website) %>
                 <%= @user.website_url %>
               </a>
             <% end %>
 
             <% social_authentication_links_for(@user).each do |provider_name, url| %>
               <a href="<%= url %>" target="_blank" rel="noopener me" class="profile-header__meta__item p-1">
-                <%= inline_svg_tag("#{provider_name}.svg", class: "crayons-icon shrink-0", aria: true, title: "#{provider_name} website") %>
+                <%= inline_svg_tag("#{provider_name}.svg", class: "crayons-icon shrink-0", aria: true, title: _t.social(service: provider_name)) %>
               </a>
             <% end %>
           </div>
@@ -101,28 +101,28 @@
         <%= render "users/metadata" %>
 
         <div class="p-3 pt-0 block m:hidden js-user-info-trigger-wrapper">
-          <button type="button" class="crayons-btn crayons-btn--outlined w-100 js-user-info-trigger">More info about @<%= @user.username %></button>
+          <button type="button" class="crayons-btn crayons-btn--outlined w-100 js-user-info-trigger"><%= _t.more user: @user.username %></button>
         </div>
 
         <div class="crayons-modal align-left hidden">
           <div class="crayons-modal__box">
             <div class="crayons-modal__box__header">
-              <h2 class="crayons-modal__box__header__title">Chat with <%= @user.name %></h2>
+              <h2 class="crayons-modal__box__header__title"><%= _t.chat_with user: @user.name %></h2>
               <button title="Close" class="crayons-btn crayons-btn--ghost-dimmed crayons-btn--icon close-modal">
-                <%= inline_svg_tag("x.svg", class: "crayons-icon", aria: true, title: "Close modal") %>
+                <%= inline_svg_tag("x.svg", class: "crayons-icon", aria: true, title: _t.close) %>
               </button>
             </div>
 
             <div class="crayons-modal__box__body">
               <% if @user.inbox_guidelines.present? %>
-                <p class="fw-bold mb-2">@<%= @user.username %>'s guidelines:</p>
+                <p class="fw-bold mb-2">@<%= @user.username %></p>
                 <p class="mb-6"><%= @user.inbox_guidelines %></p>
               <% end %>
               <form id="new-message-form" class="message-form mb-4" data-info='{"id":<%= @user.id %>,"className":"<%= @user.class.name %>","username":"<%= @user.username %>", "showChat":"<%= @user.inbox_type %>"}'>
-                <textarea id="new-message" rows="4" cols="70" placeholder="Enter your message here..." class="crayons-textfield"></textarea>
-                <button type="submit" class="submit-message crayons-btn">Send</button>
+                <textarea id="new-message" rows="4" cols="70" placeholder="<%= _t.send.placeholder %>" class="crayons-textfield"></textarea>
+                <button type="submit" class="submit-message crayons-btn"><%= _t.send.submit %></button>
               </form>
-              <p class="fs-s color-base-60">All private interactions <b>must</b> abide by the <a href="/code-of-conduct">code of conduct</a>.</p>
+              <p class="fs-s color-base-60"><%= _t.send.notice code: link_to(_t.send.code, "/code-of-conduct") %></p>
             </div>
           </div>
           <div class="crayons-modal__overlay"></div>
@@ -153,7 +153,7 @@
       <% end %>
     </div>
     <div class="loading-articles" id="loading-articles">
-      loading...
+      <%= _t.v.loading %>
     </div>
   </main>
 </div>

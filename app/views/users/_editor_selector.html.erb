@@ -1,10 +1,11 @@
+<% _t = t.v.users.custom %>
 <label class="rich-selector crayons-field crayons-field--radio editor-selector--<%= version %>">
   <%= f.radio_button :editor_version, version, checked: @user.editor_version == version, class: "crayons-radio" %>
   <div class="crayons-field__label">
     <% if version == "v1" %>
-      Basic markdown
+      <%= _t.basic %>
     <% else %>
-      Rich + markdown
+      <%= _t.rich %>
     <% end %>
   </div>
 </label>

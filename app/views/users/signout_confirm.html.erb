@@ -1,12 +1,13 @@
-<% title "Confirm Signout - #{community_name}" %>
+<% _t = t.v.users.signout %>
+<% title _t.meta.title(community: community_name) %>
 <div class="signout_confirm-wrapper">
 
   <h1 class="fs-2xl mb-2">
-  Are you sure you want to sign out?
+  <%= _t.heading %>
   </h1>
   <%= form_tag destroy_user_session_path, method: :delete do %>
     <button class="crayons-btn crayons-btn--l">
-      Yes, sign out
+      <%= _t.yes %>
     </button>
   <% end %>
 

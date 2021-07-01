@@ -1,3 +1,4 @@
+<% _t = t.v.notifications.reacted %>
 <%# TODO: change to map of IDs %>
 <% actors = siblings.map { |n| n["user"] }.uniq %>
 <% reactable_data = notification.json_data["reaction"]["reactable"] %>
@@ -18,28 +19,31 @@
 </div>
 
 <div class="notification__content pt-2">
-  <span class="inline-block py-1">
-    <% if actors.size == 1 %>
-      <a href="<%= actors.first["path"] %>" class="crayons-link fw-bold"><%= actors.first["name"] %></a>
-    <% elsif actors.size == 2 %>
-      <a href="<%= actors.first["path"] %>" class="crayons-link fw-bold"><%= actors.first["name"] %></a> and
-      <a href="<%= actors.last["path"] %>" class="crayons-link fw-bold"><%= actors.last["name"] %></a>
-    <% elsif actors.size > 1 %>
-      <a href="<%= actors.first["path"] %>" class="crayons-link fw-bold"><%= actors.first["name"] %></a> and <%= pluralize(actors.size - 1, "other") %>
-    <% end %>
-    reacted to
-    <a href="<%= reactable_data["path"] %>" class="crayons-link fw-bold">
-      <%# your article/comment or the actual title of the article/comment %>
-      <%= reactable_data["title"].blank? ? "your #{reactable_data['class']['name'].downcase}" : h(reactable_data["title"]) %>
-    </a>
-    with
-  </span>
-
   <% reaction_categories = siblings.map { |n| n["category"] } %>
-  <% reaction_categories.each do |cat| %>
-    <% image_path = reaction_image(cat) %>
-    <% if image_path.present? %>
-      <%= inline_svg_tag(image_path, aria: true, class: "crayons-icon reaction-image mx-1 my-1 reaction-icon--#{cat}", title: cat.to_s.humanize) %>
-    <% end %>
-  <% end %>
+  <%= _t.verb(
+    count: actors.size,
+    start: tag("span", { class: %w[inline-block py-1] }, true),
+    actors: if actors.size == 1
+      link_to actors.first["name"], actors.first["path"], class: "crayons-link fw-bold"
+    elsif actors.size == 2
+      _t.and(
+        first: link_to(actors.first["name"], actors.first["path"], class: "crayons-link fw-bold"),
+        last: link_to(actors.last["name"], actors.last["path"], class: "crayons-link fw-bold"),
+      )
+    elsif actors.size > 1
+      _t.other(
+        first: link_to(actors.first["name"], actors.first["path"], class: "crayons-link fw-bold"),
+        count: actors.size - 1,
+      )
+    end,
+    # your article/comment or the actual title of the article/comment
+    title: link_to(reactable_data["title"].blank? ? _t.your[reactable_data['class']['name'].downcase] : h(reactable_data["title"]), reactable_data["path"], class: "crayons-link fw-bold")
+    end: "</span>".html_safe,
+    reactions: reaction_categories.map do |cat|
+      image_path = reaction_image(cat)
+      if image_path.present?
+        inline_svg_tag(image_path, aria: true, class: "crayons-icon reaction-image mx-1 my-1 reaction-icon--#{cat}", title: t.v.reactions.category[cat.to_s])
+      end
+    end.compact.safe_join("\n"),
+  ) %>
 </div>

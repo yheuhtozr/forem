@@ -1,10 +1,11 @@
+<% _t = t.v.users.custom %>
 <label class="rich-selector crayons-field crayons-field--radio navbar-selector--<%= navbar %>">
   <%= f.radio_button :config_navbar, navbar, checked: @user.config_navbar == navbar, class: "crayons-radio" %>
   <div class="crayons-field__label">
     <% if navbar == "default" %>
-      Fixed to window
+      <% _t.fixed %>
     <% else %>
-      Static top of page
+      <% _t.static %>
     <% end %>
   </div>
 </label>

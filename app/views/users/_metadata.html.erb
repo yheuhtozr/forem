@@ -4,7 +4,7 @@
       <% next if Profile.special_attributes.include?(title) %>
       <div class="crayons-definition">
         <strong class="crayons-definition__title">
-          <%= sanitized_sidebar title.titleize %>
+          <%= sanitized_sidebar t.v.users.profile_fields[title] %>
         </strong>
         <p class="crayons-definition__value">
           <%= sanitized_sidebar value %>
@@ -12,18 +12,18 @@
       </div>
     <% end %>
     <% if @user.employment_title.present? %>
+      <% _t = t.v.users.employment %>
       <div class="crayons-definition">
-        <strong class="crayons-definition__title">Work</strong>
+        <strong class="crayons-definition__title"><%= _t.key %></strong>
         <p class="crayons-definition__value">
-          <%= @user.employment_title %>
-          <% if @user.employer_name.present? %>
-            <span class="opacity-50"> at </span>
-            <% if @user.employer_url.present? %>
-              <a href="<%= @user.employer_url %>" class="crayons-link crayons-link--brand" target="_blank" rel="noopener"><%= @user.employer_name %></a>
-            <% else %>
-              <%= @user.employer_name %>
-            <% end %>
-          <% end %>
+          <%= _t.title(
+                title: @user.employment_title,
+                at_start: tag("span", { class: %w[opacity-50] }, true),
+                at_end: "</span>".html_safe,
+                employer: @user.employer_name,
+                start: @user.employer_url.present? ? tag("a", { href: @user.employer_url, target: "_blank", rel: "noopener" }, true) : "",
+                end: @user.employer_url.present? ? "</a>".html_safe : "",
+              ) %>
         </p>
       </div>
     <% end %>

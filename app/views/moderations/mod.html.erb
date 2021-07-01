@@ -132,7 +132,7 @@
         <%= @moderatable.tag_list %><br>
         <% if @tag_adjustment.errors.any? %>
           <div id="error_explanation">
-            <h2><%= _t.tag.errors @tag_adjustment.errors.count %></h2>
+            <h2><%= _t.errors @tag_adjustment.errors.count %></h2>
             <ul>
               <% @tag_adjustment.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
