@@ -28,7 +28,7 @@ class Article < ApplicationRecord
   # The date that we began limiting the number of user mentions in an article.
   MAX_USER_MENTION_LIVE_AT = Time.utc(2021, 4, 7).freeze
 
-  has_many :base_tags, through: :taggings, source: :tag, class_name: "Tag" # override
+  has_one :discussion_lock, dependent: :destroy
 
   has_many :mentions, as: :mentionable, inverse_of: :mentionable, dependent: :destroy
   has_many :comments, as: :commentable, inverse_of: :commentable, dependent: :nullify
@@ -106,7 +106,7 @@ class Article < ApplicationRecord
                                                    article.notifications.any? && !article.saved_changes.empty?
                                                  }
 
-  after_commit :async_score_calc, :touch_collection, on: %i[create update]
+  after_commit :async_score_calc, :touch_collection, :detect_animated_images, on: %i[create update]
 
   # The trigger `update_reading_list_document` is used to keep the `articles.reading_list_document` column updated.
   #
@@ -125,12 +125,12 @@ class Article < ApplicationRecord
     .declare("l_org_vector tsvector; l_user_vector tsvector") do
     <<~SQL
       NEW.reading_list_document :=
-        to_tsvector('simple'::regconfig, unaccent(coalesce(NEW.body_markdown, ''))) ||
-        to_tsvector('simple'::regconfig, unaccent(coalesce(NEW.cached_tag_list, ''))) ||
-        to_tsvector('simple'::regconfig, unaccent(coalesce(NEW.cached_user_name, ''))) ||
-        to_tsvector('simple'::regconfig, unaccent(coalesce(NEW.cached_user_username, ''))) ||
-        to_tsvector('simple'::regconfig, unaccent(coalesce(NEW.title, ''))) ||
-        to_tsvector('simple'::regconfig,
+        setweight(to_tsvector('simple'::regconfig, unaccent(coalesce(NEW.title, ''))), 'A') ||
+        setweight(to_tsvector('simple'::regconfig, unaccent(coalesce(NEW.cached_tag_list, ''))), 'B') ||
+        setweight(to_tsvector('simple'::regconfig, unaccent(coalesce(NEW.body_markdown, ''))), 'C') ||
+        setweight(to_tsvector('simple'::regconfig, unaccent(coalesce(NEW.cached_user_name, ''))), 'D') ||
+        setweight(to_tsvector('simple'::regconfig, unaccent(coalesce(NEW.cached_user_username, ''))), 'D') ||
+        setweight(to_tsvector('simple'::regconfig,
           unaccent(
             coalesce(
               array_to_string(
@@ -141,7 +141,7 @@ class Article < ApplicationRecord
               ''
             )
           )
-        );
+        ), 'D');
     SQL
   end
 
@@ -220,8 +220,6 @@ class Article < ApplicationRecord
       raise TypeError, I18n.t("models.article.cannot_search_tags_for2", tags_inspect: tags.inspect)
     end
   }
-
-  scope :cached_tagged_by_approval_with, ->(tag) { cached_tagged_with(tag).where(approved: true) }
 
   scope :active_help, lambda {
     stories = published.cached_tagged_with("help").order(created_at: :desc)
@@ -340,11 +338,14 @@ class Article < ApplicationRecord
   end
 
   def processed_description
-    text_portion = body_text.present? ? body_text[0..100].tr("\n", " ").strip.to_s : ""
-    text_portion = "#{text_portion.strip}..." if body_text.size > 100
-    return I18n.t("models.article.a_post_by", user_name: user.name) if text_portion.blank?
-
-    text_portion.strip
+    if body_text.present?
+      body_text
+        .truncate(104, separator: " ")
+        .tr("\n", " ")
+        .strip
+    else
+      "A post by #{user.name}"
+    end
   end
 
   def body_text
@@ -820,5 +821,12 @@ class Article < ApplicationRecord
 
   def notify_slack_channel_about_publication
     Slack::Messengers::ArticlePublished.call(article: self)
+  end
+
+  def detect_animated_images
+    return unless FeatureFlag.enabled?(:detect_animated_images)
+    return unless saved_change_to_attribute?(:processed_html)
+
+    ::Articles::DetectAnimatedImagesWorker.perform_async(id)
   end
 end

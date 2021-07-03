@@ -1,4 +1,7 @@
 module RateLimitCheckerHelper
+  NEW_USER_MESSAGE = "How many %<thing>s can a new member (%<timeframe>s or less) " \
+                     "create within any 5 minute period?".freeze
+
   def self.new_user_message(thing)
     timeframe = "day".pluralize(Settings::RateLimit.user_considered_new_days)
     I18n.t("helpers.rate_limit_checker_helper.how_many_thing_s_can_a_new", thing: thing, timeframe: timeframe)

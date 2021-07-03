@@ -23,7 +23,7 @@
               <%= link_to _t.archived, "javascript:;", id: "toggleArchivedLink", class: "crayons-btn crayons-btn--outlined ml-2 whitespace-nowrap my-1" %>
             <% end %>
             <% if @articles.any? %>
-              <%= select_tag "dashboard_sort", options_for_select(sort_options.map { |(_v, k)| [_t.option[k], k] }, params[:sort]), 'aria-label': _t.option.aria_label, class: "crayons-select w-auto ml-2 my-1" %>
+              <%= select_tag "dashboard_sort", options_for_select(sort_options, params[:sort]), "aria-label": "Sort By", class: "crayons-select w-auto ml-2 my-1" %>
             <% end %>
           <% end %>
 
@@ -39,6 +39,7 @@
       </div>
 
       <% if @articles.any? %>
+        <%= javascript_packs_with_chunks_tag "dashboardDropdowns", defer: true %>
         <div class="crayons-card mb-6">
           <% @articles.each do |article| %>
             <% if params[:which] == "organization" %>

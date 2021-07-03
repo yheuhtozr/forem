@@ -2,8 +2,8 @@
 <% _t = t.f.opensearch %>
 <?xml version="1.0" encoding="UTF-8"?>
  <OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
-   <ShortName><%= _t.short_name community: helper.community_name %></ShortName>
-   <Description><%= _t.description community: helper.community_name %></Description>
-   <Contact><%= Settings::General.email_addresses[:default] %></Contact>
+   <ShortName><%= helper.community_name %> Search</ShortName>
+   <Description>Find posts from <%= helper.community_name %>.</Description>
+   <Contact><%= ForemInstance.email %></Contact>
    <Url type="text/html" template="<%= URL.url("search") %>?q={searchTerms}" />
  </OpenSearchDescription>

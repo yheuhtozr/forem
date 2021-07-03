@@ -31,7 +31,9 @@ module Moderator
     private
 
     def handle_identities
-      error_message = I18n.t("services.moderator.merge_user.the_user_being_deleted_alr")
+      error_message = "The user being deleted already has two identities. " \
+                      "Are you sure this is the right user to be deleted? " \
+                      "If so, a super admin will need to do this from the console to be safe."
       raise error_message if @delete_user.identities.count.positive?
 
       return true if

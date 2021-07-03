@@ -1,6 +1,9 @@
 module Badges
   class AwardStreak
     LONGEST_STREAK_WEEKS = 16
+    LONGEST_STREAK_MESSAGE = "16 weeks! You've achieved the longest writing " \
+                             "streak possible. This makes you eligible for special quests in the future. " \
+                             "Keep up the amazing contributions to our community!".freeze
 
     MINIMUM_QUALITY = -25
 

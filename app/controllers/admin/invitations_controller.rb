@@ -23,8 +23,6 @@ module Admin
                    name: name,
                    username: username,
                    remote_profile_image_url: ::Users::ProfileImageGenerator.call,
-                   saw_onboarding: false,
-                   editor_version: :v2,
                    registered: false)
       flash[:success] = I18n.t("admin.invitations_controller.the_invite_has_been_sent_t")
       redirect_to admin_invitations_path

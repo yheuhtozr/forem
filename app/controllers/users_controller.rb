@@ -130,7 +130,7 @@ class UsersController < ApplicationController
   def remove_identity
     set_current_tab("account")
 
-    error_message = I18n.t("users_controller.error", email: Settings::General.email_addresses[:default])
+    error_message = format(REMOVE_IDENTITY_ERROR, email: ForemInstance.email)
     unless Authentication::Providers.enabled?(params[:provider])
       flash[:error] = error_message
       redirect_to user_settings_path(@tab)
@@ -373,7 +373,7 @@ class UsersController < ApplicationController
   def import_articles_from_feed(user)
     return if user.feed_url.blank?
 
-    Feeds::ImportArticlesWorker.perform_async(nil, user.id)
+    Feeds::ImportArticlesWorker.perform_async(user.id)
   end
 
   def profile_params

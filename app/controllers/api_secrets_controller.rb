@@ -24,8 +24,7 @@ class ApiSecretsController < ApplicationController
       flash[:notice] = I18n.t("api_secrets_controller.your_api_key_has_been_revo")
     else
       flash[:error] =
-        I18n.t("api_secrets_controller.an_error_occurred_please_t",
-               settings_general_email_add: Settings::General.email_addresses[:default])
+        "An error occurred. Please try again or send an email to: #{ForemInstance.email}"
     end
 
     redirect_back(fallback_location: root_path)

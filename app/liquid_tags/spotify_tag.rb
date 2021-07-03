@@ -41,7 +41,8 @@ class SpotifyTag < LiquidTagBase
   end
 
   def raise_error
-    msg = I18n.t("liquid_tags.spotify_tag.invalid_spotify_link_be_su")
+    msg = "Invalid Spotify Link - Be sure you're using the uri of a specific track, " \
+          "album, artist, playlist, or podcast episode."
     raise StandardError, msg
   end
 end
