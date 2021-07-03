@@ -1,5 +1,6 @@
 <% _t = t.v.comments %>
-% if @root_comment.present? %>
+<%= javascript_packs_with_chunks_tag "postCommentsPage", defer: true %>
+<% if @root_comment.present? %>
   <% title(_t.meta.title(title: @root_comment.title, site: community_name)) %>
 <% else %>
   <% title(_t.meta.title_root(title: @commentable.title, site: community_name)) %>
@@ -96,7 +97,7 @@
       </h1>
       <div class="flex">
         <a class="crayons-btn crayons-btn--outlined mr-2" href="<%= @commentable.path %>"><%= _t.parent.view %></a>
-        <a class="crayons-btn crayons-btn--outlined mr-2" href="<%= @commentable.path %><%= user_signed_in? ? "/" : "#" %>comments"><%= _t.parent.full %></a>
+        <a class="view-discussion crayons-btn crayons-btn--outlined mr-2" href="<%= @commentable.path %><%= user_signed_in? ? "/" : "#" %>comments"><%= _t.parent.full %></a>
       </div>
     </header>
   <% end %>

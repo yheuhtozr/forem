@@ -17,7 +17,7 @@ class RegistrationsController < Devise::RegistrationsController
     resolve_profile_field_issues
 
     unless recaptcha_verified?
-      flash[:notice] = "You must complete the recaptcha ✅"
+      flash[:notice] = R18n.t.v.auth.error.recaptcha
       return redirect_to new_user_registration_path(state: "email_signup")
     end
 
@@ -33,8 +33,7 @@ class RegistrationsController < Devise::RegistrationsController
         redirect_to root_path
       end
     else
-      redirect_to new_user_registration_path(state: "email_signup")
-      flash[:notice] = R18n.t.v.auth.error.recaptcha
+      render action: "by_email"
     end
   end
 

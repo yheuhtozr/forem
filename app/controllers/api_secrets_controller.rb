@@ -25,7 +25,7 @@ class ApiSecretsController < ApplicationController
     else
       flash[:error] =
         I18n.t("api_secrets_controller.an_error_occurred_please_t",
-               settings_general_email_add: Settings::General.email_addresses[:default])
+               settings_general_email_add: ForemInstance.email)
     end
 
     redirect_back(fallback_location: root_path)

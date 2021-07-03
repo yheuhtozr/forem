@@ -130,7 +130,7 @@ class UsersController < ApplicationController
   def remove_identity
     set_current_tab("account")
 
-    error_message = I18n.t("users_controller.error", email: Settings::General.email_addresses[:default])
+    error_message = I18n.t("users_controller.error", email: ForemInstance.email)
     unless Authentication::Providers.enabled?(params[:provider])
       flash[:error] = error_message
       redirect_to user_settings_path(@tab)

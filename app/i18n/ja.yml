@@ -43,9 +43,10 @@ v:
     copy:
       text: コピーしました
       title: 記事の URL をクリップボードにコピー
+      aria_label: 記事の URL
     more:
       title: その他…
-      aria_label: ドロップダウンを開閉
+      aria_label: 他の方法でシェア
     share:
       Facebook:
         text: Facebook にシェア
@@ -57,8 +58,8 @@ v:
         text: Reddit にシェア
       Twitter:
         text: Twitter にシェア
-        query: "%{article} (%{author})"
-      link: 記事をシェア
+        query: '"%{article}" (%{author})'
+      link: 記事のシェア先
       report: 通報する
   admin:
     header:
@@ -1257,8 +1258,18 @@ v:
       source: Source
       views: Views
   sticky:
+    created_at: Joined
     default_cta: Learn more
-    default_summary: Posts in this tag # dubious message content
+    education: Education
+    email: Email
+    employment:
+      key: Work
+      title: !html "%{title}%{at_start} at %{at_end}%{start}%{employer}%{end}"
+    hot: Hot
+    location: Location
+    more_from: !html More from %{actor}
+    no_summary: Posts in this tag # dubious message content
+    trending: !html Trending on %{app}
   stories:
     meta:
       description_tagged: "%{tag} content on %{name}"
@@ -1391,10 +1402,6 @@ v:
           you will have to do so in your settings for the specific provider:
         confirm: Are you absolutely sure you want to remove your %{provider} account?
         submit: Remove %{provider}
-    badges:
-      heading: Badges
-      all: !pl
-        n: Show all %1 badges
     billing:
       heading: Billing
       add: Add Credit Card
@@ -1587,7 +1594,7 @@ v:
               <li>and the organization has no credits</li>
             </ul>
           submit: Delete "%{name}"
-          questions: Questions? Email us at %{email} for help.
+          questions: !html Questions? Email us at %{email} for help.
           unmet: Your organization currently does not meet the above requirements. Please remove all other members and organization posts first.
         details: Organization details
         form:
@@ -1626,7 +1633,6 @@ v:
           text: Revoke admin status
         secret_code: "Your secret code is:"
         you: You
-      company_size: Employees
       create:
         heading: Create An Organization
         notice: You must have your organization's permission to submit this form. Dishonesty may result in a permanent suspension.
@@ -1634,7 +1640,6 @@ v:
         required: Starred fields are required
         slug: Your organization URL will be %{url}/{username}
         submit: Create Organization
-      email: Support email
       join:
         heading: Join An Organization
         desc: Provided to you by an org admin
@@ -1644,7 +1649,6 @@ v:
       leave:
         confirm: Are you sure you want to leave this organization?
         submit: Leave Organization
-      location: Headquarters
     password:
       heading: Set new password
       desc: !html |-
@@ -1658,7 +1662,16 @@ v:
     pin_icon: Pin
     pinned: Pinned
     profile_fields: # TODO: work / merge with profile fields DB labels...
+      bio:
+        label: Bio
+        placeholder: A short bio...
       display_email_on_profile: Display email on profile
+      location:
+        label: Location
+        placeholder: Halifax, Nova Scotia
+      website:
+        label: Website URL
+        placeholder: https://yoursite.com
       website_url: Website URL
       brand_color1: Brand color 1
       brand_color2: Brand color 2
@@ -1695,14 +1708,8 @@ v:
     chat: Chat
     chat_with: Chat with %{user}
     close: Close modal
-    created_at: Joined
-    dropdown: Toggle dropdown menu
-    education: Education
-    email: Email
+    dropdown: User actions
     email_icon: Email address
-    employment:
-      key: Work
-      title: !html "%{title}%{at_start} at %{at_end}%{start}%{employer}%{end}"
     empty: *prof_empty
     flag: Flag @%{user}
     follow: Follow
@@ -1710,7 +1717,6 @@ v:
     joined:
       icon: Joined
       text: !html Joined on %{date}
-    location: Location
     location_icon: Location
     more: More info about @%{user}
     send:
@@ -1845,7 +1851,7 @@ admin:
       id_was_removed_as_a_tag_m: '@%{user_username} - ID #%{user_id} was removed as a tag moderator.'
       was_added_as_a_tag_moderat: '%{user_username} was added as a tag moderator!'
   tags_controller:
-    tag_has_been_created: Tag has been created!
+    tag_has_been_created: '%{tag_name} has been created!'
     tag_successfully_updated: '%{tag_name} tag successfully updated!'
     the_tag_update_failed: 'The tag update failed: %{tag_errors_as_sentence}'
   tools_controller:
@@ -2215,7 +2221,6 @@ lib:
           Determines which users are suggested to follow to new users during onboarding (comma separated, letters only). Please note that these users will be shown as a fallback if no
           recently-active commenters or producers can be suggested
         devcommunity: '#DEVCommunity'
-        email_address: Email address
         google_analytics_tracking: Google Analytics Tracking ID, e.g. UA-71991000-1
         list_of_valid_comma_separa: List of valid, comma-separated tags e.g. help,discuss,explainlikeimfive,meta
         list_of_valid_keywords_com: 'List of valid keywords: comma separated, letters only e.g. engineering, development'
@@ -2246,6 +2251,10 @@ lib:
         used_cars_near_you_pokemon: used cars near you, pokemon go hack
       user_experience:
         basic_rich_or_compact: basic, rich, or compact
+        feed_strategy:
+          description: 'Determines the main feed algorithm approach the app takes: basic or large_forem_experimental
+        (which should only be used for 10k+ member communities)'
+          placeholder: basic
         determines_background_bord: Determines background/border of buttons etc. Must be dark enough to contrast with white text.
         determines_the_default_rea: Determines the default reading font (registered users can change this in their UX settings)
         determines_which_default_f: Determines which default feed the users sees (rich content, more minimal, etc.)
@@ -2520,9 +2529,7 @@ omniauth_callbacks_controller:
 organizations_controller:
   your_org_secret_was_update: Your org secret was updated
   your_organization_deletion: 'Your organization: "%{organization_name}" deletion is scheduled. You''ll be notified when it''s deleted.'
-  your_organization_was_not: |-
-    Your organization was not deleted; you must be an admin, the only member in the organization,
-          and have no articles connected to the organization.
+  your_organization_was_not: Your organization was not deleted; you must be an admin, the only member in the organization, and have no articles connected to the organization.
   your_organization_was_succ: Your organization was successfully created and you are an admin.
   your_organization_was_succ2: Your organization was successfully updated.
 podcasts_controller:
@@ -2621,15 +2628,7 @@ services:
   payments:
     customer:
       usd: usd
-  profile_fields:
-    add_base_fields:
-      a_short_bio: A short bio...
-      display_email_on_profile: Display email on profile
-      halifax_nova_scotia: Halifax, Nova Scotia
-      https_yoursite_com: https://yoursite.com
-      location: Location
-      summary: Summary
-      website_url: Website URL
+  profile_fields: # TODO: find the way to reconcile
     add_branding_fields:
       brand_color_1: Brand color 1
       brand_color_2: Brand color 2
@@ -2752,8 +2751,8 @@ validators:
   profile_validator:
     is_not_a_valid_hex_color: is not a valid hex color
     is_too_long: is too long
-    is_too_long_maximum: 'is too long (maximum: %{max_text_area_length})'
-    is_too_long_maximum2: 'is too long (maximum: %{max_text_field_length})'
+    maximum: !pl
+      n: 'is too long (maximum is %{count} characters)'
   valid_domain_csv_validator:
     must_be_a_comma_separated: must be a comma-separated list of valid domains
 video_states_controller:

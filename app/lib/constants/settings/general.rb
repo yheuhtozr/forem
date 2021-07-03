@@ -24,10 +24,6 @@ module Constants
               placeholder: ""
             }
           },
-          email_addresses: {
-            description: I18n.t("lib.constants.settings.general.email_address"),
-            placeholder: ""
-          },
           favicon_url: {
             description: I18n.t("lib.constants.settings.general.used_as_the_site_favicon"),
             placeholder: IMAGE_PLACEHOLDER

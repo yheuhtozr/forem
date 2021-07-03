@@ -16,6 +16,8 @@
   <meta name="twitter:site" content="@<%= Settings::General.social_media_handles["twitter"] %>">
   <meta name="twitter:title" content="<%= _t.meta.og.title community: community_name %>">
   <meta name="twitter:description" content="<%= _t.meta.description community: community_name %>">
+
+   <%= javascript_packs_with_chunks_tag "notificationPage", defer: true %>
 <% end %>
 
 <script>

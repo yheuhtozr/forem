@@ -30,7 +30,6 @@ linters:
         Max: 289
         Exclude:
           - '**/app/views/comments/_comment_proper.html.erb'
-          - '**/app/views/articles/index.html.erb'
           - '**/app/views/notifications/_nav_menu.html.erb'
           - '**/app/views/stories/tagged_articles/index.html.erb'
       Layout/TrailingEmptyLines:

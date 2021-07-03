@@ -1,8 +1,6 @@
 module Admin
   module Settings
     class BaseController < Admin::ApplicationController
-      MISMATCH_ERROR = "The confirmation key does not match".freeze
-
       before_action :extra_authorization_and_confirmation, only: [:create]
 
       def create
@@ -10,9 +8,9 @@ module Admin
 
         if result.success?
           Audit::Logger.log(:internal, current_user, params.dup)
-          redirect_to admin_config_path, notice: "Successfully updated settings."
+          redirect_to admin_config_path, notice: I18n.t("common.success_settings")
         else
-          redirect_to admin_config_path, alert: "😭 #{result.errors.to_sentence}"
+          redirect_to admin_config_path, alert: I18n.t("common.error_friendly", errors: result.errors.to_sentence)
         end
       end
 
@@ -25,11 +23,11 @@ module Admin
 
       def confirmation_text_valid?
         params.require(:confirmation) ==
-          "My username is @#{current_user.username} and this action is 100% safe and appropriate."
+          I18n.t("admin.settings_controller.my_username_is_and_this_ac", current_user_username: current_user.username)
       end
 
       def raise_confirmation_mismatch_error
-        raise ActionController::BadRequest.new, MISMATCH_ERROR
+        raise ActionController::BadRequest.new, I18n.t("admin.settings_controller.the_confirmation_key_does")
       end
 
       # Override this method if you need to call a custom class for upserting.

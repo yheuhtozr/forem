@@ -1,6 +1,7 @@
 <% _t = t.v.articles.delete %>
-<div class="crayons-layout crayons-layout--limited-l gap-0">
-  <div class="crayons-card crayons-card--secondary text-styles text-styles--secondary text-padding -mb-1 mx-3 m:mx-6 mt-3">
+<main id="main-content" class="crayons-layout crayons-layout--limited-l gap-0">
+  <div
+    class="crayons-card crayons-card--secondary text-styles text-styles--secondary text-padding -mb-1 mx-3 m:mx-6 mt-3">
     <%= @article.title %>
   </div>
 
@@ -12,11 +13,13 @@
           ) %>
     </p>
 
-    <%= form_tag "/articles/#{@article.id}", method: :delete do %>
+    <%= form_tag article_path(@article.id), method: :delete do %>
       <button class="crayons-btn crayons-btn--danger"><%= _t.action.button %></button>
+
       <a data-no-instant href="<%= @article.path %>/edit" class="crayons-btn crayons-btn--secondary">
         <%= @article.published ? _t.action.unpublish : _t.action.edit %>
       </a>
+
       <a data-no-instant href="<%= dashboard_path %>" class="crayons-btn crayons-btn--ghost"><%= _t.action.cancel %></a>
     <% end %>
   </div>

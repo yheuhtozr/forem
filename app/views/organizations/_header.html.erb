@@ -1,4 +1,4 @@
- %>
+<% _t = t.v.users %>
 <% unless internal_navigation? || user_signed_in? %>
   <script type="application/ld+json">
     <%= @organization_json_ld.to_json.html_safe %>

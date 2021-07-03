@@ -29,7 +29,7 @@ module Admin
       @tag.name = params[:tag][:name].downcase
 
       if @tag.save
-        flash[:success] = I18n.t("admin.tags_controller.tag_has_been_created")
+        flash[:success] = I18n.t("admin.tags_controller.tag_has_been_created", tag_name: @tag.name)
         redirect_to edit_admin_tag_path(@tag)
       else
         flash[:danger] = @tag.errors_as_sentence

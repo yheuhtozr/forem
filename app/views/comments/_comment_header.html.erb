@@ -1,6 +1,6 @@
 <% _t = t.v.comments.menu %>
-<header class="comment__header">
-  <a href="<%= URL.user(comment.user) %>" class="crayons-link crayons-link--secondary flex items-center fw-medium">
+<div class="comment__header">
+  <a href="<%= URL.user(comment.user) %>" class="crayons-link crayons-link--secondary flex items-center fw-medium m:hidden">
     <span class="js-comment-username"><%= comment.user.name %></span>
     <% if commentable_author_is_op?(commentable, comment) %>
       <span class="crayons-tooltip inline-block spec-op-author -mr-2" data-tooltip="<%= get_ama_or_op_banner(commentable) %>">
@@ -23,10 +23,10 @@
   <%= render "comments/comment_date", decorated_comment: decorated_comment %>
 
   <div class="comment__dropdown">
-    <button class="dropbtn comment__dropdown-trigger crayons-btn crayons-btn--s crayons-btn--ghost crayons-btn--icon" aria-label="<%= _t.aria_label %>" aria-haspopup="true">
+    <button id="comment-dropdown-trigger-<%= comment.id %>" aria-controls="comment-dropdown-<%= comment.id %>" aria-expanded="false" class="dropbtn comment__dropdown-trigger crayons-btn crayons-btn--s crayons-btn--ghost crayons-btn--icon" aria-label="<%= _t.aria_label %>" aria-haspopup="true">
       <%= inline_svg_tag("small-overflow-horizontal.svg", aria: true, class: "crayons-icon pointer-events-none", title: _t.icon) %>
     </button>
-    <ul class="crayons-dropdown p-1 right-1 s:right-0 s:left-auto fs-base dropdown">
+    <ul id="comment-dropdown-<%= comment.id %>" class="crayons-dropdown p-1 right-1 s:right-0 s:left-auto fs-base dropdown">
       <li><a href="<%= URL.comment(comment) %>" class="crayons-link crayons-link--block permalink-copybtn" aria-label="<%= _t.copy.aria_label user: comment.user.name %>" data-no-instant><%= _t.copy.text %></a></li>
       <li class="comment-actions hidden" data-user-id="<%= comment.user_id %>" data-action="settings-button" data-path="<%= URL.comment(comment) %>/settings" aria-label="<%= _t.settings.aria_label user: comment.user.name %>"></li>
       <% action = _t.action[comment.hidden_by_commentable_user ? :unhide : :hide] %>

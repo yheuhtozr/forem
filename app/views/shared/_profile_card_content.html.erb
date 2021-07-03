@@ -1,3 +1,4 @@
+<% _t = t.v.sticky %>
 <div class="-mt-4">
   <a href="<%= actor.path %>" class="flex">
     <span class="<% if actor.class.name == "User" %>crayons-avatar crayons-avatar--xl<% elsif actor.class.name == "Organization" %>crayons-logo crayons-logo--xl<% end %>  mr-2 shrink-0">
@@ -8,7 +9,7 @@
 </div>
 <% if actor.tag_line.present? %>
   <div class="color-base-70">
-    <%= truncate (actor.tag_line || actor.summary || "Posts in this tag"), length: 200 %>
+    <%= truncate (actor.tag_line || actor.summary || _t.no_summary), length: 200 %>
   </div>
 <% end %>
 
@@ -22,7 +23,7 @@
       <% if actor.email_public && context != "sidebar" %>
         <li>
           <div class="key">
-            Email
+            <%= _t.email %>
           </div>
           <div class="value">
             <a href="mailto:<%= actor.email %>"><%= actor.email %></a>
@@ -32,25 +33,24 @@
       <% if actor.employment_title.present? %>
         <li>
           <div class="key">
-            Work
+            <%= _t.employment.key %>
           </div>
           <div class="value">
-            <%= actor.employment_title %>
-            <% if actor.employer_name.present? %>
-              <span class="opacity-50"> at </span>
-              <% if actor.employer_url.present? %>
-                <a href="<%= actor.employer_url %>" target="_blank" rel="noopener"><%= actor.employer_name %></a>
-              <% else %>
-                <%= actor.employer_name %>
-              <% end %>
-            <% end %>
+            <%= _t.employment.title(
+                  title: @user.employment_title,
+                  at_start: tag("span", { class: %w[opacity-50] }, true),
+                  at_end: "</span>".html_safe,
+                  employer: @user.employer_name,
+                  start: @user.employer_url.present? ? tag("a", { href: @user.employer_url, target: "_blank", rel: "noopener" }, true) : "",
+                  end: @user.employer_url.present? ? "</a>".html_safe : "",
+                ) %>
           </div>
         </li>
       <% end %>
       <% if actor.location.present? %>
         <li>
           <div class="key">
-            Location
+            <%= _t.location %>
           </div>
           <div class="value">
             <%= actor.location %>
@@ -60,7 +60,7 @@
       <% if actor.education.present? %>
         <li>
           <div class="key">
-            Education
+            <%= _t.education %>
           </div>
           <ul class="value">
             <%= actor.education %>
@@ -69,7 +69,7 @@
       <% end %>
     <li>
       <div class="key">
-        Joined
+        <%= _t.created_at %>
       </div>
       <div class="value">
         <%= local_date(actor.created_at) %>
@@ -83,8 +83,8 @@
   </div>
   <% if actor.cta_button_text.present? && actor.cta_button_url.present? %>
     <div>
-      <a href="<%= actor.cta_button_url || "Learn more" %>" class="crayons-btn crayons-btn--outlined w-100">
-        <%= actor.cta_button_text %>
+      <a href="<%= actor.cta_button_url %>" class="crayons-btn crayons-btn--outlined w-100">
+        <%= actor.cta_button_text || _t.default_cta %>
       </a>
     </div>
   <% end %>

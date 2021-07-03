@@ -221,7 +221,7 @@
         </div>
       <% end %>
       <p>
-        <%= _t.delete.questions email: link_to(Settings::General.email_addresses[:default], Settings::General.email_addresses[:default]) %>
+        <%= _t.delete.questions email: link_to(ForemInstance.email, ForemInstance.email) %>
       </p>
     </div>
   </div>

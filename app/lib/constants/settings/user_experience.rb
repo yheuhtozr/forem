@@ -7,9 +7,8 @@ module Constants
             description: I18n.t("lib.constants.settings.user_experience.determines_the_default_rea")
           },
           feed_strategy: {
-            description: "Determines the main feed algorithm approach the app takes: basic or large_forem_experimental
-        (which should only be used for 10k+ member communities)",
-            placeholder: "basic"
+            description: I18n.t("lib.constants.settings.user_experience.feed_strategy.description"),
+            placeholder: I18n.t("lib.constants.settings.user_experience.feed_strategy_placeholder")
           },
           feed_style: {
             description: I18n.t("lib.constants.settings.user_experience.determines_which_default_f"),

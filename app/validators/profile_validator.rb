@@ -10,10 +10,8 @@ class ProfileValidator < ActiveModel::Validator
   def self.errors
     {
       color_field: I18n.t("validators.profile_validator.is_not_a_valid_hex_color"),
-      text_area: I18n.t("validators.profile_validator.is_too_long_maximum",
-                        max_text_area_length: MAX_TEXT_AREA_LENGTH),
-      text_field: I18n.t("validators.profile_validator.is_too_long_maximum2",
-                         max_text_field_length: MAX_TEXT_FIELD_LENGTH)
+      text_area: I18n.t("validators.profile_validator.maximum", count: MAX_TEXT_AREA_LENGTH),
+      text_field: I18n.t("validators.profile_validator.maximum", count: MAX_TEXT_FIELD_LENGTH)
     }.with_indifferent_access
   end
 

@@ -3,20 +3,7 @@
 
 <%= render "users/additional_authentication" %>
 
-<% if ForemInstance.dev_to? %>
-  <%# @forem/oss Temporary disabling of overly DEV-specialized link. %>
-  <%# We should create a generalized version of the badge page, including a permanent proxied path for the badge image for hotlinking. %>
-  <div class="crayons-card crayons-card--content-rows">
-    <div class="flex items-center">
-      <a href="<%= user_url(current_user) || "#" %>" aria-label="<%= _t.dev_badge.aria_label %>" class="mr-2">
-        <img src="https://d2fltix0v2e0sb.cloudfront.net/dev-badge.svg" alt="<%= community_name %> badge" height="32" width="32" class="dev-badge crayons-icon" loading="lazy" />
-      </a>
-      <p><%= _t.dev_badge.text community: community_name, code: link_to(_t.dev_badge.code, "/p/badges") %></p>
-    </div>
-  </div>
-<% end %>
-
-<%= form_with(url: profile_path(@user.profile_id), method: "put", html: { class: "sticky-footer-form" }, model: @user) do |f| %>
+<%= form_with(url: profile_path(@user.profile_id), method: "put", html: { class: "sticky-footer-form" }) do |f| %>
 
   <div class="crayons-card crayons-card--content-rows">
     <h2><%= _t.group.user %></h2>
@@ -53,15 +40,15 @@
   <% profile = @user.profile %>
 
   <div class="crayons-card crayons-card--content-rows">
-    <h2>Basic</h2>
+    <h2><%= _t.group.basic %></h2>
 
     <div class="crayons-field">
       <label class="crayons-field__label" for="profile[website_url]">
-        Website URL
+        <%= _t.profile_fields.website.label %>
       </label>
       <%= f.text_field "profile[website_url]",
                        value: profile.website_url,
-                       placeholder: "https://yoursite.com",
+                       placeholder: _t.profile_fields.website.placeholder,
                        class: "crayons-textfield js-color-field" %>
     </div>
 
@@ -70,27 +57,27 @@
                       checked: profile.display_email_on_profile,
                       class: "crayons-checkbox" %>
       <label class="crayons-field__label" for="profile[display_email_on_profile]">
-        Display email on profile
+        <%= _t.profile_fields.display_email_on_profile %>
       </label>
     </div>
 
     <div class="crayons-field">
       <label class="crayons-field__label" for="profile[location]">
-        Location
+        <%= _t.profile_fields.location.label %>
       </label>
       <%= f.text_field "profile[location]",
                        value: profile.location,
-                       placeholder: "Halifax, Nova Scotia",
+                       placeholder: _t.profile_fields.location.placeholder,
                        class: "crayons-textfield js-color-field" %>
     </div>
 
     <div class="crayons-field">
       <label class="crayons-field__label" for="profile[summary]">
-        Bio
+        <%= _t.profile_fields.bio.label %>
       </label>
       <%= f.text_field "profile[summary]",
                        value: profile.summary,
-                       placeholder: "A short bio...",
+                       placeholder: _t.profile_fields.bio.placeholder,
                        class: "crayons-textfield js-color-field" %>
     </div>
   </div>

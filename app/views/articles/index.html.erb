@@ -45,28 +45,29 @@
         <nav class="crayons-tabs hidden s:flex" aria-label="<%= _t.sort.aria_label %>">
           <ul class="crayons-tabs__list">
             <li>
-              <a data-text="Feed" href="<%= list_path %>/" class="crayons-tabs__item <%= "crayons-tabs__item--current" if %w[week month year infinity latest].exclude?(params[:timeframe]) %>" aria-current="<%= "page" if %w[week month year infinity latest].exclude?(params[:timeframe]) %>"><%= _t.sort.feed %></a>
+              <a data-text="Feed" href="<%= list_path %>/" class="crayons-tabs__item <%= "crayons-tabs__item--current" if %w[week month year infinity latest].exclude?(params[:timeframe]) %>"
+                <%= %w[week month year infinity latest].exclude?(params[:timeframe]) ? ' aria-current="page"'.html_safe : "" %>><%= _t.sort.feed %></a>
             </li>
             <li>
-              <a data-text="Week" href="<%= list_path %>/top/week" class="crayons-tabs__item <%= "crayons-tabs__item--current" if timeframe_check("week") %>" aria-current="<%= "page" if timeframe_check("week") %>"><%= _t.sort.week %></a>
+              <a data-text="Week" href="<%= list_path %>/top/week" class="crayons-tabs__item <%= "crayons-tabs__item--current" if timeframe_check("week") %>"<%= timeframe_check("week") ? ' aria-current="page"'.html_safe : "" %>><%= _t.sort.week %></a>
             </li>
             <li>
-              <a data-text="Month" href="<%= list_path %>/top/month" class="crayons-tabs__item <%= "crayons-tabs__item--current" if timeframe_check("month") %>" aria-current="<%= "page" if timeframe_check("month") %>"><%= _t.sort.month %></a>
+              <a data-text="Month" href="<%= list_path %>/top/month" class="crayons-tabs__item <%= "crayons-tabs__item--current" if timeframe_check("month") %>"<%= timeframe_check("month") ? ' aria-current="page"'.html_safe : "" %>><%= _t.sort.month %></a>
             </li>
             <li>
-              <a data-text="Year" href="<%= list_path %>/top/year" class="crayons-tabs__item <%= "crayons-tabs__item--current" if timeframe_check("year") %>" aria-current="<%= "page" if timeframe_check("year") %>"><%= _t.sort.year %></a>
+              <a data-text="Year" href="<%= list_path %>/top/year" class="crayons-tabs__item <%= "crayons-tabs__item--current" if timeframe_check("year") %>"<%= timeframe_check("year") ? ' aria-current="page"'.html_safe : "" %>><%= _t.sort.year %></a>
             </li>
             <li>
-              <a data-text="Infinity" href="<%= list_path %>/top/infinity" class="crayons-tabs__item <%= "crayons-tabs__item--current" if timeframe_check("infinity") %>" aria-current="<%= "page" if timeframe_check("infinity") %>"><%= _t.sort.infinity %></a>
+              <a data-text="Infinity" href="<%= list_path %>/top/infinity" class="crayons-tabs__item <%= "crayons-tabs__item--current" if timeframe_check("infinity") %>"<%= timeframe_check("infinity") ? ' aria-current="page"'.html_safe : "" %>><%= _t.sort.infinity %></a>
             </li>
             <li>
-              <a data-text="Latest" href="<%= list_path %>/latest" class="crayons-tabs__item <%= "crayons-tabs__item--current" if timeframe_check("latest") %>" aria-current="<%= "page" if timeframe_check("latest") %>"><%= _t.sort.latest %></a>
+              <a data-text="Latest" href="<%= list_path %>/latest" class="crayons-tabs__item <%= "crayons-tabs__item--current" if timeframe_check("latest") %>"<%= timeframe_check("latest") ? ' aria-current="page"'.html_safe : "" %>><%= _t.sort.latest %></a>
             </li>
           </ul>
         </nav>
 
         <select class="crayons-select s:hidden ml-2 s:ml-auto w-auto" id="feed-filter-select" aria-label="feed-filter-select">
-          <option value="<%= list_path %>" <% if ["week", "month", "year", "infinity", "latest"].exclude?(params[:timeframe]) %> selected<% end %>><%= _t.sort.feed %></option>
+          <option value="<%= list_path %>/" <% if ["week", "month", "year", "infinity", "latest"].exclude?(params[:timeframe]) %> selected<% end %>><%= _t.sort.feed %></option>
           <option value="<%= list_path %>/top/week" <% if timeframe_check("week") %> selected<% end %>><%= _t.sort.week %></option>
           <option value="<%= list_path %>/top/month" <% if timeframe_check("month") %> selected<% end %>><%= _t.sort.month %></option>
           <option value="<%= list_path %>/top/year" <% if timeframe_check("year") %> selected<% end %>><%= _t.sort.year %></option>

@@ -10,7 +10,7 @@
       <%= _t.alert.subtitle %>
     </p>
     <p class="mt-5">
-      <%= _t.alert.desc email: tag.a(Settings::General.email_addresses[:contact], href: "mailto:#{Settings::General.email_addresses[:default]}" %>
+      <%= _t.alert.desc email: link_to(ForemInstance.email, href: "mailto:#{ForemInstance.email}") %>
     </p>
   </div>
 

@@ -4,6 +4,6 @@
  <OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
    <ShortName><%= _t.short_name community: helper.community_name %></ShortName>
    <Description><%= _t.description community: helper.community_name %></Description>
-   <Contact><%= Settings::General.email_addresses[:default] %></Contact>
+   <Contact><%= ForemInstance.email %></Contact>
    <Url type="text/html" template="<%= URL.url("search") %>?q={searchTerms}" />
  </OpenSearchDescription>
