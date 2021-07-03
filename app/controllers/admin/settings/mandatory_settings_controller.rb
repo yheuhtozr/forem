@@ -12,6 +12,8 @@ module Admin
         end
       end
 
+      private
+
       def upsert_config(configs)
         errors = []
         configs.each do |key, value|
@@ -25,11 +27,8 @@ module Admin
           errors << e.message
           next
         end
-
-        errors
+        Result.new(errors)
       end
-
-      private
 
       # NOTE: we need to override this since the controller name doesn't reflect
       # the model name

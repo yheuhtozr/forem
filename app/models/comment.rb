@@ -36,6 +36,7 @@ class Comment < ApplicationRecord
   after_save :synchronous_bust
   after_save :bust_cache
 
+  validate :discussion_not_locked, if: :commentable, on: :create
   validate :published_article, if: :commentable
   validate :user_mentions_in_markdown
   validates :body_markdown, presence: true, length: { in: BODY_MARKDOWN_SIZE_RANGE }
@@ -46,6 +47,11 @@ class Comment < ApplicationRecord
   validates :public_reactions_count, presence: true
   validates :reactions_count, presence: true
   validates :user_id, presence: true
+  validates :commentable, on: :create, presence: {
+    message: lambda do |object, _data|
+      "#{object.commentable_type.presence || 'item'} has been deleted."
+    end
+  }
 
   after_create_commit :record_field_test_event
   after_create_commit :send_email_notification, if: :should_send_email_notification?
@@ -201,7 +207,7 @@ class Comment < ApplicationRecord
   def shorten_urls!
     doc = Nokogiri::HTML.fragment(processed_html)
     doc.css("a").each do |anchor|
-      unless anchor.to_s.include?("<img") || anchor.attr("class")&.include?("ltag")
+      unless anchor.to_s.include?("<img") || anchor.to_s.include?("<del") || anchor.attr("class")&.include?("ltag")
         anchor.content = strip_url(anchor.content) unless anchor.to_s.include?("<img") # rubocop:disable Style/SoleNestedConditional
       end
     end
@@ -314,6 +320,12 @@ class Comment < ApplicationRecord
   def set_markdown_character_count
     # body_markdown is actually markdown, but that's a separate issue to be fixed soon
     self.markdown_character_count = body_markdown.size
+  end
+
+  def discussion_not_locked
+    return unless commentable_type == "Article" && commentable.discussion_lock
+
+    errors.add(:commentable_id, "the discussion is locked on this Post")
   end
 
   def published_article

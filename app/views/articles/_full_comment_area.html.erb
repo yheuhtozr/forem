@@ -21,7 +21,12 @@
         data-commentable-id="<%= @article.id %>"
         data-commentable-type="Article"
         data-has-recent-comment-activity="<%= @article.has_recent_comment_activity? %>">
-        <%= render "/comments/form", commentable: @article, commentable_type: "Article" %>
+
+        <% if @discussion_lock %>
+          <%= render "/comments/discussion_lock_reason" %>
+        <% else %>
+          <%= render "/comments/form", commentable: @article, commentable_type: "Article" %>
+        <% end %>
 
         <div class="comments" id="comment-trees-container">
           <% if @article.comments_count > 0 %>

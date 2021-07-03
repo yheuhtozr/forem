@@ -1,8 +1,7 @@
 module Admin
   module Settings
-    class AuthenticationsController < Admin::ApplicationController
-      def create
-        result = ::Authentication::SettingsUpsert.call(settings_params)
+    class AuthenticationsController < Admin::Settings::BaseController
+      private
 
         if result.success?
           Audit::Logger.log(:internal, current_user, params.dup)

@@ -3,13 +3,15 @@ module Admin
     layout "admin"
 
     def index
-      @pages = Page.all
+      @pages = Page.all.order(created_at: :desc)
       @code_of_conduct = Page.find_by(slug: "code-of-conduct")
       @privacy = Page.find_by(slug: "privacy")
       @terms = Page.find_by(slug: "terms")
     end
 
     def new
+      @landing_page = Page.landing_page
+
       if (slug = params[:slug])
         prepopulate_new_form(slug)
       else
@@ -19,6 +21,7 @@ module Admin
 
     def edit
       @page = Page.find(params[:id])
+      @landing_page = Page.landing_page
     end
 
     def update
@@ -56,8 +59,10 @@ module Admin
     private
 
     def page_params
-      allowed_params = %i[title slug body_markdown body_html body_json description template is_top_level_path
-                          social_image]
+      allowed_params = %i[
+        title slug body_markdown body_html body_json description template
+        is_top_level_path social_image landing_page
+      ]
       params.require(:page).permit(allowed_params)
     end
 

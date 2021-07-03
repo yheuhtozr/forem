@@ -1,13 +1,15 @@
 module Admin
+  # This controller is solely responsible for rendering the settings page at
+  # /admin/customization/config. The actual updates get handled by the settings
+  # controllers in the Admin::Settings namespace.
   class SettingsController < Admin::ApplicationController
     before_action :extra_authorization_and_confirmation, only: [:create]
 
     layout "admin"
 
-    def create; end
-
     def show
-      @confirmation_text = confirmation_text
+      @confirmation_text =
+        "My username is @#{current_user.username} and this action is 100% safe and appropriate."
     end
 
     private

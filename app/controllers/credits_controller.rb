@@ -23,7 +23,7 @@ class CreditsController < ApplicationController
   def create
     not_authorized if params[:organization_id].present? && !current_user.org_admin?(params[:organization_id])
 
-    @number_to_purchase = params[:credit][:number_to_purchase].to_i
+    number_to_purchase = params[:credit][:number_to_purchase].to_i
 
     return unless make_payment
 
@@ -93,24 +93,13 @@ class CreditsController < ApplicationController
       description: R18n.t.v.credits.messages.charge(@number_to_purchase),
       card_id: @card&.id,
     )
-  end
 
-  def generate_cost
-    @number_to_purchase * cost_per_credit
-  end
-
-  def cost_per_credit
-    prices = Settings::General.credit_prices_in_cents
-
-    case @number_to_purchase
-    when ..9
-      prices[:small]
-    when 10..99
-      prices[:medium]
-    when 100..999
-      prices[:large]
+    if payment.success?
+      @purchaser = payment.purchaser
+      redirect_to credits_path, notice: "#{number_to_purchase} new credits purchased!"
     else
-      prices[:xlarge]
+      flash[:error] = payment.error
+      redirect_to purchase_credits_path
     end
   end
 end

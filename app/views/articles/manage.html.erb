@@ -9,8 +9,10 @@
       <% if flash[:pins_error] %>
         <h3 class="manage-page-error"><%= _t.error.pins(error: flash[:pins_error]) %></h3>
       <% end %>
-      <% if flash[:pins_success] %>
-        <h3 class="manage-page-success"><%= flash[:pins_success] %></h3>
+      <% if flash[:success] %>
+        <div role="alert">
+          <h3 class="manage-page-success"><%= flash[:success] %></h3>
+        </div>
       <% end %>
       <h2><%= _t.desc.heading %></h2>
       <p><strong><%= _t.desc.subtitle %></strong><%= _t.desc.text %>
@@ -30,7 +32,7 @@
   </div>
 
   <div class="dashboard-container crayons-layout">
-    <%= render "dashboards/dashboard_article", article: @article, organization: @article.organization, org_admin: @user.org_admin?(@article.organization), manage_view: true %>
+    <%= render "dashboards/dashboard_article", article: @article, discussion_lock: @discussion_lock, organization: @article.organization, org_admin: @user.org_admin?(@article.organization), manage_view: true %>
     <div class="single-article single-article-manage-form-wrapper">
       <%= form_for(RatingVote.new) do |f| %>
         <h2><%= _t.rating.heading %></h2>
