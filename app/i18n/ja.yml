@@ -1732,7 +1732,7 @@ v:
       meta:
         title: Confirm Signout - %{community}
       heading: Are you sure you want to sign out?
-      yes: Yes, sign out
+      'yes': Yes, sign out
     block: Block @%{user}
     chat: Chat
     chat_with: Chat with %{user}
