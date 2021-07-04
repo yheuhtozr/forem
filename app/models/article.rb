@@ -51,7 +51,9 @@ class Article < ApplicationRecord
            inverse_of: :commentable,
            class_name: "Comment"
 
-  validates :body_markdown, bytesize: { maximum: 800.kilobytes, too_long: I18n.t("models.article.is_too_long") }
+  validates :body_markdown, bytesize: { maximum: 800.kilobytes, too_long: proc {
+                                                                            I18n.t("models.article.is_too_long")
+                                                                          } }
   validates :body_markdown, length: { minimum: 0, allow_nil: false }
   validates :body_markdown, uniqueness: { scope: %i[user_id title] }
   validates :boost_states, presence: true

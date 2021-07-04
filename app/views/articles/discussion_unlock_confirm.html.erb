@@ -1,18 +1,18 @@
-<% title("Confirm Discussion Unlock") %>
+<% _t = t.v.articles.unlock %>
+<% title(_t.meta.title) %>
 <main id="main-content" class="crayons-layout crayons-layout--limited-l gap-0">
   <div class="crayons-card crayons-card--secondary text-styles text-styles--secondary text-padding -mb-1 mx-3 m:mx-6 mt-3">
     <%= @article.title %>
   </div>
   <div class="crayons-card text-padding">
-    <h1 class="crayons-subtitle-1 mb-2">Are you sure you want to unlock the discussion on this post?</h1>
+    <h1 class="crayons-subtitle-1 mb-2"><%= _t.heading %></h1>
     <p class="fs-l mb-4">
-      Users will be able to add new comments. You can lock the discussion at
-      any time to prevent users from leaving comments again.
+      <%= _t.desc %>
     </p>
 
     <div class="fs-l mb-5">
       <div class="fw-bold">
-        Reason this discussion was locked (publicly visible):
+        <%= _t.reason %>
       </div>
       <em>
         <%= @discussion_lock.reason %>
@@ -21,7 +21,7 @@
 
     <div class="fs-l mb-5">
       <div class="fw-bold">
-        Notes from when this discussion was locked (only visible to you and admins):
+        <%= _t.notes %>
       </div>
       <em>
         <%= @discussion_lock.notes %>
@@ -32,8 +32,8 @@
       <div class="form-group">
         <%= f.hidden_field :article_id, value: @article.id %>
       </div>
-      <%= f.submit "Unlock discussion", class: "crayons-btn crayons-btn--danger" %>
-      <a data-no-instant href="<%= dashboard_path %>" class="crayons-btn crayons-btn--ghost">Cancel</a>
+      <%= f.submit _t.submit, class: "crayons-btn crayons-btn--danger" %>
+      <a data-no-instant href="<%= dashboard_path %>" class="crayons-btn crayons-btn--ghost"><%= _t.cancel %></a>
     <% end %>
   </div>
 </main>

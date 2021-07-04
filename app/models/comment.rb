@@ -49,7 +49,8 @@ class Comment < ApplicationRecord
   validates :user_id, presence: true
   validates :commentable, on: :create, presence: {
     message: lambda do |object, _data|
-      "#{object.commentable_type.presence || 'item'} has been deleted."
+      I18n.t("models.comment.has_been_deleted",
+             type: I18n.t("models.comment.type.#{object.commentable_type.presence || 'item'}"))
     end
   }
 
@@ -325,7 +326,7 @@ class Comment < ApplicationRecord
   def discussion_not_locked
     return unless commentable_type == "Article" && commentable.discussion_lock
 
-    errors.add(:commentable_id, "the discussion is locked on this Post")
+    errors.add(:commentable_id, I18n.t("models.comment.locked"))
   end
 
   def published_article

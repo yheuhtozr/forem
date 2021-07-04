@@ -12,9 +12,9 @@ class DiscussionLocksController < ApplicationController
     if @discussion_lock.save
       bust_article_cache(article)
 
-      flash[:success] = "Discussion was successfully locked!"
+      flash[:success] = I18n.t("discussion_locks_controller.locked")
     else
-      flash[:error] = "Error: #{@discussion_lock.errors_as_sentence}"
+      flash[:error] = I18n.t("common.error", errors: @discussion_lock.errors_as_sentence)
     end
 
     redirect_to "#{article.path}/manage"
@@ -29,9 +29,9 @@ class DiscussionLocksController < ApplicationController
     if discussion_lock.destroy
       bust_article_cache(article)
 
-      flash[:success] = "Discussion was successfully unlocked!"
+      flash[:success] = I18n.t("discussion_locks_controller.unlocked")
     else
-      flash[:error] = "Error: #{discussion_lock.errors_as_sentence}"
+      flash[:error] = I18n.t("common.error", errors: @discussion_lock.errors_as_sentence)
     end
 
     redirect_to "#{article.path}/manage"

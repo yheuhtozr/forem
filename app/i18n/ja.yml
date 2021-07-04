@@ -96,6 +96,19 @@ v:
         cancel: Dismiss
         edit: Edit
         unpublish: Unpublish
+    lock:
+      meta:
+        title: Confirm Discussion Lock
+      heading: Are you sure you want to lock the discussion on this post?
+      desc: !html Users will not be able to add new comments. This will <em class="fw-bold">not</em> remove existing comments. You can unlock the discussion at any time to allow users to leave comments again.
+      cancel: Cancel
+      notes:
+        label: Notes (optional) - this is only visible to you and admins
+        placeholder: More details as to why you locked the discussion.
+      reason:
+        label: Reason for locking the discussion (optional) - this will be publicly displayed
+        placeholder: The reason why you're locking this discussion.
+      submit: Lock discussion
     preview_discuss: !pl
       0: New Discussion!
       n: !html '#discuss <img src="%{image}" />%{count}'
@@ -114,6 +127,15 @@ v:
         text: !pl
           n: …（%1 部分）…
         title: すべて表示
+    unlock:
+      meta:
+        title: Confirm Discussion Unlock
+      heading: Are you sure you want to unlock the discussion on this post?
+      desc: Users will be able to add new comments. You can lock the discussion at any time to prevent users from leaving comments again.
+      cancel: Cancel
+      notes: "Notes from when this discussion was locked (only visible to you and admins):"
+      reason: "Reason this discussion was locked (publicly visible):"
+      submit: Unlock discussion
     unpublished:
       subtitle: Unpublished Post.
       text: " This URL is public but secret, so share at your own discretion."
@@ -128,6 +150,7 @@ v:
     read_next: 次に読みたい
     reading_time: !pl
       n: "約 %1 字/語"
+    right_nav: Right sidebar navigation
   auth:
     create:
       aria_label: Create new account
@@ -312,6 +335,7 @@ v:
     hidden:
       text: !html 非表示にされているコメントがあります（%{info}）
       info: 詳細
+    locked: The discussion has been locked. New comments can't be added.
     orphan:
       heading: Comment from a deleted article or podcast
       deleted: "[deleted]"
@@ -491,6 +515,9 @@ v:
       heading: Analytics Dashboard for %{name}
       desc_1: Welcome to the Analytics Dashboard, the home of in-depth user metrics so that authors can make data-driven decisions about the %{members} ecosystem.
       desc_2: This dashboard highlights deep insights especially relevant to %{members} relations, authors, and serious bloggers.
+      back: 👈 Back to Main Dashboard
+      your: Your Dashboard
+      org: "%{org} Analytics Dashboard"
     article:
       heading:
         text: "%{archived}%{title}"
@@ -535,6 +562,8 @@ v:
       manage:
         aria_label: "Manage post: %{title}"
         text: Manage
+      lock: Lock discussion
+      unlock: Unlock discussion
       edit:
         aria_label: "Edit post: %{title}"
         text: Edit
@@ -1708,6 +1737,7 @@ v:
     chat: Chat
     chat_with: Chat with %{user}
     close: Close modal
+    details: "%{user} profile details"
     dropdown: User actions
     email_icon: Email address
     empty: *prof_empty
@@ -1862,7 +1892,9 @@ admin:
     data_exported_to_the_the_j: Data exported to the %{receiver}. The job will complete momentarily.
     email_failed_to_send: Email failed to send!
     email_verification_mailer: Email Verification Mailer sent!
+    full_delete: !html '@%{user} (email: %{email}, user_id: %{id}) has been fully deleted. If this is a GDPR delete, delete them from Mailchimp & Google Analytics and confirm on %{the_page}.'
     never: Never
+    no_email: no email
     role_has_been_successfully: 'Role: %{role_to_s_humanize_titleca} has been successfully removed from the user!'
     the_identity_was_successfu: The %{identity_provider_capitali} identity was successfully deleted and backed up.
     the_page: the page
@@ -1930,6 +1962,9 @@ decorators:
     discuss: discuss
 devices_controller:
   not_found: Not Found
+discussion_locks_controller:
+  locked: Discussion was successfully locked!
+  unlocked: Discussion was successfully unlocked!
 email_subscriptions_controller:
   badge_notifications: badge notifications
   comment_notifications: comment notifications
@@ -1940,6 +1975,9 @@ email_subscriptions_controller:
   this_list: this list
   unread_notifications: unread notifications
 errors:
+  authentication:
+    errors:
+      suspended: It appears that your previous %{community_name} account was suspended. As such, we've taken measures to prevent you from creating a new account with %{community_name} and its community. If you think that there has been a mistake, please email us at %{community_email}, and we will take another look.
   fastly_config:
     configs_must_be_an_array_o: 'configs: must be an Array of Strings'
     invalid_fastly_config_only: Invalid Fastly config - %{invalid_config}. Only %{valid_configs_join} are valid.
@@ -2245,6 +2283,22 @@ lib:
         used_for_site_wide_web_mon: 'Used for site-wide web monetization. See: https://github.com/thepracticaldev/dev.to/pull/6345'
         used_to_authenticate_with: Used to authenticate with your health check endpoints.
         user_id_of_the_mascot_acco: User ID of the Mascot account
+      smtp:
+        address: 
+          description: Address of the remote mail server
+          placeholder: ie. smtp.gmail.com
+        port: 
+          description: The port that your mail server runs on
+          placeholder: '25'
+        authentication: 
+          description:  If your mail server requires authentication, you need to specify the authentication type here
+          placeholder: ie. plain, login, or cram_md5
+        user_name: 
+          description: If your mail server requires authentication, copy the username from your server
+        password: 
+          description: If your mail server requires authentication, copy the password from your server
+        domain: 
+          description: If you need to specify a HELO domain, you can do it here
       rate_limit:
         individual_case_insensitiv: Individual (case insensitive) phrases that trigger spam alerts, comma separated.
         the_number_of_days_a_user: The number of days a user is considered new. The default is 3 days, but you can disable this entirely by inputting 0.
@@ -2426,8 +2480,14 @@ models:
     pattern: chat between|and
   comment:
     deleted: '[deleted]'
+    has_been_deleted: '%{type} has been deleted.'
     hidden_by_post_author: '[hidden by post author]'
     is_not_valid: is not valid.
+    locked: the discussion is locked on this Post
+    type:
+      Article: Article
+      item: item
+      PodcastEpisode: Podcast episode
     user_suspended_for_too_man: User suspended for too many spammy articles, triggered by autovomit.
     you_cannot_mention_more_th: You cannot mention more than %{settings_ratelimit_mention} users in a comment!
   custom_profile_field:
@@ -2703,6 +2763,9 @@ services:
       there_was_an_issue_removin: There was an issue removing this role. %{e_message}
 social_previews_controller:
   fonts: Roboto|Roboto+Condensed
+stories:
+  pinned_articles_controller:
+    not_found: not found
 stories_controller:
   404_bio_not_found: 404 bio not found
   searching: ...searching
@@ -2748,6 +2811,8 @@ validators:
     must_be_darker_for_accessi: must be darker for accessibility
   emoji_only_validator:
     contains_non_emoji_charact: contains non-emoji characters or invalid emoji
+  existing_published_article_id_validator:
+    default: must be a valid published Article identifier
   profile_validator:
     is_not_a_valid_hex_color: is not a valid hex color
     is_too_long: is too long

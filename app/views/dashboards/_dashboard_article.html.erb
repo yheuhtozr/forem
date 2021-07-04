@@ -69,9 +69,9 @@
     <a href="<%= article.path %>/stats" data-no-instant class="crayons-btn"><%= _t.stats %></a>
 
     <% if discussion_lock %>
-      <a href="<%= article.path %>/discussion_unlock_confirm" data-no-instant class="crayons-btn">Unlock discussion</a>
+      <a href="<%= article.path %>/discussion_unlock_confirm" data-no-instant class="crayons-btn"><%= _t.unlock %></a>
     <% else %>
-      <a href="<%= article.path %>/discussion_lock_confirm" data-no-instant class="crayons-btn">Lock discussion</a>
+      <a href="<%= article.path %>/discussion_lock_confirm" data-no-instant class="crayons-btn"><%= _t.lock %></a>
     <% end %>
 
     <% if article.published %>

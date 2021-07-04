@@ -20,7 +20,7 @@
   <a href='<%= article.path %>' class='ltag__link__link'>
     <div class='ltag__link__content'>
       <h2><%= title %></h2>
-      <h3><%= article.user.name %> for <%= article.organization.name %> ・ <%= article.readable_publish_date %> ・ <%= article.reading_time < 2 ? 1 : article.reading_time %> min read</h3>
+      <h3><%= article.user.name %><%= _t.for_org org: article.organization.name, start: "", end: "" %> ・ <%= article.readable_publish_date %> ・ <%= _t.reading_time(article.reading_time < 2 ? 1 : article.reading_time) %></h3>
       <div class='ltag__link__taglist'>
       <% article.tag_list.each do |t| %>
         <span class='ltag__link__tag'>#<%= t %></span>
