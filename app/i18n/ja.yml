@@ -1748,6 +1748,7 @@ v:
       icon: Joined
       text: !html Joined on %{date}
     location_icon: Location
+    logo: "%{user} profile picture"
     more: More info about @%{user}
     send_pm:
       code: code of conduct

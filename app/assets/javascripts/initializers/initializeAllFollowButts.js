@@ -224,7 +224,7 @@ function assignState(butt, newState) {
     addFollowText(butt, style);
   } else if (newState === 'self') {
     butt.dataset.verb = 'self';
-    butt.textContent = 'Edit profile';
+    butt.textContent = i18next.t('followButts.edit');
   } else {
     butt.dataset.verb = 'follow';
     addFollowingText(butt, style);
@@ -236,18 +236,18 @@ function assignState(butt, newState) {
 
 function addFollowText(butt, style) {
   if (style === 'small') {
-    butt.textContent = '+';
+    butt.textContent = i18next.t('followButts.follow_small');
   } else if (style === 'follow-back') {
-    butt.textContent = 'Follow back';
+    butt.textContent = i18next.t('followButts.followback');
   } else {
-    butt.textContent = 'Follow';
+    butt.textContent = i18next.t('followButts.follow');
   }
 }
 
 function addFollowingText(butt, style) {
   if (style === 'small') {
-    butt.textContent = '✓';
+    butt.textContent = i18next.t('followButts.following_small');
   } else {
-    butt.textContent = 'Following';
+    butt.textContent = i18next.t('followButts.following');
   }
 }

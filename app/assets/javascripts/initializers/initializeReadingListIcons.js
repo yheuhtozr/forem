@@ -130,11 +130,11 @@ function addHoverEffectToReadingListButtons() {
     // `this` local variable
     container.addEventListener(
       'mouseover',
-      readingListButtonMouseHandler.bind('Unsave'),
+      readingListButtonMouseHandler.bind(i18next.t('articles.save.remove')),
     );
     container.addEventListener(
       'mouseout',
-      readingListButtonMouseHandler.bind('Saved'),
+      readingListButtonMouseHandler.bind(i18next.t('articles.save.success')),
     );
   });
 }

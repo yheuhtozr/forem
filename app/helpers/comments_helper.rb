@@ -54,10 +54,8 @@ module CommentsHelper
     case comment.public_reactions_count
     when 0
       I18n.t("helpers.comments_helper.like")
-    when 1
-      I18n.t("helpers.comments_helper.nbsp_like")
     else
-      I18n.t("helpers.comments_helper.nbsp_likes")
+      I18n.t("helpers.comments_helper.nbsp_likes", count: comment.public_reactions_count)
     end
   end
 

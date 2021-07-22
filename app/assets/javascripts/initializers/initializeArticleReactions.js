@@ -20,11 +20,17 @@ function setReactionCount(reactionName, newCount) {
 function getReactionAriaLabel(reactionName, reacted) {
   switch (reactionName) {
     case 'readinglist':
-      return reacted ? 'Remove from reading list' : 'Add to reading list';
+      return reacted
+        ? i18next.t('reactions.readingList.aria_remove')
+        : i18next.t('reactions.readingList.aria_label');
     case 'unicorn':
-      return reacted ? 'Remove unicorn reaction' : 'React with unicorn';
+      return reacted
+        ? i18next.t('reactions.unicorn.aria_remove')
+        : i18next.t('reactions.unicorn.aria_label');
     case 'like':
-      return reacted ? 'Unlike' : 'Like';
+      return reacted
+        ? i18next.t('reactions.like.aria_remove')
+        : i18next.t('reactions.like.aria_label');
   }
 }
 

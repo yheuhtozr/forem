@@ -52,11 +52,11 @@
             <span class="hidden s:inline-block" aria-hidden="false"><%= _t.field.upload %></span>
           </button>
           <label class="image-upload-file-label" id="image-upload-file-label-main"></label>
-          <input type="submit" id='image-upload-submit-main' value="Upload" style="display:none">
+          <input type="submit" id='image-upload-submit-main' value="<%= _t.field.submit %>" style="display:none">
           <input class="hidden" id="uploaded-image-main" />
         </div>
 
-        <button type="button" class="crayons-btn crayons-btn--s crayons-btn--icon-left crayons-btn--ghost-dimmed response-templates-button" title="Use a response template" data-has-listener="false" data-form-id="new_comment">
+        <button type="button" class="crayons-btn crayons-btn--s crayons-btn--icon-left crayons-btn--ghost-dimmed response-templates-button" title="<%= _t.field.use %>" data-has-listener="false" data-form-id="new_comment">
           <%= inline_svg_tag("templates.svg", aria: true, class: "crayons-icon") %>
           <span class="hidden s:inline-block" aria-hidden="false"><%= _t.field.templates %></span>
         </button>

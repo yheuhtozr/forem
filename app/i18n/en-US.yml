@@ -374,8 +374,10 @@ v:
       field:
         aria_label: Add a comment to the discussion
         placeholder: Add to the discussion
+        submit: Upload
         templates: Templates
         upload: Upload image
+        use: Use a response template
         guide:
           title: Markdown Guide
           icon: Editor guide
@@ -409,6 +411,7 @@ v:
       heart:
         title: heart
         icon: Favorite heart outline button
+        count: !html "%{num}%{likes}"
         text: Like
       reply:
         aria_label: Reply to a comment...
@@ -1750,6 +1753,7 @@ v:
       icon: Joined
       text: !html Joined on %{date}
     location_icon: Location
+    logo: "%{user} profile picture"
     more: More info about @%{user}
     send_pm:
       code: code of conduct
@@ -2110,8 +2114,9 @@ helpers:
     ask_me_anything: Ask Me Anything
     author: Author
     like: Like
-    nbsp_like: '&nbsp;like'
-    nbsp_likes: '&nbsp;likes'
+    nbsp_likes: !pl
+      1: !html '&nbsp;like'
+      n: !html '&nbsp;likes'
   feedback_messages_helper:
     code_of_conduct_violation: '%{community} Code of Conduct Violation'
     courtesy_notice_from: Courtesy Notice from %{community}
