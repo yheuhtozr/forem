@@ -44,7 +44,7 @@
                     data-profile-user-name="@<%= @user.username %>"
                     data-is-user-flagged="<%= @is_user_flagged %>"
                     class="border-none crayons-link crayons-link--block">
-                    <%= _t[@flag_status ? :unflag : :flag](user: @user.username) %>
+                    <%= _t[@flag_status ? :unflag : :flag, user: @user.username] %>
                   </a>
                 <% end %>
                 <span class="report-abuse-link-wrapper" data-path="/report-abuse?url=<%= user_url(@user) %>"></span>
@@ -119,10 +119,10 @@
                 <p class="mb-6"><%= @user.inbox_guidelines %></p>
               <% end %>
               <form id="new-message-form" class="message-form mb-4" data-info='{"id":<%= @user.id %>,"className":"<%= @user.class.name %>","username":"<%= @user.username %>", "showChat":"<%= @user.inbox_type %>"}'>
-                <textarea id="new-message" rows="4" cols="70" placeholder="<%= _t.send.placeholder %>" class="crayons-textfield"></textarea>
-                <button type="submit" class="submit-message crayons-btn"><%= _t.send.submit %></button>
+                <textarea id="new-message" rows="4" cols="70" placeholder="<%= _t.send_pm.placeholder %>" class="crayons-textfield"></textarea>
+                <button type="submit" class="submit-message crayons-btn"><%= _t.send_pm.submit %></button>
               </form>
-              <p class="fs-s color-base-60"><%= _t.send.notice code: link_to(_t.send.code, "/code-of-conduct") %></p>
+              <p class="fs-s color-base-60"><%= _t.send_pm.notice code: link_to(_t.send_pm.code, "/code-of-conduct") %></p>
             </div>
           </div>
           <div class="crayons-modal__overlay"></div>
@@ -153,7 +153,7 @@
       <% end %>
     </div>
     <div class="loading-articles" id="loading-articles">
-      <%= _t.v.loading %>
+      <%= t.v.loading %>
     </div>
   </main>
 </div>

@@ -39,7 +39,7 @@ module Notifications
         PushNotifications::Send.call(
           user_ids: targets,
           title: "@#{comment.user.username}",
-          body: I18n.t("services.notifications.new_comment.send.re",
+          body: I18n.t("services.notifications.new_comment.class_send.re",
                        comment_parent_or_root_art: comment.parent_or_root_article.title.strip),
           payload: {
             url: URL.url(comment.path),

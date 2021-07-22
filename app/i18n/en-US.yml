@@ -1751,7 +1751,7 @@ v:
       text: !html Joined on %{date}
     location_icon: Location
     more: More info about @%{user}
-    send:
+    send_pm:
       code: code of conduct
       notice: !html All private interactions <b>must</b> abide by the %{code}.
       placeholder: Enter your message here...
@@ -2685,7 +2685,7 @@ services:
       you_cannot_merge_the_same: You cannot merge the same two user id#s
   notifications:
     new_comment:
-      send:
+      class_send:
         re: 'Re: %{comment_parent_or_root_art}'
   payments:
     customer:
