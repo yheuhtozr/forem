@@ -1,5 +1,6 @@
 import { h } from 'preact';
 import { articlePropTypes } from '../../common-prop-types';
+import { i18next } from '../../i18n/l10n';
 import { Button } from '../../crayons/Button';
 
 export const ReactionsCount = ({ article }) => {
@@ -28,13 +29,17 @@ export const ReactionsCount = ({ article }) => {
       icon={reactionsSVG}
       tagName="a"
     >
-      <span title="Number of reactions">
-        {totalReactions}
-        <span className="hidden s:inline">
-          &nbsp;
-          {`${totalReactions == 1 ? 'reaction' : 'reactions'}`}
-        </span>
-      </span>
+      <span
+        title={i18next.t('reactions.number')}
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{
+          __html: i18next.t('reactions.count', {
+            count: totalReactions,
+            start: '<span className="hidden s:inline">',
+            end: '</span>',
+          }),
+        }}
+      />
     </Button>
   );
 };

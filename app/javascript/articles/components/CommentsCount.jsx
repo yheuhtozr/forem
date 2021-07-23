@@ -1,5 +1,6 @@
 import { h } from 'preact';
 import PropTypes from 'prop-types';
+import { i18next } from '../../i18n/l10n';
 import { Button } from '../../crayons/Button';
 
 export const CommentsCount = ({ count, articlePath }) => {
@@ -24,13 +25,17 @@ export const CommentsCount = ({ count, articlePath }) => {
         icon={commentsSVG}
         tagName="a"
       >
-        <span title="Number of comments">
-          {count}
-          <span className="hidden s:inline">
-            &nbsp;
-            {`${count > 1 ? 'comments' : 'comment'}`}
-          </span>
-        </span>
+        <span
+          title={i18next.t('comments.number')}
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: i18next.t('comments.count', {
+              count,
+              start: '<span className="hidden s:inline">',
+              end: '</span>',
+            }),
+          }}
+        />
       </Button>
     );
   }
@@ -46,7 +51,7 @@ export const CommentsCount = ({ count, articlePath }) => {
         data-testid="add-a-comment"
       >
         <span className="inline s:hidden">0</span>
-        <span className="hidden s:inline">Add comment</span>
+        <span className="hidden s:inline">{i18next.t('comments.empty')}</span>
       </Button>
     );
   }

@@ -1,7 +1,10 @@
+import { i18next } from '../i18n/l10n';
 /** This initializes the mod actions button on the article show page (app/views/articles/show.html.erb). */
 export function initializeActionsPanel(user, path) {
   const modActionsMenuHTML = `
-    <iframe id="mod-container" src=${path}/actions_panel title="Moderation panel actions">
+    <iframe id="mod-container" src=${path}/actions_panel title="${i18next.t(
+    'modActions.title',
+  )}">
     </iframe>
   `;
 
@@ -31,15 +34,13 @@ export function initializeActionsPanel(user, path) {
       .classList.remove('hidden');
   }
 
-  document.getElementsByClassName(
-    'mod-actions-menu',
-  )[0].innerHTML = modActionsMenuHTML;
+  document.getElementsByClassName('mod-actions-menu')[0].innerHTML =
+    modActionsMenuHTML;
   // eslint-disable-next-line no-restricted-globals
   if (!top.document.location.pathname.includes('/mod')) {
     // don't show mod button in mod center page
-    document.getElementById(
-      'mod-actions-menu-btn-area',
-    ).innerHTML = modActionsMenuIconHTML;
+    document.getElementById('mod-actions-menu-btn-area').innerHTML =
+      modActionsMenuIconHTML;
     document
       .getElementsByClassName('mod-actions-menu-btn')[0]
       .addEventListener('click', toggleModActionsMenu);

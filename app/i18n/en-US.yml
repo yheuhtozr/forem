@@ -174,8 +174,8 @@ v:
         text: Sign up with Email
     register:
       errors: !pl
-        1: Whoops, we found problem
-        n: Whoops, we found problems
+        1: Whoops, we found %1 problem
+        n: Whoops, we found %1 problems
       error:
         recaptcha: You must complete the recaptcha ✅
         domain: is not included in allowed domains.
@@ -657,6 +657,7 @@ v:
       add: Add a cover image
       change: Change
     edit: Edit
+    modes: View post modes
     new_title: New post title here...
     preview: Preview
     video:
