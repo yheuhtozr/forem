@@ -1,6 +1,7 @@
 import { h, Fragment } from 'preact';
 import PropTypes from 'prop-types';
 import { tagPropTypes } from '../common-prop-types';
+import { i18next } from '../i18n/l10n';
 
 export const TagsFollowed = ({ tags = [] }) => {
   return (
@@ -12,7 +13,7 @@ export const TagsFollowed = ({ tags = [] }) => {
           id={`sidebar-element-${tag.name}`}
         >
           <a
-            title={`${tag.name} tag`}
+            title={i18next.t('main.tag', { tag: tag.name })}
             className="crayons-link crayons-link--block"
             href={`/t/${tag.name}`}
           >

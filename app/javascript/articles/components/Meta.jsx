@@ -56,8 +56,8 @@ export const Meta = ({ article, organization }) => {
           </a>
           {organization &&
             !document.getElementById('organization-article-index') && (
-              // eslint-disable-next-line react/no-danger
               <span
+                // eslint-disable-next-line react/no-danger
                 dangerouslySetInnerHTML={{
                   __html: i18next.t('articles.for_org', {
                     start:
