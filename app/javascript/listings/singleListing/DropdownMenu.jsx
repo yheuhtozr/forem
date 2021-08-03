@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { h, Component, createRef } from 'preact';
+import { i18next } from '../../i18n/l10n';
 import { listingPropTypes } from './listingPropTypes';
 import { Button, Dropdown } from '@crayons';
 
@@ -43,7 +44,7 @@ export class DropdownMenu extends Component {
           variant="ghost"
           contentType="icon"
           tagName="button"
-          aria-label="Listing options"
+          aria-label={i18next.t('listings.options')}
           icon={Icon}
         />
         <Dropdown
@@ -58,11 +59,11 @@ export class DropdownMenu extends Component {
           <div>
             {isOwner ? (
               <a href={editUrl} className="crayons-link crayons-link--block">
-                Edit
+                {i18next.t('listings.actions.edit')}
               </a>
             ) : (
               <a href={reportUrl} className="crayons-link crayons-link--block">
-                Report Abuse
+                {i18next.t('listings.actions.report')}
               </a>
             )}
           </div>

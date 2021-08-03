@@ -1,4 +1,5 @@
 import { addSnackbarItem } from '../Snackbar';
+import { i18next } from '../i18n/l10n';
 import { initializeDropdown } from '@utilities/dropdownUtils';
 
 /* global Runtime initializeAllFollowButts  */
@@ -8,7 +9,7 @@ const handleCopyPermalink = (closeDropdown) => {
     event.preventDefault();
     const permalink = event.target.href;
     Runtime.copyToClipboard(permalink).then(() => {
-      addSnackbarItem({ message: 'Copied to clipboard' });
+      addSnackbarItem({ message: i18next.t('clipboard.message') });
     });
     closeDropdown();
   };
@@ -40,7 +41,11 @@ const initializeArticlePageDropdowns = () => {
         '.report-abuse-link-wrapper',
       );
       if (reportAbuseWrapper) {
-        reportAbuseWrapper.innerHTML = `<a href="${reportAbuseWrapper.dataset.path}" class="crayons-link crayons-link--block">Report abuse</a>`;
+        reportAbuseWrapper.innerHTML = `<a href="${
+          reportAbuseWrapper.dataset.path
+        }" class="crayons-link crayons-link--block">${i18next.t(
+          'articles.report',
+        )}</a>`;
       }
 
       // Initialize the "Copy link" functionality

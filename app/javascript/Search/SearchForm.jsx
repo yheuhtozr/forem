@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { h } from 'preact';
 import { forwardRef } from 'preact/compat';
+import { i18next } from '../i18n/l10n';
 
 export const SearchForm = forwardRef(
   ({ searchTerm, onSearch, onSubmitSearch }, ref) => (
@@ -16,9 +17,9 @@ export const SearchForm = forwardRef(
         className="crayons-header--search-input crayons-textfield"
         type="text"
         name="q"
-        placeholder="Search..."
+        placeholder={i18next.t('search.placeholder')}
         autoComplete="off"
-        aria-label="search"
+        aria-label={i18next.t('search.aria_label')}
         onKeyDown={onSearch}
         value={searchTerm}
       />

@@ -3,6 +3,7 @@ import ahoy from 'ahoy.js';
 import { Snackbar, addSnackbarItem } from '../Snackbar';
 import { addFullScreenModeControl } from '../utilities/codeFullscreenModeSwitcher';
 import { embedGists } from '../utilities/gist';
+import { i18next } from '../i18n/l10n';
 import { initializeDropdown } from '@utilities/dropdownUtils';
 
 /* global Runtime */
@@ -50,8 +51,8 @@ if (shareDropdownButton.dataset.initialized !== 'true') {
       .querySelectorAll('#article-show-more-dropdown [href]')
       .forEach((link) => {
         link.addEventListener('click', (event) => {
-          closeDropdown(event)
-          
+          closeDropdown(event);
+
           // Temporary Ahoy Stats for usage reports
           ahoy.track('Post Dropdown', { option: event.target.text.trim() });
         });
@@ -124,8 +125,12 @@ getCsrfToken().then(async () => {
       root,
     );
   } catch (e) {
-    document.getElementById('comment-subscription').innerHTML =
-      '<p className="color-accent-danger">Unable to load Comment Subscription component.<br />Try refreshing the page.</p>';
+    document.getElementById(
+      'comment-subscription',
+    ).innerHTML = `<p className="color-accent-danger">${i18next.t(
+      'errors.comment_sub',
+      { interpolation: { escapeValue: false } },
+    )}</p>`;
   }
 });
 
@@ -153,11 +158,11 @@ const toggleArticlePin = async (button) => {
   if (response.ok) {
     // replace id and label
     button.id = isPinButton ? 'js-unpin-article' : 'js-pin-article';
-    button.innerHTML = `${isPinButton ? 'Unpin' : 'Pin'} Post`;
+    button.innerHTML = i18next.t(`articles.${isPinButton ? 'unpin' : 'pin'}`);
 
-    const message = isPinButton
-      ? 'The post has been succesfully pinned'
-      : 'The post has been succesfully unpinned';
+    const message = i18next.t(
+      `articles.messages.${isPinButton ? 'pinned' : 'unpinned'}`,
+    );
     addSnackbarItem({ message });
   }
 };
