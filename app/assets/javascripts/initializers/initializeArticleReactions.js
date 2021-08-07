@@ -17,32 +17,12 @@ function setReactionCount(reactionName, newCount) {
   }
 }
 
-function getReactionAriaLabel(reactionName, reacted) {
-  switch (reactionName) {
-    case 'readinglist':
-      return reacted
-        ? i18next.t('reactions.readingList.aria_remove')
-        : i18next.t('reactions.readingList.aria_label');
-    case 'unicorn':
-      return reacted
-        ? i18next.t('reactions.unicorn.aria_remove')
-        : i18next.t('reactions.unicorn.aria_label');
-    case 'like':
-      return reacted
-        ? i18next.t('reactions.like.aria_remove')
-        : i18next.t('reactions.like.aria_label');
-  }
-}
-
 function showUserReaction(reactionName, animatedClass) {
   const reactionButton = document.getElementById(
     'reaction-butt-' + reactionName,
   );
   reactionButton.classList.add('user-activated', animatedClass);
-  reactionButton.setAttribute(
-    'aria-label',
-    getReactionAriaLabel(reactionName, true),
-  );
+  reactionButton.setAttribute('aria-pressed', 'true');
 }
 
 function hideUserReaction(reactionName) {
@@ -50,10 +30,7 @@ function hideUserReaction(reactionName) {
     'reaction-butt-' + reactionName,
   );
   reactionButton.classList.remove('user-activated', 'user-animated');
-  reactionButton.setAttribute(
-    'aria-label',
-    getReactionAriaLabel(reactionName, false),
-  );
+  reactionButton.setAttribute('aria-pressed', 'false');
 }
 
 function hasUserReacted(reactionName) {

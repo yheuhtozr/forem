@@ -64,25 +64,19 @@ if (shareDropdownButton.dataset.initialized !== 'true') {
 
 // Initialize the copy to clipboard functionality
 function showAnnouncer() {
-  const { activeElement } = document;
-  const input =
-    activeElement.localName === 'clipboard-copy'
-      ? activeElement.querySelector('input')
-      : document.getElementById('article-copy-link-input');
-  input.focus();
-  input.setSelectionRange(0, input.value.length);
-
   document.getElementById('article-copy-link-announcer').hidden = false;
 }
 
 function copyArticleLink() {
-  const inputValue = document.getElementById('article-copy-link-input').value;
-  Runtime.copyToClipboard(inputValue).then(() => {
+  const postUrlValue = document
+    .getElementById('copy-post-url-button')
+    .getAttribute('data-postUrl');
+  Runtime.copyToClipboard(postUrlValue).then(() => {
     showAnnouncer();
   });
 }
 document
-  .querySelector('clipboard-copy')
+  .getElementById('copy-post-url-button')
   ?.addEventListener('click', copyArticleLink);
 
 // Comment Subscription
@@ -179,10 +173,19 @@ actionsContainer.addEventListener('click', async (event) => {
 const profilePreviewTrigger = document.getElementById(
   'profile-preview-trigger',
 );
+
+const dropdownContent = document.getElementById('profile-preview-content');
+
 if (profilePreviewTrigger?.dataset.initialized !== 'true') {
   initializeDropdown({
     triggerElementId: 'profile-preview-trigger',
     dropdownContentId: 'profile-preview-content',
+    onOpen: () => {
+      dropdownContent?.classList.add('showing');
+    },
+    onClose: () => {
+      dropdownContent?.classList.remove('showing');
+    },
   });
 
   profilePreviewTrigger.dataset.initialized = 'true';

@@ -9,7 +9,7 @@ module Admin
     def create
       welcome_thread = Article.create(
         body_markdown: welcome_thread_content,
-        user: User.dev_account,
+        user: User.staff_account,
       )
       redirect_to "#{URI.parse(welcome_thread.path).path}/edit"
     end
@@ -17,8 +17,20 @@ module Admin
     private
 
     def welcome_thread_content
-      I18n.t("admin.welcome_controller.title_welcome_thread_v0_p",
-             settings_community_communi: Settings::Community.community_name)
+      <<~HEREDOC
+        ---
+        title: Welcome Thread - v0
+        published: false
+        description: Introduce yourself to the community!
+        tags: welcome
+        ---
+
+        Hey there! Welcome to #{::Settings::Community.community_name}!
+
+        ![WELCOME TO THE INTERNET](https://slack-imgs.com/?c=1&url=http%3A%2F%2Fmedia0.giphy.com%2Fmedia%2FzhbrTTpmSCYog%2Fgiphy-downsized.gif)
+
+        Leave a comment below to introduce yourself to the community!✌️
+      HEREDOC
     end
   end
 end

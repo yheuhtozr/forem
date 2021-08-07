@@ -5,7 +5,7 @@
   <h2 class="crayons-subtitle-1">
     <%= _t.connect %>
   </h2>
-  <%= form_for(@user, html: { id: nil, class: "grid gap-6" }) do |f| %>
+  <%= form_for(@users_setting, url: users_settings_path, html: { id: nil, class: "grid gap-6" }) do |f| %>
     <div class="crayons-field">
       <%= f.label :inbox_type, "Inbox privacy", class: "crayons-field__label" %>
       <p class="crayons-field__description"><%= _t.privacy %></p>
