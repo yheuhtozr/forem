@@ -5,11 +5,8 @@ class ProfileValidator < ActiveModel::Validator
   MAX_TEXT_AREA_LENGTH = 200
   MAX_TEXT_FIELD_LENGTH = 100
 
-  HEX_COLOR_REGEXP = /^#?(?:\h{6}|\h{3})$/.freeze
-
   def self.errors
     {
-      color_field: I18n.t("validators.profile_validator.is_not_a_valid_hex_color"),
       text_area: I18n.t("validators.profile_validator.maximum", count: MAX_TEXT_AREA_LENGTH),
       text_field: I18n.t("validators.profile_validator.maximum", count: MAX_TEXT_FIELD_LENGTH)
     }.with_indifferent_access

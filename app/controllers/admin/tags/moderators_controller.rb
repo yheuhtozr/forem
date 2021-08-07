@@ -23,8 +23,9 @@ module Admin
             I18n.t("admin.tags.moderators_controller.was_added_as_a_tag_moderat", user_username: user.username)
         else
           flash[:error] =
-            I18n.t("admin.tags.moderators_controller.error_user_id_was_not_foun", user_id: tag_params[:user_id],
-                                                                                  errors: user&.errors_as_sentence)
+            I18n.t("admin.tags.moderators_controller.error_user_id_was_not_foun",
+                   user_id: tag_params[:user_id],
+                   errors: notification_setting.errors_as_sentence)
         end
         redirect_to edit_admin_tag_path(params[:tag_id])
       end
@@ -45,8 +46,9 @@ module Admin
                                                                                  user_id: user.id)
         else
           flash[:error] =
-            I18n.t("admin.tags.moderators_controller.error_user_id_was_not_foun", user_id: tag_params[:user_id],
-                                                                                  errors: user&.errors_as_sentence)
+            I18n.t("admin.tags.moderators_controller.error_user_id_was_not_foun",
+                   user_id: tag_params[:user_id],
+                   errors: notification_setting.errors_as_sentence)
         end
         redirect_to edit_admin_tag_path(tag.id)
       end

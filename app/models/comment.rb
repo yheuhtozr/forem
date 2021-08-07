@@ -9,6 +9,14 @@ class Comment < ApplicationRecord
 
   COMMENTABLE_TYPES = %w[Article PodcastEpisode].freeze
 
+  URI_REGEXP = %r{
+    \A
+    (?:https?://)?  # optional scheme
+    .+?             # host
+    (?::\d+)?       # optional port
+    \z
+  }x.freeze
+
   # The date that we began limiting the number of user mentions in a comment.
   MAX_USER_MENTION_LIVE_AT = Time.utc(2021, 3, 12).freeze
 

@@ -18,7 +18,7 @@ module Admin
 
     def welcome_thread_content
       I18n.t("admin.welcome_controller.title_welcome_thread_v0_p",
-             settings_community_communi: Settings::Community.community_name)
+             settings_community_communi: ::Settings::Community.community_name)
     end
   end
 end

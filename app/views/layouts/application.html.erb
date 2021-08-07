@@ -1,4 +1,3 @@
-<% _t = t.v.main %>
 <!DOCTYPE html>
 <html lang="<%= I18n.locale %>">
   <head>
@@ -106,20 +105,7 @@
       </div>
     <% end %>
     <%= yield %>
-    <div class="Browser-iOS-only">
-      <div class="runtime-banner">
-        <a href="<%= URL.deep_link(request.path) %>" target="_blank" class="flex items-center flex-1">
-          <%= inline_svg_tag("logo-forem-app.svg", aria_hidden: true, class: "crayons-icon crayons-icon--default", width: 32, height: 32) %>
-          <div class="flex flex-col pl-3">
-            <span class=""><%= _t.forem %></span>
-            <span class=""><%= _t.forem_app %></span>
-          </div>
-        </a>
-        <button type="button" class="runtime-banner__dismiss crayons-btn crayons-btn--ghost crayons-btn--icon crayons-btn--inverted crayons-btn--s">
-          <%= inline_svg_tag("x.svg", aria: true, class: "crayons-icon", title: _t.forem_icon) %>
-        </button>
-      </div>
-    </div>
+    <div id="runtime-banner-container"></div>
   </div>
 </div>
 <% unless internal_navigation? %>

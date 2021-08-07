@@ -43,7 +43,7 @@ v:
     copy:
       text: Copied to Clipboard
       title: Copy article link to the clipboard
-      aria_label: Post URL
+      button: Copy Post URL
     more:
       title: More...
       aria_label: Share post options
@@ -151,7 +151,7 @@ v:
     read_next: Read next
     reading_time: !pl
       n: "%1 words/chars"
-    right_nav: Right sidebar navigation
+    right_nav: Author details
   auth:
     create:
       aria_label: Create new account
@@ -893,13 +893,12 @@ v:
         text: Log in
       footer: We strive for transparency and don't collect excess data.
     nav:
-      aria_label: Primary sidebar nav
       admin: Admin
       dashboard: Dashboard
       etc: "..."
       list: Reading list
       moderator: Moderator Center
-      more: More...
+      other: Other
       settings: Settings
     side:
       listings:
@@ -924,9 +923,6 @@ v:
       powered:
         text: !html Made with love and %{rails}. %{community} <span title="copyright">&copy;</span> %{copyright}.
         rails: Ruby on Rails
-    forem: Forem
-    forem_app: Open with the Forem app
-    forem_icon: "Dismiss banner: Open with the Forem app"
     home: Home
     new: Create Post
     signout: Sign Out
@@ -1158,7 +1154,7 @@ v:
       icon: GitHub logo
     joined:
       icon: Joined
-      text: !html Joined on %{date}
+      text: !html "Joined on\_%{date}"
     location:
       icon: Location
     size: Employees
@@ -1244,7 +1240,6 @@ v:
       text: Save
   search:
     heading: Search results
-    empty: No results match that query
     placeholder: Search...
     icon:
       aria_label: Search
@@ -1265,14 +1260,12 @@ v:
       description: "%{site} => Search Results"
   series:
     meta:
-      description: "%{title} on %{site}"
-      og:
-        title: About %{site}
-        description: "%{site} is great!"
+      description: View %{title} on %{site}
     heading: "%{user}'s Series"
     empty: This user doesn't have any series
     list:
       heading: "%{series} Series' Articles"
+      back: Back to %{user}'s Series
       empty: This series doesn't have any articles
   sponsor:
     seek: Become a sponsor
@@ -1296,11 +1289,7 @@ v:
   sticky:
     created_at: Joined
     default_cta: Learn more
-    education: Education
     email: Email
-    employment:
-      key: Work
-      title: !html "%{title}%{at_start} at %{at_end}%{start}%{employer}%{end}"
     hot: Hot
     location: Location
     more_from: !html More from %{actor}
@@ -1688,9 +1677,12 @@ v:
     password:
       heading: Set new password
       desc: !html |-
-        As an alternative to signing in via linked social accounts, you may create a password.
-
-        If you signed up with a social media account, please <a href="%{path}">reset the password</notifications> for your primary email address (%{email}) first.
+        If your account was created using social account authentication, you may prefer to add an email
+        log in. If you signed up with a social media account, <a href="%{path}">
+        please reset the password</a> for your primary email address (%{email}) in
+        order to enable this. Please note that email login is in addition to social login rather than
+        a replacement for it, so your authenticated social account will continue to be linked to your
+        account.
       current: Current password
       confirm: Confirm new password
       new: Password
@@ -1708,8 +1700,6 @@ v:
       website:
         label: Website URL
         placeholder: https://yoursite.com
-      brand_color1: Brand color 1
-      brand_color2: Brand color 2
       education: Education
       employer_name: Employer name
       currently_learning: Currently learning
@@ -1752,7 +1742,7 @@ v:
     guidelines: "%{user}'s guidelines:"
     joined:
       icon: Joined
-      text: !html Joined on %{date}
+      text: !html "Joined on\_%{date}"
     location_icon: Location
     logo: "%{user} profile picture"
     more: More info about @%{user}
@@ -1882,9 +1872,7 @@ admin:
     sponsorship_was_successful2: Sponsorship was successfully destroyed
   tags:
     moderators_controller:
-      error_user_id_was_not_foun: |-
-        Error: User ID #%{user_id} was not found,
-                  or their account has errors: %{errors}
+      error_user_id_was_not_foun: 'Error: User ID #%{user_id} was not found, or their account has errors: %{errors}'
       id_was_removed_as_a_tag_m: '@%{user_username} - ID #%{user_id} was removed as a tag moderator.'
       was_added_as_a_tag_moderat: '%{user_username} was added as a tag moderator!'
   tags_controller:
@@ -2498,8 +2486,6 @@ models:
       PodcastEpisode: Podcast episode
     user_suspended_for_too_man: User suspended for too many spammy articles, triggered by autovomit.
     you_cannot_mention_more_th: You cannot mention more than %{settings_ratelimit_mention} users in a comment!
-  custom_profile_field:
-    maximum_number_of_custom_p: maximum number of custom profile fields exceeded
   event:
     must_be_after_start_date: must be after start date
   feedback_message:

@@ -1,4 +1,5 @@
 import { getInstantClick } from '../topNavigation/utilities';
+import { i18next } from '../i18n/l10n';
 
 /* global showLoginModal  userData */
 
@@ -11,13 +12,13 @@ import { getInstantClick } from '../topNavigation/utilities';
 function addButtonFollowText(button, style) {
   switch (style) {
     case 'small':
-      button.textContent = '+';
+      button.textContent = i18next.t('followButts.follow_small');
       break;
     case 'follow-back':
-      button.textContent = 'Follow back';
+      button.textContent = i18next.t('followButts.followback');
       break;
     default:
-      button.textContent = 'Follow';
+      button.textContent = i18next.t('followButts.follow');
   }
 }
 
@@ -28,7 +29,10 @@ function addButtonFollowText(button, style) {
  * @param {string} style The style of the button from its "info" data attribute
  */
 function addButtonFollowingText(button, style) {
-  button.textContent = style === 'small' ? '✓' : 'Following';
+  button.textContent =
+    style === 'small'
+      ? i18next.t('followButts.following_small')
+      : i18next.t('followButts.following');
 }
 
 /**

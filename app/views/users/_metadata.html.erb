@@ -11,21 +11,5 @@
         </p>
       </div>
     <% end %>
-    <% if @user.employment_title.present? %>
-      <% _t = t.v.users.employment %>
-      <div class="crayons-definition">
-        <strong class="crayons-definition__title"><%= _t.key %></strong>
-        <p class="crayons-definition__value">
-          <%= _t.title(
-                title: @user.employment_title,
-                at_start: tag("span", { class: %w[opacity-50] }, true),
-                at_end: "</span>".html_safe,
-                employer: @user.employer_name,
-                start: @user.employer_url.present? ? tag("a", { href: @user.employer_url, target: "_blank", rel: "noopener" }, true) : "",
-                end: @user.employer_url.present? ? "</a>".html_safe : "",
-              ) %>
-        </p>
-      </div>
-    <% end %>
   </div>
 <% end %>

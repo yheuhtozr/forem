@@ -60,7 +60,7 @@ module AuthenticationHelper
   end
 
   def tooltip_text_email_or_auth_provider_btns
-    if private_forem_or_no_enabled_auth_options
+    if invite_only_mode_or_no_enabled_auth_options
       I18n.t("helpers.authentication_helper.you_cannot_do_this_until_y")
     else
       ""

@@ -31,14 +31,6 @@ class StoriesController < ApplicationController
     handle_base_index
   end
 
-  def search
-    @query = I18n.t("stories_controller.searching")
-    @article_index = true
-    @current_ordering = current_search_results_ordering
-    set_surrogate_key_header "articles-page-with-query"
-    render template: "articles/search"
-  end
-
   def show
     @story_show = true
     if (@article = Article.find_by(path: "/#{params[:username].downcase}/#{params[:slug]}")&.decorate)
@@ -352,10 +344,8 @@ class StoriesController < ApplicationController
       sameAs: user_same_as,
       image: Images::Profile.call(@user.profile_image_url, length: 320),
       name: @user.name,
-      email: @user.email_public ? @user.email : nil,
-      jobTitle: @user.employment_title.presence,
-      description: @user.summary.presence || I18n.t("stories_controller.404_bio_not_found"),
-      worksFor: [user_works_for].compact,
+      email: @user.setting.display_email_on_profile ? @user.email : nil,
+      description: @user.profile.summary.presence || I18n.t("stories_controller.404_bio_not_found"),
       alumniOf: @user.education.presence
     }.reject { |_, v| v.blank? }
   end

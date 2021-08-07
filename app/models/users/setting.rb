@@ -17,7 +17,8 @@ module Users
 
     validates :brand_color1,
               :brand_color2,
-              format: { with: HEX_COLOR_REGEXP, message: "is not a valid hex color" },
+              format: { with: HEX_COLOR_REGEXP,
+                        message: I18n.t("validators.profile_validator.is_not_a_valid_hex_color") },
               allow_nil: true
     validates :user_id, presence: true
     validates :experience_level, numericality: { less_than_or_equal_to: 10 }, allow_blank: true
@@ -38,7 +39,7 @@ module Users
 
       valid = Feeds::ValidateUrl.call(feed_url)
 
-      errors.add(:feed_url, "is not a valid RSS/Atom feed") unless valid
+      errors.add(:feed_url, I18n.t("models.user.is_not_a_valid_rss_atom_fe")) unless valid
     rescue StandardError => e
       errors.add(:feed_url, e.message)
     end

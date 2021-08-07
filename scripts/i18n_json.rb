@@ -8,7 +8,7 @@ js1 = Dir.new "#{__dir__}/../app/javascript/i18n"
 js2 = Dir.new "#{__dir__}/../public/javascripts/i18n"
 
 MAP = {
-  __orphan: [%w[common errors feed flagUser gitHub main markdownLint modActions notifications onboarding org profile readingList templates], %w[archivedPosts csrf followButts loginModal unitAgo userAlertModal]],
+  __orphan: [%w[common errors feed flagUser followButts gitHub main markdownLint modActions notifications onboarding org profile readingList templates], %w[archivedPosts csrf loginModal unitAgo userAlertModal]],
   actions: {
     copy: {
       __scope: ['clipboard'],
@@ -214,26 +214,16 @@ MAP = {
   reactions: {
     __orphan: [%w[number]],
     like: {
-      __orphan: [nil, %w[aria_remove]],
-      aria_label: [nil, true],
       text: [nil, true],
-    },
-    readingList: {
-      __orphan: [nil, %w[aria_remove]],
-      aria_label: [nil, true],
     },
     summary: {
       __scope: ['reactions'],
       count: [true, true],
       _count: { html: %w[start end] },
     },
-    unicorn: {
-      __orphan: [nil, %w[aria_remove]],
-      aria_label: [nil, true],
-    }
   },
   search: {
-    __orphan: [%w[aria_label]],
+    __orphan: [%w[aria_label empty]],
     placeholder: [true],
   },
   stats: {
