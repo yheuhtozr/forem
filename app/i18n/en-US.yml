@@ -247,7 +247,7 @@ v:
       pending:
         heading: Pending Invitations
         desc: You may leave a group channel at any point in the future.
-        empty: You have no pending invitations
+        empty: You have no pending invitations.
         chat: "@%{user} joined %{channel}"
         notice: Invitation to %{channel} accepted. It may take a moment to show up in your list.
         remove: Invitation removed.
