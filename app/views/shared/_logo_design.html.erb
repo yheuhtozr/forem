@@ -1,8 +1,13 @@
 <% _t = t.v.logo %>
 <div class="grid gap-6 m:grid-cols-2">
   <div class="grid gap-6">
-    <% account.bg_color_hex = user_colors(account)[:bg] if account.bg_color_hex.blank? %>
-    <% account.text_color_hex = user_colors(account)[:text] if account.text_color_hex.blank? %>
+    <% if account.class.name == "User" %>
+      <% account.setting.brand_color1 = user_colors(account)[:bg] if account.setting && account.setting.brand_color1.blank? %>
+      <% account.setting.brand_color2 = user_colors(account)[:text] if account.setting && account.setting.brand_color2.blank? %>
+    <% else %>
+      <% account.bg_color_hex = user_colors(account)[:bg] if account.bg_color_hex.blank? %>
+      <% account.text_color_hex = user_colors(account)[:text] if account.text_color_hex.blank? %>
+    <% end %>
     <div class="crayons-field">
       <%= f.label :bg_color_hex, _t.color_1.label, class: "crayons-field__label" %>
       <p class="crayons-field__description"><%= _t.color_1.desc %></p>

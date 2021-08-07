@@ -39,10 +39,7 @@ function showUserReaction(reactionName, animatedClass) {
     'reaction-butt-' + reactionName,
   );
   reactionButton.classList.add('user-activated', animatedClass);
-  reactionButton.setAttribute(
-    'aria-label',
-    getReactionAriaLabel(reactionName, true),
-  );
+  reactionButton.setAttribute('aria-pressed', 'true');
 }
 
 function hideUserReaction(reactionName) {
@@ -50,10 +47,7 @@ function hideUserReaction(reactionName) {
     'reaction-butt-' + reactionName,
   );
   reactionButton.classList.remove('user-activated', 'user-animated');
-  reactionButton.setAttribute(
-    'aria-label',
-    getReactionAriaLabel(reactionName, false),
-  );
+  reactionButton.setAttribute('aria-pressed', 'false');
 }
 
 function hasUserReacted(reactionName) {

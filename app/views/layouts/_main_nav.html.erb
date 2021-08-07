@@ -16,18 +16,12 @@
     <% nav_links[0..4].each do |link| %>
       <%= render "layouts/sidebar_nav_link", link: link %>
     <% end %>
+  </ul>
+</nav>
 
     <% if nav_links.length > 5 %>
       <a href="javascript:void(0)" class="crayons-link crayons-link--secondary crayons-link--block crayons-link--block--indented fs-s js-nav-more-trigger"><%= _t.more %></a>
 
-      <div class="hidden js-nav-more spec-nav-more">
-        <% nav_links[5..].each do |link| %>
-          <%= render "layouts/sidebar_nav_link", link: link %>
-        <% end %>
-        <div class="flex justify-around p-4 mt-4 border-solid border-0 border-t-1 border-base-10">
-          <%= render partial: "layouts/social_media" %>
-        </div>
-      </div>
-    <% end %>
-  </div>
-</nav>
+<div class="flex justify-start py-4 mt-4 border-solid border-0 border-t-1 border-base-10">
+  <%= render partial: "layouts/social_media" %>
+</div>

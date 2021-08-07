@@ -47,11 +47,6 @@ class ProfileValidator < ActiveModel::Validator
     true # checkboxes are always valid
   end
 
-  def color_field_valid?(record, attribute)
-    hex_value = record.public_send(attribute)
-    hex_value.nil? || hex_value.match?(HEX_COLOR_REGEXP)
-  end
-
   def text_area_valid?(record, attribute)
     text = record.public_send(attribute)
     text.nil? || text.size <= MAX_TEXT_AREA_LENGTH

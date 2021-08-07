@@ -1,11 +1,21 @@
 <% _t = t.v.dashboard.analytics %>
 <% title _t.meta.title %>
 
-<main id="main-content">
-  <div class="dashboard-container analytics-container crayons-layout" id="user-dashboard">
-    <% if @organizations.any? %>
-      <nav aria-label="Dashboards">
-        <ul class="list-none">
+<main class="dashboard-container analytics-container crayons-layout" id="main-content">
+  <% if @organizations.any? %>
+    <nav aria-label="Dashboards">
+      <ul class="list-none">
+        <li>
+          <a href="<%= dashboard_path %>" class="rounded-btn crayons-link--block rounded-btn--transparent">👈 Back to Main Dashboard</a>
+        </li>
+        <li>
+          <a class="rounded-btn crayons-link--block organization" 
+             href="<%= dashboard_analytics_path %>"
+             <%= params[:org_id] ? "" : 'aria-current="page"'.html_safe %>>
+             Your Dashboard
+          </a>
+        </li>
+        <% @organizations.each do |org| %>
           <li>
             <a href="<%= dashboard_path %>" class="rounded-btn crayons-link--block rounded-btn--transparent"><%= _t.back %></a>
           </li>
@@ -39,6 +49,8 @@
 
     <%= render "shared/stats" %>
   </div>
+
+  <%= render "shared/stats" %>
 </main>
 
 <%= javascript_packs_with_chunks_tag "analyticsDashboard", defer: true %>

@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   before_action :initialize_stripe, only: %i[edit]
 
   ALLOWED_USER_PARAMS = %i[last_onboarding_page username].freeze
+  ALLOWED_ONBOARDING_PARAMS = %i[checked_code_of_conduct checked_terms_and_conditions].freeze
   INDEX_ATTRIBUTES_FOR_SERIALIZATION = %i[id name username summary profile_image].freeze
   private_constant :INDEX_ATTRIBUTES_FOR_SERIALIZATION
 
@@ -33,6 +34,7 @@ class UsersController < ApplicationController
       return redirect_to sign_up_path
     end
     set_user
+    set_users_setting_and_notification_setting
     set_current_tab(params["tab"] || "profile")
     handle_settings_tab
   end
@@ -40,6 +42,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/:id.:format
   def update
     set_current_tab(params["user"]["tab"])
+    set_users_setting_and_notification_setting
 
     @user.assign_attributes(permitted_attributes(@user))
 
@@ -56,7 +59,9 @@ class UsersController < ApplicationController
         notice += I18n.t("users_controller.the_export_will_be_emailed")
         ExportContentWorker.perform_async(@user.id, @user.email)
       end
-      cookies.permanent[:user_experience_level] = @user.experience_level.to_s if @user.experience_level.present?
+      if @user.setting.experience_level.present?
+        cookies.permanent[:user_experience_level] = @user.setting.experience_level.to_s
+      end
       flash[:settings_notice] = notice
       @user.touch(:profile_updated_at)
       redirect_to "/settings/#{@tab}"
@@ -182,10 +187,7 @@ class UsersController < ApplicationController
 
   def onboarding_checkbox_update
     if params[:user]
-      permitted_params = %i[
-        checked_code_of_conduct checked_terms_and_conditions email_newsletter email_digest_periodic
-      ]
-      current_user.assign_attributes(params[:user].permit(permitted_params))
+      current_user.assign_attributes(params[:user].permit(ALLOWED_ONBOARDING_PARAMS))
     end
 
     current_user.saw_onboarding = true
@@ -358,12 +360,15 @@ class UsersController < ApplicationController
     authorize @user
   end
 
-  def set_current_tab(current_tab = "profile")
-    @tab = current_tab
+  def set_users_setting_and_notification_setting
+    return unless @user
+
+    @users_setting = @user.setting
+    @users_notification_setting = @user.notification_setting
   end
 
-  def config_changed?
-    params[:user].include?(:config_theme)
+  def set_current_tab(current_tab = "profile")
+    @tab = current_tab
   end
 
   def destroy_request_in_progress?
@@ -371,7 +376,7 @@ class UsersController < ApplicationController
   end
 
   def import_articles_from_feed(user)
-    return if user.feed_url.blank?
+    return if user.setting.feed_url.blank?
 
     Feeds::ImportArticlesWorker.perform_async(user.id)
   end

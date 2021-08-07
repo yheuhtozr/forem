@@ -16,8 +16,8 @@ class StoriesController < ApplicationController
 
   SIGNED_OUT_RECORD_COUNT = 60
 
-  before_action :authenticate_user!, except: %i[index search show]
-  before_action :set_cache_control_headers, only: %i[index search show]
+  before_action :authenticate_user!, except: %i[index show]
+  before_action :set_cache_control_headers, only: %i[index show]
   before_action :redirect_to_lowercase_username, only: %i[index]
 
   rescue_from ArgumentError, with: :bad_request
@@ -150,6 +150,10 @@ class StoriesController < ApplicationController
     render template: "articles/index"
   end
 
+  def pinned_article
+    @pinned_article ||= PinnedArticle.get
+  end
+
   def featured_story
     @featured_story ||= Articles::Feeds::LargeForemExperimental.find_featured_story(@stories)
   end
@@ -239,6 +243,7 @@ class StoriesController < ApplicationController
 
   def assign_feed_stories
     feed = Articles::Feeds::LargeForemExperimental.new(page: @page, tag: params[:tag])
+
     if params[:timeframe].in?(Timeframe::FILTER_TIMEFRAMES)
       @stories = feed.top_articles_by_timeframe(timeframe: params[:timeframe])
     elsif params[:timeframe] == Timeframe::LATEST_TIMEFRAME
@@ -247,7 +252,10 @@ class StoriesController < ApplicationController
       @default_home_feed = true
       @featured_story, @stories = feed.default_home_feed_and_featured_story(user_signed_in: user_signed_in?)
     end
+
+    @pinned_article = pinned_article&.decorate
     @featured_story = (featured_story || Article.new)&.decorate
+
     @stories = ArticleDecorator.decorate_collection(@stories)
   end
 
@@ -413,31 +421,13 @@ class StoriesController < ApplicationController
     }
   end
 
-  def user_works_for
-    # For further examples of the worksFor properties, please refer to this
-    # link: https://jsonld.com/person/
-    return unless @user.employer_name.presence || @user.employer_url.presence
-
-    {
-      "@type": "Organization",
-      name: @user.employer_name,
-      url: @user.employer_url
-    }.reject { |_, v| v.blank? }
-  end
-
   def user_same_as
     # For further information on the sameAs property, please refer to this link:
     # https://schema.org/sameAs
     [
       @user.twitter_username.present? ? "https://twitter.com/#{@user.twitter_username}" : nil,
       @user.github_username.present? ? "https://github.com/#{@user.github_username}" : nil,
-      @user.website_url,
+      @user.profile.website_url,
     ].reject(&:blank?)
-  end
-
-  def current_search_results_ordering
-    return :relevance unless params[:sort_by] == "published_at" && params[:sort_direction].present?
-
-    params[:sort_direction] == "desc" ? :newest : :oldest
   end
 end

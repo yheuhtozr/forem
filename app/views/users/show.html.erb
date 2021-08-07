@@ -64,7 +64,7 @@
           <p class="fs-base m:fs-l color-base-90 mb-4 mx-auto max-w-100 m:max-w-75"><%= @user.summary.presence || [_t.empty].sample %></p>
 
           <div class="profile-header__meta">
-            <% if @user.location.present? %>
+            <% if @user.profile.location.present? %>
               <span class="profile-header__meta__item">
                 <%= inline_svg_tag("location.svg", aria: true, class: "crayons-icon mr-2 shrink-0", title: _t.location_icon) %>
                 <%= @user.location %>
@@ -76,14 +76,14 @@
               <%= _t.joined.text date: local_date(@user.created_at) %>
             </span>
 
-            <% if @user.email_public %>
+            <% if @user.setting.display_email_on_profile %>
               <a href="mailto:<%= @user.email %>" class="profile-header__meta__item">
                 <%= inline_svg_tag("email.svg", class: "crayons-icon mr-2 shrink-0", aria: true, title: _t.email_icon) %>
                 <%= @user.email %>
               </a>
             <% end %>
 
-            <% if @user.website_url.present? %>
+            <% if @user.profile.website_url.present? %>
               <a href="<%= @user.website_url %>" target="_blank" rel="noopener me" class="profile-header__meta__item">
                 <%= inline_svg_tag("link-external.svg", class: "crayons-icon mr-2 shrink-0", aria: true, title: _t.website) %>
                 <%= @user.website_url %>
@@ -158,4 +158,4 @@
   </main>
 </div>
 
-<%= javascript_packs_with_chunks_tag "storiesList", defer: true %>
+<%= javascript_packs_with_chunks_tag "storiesList", "followButtons", defer: true %>
