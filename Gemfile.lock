@@ -190,6 +190,7 @@ GEM
       msgpack
     dead_end (1.1.7)
     debug_inspector (1.1.0)
+    deepsort (0.4.5)
     derailed_benchmarks (2.1.0)
       benchmark-ips (~> 2)
       dead_end
@@ -894,6 +895,7 @@ DEPENDENCIES
   counter_culture (~> 2.8)
   cypress-rails (~> 0.5.0)
   ddtrace (~> 0.50.0)
+  deepsort (~> 0.4.5)
   derailed_benchmarks (~> 2.1)
   devise (~> 4.8)
   devise_invitable (~> 2.0.5)
