@@ -86,12 +86,9 @@ MAP = {
         success: [true],
       },
     },
-    summary: {
-      __scope: ['comments'],
-      count: [true, true],
-      _count: { html: %w[start end] },
+    plucked: {
+      __scope: ['comments', 'comments.summary'],
       empty: [true, true],
-      _empty: { html: %w[start end] },
     },
     write: {
       __scope: [nil, 'comments.form'],
@@ -215,11 +212,6 @@ MAP = {
     __orphan: [%w[number]],
     like: {
       text: [nil, true],
-    },
-    summary: {
-      __scope: ['reactions'],
-      count: [true, true],
-      _count: { html: %w[start end] },
     },
   },
   search: {

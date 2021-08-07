@@ -8,42 +8,47 @@
 // of particular colors in components and views.
 
 :root {
+  // https://colorpalettes.net/color-palette-4143/
+  $base-colors: #181c14, #f1f3ef;
+  $theme-colors: #d1cac6, #c3c9cd;
+  $accent: #bb9d8b;
+  $brand: #6d7d62;
   ////////////////////////////////////////////////////////////////////////////////////
   // Fundamental color variables. ///////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////
 
   // Base
-  --base: #08090a;
+  --base: #{nth($base-colors, 1)};
 
-  --base-a90: #{rgba(#08090a, 0.9)};
-  --base-a80: #{rgba(#08090a, 0.8)};
-  --base-a70: #{rgba(#08090a, 0.7)};
-  --base-a60: #{rgba(#08090a, 0.6)};
-  --base-a50: #{rgba(#08090a, 0.5)};
-  --base-a40: #{rgba(#08090a, 0.4)};
-  --base-a30: #{rgba(#08090a, 0.3)};
-  --base-a20: #{rgba(#08090a, 0.2)};
-  --base-a10: #{rgba(#08090a, 0.1)};
-  --base-a5: #{rgba(#08090a, 0.05)};
+  --base-a90: #{rgba(nth($base-colors, 1), 0.9)};
+  --base-a80: #{rgba(nth($base-colors, 1), 0.8)};
+  --base-a70: #{rgba(nth($base-colors, 1), 0.7)};
+  --base-a60: #{rgba(nth($base-colors, 1), 0.6)};
+  --base-a50: #{rgba(nth($base-colors, 1), 0.5)};
+  --base-a40: #{rgba(nth($base-colors, 1), 0.4)};
+  --base-a30: #{rgba(nth($base-colors, 1), 0.3)};
+  --base-a20: #{rgba(nth($base-colors, 1), 0.2)};
+  --base-a10: #{rgba(nth($base-colors, 1), 0.1)};
+  --base-a5: #{rgba(nth($base-colors, 1), 0.05)};
 
   --base-100: var(--base);
-  --base-90: #202428;
-  --base-80: #363d44;
-  --base-70: #4d5760;
-  --base-60: #64707d;
-  --base-50: #7d8a97;
-  --base-40: #99a3ad;
-  --base-30: #b5bdc4;
-  --base-20: #d2d6db;
-  --base-10: #eef0f1;
-  --base-0: #f9fafa;
+  --base-90: #{mix(append($base-colors, 90%)...)};
+  --base-80: #{mix(append($base-colors, 80%)...)};
+  --base-70: #{mix(append($base-colors, 70%)...)};
+  --base-60: #{mix(append($base-colors, 60%)...)};
+  --base-50: #{mix(append($base-colors, 50%)...)};
+  --base-40: #{mix(append($base-colors, 40%)...)};
+  --base-30: #{mix(append($base-colors, 30%)...)};
+  --base-20: #{mix(append($base-colors, 20%)...)};
+  --base-10: #{mix(append($base-colors, 10%)...)};
+  --base-0: #{mix(append($base-colors, 0%)...)};
   --base-inverted: #fff;
 
   // Accent colors
-  --accent-brand: #3b49df;
-  --accent-brand-darker: #1827ce;
-  --accent-brand-lighter: #8d95f2;
-  --accent-brand-a10: #{rgba(#3b49df, 0.1)};
+  --accent-brand: #{$brand};
+  --accent-brand-darker: #{scale-color($brand, $saturation: 20%, $lightness: -20%)};
+  --accent-brand-lighter: #{scale-color($brand, $saturation: -20%, $lightness: 20%)};
+  --accent-brand-a10: #{rgba($brand, 0.1)};
 
   // Success
   --accent-success: #26d9ca;
@@ -63,34 +68,37 @@
   --accent-danger-lighter: #ec5050;
   --accent-danger-a10: #{rgba(#dc1818, 0.1)};
 
+  --accent-2: #{$accent};
+
   ////////////////////////////////////////////////////////////////////////////////////
   // Functional color variables. /////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////
 
   // Main colors
-  --body-bg: var(--base-10);
+  --body-bg: url(https://www.transparenttextures.com/patterns/nice-snow.png) #{nth($theme-colors, 2)};
   --body-color: var(--base-100);
   --body-color-inverted: var(--base-inverted);
 
   // Main content containers
-  --card-bg: var(--base-inverted);
+  --card-bg: var(--base-0);
   --card-color: var(--base-100);
   --card-color-secondary: var(--base-70);
-  --card-color-tertiary: var(--base-60);
-  --card-secondary-bg: var(--base-0);
+  --card-color-tertiary: var(--accent-2);
+  --card-secondary-bg: var(--base-a5);
   --card-secondary-color: var(--base-90);
   --card-headline-color: var(--base-100);
-  --card-border: var(--base-a10);
-  --card-secondary-border: var(--base-a5);
+  --card-border: var(--base-20);
+  --card-secondary-border: var(--base-a20);
   --card-hover-bg: var(--base-10);
   --card-selected-bg: var(--base-20);
+  --card-info-bg: #{rgba($brand, 0.2)};
 
   // Header
-  --header-bg: var(--base-inverted);
+  --header-bg: #{nth($theme-colors, 1)};
   --header-bg-hover: var(--base-10);
   --header-button-focus-color: var(--accent-brand);
   --header-bg-current: var(--base-20);
-  --header-shadow: rgba(0, 0, 0, 0.1);
+  --header-shadow: var(--accent-2);
   --header-icons-color: var(--base-70);
   --header-icons-color-hover: var(--base-100);
 
@@ -108,8 +116,8 @@
   --link-color: var(--base-90);
   --link-color-hover: var(--accent-brand-darker);
   --link-bg-hover: var(--base-a5);
-  --link-bg-hover-alt: var(--base-inverted);
-  --link-brand-color: var(--accent-brand);
+  --link-bg-hover-alt: var(--base-0);
+  --link-brand-color: var(--accent-brand-darker);
   --link-color-current: var(--base-100);
   --link-color-secondary: var(--base-60);
   --link-color-secondary-hover: var(--base-70);
@@ -127,8 +135,8 @@
   --button-primary-inverted-color-hover: var(--base-0);
 
   // Secondary buttons
-  --button-secondary-bg: var(--base-20);
-  --button-secondary-bg-hover: var(--base-30);
+  --button-secondary-bg: var(--base-a20);
+  --button-secondary-bg-hover: var(--base-a30);
   --button-secondary-color: var(--base-80);
   --button-secondary-color-hover: var(--base-100);
   //-- Inverted

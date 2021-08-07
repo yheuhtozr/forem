@@ -91,17 +91,15 @@ function buildArticleHTML(article) {
       commentsDisplay =
         '<a href="' +
         article.path +
-        '#comments" class="crayons-btn crayons-btn--s crayons-btn--ghost crayons-btn--icon-left "><svg class="crayons-icon" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M10.5 5h3a6 6 0 110 12v2.625c-3.75-1.5-9-3.75-9-8.625a6 6 0 016-6zM12 15.5h1.5a4.501 4.501 0 001.722-8.657A4.5 4.5 0 0013.5 6.5h-3A4.5 4.5 0 006 11c0 2.707 1.846 4.475 6 6.36V15.5z"/></svg>';
+        '#comments" class="crayons-btn crayons-btn--s crayons-btn--ghost crayons-btn--story crayons-reaction"><span class="crayons-reaction__icon"><svg class="crayons-icon" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M10.5 5h3a6 6 0 110 12v2.625c-3.75-1.5-9-3.75-9-8.625a6 6 0 016-6zM12 15.5h1.5a4.501 4.501 0 001.722-8.657A4.5 4.5 0 0013.5 6.5h-3A4.5 4.5 0 006 11c0 2.707 1.846 4.475 6 6.36V15.5z"/></svg></span>';
       if (commentsCount > 0) {
         commentsDisplay +=
-          i18next.t('comments.summary.count', {
-            count: commentsCount,
-            start: '<span class="hidden s:inline">',
-            end: '</span>',
-          }) + '</a>';
+          '<span class="crayons-reaction__count">' +
+          commentsCount +
+          '</span></a>';
       } else {
         commentsDisplay +=
-          '<span class="hidden s:inline">' +
+          '<span class="crayons-reaction__count">' +
           i18next.t('comments.summary.empty') +
           '</span></a>';
       }
@@ -114,13 +112,8 @@ function buildArticleHTML(article) {
       reactionsDisplay =
         '<a href="' +
         article.path +
-        '" class="crayons-btn crayons-btn--s crayons-btn--ghost crayons-btn--icon-left"><svg class="crayons-icon" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M18.884 12.595l.01.011L12 19.5l-6.894-6.894.01-.01A4.875 4.875 0 0112 5.73a4.875 4.875 0 016.884 6.865zM6.431 7.037a3.375 3.375 0 000 4.773L12 17.38l5.569-5.569a3.375 3.375 0 10-4.773-4.773L9.613 10.22l-1.06-1.062 2.371-2.372a3.375 3.375 0 00-4.492.25v.001z"/></svg>' +
-        i18next.t('reactions.summary.count', {
-          count: reactionsCount,
-          start: '<span class="hidden s:inline">',
-          end: '</span>',
-        }) +
-        '</a>';
+        '" class="crayons-btn crayons-btn--s crayons-btn--ghost crayons-btn--story crayons-reaction"><span class="crayons-reaction__icon"><svg class="crayons-icon" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M18.884 12.595l.01.011L12 19.5l-6.894-6.894.01-.01A4.875 4.875 0 0112 5.73a4.875 4.875 0 016.884 6.865zM6.431 7.037a3.375 3.375 0 000 4.773L12 17.38l5.569-5.569a3.375 3.375 0 10-4.773-4.773L9.613 10.22l-1.06-1.062 2.371-2.372a3.375 3.375 0 00-4.492.25v.001z"/></svg></span>' +
+        `<span class="crayons-reaction__count">${reactionsCount}</span></a>`;
     }
 
     var picUrl;
@@ -254,11 +247,13 @@ function buildArticleHTML(article) {
 
     var readingTimeHTML = '';
     if (article.class_name === 'Article') {
-      // we have ` ... || null` for the case article.reading_time is undefined
+      var div = Math.floor((article.reading_time || 0) / 100);
+      var mod = div % 100;
       readingTimeHTML =
         '<small class="crayons-story__tertiary fs-xs mr-2">' +
+        'なんとか語<br>' +
         i18next.t('articles.reading_time', {
-          count: (article.reading_time || null) < 1 ? 1 : article.reading_time,
+          count: (div < 1 ? 100 : div * 100 + (mod >= 50 ? 100 : 0)),
         }) +
         '</small>';
     }
@@ -318,28 +313,30 @@ function buildArticleHTML(article) {
         <div role="presentation">\
           ${videoHTML}\
           <div class="crayons-story__body">\
-            <div class="crayons-story__top">\
-              ${meta}
-            </div>\
-            <div class="crayons-story__indention">
-              <h3 class="crayons-story__title">
-                <a href="${article.path}" id="article-link-${article.id}">
-                  ${filterXSS(article.title)}
-                </a>
-              </h3>\
-              <div class="crayons-story__tags">
-                ${tagString}
+            <div class="crayons-story__indention">\
+              <div class="crayons-story__middle">\
+                <h3 class="crayons-story__title">
+                  <a href="${article.path}" id="article-link-${article.id}">
+                    ${filterXSS(article.title)}
+                  </a>
+                </h3>\
+                <div class="crayons-story__tags">
+                  ${tagString}
+                </div>\
+                ${searchSnippetHTML}\
               </div>\
-              ${searchSnippetHTML}\
               <div class="crayons-story__bottom">\
                 <div class="crayons-story__details">
                   ${reactionsDisplay} ${commentsDisplay}
                 </div>\
+              </div>\
+            </div>\
+            <div class="crayons-story__top">\
+              ${meta}\
                 <div class="crayons-story__save">\
                   ${readingTimeHTML}\
                   ${saveButton}
                 </div>\
-              </div>\
             </div>\
           </div>\
         </div>\

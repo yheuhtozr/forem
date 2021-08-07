@@ -11,7 +11,7 @@
       "podcast": "podcast"
     },
     "for_org": "%{- start} が %{- end}%{- org}%{- start} へ執筆%{- end}",
-    "reading_time": "%{count} 分で読める",
+    "reading_time": "約 %{count} 字/語",
     "save": {
       "initial": "保存",
       "remove": "Unsave",
@@ -79,8 +79,7 @@
       "text": "Reply sent — %{- check}"
     },
     "summary": {
-      "count": "%{count}%{- start}\u202F×\u202Fコメント%{- end}",
-      "empty": "コメントを寄せる"
+      "empty": "書く"
     },
     "thread": "Thread",
     "uploaded": "Uploaded! Paste into editor",
@@ -117,9 +116,6 @@
   "reactions": {
     "like": {
       "text": "Like"
-    },
-    "summary": {
-      "count": "%{count}%{- start}\u202F×\u202F反響%{- end}"
     }
   },
   "tags": {

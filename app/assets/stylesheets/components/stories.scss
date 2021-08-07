@@ -13,7 +13,7 @@
   background: var(--card-bg);
   font-size: var(--fs-base); // Todo: remove when ready.
   box-shadow: 0 0 0 1px var(--card-border);
-  margin: 0 var(--su-3) var(--su-3);
+  margin-bottom: var(--su-1);
   position: relative;
   border-radius: var(--radius);
 
@@ -24,14 +24,19 @@
   }
 
   @media (min-width: $breakpoint-m) {
-    margin: 0 0 var(--su-3);
+    border-radius: var(--radius);
   }
 
-  --story-padding: var(--su-3) var(--su-3) var(--su-2);
+  @media (min-width: $breakpoint-l) {
+    margin-bottom: var(--su-1);
+  }
+
+  --story-spacing-unit: var(--su-3);
+  --story-padding: var(--story-spacing-unit) var(--story-spacing-unit) 0;
   --title-font-size: var(--fs-xl);
 
   @media (min-width: $breakpoint-s) {
-    --story-padding: var(--su-4);
+    --story-spacing-unit: var(--su-4);
     --title-font-size: var(--fs-2xl);
 
     &--featured {
@@ -60,7 +65,8 @@
   }
 
   &__tertiary {
-    color: var(--card-color-tertiary);
+    color: var(--card-color-secondary);
+    text-align: right;
 
     &[href]:hover {
       color: var(--card-color);
@@ -83,6 +89,9 @@
   }
 
   &__indention {
+    display: flex;
+    flex-direction: row;
+    align-content: stretch;
     @media (min-width: $breakpoint-m) {
       padding-left: calc(var(--su-7) + var(--su-2));
     }
@@ -92,15 +101,19 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: var(--su-3);
-
-    @media (min-width: $breakpoint-m) {
-      margin-bottom: var(--su-2);
-    }
+    background: var(--card-info-bg);
+    padding: calc(var(--story-spacing-unit) / 2) var(--story-spacing-unit);
+    margin: 0 calc(var(--story-spacing-unit) * -1);
+    border-radius: 0 0 var(--radius) var(--radius);
 
     .pinned svg {
       fill: var(--accent-brand);
     }
+  }
+
+  &__middle {
+    flex-grow: 1;
+    margin-right: var(--story-spacing-unit);
   }
 
   &__overflow {
@@ -176,6 +189,8 @@
   &__bottom {
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
+    align-content: flex-start;
     align-items: center;
     font-size: var(--fs-s);
     line-height: var(--lh-tight);
@@ -183,7 +198,8 @@
 
   &__details {
     display: flex;
-    margin-left: calc(var(--su-2) * -1);
+    flex-direction: column;
+    margin-bottom: var(--su-2);
   }
 
   &__comments {

@@ -1,0 +1,22 @@
+$l-ja: 'article[lang="ja"]';
+
+// overrides typography.scss
+.text-styles {
+  #{$l-ja} & {
+    font-size: var(--fs-base);
+    $scale: 1.25;
+    line-height: calc(var(--lh-base) * #{$scale});
+
+    h1, h2, h3, h4, h5, h6 {
+      line-height: calc(var(--lh-tight) * #{$scale});
+    }
+  }
+}
+
+.crayons-article__header {
+  #{$l-ja} & {
+    --locale-fs-5xl: 2.5rem;
+    --locale-fs-4xl: 2rem;
+    --locale-fs-3xl: 1.5rem;
+  }
+}

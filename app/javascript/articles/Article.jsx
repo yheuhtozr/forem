@@ -80,6 +80,30 @@ export const Article = ({
 
         {showCover && <ArticleCoverImage article={article} />}
         <div className="crayons-story__body">
+          <div className="crayons-story__indention">
+            <div className="crayons-story__middle">
+              <ContentTitle article={article} />
+              <TagList tags={article.tag_list} flare_tag={article.flare_tag} />
+
+              {article.class_name === 'Article' && (
+                // eslint-disable-next-line no-underscore-dangle
+                <SearchSnippet highlightText={article.highlight} />
+              )}
+            </div>
+
+            <div className="crayons-story__bottom">
+              {article.class_name !== 'User' && (
+                <div className="crayons-story__details">
+                  <ReactionsCount article={article} />
+                  <CommentsCount
+                    count={article.comments_count}
+                    articlePath={article.path}
+                  />
+                </div>
+              )}
+
+            </div>
+          </div>
           <div className="crayons-story__top">
             <Meta article={article} organization={article.organization} />
             {article.pinned && (
@@ -109,37 +133,15 @@ export const Article = ({
                 {i18next.t('articles.pinned.after')}
               </div>
             )}
-          </div>
 
-          <div className="crayons-story__indention">
-            <ContentTitle article={article} />
-            <TagList tags={article.tag_list} flare_tag={article.flare_tag} />
+            <div className="crayons-story__save">
+              <ReadingTime readingTime={article.reading_time} />
 
-            {article.class_name === 'Article' && (
-              // eslint-disable-next-line no-underscore-dangle
-              <SearchSnippet highlightText={article.highlight} />
-            )}
-
-            <div className="crayons-story__bottom">
-              {article.class_name !== 'User' && (
-                <div className="crayons-story__details">
-                  <ReactionsCount article={article} />
-                  <CommentsCount
-                    count={article.comments_count}
-                    articlePath={article.path}
-                  />
-                </div>
-              )}
-
-              <div className="crayons-story__save">
-                <ReadingTime readingTime={article.reading_time} />
-
-                <SaveButton
-                  article={article}
-                  isBookmarked={isBookmarked}
-                  onClick={bookmarkClick}
-                />
-              </div>
+              <SaveButton
+                article={article}
+                isBookmarked={isBookmarked}
+                onClick={bookmarkClick}
+              />
             </div>
           </div>
         </div>

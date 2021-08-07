@@ -95,6 +95,7 @@ export const Button = (props) => {
         <Icon />
       )}
       {(contentType === 'text' ||
+        contentType === 'story' ||
         contentType === 'icon-left' ||
         contentType === 'icon-right') &&
         children}
@@ -142,6 +143,7 @@ Button.propTypes = {
     'icon-right',
     'icon',
     'icon-rounded',
+    'story',
   ]).isRequired,
   inverted: PropTypes.bool,
   tagName: PropTypes.oneOf(['a', 'button']).isRequired,

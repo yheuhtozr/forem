@@ -430,9 +430,6 @@ v:
       empty: 書く
     summary:
       title: コメント
-      count: !pl
-        n: !html "%{count}%{start}\u202F×\u202Fコメント%{end}"
-      empty: "コメントを寄せる"
   credits:
     meta:
       title: Credits
@@ -1219,8 +1216,6 @@ v:
       vomit: Vomit
     summary:
       title: 反響
-      count: !pl
-        n: !html "%{count}%{start}\u202F×\u202F反響%{end}"
     like:
       title: ハート
       aria_label: いいね

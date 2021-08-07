@@ -20,22 +20,17 @@ export const CommentsCount = ({ count, articlePath }) => {
       <Button
         variant="ghost"
         size="s"
-        contentType="icon-left"
+        contentType="story"
         url={`${articlePath}#comments`}
         icon={commentsSVG}
         tagName="a"
+        className="crayons-reaction"
       >
-        <span
-          title={i18next.t('comments.number')}
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{
-            __html: i18next.t('comments.count', {
-              count,
-              start: '<span className="hidden s:inline">',
-              end: '</span>',
-            }),
-          }}
-        />
+        <span title={i18next.t('comments.number')}>
+          <span className="crayons-reaction__count">
+            {count}
+          </span>
+        </span>
       </Button>
     );
   }
@@ -44,14 +39,14 @@ export const CommentsCount = ({ count, articlePath }) => {
       <Button
         variant="ghost"
         size="s"
-        contentType="icon-left"
+        contentType="story"
         url={`${articlePath}#comments`}
         icon={commentsSVG}
         tagName="a"
         data-testid="add-a-comment"
+        className="crayons-reaction"
       >
-        <span className="inline s:hidden">0</span>
-        <span className="hidden s:inline">{i18next.t('comments.empty')}</span>
+        <span className="crayons-reaction__count">{i18next.t('comments.empty')}</span>
       </Button>
     );
   }

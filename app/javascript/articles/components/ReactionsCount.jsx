@@ -24,22 +24,17 @@ export const ReactionsCount = ({ article }) => {
     <Button
       variant="ghost"
       size="s"
-      contentType="icon-left"
+      contentType="story"
       url={article.path}
       icon={reactionsSVG}
       tagName="a"
+      className="crayons-reaction"
     >
-      <span
-        title={i18next.t('reactions.number')}
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{
-          __html: i18next.t('reactions.count', {
-            count: totalReactions,
-            start: '<span className="hidden s:inline">',
-            end: '</span>',
-          }),
-        }}
-      />
+      <span title={i18next.t('reactions.number')}>
+        <span className="crayons-reaction__count">
+          {totalReactions}
+        </span>
+      </span>
     </Button>
   );
 };
