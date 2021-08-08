@@ -1454,6 +1454,8 @@ v:
       editor: Editor Version
       fixed: Fixed to window
       font: Base Reading Font
+      lang: Writing Language
+      lang_desc: !html The language you usually author an article in (used by editor as the default value). Specify in the language tag format (<code>en-US</code>).
       level: What is your approximate experience level (1-5)?
       level_desc: This will not be displayed on your profile or anywhere publicly. It helps gently determine what content you are shown along with tags you follow etc.
       navbar: Site Navbar
@@ -1759,6 +1761,7 @@ v:
 common:
   error: 'Error: %{errors}'
   error_friendly: 😭 %{errors}
+  invalid_langtag: must be a chain of 1 to 8 letter alphanumeric tags connected by hyphens
   success_settings: Successfully updated settings.
 admin:
   articles_controller:

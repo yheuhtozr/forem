@@ -52,6 +52,11 @@
         <% end %>
       </div>
     </div>
+    <div class="crayons-field">
+      <%= f.label :writing_lang, _t.lang, class: "crayons-field__label" %>
+      <%= f.text_field :writing_lang, class: "crayons-textfield", placeholder: "en-GB-oed", value: @users_setting.writing_lang %>
+    </div>
+    <p><%= _t.lang_desc %></p>
   </div>
 
   <div class="crayons-card crayons-card--content-rows">

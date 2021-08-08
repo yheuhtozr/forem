@@ -48,6 +48,7 @@ class UserPolicy < ApplicationPolicy
     text_color_hex
     username
     website_url
+    writing_lang
   ].freeze
 
   def edit?

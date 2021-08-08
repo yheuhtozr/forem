@@ -280,6 +280,10 @@
       "done": "Done",
       "existing": "Existing series: ",
       "heading": "Post options",
+      "lang": {
+        "desc": "What language the body is written in? Specify in language tag (<code>en-US</code>).",
+        "label": "Language"
+      },
       "select": "Select...",
       "series": {
         "desc": "Will this post be part of a series? Give the series a unique name. (Series visible once it has multiple posts)",

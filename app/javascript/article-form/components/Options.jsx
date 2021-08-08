@@ -32,6 +32,7 @@ export const Options = ({
     allSeries = [],
     canonicalUrl = '',
     series = '',
+    baseLang = '',
   },
   onSaveDraft,
   onConfigChange,
@@ -137,6 +138,29 @@ export const Options = ({
           />
           {existingSeries}
         </div>
+        <div className="crayons-field mb-6">
+          <label htmlFor="baseLang" className="crayons-field__label">
+            {i18next.t('editor.options.lang.label')}
+          </label>
+          <p
+            className="crayons-field__description"
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{
+              __html: i18next.t('editor.options.lang.desc', {
+                interpolation: { escapeValue: false },
+              }),
+            }}
+          />
+          <input
+            type="text"
+            value={baseLang}
+            className="crayons-textfield"
+            placeholder="en-GB-oed"
+            name="baseLang"
+            onKeyUp={onConfigChange}
+            id="baseLang"
+          />
+        </div>
         {publishedField}
         <Button
           id="post-options-done-btn"
@@ -156,6 +180,7 @@ Options.propTypes = {
     allSeries: PropTypes.array.isRequired,
     canonicalUrl: PropTypes.string.isRequired,
     series: PropTypes.string.isRequired,
+    baseLang: PropTypes.string.isRequired,
   }).isRequired,
   onSaveDraft: PropTypes.func.isRequired,
   onConfigChange: PropTypes.func.isRequired,
