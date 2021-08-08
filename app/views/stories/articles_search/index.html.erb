@@ -15,7 +15,7 @@
     <div class="block s:flex items-center space-between">
       <h1 class="crayons-title"><%= t.v.search.heading %></h1>
 
-      <nav id="sorting-option-tabs" class="crayons-tabs crayons-tabs--wrapped ml-auto" aria-label="<%= _t.heading %>">
+      <nav id="sorting-option-tabs" class="crayons-tabs crayons-tabs--wrapped ml-auto" aria-label="<%= _t.aria_label %>">
         <ul class="crayons-tabs__list">
           <li>
             <a data-text="<%= _t.relevance %>" href="javascript:;" class="crayons-tabs__item <%= "crayons-tabs__item--current" if @current_ordering == :relevance %>" aria-current="page"><%= _t.relevance %></a>

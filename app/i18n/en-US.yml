@@ -1170,6 +1170,8 @@ v:
     twitter:
       icon: Twitter logo
   pins:
+    article: !html Pinned%{ext}
+    ext: "\_post"
     pinned: 📌 Pinned! (pinned posts display chronologically, 5 max)
     removed: 🗑 Pin removed
     error: You can only have five pins
@@ -2558,15 +2560,11 @@ models:
     confirmation_could_not_be: confirmation could not be sent. %{e_message}
     doesn_t_match_password_con: doesn't match password confirmation
     has_been_banished: has been banished.
-    invalid_config_font: '%<value>s is not a valid font selection'
     is_not_a_valid_rss_atom_fe: is not a valid RSS/Atom feed
     is_taken: '%{data_value} is taken.'
     is_taken2: is taken.
     user_could_not_be_saved: User could not be saved. %{e_message}
     username_is_reserved: username is reserved
-    value_s_is_not_a_valid_na: '%<value>s is not a valid navbar value'
-    value_s_is_not_a_valid_th: '%<value>s is not a valid theme'
-    value_s_must_be_either_v1: '%<value>s must be either v1 or v2'
   user_subscription:
     can_t_subscribe_with_an_ap: Can't subscribe with an Apple private relay. Please update email.
     source_not_found_please_ma: Source not found. Please make sure your %{user_subscription_sourceab} is active!

@@ -8,7 +8,7 @@ module Constants
           },
           feed_strategy: {
             description: I18n.t("lib.constants.settings.user_experience.feed_strategy.description"),
-            placeholder: I18n.t("lib.constants.settings.user_experience.feed_strategy_placeholder")
+            placeholder: I18n.t("lib.constants.settings.user_experience.feed_strategy.placeholder")
           },
           feed_style: {
             description: I18n.t("lib.constants.settings.user_experience.determines_which_default_f"),

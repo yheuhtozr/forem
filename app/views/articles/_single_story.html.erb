@@ -34,9 +34,9 @@
             <a href="<%= URL.tag flare_tag %>" class="crayons-tag" style="background:<%= flare_tag.bg_color_hex %>;color:<%= flare_tag.text_color_hex %>"><span class="crayons-tag__prefix">#</span><%= flare_tag.name %></a>
           <% end %>
           <% tags_to_display = story.cached_tag_list_array
-            if flare_tag
-              tags_to_display = tags_to_display.reject { |tag| tag == flare_tag.name }
-            end %>
+             if flare_tag
+               tags_to_display = tags_to_display.reject { |tag| tag == flare_tag.name }
+             end %>
           <% tags_to_display.each do |tag| %>
           <a href="/t/<%= tag %>" class="crayons-tag"><span class="crayons-tag__prefix">#</span><%= tag %></a>
           <% end %>
@@ -102,7 +102,7 @@
         <div
           class="pinned color-accent-brand fw-bold"
           data-testid="pinned-article">
-          <%= inline_svg_tag("pin.svg", alt: "", aria_hidden: true, class: "mr-1 align-text-bottom color-accent-brand") %>Pinned <span class="hidden s:inline">post</span>
+          <%= inline_svg_tag("pin.svg", alt: "", aria_hidden: true, class: "mr-1 align-text-bottom color-accent-brand") %><%= t.v.pins.article ext: tag.span(t.v.pins.ext, class: "hidden s:inline") %>
         </div>
       <% end %>
 
