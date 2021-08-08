@@ -249,7 +249,7 @@ class Article < ApplicationRecord
            :video_thumbnail_url, :video_closed_caption_track_url,
            :experience_level_rating, :experience_level_rating_distribution, :cached_user, :cached_organization,
            :published_at, :crossposted_at, :boost_states, :description, :reading_time, :video_duration_in_seconds,
-           :last_comment_at)
+           :last_comment_at, :base_lang)
   }
 
   scope :limited_columns_internal_select, lambda {
@@ -259,7 +259,7 @@ class Article < ApplicationRecord
            :video, :user_id, :organization_id, :video_source_url, :video_code,
            :video_thumbnail_url, :video_closed_caption_track_url, :social_image,
            :published_from_feed, :crossposted_at, :published_at, :featured_number,
-           :created_at, :body_markdown, :email_digest_eligible, :processed_html, :co_author_ids)
+           :created_at, :body_markdown, :email_digest_eligible, :processed_html, :co_author_ids, :base_lang)
   }
 
   scope :boosted_via_additional_articles, lambda {
@@ -293,7 +293,8 @@ class Article < ApplicationRecord
   scope :feed, lambda {
                  published.includes(:taggings)
                    .select(
-                     :id, :published_at, :processed_html, :user_id, :organization_id, :title, :path, :cached_tag_list
+                     :id, :published_at, :processed_html, :user_id, :organization_id, :title, :path, :cached_tag_list,
+                     :base_lang
                    )
                }
 

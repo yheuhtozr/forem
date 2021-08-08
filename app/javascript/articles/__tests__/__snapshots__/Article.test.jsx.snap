@@ -171,7 +171,6 @@ Object {
                 <small
                   class="crayons-story__tertiary fs-xs mr-2"
                 >
-                  なんとか語
                   <br />
                   100 words/chars
                 </small>
@@ -358,7 +357,6 @@ Object {
               <small
                 class="crayons-story__tertiary fs-xs mr-2"
               >
-                なんとか語
                 <br />
                 100 words/chars
               </small>

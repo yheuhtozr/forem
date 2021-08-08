@@ -108,7 +108,7 @@
 
         <div class="crayons-story__save">
           <small class="crayons-story__tertiary fs-xs mr-2">
-            なんとか語<br>
+            <%= lang_name story.lang %><br>
             <% cdiv, cmod = story.reading_time.divmod(100) %>
             <%= _t.reading_time(if cdiv < 1
                                   100

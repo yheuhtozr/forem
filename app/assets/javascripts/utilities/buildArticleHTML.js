@@ -251,9 +251,10 @@ function buildArticleHTML(article) {
       var mod = div % 100;
       readingTimeHTML =
         '<small class="crayons-story__tertiary fs-xs mr-2">' +
-        'なんとか語<br>' +
+        article.text_language +
+        '<br>' +
         i18next.t('articles.reading_time', {
-          count: (div < 1 ? 100 : div * 100 + (mod >= 50 ? 100 : 0)),
+          count: div < 1 ? 100 : div * 100 + (mod >= 50 ? 100 : 0),
         }) +
         '</small>';
     }

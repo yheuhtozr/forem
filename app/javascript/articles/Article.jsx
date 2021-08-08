@@ -135,7 +135,10 @@ export const Article = ({
             )}
 
             <div className="crayons-story__save">
-              <ReadingTime readingTime={article.reading_time} />
+              <ReadingTime
+                readingTime={article.reading_time}
+                baseLang={article.text_language}
+              />
 
               <SaveButton
                 article={article}
