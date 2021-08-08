@@ -46,8 +46,16 @@
 
   // Accent colors
   --accent-brand: #{$brand};
-  --accent-brand-darker: #{scale-color($brand, $saturation: 20%, $lightness: -20%)};
-  --accent-brand-lighter: #{scale-color($brand, $saturation: -20%, $lightness: 20%)};
+  --accent-brand-darker: #{scale-color(
+      $brand,
+      $saturation: 20%,
+      $lightness: -20%
+    )};
+  --accent-brand-lighter: #{scale-color(
+      $brand,
+      $saturation: -20%,
+      $lightness: 20%
+    )};
   --accent-brand-a10: #{rgba($brand, 0.1)};
 
   // Success
@@ -75,7 +83,8 @@
   ////////////////////////////////////////////////////////////////////////////////////
 
   // Main colors
-  --body-bg: url(https://www.transparenttextures.com/patterns/nice-snow.png) #{nth($theme-colors, 2)};
+  // image from https://www.transparenttextures.com/nice-snow.html
+  --body-bg: #{image-url('nice-snow.png')} #{nth($theme-colors, 2)};
   --body-color: var(--base-100);
   --body-color-inverted: var(--base-inverted);
 
