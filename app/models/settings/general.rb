@@ -55,7 +55,9 @@ module Settings
           type: :string,
           default: proc { URL.local_image("mascot.png") },
           validates: { url: true }
-    field :mascot_image_description, type: :string, default: I18n.t("models.settings.general.the_community_mascot")
+    field :mascot_image_description, type: :string, default: lambda {
+                                                               I18n.t("models.settings.general.the_community_mascot")
+                                                             }
     field :mascot_footer_image_url, type: :string, validates: { url: true }
     field :mascot_footer_image_width, type: :integer, default: 52
     field :mascot_footer_image_height, type: :integer, default: 120
@@ -100,7 +102,7 @@ module Settings
     field :twitter_hashtag, type: :string
 
     # Sponsors
-    field :sponsor_headline, default: I18n.t("models.settings.general.community_sponsors")
+    field :sponsor_headline, default: -> { I18n.t("models.settings.general.community_sponsors") }
 
     # Tags
     field :sidebar_tags, type: :array, default: %w[]

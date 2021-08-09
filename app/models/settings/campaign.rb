@@ -9,7 +9,7 @@ module Settings
     # Define your fields
     field :articles_expiry_time, type: :integer, default: 4
     field :articles_require_approval, type: :boolean, default: 0
-    field :call_to_action, type: :string, default: I18n.t("models.settings.campaign.share_your_project")
+    field :call_to_action, type: :string, default: -> { I18n.t("models.settings.campaign.share_your_project") }
     field :featured_tags, type: :array, default: %w[]
     field :hero_html_variant_name, type: :string, default: ""
     field :sidebar_enabled, type: :boolean, default: 0
