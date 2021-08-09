@@ -281,7 +281,7 @@
       "existing": "Existing series: ",
       "heading": "Post options",
       "lang": {
-        "desc": "What language the body is written in? Specify in language tag (<code>en-US</code>).",
+        "desc": "What language is the body text written in? Specify by language tag (<code>en-US</code>).",
         "label": "Language"
       },
       "select": "Select...",
