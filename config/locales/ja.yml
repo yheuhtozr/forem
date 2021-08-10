@@ -35,6 +35,9 @@ ja:
     messages:
        bad_uri: is an invalid url
        bad_protocol: must start with %{protocols}
+  create_mascot:
+    name: Mascot
+    error: Mascot already set
   activemodel:
     errors:
       <<: *errors

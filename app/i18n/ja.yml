@@ -2748,9 +2748,6 @@ services:
       source_not_found: Source not found.
       subscriber_email_mismatch: Subscriber email mismatch.
   users:
-    create_mascot_account:
-      mascot: Mascot
-      mascot_already_set: Mascot already set
     remove_role:
       admins_cannot_remove_roles: Admins cannot remove roles from themselves.
       super_admin_roles_cannot_b: Super Admin roles cannot be removed.

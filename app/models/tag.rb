@@ -149,7 +149,7 @@ class Tag < ActsAsTaggableOn::Tag
   end
 
   def normalize_names
-    self.name = Tag.smart_tr name.normalize
-    self.alias_for = Tag.smart_tr alias_for.normalize
+    self.name = Tag.smart_tr name.normalize if name
+    self.alias_for = Tag.smart_tr alias_for.normalize if alias_for
   end
 end
