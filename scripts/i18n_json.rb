@@ -33,9 +33,6 @@ MAP = {
   campaign: {
     __orphan: [nil, %w[close]],
   },
-  clipboard: {
-    __orphan: [%w[alt_text copied copy copy_markdown]],
-  },
   chat: {
     __orphan: [%w[bottom compose config create delete draw edited filter loading messages meta more notifications removed search users welcome]],
     join: {
@@ -48,6 +45,9 @@ MAP = {
     settings: {
       __orphan: [%w[add all aria_invite aria_member channel contact description discoverable join invitation invite leave leave_channel members membership mod no_member notifications personal promote questions receive remove role search submit unmod update]],
     },
+  },
+  clipboard: {
+    __orphan: [%w[alt_text copied copy copy_markdown]],
   },
   comments: {
     __orphan: [%w[all blocked delete hide number subscription], %w[invalid read replies sent uploaded uploading]],
@@ -365,7 +365,7 @@ def orphan(lang, map, tree, existing, which, path = [])
     orphans.each do |op|
       raise "Already Exists! #{path.join '.'}.#{op}[#{which}] = #{tree.dig(*path, op).inspect}" if tree.dig(*path, op)
 
-      tree.bury(*path, op, existing.dig(*path, op))
+      tree.bury(*path, op, existing.dig(*path, op)) if existing.dig(*path, op)
       PLURALS[lang_pl(lang)].values.compact.each do |suffix|
         suffixed = "#{op}_#{suffix}"
         if (pl = existing.dig(*path, suffixed))

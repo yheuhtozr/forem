@@ -144,7 +144,7 @@ v:
     co_authors: !html with %{names}
     crossposted:
       text: !html Originally published at %{url}%{on}
-      on: " on %{date}"
+      'on': " on %{date}"
     edited: Updated on %{date}
     for_org: !html "%{start} for %{end}%{org}"
     missing: Article No Longer Available
@@ -180,7 +180,7 @@ v:
         recaptcha: You must complete the recaptcha ✅
         domain: is not included in allowed domains.
       allow:
-        one: Registration restricted to <strong>@%{domain}</strong> emails.
+        one: !html Registration restricted to <strong>@%{domain}</strong> emails.
         list: Registration restricted to the following emails
       create: Create your account
       field:
@@ -331,7 +331,7 @@ v:
     edit: Editing comment
     edited:
       text: !html "&bull; Edited %{on}"
-      on: on %{date}
+      'on': on %{date}
     expand: Expand
     hidden:
       text: !html Some comments have been hidden by the post's author - %{info}
@@ -1698,11 +1698,11 @@ v:
         label: Website URL
         placeholder: https://yoursite.com
       education: Education
-      employer_name: Employer name
       currently_learning: Currently learning
       currently_hacking_on: Currently hacking on
       available_for: Available for
       skills_languages: Skills/Languages
+      work: Work
     side:
       comment:
         icon: Comment

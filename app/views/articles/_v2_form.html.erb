@@ -59,12 +59,13 @@
         <% end %>
       </div>
 
-      <nav class="crayons-article-form__tabs crayons-tabs ml-auto" aria-label="<%= _t.modes %>">
+      <%# in-place flex-grow against previous item, ensuring enough space for localized strings of two buttons; align right to alleviate visual change %>
+      <nav class="crayons-article-form__tabs crayons-tabs ml-auto" style="flex-grow: 0.4;" aria-label="<%= _t.modes %>">
         <ul class="crayons-tabs__list">
-          <li>
+          <li class="align-right">
             <button data-text="Edit" class="crayons-tabs__item crayons-tabs__item--current" type="button" aria-current="page"><%= _t.edit %></button>
           </li>
-          <li>
+          <li class="align-right">
             <button data-text="Preview" class="crayons-tabs__item " type="button"><%= _t.preview %></button>
           </li>
         </ul>

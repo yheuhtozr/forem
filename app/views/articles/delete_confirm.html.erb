@@ -9,7 +9,7 @@
     <h1 class="crayons-subtitle-1 mb-2"><%= _t.heading %></h1>
     <p class="fs-l mb-4">
       <%= _t.desc.text(
-            action: link_to(@article.published ? _t.desc.unpublish : _t.desc.edit, "#{@article.path}/edit", data: { no_instant: "")
+            action: link_to(@article.published ? _t.desc.unpublish : _t.desc.edit, "#{@article.path}/edit", data: { no_instant: "" }),
           ) %>
     </p>
 

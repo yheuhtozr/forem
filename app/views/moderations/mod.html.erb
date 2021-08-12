@@ -165,7 +165,7 @@
         <% @adjustments.each do |adjustment| %>
           <% if current_user.any_admin? || adjustment.user_id == current_user.id %>
             <%= form_for(adjustment, url: "/tag_adjustments/#{adjustment.id}", html: { method: :delete, onsubmit: "return confirm('#{_t.tag.undo.confirm type: _t.tag.undo.type[adjustment.adjustment_type], tag: adjustment.tag_name}')" }) do |f| %>
-              <%= _t.tag[adjustment.adjustment_type == "removal" ? :removed : :added](adjustment.tag_name) %>
+              <%= _t.tag[adjustment.adjustment_type == "removal" ? :removed : :added, adjustment.tag_name] %>
               <%= f.submit _t.tag.undo.button, id: "undo" %>
             <% end %>
           <% end %>

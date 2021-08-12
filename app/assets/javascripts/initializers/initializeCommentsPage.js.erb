@@ -291,7 +291,7 @@ function handleCommentSubmit(event) {
             showUserAlertModal(i18next.t('userAlertModal.comment.title'), i18next.t('userAlertModal.comment.text', { error: errorReponse.error }), i18next.t('userAlertModal.comment.confirm'))
           }
         }).catch(function parseError(error){
-            showUserAlertModal('Error posting comment', 'Your comment could not be posted due to a server error', 'OK') 
+            showUserAlertModal(i18next.t('userAlertModal.comment.title'), i18next.t('userAlertModal.comment.text_server'), i18next.t('userAlertModal.comment.confirm'))
         });
         return false;
       }

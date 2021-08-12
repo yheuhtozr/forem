@@ -143,7 +143,7 @@ v:
     co_authors: !html with %{names}
     crossposted:
       text: !html Originally published %{url}%{on}
-      on: " on %{date}"
+      'on': " on %{date}"
     edited: Updated on %{date}
     for_org: !html "%{start} が %{end}%{org}%{start} へ執筆%{end}"
     missing: 記事は公開終了しました
@@ -179,7 +179,7 @@ v:
         recaptcha: You must complete the recaptcha ✅
         domain: is not included in allowed domains.
       allow:
-        one: Registration restricted to <strong>@%{domain}</strong> emails.
+        one: !html Registration restricted to <strong>@%{domain}</strong> emails.
         list: Registration restricted to the following emails
       create: Create your account
       field:
@@ -330,7 +330,7 @@ v:
     edit: Editing comment
     edited:
       text: !html "&bull; Edited %{on}"
-      on: on %{date}
+      'on': on %{date}
     expand: Expand
     hidden:
       text: !html 非表示にされているコメントがあります（%{info}）
@@ -1254,9 +1254,6 @@ v:
   series:
     meta:
       description: View %{title} on %{site}
-      og:
-        title: About %{site}
-        description: "%{site} is great!"
     heading: "%{user}'s Series"
     empty: This user doesn't have any series
     list:
@@ -1285,11 +1282,7 @@ v:
   sticky:
     created_at: Joined
     default_cta: Learn more
-    education: Education
     email: Email
-    employment:
-      key: Work
-      title: !html "%{title}%{at_start} at %{at_end}%{start}%{employer}%{end}"
     hot: Hot
     location: Location
     more_from: !html More from %{actor}
@@ -1704,11 +1697,11 @@ v:
         placeholder: https://yoursite.com
       website_url: Website URL
       education: Education
-      employer_name: Employer name
       currently_learning: Currently learning
       currently_hacking_on: Currently hacking on
       available_for: Available for
       skills_languages: Skills/Languages
+      work: Work
     side:
       comment:
         icon: Comment
