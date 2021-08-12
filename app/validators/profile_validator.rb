@@ -24,7 +24,7 @@ class ProfileValidator < ActiveModel::Validator
       next unless record.respond_to?(attribute) # avoid caching issues
       next if __send__("#{field.input_type}_valid?", record, attribute)
 
-      record.errors.add(attribute, errors[field.input_type])
+      record.errors.add(attribute, self.class.errors[field.input_type])
     end
   end
 

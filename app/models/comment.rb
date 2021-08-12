@@ -137,8 +137,8 @@ class Comment < ApplicationRecord
   end
 
   def title(length = 80)
-    return title_deleted if deleted
-    return title_hidden if hidden_by_commentable_user
+    return self.class.title_deleted if deleted
+    return self.class.title_hidden if hidden_by_commentable_user
 
     text = ActionController::Base.helpers.strip_tags(processed_html).strip
     truncated_text = ActionController::Base.helpers.truncate(text, length: length).gsub("&#39;", "'").gsub("&amp;", "&")
