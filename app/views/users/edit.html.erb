@@ -83,11 +83,11 @@
       <% end %>
 
       <% if @user.errors.any? %>
-        <%= render partial: "users/errors", locals: { errors: @user.errors, title_suffix: t.v.errors.profile(@user.errors.size) } %>
+        <%= render partial: "users/errors", locals: { errors: @user.errors, title_suffix: t.v.users.errors.profile(@user.errors.size) } %>
       <% end %>
 
       <% if @organization&.errors&.any? %>
-        <%= render partial: "users/errors", locals: { errors: @user.errors, title_suffix: t.v.errors.org(@organization.errors.size) } %>
+        <%= render partial: "users/errors", locals: { errors: @user.errors, title_suffix: t.v.users.errors.org(@organization.errors.size) } %>
       <% end %>
 
       <%= render "users/#{@tab.tr('-', '_')}", tab: @tab %>
