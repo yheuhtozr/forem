@@ -47,32 +47,32 @@
     </h4>
     <% label_i18n = ->(param) { label_tag param, _t.form[param][:label] } %>
     <div class="tag-form-field">
-      <%= label_i18n :pretty_name %>
+      <%= label_i18n[:pretty_name] %>
       <br>
       <%= text_field_tag "tag[pretty_name]", @tag.pretty_name, placeholder: _t.form.pretty_name.placeholder, class: "tag-form-text-field" %>
     </div>
     <div class="tag-form-field">
-      <%= label_i18n :bg_color_hex %>
+      <%= label_i18n[:bg_color_hex] %>
       <br>
       <%= color_field_tag "tag[bg_color_hex]", @tag.bg_color_hex.presence || "#000000", placeholder: "#000000", class: "tag-form-text-field" %>
     </div>
     <div class="tag-form-field">
-      <%= label_i18n :text_color_hex %>
+      <%= label_i18n[:text_color_hex] %>
       <br>
       <%= color_field_tag "tag[text_color_hex]", @tag.text_color_hex.presence || "#ffffff", placeholder: "#ffffff", class: "tag-form-text-field" %>
     </div>
     <div class="tag-form-field">
-      <%= label_i18n :short_summary %>
+      <%= label_i18n[:short_summary] %>
       <br>
       <%= text_area_tag "tag[short_summary]", @tag.short_summary, placeholder: _t.form.short_summary.placeholder, class: "tag-form-text-field tag-area-text" %>
     </div>
     <div class="tag-form-field">
-      <%= label_i18n :wiki_body_markdown %>
+      <%= label_i18n[:wiki_body_markdown] %>
       <br>
       <%= text_area_tag "tag[wiki_body_markdown]", @tag.wiki_body_markdown, placeholder: _t.form.wiki_body_markdown.placeholder, class: "tag-form-text-field tag-area-text" %>
     </div>
     <div class="tag-form-field">
-      <%= label_i18n :rules_markdown %>
+      <%= label_i18n[:rules_markdown] %>
       <br>
       <%= text_area_tag "tag[rules_markdown]", @tag.rules_markdown, placeholder: _t.form.rules_markdown.placeholder, class: "tag-form-text-field tag-area-text" %>
     </div>
