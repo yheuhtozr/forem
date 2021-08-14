@@ -10,7 +10,7 @@ export function setupPusher(key, callbackObjects) {
             'X-CSRF-Token': window.csrfToken,
           },
         },
-        cluster: 'us2',
+        cluster: 'ap3',
         encrypted: true,
       }),
     } = window;
