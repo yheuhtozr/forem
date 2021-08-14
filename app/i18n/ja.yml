@@ -72,9 +72,9 @@ v:
     help: Forem Admin Guide
   articles:
     meta:
-      description: An article from the community
+      description: このコミュニティに投稿された記事
     actions:
-      aria_label: Article actions
+      aria_label: 記事へのアクション
     comments:
       subtitle: !html みんなの声%{count}
       count: （%1）
@@ -86,16 +86,16 @@ v:
       code: Code of Conduct
       report: 通報する
     delete:
-      heading: Are you sure you want to delete this article?
+      heading: この記事を削除してもよろしいですか？
       desc:
-        text: !html You cannot undo this action, perhaps you just want to %{action} instead?
-        edit: edit
-        unpublish: unpublish
+        text: !html この操作は取り消せません。それとも%{action}しますか？
+        edit: 編集
+        unpublish: 公開停止
       action:
-        button: Delete
-        cancel: Dismiss
-        edit: Edit
-        unpublish: Unpublish
+        button: 削除
+        cancel: やめる
+        edit: 編集
+        unpublish: 公開停止
     lock:
       meta:
         title: Confirm Discussion Lock
@@ -108,7 +108,7 @@ v:
       reason:
         label: Reason for locking the discussion (optional) - this will be publicly displayed
         placeholder: The reason why you're locking this discussion.
-      submit: Lock discussion
+      submit: コメント欄を凍結する
     preview_discuss: !pl
       0: New Discussion!
       n: !html '#discuss <img src="%{image}" />%{count}'
@@ -135,74 +135,73 @@ v:
       cancel: Cancel
       notes: "Notes from when this discussion was locked (only visible to you and admins):"
       reason: "Reason this discussion was locked (publicly visible):"
-      submit: Unlock discussion
+      submit: コメント欄の凍結を解除する
     unpublished:
-      subtitle: Unpublished Post.
-      text: " This URL is public but secret, so share at your own discretion."
-      edit: Click to edit
+      subtitle: 非公開の記事
+      text: " この URL を知っている人はアクセスできます。リンクを教える場合は注意してください。"
+      edit: 編集画面へ
     co_authors: !html with %{names}
     crossposted:
-      text: !html Originally published %{url}%{on}
-      'on': " on %{date}"
-    edited: Updated on %{date}
+      text: !html 元記事は%{on}に %{url} で掲載
+      'on': "%{date}"
+    edited: "%{date}に更新"
     for_org: !html "%{start} が %{end}%{org}%{start} へ執筆%{end}"
     missing: 記事は公開終了しました
     read_next: 次に読みたい
     reading_time: !pl
       n: "約 %1 字/語"
-    right_nav: Author details
+    right_nav: 作者情報
   auth:
     create:
-      aria_label: Create new account
-      text: Create new account
+      aria_label: 新しいアカウントを作る
+      text: 新しいアカウントを作る
     creator:
-      text: Almost there!
-      desc: Let's create an admin account for your community.
-      submit: Create admin account
+      text: あと一歩です！
+      desc: このコミュニティの管理者アカウントを作りましょう。
+      submit: 管理者アカウントを作成
     login:
-      aria_label: Log in
-      text: Log in
-      continue: Continue
-      forgot: I forgot my password
+      aria_label: ログイン
+      text: ログイン
+      continue: 次へ
+      forgot: パスワードを忘れた
     provider:
-      text: "%{action} with %{provider}"
-      login: Continue
-      signup: Sign up
+      text: "%{provider} から%{action}"
+      login: ログイン
+      signup: 登録
       email:
-        icon: email
-        text: Sign up with Email
+        icon: メールアドレス
+        text: メールアドレスで登録
     register:
       errors: !pl
-        1: Whoops, we found %1 problem
-        n: Whoops, we found %1 problems
+        n: 問題が %1 件発生しました
       error:
-        recaptcha: You must complete the recaptcha ✅
-        domain: is not included in allowed domains.
+        recaptcha: reCAPTCHA を完了 ✅ してください
+        domain: が許可されたドメインに含まれていません
       allow:
-        one: !html Registration restricted to <strong>@%{domain}</strong> emails.
-        list: Registration restricted to the following emails
-      create: Create your account
+        one: !html <strong>@%{domain}</strong> アドレスからのみ登録を受け付けています。
+        list: 以下のアドレスからのみ登録を受け付けています。
+      create: アカウントを作る
       field:
         name:
-          aria_label: Name
-          label: Name
+          aria_label: 名前
+          label: 名前
         username:
-          aria_label: Username
-          label: Username
+          aria_label: ユーザー名
+          label: ユーザー名
         email:
-          aria_label: Email
-          label: Email
+          aria_label: メールアドレス
+          label: メールアドレス
         password:
-          aria_label: Password
-          label: Password
+          aria_label: パスワード
+          label: パスワード
         confirm:
-          aria_label: Password Confirmation
-          label: Password Confirmation
-        required: "* - required"
+          aria_label: パスワードを再入力
+          label: パスワードを再入力
+        required: "* は必須項目"
       secret:
-        label: New Forem Secret
-        placeholder: As provided by your Forem host
-      submit: Sign up
+        label: 新しい Forem の Secret
+        placeholder: Forem ホストから伝えられた通り入力
+      submit: 登録する
     wizard:
       meta:
         title: Let's get started with Forem
@@ -218,12 +217,12 @@ v:
       size: "%1 "
   badges:
     meta:
-      title: Badges
-      name: "%{title} Badge"
-    heading: Badges
-    desc: Receive badges for being awesome! Click on a badge to see how you can earn it.
-    name: 🏅 %{title} Badge 🏅
-  beta: beta
+      title: バッジ
+      name: "%{title} バッジ"
+    heading: バッジ
+    desc: 実績を積んでバッジをもらおう！バッジをクリックすると獲得条件が確認できます。
+    name: 🏅 %{title} バッジ 🏅
+  beta: ベータ
   campaign:
     subtitle: Stories (%{count})
     view: See all posts
@@ -232,35 +231,35 @@ v:
       title: "%{name} Connect"
       description: "%{name} Connect"
     create:
-      success: chat channel created!
-      failure: not allowed!
+      success: チャンネル作成完了！
+      failure: 作成できません！
       channel:
-        chat: channel is created by %{user}
-        success: Channel is created%{maybe_info}
-        info: " & %{message}"
+        chat: "%{user} がチャンネルを作成"
+        success: チャンネルが作成されました。%{maybe_info}
+        info: "また、%{message}"
     join:
-      heading: Would you like to join the %{name} channel
-      accept: Accept
-      decline: Decline
-      expired: This Invitation link is expired. Please contact the channel mod for new Invitation link
+      heading: 「%{name}」チャンネルに参加しますか？
+      accept: 参加する
+      decline: 遠慮する
+      expired: この招待リンクは期限切れです。チャンネル管理者から新しいリンクを受け取ってください。
       pending:
-        heading: Pending Invitations
-        desc: You may leave a group channel at any point in the future.
-        empty: You have no pending invitations.
-        chat: "@%{user} joined %{channel}"
-        notice: Invitation to %{channel} accepted. It may take a moment to show up in your list.
-        remove: Invitation removed.
+        heading: 承認待ちの招待
+        desc: いつでもグループチャンネルから抜けられます。
+        empty: 承認待ちの招待はありません。
+        chat: "@%{user} が %{channel} に参加"
+        notice: "%{channel} への招待が承認されました。リストに反映されるまで時間がかかることがあります。"
+        remove: 招待を削除しました。
       request:
-        success: Request Sent
-        failure: Unable to join channel
+        success: 申請を送りました
+        failure: チャンネルに参加できません
       response:
-        chat: "@%{user} added @%{target}"
-        notice: Accepted request of %{user} to join %{channel}.
-        reject: Invitation rejected.
-      chat: "@%{user} join the channel"
+        chat: "@%{user} が @%{target} を追加"
+        notice: "%{user} から %{channel} への参加申請を承認しました。"
+        reject: 招待は断られました。
+      chat: "@%{user} がチャンネルに参加"
       error:
-        unauthorized: User not authorized
-        not_found: not found
+        unauthorized: ユーザーは未認証です
+        not_found: 見つかりません
     leave:
       chat: "@#{user} left #{channel}"
       success: You have left the channel %{channel}. It may take a moment to be removed from your list.
@@ -292,17 +291,17 @@ v:
     block:
       success: chat channel blocked
     channel_info:
-      failure: not found
+      failure: 見つかりません
   comments:
     meta:
       title: "%{title} - %{site}"
-      title_root: Discussion of %{title} - %{site}
-      description: An article from the community
+      title_root: "%{title} への声 - %{site}"
+      description: このコミュニティに投稿された記事
       og:
-        title: Discussion of %{title}
+        title: "%{title} への声"
         title_rel: "%{root} — %{site}"
-        title_root: "[Discussion] %{title} — %{site}"
-        description: "%{site} Comment"
+        title_root: "[コメント] %{title} — %{site}"
+        description: "%{site} に投稿されたコメント"
     messages:
       create:
         success: created
@@ -329,8 +328,8 @@ v:
     collapse: Collapse
     edit: Editing comment
     edited:
-      text: !html "&bull; Edited %{on}"
-      'on': on %{date}
+      text: !html "&bull; %{on}に修正"
+      'on': "%{date}"
     expand: Expand
     hidden:
       text: !html 非表示にされているコメントがあります（%{info}）
@@ -553,23 +552,23 @@ v:
         icon: Data
         number: "Subscriptions (%1)"
       delete: Delete
-      unpin: Unpin
+      unpin: 固定を外す
       pin:
-        title: Pin to profile
-        button: Pin to profile
-        text: Pin
+        title: プロフィールに固定する
+        button: プロフィールに固定
+        text: 固定
       manage:
-        aria_label: "Manage post: %{title}"
-        text: Manage
-      lock: Lock discussion
-      unlock: Unlock discussion
+        aria_label: 「%{title}」の状態を管理する
+        text: 状態管理
+      lock: コメント欄を凍結
+      unlock: コメント欄を凍結解除
       edit:
         aria_label: "Edit post: %{title}"
-        text: Edit
+        text: 編集
       more:
         title: "More options for post: %{title}"
         icon: More...
-      stats: Stats
+      stats: 統計
       archive: Archive post
       unarchive: Unarchive post
       author: Author
@@ -641,28 +640,28 @@ v:
       install: Install the app
   editor:
     heading:
-      edit: Edit Post
-      new: New Post
-    create: Create Post
+      edit: 記事の編集
+      new: 新しい記事
+    create: 記事を作成
     close:
-      icon: Close
-      title: Close the editor
+      icon: 閉じる
+      title: 編集画面を閉じる
     cover:
-      add: Add a cover image
-      change: Change
-    edit: Edit
-    modes: View post modes
-    new_title: New post title here...
-    preview: Preview
+      add: 見出し画像を追加
+      change: 変更
+    edit: 編集
+    modes: 記事の表示モード
+    new_title: タイトルをここに
+    preview: プレビュー
     video:
       progress:
-        heading: ⏳ Video Transcoding In Progress ⏳
-        notice_1: You'll get an email when this process finishes.
-        notice_2: This is an ordinary unpublished post. Add title/tags/body/etc, and then mark as published after the video is done processing.
+        heading: ⏳ 動画を絶賛変換中 ⏳
+        notice_1: この処理が終わるとメールをお送りします。
+        notice_2: これは何の変哲もない未公開記事です。動画の変換が終わってから、タイトル・タグ・本文などを入れて公開してください。
       submit_image:
-        button: Submit Change
-        text: "Preview Image URL: "
-        placeholder: New Thumbnail URL
+        button: 変更を送信
+        text: "プレビュー画像 URL: "
+        placeholder: 新しいサムネイル URL
   email_subscriptions:
     unsubscribe:
       heading: You have been unsubscribed from %{type}. 😔
@@ -697,30 +696,30 @@ v:
       link: Link to attend - %{url}
   feedback:
     meta:
-      title: Feedback
-    heading: Thank you for your report.
-    desc: !html Questions? Send an email to %{email}
-    home: Return to home page
+      title: 問題の報告
+    heading: 問題のご報告ありがとうございます。
+    desc: !html ご質問があれば %{email} までお寄せください。
+    home: トップに戻る
     form:
-      rude_or_vulgar: Rude or vulgar
-      harassment: Harassment or hate speech
-      spam: Spam or copyright issue
-      listings: Inappropriate listings message/category
-      other: Other
-      url: Reported URL
+      rude_or_vulgar: 暴言・失礼な発言
+      harassment: 嫌がらせ・誹謗中傷
+      spam: スパム・権利侵害
+      listings: 告知の内容や分類が不適切
+      other: その他
+      url: 対象 URL
       message:
-        subtitle: Message
-        desc: Please provide any additional information or context that will help us understand and handle the situation.
+        subtitle: メッセージ
+        desc: 管理者が状況を把握できるよう、追加情報や背景を説明してください。
         placeholder: "..."
-      submit: Send Feedback
+      submit: 報告を送る
   hamburger:
-    title: Navigation menu
-    back: Back
-    forward: Forward
-    refresh: Refresh
-    icon: Close
-    icon_left: Left menu
-    icon_right: Right menu
+    title: メインメニュー
+    back: 戻る
+    forward: 進む
+    refresh: 更新
+    icon: 閉じる
+    icon_left: 左メニュー
+    icon_right: 右メニュー
   liquids:
     github:
       view: View on GitHub
@@ -861,52 +860,52 @@ v:
       icon: App logo
       text: "Preview:"
   main:
-    aria_home: "%{community} Home"
+    aria_home: "%{community} トップ"
     header:
-      create: Create account
+      create: アカウント作成
       connect:
         aria_label: Connect
         icon: Connect
-      login: Log in
+      login: ログイン
       menu:
-        aria_label: Navigation menu
+        aria_label: メインメニュー
       moderation:
-        aria_label: Moderation
-        icon: Moderation
+        aria_label: 審査
+        icon: 審査
       notifications:
-        aria_label: Notifications
-        icon: Notifications
-      skip: Skip to content
+        aria_label: 通知
+        icon: 通知
+      skip: 内容までスキップ
     modal:
-      desc: We’d love for you to be a part of this community.
+      desc: あなたの参加を心待ちにしています。
       create:
-        aria_label: Create new account
-        text: Create new account
+        aria_label: 新しいアカウントを作る
+        text: 新しいアカウントを作る
       login:
-        aria_label: Log in
-        text: Log in
-      footer: We strive for transparency and don't collect excess data.
+        aria_label: ログイン
+        text: ログイン
+      footer: 私たちは透明性を心がけ、必要以上の情報を収集しません。
     nav:
-      admin: Admin
-      dashboard: Dashboard
+      admin: 管理画面
+      dashboard: 活動データ
       etc: "..."
-      list: Reading list
-      moderator: Moderator Center
-      other: Other
-      settings: Settings
+      list: 切り抜き帳
+      moderator: 審査室
+      other: その他
+      settings: 設定
     side:
       listings:
-        heading: Listings
-        all: See all
-        new: Create a Listing
+        heading: 告知板
+        all: すべての告知
+        new: 告知を作成
       trend: trending guides/resources
       recent: recently queried
     tags:
-      follow: Follow
-      my: My Tags
-      popular: Popular Tags
+      follow: フォロー
+      my: 私のタグ
+      popular: 話題のタグ
     footer:
-      aria_label: Site information
+      aria_label: サイト情報
       built:
         text: !html Built on %{forem} — the %{opensource} software that powers %{dev} and other inclusive communities.
         forem: Forem
@@ -917,14 +916,14 @@ v:
       powered:
         text: !html Made with love and %{rails}. %{community} <span title="copyright">&copy;</span> %{copyright}.
         rails: Ruby on Rails
-    home: Home
-    new: Create Post
-    signout: Sign Out
-    signup: Sign In/Up
+    home: トップページ
+    new: 記事を作成
+    signout: ログアウト
+    signup: 登録／ログイン
   manager:
-    heading: Manage %{title}
+    heading: 「%{title}」の状態
     error:
-      pins: Uh Oh! %{error} 😬
+      pins: ごめんなさい！%{error} 😬
     desc:
       heading: "Tools:"
       subtitle: "Experience Level of Post:"
@@ -943,7 +942,7 @@ v:
       text_2: !html 'Share to link aggregators such as <a href="https://www.reddit.com">Reddit</a>. Try to choose the most topic-specific subreddits, such as <a href="https://www.reddit.com/r/javascript">/r/javascript</a> or <a href="https://www.reddit.com/r/python">/r/python</a>, etc. <em>Warning: jerks and trolls may be lurking.</em>'
       text_3: Share with your co-workers or local communities. Ask people to leave questions for you in the comments. It's a great way to spark additional discussion.
   moderations:
-    heading: Mod Center
+    heading: 審査室
     actions:
       meta:
         title: Moderating %{title}
@@ -1133,14 +1132,14 @@ v:
       support: !html Thanks for being part of %{community}! If you feel like this mod action was a mistake, feel free to contact %{email}. 🤗
   onboardings:
     meta:
-      title: Welcome to %{community}
-    heading: You're now a part of the community!
-    subtitle: SUGGESTED THINGS YOU CAN DO
-    settings: !html <span class="emoji">💅🏼</span>Customize your profile
-    welcome: !html <span class="emoji">😊</span>Join the Welcome thread
-    write: !html <span class="emoji">✍🏾</span>Write your first %{community} post
+      title: "%{community} へようこそ！"
+    heading: 今日から私たちの一員です！
+    subtitle: まず何をしたらいい？
+    settings: !html <span class="emoji">💅🏼</span>プロフィールを設定する
+    welcome: !html <span class="emoji">😊</span>ようこそスレッドに挨拶する
+    write: !html <span class="emoji">✍🏾</span>%{community}に最初の記事を書く
   organizations:
-    empty: &prof_empty 404 bio not found
+    empty: &prof_empty かつ 30
     external:
       icon: External link icon
     follow: Follow
@@ -1169,10 +1168,10 @@ v:
       icon: Twitter logo
   pins:
     article: !html 要注目%{ext}
-    ext: 投稿
-    pinned: 📌 Pinned! (pinned posts display chronologically, 5 max)
-    removed: 🗑 Pin removed
-    error: You can only have five pins
+    ext: 記事
+    pinned: 📌 指定完了（要注目記事は新しい順に最大 5 件まで表示されます）
+    removed: 🗑 注目を外しました
+    error: 5 件までしか指定できません
   podcasts:
     meta:
       title: Podcasts
@@ -1202,75 +1201,75 @@ v:
     unsupported: Your browser does not support the audio element.
   reading_list:
     meta:
-      title: Reading List
-      description: My saved posts.
+      title: 切り抜き帳
+      description: あなたの保存した記事の一覧です。
       og:
-        title: Reading List - %{community}
+        title: 切り抜き帳 - %{community}
   reactions:
     category:
       hands: Hands
-      like: Like
-      readinglist: Reading list
+      like: いいね
+      readinglist: 切り抜き帳
       thinking: Thinking
-      thumbsup: Thumbs up
-      thumbsdown: Thumbs down
+      thumbsup: 高評価
+      thumbsdown: 低評価
       unicorn: Unicorn
-      vomit: Vomit
+      vomit: ひどい
     summary:
       title: 反響
     like:
       title: ハート
       aria_label: いいね
-      icon: Favorite heart button
-      text: Like
+      icon: お気に入りのハートマーク
+      text: いいね
     unicorn:
       title: Unicorn
       aria_label: React with unicorn
     readingList:
       title: 保存
       aria_label: 切り抜き帳に追加
-      icon: Save button
-      text: Save
+      icon: 保存ボタン
+      text: 保存
   search:
-    heading: Search results
-    placeholder: Search...
+    heading: 検索結果
+    placeholder: 検索…
     icon:
-      aria_label: Search
-      title: Search
+      aria_label: 検索する
+      title: 検索する
     nav:
-      posts: Posts
-      podcasts: Podcasts
-      people: People
-      comments: Comments
-      my: My posts only
+      posts: 記事
+      podcasts: ポッドキャスト
+      people: 人物
+      comments: コメント
+      my: 私の記事
     sort:
-      aria_label: Search result sort options
-      relevance: Most Relevant
-      newest: Newest
-      oldest: Oldest
+      aria_label: 検索結果の並べ替え
+      relevance: 関連順
+      newest: 新しい順
+      oldest: 古い順
     meta:
-      title: Search Results
-      description: "%{site} => Search Results"
+      title: 検索結果
+      description: "%{site} => 検索結果"
   series:
     meta:
-      description: View %{title} on %{site}
-    heading: "%{user}'s Series"
-    empty: This user doesn't have any series
+      description: "%{site} で「%{title}」を見る"
+    heading: "%{user} の連載一覧"
+    empty: このユーザーは連載がありません
     list:
-      heading: "%{series} Series' Articles"
-      back: Back to %{user}'s Series
-      empty: This series doesn't have any articles
+      heading: "連載「%{series}」の記事一覧"
+      back: "%{user} の連載一覧に戻る"
+      empty: この連載には記事がありません
   sponsor:
     seek: Become a sponsor
   stats:
     meta:
-      title: Stats for Your Article
-    heading: !html Stats for "%{article}"
+      title: あなたの記事の統計情報
+    heading: !html "「%{article}」の統計"
     period:
-      aria_label: Analytics period
-      week: Week
-      month: Month
-      infinity: Infinity
+      aria_label: 分析期間
+      week: 今週
+      month: 今月
+      infinity: 全期間
     readers: Readers Summary
     followers: New Followers Summary
     reactions: Reactions Summary ❤🦄🔖
@@ -1280,42 +1279,42 @@ v:
       source: Source
       views: Views
   sticky:
-    created_at: Joined
-    default_cta: Learn more
-    email: Email
-    hot: Hot
-    location: Location
-    more_from: !html More from %{actor}
-    no_summary: Posts in this tag # dubious message content
-    trending: !html Trending on %{app}
+    created_at: 登録日
+    default_cta: 詳細
+    email: メール
+    hot: 話題
+    location: 場所
+    more_from: !html "%{actor} をもっと知る"
+    no_summary: このタグの記事 # dubious message content
+    trending: !html "%{app} で今話題"
   stories:
     meta:
       description_tagged: "%{tag} content on %{name}"
       page: " Page %{page}"
       rss: "%{name} RSS Feed"
-    heading: Posts
+    heading: 記事
     discuss: "#discuss"
-    follow: Follow
+    follow: フォロー
     menu:
       aria_left: nav-button-left
       aria_right: nav-button-right
     sort:
-      aria_label: View posts by
-      aria_tagged: View tagged posts by
-      feed: Feed
-      week: Week
-      month: Month
-      year: Year
-      infinity: Infinity
-      latest: Latest
-      signin: !html 👋 <a href="%{path}">Sign in</a> for the ability sort posts by <strong>top</strong> and  <strong>latest</strong>.
+      aria_label: 記事の表示条件
+      aria_tagged: タグ内の記事の表示条件
+      feed: おすすめ
+      week: 今週
+      month: 今月
+      year: 今年
+      infinity: 全期間
+      latest: 新着順
+      signin: !html 👋 <a href="%{path}">ログイン</a>すると<strong>人気</strong>や<strong>新着</strong>順で並べ替えができます。
   tags:
     meta:
       title: Tags on %{community}
       description: Tags to follow on %{community}
       og:
         description: "%{community} is great!"
-    heading: Top tags
+    heading: 人気のタグ
     edit:
       meta:
         title: Edit %{tag}
@@ -1350,26 +1349,24 @@ v:
       code: 1,2,3
       placeholder: "comma separated, space is optional. Example: 1,2,3"
     published: !pl
-        1: 1 post published
-        n: "%1 posts published"
+        n: 公開記事数 %1
     side:
-      about: "about #%{tag}"
-      admin: Admin
-      edit: Edit
-      guidelines: submission guidelines
-      moderate: Moderate
-      mods: tag moderators
-      new: Create Post
-      older: "Older #%{tag} posts"
+      about: "#%{tag} とは"
+      admin: 管理画面
+      edit: 編集
+      guidelines: 投稿基準
+      moderate: 審査
+      mods: このタグの審査員
+      new: 記事を作成
+      older: "以前の #%{tag} 記事"
       published: !pl
-        1: 1 Post Published
-        n: "%1 Posts Published"
+        n: 公開記事数 %1
       sponsor: "%{tag} is sponsored by"
     sponsor: "| Sponsored by %{org} ❤️"
   users:
     meta:
       og:
-        title: "%{user} — %{community} Profile"
+        title: "%{user} — %{community} プロフィール"
     account:
       connect: Connect %{provider} Account
       emails: Account emails
@@ -1467,7 +1464,7 @@ v:
       static: Static top of page
       theme: Site Theme
       writing: Writing
-    danger: Danger Zone
+    danger: 危険な操作
     destroy:
       heading: Destroy your account
       desc: "Deleting your account will:"
@@ -1704,44 +1701,41 @@ v:
       work: Work
     side:
       comment:
-        icon: Comment
+        icon: コメント
         text: !pl
-          1: "1 comment written"
-          n: "%1 comments written"
+          n: "%1 件のコメントを投稿"
       org: Organizations
       post:
-        icon: Post
+        icon: 記事
         text: !pl
-          1: 1 post published
-          n: "%1 posts published"
+          n: "%1 件の記事を公開"
       tag:
-        icon: Tag
+        icon: タグ
         text: !pl
-          1: 1 tag followed
-          n: "%1 tags followed"
-    save_profile: Save Profile Information
+          n: "%1 個のタグをフォロー"
+    save_profile: プロフィール情報を保存する
     signout:
       meta:
         title: Confirm Signout - %{community}
       heading: Are you sure you want to sign out?
       'yes': Yes, sign out
     block: Block @%{user}
-    chat: Chat
-    chat_with: Chat with %{user}
-    close: Close modal
-    details: "%{user} profile details"
+    chat: チャット
+    chat_with: "%{user} にチャット"
+    close: ポップアップを閉じる
+    details: "%{user} のプロフィール詳細"
     dropdown: User actions
-    email_icon: Email address
+    email_icon: メールアドレス
     empty: *prof_empty
-    flag: Flag @%{user}
-    follow: Follow
+    flag: "@%{user} を通報"
+    follow: フォロー
     guidelines: "%{user}'s guidelines:"
     joined:
-      icon: Joined
-      text: !html "Joined on\_%{date}"
-    location_icon: Location
-    logo: "%{user} profile picture"
-    more: More info about @%{user}
+      icon: 登録日
+      text: !html "%{date}に登録"
+    location_icon: 場所
+    logo: "%{user} のプロフィール画像"
+    more: "@%{user} をもっと知る"
     send_pm:
       code: code of conduct
       notice: !html All private interactions <b>must</b> abide by the %{code}.
@@ -1996,7 +1990,7 @@ helpers:
       title: Title
     organization:
       name: Name
-      slug: Username
+      slug: ユーザー名
       profile_image: Profile image *
       nav_image: Logo for light themes
       dark_nav_image: Logo for dark themes
@@ -2034,7 +2028,7 @@ helpers:
     user:
       name: Name
       email: Email
-      username: Username
+      username: ユーザー名
       profile_image: Profile image
       email_newsletter: Send me weekly newsletter emails
       email_digest_periodic: Send me a periodic digest of top posts from my tags
@@ -2776,7 +2770,7 @@ users_controller:
   please_provide_an_email_to2: Please, provide an email to delete your account
   the_export_will_be_emailed: ' The export will be emailed to you shortly.'
   the_given_organization_sec: The given organization secret was invalid.
-  username_cannot_be_blank: Username cannot be blank
+  username_cannot_be_blank: ユーザー名 cannot be blank
   you_have_already_requested: You have already requested account deletion. Please, check your email for further instructions.
   you_have_joined_the_organi: You have joined the %{organization_name} organization.
   you_have_left_your_organiz: You have left your organization.

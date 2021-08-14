@@ -1,20 +1,20 @@
 {
   "archivedPosts": {
-    "hide": "Hide archived",
-    "show": "Show archived",
-    "show_regexp": "Show"
+    "hide": "読了分を隠す",
+    "show": "読了分を表示",
+    "show_regexp": "表示"
   },
   "articles": {
     "flare": {
-      "comment": "comment",
-      "person": "person",
-      "podcast": "podcast"
+      "comment": "コメント",
+      "person": "人物",
+      "podcast": "ポッドキャスト"
     },
     "for_org": "%{- start} が %{- end}%{- org}%{- start} へ執筆%{- end}",
-    "reading_time_0": "約 %{count} 字/語",
+    "reading_time": "約 %{count} 字/語",
     "save": {
       "initial": "保存",
-      "remove": "Unsave",
+      "remove": "解除",
       "success": "保存済"
     }
   },
@@ -43,9 +43,9 @@
       "upload": "Upload image",
       "use": "Use a response template"
     },
-    "invalid": "Invalid file!",
+    "invalid": "無効なファイルです！",
     "like": "Like",
-    "likes_0": "&nbsp;likes",
+    "likes": "&nbsp;likes",
     "menu": {
       "aria_label": "Toggle dropdown menu",
       "copy": {
@@ -53,37 +53,37 @@
         "text": "Copy link"
       },
       "delete": {
-        "aria_label": "Delete this comment",
-        "text": "Delete"
+        "aria_label": "このコメントを削除する",
+        "text": "削除"
       },
       "edit": {
-        "aria_label": "Edit this comment",
-        "text": "Edit"
+        "aria_label": "このコメントを編集する",
+        "text": "編集"
       },
       "report": {
         "aria_label": "Report %{user}'s comment as abusive or violating our code of conduct and/or terms and conditions",
-        "text": "Report abuse"
+        "text": "違反を報告"
       },
       "settings": {
         "aria_label": "Go to %{user}'s comment settings",
-        "text": "Settings"
+        "text": "設定"
       }
     },
     "read": {
       "code": "code of conduct",
       "text": "I've read the %{- code}"
     },
-    "replies_0": " + %{count} replies",
+    "replies": " ほか %{count} 件の返信",
     "sent": {
-      "check": "Check it out",
-      "text": "Reply sent — %{- check}"
+      "check": "確認する",
+      "text": "返信しました――%{- check}"
     },
     "summary": {
       "empty": "書く"
     },
     "thread": "Thread",
-    "uploaded": "Uploaded! Paste into editor",
-    "uploading": "Uploading..."
+    "uploaded": "アップロード完了！入力欄に貼り付けます",
+    "uploading": "アップロード中…"
   },
   "csrf": {
     "error": "Could not locate CSRF meta tag on the page.",
@@ -91,31 +91,31 @@
   },
   "dashboard": {
     "article": {
-      "edit": "Edit",
-      "manage": "Manage",
-      "pin": "Pin Post",
-      "stats": "Stats",
-      "unpin": "Unpin Post"
+      "edit": "編集",
+      "manage": "状態管理",
+      "pin": "要注目に指定",
+      "stats": "統計",
+      "unpin": "要注目を外す"
     },
     "comments": {
-      "moderate": "Moderate",
-      "settings": "Settings"
+      "moderate": "審査する",
+      "settings": "設定"
     }
   },
   "editor": {
-    "continue": "Continue editing",
-    "preview": "Preview"
+    "continue": "編集を続ける",
+    "preview": "プレビュー"
   },
   "loginModal": {
-    "title": "Log in to continue"
+    "title": "ログインしましょう"
   },
   "podcasts": {
-    "rate": "%{speed}x",
+    "rate": "x%{speed}",
     "time": "initializing..."
   },
   "reactions": {
     "like": {
-      "text": "Like"
+      "text": "いいね"
     }
   },
   "tags": {
@@ -130,37 +130,30 @@
     }
   },
   "unitAgo": {
-    "day": "1 day ago",
-    "day_plural": "%{count} days ago",
-    "hour": "1 hour ago",
-    "hour_plural": "%{count} hours ago",
-    "min": "1 min ago",
-    "min_plural": "%{count} mins ago",
-    "month": "1 month ago",
-    "month_plural": "%{count} months ago",
-    "now": "just now",
-    "second": "1 second ago",
-    "second_plural": "%{count} seconds ago",
-    "week": "1 week ago",
-    "week_plural": "%{count} weeks ago",
-    "year": "1 year ago",
-    "year_plural": "%{count} years ago"
+    "day_0": "%{count}日前",
+    "hour_0": "%{count}時間前",
+    "min_0": "%{count}分前",
+    "month_0": "%{count}ヶ月前",
+    "now": "たった今",
+    "second_0": "%{count}秒前",
+    "week_0": "%{count}週間前",
+    "year_0": "%{count}年前"
   },
   "userAlertModal": {
     "comment": {
-      "action": "made a comment",
+      "action": "コメントを書いた",
       "confirm": "OK",
-      "next": "making another comment",
-      "text": "Your comment could not be posted due to an error: %{error}",
-      "text_server": "Your comment could not be posted due to a server error",
-      "title": "Error posting comment"
+      "next": "別のコメントを書く",
+      "text": "次のエラーのためコメントは投稿できませんでした: %{error}",
+      "text_server": "サーバーエラーのためコメントは投稿できませんでした",
+      "title": "コメント投稿に失敗"
     },
-    "gotit": "Got it",
-    "rateLimit": "Since you recently %{action}, you’ll need to wait a moment before %{next}.",
-    "wait": "Wait a moment...",
-    "why": "Why do I have to wait?"
+    "gotit": "了解",
+    "rateLimit": "つい今しがた%{action}ばかりです。%{next}まで間を空ける必要があります。",
+    "wait": "しばらくお待ちください",
+    "why": "待機時間の理由"
   },
   "users": {
-    "details": "%{user} profile details"
+    "details": "%{user} のプロフィール詳細"
   }
 }
