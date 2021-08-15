@@ -26,7 +26,7 @@
 
     li {
       width: 100%;
-      flex-basis: content; // to have elasticity for localized strings
+      max-width: max-content; // to have elasticity for localized strings
     }
   }
 
