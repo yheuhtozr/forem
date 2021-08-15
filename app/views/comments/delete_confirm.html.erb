@@ -6,7 +6,7 @@
   <div class="crayons-card text-padding">
     <h1 class="crayons-subtitle-1 mb-2"></h1>
     <p class="fs-l mb-4">
-      <%= _t.desc(action: link_to(_t.action,"#{@comment.path}/edit", data: { no_instant: "" }) %>
+      <%= _t.desc action: link_to(_t.action, "#{@comment.path}/edit", data: { no_instant: "" }) %>
     </p>
 
     <%= form_tag "/comments/#{@comment.id}", method: :delete do %>
