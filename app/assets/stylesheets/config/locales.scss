@@ -6,7 +6,10 @@
 }
 
 @mixin font-lang($lang, $family) {
-  #{article-lang($lang)} .text-styles,
+  $l-lang: article-lang($lang);
+
+  #{$l-lang} .text-styles,
+  #{$l-lang} .crayons-article__header h1,
   #{sel-lang('.with-content-font', $lang)} {
     font-family: #{$family};
   }
