@@ -10,6 +10,7 @@
 
   #{$l-lang} .text-styles,
   #{$l-lang} .crayons-article__header h1,
+  #{sel-lang('section#comments-container', $lang)} .text-styles p,
   #{sel-lang('.with-content-font', $lang)} {
     font-family: #{$family};
   }
