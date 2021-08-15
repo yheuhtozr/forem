@@ -11,6 +11,7 @@ module Homepage
       :reading_time,
       :title,
       :user_id,
+      :base_lang,
     )
 
     attribute :video_duration_string, &:video_duration_in_minutes

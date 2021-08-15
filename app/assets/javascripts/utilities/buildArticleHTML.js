@@ -316,7 +316,9 @@ function buildArticleHTML(article) {
           <div class="crayons-story__body">\
             <div class="crayons-story__indention">\
               <div class="crayons-story__middle">\
-                <h3 class="crayons-story__title">
+                <h3 class="crayons-story__title with-content-font" lang="${
+                  article.base_lang
+                }">
                   <a href="${article.path}" id="article-link-${article.id}">
                     ${filterXSS(article.title)}
                   </a>

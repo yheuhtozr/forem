@@ -1,4 +1,20 @@
-$l-ja: 'article[lang="ja"]';
+@function sel-lang($sel, $lang) {
+  @return '#{$sel}[lang="#{$lang}"]';
+}
+@function article-lang($lang) {
+  @return sel-lang('article', $lang);
+}
+
+@mixin font-lang($lang, $family) {
+  #{article-lang($lang)} .text-styles,
+  #{sel-lang('.with-content-font', $lang)} {
+    font-family: #{$family};
+  }
+}
+
+$l-ja: article-lang('ja');
+
+$t-xaleh: 'x-qilxaleh';
 
 // overrides typography.scss
 .text-styles {
@@ -7,7 +23,12 @@ $l-ja: 'article[lang="ja"]';
     $scale: 1.25;
     line-height: calc(var(--lh-base) * #{$scale});
 
-    h1, h2, h3, h4, h5, h6 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
       line-height: calc(var(--lh-tight) * #{$scale});
     }
   }
@@ -20,3 +41,5 @@ $l-ja: 'article[lang="ja"]';
     --locale-fs-3xl: 1.5rem;
   }
 }
+
+@include font-lang($t-xaleh, 'Vekos, sans-serif');

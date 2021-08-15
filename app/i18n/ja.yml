@@ -518,7 +518,7 @@ v:
       org: "%{org} Analytics Dashboard"
     article:
       heading:
-        text: "%{archived}%{title}"
+        text: !html "%{archived}%{title}"
         archived: "[Archived] "
       archived: Archived
       published: "Published:"
