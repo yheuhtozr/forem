@@ -11,7 +11,7 @@
       "podcast": "ポッドキャスト"
     },
     "for_org": "%{- start} が %{- end}%{- org}%{- start} へ執筆%{- end}",
-    "reading_time": "約 %{count} 字/語",
+    "reading_time_0": "約 %{count} 字/語",
     "save": {
       "initial": "保存",
       "remove": "解除",
@@ -23,34 +23,34 @@
   },
   "comments": {
     "form": {
-      "cancel": "Dismiss",
-      "guide": "Markdown Guide",
-      "preview": "Preview",
+      "cancel": "やめる",
+      "guide": "Markdown ガイド",
+      "preview": "プレビュー",
       "reply": {
-        "aria_label": "Reply to a comment...",
-        "placeholder": "Reply...",
-        "text": "Reply"
+        "aria_label": "コメントに返信する",
+        "placeholder": "返信を書く",
+        "text": "返信"
       },
-      "submit": "Submit",
-      "submit_upload": "Upload",
+      "submit": "送信",
+      "submit_upload": "アップロード",
       "template": {
-        "create": "Create template",
-        "desc": "Templates let you quickly answer FAQs or store snippets for re-use.",
-        "moderator": "Moderator",
-        "personal": "Personal"
+        "create": "定型文を作成",
+        "desc": "定型文はよくある質問への回答やよく使う文例の保存に役立ちます。",
+        "moderator": "審査用",
+        "personal": "個人用"
       },
-      "templates": "Templates",
-      "upload": "Upload image",
-      "use": "Use a response template"
+      "templates": "定型文",
+      "upload": "画像をアップロード",
+      "use": "定型の返信を使用"
     },
     "invalid": "無効なファイルです！",
-    "like": "Like",
-    "likes": "&nbsp;likes",
+    "like": "いいね",
+    "likes_0": "いいね&nbsp;",
     "menu": {
-      "aria_label": "Toggle dropdown menu",
+      "aria_label": "ドロップダウンメニューの表示切り替え",
       "copy": {
-        "aria_label": "Copy link to %{user}'s comment",
-        "text": "Copy link"
+        "aria_label": "%{user} のコメントのリンクをコピーする",
+        "text": "リンクをコピー"
       },
       "delete": {
         "aria_label": "このコメントを削除する",
@@ -61,19 +61,19 @@
         "text": "編集"
       },
       "report": {
-        "aria_label": "Report %{user}'s comment as abusive or violating our code of conduct and/or terms and conditions",
+        "aria_label": "%{user} のコメントに悪意がある、もしくはサイトのルールに違反しているとして報告する",
         "text": "違反を報告"
       },
       "settings": {
-        "aria_label": "Go to %{user}'s comment settings",
+        "aria_label": "%{user} のコメント設定へ",
         "text": "設定"
       }
     },
     "read": {
       "code": "code of conduct",
-      "text": "I've read the %{- code}"
+      "text": "%{- code}を読みました"
     },
-    "replies": " ほか %{count} 件の返信",
+    "replies_0": " ほか %{count} 件の返信",
     "sent": {
       "check": "確認する",
       "text": "返信しました――%{- check}"
@@ -81,7 +81,7 @@
     "summary": {
       "empty": "書く"
     },
-    "thread": "Thread",
+    "thread": "スレッド",
     "uploaded": "アップロード完了！入力欄に貼り付けます",
     "uploading": "アップロード中…"
   },

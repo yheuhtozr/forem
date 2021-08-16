@@ -88,9 +88,9 @@ v:
     delete:
       heading: この記事を削除してもよろしいですか？
       desc:
-        text: !html この操作は取り消せません。それとも%{action}しますか？
-        edit: 編集
-        unpublish: 公開停止
+        text: !html この操作は取り消せません。それとも%{action}ますか？
+        edit: 編集し
+        unpublish: 公開停止し
       action:
         button: 削除
         cancel: やめる
@@ -142,8 +142,8 @@ v:
       edit: 編集画面へ
     co_authors: !html with %{names}
     crossposted:
-      text: !html 元記事は%{on}に %{url} で掲載
-      'on': "%{date}"
+      text: !html 元記事は %{on} %{url} で掲載
+      'on': "%{date}に"
     edited: "%{date}に更新"
     for_org: !html "%{start} が %{end}%{org}%{start} へ執筆%{end}"
     missing: 記事は公開終了しました
@@ -306,47 +306,47 @@ v:
       create:
         success: created
         failure: comment already exists
-      markdown: "There was an error in your markdown: %{error}"
-      markdown_html: !html <p>😔 There was an error in your markdown</p><hr><p>%{error}</p>
+      markdown: "Markdown に誤りがあります: %{error}"
+      markdown_html: !html <p>😔 Markdown に誤りがあります</p><hr><p>%{error}</p>
     parent:
-      subtitle: !html "%{start}Discussion on: %{end}%{title}"
+      subtitle: !html "%{start}元記事: %{end}%{title}"
       metadata: !html "%{name}%{on}"
-      date: " on %{date}"
-      full: Full discussion
-      read: Read full post
-      view: View post
-      reply: !html "%{start}Replies for:%{end} %{title}"
+      date: " が %{date}に投稿"
+      full: コメント欄全体
+      read: 完全な記事へ
+      view: 記事へ
+      reply: !html "%{start}返信元:%{end} %{title}"
     delete:
-      heading: Are you sure you want to delete this comment?
-      desc: !html You cannot undo this action, perhaps you just want to %{action} instead?
-      action: Edit
-      error: Something went wrong; Comment NOT deleted.
-      notice: Comment was successfully deleted.
-      submit: Delete
-      edit: Edit
-      cancel: Dismiss
-    collapse: Collapse
-    edit: Editing comment
+      heading: このコメントを削除してもよろしいですか？
+      desc: !html この操作は取り消せません。それとも%{action}ますか？
+      action: 編集し
+      error: 問題が発生し、コメントが削除されませんでした。
+      notice: コメントの削除が完了しました。
+      submit: 削除する
+      edit: 編集する
+      cancel: やめる
+    collapse: たたむ
+    edit: コメント編集中
     edited:
-      text: !html "&bull; %{on}に修正"
-      'on': "%{date}"
-    expand: Expand
+      text: !html "&bull; %{on}修正"
+      'on': "%{date}に"
+    expand: 展開する
     hidden:
       text: !html 非表示にされているコメントがあります（%{info}）
       info: 詳細
-    locked: The discussion has been locked. New comments can't be added.
+    locked: コメント欄は凍結中です。新しいコメントは書き込めません。
     orphan:
-      heading: Comment from a deleted article or podcast
-      deleted: "[deleted]"
-      delete: DELETE
-      edit: EDIT
+      heading: 削除された記事またはポッドキャストへのコメント
+      deleted: "[削除済]"
+      delete: 削除する
+      edit: 編集する
     re:
       text: !html "%{re}%{title}"
       re: "Re: "
     settings:
       meta:
-        title: Comment Settings
-      heading: Comment Settings
+        title: コメント設定
+      heading: コメント設定
       state:
         show:
           subtitle: Showing thread notifications
@@ -367,66 +367,65 @@ v:
         text: Comment hidden by post author - thread only visible in this permalink
     write:
       errors: !pl
-        1: "1 error prohibited this comment from being saved:"
-        n: "%1 errors prohibited this comment from being saved:"
+        1: エラーが発生したためコメントは保存されませんでした。
+        n: "%1 件のエラーが発生したためコメントは保存されませんでした。"
       field:
-        aria_label: Add a comment to the discussion
-        placeholder: Add to the discussion
-        submit: Upload
-        templates: Templates
-        upload: Upload image
-        use: Use a response template
+        aria_label: 新しいコメントを追加する
+        placeholder: 議論に参加する
+        submit: アップロード
+        templates: 定型文
+        upload: 画像をアップロード
+        use: 定型の返信を使用
         guide:
-          title: Markdown Guide
-          icon: Editor guide
+          title: Markdown ガイド
+          icon: エディタガイド
       template:
-        article: This post comes with a comment template
+        article: この記事には返信の定型文があります
         create:
-          subtitle: Create template
-          desc: Templates let you quickly answer FAQs or store snippets for re-use.
-        moderator: Moderator
-        personal: Personal
-      submit: Submit
-      preview: Preview
-      cancel: Dismiss
+          subtitle: 定型文を作成
+          desc: 定型文はよくある質問への回答やよく使う文例の保存に役立ちます。
+        moderator: 審査用
+        personal: 個人用
+      submit: 送信
+      preview: プレビュー
+      cancel: やめる
     menu:
-      aria_label: Toggle dropdown menu
-      icon: Dropdown menu
+      aria_label: ドロップダウンメニューの表示切り替え
+      icon: ドロップダウンメニュー
       copy:
-        aria_label: Copy link to %{user}'s comment
-        text: Copy link
+        aria_label: "%{user} のコメントのリンクをコピーする"
+        text: リンクをコピー
       settings:
-        aria_label: Go to %{user}'s comment settings
+        aria_label: "%{user} のコメント設定へ"
       action:
-        aria_label: "%{action} %{user}'s comment"
-        hide: Hide
-        unhide: Unhide
+        aria_label: "%{user} のコメントを%{action}"
+        hide: 隠す
+        unhide: 再表示する
       moderate:
-        aria_label: Moderate %{user}'s comment
+        aria_label: "%{user} のコメントを審査"
       report:
-        aria_label: Report %{user}'s comment as abusive or violating our code of conduct and/or terms and conditions
+        aria_label: "%{user} のコメントに悪意がある、もしくはサイトのルールに違反しているとして報告する"
     footer:
       heart:
-        title: heart
-        icon: Favorite heart outline button
-        count: !html "%{num}%{likes}"
-        text: Like
+        title: ハート
+        icon: いいねのハートボタン（白抜き）
+        count: !html "%{likes}%{num}"
+        text: いいね
       reply:
-        aria_label: Reply to a comment...
-        icon: Comment button
-        done: Replied
-        text: Reply
-        placeholder: Reply...
+        aria_label: コメントに返信する
+        icon: コメントボタン
+        done: 返信完了
+        text: 返信
+        placeholder: 返信を書く
       thread:
-        icon: Thread
-        text: Thread
+        icon: スレッド
+        text: スレッド
       view:
-        icon: View button
-        text: View
+        icon: 表示するボタン
+        text: 表示
     plucked:
       count: !pl
-        1: "%1 comment"
-        n: "%1 comments"
+        n: "コメント %1"
       empty: 書く
     summary:
       title: コメント
@@ -771,7 +770,7 @@ v:
     delete:
       subtitle: Are you sure you want to delete this listing?
       desc:
-        text: !html You cannot undo this action, perhaps you just want to %{action} instead?
+        text: !html この操作は取り消せません。それとも%{action}ますか？
         edit: edit
         unpublish: unpublish
       edit: Edit
@@ -795,8 +794,8 @@ v:
       update_draft: Update draft
     to_edit: Edit
     errors: !pl
-      1: "1 error prohibited this listing from being saved:"
-      n: "%1 errors prohibited this listing from being saved:"
+      1: 件のエラーが発生したため告知は保存されませんでした。
+      n: "%1 件のエラーが発生したため告知は保存されませんでした。"
     expired: This listing has expired.
     form:
       body_markdown:
@@ -978,8 +977,8 @@ v:
         a_u: Admin:User
         r_a: ResourceAdmin:Article
       errors: !pl
-        1: "1 error prohibited this block from being saved:"
-        n: "%1 errors prohibited this block from being saved:"
+        1: エラーが発生したためブロックは保存されませんでした。
+        n: "%1 件のエラーが発生したためブロックは保存されませんでした。"
       exp:
         heading: Set experience level
         heading2: Experience Level of Post
@@ -1466,7 +1465,7 @@ v:
       static: Static top of page
       theme: Site Theme
       writing: Writing
-    danger: 危険な操作
+    danger: キケン
     destroy:
       heading: Destroy your account
       desc: "Deleting your account will:"
@@ -1490,11 +1489,11 @@ v:
       code: Click here for the code
     errors:
       org: !pl
-        1: "1 error prohibited your organization profile from being saved:"
-        n: "%1 errors prohibited your organization profile from being saved:"
+        1: エラーが発生したためグループプロフィールは保存されませんでした。
+        n: "%1 件のエラーが発生したためグループプロフィールは保存されませんでした。"
       profile: !pl
-        1: "1 error prohibited your profile from being saved:"
-        n: "%1 errors prohibited your profile from being saved:"
+        1: エラーが発生したため個人プロフィールは保存されませんでした。
+        n: "%1 件のエラーが発生したため個人プロフィールは保存されませんでした。"
     extensions:
       comment:
         heading: Comment templates
@@ -2095,10 +2094,9 @@ helpers:
   comments_helper:
     ask_me_anything: Ask Me Anything
     author: Author
-    like: Like
+    like: いいね
     nbsp_likes: !pl
-      1: !html '&nbsp;like'
-      n: !html '&nbsp;likes'
+      n: !html 'いいね&nbsp;'
   feedback_messages_helper:
     code_of_conduct_violation: '%{community} Code of Conduct Violation'
     courtesy_notice_from: Courtesy Notice from %{community}
