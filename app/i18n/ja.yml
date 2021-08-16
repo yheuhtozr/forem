@@ -409,6 +409,7 @@ v:
       heart:
         title: heart
         icon: Favorite heart outline button
+        count: !html "%{num}%{likes}"
         text: Like
       reply:
         aria_label: Reply to a comment...
@@ -1135,6 +1136,7 @@ v:
       title: "%{community} へようこそ！"
     heading: 今日から私たちの一員です！
     subtitle: まず何をしたらいい？
+    close: Close Welcome Message
     settings: !html <span class="emoji">💅🏼</span>プロフィールを設定する
     welcome: !html <span class="emoji">😊</span>ようこそスレッドに挨拶する
     write: !html <span class="emoji">✍🏾</span>%{community}に最初の記事を書く

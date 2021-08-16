@@ -29,7 +29,7 @@
           <img class="reacted-emoji" src="<%= asset_path("emoji/emoji-one-thumbs-up.png") %>" alt="Thumbs up emoji" />
           <%= inline_svg_tag("checkmark.svg", aria: true, class: "crayons-icon reaction-checkmark", title: _t.checkmark) %>
         </div>
-        <span class="vote-text"><%= _t.vote_down %></span>
+        <span class="vote-text"><%= _t.vote_up %></span>
       </button>
       <button class="reaction-button <%= Reaction.cached_any_reactions_for?(@moderatable, current_user, "thumbsdown") ? "reacted" : "" %>"
               data-reactable-id="<%= @moderatable.id %>"
@@ -40,7 +40,7 @@
           <img class="reacted-emoji downvote" src="<%= asset_path("emoji/emoji-one-thumbs-down.png") %>" alt="Thumbs down emoji" />
           <%= inline_svg_tag("checkmark.svg", aria: true, class: "crayons-icon reaction-checkmark", title: _t.checkmark) %>
         </div>
-        <span class="vote-text"><%= _t.vote_up %></span>
+        <span class="vote-text"><%= _t.vote_down %></span>
       </button>
     </div>
     <button class="reaction-vomit-button <%= Reaction.cached_any_reactions_for?(@moderatable, current_user, "vomit") ? "reacted" : "" %>"

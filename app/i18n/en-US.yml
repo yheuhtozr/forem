@@ -1138,6 +1138,7 @@ v:
       title: Welcome to %{community}
     heading: You're now a part of the community!
     subtitle: SUGGESTED THINGS YOU CAN DO
+    close: Close Welcome Message
     settings: !html <span class="emoji">💅🏼</span>Customize your profile
     welcome: !html <span class="emoji">😊</span>Join the Welcome thread
     write: !html <span class="emoji">✍🏾</span>Write your first %{community} post
