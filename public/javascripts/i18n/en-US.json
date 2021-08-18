@@ -71,6 +71,7 @@
         "text": "Settings"
       }
     },
+    "num_likes": "%{- num}%{- likes}",
     "read": {
       "code": "code of conduct",
       "text": "I've read the %{- code}"
@@ -115,11 +116,6 @@
   "podcasts": {
     "rate": "%{speed}x",
     "time": "initializing..."
-  },
-  "reactions": {
-    "like": {
-      "text": "Like"
-    }
   },
   "tags": {
     "following": {

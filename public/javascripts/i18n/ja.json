@@ -69,6 +69,7 @@
         "text": "設定"
       }
     },
+    "num_likes": "%{- likes}%{- num}",
     "read": {
       "code": "code of conduct",
       "text": "%{- code}を読みました"
@@ -112,11 +113,6 @@
   "podcasts": {
     "rate": "x%{speed}",
     "time": "initializing..."
-  },
-  "reactions": {
-    "like": {
-      "text": "いいね"
-    }
   },
   "tags": {
     "following": {

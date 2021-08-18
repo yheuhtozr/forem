@@ -53,6 +53,11 @@ MAP = {
     __orphan: [%w[all blocked delete hide number subscription], %w[invalid read replies sent uploaded uploading]],
     footer: {
       __scope: [nil, 'comments.form'],
+      heart: {
+        __scope: [nil, 'comments'],
+        count: [nil, 'num_likes'],
+        _count: { html: %w[num likes] },
+      },
       reply: {
         aria_label: [nil, true],
         placeholder: [nil, true],
@@ -209,10 +214,7 @@ MAP = {
     time: [nil, true],
   },
   reactions: {
-    __orphan: [%w[number]],
-    like: {
-      text: [nil, true],
-    },
+    __orphan: [%w[number]]
   },
   search: {
     __orphan: [%w[aria_label empty]],
