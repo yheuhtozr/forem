@@ -333,6 +333,7 @@ class StoriesController < ApplicationController
   def set_user_json_ld
     # For more info on structuring data with JSON-LD,
     # please refer to this link: https://moz.com/blog/json-ld-for-beginners
+    decorated_user = @user.decorate
     @user_json_ld = {
       "@context": "http://schema.org",
       "@type": "Person",

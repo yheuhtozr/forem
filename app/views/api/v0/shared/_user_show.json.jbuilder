@@ -5,11 +5,8 @@ json.extract!(
   :id,
   :username,
   :name,
-  :summary,
   :twitter_username,
   :github_username,
-  :website_url,
-  :location,
 )
 
 json.joined_at     user.created_at.strftime(R18n.t.date.json)

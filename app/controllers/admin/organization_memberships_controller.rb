@@ -2,6 +2,8 @@ module Admin
   class OrganizationMembershipsController < Admin::ApplicationController
     layout "admin"
 
+    ALLOWED_PARAMS = %i[user_id type_of_user organization_id].freeze
+
     def update
       organization_membership = OrganizationMembership.find_by(id: params[:id])
       if organization_membership.update(organization_membership_params)
@@ -11,7 +13,6 @@ module Admin
       else
         flash[:danger] = organization_membership.errors.full_messages
       end
-      redirect_to admin_user_path(organization_membership.user_id)
     end
 
     def create
@@ -28,7 +29,6 @@ module Admin
       else
         flash[:danger] = organization_membership.errors.full_messages
       end
-      redirect_to admin_user_path(organization_membership.user_id)
     end
 
     def destroy
@@ -42,14 +42,16 @@ module Admin
                          organization_membership_or: organization_membership.organization_id)
         flash[:danger] = message
       end
-      redirect_to admin_user_path(organization_membership.user_id)
     end
 
     private
 
-    def organization_membership_params
-      allowed_params = %i[type_of_user user_title organization_id user_id]
-      params.require(:organization_membership).permit(allowed_params)
+    def organization_membership_params_for_create
+      params.require(:organization_membership).permit(ALLOWED_PARAMS)
+    end
+
+    def organization_membership_params_for_update
+      params.require(:organization_membership).permit(:type_of_user)
     end
   end
 end

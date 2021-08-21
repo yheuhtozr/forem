@@ -6,7 +6,7 @@
   <%= render "collections/meta", title_string: title_string, description_string: description_string, path: @collection.path %>
 <% end %>
 
-<div class="crayons-layout crayons-layout--1-col">
+<main id="main-content" class="crayons-layout crayons-layout--1-col">
   <header class="px-2 m:px-0">
     <h1><%= title_string %></h1>
     <%= link_to _t.back(user: @user.name), user_series_path(@user.username) %>
@@ -18,9 +18,10 @@
         <% @articles.each do |article| %>
           <%= render "articles/single_story", story: article.decorate, featured: article.main_image.present? %>
         <% end %>
+        <%= javascript_packs_with_chunks_tag "followButtons", "feedPreviewCards", defer: true %>
       <% else %>
         <p><%= _t.empty %></p>
       <% end %>
     </div>
   </div>
-</div>
+</main>

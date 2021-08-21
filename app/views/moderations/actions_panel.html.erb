@@ -47,8 +47,7 @@
             data-reactable-id="<%= @moderatable.id %>"
             data-category="vomit"
             data-reactable-type="<%= @moderatable.class.name %>">
-      <%= image_tag("emoji/emoji-one-nausea-face-gray.png", alt: "Nausea face emoji", class: "emoji-grey") %>
-      <img class="reacted-emoji" src="<%= asset_path("emoji/emoji-one-nausea-face.png") %>" alt="Nausea down emoji" />
+      <%= inline_svg_tag("twemoji/suspicious.svg", aria: true, class: "crayons-icon crayons-icon--default mr-1", title: "Suspicious...") %>
       <span></span>
       <%= inline_svg_tag("checkmark.svg", aria: true, class: "crayons-icon vomit-checkmark", title: _t.checkmark) %>
     </button>
@@ -140,6 +139,7 @@
 
     <div id=" set-experience-options " class=" set-experience-options dropdown-options hidden ">
       <% rating_hash = { "Expert" => [10, 5], "Advanced" => [8, 4], "Mid-level" => [5, 3], "Beginner" => [3, 2], "Novice" => [1, 1] } %>
+      <% current_rating_value = @rating_vote.rating.round(0) if @rating_vote %>
       <% rating_hash.each do |rating_name, rating_level| %>
       <button
         value="<%= rating_level[0] %>"
