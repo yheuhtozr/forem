@@ -19,8 +19,8 @@ module Settings
       format: {
         with: HEX_COLOR_REGEX,
         message: -> { I18n.t("models.settings.user_experience.must_be_be_a_3_or_6_charac") }
-      },
-      color_contrast: true
+      }
+      # color_contrast: true # [yheuhtozr]: temporarily disabled for styling rework
     }
     # a non-public forem will redirect all unauthenticated pages to the registration page.
     # a public forem could have more fine-grained authentication (listings ar private etc.) in future

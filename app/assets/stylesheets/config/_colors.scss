@@ -9,9 +9,9 @@
 
 :root {
   // https://colorpalettes.net/color-palette-4143/
-  $base-colors: #8fc31f, #f1f3ef;
-  $theme-colors: #d1cac6, #c3c9cd;
-  $accent: #bb9d8b;
+  $base-colors: #181c14, #f1f3ef;
+  $theme-colors: #8fc31f, #c3c9cd;
+  // $accent: #bb9d8b;
   $brand: #6d7d62;
   ////////////////////////////////////////////////////////////////////////////////////
   // Fundamental color variables. ///////////////////////////////////////////////////
@@ -76,8 +76,6 @@
   --accent-danger-lighter: #ec5050;
   --accent-danger-a10: #{rgba(#dc1818, 0.1)};
 
-  --accent-2: #{$accent};
-
   ////////////////////////////////////////////////////////////////////////////////////
   // Functional color variables. /////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////
@@ -92,7 +90,7 @@
   --card-bg: var(--base-0);
   --card-color: var(--base-100);
   --card-color-secondary: var(--base-70);
-  --card-color-tertiary: var(--accent-2);
+  --card-color-tertiary: var(--base-inverted);
   --card-secondary-bg: var(--base-a5);
   --card-secondary-color: var(--base-90);
   --card-headline-color: var(--base-100);
@@ -107,7 +105,7 @@
   --header-bg-hover: var(--base-10);
   --header-button-focus-color: var(--accent-brand);
   --header-bg-current: var(--base-20);
-  --header-shadow: var(--accent-2);
+  --header-shadow: rgba(0, 0, 0, 0.1);
   --header-icons-color: var(--base-70);
   --header-icons-color-hover: var(--base-100);
 

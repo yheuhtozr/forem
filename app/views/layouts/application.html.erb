@@ -34,6 +34,11 @@
       <link rel="apple-touch-icon" sizes="167x167" href="<%= optimized_image_url(Settings::General.logo_png, width: 167, fetch_format: "png") %>">
       <link href="<%= optimized_image_url(Settings::General.logo_png, width: 192, fetch_format: "png") %>" rel="icon" sizes="192x192" />
       <link href="<%= optimized_image_url(Settings::General.logo_png, width: 128, fetch_format: "png") %>" rel="icon" sizes="128x128" />
+      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+      <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+      <link rel="manifest" href="/site.webmanifest">
+      <link rel="mask-icon" href="/safari-pinned-tab.svg" color="<%= Settings::UserExperience.primary_brand_color_hex %>">
+      <meta name="msapplication-TileColor" content="<%= Settings::UserExperience.primary_brand_color_hex %>">
       <meta name="apple-mobile-web-app-title" content="<%= Settings::General.app_domain %>">
       <meta name="application-name" content="<%= Settings::General.app_domain %>">
       <meta name="theme-color" content="#000000" />
