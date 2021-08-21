@@ -199,7 +199,7 @@ v:
           label: パスワードを再入力
         required: "* は必須項目"
       secret:
-        label: 新しい Forem の Secret
+        label: 新しい Forem の暗証コード
         placeholder: Forem ホストから伝えられた通り入力
       submit: 登録する
     wizard:
@@ -1569,25 +1569,25 @@ v:
       Work: Work
     settings:
       meta:
-        title: Settings
+        title: 設定
       complete:
-        heading: Confirm your email to complete your profile.
-        desc: While you're at it, go ahead and fill everything out.
-        github: Connect your github account as well to complete your identity.
-        twitter: Connect your twitter account as well to complete your identity.
-      email: Email verification.
-      finalize: !html You have requested a change to %{email}. Check your inbox for the verification link to finalize the change.
-      for: !html Setting for %{name}
-      new_org: New Organization
-      previous: !html There is an existing account authorized with that social account. Contact %{email} if this is a mistake.
+        heading: メールアドレスを追加してプロフィールを完成させましょう
+        desc: ついでに他の情報も記入しておきましょう。
+        github: GitHub アカウントと連携させてプロフィールに載せませんか？
+        twitter: Twitter アカウントと連携させてプロフィールに載せませんか？
+      email: メールアドレスを認証する
+      finalize: !html あなたは %{email} への変更を申請しました。お送りした認証リンクから認証を完了させてください。
+      for: !html "%{name} の設定"
+      new_org: 新規グループ
+      previous: !html この SNS アカウントで登録している人がいるようです。手違いの場合は %{email} にご連絡ください。
       tab:
-        Profile: Profile
-        Customization: Customization
-        Notifications: Notifications
-        Account: Account
-        Billing: Billing
-        Organization: Organization
-        Extensions: Extensions
+        Profile: プロフィール
+        Customization: カスタマイズ
+        Notifications: 通知
+        Account: アカウント
+        Billing: 課金
+        Organization: グループ
+        Extensions: 拡張機能
     notifications:
       email: Email notifications
       general: General notifications
@@ -1658,22 +1658,22 @@ v:
         secret_code: "Your secret code is:"
         you: You
       create:
-        heading: Create An Organization
-        notice: You must have your organization's permission to submit this form. Dishonesty may result in a permanent suspension.
-        proof: This is just a quick blurb indicating or link that shows that you clearly are associated with this organization.
-        required: Starred fields are required
-        slug: Your organization URL will be %{url}/{username}
-        submit: Create Organization
+        heading: グループを作成
+        notice: フォームを送信する前に所属するグループの許可を得てください。偽の記載があった場合、無期限凍結されることがあります。
+        proof: このグループとあなたの関わりを証明できるようなリンクや簡単な説明を書いてください。
+        required: アスタリスクの欄は必須項目
+        slug: あなたのグループページの URL は %{url}/{username} です
+        submit: グループを作成する
       join:
-        heading: Join An Organization
-        desc: Provided to you by an org admin
-        label: Secret code
+        heading: グループに参加
+        desc: グループの管理者から伝えられた内容
+        label: 暗証コード
         placeholder: "..."
-        submit: Join Organization
+        submit: グループに参加する
       leave:
-        confirm: Are you sure you want to leave this organization?
-        submit: Leave Organization
-      divider: OR
+        confirm: 本当にこのグループから脱退しますか？
+        submit: グループを脱退する
+      divider: または
     password:
       heading: Set new password
       desc: !html |-
@@ -1691,16 +1691,16 @@ v:
     pinned: Pinned
     profile_fields: # TODO: work / merge with profile fields DB labels...
       bio:
-        label: Bio
-        placeholder: A short bio...
-      display_email_on_profile: Display email on profile
+        label: 一言紹介
+        placeholder: 簡単な紹介文を
+      display_email_on_profile: プロフィールにメールアドレスを表示
       location:
-        label: Location
-        placeholder: Halifax, Nova Scotia
+        label: 場所
+        placeholder: イーハトーヴォ県モリーオ市
       website:
-        label: Website URL
+        label: サイト URL
         placeholder: https://yoursite.com
-      website_url: Website URL
+      website_url: サイト URL
       education: Education
       currently_learning: Currently learning
       currently_hacking_on: Currently hacking on
@@ -1997,24 +1997,24 @@ helpers:
       tag_list: Tags
       title: Title
     organization:
-      name: Name
+      name: 名前
       slug: ユーザー名
-      profile_image: Profile image
-      nav_image: Logo for light themes
-      dark_nav_image: Logo for dark themes
-      twitter_username: Twitter username
-      github_username: GitHub username
-      url: Website url
-      tag_line: Tag line
-      summary: Summary
-      location: Location
-      email: Support email
+      profile_image: プロフィール画像
+      nav_image: 明るい配色用のロゴ
+      dark_nav_image: 暗い配色用のロゴ
+      twitter_username: Twitter ユーザー名
+      github_username: GitHub ユーザー名
+      url: サイト URL
+      tag_line: キャッチコピー
+      summary: 紹介文
+      location: 場所
+      email: 問い合わせメールアドレス
       company_size: Organization size
       story: Our story
       tech_stack: Our stack
-      cta_body_markdown: Body text
-      cta_button_text: Link text
-      cta_button_url: Link url
+      cta_body_markdown: 本文
+      cta_button_text: リンクの文言
+      cta_button_url: リンク URL
       proof: Proof
     podcast:
       android_url: Android url
@@ -2034,10 +2034,10 @@ helpers:
       title: Title
       content: Comment body (Markdown)
     user:
-      name: Name
-      email: Email
+      name: 名前
+      email: メールアドレス
       username: ユーザー名
-      profile_image: Profile image
+      profile_image: プロフィール画像
       email_newsletter: Send me weekly newsletter emails
       email_digest_periodic: Send me a periodic digest of top posts from my tags
       email_membership_newsletter: Send me sustaining membership newsletter emails
