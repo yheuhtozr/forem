@@ -1,3 +1,5 @@
+@import '../config/site_colors';
+
 :root {
   --theme-secondary-color: #505159;
   --theme-container-background: #ffffff;
@@ -83,6 +85,7 @@
   --header-shadow: rgba(0, 0, 0, 0.1);
   --header-icons-color: #0a0a0a;
   --header-icons-color-hover: #000;
+  --site-logo-bg: #{nth($theme-colors, 1)};
 
   // Logo
   --logo-bg: #e3e5ed;
