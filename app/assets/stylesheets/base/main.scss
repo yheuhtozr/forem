@@ -67,7 +67,6 @@ a {
   max-width: var(--max-width, 125px);
   font-size: var(--font-size, var(--fs-base));
   font-weight: var(--font-weight, var(--fw-medium));
-  background-color: var(--site-logo-bg, inherit);
 
   display: inline-flex;
   flex-shrink: 0;
@@ -106,5 +105,6 @@ a {
     height: calc(var(--header-height) - var(--su-2) * 2);
     vertical-align: middle;
     display: inline-block;
+    background-color: var(--site-logo-bg, inherit);
   }
 }

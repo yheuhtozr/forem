@@ -135,5 +135,5 @@
   }
 }
 
-@include avatar-logo('avatar', 100%, var(--card-color-tertiary));
+@include avatar-logo('avatar', 100%, var(--card-hover-bg));
 @include avatar-logo('logo', var(--radius), var(--body-color-inverted));

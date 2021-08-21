@@ -1,4 +1,5 @@
 @import 'config/import';
+@import 'config/site_colors';
 
 .rich-selector {
   background: var(--card-secondary-bg);
@@ -14,7 +15,7 @@
 }
 
 .font-selector--sans-serif {
-  font-family: var(--ff-sans-serif);
+  font-family: var(--ff-true-sans-serif);
 }
 
 .font-selector--monospace {
@@ -88,11 +89,11 @@
 }
 
 .theme-selector--default {
-  --preview-body-bg: #f9f9fa;
-  --preview-body-color: #0a0a0a;
-  --preview-header: #fdf9f3;
-  --preview-form: #e8e7e7;
-  --preview-card: #fff;
+  --preview-body-bg: #{image-url('nice-snow.png')} #{nth($theme-colors, 2)};
+  --preview-body-color: #{nth($base-colors, 1)};
+  --preview-header: #{nth($theme-colors, 1)};
+  --preview-form: #f1f3ef;
+  --preview-card: #f1f3ef;
   --preview-border: rgba(0, 0, 0, 0.1);
 }
 
