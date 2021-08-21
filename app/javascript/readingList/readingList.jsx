@@ -107,7 +107,7 @@ export class ReadingList extends Component {
   toggleArchiveStatus = (event, item) => {
     event.preventDefault();
 
-    const { statusView, items } = this.state;
+    const { statusView, items, itemsTotal } = this.state;
     request(`/reading_list_items/${item.id}`, {
       method: 'PUT',
       body: { current_status: statusView },
@@ -118,6 +118,7 @@ export class ReadingList extends Component {
     this.setState({
       archiving: true,
       items: newItems,
+      itemsTotal: itemsTotal - 1,
     });
 
     // hide the snackbar in a few moments

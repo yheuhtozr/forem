@@ -1,4 +1,4 @@
-<% _t = t.v.users %>
+<main id="main-content">
 <% title @user.name %>
 
 <%= render "shared/payment_pointer", user: @user %>
@@ -61,13 +61,13 @@
 
         <div class="profile-header__details">
           <h1 class="crayons-title fw-heavy mb-2"><%= @user.name %></h1>
-          <p class="fs-base m:fs-l color-base-90 mb-4 mx-auto max-w-100 m:max-w-75"><%= @user.profile.summary.presence || [_t.empty].sample %></p>
+          <p class="fs-base m:fs-l color-base-90 mb-4 mx-auto max-w-100 m:max-w-75"><%= @user.tag_line.presence || ["404 bio not found"].sample %></p>
 
           <div class="profile-header__meta">
             <% if @user.profile.location.present? %>
               <span class="profile-header__meta__item">
-                <%= inline_svg_tag("location.svg", aria: true, class: "crayons-icon mr-2 shrink-0", title: _t.location_icon) %>
-                <%= @user.location %>
+                <%= inline_svg_tag("location.svg", aria: true, class: "crayons-icon mr-2 shrink-0", title: "Location") %>
+                <%= @user.profile.location %>
               </span>
             <% end %>
 
@@ -84,9 +84,9 @@
             <% end %>
 
             <% if @user.profile.website_url.present? %>
-              <a href="<%= @user.website_url %>" target="_blank" rel="noopener me" class="profile-header__meta__item">
-                <%= inline_svg_tag("link-external.svg", class: "crayons-icon mr-2 shrink-0", aria: true, title: _t.website) %>
-                <%= @user.website_url %>
+              <a href="<%= @user.profile.website_url %>" target="_blank" rel="noopener me" class="profile-header__meta__item">
+                <%= inline_svg_tag("link-external.svg", class: "crayons-icon mr-2 shrink-0", aria: true, title: "Personal website") %>
+                <%= @user.profile.website_url %>
               </a>
             <% end %>
 
@@ -157,5 +157,6 @@
     </div>
   </main>
 </div>
+</main>
 
-<%= javascript_packs_with_chunks_tag "storiesList", "followButtons", defer: true %>
+<%= javascript_packs_with_chunks_tag "storiesList", "followButtons", "feedPreviewCards", defer: true %>

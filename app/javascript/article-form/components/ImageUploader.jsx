@@ -1,6 +1,6 @@
 /* global Runtime */
 
-import { h } from 'preact';
+import { Fragment, h } from 'preact';
 import { useReducer } from 'preact/hooks';
 import { generateMainImage } from '../actions';
 import { validateFileInputs } from '../../packs/validateFileInputs';
@@ -17,7 +17,7 @@ const ImageIcon = () => (
     className="crayons-icon"
     xmlns="http://www.w3.org/2000/svg"
     role="img"
-    aria-labelledby="a17qec5pfhrwzk9w4kg0tp62v27qqu9t"
+    aria-hidden="true"
   >
     <title id="a17qec5pfhrwzk9w4kg0tp62v27qqu9t">
       {i18next.t('editor.image.icon')}
@@ -68,6 +68,50 @@ function imageUploaderReducer(state, action) {
       return state;
   }
 }
+
+const NativeIosImageUpload = ({
+  uploadingImage,
+  extraProps,
+  handleNativeMessage,
+}) => (
+  <Fragment>
+    {!uploadingImage && (
+      <Button
+        className="mr-2 fw-normal"
+        variant="ghost"
+        contentType="icon-left"
+        icon={ImageIcon}
+        {...extraProps}
+      >
+        Upload image
+      </Button>
+    )}
+    <input
+      type="hidden"
+      id="native-image-upload-message"
+      value=""
+      onChange={handleNativeMessage}
+    />
+  </Fragment>
+);
+
+const StandardImageUpload = ({ handleInsertionImageUpload, uploadingImage }) =>
+  uploadingImage ? null : (
+    <Fragment>
+      <label className="cursor-pointer crayons-btn crayons-btn--ghost">
+        <ImageIcon /> Upload image
+        <input
+          type="file"
+          id="image-upload-field"
+          onChange={handleInsertionImageUpload}
+          className="screen-reader-only"
+          multiple
+          accept="image/*"
+          data-max-file-size-mb="25"
+        />
+      </label>
+    </Fragment>
+  );
 
 export const ImageUploader = () => {
   const [state, dispatch] = useReducer(imageUploaderReducer, {
@@ -180,40 +224,22 @@ export const ImageUploader = () => {
 
   return (
     <div className="flex items-center">
-      {uploadingImage ? (
+      {uploadingImage && (
         <span class="lh-base pl-3 border-0 py-2 inline-block">
           <Spinner /> {i18next.t('editor.image.uploading')}
         </span>
-      ) : (
-        <Button
-          className="mr-2 fw-normal"
-          variant="ghost"
-          contentType="icon-left"
-          icon={ImageIcon}
-          {...extraProps}
-        >
-          {i18next.t('editor.image.text')}
-          {!useNativeUpload && (
-            <input
-              type="file"
-              id="image-upload-field"
-              onChange={handleInsertionImageUpload}
-              className="w-100 h-100 absolute left-0 right-0 top-0 bottom-0 overflow-hidden opacity-0 cursor-pointer"
-              multiple
-              accept="image/*"
-              data-max-file-size-mb="25"
-              aria-label={i18next.t('editor.image.aria_label')}
-            />
-          )}
-        </Button>
       )}
 
-      {useNativeUpload && (
-        <input
-          type="hidden"
-          id="native-image-upload-message"
-          value=""
-          onChange={handleNativeMessage}
+      {useNativeUpload ? (
+        <NativeIosImageUpload
+          extraProps={extraProps}
+          uploadingImage={uploadingImage}
+          handleNativeMessage={handleNativeMessage}
+        />
+      ) : (
+        <StandardImageUpload
+          uploadingImage={uploadingImage}
+          handleInsertionImageUpload={handleInsertionImageUpload}
         />
       )}
 

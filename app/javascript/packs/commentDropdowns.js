@@ -1,6 +1,8 @@
 import { addSnackbarItem } from '../Snackbar';
-import { i18next } from '../i18n/l10n';
-import { initializeDropdown } from '@utilities/dropdownUtils';
+import {
+  initializeDropdown,
+  getDropdownRepositionListener,
+} from '@utilities/dropdownUtils';
 
 /* global Runtime   */
 
@@ -127,12 +129,18 @@ observer.observe(document.getElementById('comment-trees-container'), {
   subtree: true,
 });
 
+// Preview card dropdowns reposition on scroll
+const dropdownRepositionListener = getDropdownRepositionListener();
+document.addEventListener('scroll', dropdownRepositionListener);
+
 InstantClick.on('change', () => {
   observer.disconnect();
+  document.removeEventListener('scroll', dropdownRepositionListener);
 });
 
 window.addEventListener('beforeunload', () => {
   observer.disconnect();
+  document.removeEventListener('scroll', dropdownRepositionListener);
 });
 
 initializeArticlePageDropdowns();

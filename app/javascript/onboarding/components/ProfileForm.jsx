@@ -233,6 +233,18 @@ export class ProfileForm extends Component {
                 onFieldChange={this.handleFieldChange}
               />
             </div>
+            <div className="onboarding-profile-sub-section">
+              <TextArea
+                field={{
+                  attribute_name: 'summary',
+                  label: 'Bio',
+                  placeholder_text: 'Tell us a little about yourself',
+                  required: false,
+                }}
+                onFieldChange={this.handleFieldChange}
+              />
+            </div>
+
             {sections}
           </div>
         </div>
