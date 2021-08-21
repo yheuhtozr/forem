@@ -1678,6 +1678,7 @@ v:
       leave:
         confirm: Are you sure you want to leave this organization?
         submit: Leave Organization
+      divider: OR
     password:
       heading: Set new password
       desc: !html |-
@@ -2005,7 +2006,7 @@ helpers:
     organization:
       name: Name
       slug: Username
-      profile_image: Profile image *
+      profile_image: Profile image
       nav_image: Logo for light themes
       dark_nav_image: Logo for dark themes
       twitter_username: Twitter username

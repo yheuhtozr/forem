@@ -14,27 +14,35 @@
   <% end %>
 </div>
 
-<p class="align-center fs-small color-base-60 mb-6 fw-bold">OR</p>
+<p class="align-center fs-small color-base-60 mb-6 fw-bold"><%= _t.divider %></p>
 
 <div class="crayons-card crayons-card--content-rows">
   <header>
-    <h2 class="mb-2"></h2>
-    <p></p>
+    <h2 class="mb-2"><%= _t.create.heading %></h2>
+    <p><%= _t.create.required %></p>
   </header>
-<%# TODO [yheuhtozr]: appropriately style required fields %>
   <%= form_for @organization, html: { class: "grid gap-6" } do |f| %>
     <div class="crayons-field">
-      <%= f.label :name, class: "crayons-field__label crayons-field__required" %>
+      <%= f.label :name, class: "crayons-field__label" do |translation| %>
+        <%= translation %>
+        <span class="crayons-field__required" title="<%= _t.create.required %>">*</span>
+      <% end %>
       <%= f.text_field :name, class: "crayons-textfield" %>
     </div>
     <div class="crayons-field">
-      <%= f.label :slug, class: "crayons-field__label crayons-field__required" %>
+      <%= f.label :slug, class: "crayons-field__label" do |translation| %>
+        <%= translation %>
+        <span class="crayons-field__required" title="<%= _t.create.required %>">*</span>
+      <% end %>
       <%= f.text_field :slug, class: "crayons-textfield" %>
       <p class="crayons-field__description"><%= _t.create.slug url: app_url %></p>
     </div>
 
     <div class="crayons-field">
-      <%= f.label :profile_image, class: "crayons-field__label crayons-field__required" %>
+      <%= f.label :profile_image, class: "crayons-field__label" do |translation| %>
+        <%= translation %>
+        <span class="crayons-field__required" title="<%= _t.create.required %>">*</span>
+      <% end %>
       <%= f.file_field :profile_image, accept: "image/*", class: "crayons-card crayons-card--secondary p-3 flex items-center flex-1 w-100" %>
     </div>
 
@@ -51,17 +59,26 @@
     <%= render partial: "shared/logo_design", locals: { f: f, account: @user } %>
 
     <div class="crayons-field">
-      <%= f.label :url, class: "crayons-field__label crayons-field__required" %>
+      <%= f.label :url, class: "crayons-field__label" do |translation| %>
+        <%= translation %>
+        <span class="crayons-field__required" title="<%= _t.create.required %>">*</span>
+      <% end %>
       <%= f.url_field :url, class: "crayons-textfield" %>
     </div>
 
     <div class="crayons-field">
-      <%= f.label :summary, class: "crayons-field__label crayons-field__required" %>
+      <%= f.label :summary, class: "crayons-field__label" do |translation| %>
+        <%= translation %>
+        <span class="crayons-field__required" title="<%= _t.create.required %>">*</span>
+      <% end %>
       <%= f.text_area :summary, class: "crayons-textfield", rows: 3 %>
     </div>
 
     <div class="crayons-field">
-      <%= f.label :proof, class: "crayons-field__label crayons-field__required" %>
+      <%= f.label :proof, class: "crayons-field__label" do |translation| %>
+        <%= translation %>
+        <span class="crayons-field__required" title="<%= _t.create.required %>">*</span>
+      <% end %>
       <p class="crayons-field__description"><%= _t.create.proof %></p>
       <%= f.text_area :proof, class: "crayons-textfield" %>
       <p class="crayons-field__description"><%= _t.create.notice %></p>
