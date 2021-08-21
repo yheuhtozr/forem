@@ -263,7 +263,6 @@
       }
     },
     "image": {
-      "aria_label": "Upload an image",
       "icon": "Upload image",
       "text": "Upload image",
       "uploading": "Uploading..."
@@ -589,7 +588,7 @@
     "view_list": "View reading list"
   },
   "search": {
-    "aria_label": "search",
+    "aria_label": "Search term",
     "empty": "No results match that query",
     "placeholder": "Search..."
   },

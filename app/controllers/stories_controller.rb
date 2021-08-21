@@ -345,9 +345,8 @@ class StoriesController < ApplicationController
       sameAs: user_same_as,
       image: Images::Profile.call(@user.profile_image_url, length: 320),
       name: @user.name,
-      email: @user.setting.display_email_on_profile ? @user.email : nil,
-      description: @user.profile.summary.presence || I18n.t("stories_controller.404_bio_not_found"),
-      alumniOf: @user.education.presence
+      email: decorated_user.profile_email,
+      description: decorated_user.profile_summary
     }.reject { |_, v| v.blank? }
   end
 

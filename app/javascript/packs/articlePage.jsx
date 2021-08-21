@@ -3,7 +3,11 @@ import { Snackbar, addSnackbarItem } from '../Snackbar';
 import { addFullScreenModeControl } from '../utilities/codeFullscreenModeSwitcher';
 import { embedGists } from '../utilities/gist';
 import { i18next } from '../i18n/l10n';
-import { initializeDropdown } from '@utilities/dropdownUtils';
+import {
+  initializeDropdown,
+  getDropdownRepositionListener,
+} from '../utilities/dropdownUtils';
+import { getInstantClick } from '../topNavigation/utilities';
 
 /* global Runtime */
 

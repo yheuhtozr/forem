@@ -261,7 +261,6 @@
       }
     },
     "image": {
-      "aria_label": "画像をアップロードする",
       "icon": "画像をアップロード",
       "text": "画像をアップロード",
       "uploading": "アップロード中…"
@@ -584,7 +583,7 @@
     "view_list": "View reading list"
   },
   "search": {
-    "aria_label": "search",
+    "aria_label": "Search term",
     "empty": "一致する結果がありません",
     "placeholder": "検索…"
   },

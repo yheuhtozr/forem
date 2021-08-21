@@ -2,12 +2,12 @@
 <% title _t.meta.title %>
 
 <main class="dashboard-container analytics-container crayons-layout" id="main-content">
-  <% if @organizations.any? %>
-    <nav aria-label="Dashboards">
-      <ul class="list-none">
-        <li>
-          <a href="<%= dashboard_path %>" class="rounded-btn crayons-link--block rounded-btn--transparent"><%= _t.back %></a>
-        </li>
+  <nav aria-label="Dashboards">
+    <ul class="list-none">
+      <li>
+        <a href="<%= dashboard_path %>" class="rounded-btn crayons-link--block rounded-btn--transparent"><%= _t.back %></a>
+      </li>
+      <% if @organizations.any? %>
         <li>
           <a class="rounded-btn crayons-link--block organization" 
              href="<%= dashboard_analytics_path %>"

@@ -83,7 +83,7 @@ const NativeIosImageUpload = ({
         icon={ImageIcon}
         {...extraProps}
       >
-        Upload image
+        {i18next.t('editor.image.text')}
       </Button>
     )}
     <input
@@ -99,7 +99,7 @@ const StandardImageUpload = ({ handleInsertionImageUpload, uploadingImage }) =>
   uploadingImage ? null : (
     <Fragment>
       <label className="cursor-pointer crayons-btn crayons-btn--ghost">
-        <ImageIcon /> Upload image
+        <ImageIcon /> {i18next.t('editor.image.text')}
         <input
           type="file"
           id="image-upload-field"
@@ -228,28 +228,6 @@ export const ImageUploader = () => {
         <span class="lh-base pl-3 border-0 py-2 inline-block">
           <Spinner /> {i18next.t('editor.image.uploading')}
         </span>
-      ) : (
-        <Button
-          className="mr-2 fw-normal"
-          variant="ghost"
-          contentType="icon-left"
-          icon={ImageIcon}
-          {...extraProps}
-        >
-          {i18next.t('editor.image.text')}
-          {!useNativeUpload && (
-            <input
-              type="file"
-              id="image-upload-field"
-              onChange={handleInsertionImageUpload}
-              className="w-100 h-100 absolute left-0 right-0 top-0 bottom-0 overflow-hidden opacity-0 cursor-pointer"
-              multiple
-              accept="image/*"
-              data-max-file-size-mb="25"
-              aria-label={i18next.t('editor.image.aria_label')}
-            />
-          )}
-        </Button>
       )}
 
       {useNativeUpload ? (

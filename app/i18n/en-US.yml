@@ -410,7 +410,7 @@ v:
     footer:
       heart:
         title: heart
-        icon: Favorite heart outline button
+        icon: "Like comment: "
         count: !html "%{num}%{likes}"
         text: Like
       reply:
@@ -1010,6 +1010,7 @@ v:
           Use <b>Flag to Admins</b> for code of conduct violations (harassment, being a jerk, spam, etc.).
       other: Other things you can do
       react: Add a reaction
+      suspicious: Suspicious
       tag:
         subtitle: Tag Adjustments
         add: Add
@@ -1027,6 +1028,8 @@ v:
           type:
             addition: addition
             removal: removal
+      thumbdown: Thumb down
+      thumbup: Thumb up
       toggle: Toggle section
       unpublish: Unpublish Article
       vote_down: Low Quality
@@ -1230,7 +1233,7 @@ v:
       title: Unicorn
       aria_label: React with unicorn
     readingList:
-      title: Saved
+      title: Save
       aria_label: Add to reading list
       icon: Save button
       text: Save
@@ -1830,10 +1833,10 @@ admin:
     successfully_created_navig: 'Successfully created navigation link: %{navigation_link_name}'
     successfully_updated_navig: 'Successfully updated navigation link: %{navigation_link_name}'
   organization_memberships_controller:
-    organization_does_not_exis: 'Organization #%{organization_membership_pa} does not exist. Perhaps a typo?'
-    something_went_wrong_with: 'Something went wrong with removing the user from org #%{organization_membership_or}'
+    organization_does_not_exis: 'Organization #%{organization_membership_pa} does not exist.'
+    something_went_wrong_with: 'Something went wrong with removing the user from %{organization_membership_or}'
     user_was_successfully_adde: User was successfully added to %{organization_name}
-    user_was_successfully_remo: 'User was successfully removed from org #%{organization_membership_or}'
+    user_was_successfully_remo: 'User was successfully removed from %{organization_membership_or}'
     user_was_successfully_upda: User was successfully updated to %{organization_membership_ty}
   organizations_controller:
     sucessfully_updated_credit: Sucessfully updated credits
@@ -1892,10 +1895,11 @@ admin:
   users_controller:
     data_exported_to_the_the_j: Data exported to the %{receiver}. The job will complete momentarily.
     email_failed_to_send: Email failed to send!
-    email_verification_mailer: Email Verification Mailer sent!
+    email_verification_mailer: Verification email sent!
     full_delete: !html '@%{user} (email: %{email}, user_id: %{id}) has been fully deleted. If this is a GDPR delete, delete them from Mailchimp & Google Analytics and confirm on %{the_page}.'
     never: Never
     no_email: no email
+    parameter_missing: Both subject and body are required!
     role_has_been_successfully: 'Role: %{role_to_s_humanize_titleca} has been successfully removed from the user!'
     the_identity_was_successfu: The %{identity_provider_capitali} identity was successfully deleted and backed up.
     the_page: the page

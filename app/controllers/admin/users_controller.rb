@@ -22,15 +22,20 @@ module Admin
 
     def show
       @user = User.find(params[:id])
-      @organizations = @user.organizations.order(:name)
-      @notes = @user.notes.order(created_at: :desc).limit(10)
-      @organization_memberships = @user.organization_memberships
-        .joins(:organization)
-        .order("organizations.name" => :asc)
-        .includes(:organization)
-      @last_email_verification_date = @user.email_authorizations
-        .where.not(verified_at: nil)
-        .order(created_at: :desc).first&.verified_at || I18n.t("admin.users_controller.never")
+
+      if FeatureFlag.enabled?(:new_admin_members, current_user)
+        render "admin/users/new/show"
+      else
+        @organizations = @user.organizations.order(:name)
+        @notes = @user.notes.order(created_at: :desc).limit(10)
+        @organization_memberships = @user.organization_memberships
+          .joins(:organization)
+          .order("organizations.name" => :asc)
+          .includes(:organization)
+        @last_email_verification_date = EmailAuthorization.last_verification_date(@user)
+
+        render :show
+      end
     end
 
     def update
@@ -169,18 +174,56 @@ module Admin
           format.js { render json: { result: message }, content_type: "application/json" }
         end
       else
-        flash[:danger] = I18n.t("admin.users_controller.email_failed_to_send")
+        respond_to do |format|
+          message = I18n.t("admin.users_controller.email_failed_to_send")
+
+          format.html do
+            flash[:danger] = message
+            redirect_back(fallback_location: admin_users_path)
+          end
+
+          format.js do
+            render json: { error: message },
+                   content_type: "application/json",
+                   status: :service_unavailable
+          end
+        end
+      end
+    rescue ActionController::ParameterMissing
+      respond_to do |format|
+        format.json do
+          render json: { error: I18n.t("admin.users_controller.parameter_missing") },
+                 content_type: "application/json",
+                 status: :unprocessable_entity
+        end
       end
     end
 
     # NOTE: [@rhymes] This should be eventually moved in Admin::Users::Tools::EmailsController
     # once the HTML response isn't required anymore
     def verify_email_ownership
-      if VerificationMailer.with(user_id: params[:user_id]).account_ownership_verification_email.deliver_now
-        flash[:success] = I18n.t("admin.users_controller.email_verification_mailer")
-        redirect_back(fallback_location: admin_users_path)
+      if VerificationMailer.with(user_id: params[:id]).account_ownership_verification_email.deliver_now
+        respond_to do |format|
+          message = I18n.t("admin.users_controller.email_verification_mailer")
+
+          format.html do
+            flash[:success] = message
+            redirect_back(fallback_location: admin_users_path)
+          end
+
+          format.js { render json: { result: message }, content_type: "application/json" }
+        end
       else
-        flash[:danger] = I18n.t("admin.users_controller.email_failed_to_send")
+        message = I18n.t("admin.users_controller.email_failed_to_send")
+
+        respond_to do |format|
+          format.html do
+            flash[:danger] = message
+            redirect_back(fallback_location: admin_users_path)
+          end
+
+          format.js { render json: { error: message }, content_type: "application/json", status: :service_unavailable }
+        end
       end
     end
 

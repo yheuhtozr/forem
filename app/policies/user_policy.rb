@@ -45,7 +45,6 @@ class UserPolicy < ApplicationPolicy
     profile_image
     text_color_hex
     username
-    website_url
     writing_lang
   ].freeze
 
