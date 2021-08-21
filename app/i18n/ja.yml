@@ -1454,6 +1454,12 @@ v:
       font: Base Reading Font
       lang: 執筆言語
       lang_desc: あなたが記事を執筆する際によく使う言語です（編集画面のデフォルト値に使用）。言語タグ形式 (<code>en-US</code>) で指定してください。
+      langs:
+        aria_label: 言語一覧の中から選択できます
+        select: ここから選べます
+        site: サイト
+        special: 特殊用途
+        others: その他
       level: What is your approximate experience level (1-5)?
       level_desc: This will not be displayed on your profile or anywhere publicly. It helps gently determine what content you are shown along with tags you follow etc.
       navbar: Site Navbar

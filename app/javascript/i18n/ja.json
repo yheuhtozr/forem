@@ -277,8 +277,14 @@
       "done": "完了",
       "heading": "記事の設定",
       "lang": {
+        "aria_label": "言語一覧の中から選択できます",
         "desc": "地の文は何語で書かれていますか？言語タグ (<code>en-US</code>) で指定してください。",
-        "label": "言語"
+        "existing": "言語リスト: ",
+        "label": "言語",
+        "others": "その他",
+        "select": "ここから選べます",
+        "site": "サイト",
+        "special": "特殊用途"
       },
       "series": {
         "aria_label": "既存の連載の中から一つ選んでください",

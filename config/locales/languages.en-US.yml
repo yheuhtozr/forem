@@ -359,7 +359,6 @@ en-US:
     mi: Maori
     mic: Mi'kmaq
     min: Minangkabau
-    mis: Uncoded language (%{code})
     mk: Macedonian
     ml: Malayalam
     mn: Mongolian
@@ -622,4 +621,5 @@ en-US:
     zun: Zuni
     zxx: "No linguistic content"
     zza: Zaza
+    mis: Uncoded language (%{code})
     x-qilxaleh: Shaleian

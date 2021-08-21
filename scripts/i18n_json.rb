@@ -153,7 +153,7 @@ MAP = {
     }
   },
   editor: {
-    __orphan: [%w[a11y aria_label aria_new content help image leave options publish publishing revert revert_button save save_draft saving saving_draft], %w[continue]],
+    __orphan: [%w[a11y aria_label aria_new content help image leave publish publishing revert revert_button save save_draft saving saving_draft], %w[continue]],
     close: {
       __scope: ['editor'],
       title: ['close']
@@ -166,6 +166,12 @@ MAP = {
     edit: ['editor.tabs.edit'],
     modes: ['editor.tabs.aria_label'],
     new_title: [true],
+    options: {
+      __orphan: [%w[done heading series title unpublish url]],
+      lang: {
+        __orphan: [%w[desc existing label]],
+      },
+    },
     preview: ['editor.tabs.preview', true],
   },
   feedback: {
@@ -228,6 +234,16 @@ MAP = {
   },
   users: {
     details: [nil, true],
+    custom: {
+      langs: {
+        __scope: ['editor.options.lang'],
+        aria_label: [true],
+        others: [true],
+        select: [true],
+        site: [true],
+        special: [true],
+      },
+    },
     send_pm: {
       __scope: ['listings.message'],
       code: [true],

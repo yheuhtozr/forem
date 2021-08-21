@@ -279,8 +279,14 @@
       "done": "Done",
       "heading": "Post options",
       "lang": {
+        "aria_label": "You can select a language from the list",
         "desc": "What language is the body text written in? Specify by language tag (<code>en-US</code>).",
-        "label": "Language"
+        "existing": "List of languages: ",
+        "label": "Language",
+        "others": "General",
+        "select": "Quick select",
+        "site": "Suggested",
+        "special": "Specials"
       },
       "series": {
         "aria_label": "Select one of the existing series",

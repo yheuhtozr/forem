@@ -125,6 +125,7 @@ export class ArticleForm extends Component {
       isModalOpen: false,
       markdownLintErrors: [],
       baseLang: this.article.base_lang || userLang,
+      allLangs: this.article.all_langs || {},
       ...previousContentState,
     };
   }
@@ -310,6 +311,7 @@ export class ArticleForm extends Component {
       helpPosition: 0,
       isModalOpen: false,
       baseLang: this.article.base_lang || this.userLang,
+      allLangs: this.article.all_langs,
     });
   };
 
