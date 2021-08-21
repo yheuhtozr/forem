@@ -73,7 +73,7 @@
   <% if current_user.has_role?(:super_admin) && @moderatable.class.name == "Article" %>
     <h3> <a href="<%= @moderatable.path %>/edit"><%= _t.edit.post %></a> |
       <a href="/resource_admin/articles/<%= @moderatable.id %>" data-no-instant><%= _t.edit.r_a %></a> |
-      <a href="<%= admin_article_path(@moderatable.id) %>" data-no-instant><%= _t.edit_a_a %></a></h3>
+      <a href="<%= admin_article_path(@moderatable.id) %>" data-no-instant><%= _t.edit.a_a %></a></h3>
   <% elsif current_user.has_role?(:super_admin) && @moderatable.class.name == "Comment" %>
     <h3> <a href="/admin/comments/<%= @moderatable.id %>" data-no-instant><%= _t.edit.a_c %></a> |
       <a href="<%= admin_user_path(@moderatable.user_id) %>" data-no-instant><%= _t.edit.a_u %></a></h3>
