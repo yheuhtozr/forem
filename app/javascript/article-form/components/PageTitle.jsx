@@ -3,11 +3,18 @@ import PropTypes from 'prop-types';
 import { OrganizationPicker } from '../../organization/OrganizationPicker';
 import { i18next } from '../../i18n/l10n';
 
-export const PageTitle = ({ organizations, organizationId, onToggle }) => {
+export const PageTitle = ({
+  organizations,
+  organizationId,
+  onToggle,
+  titleMode,
+}) => {
   return (
     <div className="crayons-field__label flex items-center flex-1">
       <span className="hidden s:inline-block mr-2 whitespace-nowrap">
-        {i18next.t('editor.create')}
+        {i18next.t(
+          `editor.${titleMode === 'translate' ? 'translate' : 'create'}`,
+        )}
       </span>
       {organizations && organizations.length > 0 && (
         <div>
@@ -30,6 +37,7 @@ PageTitle.propTypes = {
   organizations: PropTypes.string.isRequired,
   organizationId: PropTypes.string.isRequired,
   onToggle: PropTypes.string.isRequired,
+  titleMode: PropTypes.string,
 };
 
 PageTitle.displayName = 'Organization';

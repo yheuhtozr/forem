@@ -274,6 +274,8 @@ class StoriesController < ApplicationController
         .order(Arel.sql("COALESCE(crossposted_at, published_at) ASC"))
     end
 
+    @parallels = @article.parallel_translations.select(&:published)
+
     @comments_to_show_count = @article.cached_tag_list_array.include?("discuss") ? 50 : 30
     set_article_json_ld
     assign_co_authors

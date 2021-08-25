@@ -182,6 +182,9 @@
         </header>
 
         <div class="crayons-article__main">
+          <% if @parallels %>
+            <%= render "articles/translations", translations: @parallels, this_id: @article.id %>
+          <% end %>
           <% if @collection %>
             <%= render "articles/collection",
                        rendered_article: @article,

@@ -115,6 +115,7 @@ class Article < ApplicationRecord
   after_save :create_conditional_autovomits
   after_save :bust_cache
   after_save :notify_slack_channel_about_publication
+  after_save :eponymous_translation_group
 
   after_update_commit :update_notifications, if: proc { |article|
                                                    article.notifications.any? && !article.saved_changes.empty?
@@ -503,6 +504,10 @@ class Article < ApplicationRecord
     I18n.t("languages")
   end
 
+  def parallel_translations
+    Article.where(translation_group: translation_group).where.not(translation_group: nil)
+  end
+
   private
 
   def search_score
@@ -847,5 +852,9 @@ class Article < ApplicationRecord
     return unless saved_change_to_attribute?(:processed_html)
 
     ::Articles::DetectAnimatedImagesWorker.perform_async(id)
+  end
+
+  def eponymous_translation_group
+    Article.find(translation_group).update(translation_group: translation_group) unless id == translation_group
   end
 end

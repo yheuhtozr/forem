@@ -12,6 +12,7 @@ export const Header = ({
   onToggle,
   siteLogo,
   displayModal,
+  titleMode,
 }) => {
   return (
     <div className="crayons-article-form__header">
@@ -24,6 +25,7 @@ export const Header = ({
         organizations={organizations}
         organizationId={organizationId}
         onToggle={onToggle}
+        titleMode={titleMode}
       />
       <Tabs onPreview={onPreview} previewShowing={previewShowing} />
       <Close displayModal={displayModal} />
@@ -39,6 +41,7 @@ Header.propTypes = {
   organizationId: PropTypes.string.isRequired,
   onToggle: PropTypes.string.isRequired,
   siteLogo: PropTypes.string.isRequired,
+  titleMode: PropTypes.string,
 };
 
 Header.displayName = 'Header';

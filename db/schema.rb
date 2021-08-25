@@ -143,6 +143,7 @@ ActiveRecord::Schema.define(version: 2021_08_08_023558) do
     t.string "social_image"
     t.integer "spaminess_rating", default: 0
     t.string "title"
+    t.bigint "translation_group"
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.integer "user_subscriptions_count", default: 0, null: false

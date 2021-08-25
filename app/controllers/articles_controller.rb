@@ -56,6 +56,14 @@ class ArticlesController < ApplicationController
 
     @article, needs_authorization = Articles::Builder.call(@user, @tag, @prefill)
 
+    if params[:slug].present? # indicates /translate
+      origin = Article.find_by(slug: params[:slug])
+      @article.body_markdown =
+        I18n.t("v.articles.translations.stub", name: origin.title, url: origin.path).safe_concat origin.body_markdown # rubocop:disable Rails/OutputSafety
+      @article.translation_group = origin.translation_group || origin.id
+      @is_translate = true
+    end
+
     if needs_authorization
       authorize(Article)
     else
@@ -267,7 +275,7 @@ class ArticlesController < ApplicationController
                      else
                        %i[
                          title body_markdown main_image published description video_thumbnail_url
-                         tag_list canonical_url series collection_id archived base_lang
+                         tag_list canonical_url series collection_id archived base_lang translation_group
                        ]
                      end
 

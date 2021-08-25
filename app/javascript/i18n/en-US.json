@@ -315,7 +315,8 @@
       "aria_label": "View post modes",
       "edit": "Edit",
       "preview": "Preview"
-    }
+    },
+    "translate": "Translate"
   },
   "errors": {
     "comment": "This comment already exists.",

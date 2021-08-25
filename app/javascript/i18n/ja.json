@@ -313,7 +313,8 @@
       "aria_label": "記事の表示モード",
       "edit": "編集",
       "preview": "プレビュー"
-    }
+    },
+    "translate": "翻訳を作成"
   },
   "errors": {
     "comment": "This comment already exists.",

@@ -125,7 +125,7 @@ MAP = {
   dashboard: {
     __orphan: [nil, %w[comments]],
     article: {
-      __orphan: [nil, %w[pin unpin]],
+      __orphan: [nil, %w[pin translate unpin]],
       edit: {
         __scope: [nil, 'dashboard.article'],
         text: [nil, 'edit'],
@@ -174,6 +174,7 @@ MAP = {
       },
     },
     preview: ['editor.tabs.preview', true],
+    translate: [true],
   },
   feedback: {
     __orphan: [%w[block blocked desc heading message report_message submitted why]],

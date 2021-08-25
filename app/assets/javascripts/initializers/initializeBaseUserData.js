@@ -44,6 +44,14 @@ function addRelevantButtonsToArticle(user) {
       );
     }
 
+    actions.push(
+      `<a class="crayons-btn crayons-btn--s crayons-btn--secondary ml-1" href="${
+        articleContainer.dataset.path
+      }/translate" rel="nofollow">${i18next.t(
+        'dashboard.article.translate',
+      )}</a>`,
+    );
+
     const { articleId, pinnedArticleId } = articleContainer.dataset;
 
     // we hide the buttons for draft articles, for non admins and

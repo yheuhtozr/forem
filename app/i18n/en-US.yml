@@ -128,6 +128,16 @@ v:
           1: one more part...
           n: "%1 more parts..."
         title: View more
+    translations:
+      heading: Available in other languages
+      icon: Multi-language versions list
+      original: Original (%{lang})
+      unpublished: Unpublished
+      stub: |+
+        <!-- Stub note: please delete this when you are done. -->
+        **(This is a translation stub created from [%{name}](%{url}).)**
+        <!-- end stub note -->
+
     unlock:
       meta:
         title: Confirm Discussion Unlock
@@ -656,6 +666,7 @@ v:
     modes: View post modes
     new_title: New post title here...
     preview: Preview
+    translate: Translate
     video:
       progress:
         heading: ⏳ Video Transcoding In Progress ⏳

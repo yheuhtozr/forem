@@ -12,4 +12,9 @@ module LocaleHelper
       R18n.t.languages.und
     end
   end
+
+  # temporary href locale prefix solution
+  def loc
+    I18n.locale == I18n.default_locale ? "" : "/:#{I18n.locale}"
+  end
 end
