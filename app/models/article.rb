@@ -855,6 +855,6 @@ class Article < ApplicationRecord
   end
 
   def eponymous_translation_group
-    Article.find(translation_group).update(translation_group: translation_group) unless id == translation_group
+    Article.update(translation_group, translation_group: translation_group) if translation_group && id != translation_group # rubocop:disable Layout/LineLength
   end
 end
