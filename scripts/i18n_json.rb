@@ -163,6 +163,7 @@ MAP = {
       add: [true],
       change: [true],
     },
+    create: [true],
     edit: ['editor.tabs.edit'],
     modes: ['editor.tabs.aria_label'],
     new_title: [true],
@@ -233,7 +234,6 @@ MAP = {
     __orphan: [%w[aria_label hide placeholder rules view]],
   },
   users: {
-    details: [nil, true],
     custom: {
       langs: {
         __scope: ['editor.options.lang'],
@@ -244,6 +244,8 @@ MAP = {
         special: [true],
       },
     },
+    details: [true, true],
+    follow: [true],
     send_pm: {
       __scope: ['listings.message'],
       code: [true],

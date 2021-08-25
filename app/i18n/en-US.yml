@@ -2688,32 +2688,6 @@ services:
   payments:
     customer:
       usd: usd
-  profile_fields: # TODO: find the way to reconcile
-    add_branding_fields:
-      brand_color_1: Brand color 1
-      brand_color_2: Brand color 2
-      used_for_backgrounds_borde: Used for backgrounds, borders etc.
-      used_for_texts_usually_put: Used for texts (usually put on Brand color 1).
-    add_link_fields:
-      behance_url: Behance URL
-      dribbble_url: Dribbble URL
-      facebook_url: Facebook URL
-      gitlab_url: GitLab URL
-      instagram_url: Instagram URL
-      linkedin_url: LinkedIn URL
-      mastodon_url: Mastodon URL
-      medium_url: Medium URL
-      stackoverflow_url: StackOverflow URL
-      twitch_url: Twitch URL
-      youtube_url: Youtube URL
-    add_work_fields:
-      acme_inc: Acme Inc.
-      education: Education
-      employer_name: Employer name
-      employer_url: Employer URL
-      employment_title: Employment title
-      https_dev_com: https://dev.com
-      junior_frontend_engineer: Junior Frontend Engineer
   rate_limit_checker:
     invalid_cache_key_no_uniqu: 'Invalid Cache Key: no unique component present'
     rate_limit_reached_try_aga: Rate limit reached, try again in %{retry_after} seconds

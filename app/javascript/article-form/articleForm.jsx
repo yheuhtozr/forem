@@ -270,6 +270,7 @@ export class ArticleForm extends Component {
     this.setState({ submitting: true });
     const payload = {
       ...this.state,
+      allLangs: undefined,
       published: true,
     };
 
@@ -288,6 +289,7 @@ export class ArticleForm extends Component {
     this.setState({ submitting: true });
     const payload = {
       ...this.state,
+      allLangs: undefined,
       published: false,
     };
 

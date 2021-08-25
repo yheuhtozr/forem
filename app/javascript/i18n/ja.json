@@ -206,6 +206,7 @@
       "number": "一度に一枚の画像しかドロップできません",
       "uploading": "アップロード中…"
     },
+    "create": "記事を作成",
     "help": {
       "basic": {
         "desc1": "You are currently using the basic markdown editor that uses ",
@@ -621,5 +622,9 @@
     "mod": "Send as Mod",
     "no_yet": "🤔... It looks like you don't have any templates yet.",
     "replace": "Are you sure you want to replace your current comment draft?"
+  },
+  "users": {
+    "details": "%{user} のプロフィール詳細",
+    "follow": "フォロー"
   }
 }
