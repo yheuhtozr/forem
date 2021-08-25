@@ -284,7 +284,7 @@ GEM
       browser (>= 2.0)
       distribution
       railties (>= 5)
-    flipper (0.22.0)
+    flipper (0.22.1)
     flipper-active_record (0.22.0)
       activerecord (>= 4.2, < 7)
       flipper (~> 0.22.0)
@@ -922,7 +922,7 @@ DEPENDENCIES
   feedjira (~> 3.2)
   ffi-icu (>= 0.4)
   field_test (~> 0.4)
-  flipper (~> 0.22.0)
+  flipper (~> 0.22.1)
   flipper-active_record (~> 0.22.0)
   flipper-ui (~> 0.22.0)
   fog-aws (~> 3.11)
