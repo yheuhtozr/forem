@@ -627,10 +627,10 @@
   "users": {
     "card": {
       "created_at": "登録日",
-      "education": "Education",
+      "education": "最近の活動",
       "email": "メール",
       "location": "場所",
-      "work": "Work"
+      "work": "作品・表彰"
     },
     "details": "%{user} のプロフィール詳細",
     "follow": "フォロー"

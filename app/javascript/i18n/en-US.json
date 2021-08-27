@@ -633,10 +633,10 @@
   "users": {
     "card": {
       "created_at": "Joined",
-      "education": "Education",
+      "education": "Activities",
       "email": "Email",
       "location": "Location",
-      "work": "Work"
+      "work": "Works/Awards"
     },
     "details": "%{user} profile details",
     "follow": "Follow"
