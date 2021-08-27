@@ -9,9 +9,8 @@ v:
       heading: Moderate Post
       subtitle: Rate the quality of this post
       abusive:
-        subtitle: Flag %{user} as Abusive
-        desc: This is the equivalent of vomiting on <b>all</b> of this user's articles
-          and will lower their article scores.
+        subtitle: !html Flag %{user} as Abusive
+        desc: !html This is the equivalent of vomiting on <b>all</b> of this user's articles and will lower their article scores.
       adjust:
         heading: Adjust tags
         subtitle: Add or remove tags
@@ -36,7 +35,7 @@ v:
         a_c: Admin:Comment
         a_u: Admin:User
         r_a: ResourceAdmin:Article
-      errors:
+      errors: !pl
         1: エラーが発生したためブロックは保存されませんでした。
         n: "%1 件のエラーが発生したためブロックは保存されませんでした。"
       exp:
@@ -45,8 +44,7 @@ v:
         subtitle: Curate the most appropriate audience for this post
         aria_label: Open experience level section
         icon: Book
-        desc: Who <em>might</em> find this post most valuable, based on overall experience
-          level?
+        desc: !html Who <em>might</em> find this post most valuable, based on overall experience level?
         from: "%1 - "
         level:
           Advanced: Advanced
@@ -60,12 +58,15 @@ v:
         by: Comment by %{user}
       hint:
         subtitle: All negative reactions are private.
-        desc: |-
-          Use <b>High Quality</b> to move this content "up" for any reason (quality, usefulness, etc.).
+        desc: !html 'Use <b>High Quality</b> to move this content "up" for any reason (quality, usefulness, etc.).
+
           <br />
+
           Use <b>Low Quality</b> to move this content "down" for any reason (quality, usefulness, etc.).
+
           <br />
-          Use <b>Flag to Admins</b> for code of conduct violations (harassment, being a jerk, spam, etc.).
+
+          Use <b>Flag to Admins</b> for code of conduct violations (harassment, being a jerk, spam, etc.).'
       other: Other things you can do
       react: Add a reaction
       suspicious: Suspicious
@@ -73,11 +74,10 @@ v:
         subtitle: Tag Adjustments
         add: Add
         added: "<b>Currently added tag:</b> %{tag}"
-        live: "<b>Current live tags:</b> %{tags}"
-        reason: Reason for adjustment (Be super kind) - Only the reason is needed,
-          the notification will take care of the rest.
+        live: !html <b>Current live tags:</b> %{tags}
+        reason: Reason for adjustment (Be super kind) - Only the reason is needed, the notification will take care of the rest.
         remove: Remove
-        removed: "<b>Currently removed tag:</b> %{tag}"
+        removed: !html <b>Currently removed tag:</b> %{tag}
         select: Select Tag
         submit: Submit Tag Adjustment
         tag_name: Tag Name
@@ -113,12 +113,9 @@ v:
     date: Date
     notice:
       subtitle: "%{community} Mods"
-      desc1: We periodically award some %{community} members with heightened privileges
-        to help moderate the community.
-      desc2: Check out our %{code} and read through our %{trusted} and %{tag}.
-      desc3: If you'd like to assist us as a trusted user or tag mod, please email
-        us at %{email} and let us know which role you're interested in and why. If
-        it's tag moderation, please tell us what tags you'd like to moderate for.
+      desc1: !html We periodically award some %{community} members with heightened privileges to help moderate the community.
+      desc2: !html Check out our %{code} and read through our %{trusted} and %{tag}.
+      desc3: !html If you'd like to assist us as a trusted user or tag mod, please email us at %{email} and let us know which role you're interested in and why. If it's tag moderation, please tell us what tags you'd like to moderate for.
       desc4: P.S. You are not currently signed in.
       code: Code of Conduct
       tag: Tag Moderation Guide

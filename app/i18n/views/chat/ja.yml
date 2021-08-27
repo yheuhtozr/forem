@@ -36,8 +36,7 @@ v:
         not_found: 見つかりません
     leave:
       chat: "@#{user} left #{channel}"
-      success: You have left the channel %{channel}. It may take a moment to be removed
-        from your list.
+      success: You have left the channel %{channel}. It may take a moment to be removed from your list.
       failure: Failed to update membership
     kick:
       chat: "@%{user} removed @%{target} from %{channel}"
@@ -48,8 +47,7 @@ v:
         failure: Suspend failed. user with username '%{user}' not found in this channel.
       unban:
         success: "%{user} was unsuspended."
-        failure: Unsuspend failed. User with username '%{user}' not found in this
-          channel.
+        failure: Unsuspend failed. User with username '%{user}' not found in this channel.
       clear:
         success: cleared!
         failure: invalid command

@@ -15,9 +15,9 @@ v:
       create: Create a Listing
       dashboard: Go to Listings Dashboard
     messages:
-      charge:
+      charge: !pl
         n: Purchase of %1 credits.
-      done:
+      done: !pl
         n: "%1 new credits purchased!"
     new:
       meta:
@@ -47,12 +47,11 @@ v:
           user: You have %{count} credits.
       how:
         subtitle: How can I earn credits?
-        desc: Members receive <strong>5 credits</strong> for every profile badge you
-          earn.
+        desc: !html Members receive <strong>5 credits</strong> for every profile badge you earn.
     purchase: Purchase additional credits
     tag: 'Tag: %{name}'
     status:
-      user:
+      user: !pl
         n: You have %1 personal credits to spend
-      org:
-        n: "%{name} has %{num} credits to spend"
+      org: !pl
+        n: !html '%{name} has %{num} credits to spend'

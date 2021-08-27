@@ -15,16 +15,14 @@ v:
     subtitle: Opening the mobile app...
     alert:
       subtitle: Whoops! Did you get stuck trying to open the mobile app?
-      desc: Make sure it's installed and try again. If the problem persists contact
-        %{email}
+      desc: !html Make sure it's installed and try again. If the problem persists contact %{email}
       back: Take me back
       again: Try again
       install: Install the app
   email_subscriptions:
     unsubscribe:
       heading: "You have been unsubscribed from %{type}. 😔"
-      desc: You will no longer receive emails like this. If you'd like to re-subscribe
-        or manage your full email preferences, please %{link}.
+      desc: You will no longer receive emails like this. If you'd like to re-subscribe or manage your full email preferences, please %{link}.
       link: click here
     invalid:
       heading: Token expired or invalid
@@ -48,7 +46,7 @@ v:
         label: Brand color 1 color select
     color_2:
       label: Brand color 2
-      desc: Used for texts (usually put on <em>Brand color 1</em>).
+      desc: !html Used for texts (usually put on <em>Brand color 1</em>).
       select:
         aria_label: Brand color 2 color selector
         label: Brand color 2 color select
@@ -61,11 +59,11 @@ v:
     heading: 今日から私たちの一員です！
     subtitle: まず何をしたらいい？
     close: Close Welcome Message
-    settings: "<span class=\"emoji\">💅🏼</span>プロフィールを設定する"
-    welcome: "<span class=\"emoji\">😊</span>ようこそスレッドに挨拶する"
-    write: "<span class=\"emoji\">✍🏾</span>%{community}に最初の記事を書く"
+    settings: !html "<span class=\"emoji\">💅🏼</span>プロフィールを設定する"
+    welcome: !html "<span class=\"emoji\">😊</span>ようこそスレッドに挨拶する"
+    write: !html "<span class=\"emoji\">✍🏾</span>%{community}に最初の記事を書く"
   pins:
-    article: 要注目%{ext}
+    article: !html 要注目%{ext}
     ext: 記事
     pinned: "📌 指定完了（要注目記事は新しい順に最大 5 件まで表示されます）"
     removed: "🗑 注目を外しました"
@@ -110,7 +108,7 @@ v:
   stats:
     meta:
       title: あなたの記事の統計情報
-    heading: "「%{article}」の統計"
+    heading: !html 「%{article}」の統計
     period:
       aria_label: 分析期間
       week: 今週
@@ -130,14 +128,14 @@ v:
     email: メール
     hot: 話題
     location: 場所
-    more_from: "%{actor} をもっと知る"
+    more_from: !html '%{actor} をもっと知る'
     no_summary: このタグの記事
-    trending: "%{app} で今話題"
+    trending: !html '%{app} で今話題'
   videos:
     meta:
       title: Videos
       og:
         description: All videos on %{community}
     heading: "%{community} on Video"
-    beta: "<strong>Video is beta:</strong> Email %{email} if you have any problems."
+    beta: !html <strong>Video is beta:</strong> Email %{email} if you have any problems.
     upload: "🎥 Upload Video File 🙌"

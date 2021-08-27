@@ -7,46 +7,42 @@ v:
         title: Notifications - %{community}
     heading: Notifications
     badge:
-      heading: You received the %{badge} badge
-      awarded: "You also get %{credits} to use for %{listings} if you have anything
-        you'd like to promote. 🎉"
-      credits:
+      heading: !html You received the %{badge} badge
+      awarded: !html "You also get %{credits} to use for %{listings} if you have anything you'd like to promote. 🎉"
+      credits: !pl
         n: "%1 new credits"
       listings: community listings
       more: More information about listings
       profile: Visit your profile
     broadcast:
-      visit: Visit %{settings} to manage your notifications.
+      visit: !html Visit %{settings} to manage your notifications.
       settings: Settings
     comment:
-      commented: "%{user} commented on %{title}"
-      first: "%{user} wrote their first comment on %{title}"
+      commented: !html '%{user} commented on %{title}'
+      first: !html '%{user} wrote their first comment on %{title}'
       first_reply: "Give them their first reply! 🎉"
-      left: "%{user} just left a comment on %{title}."
-      replied: "%{user} replied to a thread in %{title}"
-      report: All negative reactions are 100% private. If this comment violates the
-        code of conduct, please downvote/report as inappropriate.
-      welcome: Since they are new to the community, could you leave a nice reply to
-        help them feel welcome? <strong>Thank you!</strong>
+      left: !html '%{user} just left a comment on %{title}.'
+      replied: !html '%{user} replied to a thread in %{title}'
+      report: All negative reactions are 100% private. If this comment violates the code of conduct, please downvote/report as inappropriate.
+      welcome: !html Since they are new to the community, could you leave a nice reply to help them feel welcome? <strong>Thank you!</strong>
     error:
       subtitle: An error occurred!
-      desc: This has been logged and we're tracking it. If you see too many of these,
-        please report it to %{email}!
+      desc: !html This has been logged and we're tracking it. If you see too many of these, please report it to %{email}!
     follow:
-      and: "%{first} and %{second} followed you!"
-      and_other:
-        n: "%{first} and %{others} followed you!"
-      others:
+      and: !html '%{first} and %{second} followed you!'
+      and_other: !pl
+        n: !html '%{first} and %{others} followed you!'
+      others: !pl
         n: "%1 others"
-      single: "%{name} followed you!"
+      single: !html '%{name} followed you!'
     load: Load More
     mention:
-      article: "%{user} mentioned you in a post%{if_org}"
-      comment: "%{user} mentioned you in a comment"
-      if_org: " under %{org}"
+      article: !html '%{user} mentioned you in a post%{if_org}'
+      comment: !html '%{user} mentioned you in a comment'
+      if_org: !html ' under %{org}'
     milestone:
-      heading:
-        n: Your post %{title} passed %{count} %{type}!
+      heading: !pl
+        n: !html Your post %{title} passed %{count} %{type}!
       check: Check your dashboard
       intro: "🎉🎉🎉🎉🎉🎉🎉🎉"
       type:
@@ -58,27 +54,23 @@ v:
       comments: Comments
       posts: Posts
     new_post:
-      if_org: " under %{org}"
-      verb: "%{user} made a new post%{if_org}"
+      if_org: !html ' under %{org}'
+      verb: !html '%{user} made a new post%{if_org}'
     reacted:
-      and: "%{first} and %{last}"
-      and_other:
-        n: "%{first} and %{count} others"
-      verb:
-        n: "%{start}%{actors} reacted to %{title} with%{end} %{reactions}"
+      and: !html '%{first} and %{last}'
+      and_other: !pl
+        n: !html '%{first} and %{count} others'
+      verb: !pl
+        n: !html '%{start}%{actors} reacted to %{title} with%{end} %{reactions}'
       your:
         article: your article
         comment: your comment
     settings: Settings
     tag:
       heading: "Hey there 👋"
-      add: Moderators added the <strong>%{tag}</strong> tag to your post %{title}.
-        Mods felt this tag represented your article.
-      check: Check out %{other} which may be more appropriate
+      add: !html Moderators added the <strong>%{tag}</strong> tag to your post %{title}. Mods felt this tag represented your article.
+      check: !html Check out %{other} which may be more appropriate
       other: other popular tags
       reason: 'Reason for action:'
-      remove: Moderators removed the <strong>%{tag}</strong> tag from your post %{title}.
-        Certain tags have special submission guidelines, and mods need to adjust tags
-        to best fit the community.
-      support: "Thanks for being part of %{community}! If you feel like this mod action
-        was a mistake, feel free to contact %{email}. 🤗"
+      remove: !html Moderators removed the <strong>%{tag}</strong> tag from your post %{title}. Certain tags have special submission guidelines, and mods need to adjust tags to best fit the community.
+      support: !html "Thanks for being part of %{community}! If you feel like this mod action was a mistake, feel free to contact %{email}. 🤗"

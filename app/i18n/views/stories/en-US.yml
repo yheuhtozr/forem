@@ -20,5 +20,4 @@ v:
       year: Year
       infinity: Infinity
       latest: Latest
-      signin: "👋 <a href=\"%{path}\">Sign in</a> for the ability sort posts
-        by <strong>top</strong> and  <strong>latest</strong>."
+      signin: !html "👋 <a href=\"%{path}\">Sign in</a> for the ability sort posts by <strong>top</strong> and  <strong>latest</strong>."

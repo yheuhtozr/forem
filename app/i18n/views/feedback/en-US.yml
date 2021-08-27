@@ -4,7 +4,7 @@ v:
     meta:
       title: Feedback
     heading: Thank you for your report.
-    desc: Questions? Send an email to %{email}
+    desc: !html Questions? Send an email to %{email}
     home: Return to home page
     form:
       rude_or_vulgar: Rude or vulgar
@@ -15,7 +15,6 @@ v:
       url: Reported URL
       message:
         subtitle: Message
-        desc: Please provide any additional information or context that will help
-          us understand and handle the situation.
+        desc: Please provide any additional information or context that will help us understand and handle the situation.
         placeholder: "..."
       submit: Send Feedback

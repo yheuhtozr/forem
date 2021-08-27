@@ -24,8 +24,7 @@ liquid_tags:
       invalid_github_issue_pull: Invalid GitHub issue, pull request or comment link
       posted_on: posted on
     github_readme_tag:
-      github_tag_invalid_options: 'GitHub tag: invalid options: %{options_valid_options}
-        - supported options: %{valid_options}'
+      github_tag_invalid_options: 'GitHub tag: invalid options: %{options_valid_options} - supported options: %{valid_options}'
       invalid_github_repository: Invalid GitHub repository path or URL
   glitch_tag:
     invalid_glitch_id: Invalid Glitch ID
@@ -36,16 +35,13 @@ liquid_tags:
     invalid_jsfiddle_url: Invalid JSFiddle URL
     invalid_options: Invalid Options
   jsitor_tag:
-    invalid_jsitor_link_please: Invalid JSitor link. Please read the editor guide
-      for more information
+    invalid_jsitor_link_please: Invalid JSitor link. Please read the editor guide for more information
   kotlin_tag:
     invalid_kotlin_playground: Invalid Kotlin Playground URL
   link_tag:
-    the_article_you_re_looking: 'The article you''re looking for does not exist: {%
-      link %{slug} %}'
+    the_article_you_re_looking: 'The article you''re looking for does not exist: {% link %{slug} %}'
   liquid_tag_base:
-    invalid_context_this_liqui: Invalid context. This liquid tag can only be used
-      in %{valid_contexts}.
+    invalid_context_this_liqui: Invalid context. This liquid tag can only be used in %{valid_contexts}.
     no_source_found: No source found
   listing_tag:
     invalid_url_or_slug_listin: Invalid URL or slug. Listing not found.
@@ -72,25 +68,20 @@ liquid_tags:
   slideshare_tag:
     invalid_slideshare_key: Invalid Slideshare Key
   soundcloud_tag:
-    invalid_soundcloud_url_try: 'Invalid Soundcloud URL - try taking off any URL params:
-      ''?something=value'''
+    invalid_soundcloud_url_try: 'Invalid Soundcloud URL - try taking off any URL params: ''?something=value'''
   speakerdeck_tag:
     invalid_speakerdeck_id: Invalid Speakerdeck Id
   spotify_tag:
-    invalid_spotify_link_be_su: Invalid Spotify Link - Be sure you're using the uri
-      of a specific track, album, artist, playlist, or podcast episode.
+    invalid_spotify_link_be_su: Invalid Spotify Link - Be sure you're using the uri of a specific track, album, artist, playlist, or podcast episode.
   stackblitz_tag:
     invalid_options: Invalid Options
     invalid_stackblitz_id: Invalid Stackblitz Id
   stackery_tag:
     stackery_missing_owner_and: Stackery - Missing owner and/or repository name arguments
   stackexchange_tag:
-    couldn_t_find_a_post_with: 'Couldn''t find a post with that ID: {% %{tag_name}
-      %{input} %}'
-    invalid_stack_exchange_id: 'Invalid Stack Exchange ID: {% %{tag_name} %{input}
-      %}'
-    invalid_stack_exchange_sit: 'Invalid Stack Exchange site: {% %{tag_name} %{input}
-      %}'
+    couldn_t_find_a_post_with: 'Couldn''t find a post with that ID: {% %{tag_name} %{input} %}'
+    invalid_stack_exchange_id: 'Invalid Stack Exchange ID: {% %{tag_name} %{input} %}'
+    invalid_stack_exchange_sit: 'Invalid Stack Exchange site: {% %{tag_name} %{input} %}'
   tag_tag:
     invalid_tag_name: invalid tag name
   tweet_tag:
@@ -98,10 +89,8 @@ liquid_tags:
   twitter_timeline_tag:
     invalid_twitter_timeline_u: Invalid Twitter Timeline URL
   wikipedia_tag:
-    couldn_t_find_the_section: Couldn't find the section of the Wikipedia article
-      - %{input}
-    couldn_t_find_the_wikipedi: 'Couldn''t find the Wikipedia article - %{input}:
-      %{response_detail}'
+    couldn_t_find_the_section: Couldn't find the section of the Wikipedia article - %{input}
+    couldn_t_find_the_wikipedi: 'Couldn''t find the Wikipedia article - %{input}: %{response_detail}'
     invalid_wikipedia_url: Invalid Wikipedia URL
   youtube_tag:
     invalid_youtube_id: Invalid YouTube ID

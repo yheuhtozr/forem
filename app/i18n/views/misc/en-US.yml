@@ -5,8 +5,7 @@ v:
       title: Badges
       name: "%{title} Badge"
     heading: Badges
-    desc: Receive badges for being awesome! Click on a badge to see how you can earn
-      it.
+    desc: Receive badges for being awesome! Click on a badge to see how you can earn it.
     name: "🏅 %{title} Badge 🏅"
   beta: beta
   campaign:
@@ -16,16 +15,14 @@ v:
     subtitle: Opening the mobile app...
     alert:
       subtitle: Whoops! Did you get stuck trying to open the mobile app?
-      desc: Make sure it's installed and try again. If the problem persists contact
-        %{email}
+      desc: !html Make sure it's installed and try again. If the problem persists contact %{email}
       back: Take me back
       again: Try again
       install: Install the app
   email_subscriptions:
     unsubscribe:
       heading: "You have been unsubscribed from %{type}. 😔"
-      desc: You will no longer receive emails like this. If you'd like to re-subscribe
-        or manage your full email preferences, please %{link}.
+      desc: You will no longer receive emails like this. If you'd like to re-subscribe or manage your full email preferences, please %{link}.
       link: click here
     invalid:
       heading: Token expired or invalid
@@ -49,7 +46,7 @@ v:
         label: Brand color 1 color select
     color_2:
       label: Brand color 2
-      desc: Used for texts (usually put on <em>Brand color 1</em>).
+      desc: !html Used for texts (usually put on <em>Brand color 1</em>).
       select:
         aria_label: Brand color 2 color selector
         label: Brand color 2 color select
@@ -62,12 +59,11 @@ v:
     heading: You're now a part of the community!
     subtitle: SUGGESTED THINGS YOU CAN DO
     close: Close Welcome Message
-    settings: "<span class=\"emoji\">💅🏼</span>Customize your profile"
-    welcome: "<span class=\"emoji\">😊</span>Join the Welcome thread"
-    write: "<span class=\"emoji\">✍🏾</span>Write your first %{community}
-      post"
+    settings: !html "<span class=\"emoji\">💅🏼</span>Customize your profile"
+    welcome: !html "<span class=\"emoji\">😊</span>Join the Welcome thread"
+    write: !html "<span class=\"emoji\">✍🏾</span>Write your first %{community} post"
   pins:
-    article: Pinned%{ext}
+    article: !html Pinned%{ext}
     ext: "\_post"
     pinned: "📌 Pinned! (pinned posts display chronologically, 5 max)"
     removed: "🗑 Pin removed"
@@ -112,7 +108,7 @@ v:
   stats:
     meta:
       title: Stats for Your Article
-    heading: Stats for "%{article}"
+    heading: !html Stats for "%{article}"
     period:
       aria_label: Analytics period
       week: Week
@@ -132,14 +128,14 @@ v:
     email: Email
     hot: Hot
     location: Location
-    more_from: More from %{actor}
+    more_from: !html More from %{actor}
     no_summary: Posts in this tag
-    trending: Trending on %{app}
+    trending: !html Trending on %{app}
   videos:
     meta:
       title: Videos
       og:
         description: All videos on %{community}
     heading: "%{community} on Video"
-    beta: "<strong>Video is beta:</strong> Email %{email} if you have any problems."
+    beta: !html <strong>Video is beta:</strong> Email %{email} if you have any problems.
     upload: "🎥 Upload Video File 🙌"

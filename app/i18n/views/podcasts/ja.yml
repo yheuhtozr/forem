@@ -9,7 +9,7 @@ v:
     close: "×"
     form:
       heading: Suggest a Podcast
-      errors:
+      errors: !pl
         1: '1 error while creating a podcast:'
         n: "%1 errors while creating a podcast:"
       owner: I am the owner of this podcast

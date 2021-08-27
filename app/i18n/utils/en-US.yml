@@ -10,7 +10,7 @@ j:
   author: Active %{community} author
 m:
   adjust: Adjust your email settings
-  adjust_only: Don't want to get emails like this? Adjust your email settings at %{path}
+  adjust_only: !html Don't want to get emails like this? Adjust your email settings at %{path}
   unsubscribe: Unsubscribe
 class:
   Article: article

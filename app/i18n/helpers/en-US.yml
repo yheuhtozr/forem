@@ -55,21 +55,15 @@ helpers:
       email_membership_newsletter: Send me sustaining membership newsletter emails
       email_tag_mod_newsletter: Send me tag moderator newsletter emails
       email_community_mod_newsletter: Send me community moderator newsletter emails
-      email_comment_notifications: Send me an email when someone replies to me in
-        a comment thread
+      email_comment_notifications: Send me an email when someone replies to me in a comment thread
       email_follower_notifications: Send me an email when someone new follows me
       email_mention_notifications: Send me an email when someone mentions me
       email_badge_notifications: Send me an email when I receive a badge
-      email_connect_messages: Send me an email when I receive a direct message (while
-        inactive)
-      email_unread_notifications: Send me occasional reminders that I have unread
-        notifications on %{community}
-      mobile_comment_notifications: Notify me when someone replies to me in a comment
-        thread
-      welcome_notifications: Send me occasional tips on how to enhance my %{community}
-        experience
-      reaction_notifications: Send notifications when someone reacts to my comments
-        or posts
+      email_connect_messages: Send me an email when I receive a direct message (while inactive)
+      email_unread_notifications: Send me occasional reminders that I have unread notifications on %{community}
+      mobile_comment_notifications: Notify me when someone replies to me in a comment thread
+      welcome_notifications: Send me occasional tips on how to enhance my %{community} experience
+      reaction_notifications: Send notifications when someone reacts to my comments or posts
       mod_roundrobin_notifications: Send me occasional community-success mod notifications
       feed_url: RSS Feed URL
   placeholder:
@@ -113,17 +107,16 @@ helpers:
   authentication_helper:
     any_of_those: any of those
     email_password: Email & Password
-    reminder_you_used_to_authe: 'Reminder: you used %{auth_method} to authenticate
-      your account, so please use %{verb} to sign in if prompted.'
+    reminder_you_used_to_authe: 'Reminder: you used %{auth_method} to authenticate your account, so please use %{verb} to sign in if prompted.'
     that: that
     you_cannot_do_this_until_y: You cannot do this until you disable Invite Only Mode
   comments_helper:
     ask_me_anything: Ask Me Anything
     author: Author
     like: Like
-    nbsp_likes:
-      1: "&nbsp;like"
-      n: "&nbsp;likes"
+    nbsp_likes: !pl
+      1: !html '&nbsp;like'
+      n: !html '&nbsp;likes'
   feedback_messages_helper:
     code_of_conduct_violation: "%{community} Code of Conduct Violation"
     courtesy_notice_from: Courtesy Notice from %{community}
@@ -154,43 +147,28 @@ helpers:
       %{community} Team
     report: "%{community} Report"
   listing_helper:
-    option:
+    option: !pl
       1: "%{cl_name} (%{count} Credit)"
       n: "%{cl_name} (%{count} Credits)"
   organization_helper:
     option: "%{org_name} (%{unspent})"
   rate_limit_checker_helper:
-    how_many_changes_can_someo: How many changes can someone make to their user account
-      within any 30 second period?
-    how_many_comments_can_some: How many comments can someone create within any 30
-      second period?
-    how_many_emails_can_we_sen: How many emails can we send to someone within any
-      2 minute period?
-    how_many_images_can_someon: How many images can someone upload within any 30 second
-      period?
-    how_many_listings_can_some: How many listings can someone create within any 1
-      minute period?
-    how_many_organizations_can: How many organizations can someone create within any
-      5 minute period?
+    how_many_changes_can_someo: How many changes can someone make to their user account within any 30 second period?
+    how_many_comments_can_some: How many comments can someone create within any 30 second period?
+    how_many_emails_can_we_sen: How many emails can we send to someone within any 2 minute period?
+    how_many_images_can_someon: How many images can someone upload within any 30 second period?
+    how_many_listings_can_some: How many listings can someone create within any 1 minute period?
+    how_many_organizations_can: How many organizations can someone create within any 5 minute period?
     how_many_people_can_someon: How many people can someone follow in a day?
-    how_many_posts_can_someone: How many posts can someone create within any 30 second
-      period?
-    how_many_thing_s_can_a_new: How many %{thing} can a new member (%{timeframe} or
-      less) create within any 5 minute period?
-    how_many_times_can_someone: How many times can someone react to a post or comment
-      within any 30 second period?
-    how_many_times_can_someone2: How many times can someone report abuse within any
-      5 minute period?
-    how_many_times_can_someone3: How many times can someone @-mention other users
-      in a post or comment?
-    how_many_times_can_someone4: How many times can someone subscribe to a mailing
-      list within any 30 second period?
-    how_many_times_can_we_send: How many times can we send a confirmation email to
-      someone within a 2 minute period?
-    how_many_updates_can_someo: How many updates can someone make within any 30 second
-      period? Update API docs when changed.
-    limit_number_of_changes_so: Limit number of changes someone can make to their
-      account
+    how_many_posts_can_someone: How many posts can someone create within any 30 second period?
+    how_many_thing_s_can_a_new: How many %{thing} can a new member (%{timeframe} or less) create within any 5 minute period?
+    how_many_times_can_someone: How many times can someone react to a post or comment within any 30 second period?
+    how_many_times_can_someone2: How many times can someone report abuse within any 5 minute period?
+    how_many_times_can_someone3: How many times can someone @-mention other users in a post or comment?
+    how_many_times_can_someone4: How many times can someone subscribe to a mailing list within any 30 second period?
+    how_many_times_can_we_send: How many times can we send a confirmation email to someone within a 2 minute period?
+    how_many_updates_can_someo: How many updates can someone make within any 30 second period? Update API docs when changed.
+    limit_number_of_changes_so: Limit number of changes someone can make to their account
     limit_number_of_comments_c: Limit number of comments created
     limit_number_of_comments_c2: Limit number of comments created by a new member
     limit_number_of_confirmati: Limit number of confirmation emails we send
@@ -204,8 +182,7 @@ helpers:
     limit_number_of_posts_crea2: Limit number of posts created by a new member
     limit_number_of_reactions: Limit number of reactions to a post or comment
     limit_number_of_times_some: Limit number of times someone can report abuse
-    limit_number_of_times_some2: Limit number of times someone can subscribe to mailing
-      list liquid tag
+    limit_number_of_times_some2: Limit number of times someone can subscribe to mailing list liquid tag
     limit_number_of_updates_to: Limit number of updates to a post
   settings_helper:
     advanced: Advanced

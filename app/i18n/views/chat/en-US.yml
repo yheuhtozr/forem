@@ -15,15 +15,13 @@ v:
       heading: Would you like to join the %{name} channel
       accept: Accept
       decline: Decline
-      expired: This Invitation link is expired. Please contact the channel mod for
-        new Invitation link
+      expired: This Invitation link is expired. Please contact the channel mod for new Invitation link
       pending:
         heading: Pending Invitations
         desc: You may leave a group channel at any point in the future.
         empty: You have no pending invitations.
         chat: "@%{user} joined %{channel}"
-        notice: Invitation to %{channel} accepted. It may take a moment to show up
-          in your list.
+        notice: Invitation to %{channel} accepted. It may take a moment to show up in your list.
         remove: Invitation removed.
       request:
         success: Request Sent
@@ -38,8 +36,7 @@ v:
         not_found: not found
     leave:
       chat: "@#{user} left #{channel}"
-      success: You have left the channel %{channel}. It may take a moment to be removed
-        from your list.
+      success: You have left the channel %{channel}. It may take a moment to be removed from your list.
       failure: Failed to update membership
     kick:
       chat: "@%{user} removed @%{target} from %{channel}"
@@ -50,8 +47,7 @@ v:
         failure: Suspend failed. user with username '%{user}' not found in this channel.
       unban:
         success: "%{user} was unsuspended."
-        failure: Unsuspend failed. User with username '%{user}' not found in this
-          channel.
+        failure: Unsuspend failed. User with username '%{user}' not found in this channel.
       clear:
         success: cleared!
         failure: invalid command

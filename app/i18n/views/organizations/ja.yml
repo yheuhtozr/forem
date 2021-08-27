@@ -9,7 +9,7 @@ v:
       icon: GitHub logo
     joined:
       icon: Joined
-      text: Joined on\_%{date}
+      text: !html "Joined on\_%{date}"
     location:
       icon: Location
     size: Employees
