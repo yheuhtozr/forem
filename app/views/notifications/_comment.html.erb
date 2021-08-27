@@ -9,8 +9,8 @@
     <% end %>
 
     <div class="notification__content">
+      <% params = { user: link_to(json_data["user"]["name"], json_data["user"]["path"], class: "crayons-link fw-bold"), title: link_to(h(json_data["comment"]["commentable"]["title"]), json_data["comment"]["commentable"]["path"], class: "crayons-link fw-bold") } %>
       <% if notification.action.blank? %>
-        <% params = { user: link_to(json_data["user"]["name"], json_data["user"]["path"], class: "crayons-link fw-bold"), title: link_to(h(json_data["comment"]["commentable"]["title"]), json_data["comment"]["commentable"]["path"], class: "crayons-link fw-bold") } %>
         <% if json_data["comment"]["created_at"] %>
           <header class="mb-4">
             <h2 class="fs-base fw-normal">
@@ -20,7 +20,7 @@
                 <%= _t.commented params %>
               <% end %>
             </h2>
-            <p class="lh-tight"><a href="<%= json_data["comment"]["path"] %>" class="crayons-link fs-s crayons-link--secondary"><%= time_ago_in_words json_data["comment"]["created_at"], scope: :'datetime.distance_in_words_ago' %></a></p>
+            <p class="lh-tight"><a href="<%= json_data["comment"]["path"] %>" class="crayons-link fs-s crayons-link--secondary"><%= time_ago_in_words json_data["comment"]["created_at"], scope: :"datetime.distance_in_words_ago" %></a></p>
           </header>
         <% end %>
 
@@ -29,7 +29,6 @@
       <% elsif notification.action == "Moderation" %>
         <header class="mb-4">
           <h2 class="fs-base fw-normal">
-            <%# TODO (yheuhtozr): check if the user param is designed correctly %>
             <%= _t.left user: link_to(json_data["comment"]["path"].split("/")[1], "/#{json_data['comment']['path'].split('/')[1]}", class: "crayons-link fw-bold"), title: params[:title] %>
           </h2>
           <p><%= _t.welcome %></p>
@@ -44,7 +43,7 @@
           <h2 class="fs-base fw-normal">
             <%= _t.first params %>
           </h2>
-          <p class="lh-tight"><small class="fs-s color-base-60"><%= time_ago_in_words notification.created_at, scope: :'datetime.distance_in_words_ago' %></small></p>
+          <p class="lh-tight"><small class="fs-s color-base-60"><%= time_ago_in_words notification.created_at, scope: :"datetime.distance_in_words_ago" %></small></p>
 
           <p><%= _t.first_reply %></p>
         </header>
