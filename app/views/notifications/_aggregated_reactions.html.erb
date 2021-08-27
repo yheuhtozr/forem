@@ -39,11 +39,13 @@
         # your article/comment or the actual title of the article/comment
         title: link_to(reactable_data["title"].blank? ? _t.your[reactable_data["class"]["name"].downcase] : h(reactable_data["title"]), reactable_data["path"], class: "crayons-link fw-bold"),
         end: "</span>".html_safe,
-        reactions: reaction_categories.filter_map do |cat|
-          image_path = reaction_image(cat)
-          if image_path.present?
-            inline_svg_tag(image_path, aria: true, class: "crayons-icon reaction-image mx-1 my-1 reaction-icon--#{cat}", title: t.v.reactions.category[cat.to_s])
-          end
-        end.safe_join("\n"),
+        reactions: safe_join(
+          reaction_categories.filter_map do |cat|
+            image_path = reaction_image(cat)
+            if image_path.present?
+              inline_svg_tag(image_path, aria: true, class: "crayons-icon reaction-image mx-1 my-1 reaction-icon--#{cat}", title: t.v.reactions.category[cat.to_s])
+            end
+          end, "\n"
+        ),
       ) %>
 </div>
