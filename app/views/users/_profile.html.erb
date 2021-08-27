@@ -106,9 +106,7 @@
                               placeholder: field["placeholder_text"],
                               class: "crayons-textfield") %>
           <% end %>
-          <% if field.description.present? %>
-            <p class="crayons-field__description"><%= field.description %></p>
-          <% end %>
+          <p class="crayons-field__description"><%= _t.profile_descriptions[field.attribute_name] | "" %></p>
         </div>
       <% end %>
     </div>
