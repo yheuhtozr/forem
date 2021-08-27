@@ -231,6 +231,12 @@ MAP = {
   stats: {
     __orphan: [%w[charts comments external followers new_followers reactions readers reads this_month this_week]],
   },
+  sticky: {
+    __scope: ['users.card'],
+    created_at: [true],
+    email: [true],
+    location: [true],
+  },
   tags: {
     __orphan: [%w[aria_label hide placeholder rules view]],
   },
@@ -247,6 +253,11 @@ MAP = {
     },
     details: [true, true],
     follow: [true],
+    profile_fields: {
+      __scope: ['users.card'],
+      education: [true],
+      work: [true],
+    },
     send_pm: {
       __scope: ['listings.message'],
       code: [true],
