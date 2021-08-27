@@ -2,6 +2,7 @@
 require 'yaml'
 require 'json'
 require 'deepsort'
+require 'active_support/core_ext/hash'
 
 yamls = Dir.new "#{__dir__}/../app/i18n"
 js1 = Dir.new "#{__dir__}/../app/javascript/i18n"
@@ -426,9 +427,9 @@ def parse(doc, lang, existing, which)
   tree.deep_sort
 end
 
-Dir.glob("*.yml", base: yamls) do |yml|
-  doc = YAML.load_file "#{yamls.path}/#{yml}"
-  base = File.basename yml, '.*'
+Dir.glob("**/*.yml", base: yamls).uniq.compact.map { |name| File.basename name, '.*' }.each do |base|
+  doc = {}
+  Dir.glob("**/#{base}.yml", base: yamls) { |f| doc.deep_merge! YAML.load_file("#{yamls.path}/#{f}") }
   doc.merge! doc.delete('v')
   [js1, js2].each.with_index do |dir, which|
     json = "#{dir.path}/#{base}.json"
