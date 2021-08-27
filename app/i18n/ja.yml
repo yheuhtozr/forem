@@ -12,32 +12,6 @@ m:
   adjust: Adjust your email settings
   adjust_only: !html Don't want to get emails like this? Adjust your email settings at %{path}
   unsubscribe: Unsubscribe
-  verification:
-    html: !html |
-      <p>
-      Hey %{user}!
-      </p>
-
-      <p>
-      We're sending this email to verify that you've got access to this email address.
-      </p>
-
-      <p>
-      If you have no idea why you're getting this email, please ignore it!
-      </p>
-
-      <p>
-        Otherwise, %{click} to verify that you still have access to this email address.
-      </p>
-    click: click here
-    text: |-
-      Hey %{user}!
-
-      We're sending this email to verify that you've got access to this email address.
-
-      If you have no idea why you're getting this email, please ignore it!
-
-      Otherwise, visit the following URL to verify that you still have access to this email address:
 v:
   actions:
     copy:
