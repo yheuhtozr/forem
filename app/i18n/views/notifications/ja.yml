@@ -1,0 +1,84 @@
+---
+v:
+  notifications:
+    meta:
+      description: Notifications inbox for %{community}
+      og:
+        title: Notifications - %{community}
+    heading: Notifications
+    badge:
+      heading: You received the %{badge} badge
+      awarded: "You also get %{credits} to use for %{listings} if you have anything
+        you'd like to promote. 🎉"
+      credits:
+        n: "%1 new credits"
+      listings: community listings
+      more: More information about listings
+      profile: Visit your profile
+    broadcast:
+      visit: Visit %{settings} to manage your notifications.
+      settings: Settings
+    comment:
+      commented: "%{user} commented on %{title}"
+      first: "%{user} wrote their first comment on %{title}"
+      first_reply: "Give them their first reply! 🎉"
+      left: "%{user} just left a comment on %{title}."
+      replied: "%{user} replied to a thread in %{title}"
+      report: All negative reactions are 100% private. If this comment violates the
+        code of conduct, please downvote/report as inappropriate.
+      welcome: Since they are new to the community, could you leave a nice reply to
+        help them feel welcome? <strong>Thank you!</strong>
+    error:
+      subtitle: An error occurred!
+      desc: This has been logged and we're tracking it. If you see too many of these,
+        please report it to %{email}!
+    follow:
+      and: "%{first} and %{second} followed you!"
+      and_other:
+        n: "%{first} and %{others} followed you!"
+      others:
+        n: "%1 others"
+      single: "%{name} followed you!"
+    load: Load More
+    mention:
+      article: "%{user} mentioned you in a post%{if_org}"
+      comment: "%{user} mentioned you in a comment"
+      if_org: " under %{org}"
+    milestone:
+      heading:
+        n: Your post %{title} passed %{count} %{type}!
+      check: Check your dashboard
+      intro: "🎉🎉🎉🎉🎉🎉🎉🎉"
+      type:
+        View: views
+        Reaction: reactions
+    nav:
+      aria_label: Notifications
+      all: All
+      comments: Comments
+      posts: Posts
+    new_post:
+      if_org: " under %{org}"
+      verb: "%{user} made a new post%{if_org}"
+    reacted:
+      and: "%{first} and %{last}"
+      and_other:
+        n: "%{first} and %{count} others"
+      verb:
+        n: "%{start}%{actors} reacted to %{title} with%{end} %{reactions}"
+      your:
+        article: your article
+        comment: your comment
+    settings: Settings
+    tag:
+      heading: "Hey there 👋"
+      add: Moderators added the <strong>%{tag}</strong> tag to your post %{title}.
+        Mods felt this tag represented your article.
+      check: Check out %{other} which may be more appropriate
+      other: other popular tags
+      reason: 'Reason for action:'
+      remove: Moderators removed the <strong>%{tag}</strong> tag from your post %{title}.
+        Certain tags have special submission guidelines, and mods need to adjust tags
+        to best fit the community.
+      support: "Thanks for being part of %{community}! If you feel like this mod action
+        was a mistake, feel free to contact %{email}. 🤗"

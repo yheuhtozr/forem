@@ -1,0 +1,66 @@
+---
+v:
+  auth:
+    create:
+      aria_label: 新しいアカウントを作る
+      text: 新しいアカウントを作る
+    creator:
+      text: あと一歩です！
+      desc: このコミュニティの管理者アカウントを作りましょう。
+      submit: 管理者アカウントを作成
+    login:
+      aria_label: ログイン
+      text: ログイン
+      continue: 次へ
+      forgot: パスワードを忘れた
+    provider:
+      text: "%{provider} から%{action}"
+      login: ログイン
+      signup: 登録
+      email:
+        icon: メールアドレス
+        text: メールアドレスで登録
+    register:
+      errors:
+        n: 問題が %1 件発生しました
+      error:
+        recaptcha: reCAPTCHA を完了 ✅ してください
+        domain: が許可されたドメインに含まれていません
+      allow:
+        one: "<strong>@%{domain}</strong> アドレスからのみ登録を受け付けています。"
+        list: 以下のアドレスからのみ登録を受け付けています。
+      create: アカウントを作る
+      field:
+        name:
+          aria_label: 名前
+          label: 名前
+        username:
+          aria_label: ユーザー名
+          label: ユーザー名
+        email:
+          aria_label: メールアドレス
+          label: メールアドレス
+        password:
+          aria_label: パスワード
+          label: パスワード
+        confirm:
+          aria_label: パスワードを再入力
+          label: パスワードを再入力
+        required: "* は必須項目"
+      secret:
+        label: 新しい Forem の暗証コード
+        placeholder: Forem ホストから伝えられた通り入力
+      submit: 登録する
+    wizard:
+      meta:
+        title: Let's get started with Forem
+      heading: Let's start your Forem journey
+      step_1: Create an account. It will be the first super admin account.
+      step_2: Once you sign up below, you can configure your community at %{path}.
+      step_3: There is lots you can do as an admin, but there is a learning curve.
+      step_4: Please reach out to the Forem team if you are unsure about anything!
+      step_5: "For Empowering Community 🌱"
+    tagline: Log in to customize your experience and get involved.
+    title:
+      text: <a href="/">%{name}</a> is a community of %{maybe_size}amazing %{label}
+      size: "%1 "
