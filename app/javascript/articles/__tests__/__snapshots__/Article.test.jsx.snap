@@ -54,42 +54,60 @@ Object {
                   </a>
                 </h3>
                 <div
-                  class="crayons-story__tags"
+                  class="crayons-story__auxiliary"
                 >
-                  <a
-                    class="crayons-tag"
-                    href="/t/javascript"
-                    style="background: rgb(0, 0, 0); color: rgb(255, 255, 255);"
+                  <div
+                    class="crayons-story__tags"
+                  >
+                    <a
+                      class="crayons-tag"
+                      href="/t/javascript"
+                      style="background: rgb(0, 0, 0); color: rgb(255, 255, 255);"
+                    >
+                      <span
+                        class="crayons-tag__prefix"
+                      >
+                        #
+                      </span>
+                      javascript
+                    </a>
+                    <a
+                      class="crayons-tag"
+                      href="/t/ruby"
+                    >
+                      <span
+                        class="crayons-tag__prefix"
+                      >
+                        #
+                      </span>
+                      ruby
+                    </a>
+                    <a
+                      class="crayons-tag"
+                      href="/t/go"
+                    >
+                      <span
+                        class="crayons-tag__prefix"
+                      >
+                        #
+                      </span>
+                      go
+                    </a>
+                  </div>
+                  <small
+                    class="crayons-story__tertiary fs-xs mr-2 mb-2"
                   >
                     <span
-                      class="crayons-tag__prefix"
+                      class="whitespace-nowrap"
                     >
-                      #
+                       • 
                     </span>
-                    javascript
-                  </a>
-                  <a
-                    class="crayons-tag"
-                    href="/t/ruby"
-                  >
                     <span
-                      class="crayons-tag__prefix"
+                      class="whitespace-nowrap"
                     >
-                      #
+                      100 words/chars
                     </span>
-                    ruby
-                  </a>
-                  <a
-                    class="crayons-tag"
-                    href="/t/go"
-                  >
-                    <span
-                      class="crayons-tag__prefix"
-                    >
-                      #
-                    </span>
-                    go
-                  </a>
+                  </small>
                 </div>
               </div>
               <div
@@ -230,12 +248,6 @@ Object {
               <div
                 class="crayons-story__save"
               >
-                <small
-                  class="crayons-story__tertiary fs-xs mr-2"
-                >
-                  <br />
-                  100 words/chars
-                </small>
                 <button
                   class="crayons-btn crayons-btn--s crayons-btn--secondary"
                   data-initial-feed="true"
@@ -302,42 +314,60 @@ Object {
                 </a>
               </h3>
               <div
-                class="crayons-story__tags"
+                class="crayons-story__auxiliary"
               >
-                <a
-                  class="crayons-tag"
-                  href="/t/javascript"
-                  style="background: rgb(0, 0, 0); color: rgb(255, 255, 255);"
+                <div
+                  class="crayons-story__tags"
+                >
+                  <a
+                    class="crayons-tag"
+                    href="/t/javascript"
+                    style="background: rgb(0, 0, 0); color: rgb(255, 255, 255);"
+                  >
+                    <span
+                      class="crayons-tag__prefix"
+                    >
+                      #
+                    </span>
+                    javascript
+                  </a>
+                  <a
+                    class="crayons-tag"
+                    href="/t/ruby"
+                  >
+                    <span
+                      class="crayons-tag__prefix"
+                    >
+                      #
+                    </span>
+                    ruby
+                  </a>
+                  <a
+                    class="crayons-tag"
+                    href="/t/go"
+                  >
+                    <span
+                      class="crayons-tag__prefix"
+                    >
+                      #
+                    </span>
+                    go
+                  </a>
+                </div>
+                <small
+                  class="crayons-story__tertiary fs-xs mr-2 mb-2"
                 >
                   <span
-                    class="crayons-tag__prefix"
+                    class="whitespace-nowrap"
                   >
-                    #
+                     • 
                   </span>
-                  javascript
-                </a>
-                <a
-                  class="crayons-tag"
-                  href="/t/ruby"
-                >
                   <span
-                    class="crayons-tag__prefix"
+                    class="whitespace-nowrap"
                   >
-                    #
+                    100 words/chars
                   </span>
-                  ruby
-                </a>
-                <a
-                  class="crayons-tag"
-                  href="/t/go"
-                >
-                  <span
-                    class="crayons-tag__prefix"
-                  >
-                    #
-                  </span>
-                  go
-                </a>
+                </small>
               </div>
             </div>
             <div
@@ -478,12 +508,6 @@ Object {
             <div
               class="crayons-story__save"
             >
-              <small
-                class="crayons-story__tertiary fs-xs mr-2"
-              >
-                <br />
-                100 words/chars
-              </small>
               <button
                 class="crayons-btn crayons-btn--s crayons-btn--secondary"
                 data-initial-feed="true"

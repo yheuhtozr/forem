@@ -84,7 +84,16 @@ export const Article = ({
           <div className="crayons-story__indention">
             <div className="crayons-story__middle">
               <ContentTitle article={article} />
-              <TagList tags={article.tag_list} flare_tag={article.flare_tag} />
+              <div className="crayons-story__auxiliary">
+                <TagList
+                  tags={article.tag_list}
+                  flare_tag={article.flare_tag}
+                />
+                <ReadingTime
+                  readingTime={article.reading_time}
+                  baseLang={article.text_language}
+                />
+              </div>
 
               {article.class_name === 'Article' && (
                 // eslint-disable-next-line no-underscore-dangle
@@ -135,11 +144,6 @@ export const Article = ({
             )}
 
             <div className="crayons-story__save">
-              <ReadingTime
-                readingTime={article.reading_time}
-                baseLang={article.text_language}
-              />
-
               <SaveButton
                 article={article}
                 isBookmarked={isBookmarked}

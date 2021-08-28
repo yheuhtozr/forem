@@ -116,6 +116,12 @@
     margin-right: var(--story-spacing-unit);
   }
 
+  &__auxiliary {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
   &__overflow {
     color: var(--card-color-tertiary);
     @media (min-width: $breakpoint-s) {

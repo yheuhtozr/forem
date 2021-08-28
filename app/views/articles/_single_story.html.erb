@@ -28,18 +28,29 @@
             <%= story.title %>
           </a>
         </h2>
-        <div class="crayons-story__tags">
-          <% flare_tag = FlareTag.new(story, @tag).tag %>
-          <% if flare_tag %>
-            <a href="<%= URL.tag flare_tag %>" class="crayons-tag" style="background:<%= flare_tag.bg_color_hex %>;color:<%= flare_tag.text_color_hex %>"><span class="crayons-tag__prefix">#</span><%= flare_tag.name %></a>
-          <% end %>
-          <% tags_to_display = story.cached_tag_list_array
-             if flare_tag
-               tags_to_display = tags_to_display.reject { |tag| tag == flare_tag.name }
-             end %>
-          <% tags_to_display.each do |tag| %>
-          <a href="/t/<%= tag %>" class="crayons-tag"><span class="crayons-tag__prefix">#</span><%= tag %></a>
-          <% end %>
+        <div class="crayons-story__auxiliary">
+          <div class="crayons-story__tags">
+            <% flare_tag = FlareTag.new(story, @tag).tag %>
+            <% if flare_tag %>
+              <a href="<%= URL.tag flare_tag %>" class="crayons-tag" style="background:<%= flare_tag.bg_color_hex %>;color:<%= flare_tag.text_color_hex %>"><span class="crayons-tag__prefix">#</span><%= flare_tag.name %></a>
+            <% end %>
+            <% tags_to_display = story.cached_tag_list_array
+               if flare_tag
+                 tags_to_display = tags_to_display.reject { |tag| tag == flare_tag.name }
+               end %>
+            <% tags_to_display.each do |tag| %>
+            <a href="/t/<%= tag %>" class="crayons-tag"><span class="crayons-tag__prefix">#</span><%= tag %></a>
+            <% end %>
+          </div>
+          <small class="crayons-story__tertiary fs-xs mr-2 mb-2">
+            <span class="whitespace-nowrap"><%= lang_name story.lang %> &bull; </span>
+            <% cdiv, cmod = story.reading_time.divmod(100) %>
+            <span class="whitespace-nowrap"><%= _t.reading_time(if cdiv < 1
+                                                                  100
+                                                                else
+                                                                  cdiv * 100 + (cmod >= 50 ? 100 : 0)
+                                                                end) %></span>
+          </small>
         </div>
       </div>
       <div class="crayons-story__bottom">
@@ -145,15 +156,6 @@
       <% end %>
 
         <div class="crayons-story__save">
-          <small class="crayons-story__tertiary fs-xs mr-2">
-            <%= lang_name story.lang %><br>
-            <% cdiv, cmod = story.reading_time.divmod(100) %>
-            <%= _t.reading_time(if cdiv < 1
-                                  100
-                                else
-                                  cdiv * 100 + (cmod >= 50 ? 100 : 0)
-                                end) %>
-          </small>
           <button type="button" id="article-save-button-<%= story.id %>" class="crayons-btn crayons-btn--secondary crayons-btn--s bookmark-button" data-reactable-id="<%= story.id %>" aria-label="<%= _t.save.aria_label %>" title="<%= _t.save.title %>">
             <span class="bm-initial"><%= _t.save.initial %></span>
             <span class="bm-success"><%= _t.save.success %></span>

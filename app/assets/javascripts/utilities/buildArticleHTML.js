@@ -260,13 +260,13 @@ function buildArticleHTML(article) {
       var div = Math.floor((article.reading_time || 0) / 100);
       var mod = div % 100;
       readingTimeHTML =
-        '<small class="crayons-story__tertiary fs-xs mr-2">' +
+        '<small class="crayons-story__tertiary fs-xs mr-2 mb-2"><span class="whitespace-nowrap">' +
         article.text_language +
-        '<br>' +
+        ' &bull; </span><span class="whitespace-nowrap">' +
         i18next.t('articles.reading_time', {
           count: div < 1 ? 100 : div * 100 + (mod >= 50 ? 100 : 0),
         }) +
-        '</small>';
+        '</span></small>';
     }
 
     var saveButton = '';
@@ -333,8 +333,11 @@ function buildArticleHTML(article) {
                     ${filterXSS(article.title)}
                   </a>
                 </h3>\
+                <div class="crayons-story__auxiliary">\
                 <div class="crayons-story__tags">
                   ${tagString}
+                </div>\
+                ${readingTimeHTML}\
                 </div>\
                 ${searchSnippetHTML}\
               </div>\
@@ -347,7 +350,6 @@ function buildArticleHTML(article) {
             <div class="crayons-story__top">\
               ${meta}\
                 <div class="crayons-story__save">\
-                  ${readingTimeHTML}\
                   ${saveButton}
                 </div>\
             </div>\
