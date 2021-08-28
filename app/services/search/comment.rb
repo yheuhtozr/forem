@@ -11,7 +11,7 @@ module Search
       "comments.public_reactions_count",
       "comments.score",
       "comments.user_id",
-      "comments.body_markdown AS body_text",
+      "comments.body_markdown AS body_text", # PGroonga provisional dummy for now
     ].freeze
     private_constant :ATTRIBUTES
 
@@ -61,6 +61,7 @@ module Search
         relation = relation.search_comments(term)
         attributes = ATTRIBUTES.map do |a|
           if a.end_with? "body_text"
+            # employ PGroonga's highlight for non-spacing locales
             ::Comment.sanitize_sql(["pgroonga_highlight_html(comments.body_markdown, ARRAY[?]) AS body_text", term])
           else
             a

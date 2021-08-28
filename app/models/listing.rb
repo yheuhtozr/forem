@@ -30,7 +30,7 @@ class Listing < ApplicationRecord
   scope :search_listings, lambda { |query|
     where(
       "ARRAY[body_markdown, cached_tag_list, location, slug, title]
-      &@~ (?, [1, 1, 1, 1, 1, 1], index_classified_listings_full_text)::pgroonga_full_text_search_condition",
+      &@~ (?, ARRAY[1, 1, 1, 1, 1, 1], index_classified_listings_full_text)::pgroonga_full_text_search_condition",
       query,
     )
   }
