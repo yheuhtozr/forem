@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 2021_08_24_154627) do
   enable_extension "citext"
   enable_extension "pg_trgm"
   enable_extension "pgcrypto"
+  enable_extension "pgroonga"
   enable_extension "plpgsql"
   enable_extension "unaccent"
 
@@ -132,7 +133,6 @@ ActiveRecord::Schema.define(version: 2021_08_24_154627) do
     t.boolean "published_from_feed", default: false
     t.integer "rating_votes_count", default: 0, null: false
     t.integer "reactions_count", default: 0, null: false
-    t.tsvector "reading_list_document"
     t.integer "reading_time", default: 0
     t.boolean "receive_notifications", default: true
     t.integer "score", default: 0
@@ -154,6 +154,7 @@ ActiveRecord::Schema.define(version: 2021_08_24_154627) do
     t.string "video_source_url"
     t.string "video_state"
     t.string "video_thumbnail_url"
+    t.index "title pgroonga_varchar_full_text_search_ops_v2, cached_tag_list pgroonga_varchar_full_text_search_ops_v2, body_markdown, cached_user_name pgroonga_varchar_full_text_search_ops_v2, cached_user_username pgroonga_varchar_full_text_search_ops_v2, array_to_string2(regexp_match(cached_organization, 'name: (.*)$'::text, 'n'::text))", name: "index_articles_full_text", using: :pgroonga
     t.index "user_id, title, digest(body_markdown, 'sha512'::text)", name: "index_articles_on_user_id_and_title_and_digest_body_markdown", unique: true
     t.index ["boost_states"], name: "index_articles_on_boost_states", using: :gin
     t.index ["cached_tag_list"], name: "index_articles_on_cached_tag_list", opclass: :gin_trgm_ops, using: :gin
@@ -169,7 +170,6 @@ ActiveRecord::Schema.define(version: 2021_08_24_154627) do
     t.index ["public_reactions_count"], name: "index_articles_on_public_reactions_count", order: :desc
     t.index ["published"], name: "index_articles_on_published"
     t.index ["published_at"], name: "index_articles_on_published_at"
-    t.index ["reading_list_document"], name: "index_articles_on_reading_list_document", using: :gin
     t.index ["slug", "user_id"], name: "index_articles_on_slug_and_user_id", unique: true
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
@@ -182,7 +182,7 @@ ActiveRecord::Schema.define(version: 2021_08_24_154627) do
     t.string "slug"
     t.datetime "updated_at", null: false
     t.bigint "user_id"
-    t.index ["data"], name: "index_audit_logs_on_data", using: :gin
+    t.index ["data"], name: "index_audit_logs_on_data", using: :pgroonga
     t.index ["user_id"], name: "index_audit_logs_on_user_id"
   end
 
@@ -347,7 +347,7 @@ ActiveRecord::Schema.define(version: 2021_08_24_154627) do
     t.string "title"
     t.datetime "updated_at", null: false
     t.bigint "user_id"
-    t.index "(((((to_tsvector('simple'::regconfig, COALESCE(body_markdown, ''::text)) || to_tsvector('simple'::regconfig, COALESCE((cached_tag_list)::text, ''::text))) || to_tsvector('simple'::regconfig, COALESCE((location)::text, ''::text))) || to_tsvector('simple'::regconfig, COALESCE((slug)::text, ''::text))) || to_tsvector('simple'::regconfig, COALESCE((title)::text, ''::text))))", name: "index_classified_listings_on_search_fields_as_tsvector", using: :gin
+    t.index ["body_markdown", "cached_tag_list", "location", "slug", "title"], name: "index_classified_listings_full_text", opclass: { cached_tag_list: :pgroonga_varchar_full_text_search_ops, location: :pgroonga_varchar_full_text_search_ops, slug: :pgroonga_varchar_full_text_search_ops, title: :pgroonga_varchar_full_text_search_ops }, using: :pgroonga
     t.index ["classified_listing_category_id"], name: "index_classified_listings_on_classified_listing_category_id"
     t.index ["organization_id"], name: "index_classified_listings_on_organization_id"
     t.index ["published"], name: "index_classified_listings_on_published"
@@ -393,9 +393,9 @@ ActiveRecord::Schema.define(version: 2021_08_24_154627) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.index "digest(body_markdown, 'sha512'::text), user_id, ancestry, commentable_id, commentable_type", name: "index_comments_on_body_markdown_user_ancestry_commentable", unique: true
-    t.index "to_tsvector('simple'::regconfig, COALESCE(body_markdown, ''::text))", name: "index_comments_on_body_markdown_as_tsvector", using: :gin
     t.index ["ancestry"], name: "index_comments_on_ancestry"
     t.index ["ancestry"], name: "index_comments_on_ancestry_trgm", opclass: :gin_trgm_ops, using: :gin
+    t.index ["body_markdown"], name: "index_comments_on_body_markdown", using: :pgroonga
     t.index ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type"
     t.index ["created_at"], name: "index_comments_on_created_at"
     t.index ["deleted"], name: "index_comments_on_deleted", where: "(deleted = false)"
@@ -899,7 +899,7 @@ ActiveRecord::Schema.define(version: 2021_08_24_154627) do
     t.string "title", null: false
     t.datetime "updated_at", null: false
     t.string "website_url"
-    t.index "(((to_tsvector('simple'::regconfig, COALESCE(body, ''::text)) || to_tsvector('simple'::regconfig, COALESCE((subtitle)::text, ''::text))) || to_tsvector('simple'::regconfig, COALESCE((title)::text, ''::text))))", name: "index_podcast_episodes_on_search_fields_as_tsvector", using: :gin
+    t.index ["body", "subtitle", "title"], name: "index_podcast_episodes_full_text", opclass: { subtitle: :pgroonga_varchar_full_text_search_ops, title: :pgroonga_varchar_full_text_search_ops }, using: :pgroonga
     t.index ["guid"], name: "index_podcast_episodes_on_guid", unique: true
     t.index ["media_url"], name: "index_podcast_episodes_on_media_url", unique: true
     t.index ["podcast_id"], name: "index_podcast_episodes_on_podcast_id"
@@ -1555,32 +1555,4 @@ ActiveRecord::Schema.define(version: 2021_08_24_154627) do
   add_foreign_key "users_settings", "users"
   add_foreign_key "webhook_endpoints", "oauth_applications"
   add_foreign_key "webhook_endpoints", "users"
-  create_trigger("update_reading_list_document", :generated => true, :compatibility => 1).
-      on("articles").
-      name("update_reading_list_document").
-      before(:insert, :update).
-      for_each(:row).
-      declare("l_org_vector tsvector; l_user_vector tsvector") do
-    <<-SQL_ACTIONS
-NEW.reading_list_document :=
-  setweight(to_tsvector('simple'::regconfig, unaccent(coalesce(NEW.title, ''))), 'A') ||
-  setweight(to_tsvector('simple'::regconfig, unaccent(coalesce(NEW.cached_tag_list, ''))), 'B') ||
-  setweight(to_tsvector('simple'::regconfig, unaccent(coalesce(NEW.body_markdown, ''))), 'C') ||
-  setweight(to_tsvector('simple'::regconfig, unaccent(coalesce(NEW.cached_user_name, ''))), 'D') ||
-  setweight(to_tsvector('simple'::regconfig, unaccent(coalesce(NEW.cached_user_username, ''))), 'D') ||
-  setweight(to_tsvector('simple'::regconfig,
-    unaccent(
-      coalesce(
-        array_to_string(
-          -- cached_organization is serialized to the DB as a YAML string, we extract only the name attribute
-          regexp_match(NEW.cached_organization, 'name: (.*)$', 'n'),
-          ' '
-        ),
-        ''
-      )
-    )
-  ), 'D');
-    SQL_ACTIONS
-  end
-
 end

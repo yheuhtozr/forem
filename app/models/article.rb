@@ -123,59 +123,16 @@ class Article < ApplicationRecord
 
   after_commit :async_score_calc, :touch_collection, :detect_animated_images, on: %i[create update]
 
-  # The trigger `update_reading_list_document` is used to keep the `articles.reading_list_document` column updated.
-  #
-  # Its body is inserted in a PostgreSQL trigger function and that joins the columns values
-  # needed to search documents in the context of a "reading list".
-  #
-  # Please refer to https://github.com/jenseng/hair_trigger#usage in case you want to change or update the trigger.
-  #
-  # Additional information on how triggers work can be found in
-  # => https://www.postgresql.org/docs/11/trigger-definition.html
-  # => https://www.cybertec-postgresql.com/en/postgresql-how-to-write-a-trigger/
-  #
-  # Adapted from https://dba.stackexchange.com/a/289361/226575
-  trigger
-    .name(:update_reading_list_document).before(:insert, :update).for_each(:row)
-    .declare("l_org_vector tsvector; l_user_vector tsvector") do
-    <<~SQL
-      NEW.reading_list_document :=
-        setweight(to_tsvector('simple'::regconfig, unaccent(coalesce(NEW.title, ''))), 'A') ||
-        setweight(to_tsvector('simple'::regconfig, unaccent(coalesce(NEW.cached_tag_list, ''))), 'B') ||
-        setweight(to_tsvector('simple'::regconfig, unaccent(coalesce(NEW.body_markdown, ''))), 'C') ||
-        setweight(to_tsvector('simple'::regconfig, unaccent(coalesce(NEW.cached_user_name, ''))), 'D') ||
-        setweight(to_tsvector('simple'::regconfig, unaccent(coalesce(NEW.cached_user_username, ''))), 'D') ||
-        setweight(to_tsvector('simple'::regconfig,
-          unaccent(
-            coalesce(
-              array_to_string(
-                -- cached_organization is serialized to the DB as a YAML string, we extract only the name attribute
-                regexp_match(NEW.cached_organization, 'name: (.*)$', 'n'),
-                ' '
-              ),
-              ''
-            )
-          )
-        ), 'D');
-    SQL
-  end
-
   serialize :cached_user
   serialize :cached_organization
 
-  # TODO: [@rhymes] Rename the article column and the trigger name.
-  # What was initially meant just for the reading list (filtered using the `reactions` table),
-  # is also used for the article search page.
-  # The name of the `tsvector` column and its related trigger should be adapted.
-  pg_search_scope :search_articles,
-                  against: :reading_list_document,
-                  using: {
-                    tsearch: {
-                      prefix: true,
-                      tsvector_column: :reading_list_document
-                    }
-                  },
-                  ignoring: :accents
+  scope :search_articles, lambda { |query|
+    where(
+      "ARRAY[title, cached_tag_list, body_markdown, cached_user_name, cached_user_username]
+      &@~ (?, ARRAY[10, 4, 2, 1, 1, 1], 'index_articles_full_text')::pgroonga_full_text_search_condition",
+      query,
+    )
+  }
 
   # [@jgaskins] We use an index on `published`, but since it's a boolean value
   #   the Postgres query planner often skips it due to lack of diversity of the

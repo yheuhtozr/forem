@@ -20,7 +20,7 @@ module Search
 
     attribute :highlight do |comment|
       {
-        body_text: [comment.pg_search_highlight]
+        body_text: [comment.body_text]
       }
     rescue PgSearch::PgSearchHighlightNotSelected
       # This is needed because in Search::Comment we only call the

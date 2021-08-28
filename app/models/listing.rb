@@ -27,9 +27,13 @@ class Listing < ApplicationRecord
   validate :restrict_markdown_input
   validate :validate_tags
 
-  pg_search_scope :search_listings,
-                  against: %i[body_markdown cached_tag_list location slug title],
-                  using: { tsearch: { prefix: true } }
+  scope :search_listings, lambda { |query|
+    where(
+      "ARRAY[body_markdown, cached_tag_list, location, slug, title]
+      &@~ (?, [1, 1, 1, 1, 1, 1], index_classified_listings_full_text)::pgroonga_full_text_search_condition",
+      query,
+    )
+  }
 
   scope :published, -> { where(published: true) }
 

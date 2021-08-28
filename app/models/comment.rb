@@ -71,18 +71,7 @@ class Comment < ApplicationRecord
 
   after_update_commit :update_notifications, if: proc { |comment| comment.saved_changes.include? "body_markdown" }
 
-  pg_search_scope :search_comments,
-                  against: %i[body_markdown],
-                  using: {
-                    tsearch: {
-                      prefix: true,
-                      highlight: {
-                        StartSel: "<mark>",
-                        StopSel: "</mark>",
-                        MaxFragments: 2
-                      }
-                    }
-                  }
+  scope :search_comments, ->(query) { where "comments.body_markdown &@~ ?", query }
 
   scope :eager_load_serialized_data, -> { includes(:user, :commentable) }
 
