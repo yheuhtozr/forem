@@ -37,7 +37,9 @@ module Podcasts
       {
         podcast_id: podcast_id,
         title: item.title,
-        slug: item.title.parameterize,
+        # simplified equivalent of /app/models/concerns/sluggifiable.rb
+        slug: item.title.unicode_normalize(:nfkc).to_slug.transliterate(:cyrillic, :latin, :vietnamese, :greek, :hindi)
+          .word_chars.clean.downcase.with_separators.to_s.split(/([[:^ascii:]]+)/).join("-"),
         subtitle: item.itunes_subtitle,
         summary: item.itunes_summary,
         website_url: item.link,

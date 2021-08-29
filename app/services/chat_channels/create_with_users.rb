@@ -23,7 +23,11 @@ module ChatChannels
       slug = if channel_type == "direct"
                usernames.join("/")
              else
-               "#{contrived_name.to_s.parameterize}-#{rand(100_000).to_s(26)}"
+               # simplified equivalent of /app/models/concerns/sluggifiable.rb
+               sluggified = contrived_name.to_s.unicode_normalize(:nfkc).to_slug
+                 .transliterate(:cyrillic, :latin, :vietnamese, :greek, :hindi).word_chars.clean.downcase
+                 .with_separators.to_s.split(/([[:^ascii:]]+)/).join("-")
+               "#{sluggified}-#{rand(100_000).to_s(26)}"
              end
 
       channel = ChatChannels::FindOrCreate.call(channel_type, slug, verify_contrived_name(usernames))

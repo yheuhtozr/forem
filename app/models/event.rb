@@ -1,4 +1,6 @@
 class Event < ApplicationRecord
+  include Sluggifiable
+
   mount_uploader :cover_image, CoverImageUploader
   mount_uploader :profile_image, ProfileImageUploader
 
@@ -40,7 +42,7 @@ class Event < ApplicationRecord
 
   def title_to_slug
     downcase = "#{id}-#{category}-#{title}"
-    "#{downcase.parameterize}-#{starts_at.strftime('%m-%d-%Y')}"
+    "#{sluggify(downcase)}-#{starts_at.strftime('%m-%d-%Y')}"
   end
 
   def bust_cache

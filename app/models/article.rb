@@ -5,6 +5,7 @@ class Article < ApplicationRecord
   include Reactable
   include UserSubscriptionSourceable
   include PgSearch::Model
+  include Sluggifiable
 
   acts_as_taggable_on :tags
   resourcify
@@ -80,7 +81,7 @@ class Article < ApplicationRecord
   validates :public_reactions_count, presence: true
   validates :rating_votes_count, presence: true
   validates :reactions_count, presence: true
-  validates :slug, presence: { if: :published? }, format: /\A[0-9a-z\-_]*\z/
+  validates :slug, presence: { if: :published? }
   validates :slug, uniqueness: { scope: :user_id }
   validates :title, presence: true, length: { maximum: 128 }
   validates :user_id, presence: true
@@ -740,7 +741,7 @@ class Article < ApplicationRecord
   end
 
   def title_to_slug
-    "#{title.to_s.downcase.parameterize.tr('_', '')}-#{rand(100_000).to_s(26)}"
+    "#{sluggify(title, base_lang).tr('_', '')}-#{rand(100_000).to_s(26)}"
   end
 
   def clean_data

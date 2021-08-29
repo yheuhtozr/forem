@@ -4,6 +4,7 @@ class Listing < ApplicationRecord
   self.table_name = "classified_listings"
 
   include PgSearch::Model
+  include Sluggifiable
 
   attr_accessor :action
 
@@ -97,6 +98,6 @@ class Listing < ApplicationRecord
   end
 
   def create_slug
-    self.slug = "#{title.downcase.parameterize.delete('_')}-#{rand(100_000).to_s(26)}"
+    self.slug = "#{sluggify(title).delete('_')}-#{rand(100_000).to_s(26)}"
   end
 end

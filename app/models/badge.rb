@@ -1,4 +1,6 @@
 class Badge < ApplicationRecord
+  include Sluggifiable
+
   mount_uploader :badge_image, BadgeUploader
   resourcify
 
@@ -25,7 +27,7 @@ class Badge < ApplicationRecord
   private
 
   def generate_slug
-    self.slug = CGI.escape(title.to_s).parameterize
+    self.slug = sluggify(title)
   end
 
   def bust_path
