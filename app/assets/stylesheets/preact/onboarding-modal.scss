@@ -478,6 +478,7 @@ $onboarding-user-selected-hover: rgba(71, 85, 235, 0.2);
 
   .user-following-status {
     margin-left: var(--su-7);
+    flex-shrink: 0;
   }
 }
 
