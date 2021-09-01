@@ -21,7 +21,7 @@ class TagsController < ApplicationController
     authorize @tag
     if @tag.errors.messages.blank? && @tag.update(tag_params)
       flash[:success] = I18n.t("tags_controller.tag_successfully_updated")
-      redirect_to "/t/#{URI.parse(@tag.name).path}/edit"
+      redirect_to "/t/#{Addressable::URI.parse(@tag.name).path}/edit"
     else
       flash[:error] = @tag.errors.full_messages
       render :edit

@@ -17,12 +17,12 @@ module Sluggifiable
       "sh" => :serbian,
       "sr" => :serbian,
       "sv" => :swedish
-    }.detect { |k, _v| locale.start_with? k }&.[](1) || :latin
+    }.detect { |k, _v| locale&.start_with? k }&.[](1) || :latin
     cyril = {
       "bg" => :bulgarian,
       "ru" => :russian,
       "sr" => :serbian
-    }.detect { |k, _v| locale.start_with? k }&.[](1) || :cyrillic
+    }.detect { |k, _v| locale&.start_with? k }&.[](1) || :cyrillic
     # cyrillic comes first to suppress unwanted serbian cyrillic seeping in Babosa
     locales = [cyril, latin, :vietnamese, :greek, :hindi]
     string.to_s.unicode_normalize(:nfkc).to_slug.transliterate(*locales).word_chars.clean.downcase.with_separators

@@ -23,7 +23,7 @@ class TagAdjustmentsController < ApplicationController
           render json: { status: "Success", result: tag_adjustment.adjustment_type,
                          colors: { bg: tag.bg_color_hex, text: tag.text_color_hex } }
         end
-        format.html { redirect_to "#{URI.parse(article.path).path}/mod" }
+        format.html { redirect_to "#{Addressable::URI.parse(article.path).path}/mod" }
       end
     else
       # TODO: remove this when we move over to full JSON endpoint
@@ -61,7 +61,7 @@ class TagAdjustmentsController < ApplicationController
     respond_to do |format|
       # TODO: add tag adjustment removal async route in actions panel
       format.json { render json: { result: I18n.t("tag_adjustments_controller.tag_adjustment_destroyed") } }
-      format.html { redirect_to "#{URI.parse(@article.path).path}/mod" }
+      format.html { redirect_to "#{Addressable::URI.parse(@article.path).path}/mod" }
     end
   end
 end

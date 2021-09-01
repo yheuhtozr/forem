@@ -192,7 +192,7 @@ class CommentsController < ApplicationController
     redirect = @comment.commentable&.path || user_path(current_user)
     # NOTE: Brakeman doesn't like redirecting to a path, because of a "possible
     # unprotected redirect". Using URI.parse().path is the recommended workaround.
-    redirect_to URI.parse(redirect).path, notice: R18n.t.v.comments.delete.notice
+    redirect_to Addressable::URI.parse(redirect).path, notice: R18n.t.v.comments.delete.notice
   end
 
   def delete_confirm
@@ -264,7 +264,7 @@ class CommentsController < ApplicationController
       redirect_url = @comment.commentable&.path
       if redirect_url
         flash[:success] = R18n.t.v.comments.delete.notice
-        redirect_to URI.parse(redirect_url).path
+        redirect_to Addressable::URI.parse(redirect_url).path
       else
         redirect_to_comment_path
       end

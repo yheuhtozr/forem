@@ -52,8 +52,8 @@ module ArticlesHelper
   end
 
   def get_host_without_www(url)
-    url = "http://#{url}" if URI.parse(url).scheme.nil?
-    host = URI.parse(url).host.downcase
+    url = "http://#{url}" if Addressable::URI.parse(url).scheme.nil?
+    host = Addressable::URI.parse(url).host.downcase
     host.gsub!("medium.com", "Medium")
     host.delete_prefix("www.")
   end
