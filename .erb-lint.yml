@@ -36,9 +36,12 @@ linters:
         Enabled: false
       Lint/FloatComparison:
         Exclude:
-          - '**/app/views/moderations/actions_panel.html.erb'
+          - '**/app/views/moderations/actions_panel.html.erb' # allow locale code hyphens
       Lint/UselessAssignment:
         Enabled: false
+      Naming/FileName:
+        Exclude:
+          - '**/app/views/pages/*'
       Rails/OutputSafety:
         Enabled: false
         Exclude:
