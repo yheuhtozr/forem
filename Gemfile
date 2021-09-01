@@ -126,7 +126,7 @@ group :development do
   gem "binding_of_caller", "~> 0.8" # Retrieve the binding of a method's caller
 
   gem "brakeman", "~> 5.1", require: false # Brakeman detects security vulnerabilities in Ruby on Rails applications via static analysis
-  gem "bundler-audit", "~> 0.8" # bundler-audit provides patch-level verification for Bundled apps
+  gem "bundler-audit", "~> 0.9" # bundler-audit provides patch-level verification for Bundled apps
   gem "deepsort", "~> 0.4.5"
   gem "derailed_benchmarks", "~> 2.1", require: false # A series of things you can use to benchmark a Rails or Ruby app
   gem "erb_lint", "~> 0.0.37", require: false # ERB Linter tool
