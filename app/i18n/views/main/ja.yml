@@ -34,6 +34,19 @@ v:
       moderator: 審査室
       other: その他
       settings: 設定
+    nav_name:
+      About: サイトについて
+      Code of Conduct: お約束
+      Contact: お問い合わせ
+      FAQ: FAQ
+      Listings: 告知
+      Podcasts: ポッドキャスト
+      Privacy Policy: 個人情報の取扱い
+      Reading List: 切り抜き帳
+      Sponsors: スポンサー
+      Tags: タグ
+      Terms of use: 利用規約
+      Videos: 動画
     side:
       listings:
         heading: 告知板
