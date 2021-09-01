@@ -39,7 +39,7 @@ export class SaveButton extends Component {
         <button
           type="button"
           id={`article-save-button-${article.id}`}
-          className={`crayons-btn crayons-btn--s ${
+          className={`crayons-btn crayons-btn--s w-max ${
             isBookmarked ? 'crayons-btn--ghost' : 'crayons-btn--secondary'
           }`}
           data-initial-feed

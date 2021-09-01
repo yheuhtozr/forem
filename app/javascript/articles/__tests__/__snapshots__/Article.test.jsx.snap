@@ -249,7 +249,7 @@ Object {
                 class="crayons-story__save"
               >
                 <button
-                  class="crayons-btn crayons-btn--s crayons-btn--secondary"
+                  class="crayons-btn crayons-btn--s w-max crayons-btn--secondary"
                   data-initial-feed="true"
                   data-reactable-id="62407"
                   id="article-save-button-62407"
@@ -509,7 +509,7 @@ Object {
               class="crayons-story__save"
             >
               <button
-                class="crayons-btn crayons-btn--s crayons-btn--secondary"
+                class="crayons-btn crayons-btn--s w-max crayons-btn--secondary"
                 data-initial-feed="true"
                 data-reactable-id="62407"
                 id="article-save-button-62407"

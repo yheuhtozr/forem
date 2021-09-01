@@ -94,7 +94,7 @@
   --card-secondary-border: var(--base-a20);
   --card-hover-bg: var(--base-10);
   --card-selected-bg: var(--base-20);
-  --card-info-bg: #{rgba($brand, 0.2)};
+  --card-info-bg: #{rgba($brand, 0.1)};
 
   // Header
   --header-bg: #{nth($theme-colors, 1)};
