@@ -175,7 +175,7 @@ export class IntroSlide extends Component {
                       <a
                         href="/code-of-conduct" // temporarily use COC
                         data-no-instant
-                        onClick={(e) => this.handleShowText(e, 'terms')}
+                        onClick={(e) => this.handleShowText(e, 'coc')}
                       >
                         {i18next.t('onboarding.intro.terms2')}
                       </a>
