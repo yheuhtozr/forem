@@ -92,6 +92,7 @@ v:
       lang_desc: あなたが記事を執筆する際によく使う言語です（編集画面のデフォルト値に使用）。言語タグ形式 (<code>en-US</code>) で指定してください。
       langs:
         aria_label: 言語一覧の中から選択できます
+        cla: CLA コード
         select: ここから選べます
         site: サイト
         special: 特殊用途

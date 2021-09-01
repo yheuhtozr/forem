@@ -87,6 +87,7 @@ export const Options = ({
     const miscSet = {};
     const siteSet = {};
     const specSet = {};
+    const CLA3Set = {};
     const siteCodes = ['en-us', 'ja'];
     const specCodes = ['mul', 'und', 'zxx'];
     const dropCodes = ['mis'];
@@ -95,6 +96,8 @@ export const Options = ({
         siteSet[code] = name;
       } else if (specCodes.includes(code)) {
         specSet[code.slice(0, 3)] = name;
+      } else if (code.startsWith('x-v3-')) {
+        CLA3Set[code] = name;
       } else if (dropCodes.includes(code)) {
         // discard
       } else {
@@ -117,6 +120,9 @@ export const Options = ({
           </option>
           <optgroup label={i18next.t('editor.options.lang.site')}>
             {mapper(Object.entries(siteSet).sort(sorter))}
+          </optgroup>
+          <optgroup label={i18next.t('editor.options.lang.cla')}>
+            {mapper(Object.entries(CLA3Set).sort(sorter))}
           </optgroup>
           <optgroup label={i18next.t('editor.options.lang.special')}>
             {mapper(Object.entries(specSet).sort(sorter))}

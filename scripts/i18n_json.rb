@@ -246,6 +246,7 @@ MAP = {
       langs: {
         __scope: ['editor.options.lang'],
         aria_label: [true],
+        cla: [true],
         others: [true],
         select: [true],
         site: [true],

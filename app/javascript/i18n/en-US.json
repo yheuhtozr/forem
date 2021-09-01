@@ -280,6 +280,7 @@
       "heading": "Post options",
       "lang": {
         "aria_label": "You can select a language from the list",
+        "cla": "CLA codes",
         "desc": "What language is the body text written in? Specify by language tag (<code>en-US</code>).",
         "existing": "List of languages: ",
         "label": "Language",
