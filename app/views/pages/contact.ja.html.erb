@@ -1,27 +1,27 @@
-<% title "#{community_name}の連絡先" %>
+<% title "#{community_name} の連絡先" %>
 
 <%= content_for :page_meta do %>
   <link rel="canonical" href="<%= app_url("/contact") %>" />
-  <meta name="description" content="Contact #{community_name}">
+  <meta name="description" content="<%= community_name %> へのお問い合わせ">
   <%= meta_keywords_default %>
 
   <meta property="og:type" content="article" />
   <meta property="og:url" content="<%= app_url("/contact") %>" />
-  <meta property="og:title" content="Contact #{community_name}" />
+  <meta property="og:title" content="<%= community_name %> へのお問い合わせ" />
   <meta property="og:image" content="<%= Settings::General.main_social_image %>" />
   <meta property="og:description" content="<%= community_name %> is great!" />
   <meta property="og:site_name" content="<%= community_name %>" />
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@<%= Settings::General.social_media_handles["twitter"] %>">
-  <meta name="twitter:title" content="Contact #{community_name}">
+  <meta name="twitter:title" content="<%= community_name %> へのお問い合わせ">
   <meta name="twitter:description" content="<%= community_name %> is great!">
   <meta name="twitter:image:src" content="<%= Settings::General.main_social_image %>">
 <% end %>
 
 <div class="crayons-layout crayons-layout--limited-l">
   <div class="crayons-card text-styles text-padding">
-    <h1 class="fs-3xl s:fs-4xl l:fs-5xl fw-bold s:fw-heavy lh-tight mb-4 mt-0">連絡先情報</h1>
+    <h1 class="fs-3xl s:fs-4xl l:fs-5xl fw-bold s:fw-heavy lh-tight mb-4 mt-0">お問い合わせ先</h1>
 
     <p>
       <%= community_name %> へのご意見をお寄せください。
@@ -33,13 +33,13 @@
       Twitter: <a href="http://twitter.com/<%= Settings::General.social_media_handles["twitter"] %>">@<%= Settings::General.social_media_handles["twitter"] %></a> 👻
     </p>
     <p>
-      Discord:
+      Discord: <a href="https://discord.gg/pBksUUTYdD">SCJ（日本言語製作共同研究会）</a>
     </p>
     <%# <p>
       Report a vulnerability: <a href="https://dev.to/security">dev.to/security</a> 🐛
     </p> %>
     <p>
-      バグの報告は、GitLab リポジトリの<a href="https://gitlab.com/yheuhtozr/forem/-/issues">イシュー</a>までお願いします。
+      バグの報告は、Discord サーバーか GitLab リポジトリの<a href="https://gitlab.com/yheuhtozr/forem/-/issues">イシュー</a>までお願いします。
     </p>
     <%# <p>
       To request a feature, please visit <a href="https://forem.dev">forem.dev</a> and write a post!
