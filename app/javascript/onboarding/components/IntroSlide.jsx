@@ -173,7 +173,7 @@ export class IntroSlide extends Component {
                       />
                       {i18next.t('onboarding.intro.terms1')}
                       <a
-                        href="/terms"
+                        href="/code-of-conduct" // temporarily use COC
                         data-no-instant
                         onClick={(e) => this.handleShowText(e, 'terms')}
                       >

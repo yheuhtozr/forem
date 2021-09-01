@@ -70,9 +70,9 @@ describe('IntroSlide', () => {
   it('should link to the terms and conditions', () => {
     const { getByText } = renderIntroSlide();
     expect(getByText(/terms and conditions/i)).toHaveAttribute('href');
-    expect(getByText(/terms and conditions/i).getAttribute('href')).toContain(
-      '/terms',
-    );
+    // expect(getByText(/terms and conditions/i).getAttribute('href')).toContain(
+    //   '/terms',
+    // ); // temporarily disable terms page
   });
 
   it('should not render a stepper', () => {

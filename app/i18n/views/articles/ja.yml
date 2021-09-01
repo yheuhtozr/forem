@@ -13,7 +13,7 @@ v:
         n: すべてのコメントを見る（%1 件）
     conduct:
       aria_label: 倫理的措置
-      code: Code of Conduct
+      code: お約束
       report: 通報する
     delete:
       heading: この記事を削除してもよろしいですか？

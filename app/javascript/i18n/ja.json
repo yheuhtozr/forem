@@ -507,10 +507,10 @@
     "finish": "完了する",
     "intro": {
       "coc1": "私は",
-      "coc2": "Code of Conduct",
+      "coc2": "サイトのお約束",
       "coc3": "を守ります。",
       "terms1": "私は",
-      "terms2": "Terms and Conditions",
+      "terms2": "利用規約",
       "terms3": "に同意します。",
       "title": "%{user} さん、%{community} へようこそ！"
     },
