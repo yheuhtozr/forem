@@ -105,3 +105,6 @@ postcss_error.log
 config/definitions.rb
 
 /config/master.key
+
+# auto-generated locale ymls
+config/locales/cla_langs.*.yml
