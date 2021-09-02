@@ -79,15 +79,15 @@ v:
         n: View last %1 Comments
     custom:
       adjacent: Permit Nearby Sponsors (When publishing)
-      announce: Announcements
-      announce_desc: Announcements inform you on important site-wide information, like updates and events.
-      announce_field: Display Announcements (When browsing)
-      appearance: Appearance
-      basic: Basic markdown
-      content: Content
-      editor: Editor Version
-      fixed: Fixed to window
-      font: Base Reading Font
+      announce: アナウンス
+      announce_desc: 更新やイベントなど、サイトの重要なお知らせがアナウンスされます。
+      announce_field: アナウンスを表示（閲覧中）
+      appearance: 外観
+      basic: 基本 markdown
+      content: 内容
+      editor: エディタバージョン
+      fixed: ウィンドウに追従
+      font: 基本フォント
       lang: 執筆言語
       lang_desc: あなたが記事を執筆する際によく使う言語です（編集画面のデフォルト値に使用）。言語タグ形式 (<code>en-US</code>) で指定してください。
       langs:
@@ -97,17 +97,17 @@ v:
         site: サイト
         special: 特殊用途
         others: その他
-      level: What is your approximate experience level (1-5)?
-      level_desc: This will not be displayed on your profile or anywhere publicly. It helps gently determine what content you are shown along with tags you follow etc.
-      navbar: Site Navbar
-      rich: Rich + markdown
-      save: Save
-      sponsor: Sponsors
+      level: あなたの専門レベルはどのくらいですか（1～5）？
+      level_desc: これはプロフィールページを含めどこにも公開されません。フォローしているタグなどの情報と合わせて、あなたにおすすめする内容を調整するためだけに使われます。
+      navbar: サイトのヘッダー
+      rich: リッチ + markdown
+      save: 保存する
+      sponsor: スポンサー
       sponsor_desc: You have the option to remove sponsor messaging (where it is practical to do so). Our wonderful sponsors help sustain the platform and improve your experience, and we strive to make their presence constructive to the community, but feel free to use this setting if you wish.
       sponsor_field: Display Sponsors (When browsing)
-      static: Static top of page
-      theme: Site Theme
-      writing: Writing
+      static: ページ最上部に固定
+      theme: サイトテーマ
+      writing: 執筆
     danger: キケン
     destroy:
       heading: Destroy your account

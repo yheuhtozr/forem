@@ -184,10 +184,10 @@ helpers:
     limit_number_of_times_some2: Limit number of times someone can subscribe to mailing list liquid tag
     limit_number_of_updates_to: Limit number of updates to a post
   settings_helper:
-    advanced: Advanced
-    beginner: Beginner
-    expert: Expert
-    mid_level: Mid-level
-    novice: Novice
+    advanced: 上級
+    beginner: 初級
+    expert: 専門家
+    mid_level: 中級
+    novice: 未経験
   social_link_helper:
     n_a: N/A
