@@ -99,7 +99,7 @@ class Organization < ApplicationRecord
   end
 
   def generated_random_secret
-    SecureRandom.hex(50)
+    "#{slug}__#{SecureRandom.hex(16)}"
   end
 
   def approved_and_filled_out_cta?
