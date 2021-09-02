@@ -1,7 +1,7 @@
 import { h } from 'preact';
 import { useState } from 'preact/hooks';
 import PropTypes from 'prop-types';
-import { i18next } from '../../../i18n/l10n';
+import { i18next, locale } from '../../../i18n/l10n';
 import { ArticleFormTitle } from './ArticleFormTitle';
 import { TagInput } from './TagInput';
 import { BasicEditor } from './BasicEditor';
@@ -13,7 +13,8 @@ const renderModal = (onClose, title, selector) => {
 
   return (
     <Modal onClose={onClose} title={title}>
-      <div
+      <article
+        lang={locale}
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: helpHtml }}
       />
