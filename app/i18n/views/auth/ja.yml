@@ -62,5 +62,5 @@ v:
       step_5: "For Empowering Community 🌱"
     tagline: Log in to customize your experience and get involved.
     title:
-      text: !html <a href="/">%{name}</a> is a community of %{maybe_size}amazing %{label}
+      text: !html <a href="/">%{name}</a> は創作言語・世界愛好者の憩いの場です
       size: "%1 "

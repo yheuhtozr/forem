@@ -1,6 +1,2 @@
 <% _t = t.v.auth.title %>
-<%= _t.text(
-      name: community_name,
-      maybe_size: display_estimated_user_count? ? _t.size(number_with_delimiter(estimated_user_count)) : "",
-      label: community_members_label,
-    ) %>
+<%= _t.text name: community_name %>
