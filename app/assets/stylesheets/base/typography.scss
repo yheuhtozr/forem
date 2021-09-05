@@ -16,8 +16,31 @@
   }
 }
 
+@font-face {
+  font-family: 'Luna Sans';
+  @include font-src('LunaSans-Regular.woff2');
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'Luna Sans';
+  @include font-src('LunaSans-Italic.woff2');
+  font-style: italic;
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'Luna Sans';
+  @include font-src('LunaSans-Bold.woff2');
+  font-style: normal;
+  font-weight: bold;
+}
+@font-face {
+  font-family: 'Luna Sans';
+  @include font-src('LunaSans-BoldItalic.woff2');
+  font-style: italic;
+  font-weight: bold;
+}
 // Sans-serif imports
-@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,500;0,800;1,500;1,800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
 // Serif imports
 @import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,700;1,400;1,700&display=swap');
