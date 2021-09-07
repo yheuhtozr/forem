@@ -8,7 +8,7 @@
       <%= article.video_duration_in_minutes %></span>
   </a>
   <% end %>
-  <% cdiv, cmod = story.reading_time.divmod(100) %>
+  <% cdiv, cmod = article.reading_time.divmod(100) %>
   <% if article.organization %>
   <a href='<%= article.organization.path %>' class='ltag__link__link'>
     <div class='ltag__link__org__pic'>
