@@ -21,7 +21,7 @@
                  end %>
       <% unless k == :original %> &bull; <% end %>
       <% if by_lang[k].size > 1 %><%= label %><% end %>
-      <% by_lang[k].sort_by(&:id).each.with_index do |a, i| %>
+      <% by_lang[k].sort_by(&:id).each.with_index(1) do |a, i| %>
         <% if a.id == this_id %>
           <span class="crayons-link--current"><%= by_lang[k].size > 1 ? "(#{i})" : label %></span>
         <% else %>
