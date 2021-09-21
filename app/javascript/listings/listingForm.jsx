@@ -8,7 +8,6 @@ import { i18next } from '../i18n/l10n';
 import { Title } from './components/Title';
 import { BodyMarkdown } from './components/BodyMarkdown';
 import { Categories } from './components/Categories';
-import { ContactViaConnect } from './components/ContactViaConnect';
 import { ExpireDate } from './components/ExpireDate';
 
 export class ListingForm extends Component {
@@ -38,7 +37,6 @@ export class ListingForm extends Component {
       categoriesForDetails: this.categoriesForDetails,
       organizations,
       organizationId: null, // change this for /edit later
-      contactViaConnect: this.listing.contact_via_connect || 'checked',
       expireDate: this.listing.expires_at || '',
     };
   }
@@ -59,7 +57,6 @@ export class ListingForm extends Component {
       categoriesForSelect,
       organizations,
       organizationId,
-      contactViaConnect,
       expireDate,
     } = this.state;
 
@@ -115,10 +112,6 @@ export class ListingForm extends Component {
             onChange={linkState(this, 'expireDate')}
           />
           {selectOrg}
-          <ContactViaConnect
-            checked={contactViaConnect}
-            onChange={linkState(this, 'contactViaConnect')}
-          />
         </div>
       );
     }
@@ -132,10 +125,6 @@ export class ListingForm extends Component {
         />
         <Tags defaultValue={tagList} onInput={linkState(this, 'tagList')} />
         {selectOrg}
-        <ContactViaConnect
-          checked={contactViaConnect}
-          onChange={linkState(this, 'contactViaConnect')}
-        />
       </div>
     );
   }

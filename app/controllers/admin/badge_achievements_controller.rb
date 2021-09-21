@@ -17,9 +17,8 @@ module Admin
       if @badge_achievement.destroy
         flash[:success] = I18n.t("admin.badge_achievements_controller.badge_achievement_has_been")
       else
-        flash[:danger] = @badge_achievement.errors_as_sentence
+        render json: { error: "Something went wrong." }, status: :unprocessable_entity
       end
-      redirect_to admin_badge_achievements_path
     end
 
     def award

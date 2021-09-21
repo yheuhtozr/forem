@@ -1,5 +1,5 @@
 module Settings
-  class Campaign < RailsSettings::Base
+  class Campaign < Base
     self.table_name = :settings_campaigns
 
     # The configuration is cached, change this if you want to force update

@@ -35,7 +35,7 @@ function searchMain(substories) {
 
 function initializeSortingTabs(query) {
   const sortingTabs = document.querySelectorAll(
-    '#sorting-option-tabs .crayons-tabs__item',
+    '#sorting-option-tabs .crayons-navigation__item',
   );
 
   for (let i = 0; i < sortingTabs.length; i++) {
@@ -62,12 +62,12 @@ function initializeSortingTabs(query) {
 
       for (let j = 0; j < sortingTabs.length; j++) {
         if (sortingTabs[j] !== e.target) {
-          sortingTabs[j].classList.remove('crayons-tabs__item--current');
+          sortingTabs[j].classList.remove('crayons-navigation__item--current');
           sortingTabs[j].setAttribute('aria-current', '');
         }
       }
 
-      e.target.classList.add('crayons-tabs__item--current');
+      e.target.classList.add('crayons-navigation__item--current');
       e.target.setAttribute('aria-current', 'page');
     });
   }
@@ -77,7 +77,7 @@ function initializeFilters(query, filters) {
   const filterButts = document.getElementsByClassName('query-filter-button');
   for (let i = 0; i < filterButts.length; i++) {
     if (filters === filterButts[i].dataset.filter) {
-      filterButts[i].classList.add('crayons-link--current');
+      filterButts[i].classList.add('crayons-navigation__item--current');
     }
     filterButts[i].onclick = function (e) {
       const currentParams = getQueryParams(document.location.search);
@@ -100,10 +100,10 @@ function initializeFilters(query, filters) {
       );
       const { className } = e.target;
       for (let i = 0; i < filterButts.length; i++) {
-        filterButts[i].classList.remove('crayons-link--current');
+        filterButts[i].classList.remove('crayons-navigation__item--current');
       }
-      if (className.indexOf('crayons-link--current') === -1) {
-        e.target.classList.add('crayons-link--current');
+      if (className.indexOf('crayons-navigation__item--current') === -1) {
+        e.target.classList.add('crayons-navigation__item--current');
         window.history.replaceState(
           null,
           null,

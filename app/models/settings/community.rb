@@ -1,5 +1,5 @@
 module Settings
-  class Community < RailsSettings::Base
+  class Community < Base
     self.table_name = :settings_communities
 
     # The configuration is cached, change this if you want to force update

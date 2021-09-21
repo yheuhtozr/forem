@@ -46,6 +46,7 @@ export const MinimalProfilePreviewCard = ({
             data-info={JSON.stringify({
               id: userId,
               className: 'User',
+              name,
               style: 'full',
             })}
           >

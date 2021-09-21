@@ -15,7 +15,9 @@ export const Tabs = ({ onPreview, previewShowing }) => {
             className={`crayons-tabs__item ${
               previewShowing ? '' : 'crayons-tabs__item--current'
             }`}
-            onClick={previewShowing && onPreview}
+            onClick={(e) => {
+              previewShowing && onPreview(e);
+            }}
             type="button"
             aria-current={previewShowing ? null : 'page'}
           >
@@ -28,7 +30,9 @@ export const Tabs = ({ onPreview, previewShowing }) => {
             className={`crayons-tabs__item ${
               previewShowing ? 'crayons-tabs__item--current' : ''
             }`}
-            onClick={!previewShowing && onPreview}
+            onClick={(e) => {
+              !previewShowing && onPreview(e);
+            }}
             type="button"
             aria-current={previewShowing ? 'page' : null}
           >

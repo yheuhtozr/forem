@@ -11,11 +11,9 @@
 
 .crayons-story {
   background: var(--card-bg);
-  font-size: var(--fs-base); // Todo: remove when ready.
   box-shadow: 0 0 0 1px var(--card-border);
   margin-bottom: var(--su-1);
   position: relative;
-  border-radius: var(--radius);
 
   &:focus-within {
     outline: none;
@@ -42,6 +40,10 @@
     &--featured {
       --title-font-size: var(--fs-3xl);
     }
+  }
+
+  @media (min-width: $breakpoint-m) {
+    --story-padding: var(--su-5);
   }
 
   &__hidden-navigation-link {

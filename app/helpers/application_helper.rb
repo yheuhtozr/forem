@@ -128,6 +128,13 @@ module ApplicationHelper
     return if followable == deleted_user
 
     user_follow = followable.instance_of?(User) ? "follow-user" : ""
+    followable_type = if followable.respond_to?(:decorated?) && followable.decorated?
+                        followable.object.class.name.downcase
+                      else
+                        followable.class.name.downcase
+                      end
+
+    followable_name = followable.name
 
     tag.button(
       "Follow",
@@ -136,11 +143,13 @@ module ApplicationHelper
       data: {
         info: {
           id: followable.id,
-          className: followable.class.name,
+          className: followable_type,
+          name: followable_name,
           style: style
         }
       },
       class: "crayons-btn follow-action-button whitespace-nowrap #{classes} #{user_follow}",
+      aria: { label: "Follow #{followable_type}: #{followable_name}" },
     )
   end
 
@@ -271,11 +280,6 @@ module ApplicationHelper
     URL.organization(organization)
   end
 
-  def sanitize_and_decode(str)
-    # using to_str instead of to_s to prevent removal of html entity code
-    HTMLEntities.new.decode(sanitize(str).to_str)
-  end
-
   def estimated_user_count
     User.registered.estimated_count
   end
@@ -302,8 +306,6 @@ module ApplicationHelper
   end
 
   def role_display_name(role)
-    # TODO: [@jacobherrington] After all Forems have successfully deployed and the banned role
-    # has been deleted, removed this ternary.
-    role.name == "banned" ? "Suspended" : role.name.titlecase
+    role.name.titlecase
   end
 end

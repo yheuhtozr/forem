@@ -64,6 +64,22 @@
               <a data-text="Latest" href="<%= list_path %>/latest" class="crayons-tabs__item <%= "crayons-tabs__item--current" if timeframe_check("latest") %>"<%= timeframe_check("latest") ? ' aria-current="page"'.html_safe : "" %>><%= _t.sort.latest %></a>
             </li>
           </ul>
+          <% if timeframe_check("week") || timeframe_check("month") || timeframe_check("year") || timeframe_check("infinity") %>
+            <ul class="crayons-navigation crayons-navigation--horizontal fs-base">
+              <li>
+                <a data-text="Week" href="<%= list_path %>/top/week" class="crayons-navigation__item <%= "crayons-navigation__item--current" if timeframe_check("week") %>"<%= timeframe_check("week") ? ' aria-current="page"'.html_safe : "" %>>Week</a>
+              </li>
+              <li>
+                <a data-text="Month" href="<%= list_path %>/top/month" class="crayons-navigation__item <%= "crayons-navigation__item--current" if timeframe_check("month") %>"<%= timeframe_check("month") ? ' aria-current="page"'.html_safe : "" %>>Month</a>
+              </li>
+              <li>
+                <a data-text="Year" href="<%= list_path %>/top/year" class="crayons-navigation__item <%= "crayons-navigation__item--current" if timeframe_check("year") %>"<%= timeframe_check("year") ? ' aria-current="page"'.html_safe : "" %>>Year</a>
+              </li>
+              <li>
+                <a data-text="Infinity" href="<%= list_path %>/top/infinity" class="crayons-navigation__item <%= "crayons-navigation__item--current" if timeframe_check("infinity") %>"<%= timeframe_check("infinity") ? ' aria-current="page"'.html_safe : "" %>>Infinity</a>
+              </li>
+            </ul>
+          <% end %>
         </nav>
 
         <select class="crayons-select s:hidden ml-2 s:ml-auto w-auto" id="feed-filter-select" aria-label="feed-filter-select">

@@ -1,9 +1,15 @@
 import { h, Fragment } from 'preact';
+import ahoy from 'ahoy.js';
 import PropTypes from 'prop-types';
 import { tagPropTypes } from '../common-prop-types';
 import { i18next } from '../i18n/l10n';
 
 export const TagsFollowed = ({ tags = [] }) => {
+  const trackSidebarTagClick = (event) => {
+    // Temporary Ahoy Stats for usage reports
+    ahoy.track('Tag sidebar click', { option: event.target.href });
+  };
+
   return (
     <Fragment>
       {tags.map((tag) => (
@@ -26,6 +32,13 @@ export const TagsFollowed = ({ tags = [] }) => {
 };
 
 TagsFollowed.displayName = 'TagsFollowed';
-TagsFollowed.propTypes = {
-  tags: PropTypes.arrayOf(tagPropTypes).isRequired,
-};
+TagsFollowed.propTypes = PropTypes.arrayOf(
+  PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    hotness_score: PropTypes.number.isRequired,
+    points: PropTypes.number.isRequired,
+    bg_color_hex: PropTypes.string.isRequired,
+    text_color_hex: PropTypes.string.isRequired,
+  }),
+);

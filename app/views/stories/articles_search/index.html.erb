@@ -5,7 +5,7 @@
 <div id="query-wrapper"></div>
 
 <main id="main-content">
-  <div class="crayons-layout crayons-layout--limited-l crayons-layout--1-col p-4">
+  <div class="crayons-layout crayons-layout--limited-l crayons-layout--1-col p-3 pb-0 s:pb-3">
     <div class="block m:hidden" id="mobile-search-container">
       <form accept-charset="UTF-8" method="get" action="/search" role="search">
         <div class="crayons-fields crayons-fields--horizontal">
@@ -44,8 +44,7 @@
       data-feed="<%= params[:timeframe] || "base-feed" %>"
       data-articles-since="<%= Timeframe.datetime_iso8601(params[:timeframe]) %>">
 
-    <div id="sidebar-wrapper-left" class="sidebar-wrapper sidebar-wrapper-left">
-      <div class="sidebar-bg" id="sidebar-bg-left"></div>
+    <div class="crayons-layout__sidebar-left search-nav">
       <%= render "stories/articles_search/nav_menu" %>
     </div>
 

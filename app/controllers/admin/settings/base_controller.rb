@@ -44,6 +44,10 @@ module Admin
           .require(:"settings_#{authorization_resource.name.demodulize.underscore}")
           .permit(*authorization_resource.keys)
       end
+
+      def authorize_super_admin
+        raise Pundit::NotAuthorizedError unless current_user.has_role?(:super_admin)
+      end
     end
   end
 end

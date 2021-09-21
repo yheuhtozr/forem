@@ -203,7 +203,7 @@ function buildArticleHTML(article) {
             </a>
           </div>
           <div class="print-hidden">
-            <button class="crayons-btn follow-action-button whitespace-nowrap follow-user w-100" data-info='{"id": ${article.user_id}, "className": "User", "style": "full"}'>Follow</button>
+            <button class="crayons-btn follow-action-button whitespace-nowrap follow-user w-100" data-info='{"id": ${article.user_id}, "className": "User", "style": "full", "name": "${article.user.name}"}'>Follow</button>
           </div>
           <div class="author-preview-metadata-container" data-author-id="${article.user_id}"></div>
         </div>
@@ -212,14 +212,14 @@ function buildArticleHTML(article) {
 
     var meta = `
       <div class="crayons-story__meta">
-        <div class="crayons-story__author-pic"> 
+        <div class="crayons-story__author-pic">
           ${organizationLogo}
           <a href="/${profileUsername}" class="crayons-avatar ${organizationClasses}">
             <img src="${picUrl}" alt="${profileUsername} profile" class="crayons-avatar__image" loading="lazy" />
           </a>
         </div>
         <div>
-          <p>
+          <div>
             <a href="/${profileUsername}" class="crayons-story__secondary fw-medium ${
       isArticle ? 'm:hidden' : ''
     }">${filterXSS(article.user.name)}</a>
@@ -229,7 +229,7 @@ function buildArticleHTML(article) {
         : ''
     }
             ${forOrganization}
-          </p>
+          </div>
           <a href="${
             article.path
           }" class="crayons-story__tertiary fs-xs">${publishDate}</a>

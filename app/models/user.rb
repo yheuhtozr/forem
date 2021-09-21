@@ -5,38 +5,6 @@ class User < ApplicationRecord
   include CloudinaryHelper
   include Storext.model
 
-  # @citizen428 Preparing to drop profile columns from the users table
-  PROFILE_COLUMNS = %w[
-    available_for
-    behance_url
-    bg_color_hex
-    currently_hacking_on
-    currently_learning
-    dribbble_url
-    education
-    email_public
-    employer_name
-    employer_url
-    employment_title
-    facebook_url
-    gitlab_url
-    instagram_url
-    linkedin_url
-    location
-    mastodon_url
-    medium_url
-    mostly_work_with
-    stackoverflow_url
-    summary
-    text_color_hex
-    twitch_url
-    twitch_username
-    website_url
-    youtube_url
-  ].freeze
-
-  self.ignored_columns = PROFILE_COLUMNS
-
   # NOTE: we are using an inline module to keep profile related things together.
   concerning :Profiles do
     included do
@@ -63,7 +31,7 @@ class User < ApplicationRecord
     ([a-zA-Z0-9\-.])+ # matches the hostname (ex ilp.uphold.com)
     (/[\x20-\x7F]+)?  # optional forward slash and identifier with printable ASCII characters
     \z
-  }x.freeze
+  }x
 
   attr_accessor :scholar_email, :new_note, :note_for_current_role, :user_status, :merge_user_id,
                 :add_credits, :remove_credits, :add_org_credits, :remove_org_credits, :ip_address,
@@ -346,9 +314,7 @@ class User < ApplicationRecord
   end
 
   def suspended?
-    # TODO: [@jacobherrington] After all of our Forems have been successfully deployed,
-    # and data scripts have successfully removed the banned role, we can remove `has_role?(:banned)`
-    has_role?(:suspended) || has_role?(:banned)
+    has_role?(:suspended)
   end
 
   def warned
@@ -387,10 +353,7 @@ class User < ApplicationRecord
   end
 
   def comment_suspended?
-    # TODO: [@jacobherrington] After all of our Forems have been successfully deployed,
-    # and data scripts have successfully removed the comment_banned role,
-    # we can remove `has_role?(:comment_banned)`
-    has_role?(:comment_suspended) || has_role?(:comment_banned)
+    has_role?(:comment_suspended)
   end
 
   def workshop_eligible?

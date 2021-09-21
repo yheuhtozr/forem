@@ -3,6 +3,8 @@
 module Notifications
   module NewComment
     class Send
+      include ActionView::Helpers::TextHelper
+
       def initialize(comment)
         @comment = comment
       end

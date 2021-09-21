@@ -191,16 +191,9 @@ function clearAdjustmentReason() {
 }
 
 function renderTagOnArticle(tagName, colors) {
-  /* eslint-disable no-restricted-globals */
-  let articleTagsContainer;
-  if (top.document.location.pathname.endsWith('/mod')) {
-    [articleTagsContainer] = top.document
-      .getElementById('quick-mod-article')
-      .contentDocument.getElementsByClassName('tags');
-  } else {
-    [articleTagsContainer] = top.document.getElementsByClassName('spec__tags');
-  }
-  /* eslint-enable no-restricted-globals */
+  const [articleTagsContainer] = window.parent.document
+    .getElementsByClassName('article-iframe')[0]
+    .contentWindow.document.getElementsByClassName('spec__tags');
 
   const newTag = document.createElement('a');
   newTag.innerText = `#${tagName}`;
@@ -251,11 +244,12 @@ async function adjustTag(el) {
       if (outcome.result === 'addition') {
         renderTagOnArticle(adjustedTagName, outcome.colors);
       } else {
-        // eslint-disable-next-line no-restricted-globals
-        const tagOnArticle = top.document.querySelector(
-          `.crayons-tag[href="/t/${adjustedTagName}"]`,
-        );
-        tagOnArticle.remove();
+        window.parent.document
+          .getElementsByClassName('article-iframe')[0]
+          .contentWindow.document.querySelector(
+            `.crayons-tag[href="/t/${adjustedTagName}"]`,
+          )
+          .remove();
       }
 
       // eslint-disable-next-line no-restricted-globals
