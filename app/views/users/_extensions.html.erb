@@ -1,32 +1,34 @@
 <% _t = t.v.users.extensions %>
 <%= render partial: "response_templates" %>
 
-<div class="crayons-card crayons-card--content-rows">
-  <h2 class="crayons-subtitle-1">
-    <%= _t.connect %>
-  </h2>
-  <%= form_for(@users_setting, url: users_settings_path, html: { id: nil, class: "grid gap-6" }) do |f| %>
-    <div class="crayons-field">
-      <%= f.label :inbox_type, "Inbox privacy", class: "crayons-field__label" %>
-      <p class="crayons-field__description"><%= _t.privacy %></p>
-      <%= f.select :inbox_type, [[_t.open, "open"], [_t.private, "private"]], {}, { class: "crayons-select" } %>
-    </div>
+<% if FeatureFlag.enabled?(:connect) %>
+  <div class="crayons-card crayons-card--content-rows">
+    <h2 class="crayons-subtitle-1">
+      <%= _t.connect %>
+    </h2>
+    <%= form_for(@users_setting, url: users_settings_path, html: { id: nil, class: "grid gap-6" }) do |f| %>
+      <div class="crayons-field">
+        <%= f.label :inbox_type, "Inbox privacy", class: "crayons-field__label" %>
+        <p class="crayons-field__description"><%= _t.privacy %></p>
+        <%= f.select :inbox_type, [[_t.open, "open"], [_t.private, "private"]], {}, { class: "crayons-select" } %>
+      </div>
 
-    <div class="crayons-field">
-      <%= f.label :inbox_guidelines, _t.guidelines.label, class: "crayons-field__label" %>
-      <p class="crayons-field__description">
-        <%= _t.optional %>
-      </p>
+      <div class="crayons-field">
+        <%= f.label :inbox_guidelines, _t.guidelines.label, class: "crayons-field__label" %>
+        <p class="crayons-field__description">
+          <%= _t.optional %>
+        </p>
 
-      <%= f.text_area :inbox_guidelines, maxlength: 200, class: "crayons-textfield", rows: 3, placeholder: _t.guidelines.placeholder %>
-    </div>
+        <%= f.text_area :inbox_guidelines, maxlength: 200, class: "crayons-textfield", rows: 3, placeholder: _t.guidelines.placeholder %>
+      </div>
 
-    <%= f.hidden_field :tab, value: @tab, id: nil %>
-    <button type="submit" class="crayons-btn w-max">
-      <%= _t.save_connect %>
-    </button>
-  <% end %>
-</div>
+      <%= f.hidden_field :tab, value: @tab, id: nil %>
+      <button type="submit" class="crayons-btn w-max">
+        <%= _t.save_connect %>
+      </button>
+    <% end %>
+  </div>
+<% end %>
 
 <%= render partial: "publishing_from_rss" %>
 

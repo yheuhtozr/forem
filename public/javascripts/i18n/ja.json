@@ -92,6 +92,7 @@
   },
   "dashboard": {
     "article": {
+      "admin": "管理画面",
       "edit": "編集",
       "manage": "状態管理",
       "pin": "要注目に指定",

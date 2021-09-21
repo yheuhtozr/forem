@@ -55,6 +55,7 @@ v:
       trend: trending guides/resources
       recent: recently queried
     tags:
+      aria_label: Customize tag priority
       follow: Follow
       my: My Tags
       popular: Popular Tags

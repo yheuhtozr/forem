@@ -1,13 +1,19 @@
 ---
 v:
   auth:
+    background: forem background
     create:
       aria_label: Create new account
       text: Create new account
     creator:
-      text: Almost there!
-      desc: Let's create an admin account for your community.
-      submit: Create admin account
+      text1: Let's start your Forem journey!
+      text2: Create your admin account first.
+      text3: Then we'll walk you through your Forem setup.
+      hint:
+        aria_label: Edit username
+        icon: Edit username
+        text: !html "%{start}Your username will be&nbsp;%{end}%{button}"
+      submit: Create my account
     login:
       aria_label: Log in
       text: Log in
@@ -37,13 +43,17 @@ v:
           label: Name
         username:
           aria_label: Username
+          desc: A username can only contain letters, numbers and underscores. The maximum username length can be 30 characters.
           label: Username
         email:
           aria_label: Email
           label: Email
         password:
           aria_label: Password
+          desc: Minimum 8 characters
           label: Password
+          hide: Hide password
+          show: Show password
         confirm:
           aria_label: Password Confirmation
           label: Password Confirmation

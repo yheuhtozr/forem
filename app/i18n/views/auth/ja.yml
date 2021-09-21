@@ -1,13 +1,19 @@
 ---
 v:
   auth:
+    background: forem background
     create:
       aria_label: 新しいアカウントを作る
       text: 新しいアカウントを作る
     creator:
-      text: あと一歩です！
-      desc: このコミュニティの管理者アカウントを作りましょう。
-      submit: 管理者アカウントを作成
+      text1: Let's start your Forem journey!
+      text2: Create your admin account first.
+      text3: Then we'll walk you through your Forem setup.
+      hint:
+        aria_label: Edit username
+        icon: Edit username
+        text: !html "%{start}Your username will be&nbsp;%{end}%{button}"
+      submit: 私のアカウントを作成
     login:
       aria_label: ログイン
       text: ログイン
@@ -36,13 +42,17 @@ v:
           label: 名前
         username:
           aria_label: ユーザー名
+          desc: A username can only contain letters, numbers and underscores. The maximum username length can be 30 characters.
           label: ユーザー名
         email:
           aria_label: メールアドレス
           label: メールアドレス
         password:
           aria_label: パスワード
+          desc: Minimum 8 characters
           label: パスワード
+          hide: Hide password
+          show: Show password
         confirm:
           aria_label: パスワードを再入力
           label: パスワードを再入力

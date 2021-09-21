@@ -1,3 +1,5 @@
+<% _t = t.v.auth.creator %>
+<% _r = t.v.auth.register %>
 <%= javascript_packs_with_chunks_tag "foremCreatorSignup", defer: true %>
 <style>
   #page-content {
@@ -26,7 +28,7 @@
         <div class="crayons-card crayons-card--secondary crayons-notice crayons-notice--danger my-8" role="alert" data-testid="signup-errors">
           <div class="crayons-card__header">
             <h3 class="crayons-card__headline">
-              Whoops, we found <%= pluralize(resource.errors.size, "problem") %>
+              <%= _r.errors resource.errors.size %>
             </h3>
           </div>
           <div class="crayons-card__body">
@@ -40,9 +42,9 @@
       <% end %>
 
       <div class="align-center">
-        <p class="pb-4 fs-2xl m:fs-3xl lh-tight fw-bold">Let's start your Forem journey!</p>
-        <p class="color-base-70 fs-l m:fs-xl">Create your admin account first.</p>
-        <p class="color-base-70 fs-l m:fs-xl">Then we'll walk you through your Forem setup.</p>
+        <p class="pb-4 fs-2xl m:fs-3xl lh-tight fw-bold"><%= _t.text1 %></p>
+        <p class="color-base-70 fs-l m:fs-xl"><%= _t.text2 %></p>
+        <p class="color-base-70 fs-l m:fs-xl"><%= _t.text3 %></p>
       </div>
 
       <div class="crayons-field mt-6">
@@ -51,20 +53,22 @@
 
         <div class="js-creator-signup-username-hint-row hidden">
           <div class="fs-xs color-base-60 flex">
-            <span>Your username will be&nbsp;</span>
-            <button aria-label="Edit username" class="cursor-pointer border-none bg-transparent p-0 js-creator-edit-username flex color-base-90 " role="button">
-              <span class="js-creator-signup-username-hint"></span>
-              <%= inline_svg_tag("pencil.svg", class: "cursor-pointer crayons-icon opacity-75 ml-1", aria_hidden: true, title: "Edit username") %>
-            </button>
+            <%= _t.hint.text start: tag.span(nil, true), end: "</span>".html_safe,
+                             button: tag.button(
+                               [tag.span(class: "js-creator-signup-username-hint"), inline_svg_tag("pencil.svg", class: "cursor-pointer crayons-icon opacity-75 ml-1", aria_hidden: true, title: _t.hint.icon)],
+                               class: "cursor-pointer border-none bg-transparent p-0 js-creator-edit-username flex color-base-90",
+                               role: "button",
+                               aria: { label: _t.hint.aria_label },
+                             ) %>
           </div>
           </div>
       </div>
 
       <div class="crayons-field mt-6 <%= "hidden" unless any_errors %> js-creator-signup-username-row">
         <%= f.label :username, "Username", for: "username", class: "crayons-field__label" %>
-        <%= f.text_field :username, pattern: "[A-Za-z0-9_]+", maxlength: "30", title: "A username can only contain letters, numbers and underscores. The maximum username length can be 30 characters.", id: "username", class: "js-creator-signup-username crayons-textfield",
+        <%= f.text_field :username, pattern: "[A-Za-z0-9_]+", maxlength: "30", title: _r.field.username.desc, id: "username", class: "js-creator-signup-username crayons-textfield",
                                     aria: { describedby: "username-helper-text" } %>
-        <p id="username-helper-text" class="fs-xs color-base-60 mt-1">It can only contain letters, numbers and underscores. The maximum username length can be 30 characters.</p>
+        <p id="username-helper-text" class="fs-xs color-base-60 mt-1"><%= _r.field.username.desc %></p>
       </div>
 
       <div class="crayons-field mt-6">
@@ -76,12 +80,12 @@
         <%= f.label :password, "Password", class: "crayons-field__label" %>
         <div class="relative">
           <%= f.password_field :password, minlength: "8", class: "crayons-textfield js-password", placeholder: "••••••••", required: true, aria: { describedby: "password-helper-text" } %>
-          <button class="crayons-btn crayons-btn--ghost crayons-btn--s js-creator-password-visibility h-100 absolute z-elevate right-0" aria-label="Show password" aria-pressed="false">
-            <%= inline_svg_tag("eye.svg", class: "crayons-icon js-eye", data: { testid: "mask-icon" }, aria_hidden: true, title: "Show password") %>
-            <%= inline_svg_tag("eye-off.svg", class: "crayons-icon hidden js-eye-off", data: { testid: "unmask-icon" }, aria_hidden: true, title: "Hide password") %>
+          <button class="crayons-btn crayons-btn--ghost crayons-btn--s js-creator-password-visibility h-100 absolute z-elevate right-0" aria-label="<%= _r.field.password.show %>" aria-pressed="false">
+            <%= inline_svg_tag("eye.svg", class: "crayons-icon js-eye", data: { testid: "mask-icon" }, aria_hidden: true, title: _r.field.password.show) %>
+            <%= inline_svg_tag("eye-off.svg", class: "crayons-icon hidden js-eye-off", data: { testid: "unmask-icon" }, aria_hidden: true, title: _r.field.password.hide) %>
           </button>
         </div>
-        <p id="password-helper-text" class="fs-xs color-base-60 mt-1">Minimum 8 characters</p>
+        <p id="password-helper-text" class="fs-xs color-base-60 mt-1"><%= _r.field.password.desc %></p>
       </div>
 
       <% if ForemInstance.needs_owner_secret? %>
@@ -89,17 +93,17 @@
           <%= f.hidden_field :forem_owner_secret, value: params[:forem_owner_secret] %>
         <% else %>
           <div class="crayons-field mt-6">
-            <%= f.label :forem_owner_secret, "New Forem Secret", class: "crayons-field__label" %>
-            <%= f.password_field :forem_owner_secret, class: "crayons-textfield", required: ForemInstance.needs_owner_secret?, placeholder: "As provided by your Forem host" %>
+            <%= f.label :forem_owner_secret, _r.secret.label, class: "crayons-field__label" %>
+            <%= f.password_field :forem_owner_secret, class: "crayons-textfield", required: ForemInstance.needs_owner_secret?, placeholder: _r.secret.placeholder %>
           </div>
         <% end %>
       <% end %>
 
       <div class="flex flex-col pt-6">
-        <%= f.submit "Create my account", class: "crayons-btn" %>
+        <%= f.submit _t.submit, class: "crayons-btn" %>
       </div>
 
     <% end %>
   </div>
-  <%= inline_svg_tag("forem-background.svg", aria: true, title: "forem background", class: "absolute bottom-0 right-0 hidden m:block") %>
+  <%= inline_svg_tag("forem-background.svg", aria: true, title: t.v.auth.background, class: "absolute bottom-0 right-0 hidden m:block") %>
 </main>

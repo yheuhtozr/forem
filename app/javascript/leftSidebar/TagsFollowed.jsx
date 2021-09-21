@@ -1,7 +1,6 @@
 import { h, Fragment } from 'preact';
 import ahoy from 'ahoy.js';
 import PropTypes from 'prop-types';
-import { tagPropTypes } from '../common-prop-types';
 import { i18next } from '../i18n/l10n';
 
 export const TagsFollowed = ({ tags = [] }) => {
@@ -20,6 +19,7 @@ export const TagsFollowed = ({ tags = [] }) => {
         >
           <a
             title={i18next.t('main.tag', { tag: tag.name })}
+            onClick={trackSidebarTagClick}
             className="crayons-link crayons-link--block"
             href={`/t/${tag.name}`}
           >

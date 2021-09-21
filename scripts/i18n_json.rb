@@ -17,7 +17,7 @@ MAP = {
     },
   },
   articles: {
-    __orphan: [%w[duration messages pin pinned timeAgo unpin], %w[flare]],
+    __orphan: [%w[duration pinned timeAgo], %w[flare]],
     conduct: {
       __scope: ['articles'],
       report: [true],
@@ -126,7 +126,7 @@ MAP = {
   dashboard: {
     __orphan: [nil, %w[comments]],
     article: {
-      __orphan: [nil, %w[pin translate unpin]],
+      __orphan: [nil, %w[admin translate]],
       edit: {
         __scope: [nil, 'dashboard.article'],
         text: [nil, 'edit'],

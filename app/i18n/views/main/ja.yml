@@ -55,6 +55,7 @@ v:
       trend: trending guides/resources
       recent: recently queried
     tags:
+      aria_label: Customize tag priority
       follow: フォロー
       my: 私のタグ
       popular: 話題のタグ

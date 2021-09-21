@@ -34,7 +34,7 @@ v:
       markdown: !html '%{tag} is the name of the tag used in Markdown.'
     error:
       length: is too long (maximum is 30 characters)
-      chars: contains punctuation/whitespace, or starts/ends with an incomplete spelling
+      chars: contains non-alphanumeric characters
     follow: Follow
     moderator:
       text: !html 'comma separated, space is optional. Example: %{code}'

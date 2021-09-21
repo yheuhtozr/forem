@@ -98,6 +98,9 @@ postcss_error.log
 .rgignore
 config/definitions.rb
 
+# ignore redis backup
+dump.rdb
+
 /config/master.key
 
 # auto-generated locale ymls

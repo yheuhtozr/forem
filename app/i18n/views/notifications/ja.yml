@@ -22,6 +22,7 @@ v:
       first: !html '%{user} wrote their first comment on %{title}'
       first_reply: "Give them their first reply! 🎉"
       left: !html '%{user} just left a comment on %{title}.'
+      new: 💬 New Comment
       replied: !html '%{user} replied to a thread in %{title}'
       report: All negative reactions are 100% private. If this comment violates the code of conduct, please downvote/report as inappropriate.
       welcome: !html Since they are new to the community, could you leave a nice reply to help them feel welcome? <strong>Thank you!</strong>

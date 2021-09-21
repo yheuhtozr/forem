@@ -1,7 +1,6 @@
 ---
 common:
   error: 'Error: %{errors}'
-  error_friendly: "😭 %{errors}"
   invalid_langtag: must be a chain of 1 to 8 letter alphanumeric tags connected by hyphens
   success_settings: Successfully updated settings.
 errors:

@@ -2,10 +2,10 @@
   <div class="sidebar-bg" id="sidebar-bg-left"></div>
   <div class="side-bar">
     <% if @podcast_index && @podcasts %>
-      <div class="widget podcast-pic-widget">
-        <header>
-          <a href="/pod"><h4><%= t.v.podcasts.list %></h4></a>
-        </header>
+      <nav aria-labelledby="podcasts-heading" class="widget podcast-pic-widget">
+        <div class="widget--header">
+          <a href="/pod"><h1 id="podcasts-heading" class="fs-base"><%= t.v.podcasts.list %></h1></a>
+        </div>
         <div class="widget-body">
           <ul class="list-none p-0">
             <% @podcasts.each do |podcast| %>

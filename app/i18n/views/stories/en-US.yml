@@ -21,3 +21,4 @@ v:
       infinity: Infinity
       latest: Latest
       signin: !html "👋 <a href=\"%{path}\">Sign in</a> for the ability sort posts by <strong>top</strong> and  <strong>latest</strong>."
+      top: Top

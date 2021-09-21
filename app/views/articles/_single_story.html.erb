@@ -48,7 +48,7 @@
             <span class="whitespace-nowrap"><%= _t.reading_time(if cdiv < 1
                                                                   100
                                                                 else
-                                                                  cdiv * 100 + (cmod >= 50 ? 100 : 0)
+                                                                  (cdiv * 100) + (cmod >= 50 ? 100 : 0)
                                                                 end) %></span>
           </small>
         </div>
@@ -97,7 +97,7 @@
               <%= story.cached_user.name %>
             </a>
             <div class="profile-preview-card relative mb-4 s:mb-0 fw-medium hidden m:inline-block">
-              <button id="story-author-preview-trigger-<%= story.id %>" aria-controls="story-author-preview-content-<%= story.id %>" class="profile-preview-card__trigger fs-s p-0 crayons-btn crayons-btn--ghost" aria-label="<%= t.v.users.details user: story.cached_user.name %>">
+              <button id="story-author-preview-trigger-<%= story.id %>" aria-controls="story-author-preview-content-<%= story.id %>" class="profile-preview-card__trigger fs-s p-1 -ml-1 -my-2 crayons-btn crayons-btn--ghost" aria-label="<%= t.v.users.details user: story.cached_user.name %>">
                 <%= story.cached_user.name %>
               </button>
               <div
@@ -122,7 +122,7 @@
                   <div class="print-hidden">
                     <button
                       class="crayons-btn follow-action-button whitespace-nowrap follow-user w-100"
-                      data-info='{"id": <%= story.user_id %>, "className": "User", "style": "full"}'>
+                      data-info='{"id": <%= story.user_id %>, "className": "User", "style": "full", "name": "<%= story.cached_user.name %>"}'>
                       <%= t.v.users.follow %>
                     </button>
                   </div>
@@ -136,7 +136,7 @@
             <% if story.cached_organization && !@organization_article_index %>
             <span>
               <%= _t.for_org(
-                    start: tag("span", { class: %w[crayons-story__tertiary fw-normal] }, true),
+                    start: tag.span({ class: %w[crayons-story__tertiary fw-normal] }, true),
                     end: "</span>".html_safe,
                     org: tag.a(story.cached_organization.name, href: "/#{story.cached_organization.slug}", class: %w[crayons-story__secondary fw-medium]),
                   ) %>

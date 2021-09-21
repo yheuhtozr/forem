@@ -18,7 +18,7 @@ gem "ahoy_email", "~> 2.0.2" # Email analytics for Rails
 gem "ahoy_matey", "~> 4.0" # Tracking analytics for Rails
 gem "ancestry", "~> 4.1" # Ancestry allows the records of a ActiveRecord model to be organized in a tree structure
 gem "babosa", "~> 2.0"
-gem "blazer", "~> 2.4.3" # Allows admins to query data
+gem "blazer", "~> 2.4.5" # Allows admins to query data
 gem "bootsnap", ">= 1.1.0", require: false # Boot large ruby/rails apps faster
 gem "carrierwave", "~> 2.2" # Upload files in your Ruby applications, map them to a range of ORMs, store them on different backends
 gem "carrierwave-bombshelter", "~> 0.2" # Protect your carrierwave from image bombs
@@ -123,7 +123,7 @@ group :development do
   gem "better_errors", "~> 2.9" # Provides a better error page for Rails and other Rack apps
 
   gem "brakeman", "~> 5.1", require: false # Brakeman detects security vulnerabilities in Ruby on Rails applications via static analysis
-  gem "bundler-audit", "~> 0.8" # bundler-audit provides patch-level verification for Bundled apps
+  gem "bundler-audit", "~> 0.9" # bundler-audit provides patch-level verification for Bundled apps
   gem "deepsort", "~> 0.4.5"
   gem "derailed_benchmarks", "~> 2.1", require: false # A series of things you can use to benchmark a Rails or Ruby app
   gem "erb_lint", "~> 0.0.37", require: false # ERB Linter tool
@@ -131,8 +131,6 @@ group :development do
   gem "guard-livereload", "~> 2.5", require: false # Guard::LiveReload automatically reloads your browser when 'view' files are modified
   gem "listen", "~> 3.7", require: false # Helps 'listen' to file system modifications events (also used by other gems like guard)
   gem "memory_profiler", "~> 1.0", require: false # Memory profiling routines for Ruby 2.3+
-  gem "pry", "~> 0.13" # An IRB alternative and runtime developer console
-  gem "pry-rails", "~> 0.3" # Use Pry as your rails console
   gem "solargraph", ">= 0", require: false
   gem "web-console", "~> 4.1" # Rails Console on the Browser
 end

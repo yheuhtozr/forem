@@ -37,7 +37,7 @@ v:
     expired: This listing has expired.
     form:
       body_markdown:
-        desc: 400 characters max, 12 line break max, no images allowed, *markdown is encouraged*
+        desc: 400 characters max, 12 line break max, no images allowed, *markdown is encouraged*. Please include a contact method if necessary.
         placeholder: "..."
       category:
         label: Category

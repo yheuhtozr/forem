@@ -28,7 +28,7 @@
   <a href="<%= article.current_state_path %>"><h2>
     <%= _t.heading.text(
           archived: article.archived ? _t.heading.archived : "",
-          title: tag.span(sanitize_and_decode(article.title), class: "with-content-font", lang: article.base_lang),
+          title: tag.span(article.title, class: "with-content-font", lang: article.base_lang),
         ) %>
   </h2></a>
   <div class="dashboard-meta-details">

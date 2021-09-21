@@ -9,7 +9,7 @@ class Tag < ActsAsTaggableOn::Tag
   include PgSearch::Model
 
   ALLOWED_CATEGORIES = %w[uncategorized language library tool site_mechanic location subcommunity].freeze
-  HEX_COLOR_REGEXP = /\A#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})\z/.freeze
+  HEX_COLOR_REGEXP = /\A#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})\z/
   # our tag format largely follows the UAX #31 identifier pattern, with heuristic extension in repertoire
   TAG_PATTERN = /\A
     # initial character is:
@@ -34,7 +34,7 @@ class Tag < ActsAsTaggableOn::Tag
       #           ^ or other numerals
       #              ^ or TIBETAN MARK INTERSYLLABIC TSHEG
     )?
-  \z/ux.freeze
+  \z/ux
 
   belongs_to :badge, optional: true
   belongs_to :mod_chat_channel, class_name: "ChatChannel", optional: true

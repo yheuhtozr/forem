@@ -21,3 +21,4 @@ v:
       infinity: 全期間
       latest: 新着順
       signin: !html "👋 <a href=\"%{path}\">ログイン</a>すると<strong>人気</strong>や<strong>新着</strong>順で並べ替えができます。"
+      top: 人気順
