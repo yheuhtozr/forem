@@ -12,7 +12,7 @@
 .crayons-story {
   background: var(--card-bg);
   box-shadow: 0 0 0 1px var(--card-border);
-  margin: 0 0 var(--su-2);
+  margin-bottom: var(--su-1);
   position: relative;
 
   &:focus-within {
@@ -25,7 +25,12 @@
     border-radius: var(--radius);
   }
 
-  --story-padding: var(--su-4) var(--su-4) var(--su-3);
+  @media (min-width: $breakpoint-l) {
+    margin-bottom: var(--su-1);
+  }
+
+  --story-spacing-unit: var(--su-3);
+  --story-padding: var(--story-spacing-unit) var(--story-spacing-unit) 0;
   --title-font-size: var(--fs-xl);
 
   @media (min-width: $breakpoint-s) {
@@ -38,7 +43,7 @@
   }
 
   @media (min-width: $breakpoint-m) {
-    --story-padding: var(--su-5);
+    --story-spacing-unit: var(--su-5);
   }
 
   &__hidden-navigation-link {
