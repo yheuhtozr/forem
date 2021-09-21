@@ -17,7 +17,8 @@ export const BodyMarkdown = ({ onChange, defaultValue }) => (
       onInput={onChange}
     />
     <p className="crayons-field__description">
-      {i18next.t('listings.form.body_markdown.desc')}
+      400 characters max, 12 line break max, no images allowed, *markdown is
+      encouraged*. Please include a contact method if necessary.
     </p>
   </div>
 );

@@ -45,7 +45,7 @@ export const Meta = ({ article, organization }) => {
         </a>
       </div>
       <div>
-        <p>
+        <div>
           <a
             href={`/${article.user.username}`}
             className="crayons-story__secondary fw-medium m:hidden"
@@ -56,6 +56,7 @@ export const Meta = ({ article, organization }) => {
                 : article.user.name,
             )}
           </a>
+
           <MinimalProfilePreviewCard
             triggerId={`story-author-preview-trigger-${article.id}`}
             contentId={`story-author-preview-content-${article.id}`}
@@ -78,7 +79,7 @@ export const Meta = ({ article, organization }) => {
                 }}
               />
             )}
-        </p>
+        </div>
         <a href={article.path} className="crayons-story__tertiary fs-xs">
           <PublishDate
             readablePublishDate={article.readable_publish_date}

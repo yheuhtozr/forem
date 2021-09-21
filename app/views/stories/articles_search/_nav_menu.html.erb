@@ -1,18 +1,17 @@
-<% _t = t.v.search.nav %>
-<div class="crayons-layout__sidebar-left search-nav px-3 m:px-0">
-  <a class="query-filter-button crayons-link crayons-link--block" data-filter="class_name:Article" href="javascript:;">
-    <%= _t.posts %>
-  </a>
-  <a class="query-filter-button crayons-link crayons-link--block" data-filter="class_name:PodcastEpisode" href="javascript:;">
-    <%= _t.podcasts %>
-  </a>
-  <a class="query-filter-button crayons-link crayons-link--block" data-filter="class_name:User" href="javascript:;">
-    <%= _t.people %>
-  </a>
-  <a class="query-filter-button crayons-link crayons-link--block" data-filter="class_name:Comment" href="javascript:;">
-    <%= _t.comments %>
-  </a>
-  <a class="query-filter-button my-posts-query-button crayons-link crayons-link--block" data-filter="MY_POSTS" href="javascript:;">
-    <%= _t.my %>
-  </a>
-</div>
+<ul class="crayons-navigation">
+  <li><a class="query-filter-button crayons-navigation__item" data-filter="class_name:Article" href="javascript:;">
+    Posts
+  </a></li>
+  <li><a class="query-filter-button crayons-navigation__item" data-filter="class_name:PodcastEpisode" href="javascript:;">
+    Podcasts
+  </a></li>
+  <li><a class="query-filter-button crayons-navigation__item" data-filter="class_name:User" href="javascript:;">
+    People
+  </a></li>
+  <li><a class="query-filter-button crayons-navigation__item" data-filter="class_name:Comment" href="javascript:;">
+    Comments
+  </a></li>
+  <li><a class="query-filter-button my-posts-query-button crayons-navigation__item" data-filter="MY_POSTS" href="javascript:;">
+    My posts only
+  </a></li>
+</ul>

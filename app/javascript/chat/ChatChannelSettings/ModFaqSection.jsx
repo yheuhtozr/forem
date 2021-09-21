@@ -12,7 +12,7 @@ export const ModFaqSection = ({ currentMembershipRole }) => {
       <p className="contact-details">
         {i18next.t('chat.settings.questions')}
         <a
-          href={`/contact`}
+          href="/contact"
           target="_blank"
           rel="noopener noreferrer"
           className="mx-2 url-link"

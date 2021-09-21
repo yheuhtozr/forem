@@ -3,6 +3,8 @@
 module Notifications
   module NewComment
     class Send
+      include ActionView::Helpers::TextHelper
+
       def initialize(comment)
         @comment = comment
       end
@@ -40,9 +42,10 @@ module Notifications
 
         PushNotifications::Send.call(
           user_ids: targets,
-          title: "@#{comment.user.username}",
-          body: I18n.t("services.notifications.new_comment.class_send.re",
-                       comment_parent_or_root_art: comment.parent_or_root_article.title.strip),
+          title: "💬 New Comment",
+          body: "#{comment.user.username} commented on " \
+                "#{comment.commentable.title.strip}:\n" \
+                "#{strip_tags(comment.processed_html).strip}",
           payload: {
             url: URL.url(comment.path),
             type: "new comment"

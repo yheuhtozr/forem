@@ -9,32 +9,7 @@ class Tag < ActsAsTaggableOn::Tag
   include PgSearch::Model
 
   ALLOWED_CATEGORIES = %w[uncategorized language library tool site_mechanic location subcommunity].freeze
-  HEX_COLOR_REGEXP = /\A#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})\z/.freeze
-  # our tag format largely follows the UAX #31 identifier pattern, with heuristic extension in repertoire
-  TAG_PATTERN = /\A
-    # initial character is:
-    [\p{XIDS}\p{Nd}\p{No}]
-    #   ^ XID_Start: (L + Nl + Other_ID_Start) − Pattern_Syntax − Pattern_White_Space
-    #           ^ or decimal numerals
-    #                 ^ or other numerals
-    (?:
-    # medial characters are:
-      [\p{XIDC}\p{No}\u00B7\u05F3\u05F4\u0F0B\u200C\u200D]*
-      #   ^ XID_Continue: (ID_Start + Mn + Mc + Nd + Pc + Other_ID_Continue) - Pattern_Syntax - Pattern_White_Space
-      #           ^ or other numerals
-      #              ^ or MIDDLE DOT
-      #                    ^ or HEBREW PUNCTUATION GERESH
-      #                          ^ or HEBREW PUNCTUATION GERSHAYIM
-      #                                ^ or TIBETAN MARK INTERSYLLABIC TSHEG
-      #                                      ^ or ZERO WIDTH NON-JOINER
-      #                                            ^ or ZERO WIDTH JOINER
-    # final character is:
-      [\p{XIDC}\p{No}\u0F0B]
-      #   ^ XID_Continue
-      #           ^ or other numerals
-      #              ^ or TIBETAN MARK INTERSYLLABIC TSHEG
-    )?
-  \z/ux.freeze
+  HEX_COLOR_REGEXP = /\A#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})\z/
 
   belongs_to :badge, optional: true
   belongs_to :mod_chat_channel, class_name: "ChatChannel", optional: true
@@ -97,8 +72,11 @@ class Tag < ActsAsTaggableOn::Tag
   end
 
   def validate_name
-    errors.add(:name, R18n.t.v.tags.error.length.to_s) if name.length > 30
-    errors.add(:name, R18n.t.v.tags.error.chars.to_s) unless name.match?(TAG_PATTERN)
+    errors.add(:name, "is too long (maximum is 30 characters)") if name.length > 30
+    # [:alnum:] is not used here because it supports diacritical characters.
+    # If we decide to allow diacritics in the future, we should replace the
+    # following regex with [:alnum:].
+    errors.add(:name, "contains non-alphanumeric characters") unless name.match?(/\A[[:alnum:]]+\z/i)
   end
 
   def errors_as_sentence

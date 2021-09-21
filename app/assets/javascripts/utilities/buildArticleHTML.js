@@ -203,7 +203,7 @@ function buildArticleHTML(article) {
             </a>
           </div>
           <div class="print-hidden">
-            <button class="crayons-btn follow-action-button whitespace-nowrap follow-user w-100" data-info='{"id": ${article.user_id}, "className": "User", "style": "full"}'>Follow</button>
+            <button class="crayons-btn follow-action-button whitespace-nowrap follow-user w-100" data-info='{"id": ${article.user_id}, "className": "User", "style": "full", "name": "${article.user.name}"}'>Follow</button>
           </div>
           <div class="author-preview-metadata-container" data-author-id="${article.user_id}"></div>
         </div>
@@ -212,24 +212,24 @@ function buildArticleHTML(article) {
 
     var meta = `
       <div class="crayons-story__meta">
-        <div class="crayons-story__author-pic"> 
+        <div class="crayons-story__author-pic">
           ${organizationLogo}
           <a href="/${profileUsername}" class="crayons-avatar ${organizationClasses}">
             <img src="${picUrl}" alt="${profileUsername} profile" class="crayons-avatar__image" loading="lazy" />
           </a>
         </div>
         <div>
-          <p>
+          <div>
             <a href="/${profileUsername}" class="crayons-story__secondary fw-medium ${
       isArticle ? 'm:hidden' : ''
     }">${filterXSS(article.user.name)}</a>
     ${
       isArticle
-        ? `<div class="profile-preview-card relative mb-4 s:mb-0 fw-medium hidden m:inline-block"><button id="story-author-preview-trigger-${article.id}" aria-controls="story-author-preview-content-${article.id}" class="profile-preview-card__trigger fs-s crayons-btn crayons-btn--ghost p-0" aria-label="${article.user.name} profile details">${article.user.name}</button>${previewCardContent}</div>`
+        ? `<div class="profile-preview-card relative mb-4 s:mb-0 fw-medium hidden m:inline-block"><button id="story-author-preview-trigger-${article.id}" aria-controls="story-author-preview-content-${article.id}" class="profile-preview-card__trigger fs-s crayons-btn crayons-btn--ghost p-1 -ml-1 -my-2" aria-label="${article.user.name} profile details">${article.user.name}</button>${previewCardContent}</div>`
         : ''
     }
             ${forOrganization}
-          </p>
+          </div>
           <a href="${
             article.path
           }" class="crayons-story__tertiary fs-xs">${publishDate}</a>
@@ -285,13 +285,13 @@ function buildArticleHTML(article) {
         '</span>\
                     </button>';
     } else if (article.class_name === 'User') {
-      saveButton =
-        '<button type="button" class="crayons-btn crayons-btn--secondary crayons-btn--icon-left fs-s w-max bookmark-button article-engagement-count engage-button follow-action-button follow-user"\
-                       data-info=\'{"id":' +
-        article.id +
-        ',"className":"User"}\' data-follow-action-button>\
-                       &nbsp;\
-                    </button>';
+      saveButton = `
+        <button type="button"
+          class="crayons-btn crayons-btn--secondary crayons-btn--icon-left fs-s bookmark-button article-engagement-count engage-button follow-action-button follow-user"
+          data-info='{"id": ${article.id},"className":"User", "name": "${article.user.name}"}'
+        data-follow-action-button>
+          &nbsp;
+        </button>`;
     }
 
     var videoHTML = '';
