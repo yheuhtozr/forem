@@ -93,7 +93,11 @@
     <%= javascript_packs_with_chunks_tag "responseTemplates", "commentsDisplay", defer: true %>
     <header class="p-2 pb-4 m:p-6 m:pb-6 crayons-card crayons-card--secondary s:mx-2 m:mx-4 -mb-1 z-0">
       <h1 class="crayons-subtitle-1 mb-4">
-        <%= _t.parent.subtitle start: tag("span", { class: %w[fw-normal color-base-60] }, true), end: "</span>".html_safe, title: tag.span(@commentable.title, class: "with-content-font", lang: @commentable.base_lang) %>
+        <%= _t.parent.subtitle(
+              start: tag("span", { class: %w[fw-normal color-base-60] }, true), # rubocop:disable Rails/ContentTag
+              end: "</span>".html_safe,
+              title: tag.span(@commentable.title, class: "with-content-font", lang: @commentable.base_lang),
+            ) %>
       </h1>
       <div class="flex">
         <a class="crayons-btn crayons-btn--outlined mr-2" href="<%= @commentable.path %>"><%= _t.parent.view %></a>
@@ -106,7 +110,11 @@
     <div class="p-2 pb-4 m:p-6 m:pb-6 crayons-card crayons-card--secondary s:mx-1 m:mx-2 -mb-2 z-0">
       <h2 class="crayons-subtitle-2 pb-2">
         <a href="<%= parent.path %>" class="crayons-link">
-          <%= _t.parent.reply start: tag("span", { class: %w[fw-normal opacity-75] }, true), end: "</span>".html_safe, title: tag.span(parent.title(150), class: "with-content-font", lang: @commentable.base_lang) %>
+          <%= _t.parent.reply(
+                start: tag("span", { class: %w[fw-normal opacity-75] }, true), # rubocop:disable Rails/ContentTag
+                end: "</span>".html_safe,
+                title: tag.span(parent.title(150), class: "with-content-font", lang: @commentable.base_lang),
+              ) %>
         </a>
       </h2>
     </div>
@@ -141,7 +149,7 @@
 
     <% if @commentable.any_comments_hidden %>
       <p class="mb-2 pt-6 fs-s align-center color-base-60">
-        <%= _t.hidden start: tag("a", { href: "/faq#what-does-comment-hidden-by-post-author-mean" }, true), end: "</a>".html_safe %>
+        <%= _t.hidden.text info: link_to(_t.hidden.info, "/faq#what-does-comment-hidden-by-post-author-mean") %>
       </p>
     <% end %>
   </section>

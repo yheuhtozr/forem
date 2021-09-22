@@ -22,7 +22,7 @@
   <% reaction_categories = siblings.map { |n| n["category"] } %>
   <%= _t.verb(
         count: actors.size,
-        start: tag("span", { class: %w[inline-block py-1] }, true),
+        start: tag("span", { class: %w[inline-block py-1] }, true), # rubocop:disable Rails/ContentTag
         actors: if actors.size == 1
                   link_to actors.first["name"], actors.first["path"], class: "crayons-link fw-bold"
                 elsif actors.size == 2
