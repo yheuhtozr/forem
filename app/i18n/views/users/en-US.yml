@@ -126,10 +126,6 @@ v:
       type: Type in your username
       username: username
       word: delete my account
-    dev_badge:
-      aria_label: 
-      text: Add the %{community} badge to your personal site. %{code}.
-      code: Click here for the code
     errors:
       org: !pl
         1: '1 error prohibited your organization profile from being saved:'
@@ -369,6 +365,7 @@ v:
       heading: Are you sure you want to sign out?
       'yes': Yes, sign out
     block: Block @%{user}
+    chat: Chat
     chat_with: Chat with %{user}
     close: Close modal
     details: "%{user} profile details"

@@ -50,6 +50,7 @@ helpers:
       email: Email
       username: Username
       profile_image: Profile image
+    users_notification_setting:
       email_newsletter: Send me weekly newsletter emails
       email_digest_periodic: Send me a periodic digest of top posts from my tags
       email_membership_newsletter: Send me sustaining membership newsletter emails
@@ -65,6 +66,7 @@ helpers:
       welcome_notifications: Send me occasional tips on how to enhance my %{community} experience
       reaction_notifications: Send notifications when someone reacts to my comments or posts
       mod_roundrobin_notifications: Send me occasional community-success mod notifications
+    users_setting:
       feed_url: RSS Feed URL
   placeholder:
     organization:

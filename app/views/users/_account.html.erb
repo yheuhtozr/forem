@@ -65,7 +65,7 @@
         <%= f.label :export_requested, _t.export.label, class: "crayons-field__label" %>
       </div>
       <%= f.hidden_field :tab, value: @tab, id: nil %>
-      <div><button type="submit" class="crayons-btn"></button><%= _t.export.submit %></div>
+      <div><button type="submit" class="crayons-btn"><%= _t.export.submit %></button></div>
     <% end %>
   <% end %>
 </div>
@@ -118,7 +118,7 @@
           <li><%= _t.delete.desc1b %></li>
           <li><%= _t.delete.desc1c %></li>
         </ul>
-        <div><button class="crayons-btn crayons-btn--danger" id="delete__account__btn" type="submit"><%= _t.remove.submit %></button></div>
+        <div><button class="crayons-btn crayons-btn--danger" id="delete__account__btn" type="submit"><%= _t.delete.submit %></button></div>
       <% end %>
     <% else %>
       <p><%= _t.delete.desc2 email: link_to(_t.delete.provide, "/settings/profile") %></p>

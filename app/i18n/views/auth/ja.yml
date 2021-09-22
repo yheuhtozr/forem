@@ -12,7 +12,7 @@ v:
       hint:
         aria_label: Edit username
         icon: Edit username
-        text: !html "%{start}Your username will be&nbsp;%{end}%{button}"
+        text: !html "%{start}Your username will be\_%{end}%{button}"
       submit: 私のアカウントを作成
     login:
       aria_label: ログイン
@@ -47,10 +47,12 @@ v:
         email:
           aria_label: メールアドレス
           label: メールアドレス
+          placeholder: john@example.com
         password:
           aria_label: パスワード
           desc: Minimum 8 characters
           label: パスワード
+          placeholder: ••••••••
           hide: Hide password
           show: Show password
         confirm:

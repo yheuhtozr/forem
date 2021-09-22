@@ -12,7 +12,7 @@ v:
       hint:
         aria_label: Edit username
         icon: Edit username
-        text: !html "%{start}Your username will be&nbsp;%{end}%{button}"
+        text: !html "%{start}Your username will be\_%{end}%{button}"
       submit: Create my account
     login:
       aria_label: Log in
@@ -48,10 +48,12 @@ v:
         email:
           aria_label: Email
           label: Email
+          placeholder: john@example.com
         password:
           aria_label: Password
           desc: Minimum 8 characters
           label: Password
+          placeholder: ••••••••
           hide: Hide password
           show: Show password
         confirm:
