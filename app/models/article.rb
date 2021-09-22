@@ -33,8 +33,6 @@ class Article < ApplicationRecord
 
   has_one :discussion_lock, dependent: :destroy
 
-  has_many :base_tags, through: :taggings, source: :tag, class_name: "Tag" # override
-
   has_many :mentions, as: :mentionable, inverse_of: :mentionable, dependent: :destroy
   has_many :comments, as: :commentable, inverse_of: :commentable, dependent: :nullify
   has_many :html_variant_successes, dependent: :nullify

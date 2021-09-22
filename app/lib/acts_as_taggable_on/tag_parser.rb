@@ -12,8 +12,8 @@ module ActsAsTaggableOn
       string = string.to_s
       return [] if string.blank?
 
-      string.normalize.tr("'", ?\u02BC).downcase.split(",").map do |t| # not sure if it is called on save
-        t.strip.delete(" ").gsub(/[\p{XIDC}\p{No}\u00B7\u05F3\u05F4\u0F0B\u200C\u200D]/u, "")
+      string.normalize.tr("'", ?\u02BC).downcase.split(",").map do |t|
+        t.strip.delete(" ").gsub(/[^\p{XIDC}\p{No}\u00B7\u05F3\u05F4\u0F0B\u200C\u200D]/u, "")
       end
     end
 
