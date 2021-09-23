@@ -18,8 +18,6 @@
 
 $l-ja: article-lang('ja');
 
-$t-xaleh: 'x-v3-zph0xl';
-
 // overrides typography.scss
 .text-styles {
   #{$l-ja} & {
@@ -46,4 +44,5 @@ $t-xaleh: 'x-v3-zph0xl';
   }
 }
 
-@include font-lang($t-xaleh, 'Vekos, sans-serif');
+@include font-lang('x-v3-zph0xl', 'Vekos, sans-serif');
+@include font-lang('x-v3-mqe0bm', 'Maqen, sans-serif');
