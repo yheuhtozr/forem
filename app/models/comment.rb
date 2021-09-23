@@ -140,9 +140,9 @@ class Comment < ApplicationRecord
 
   def readable_publish_date
     if created_at.year == Time.current.year
-      created_at.strftime R18n.t.date.readable.no_year
+      created_at.strftime I18n.t("date.readable.no_year")
     else
-      created_at.strftime R18n.t.date.readable.with_year
+      created_at.strftime I18n.t("date.readable.with_year")
     end
   end
 

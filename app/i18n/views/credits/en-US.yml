@@ -16,9 +16,9 @@ v:
       dashboard: Go to Listings Dashboard
     messages:
       charge: !pl
-        n: Purchase of %1 credits.
+        n: Purchase of %{count} credits.
       done: !pl
-        n: "%1 new credits purchased!"
+        n: "%{count} new credits purchased!"
     new:
       meta:
         title: Purchase Credits

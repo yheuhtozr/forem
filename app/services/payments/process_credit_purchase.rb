@@ -73,7 +73,7 @@ module Payments
       Payments::Customer.charge(
         customer: customer,
         amount: credits_count * cost_per_credit,
-        description: R18n.t.v.credits.messages.charge(credits_count),
+        description: I18n.t("v.credits.messages.charge", count: credits_count),
         card_id: card&.id,
       )
     end
