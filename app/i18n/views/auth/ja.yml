@@ -1,18 +1,18 @@
 ---
 v:
   auth:
-    background: forem background
+    background: forem 背景
     create:
       aria_label: 新しいアカウントを作る
       text: 新しいアカウントを作る
     creator:
-      text1: Let's start your Forem journey!
-      text2: Create your admin account first.
-      text3: Then we'll walk you through your Forem setup.
+      text1: Forem の世界があなたを待っています。
+      text2: まずあなたの管理者アカウントを作りましょう。
+      text3: それから Forem の設定へご案内します。
       hint:
-        aria_label: Edit username
-        icon: Edit username
-        text: !html "%{start}Your username will be\_%{end}%{button}"
+        aria_label: ユーザー名を編集
+        icon: ユーザー名を編集
+        text: !html "%{start}あなたのユーザー名は\_%{end}%{button}%{start}\_です%{end}"
       submit: 私のアカウントを作成
     login:
       aria_label: ログイン
@@ -42,7 +42,7 @@ v:
           label: 名前
         username:
           aria_label: ユーザー名
-          desc: A username can only contain letters, numbers and underscores. The maximum username length can be 30 characters.
+          desc: ユーザー名には英数小文字と半角アンダーバーのみ使用できます。長さは 30 文字までです。
           label: ユーザー名
         email:
           aria_label: メールアドレス
@@ -50,11 +50,11 @@ v:
           placeholder: john@example.com
         password:
           aria_label: パスワード
-          desc: Minimum 8 characters
+          desc: 8 文字以上
           label: パスワード
           placeholder: ••••••••
-          hide: Hide password
-          show: Show password
+          hide: パスワードを表示
+          show: パスワードを隠す
         confirm:
           aria_label: パスワードを再入力
           label: パスワードを再入力
@@ -65,14 +65,14 @@ v:
       submit: 登録する
     wizard:
       meta:
-        title: Let's get started with Forem
-      heading: Let's start your Forem journey
-      step_1: Create an account. It will be the first super admin account.
-      step_2: !html Once you sign up below, you can configure your community at %{path}.
-      step_3: There is lots you can do as an admin, but there is a learning curve.
-      step_4: Please reach out to the Forem team if you are unsure about anything!
+        title: Forem を始めましょう
+      heading: Forem の世界があなたを待っています
+      step_1: まずアカウントを作成します。これが最初の super admin になります。
+      step_2: !html 以下から登録を済ませると、%{path} でサイトの設定が行えます。
+      step_3: 管理者はたくさんのことができます。少しずつ学んでいきましょう。
+      step_4: わからないことがあったら、Forem 開発チームにお尋ねください！
       step_5: "For Empowering Community 🌱"
-    tagline: Log in to customize your experience and get involved.
+    tagline: 交流や便利な機能を利用するにはログイン
     title:
       text: !html <a href="/">%{name}</a> は創作言語・世界愛好者の憩いの場です
       size: "%1 "

@@ -27,7 +27,7 @@ helpers:
       cta_body_markdown: 本文
       cta_button_text: リンクの文言
       cta_button_url: リンク URL
-      proof: Proof
+      proof: 保証
     podcast:
       android_url: Android url
       description: Description
@@ -43,8 +43,8 @@ helpers:
       twitter_username: Twitter username
       website_url: Website url
     response_template:
-      title: Title
-      content: Comment body (Markdown)
+      title: タイトル
+      content: コメント本文 (Markdown)
     user:
       name: 名前
       email: メールアドレス
@@ -192,4 +192,4 @@ helpers:
     mid_level: 中級
     novice: 未経験
   social_link_helper:
-    n_a: N/A
+    n_a: なし

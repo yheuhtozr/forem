@@ -148,8 +148,8 @@
     "empty": "書く",
     "hide": "Are you sure you want to hide this comment? It will become hidden in your post, but will still be visible via the comment's permalink.\n\nAll child comments in this thread will also be hidden.\n\nFor further actions, you may consider blocking this person and/or reporting abuse.",
     "messages": {
-      "failure": "comment already exists",
-      "success": "created"
+      "failure": "すでに存在しています",
+      "success": "書き込みました"
     },
     "number": "コメント数",
     "subscription": {

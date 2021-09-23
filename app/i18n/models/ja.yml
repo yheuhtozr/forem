@@ -5,22 +5,22 @@ models:
   application_record:
     could_not_infer_a_decorato: Could not infer a decorator for %{called_on_class_name}.
   article:
-    a_post_by: A post by %{user_name}
-    cannot_be_added_by_member: cannot be added by member without permission
-    cannot_be_set_to_true_if_v: cannot be set to true if video is still processing
-    cannot_search_tags_for: 'Cannot search tags for: %{tag_inspect}'
-    cannot_search_tags_for2: 'Cannot search tags for: %{tags_inspect}'
-    co_author_ids_must_be_uniq: co-author IDs must be unique
-    exceed_the_maximum_of_4_ta: exceed the maximum of 4 tags
-    is_too_long: is too long.
-    must_be_entered_in_dd_mm_y: must be entered in DD/MM/YYYY format with current or past date
-    must_be_one_you_have_permi: must be one you have permission to post to
-    must_be_valid_user_ids: must be valid user IDs
-    must_not_be_the_same_user: must not be the same user as the author
-    must_not_have_spaces: must not have spaces
-    published: Published
-    user_suspended_for_too_man: User suspended for too many spammy articles, triggered by autovomit.
-    you_cannot_mention_more_th: You cannot mention more than %{settings_ratelimit_mention} users in a post!
+    a_post_by: "%{user_name} の投稿記事"
+    cannot_be_added_by_member: は許可のないメンバーが追加できません
+    cannot_be_set_to_true_if_v: は動画が処理中のため有効にできません
+    cannot_search_tags_for: '該当するタグが見つかりません: %{tag_inspect}'
+    cannot_search_tags_for2: '該当するタグが見つかりません: %{tags_inspect}'
+    co_author_ids_must_be_uniq: 共著者の ID が重複しています
+    exceed_the_maximum_of_4_ta: が 4 つまでの上限を超過しています
+    is_too_long: が長すぎます
+    must_be_entered_in_dd_mm_y: は現在または過去の日付を DD/MM/YYYY 形式で入力してください
+    must_be_one_you_have_permi: はあなたが投稿する権限があるものを指定してください
+    must_be_valid_user_ids: は有効なユーザー ID を入れてください
+    must_not_be_the_same_user: は作者と異なるユーザーを入れてください
+    must_not_have_spaces: はスペースを入れないでください
+    published: 公開しました
+    user_suspended_for_too_man: ユーザーはスパム記事を大量に投稿したため、自動検出により凍結されました。
+    you_cannot_mention_more_th: 1 つの記事内で %{settings_ratelimit_mention} 人より多く呼びかけることはできません！
   broadcast:
     you_can_only_have_one_acti: You can only have one active announcement broadcast
   chat_channel:
@@ -29,17 +29,17 @@ models:
     is_not_allowed_in_chat: is not allowed in chat
     pattern: chat between|and
   comment:
-    deleted: "[deleted]"
-    has_been_deleted: "%{type} has been deleted."
-    hidden_by_post_author: "[hidden by post author]"
-    is_not_valid: is not valid.
-    locked: the discussion is locked on this Post
+    deleted: "[削除]"
+    has_been_deleted: "%{type}は削除されました"
+    hidden_by_post_author: "[記事作者により非表示]"
+    is_not_valid: は無効です
+    locked: 記事のコメント欄は凍結されています
     type:
-      Article: Article
-      item: item
-      PodcastEpisode: Podcast episode
-    user_suspended_for_too_man: User suspended for too many spammy articles, triggered by autovomit.
-    you_cannot_mention_more_th: You cannot mention more than %{settings_ratelimit_mention} users in a comment!
+      Article: 記事
+      item: 項目
+      PodcastEpisode: 配信
+    user_suspended_for_too_man: ユーザーはスパム記事を大量に投稿したため、自動検出により凍結されました。
+    you_cannot_mention_more_th: 1 つのコメント内で %{settings_ratelimit_mention} 人より多く呼びかけることはできません！
   event:
     must_be_after_start_date: must be after start date
   feedback_message:
@@ -50,7 +50,7 @@ models:
   html_variant:
     cannot_change_once_publish: cannot change once published and approved
   identity:
-    no_email_msg: No email found. Please relink your %{provider} account to avoid errors.
+    no_email_msg: メールアドレスがありません。エラーの際は %{provider} と再度連携してください。
   listing:
     exceed_the_maximum_of_8_ta: exceed the maximum of 8 tags
     has_too_many_linebreaks_no: has too many linebreaks. No more than 12 allowed.
@@ -64,14 +64,14 @@ models:
     you_are_not_a_participant: You are not a participant of this chat channel.
   organization:
     integer_only_no_sign_allow: Integer only. No sign allowed.
-    is_taken: is taken.
+    is_taken: は取られています
     value_s_is_a_reserved_wor: "%<value>s is a reserved word. Contact site admins for help registering your organization."
   organization_membership:
     private_group_chat: "@%{organization_slug} private group chat"
   page:
-    is_taken: is taken.
+    is_taken: は取られています
   podcast:
-    is_taken: is taken.
+    is_taken: は取られています
     slug_is_reserved: slug is reserved
   podcast_episode_appearance:
     provided_role_is_not_valid: provided role is not valid
@@ -113,14 +113,14 @@ models:
   tweet:
     tweet_not_found: Tweet not found
   user:
-    confirmation_could_not_be: confirmation could not be sent. %{e_message}
-    doesn_t_match_password_con: doesn't match password confirmation
-    has_been_banished: has been banished.
-    is_not_a_valid_rss_atom_fe: is not a valid RSS/Atom feed
-    is_taken: "%{data_value} is taken."
-    is_taken2: is taken.
-    user_could_not_be_saved: User could not be saved. %{e_message}
-    username_is_reserved: username is reserved
+    confirmation_could_not_be: 確認メールが送信できませんでした。%{e_message}
+    doesn_t_match_password_con: が確認用パスワードと一致しません
+    has_been_banished: は追放されました
+    is_not_a_valid_rss_atom_fe: は正しい RSS/Atom フィードではありません
+    is_taken: "%{data_value} は取られています"
+    is_taken2: は取られています
+    user_could_not_be_saved: ユーザーを保存できませんでした。%{e_message}
+    username_is_reserved: ユーザー名は予約されています
   user_subscription:
     can_t_subscribe_with_an_ap: Can't subscribe with an Apple private relay. Please update email.
     source_not_found_please_ma: Source not found. Please make sure your %{user_subscription_sourceab} is active!

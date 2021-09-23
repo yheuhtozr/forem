@@ -12,8 +12,8 @@ v:
         description: "%{site} に投稿されたコメント"
     messages:
       create:
-        success: created
-        failure: comment already exists
+        success: 書き込みました
+        failure: すでに存在しています
       markdown: 'Markdown に誤りがあります: %{error}'
       markdown_html: !html "<p>😔 Markdown に誤りがあります</p><hr><p>%{error}</p>"
     parent:
@@ -26,8 +26,8 @@ v:
       reply: !html '%{start}返信元:%{end} %{title}'
     delete:
       heading: このコメントを削除してもよろしいですか？
-      desc: !html この操作は取り消せません。それとも%{action}ますか？
-      action: 編集し
+      desc: !html この操作は取り消せません。それとも%{action}しますか？
+      action: 編集
       error: 問題が発生し、コメントが削除されませんでした。
       notice: コメントの削除が完了しました。
       submit: 削除する
@@ -49,8 +49,8 @@ v:
       delete: 削除する
       edit: 編集する
     re:
-      text: !html '%{re}%{title}'
-      re: 'Re: '
+      text: !html 「%{title}」%{re}
+      re: への返信
     settings:
       meta:
         title: コメント設定

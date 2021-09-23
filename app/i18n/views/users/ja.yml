@@ -5,25 +5,25 @@ v:
       og:
         title: "%{user} — %{community} プロフィール"
     account:
-      connect: Connect %{provider} Account
-      emails: Account emails
-      primary: Primary email
-      provider_email: "%{provider} email"
-      provider_profile: "%{provider} profile settings"
+      connect: "%{provider} アカウントと連携"
+      emails: アカウントのメール
+      primary: メインアドレス
+      provider_email: "%{provider} のアドレス"
+      provider_profile: "%{provider} のプロフィール設定"
       api:
-        heading: "%{community} API Keys"
-        desc: !html You can generate personal API keys to use for authentication with the %{community} API.  The API is still in its beta stage. The %{doc} contains further information.
+        heading: "%{community} API キー"
+        desc: !html "%{community} API の認証に使うための個人 API キーを生成できます。API 機能はまだベータ版です。詳しくは%{doc}をご覧ください。"
         active:
-          heading: Active API keys (never share these!)
-          created: 'Created: %{time}'
-        doc: documentation
+          heading: 使用中の API キー（人に見せないでください！）
+          created: '作成日時: %{time}'
+        doc: ドキュメント
         gen:
-          heading: Generate a new Key
-          label: Description
-          text: What's this API key for?
-          placeholder: My Project Name
-          submit: Generate API Key
-        revoke: Revoke
+          heading: 新しいキーを生成
+          label: 名称
+          text: 何のための API キーですか？
+          placeholder: 私のプロジェクト
+          submit: API キーを生成する
+        revoke: 破棄
       delete:
         heading: Delete account
         desc1: 'Deleting your account will:'
@@ -67,21 +67,20 @@ v:
       remove: Remove card
     comments:
       all: !pl
-        n: All %1 comments
+        n: コメント %1 件全部
       last: !pl
-        n: Last %1 comments
-      recent: Recent comments
-      view: View all activity
+        n: 最新のコメント %1 件
+      recent: 最近のコメント
+      view: すべての活動を見る
       view_all: !pl
-        n: View all %1 comments
+        n: コメント %1 件をすべて見る
       view_last: !pl
-        1: View last 1 Comment
-        n: View last %1 Comments
+        n: 最新のコメント %1 件を見る
     custom:
       adjacent: Permit Nearby Sponsors (When publishing)
       announce: アナウンス
       announce_desc: 更新やイベントなど、サイトの重要なお知らせがアナウンスされます。
-      announce_field: アナウンスを表示（閲覧中）
+      announce_field: アナウンスを表示（閲覧中に）
       appearance: 外観
       basic: 基本 markdown
       content: 内容
@@ -135,17 +134,17 @@ v:
         n: "%1 件のエラーが発生したため個人プロフィールは保存されませんでした。"
     extensions:
       comment:
-        heading: Comment templates
-        desc: !html Create and save <strong>comment templates</strong> that you can reuse.
-        add: Add new comment template
-        confirm: 'Are you sure you want to delete: %{template}?'
-        create: Create a new response template
-        cue: Memorable cue for template
-        edit: Edit
-        edit_template: Edit comment template
-        remove: Remove
-        save: Save template
-        saved: Saved templates
+        heading: コメント用定型文
+        desc: !html すぐに呼び出せる<strong>コメント用定型文</strong>を保存できます。
+        add: 新しい定型文を追加
+        confirm: 「%{template}」を削除してもよろしいですか？
+        create: 新しい定型文を作成する
+        cue: 定型文につける覚えやすい名前
+        edit: 編集
+        edit_template: 定型文を編集
+        remove: 削除
+        save: 定型文を保存する
+        saved: 保存した定型文
       connect: Connect settings
       generate: Generate a personal blog from your %{community} posts
       github:
@@ -222,21 +221,21 @@ v:
         Organization: グループ
         Extensions: 拡張機能
     notifications:
-      email: Email notifications
-      general: General notifications
-      general_desc: !html Notifications that only appear on the %{page}.
-      mobile: Mobile notifications
-      mobile_notice: Additional settings will be rolled out as new notification features are made available.
-      moderator: Moderator notifications
-      page: notifications page
-      save: Save
+      email: メール通知
+      general: 通常の通知
+      general_desc: !html "%{page}にのみ表示される通知です。"
+      mobile: モバイル通知
+      mobile_notice: 新しい通知機能が実装されしだい、設定項目が追加される予定です。
+      moderator: 審査者用通知
+      page: 通知ページ
+      save: 保存する
     org:
       admin:
-        admin: Admin
+        admin: 管理者
         copy:
-          aria_label: Organization secret (to be rotated regularly)
-          icon: Copy to clipboard
-          text: Copied to clipboard!
+          aria_label: グループの暗証コード（定期的に変更してください！）
+          icon: クリップボードにコピー
+          text: コピーしました！
         cta: Call-to-action box
         cta_desc: Customizable text that appears to the right of every post for your organization.
         delete:
@@ -246,46 +245,46 @@ v:
           submit: Delete "%{name}"
           questions: !html Questions? Email us at %{email} for help.
           unmet: Your organization currently does not meet the above requirements. Please remove all other members and organization posts first.
-        details: Organization details
+        details: グループの詳細情報
         form:
-          slug: 'Your organization''s URL is: %{slug}'
-          tag_line: Limit of 60 characters
-          summary: Limit of 250 characters
-          location: Limit of 64 characters
-          email: Limit of 64 characters
-          company_size: Enter a number
-          story: Limit of 640 characters
-          tech_stack: Limit of 640 characters
-          cta_body_markdown: 'Limited markdown: _italic_ and **bold** is okay. Links, and headers etc. will not show up. 256 character limit.'
-          cta_button_text: Limit of 20 characters
-          submit: Save
+          slug: 'このグループの URL は: %{slug}'
+          tag_line: 60 文字以内
+          summary: 250 文字以内
+          location: 64 文字以内
+          email: 64 文字以内
+          company_size: 数字で入力
+          story: 640 文字以内
+          tech_stack: 640 文字以内
+          cta_body_markdown: 使用できる Markdown は _斜体_ と **太字** のみです。リンクや見出しなどは表示されません。256 文字以内。
+          cta_button_text: 20 文字以内
+          submit: 保存する
         gen:
-          confirm: Are you sure you want to generate a new secret? All outstanding secrets will be invalid.
-          text: You should rotate this regularly!
-          submit: Generate new secret
-        grow: Grow the team
-        invite: 'Invite teammates by sending them the secret and the following instructions:'
-        inst1: !html Sign up at %{url}
-        inst2: !html Navigate to %{url}
-        inst3: !html Paste the secret code below and click <b>Join Organization</b>
+          confirm: 本当に新しい暗証コードを作成しますか？以前のコードはすべて無効になります。
+          text: 定期的な変更を！
+          submit: 新しい暗証コードを生成
+        grow: メンバーを増やす
+        invite: 暗証コードと以下の案内を送って新しいメンバーを招待します。
+        inst1: !html "%{url} に登録"
+        inst2: !html "%{url} にアクセス"
+        inst3: !html 下の暗証コードを貼り付けて「<b>グループに参加する</b>」をクリック
         make:
-          confirm: Are you sure you want to give %{user} admin status?
-          title: Make admin
-          text: Make admin
-        members: Organization Members
+          confirm: "%{user} に管理者権限を与えてもよろしいですか？"
+          title: 管理者にする
+          text: 管理者にする
+        members: グループメンバー
         remove:
-          confirm: Are you sure you want remove %{user} from the organization?
-          title: Remove from org
-          text: Remove from org
+          confirm: "%{user} をグループから削除してもよろしいですか？"
+          title: グループから削除
+          text: グループから削除
         revoke:
-          confirm: Are you sure you want to take away admin status from %{user}?
-          title: Revoke admin status
-          text: Revoke admin status
-        secret_code: 'Your secret code is:'
-        you: You
+          confirm: "%{user} から管理者から除外してもよろしいですか？"
+          title: 管理者から除外
+          text: 管理者から除外
+        secret_code: '暗証コード:'
+        you: あなた
       create:
         heading: グループを作成
-        notice: フォームを送信する前に所属するグループの許可を得てください。偽の記載があった場合、無期限凍結されることがあります。
+        notice: フォームを送信する前に所属するグループの許可を得てください。事実に反する記載があった場合、無期限凍結されることがあります。
         proof: このグループとあなたの関わりを証明できるようなリンクや簡単な説明を書いてください。
         required: 星印の欄は必須項目
         slug: あなたのグループページの URL は %{url}/{username} です
@@ -301,24 +300,15 @@ v:
         submit: グループを脱退する
       divider: または
     password:
-      heading: Set new password
-      desc: !html 'If your account was created using social account authentication, you may prefer to add an email
-
-        log in. If you signed up with a social media account, <a href="%{path}">
-
-        please reset the password</a> for your primary email address (%{email}) in
-
-        order to enable this. Please note that email login is in addition to social login rather than
-
-        a replacement for it, so your authenticated social account will continue to be linked to your
-
-        account.'
-      current: Current password
-      confirm: Confirm new password
-      new: Password
-      submit: Set New Password
-    pin_icon: Pin
-    pinned: Pinned
+      heading: 新しいパスワードを設定
+      desc: !html 'もしあなたのアカウントが SNS 認証で作成したものであれば、ログイン用メールアドレスの追加をおすすめします。連携先のアカウントで登録している場合、メインアドレス (%{email}) の<a href="%{path}">
+        パスワードをリセット</a>してください。メールアドレスによるログインは SNS ログインの代替ではなく、追加手段となりますので、認証済みの SNS アカウントも引き続きご利用できます。'
+      current: 今のパスワード
+      confirm: 新しいパスワードを再度入力
+      new: パスワード
+      submit: パスワードを更新する
+    pin_icon: ピン止め
+    pinned: ピン止め
     profile_descriptions:
       currently_learning: 今、何か言語（自然言語・人工言語）を勉強していますか？また、関心がありますか？
       currently_hacking_on: 今、何か言語づくりに取り組んでいますか？それはどんな言語ですか？
@@ -347,7 +337,7 @@ v:
         icon: コメント
         text: !pl
           n: "%1 件のコメントを投稿"
-      org: Organizations
+      org: グループ
       post:
         icon: 記事
         text: !pl
@@ -359,15 +349,15 @@ v:
     save_profile: プロフィール情報を保存する
     signout:
       meta:
-        title: Confirm Signout - %{community}
-      heading: Are you sure you want to sign out?
-      'yes': Yes, sign out
-    block: Block @%{user}
+        title: ログアウトの確認 - %{community}
+      heading: 本当にログアウトしますか？
+      'yes': ログアウトします
+    block: "@%{user} をブロック"
     chat: チャット
     chat_with: "%{user} にチャット"
     close: ポップアップを閉じる
     details: "%{user} のプロフィール詳細"
-    dropdown: User actions
+    dropdown: ユーザー操作
     email_icon: メールアドレス
     empty: かつ 30
     flag: "@%{user} を通報"
@@ -384,6 +374,6 @@ v:
       notice: !html All private interactions <b>must</b> abide by the %{code}.
       placeholder: Enter your message here...
       submit: Send
-    social: "%{service} website"
+    social: "%{service} ページ"
     unflag: Unflag @%{user}
-    website: Personal website
+    website: 個人サイト

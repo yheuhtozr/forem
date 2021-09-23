@@ -95,10 +95,8 @@
       "admin": "管理画面",
       "edit": "編集",
       "manage": "状態管理",
-      "pin": "要注目に指定",
       "stats": "統計",
-      "translate": "翻訳",
-      "unpin": "要注目を外す"
+      "translate": "翻訳"
     },
     "comments": {
       "moderate": "審査する",
