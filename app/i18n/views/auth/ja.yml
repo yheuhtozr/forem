@@ -75,4 +75,3 @@ v:
     tagline: 交流や便利な機能を利用するにはログイン
     title:
       text: !html <a href="/">%{name}</a> は創作言語・世界愛好者の憩いの場です
-      size: "%1 "
