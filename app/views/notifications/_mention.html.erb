@@ -24,7 +24,7 @@
       <%= render "notifications/shared/article_preview", json_data: json_data, notification: notification, context: "default" %>
     <% elsif notification.json_data["comment"] %>
       <h2 class="fs-base fw-normal mb-4">
-        <%= _t.comments user: link_to(json_data["user"]["name"], json_data["user"]["path"], class: "crayons-link fw-bold") %>
+        <%= _t.comment user: link_to(json_data["user"]["name"], json_data["user"]["path"], class: "crayons-link fw-bold") %>
       </h2>
       <%= render "notifications/shared/comment_box", json_data: json_data, notification: notification, context: "default" %>
     <% end %>

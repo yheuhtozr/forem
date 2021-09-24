@@ -15,7 +15,7 @@ class RegistrationsController < Devise::RegistrationsController
     authorize(params, policy_class: RegistrationPolicy)
 
     unless recaptcha_verified?
-      flash[:notice] = I18n.t("v.auth.error.recaptcha")
+      flash[:notice] = I18n.t("v.auth.register.error.recaptcha")
       return redirect_to new_user_registration_path(state: "email_signup")
     end
 
@@ -63,7 +63,7 @@ class RegistrationsController < Devise::RegistrationsController
     return if allow_list.empty? || allow_list.include?(domain)
 
     resource.email = nil
-    resource.errors.add(:email, I18n.t("v.auth.error.domain"))
+    resource.errors.add(:email, I18n.t("v.auth.register.error.domain"))
   end
 
   def build_devise_resource

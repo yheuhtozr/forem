@@ -100,7 +100,7 @@
 
         <button type="button" class="crayons-btn crayons-btn--ghost crayons-btn--icon ml-2 inline-block l:hidden" id="on-page-nav-butt-right" aria-label="<%= _t.menu.aria_right %>">
           <div class="crayons-icon nav-icon ">
-            <%= inline_svg_tag("hamburger.svg", aria: true, title: _t.v.hamburger.icon_right) %>
+            <%= inline_svg_tag("hamburger.svg", aria: true, title: t.v.hamburger.icon_right) %>
           </div>
         </button>
       </header>
@@ -113,7 +113,7 @@
         <% end %>
       </div>
       <div class="loading-articles" id="loading-articles">
-        <%= _t.v.loading %>
+        <%= t.v.loading %>
       </div>
     </main>
     <%= render "stories/tagged_articles/sidebar_additional" %>

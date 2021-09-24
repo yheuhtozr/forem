@@ -31,7 +31,7 @@
                     last: link_to(actors.last["name"], actors.last["path"], class: "crayons-link fw-bold"),
                   )
                 elsif actors.size > 1
-                  _t.other(
+                  _t.and_other(
                     first: link_to(actors.first["name"], actors.first["path"], class: "crayons-link fw-bold"),
                     count: actors.size - 1,
                   )

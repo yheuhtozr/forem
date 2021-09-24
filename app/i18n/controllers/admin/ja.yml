@@ -94,6 +94,8 @@ admin:
     not_in_vault: Not In Vault
     secret_was_successfully_up: Secret %{params_key_name} was successfully updated in Vault.
     value: "%{secret_value_first_8}******"
+  settings_controller:
+    my_username_is_and_this_ac: My username is @%{current_user_username} and this action is 100% safe and appropriate.
   sponsorships_controller:
     sponsorship_has_been_creat: Sponsorship has been created!
     sponsorship_was_not_destro: Sponsorship was not destroyed

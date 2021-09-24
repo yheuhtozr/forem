@@ -4,7 +4,7 @@
     <% if @user.organizations.present? %>
       <div class="crayons-card crayons-card--secondary">
         <header class="crayons-card__header">
-          <h3 class="crayons-subtitle-3 spec-org-titles"></h3>
+          <h3 class="crayons-subtitle-3 spec-org-titles"><%= _t.org %></h3>
         </header>
         <div>
           <%# it's unlikely that a user will belong to enough organizations to cause a performance issue here %>

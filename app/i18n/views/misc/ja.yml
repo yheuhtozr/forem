@@ -4,6 +4,8 @@ v:
     meta:
       title: バッジ
       name: "%{title} バッジ"
+    all: !pl
+      n: Show all %1 badges
     heading: バッジ
     desc: 実績を積んでバッジをもらおう！バッジをクリックすると獲得条件が確認できます。
     name: "🏅 %{title} バッジ 🏅"

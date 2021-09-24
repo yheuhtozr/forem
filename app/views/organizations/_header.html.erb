@@ -1,4 +1,4 @@
-<% _t = t.v.users %>
+<% _t = t.v.organizations %>
 <% unless internal_navigation? || user_signed_in? %>
   <script type="application/ld+json">
     <%= @organization_json_ld.to_json.html_safe %>
@@ -14,7 +14,7 @@
     <header class="profile-header crayons-card mt-2">
       <div class="relative profile-header__top">
         <span class="crayons-logo crayons-logo--3xl">
-          <img src="<%= Images::Profile.call(@user.profile_image_url, length: 320) %>" alt="<%= @user.name %> logo" width="128" height="128" title="<%= _t.logo name: @user.name %>" class="crayons-logo__image">
+          <img src="<%= Images::Profile.call(@user.profile_image_url, length: 320) %>" alt="<%= @user.name %> logo" width="128" height="128" title="<%= t.v.users.logo name: @user.name %>" class="crayons-logo__image">
         </span>
 
         <div class="profile-header__actions">
