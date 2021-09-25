@@ -55,10 +55,10 @@
   --accent-brand-a10: #{rgba($brand, 0.1)};
 
   // Success
-  --accent-success: #26d9ca;
-  --accent-success-darker: #1ab3a6;
-  --accent-success-lighter: #79ece2;
-  --accent-success-a10: #{rgba(#26d9ca, 0.1)};
+  --accent-success: #1457fc;
+  --accent-success-darker: #1045c9;
+  --accent-success-lighter: #608dfd;
+  --accent-success-a10: #{rgba(#1457fc, 0.1)};
 
   // Warning
   --accent-warning: #ffcf4c;
@@ -100,7 +100,7 @@
   --header-bg: #{nth($theme-colors, 1)};
   --header-bg-hover: var(--base-10);
   --header-button-focus-color: var(--accent-brand);
-  --header-bg-current: var(--base-20);
+  --header-bg-current: var(--accent-brand-lighter);
   --header-shadow: rgba(0, 0, 0, 0.1);
   --header-icons-color: var(--base-70);
   --header-icons-color-hover: var(--base-100);
