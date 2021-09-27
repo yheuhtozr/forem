@@ -1,7 +1,7 @@
 {
   "articles": {
     "duration": "Video duration",
-    "for_org": "%{- start} が %{- end}%{- org}%{- start} へ執筆%{- end}",
+    "for_org": "<0> が </0><1>%{org}</1><0> へ執筆</0>",
     "pinned": {
       "after": "",
       "before": "要注目",
@@ -17,6 +17,7 @@
     "timeAgo": "（%{ago}）"
   },
   "chat": {
+    "announcement": "Connect はアプリケーションのコア機能から除外されることになりました。\u00A0<0>詳細はこちらのお知らせより »</0>",
     "bottom": "Scroll to Bottom",
     "compose": {
       "aria_label": "Compose a message",
@@ -67,7 +68,7 @@
       "accept": " 承認",
       "empty": "承認待ちの招待はありません。",
       "got": "<b>%{channel}</b> への参加を招待されています。",
-      "heading": "申請一覧 <span role=\"img\" aria-label=\"handshake\">🤝</span>",
+      "heading": "申請一覧 <0>🤝</0>",
       "join": "<b>%{name}</b> が <b>%{channel}</b> へ参加を申請しました",
       "message1": "%{user} さん、はじめまして",
       "message2": "あなたはこのグループのメンバーではありません。参加するには申請してください。",
@@ -78,12 +79,12 @@
     },
     "loading": "ユーザーを読み込み中",
     "messages": {
-      "direct": "あなたと <a href=\"/%{slug}\">%{slug}</a> は相互フォローしているため、連絡相手になりました。通信内容は<em><b>すべて</b></em><a href=\"/code-of-conduct\">code of conduct</a>を守ってください。",
-      "mentioned": "あなたが %{- channel} で呼ばれました",
-      "new": "%{- channel} の新着メッセージ",
+      "direct": "あなたと <0>%{slug}</0> は相互フォローしているため、連絡相手になりました。通信内容は<strong>すべて</strong><2>code of conduct</2>を守ってください。",
+      "mentioned": "あなたが <0>%{channel}</0> で呼ばれました",
+      "new": "<0>%{channel}</0> の新着メッセージ",
       "no_data": "Couldn't find user data on page.",
-      "open": "%{channel} に参加しました！通信内容は<em><b>すべて</b></em><a href=\"/code-of-conduct\">code of conduct</a>を守ってください。",
-      "sorry": "<span className=\"chatmessagebody__currentuser\">@%{user}</span> さん、ごめんなさい！%{message}"
+      "open": "%{channel} に参加しました！通信内容は<strong>すべて</strong><1>code of conduct</1>を守ってください。",
+      "sorry": "<0>@%{user}</0> さん、ごめんなさい！%{message}"
     },
     "meta": {
       "title_new": "新着メッセージ 👋"
@@ -132,7 +133,7 @@
         "username": "all"
       }
     },
-    "welcome": "<span role=\"img\" aria-label=\"emoji\">👋</span> Welcome to <b> Connect</b>! You may message anyone you mutually follow."
+    "welcome": "<0>👋</0> Welcome to <b> Connect</b>! You may message anyone you mutually follow."
   },
   "clipboard": {
     "alt_text": "代替テキスト",
@@ -256,6 +257,7 @@
       }
     },
     "image": {
+      "aria_label": "画像をアップロードする",
       "icon": "画像をアップロード",
       "text": "画像をアップロード",
       "uploading": "アップロード中…"
@@ -291,7 +293,7 @@
       "title": "記事の設定",
       "unpublish": "記事を公開停止",
       "url": {
-        "desc": "この記事が別の場所（自分のブログなど）で公開されている場合、メタタグの <code>canonical_url</code> を変更します。",
+        "desc": "この記事が別の場所（自分のブログなど）で公開されている場合、メタタグの <0>canonical_url</0> を変更します。",
         "label": "正規 URL"
       }
     },
@@ -299,9 +301,9 @@
     "publish": "公開",
     "publishing": "公開実行中…",
     "revert": "前回保存した状態に戻します。よろしいですか？",
-    "revert_button": "%{- start}変更%{- end}を元に戻す",
+    "revert_button": "<0>変更を</0>元に戻す",
     "save": "変更を保存",
-    "save_draft": "%{- start}下書き%{- end}を保存",
+    "save_draft": "<0>下書きを</0>保存",
     "saving": "保存中…",
     "saving_draft": "下書きを保存中…",
     "tabs": {
@@ -339,7 +341,7 @@
   "feedback": {
     "block": "The message will be reported.\n\nWould you like to block this person as well?\n\nThis will:\n- prevent them from commenting on your posts\n- block all notifications from them\n- prevent them from messaging you via chat",
     "blocked": "Your report has been submitted and the user has been blocked",
-    "desc": "Thank you for reporting any abuse that violates our <a href=\"/code-of-conduct\">code of conduct</a> or <a href=\"/terms\">terms and conditions</a>. We continue to try to make this environment a great one for everybody.",
+    "desc": "Thank you for reporting any abuse that violates our <0>code of conduct</0> or <1>terms and conditions</1>. We continue to try to make this environment a great one for everybody.",
     "harassment": "嫌がらせ・誹謗中傷",
     "heading": "Report Abuse",
     "listings": "告知の内容や分類が不適切",
@@ -428,7 +430,7 @@
       "desc1": "This is your active listing. Any member can contact you via this form.",
       "desc2": "Message  %{name} ",
       "heading": "Interested?",
-      "notice": "All private interactions <b>must</b> abide by the %{- code}.",
+      "notice": "All private interactions <b>must</b> abide by the <0>%{code}</0>.",
       "placeholder": "Enter your message here...",
       "relevant": "Message must be relevant and on-topic with the listing. ",
       "submit": "Send"
@@ -546,11 +548,11 @@
   },
   "profile": {
     "block": "Are you sure you want to block this person? This will:\n- prevent them from commenting on your posts\n- block all notifications from them\n- prevent them from messaging you via Connect\n- hide their posts from your feed",
-    "flag": "Flag %{user}",
+    "flag": "%{user} を警戒",
     "report": "Report Abuse",
     "to_flag": "Are you sure you want to flag this person? This will make all of their posts less visible.",
     "to_unflag": "Are you sure you want to unflag this person? This will make all of their posts visible again.",
-    "unflag": "Unflag %{user}"
+    "unflag": "%{user} を警戒解除"
   },
   "reactions": {
     "number": "Number of reactions"

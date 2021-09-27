@@ -2,7 +2,8 @@
 require 'yaml'
 require 'json'
 require 'deepsort'
-require 'active_support/core_ext/hash'
+require 'active_support'
+require 'active_support/core_ext'
 
 yamls = Dir.new "#{__dir__}/../app/i18n"
 js1 = Dir.new "#{__dir__}/../app/javascript/i18n"
@@ -23,7 +24,7 @@ MAP = {
       report: [true],
     },
     for_org: [true, true],
-    _for_org: { html: %w[start end org] },
+    _for_org: { html: %w[start end org], html_trans: [%w[start end], %w[org]] },
     reading_time: [true, true],
     save: {
       __orphan: [%w[unsave], %w[remove]],
@@ -35,7 +36,7 @@ MAP = {
     __orphan: [nil, %w[close]],
   },
   chat: {
-    __orphan: [%w[bottom compose config create delete draw edited filter loading messages meta more notifications removed search users welcome]],
+    __orphan: [%w[announcement bottom compose config create delete draw edited filter loading messages meta more notifications removed search users welcome]],
     join: {
       __orphan: [%w[accept got heading join message1 message2 reject request requested toggle]],
       pending: {
@@ -264,7 +265,7 @@ MAP = {
       __scope: ['listings.message'],
       code: [true],
       notice: [true],
-      _notice: { html: %w[code] },
+      _notice: { html_trans: [%w[code]] },
       placeholder: [true],
       submit: [true],
     },
@@ -333,14 +334,24 @@ end
 def insert_string(tree, path, text, **options)
   case text
   when HTMLTag
-    options[:html].each { |name| text.gsub! "%{#{name}}", "%{- #{name}}" }
-    tree.bury(*path, text)
+    subbed = text.dup
+    options[:html]&.each { |name| subbed.gsub! "%{#{name}}", "%{- #{name}}" }
+    options[:html_trans]&.each&.with_index { |pair, i|
+      if pair[1]
+        subbed.gsub!("%{#{pair[0]}}", "<#{i}>")
+        subbed.gsub!("%{#{pair[1]}}", "</#{i}>")
+      elsif pair.present?
+        subbed.gsub!("%{#{pair[0]}}", "<#{i}>%{#{pair[0]}}</#{i}>")
+      end
+    }
+    tree.bury(*path, subbed)
   when String
     tree.bury(*path, text)
   end
 end
 
 def insert(entry, lang, tree, path, **options)
+  options.delete(options[:static] ? :html_trans : :html)
   case entry
   when PlTag
     pl = PLURALS[lang_pl(lang)]
