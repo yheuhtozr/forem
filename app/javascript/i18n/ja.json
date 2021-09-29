@@ -7,7 +7,7 @@
       "before": "要注目",
       "post": "記事"
     },
-    "reading_time": "約 %{count} 字/語",
+    "reading_time_other": "約 %{count} 字/語",
     "report": "通報する",
     "save": {
       "save": "保存",
@@ -143,7 +143,7 @@
     "message": "コピーしました"
   },
   "comments": {
-    "all": "%{count} 件のコメントをすべて見る",
+    "all_other": "%{count} 件のコメントをすべて見る",
     "blocked": "[blocked content]",
     "delete": "本当にこのコメントを削除してもよろしいですか？",
     "empty": "書く",
@@ -521,7 +521,7 @@
       "aria_label": "%{tag} をフォロー",
       "follow": "フォロー",
       "following": "フォロー中",
-      "status": "選択したタグ %{count} 個",
+      "status_other": "選択したタグ %{count} 個",
       "subtitle": "フォローしたタグに合わせて記事をおすすめします。",
       "title": "興味のある話題はなんですか？"
     },
@@ -530,10 +530,10 @@
       "deselect": "すべて解除",
       "follow": "フォロー",
       "following": "フォロー中",
-      "select": "%{count} 人を選択",
-      "status": "現在 %{count} 人をフォロー中",
-      "status_all": "現在 %{count} 人全員をフォロー中",
+      "select_other": "%{count} 人を選択",
+      "status_all_other": "現在 %{count} 人全員をフォロー中",
       "status_no": "誰もフォローしていません",
+      "status_other": "現在 %{count} 人をフォロー中",
       "subtitle": "いくつかの設定をしていきましょう。",
       "title": "おすすめのユーザーをフォロー"
     }
@@ -610,7 +610,7 @@
     "aria_label": "Post Tags",
     "hide": "Hide Rules",
     "label": "Tags",
-    "placeholder": "タグを最大 %{count} つまで",
+    "placeholder_other": "タグを最大 %{count} つまで",
     "rules": "Some tags have rules and guidelines determined by community moderators",
     "view": "View Rules"
   },

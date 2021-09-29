@@ -11,7 +11,7 @@
       "podcast": "ポッドキャスト"
     },
     "for_org": "%{- start} が %{- end}%{- org}%{- start} へ執筆%{- end}",
-    "reading_time_0": "約 %{count} 字/語",
+    "reading_time_other": "約 %{count} 字/語",
     "save": {
       "initial": "保存",
       "remove": "解除",
@@ -45,7 +45,7 @@
     },
     "invalid": "無効なファイルです！",
     "like": "いいね",
-    "likes_0": "いいね&nbsp;",
+    "likes_other": "いいね&nbsp;",
     "menu": {
       "aria_label": "ドロップダウンメニューの表示切り替え",
       "copy": {
@@ -74,7 +74,7 @@
       "code": "code of conduct",
       "text": "%{- code}を読みました"
     },
-    "replies_0": " ほか %{count} 件の返信",
+    "replies_other": " ほか %{count} 件の返信",
     "sent": {
       "check": "確認する",
       "text": "返信しました――%{- check}"
@@ -126,14 +126,14 @@
     }
   },
   "unitAgo": {
-    "day_0": "%{count}日前",
-    "hour_0": "%{count}時間前",
-    "min_0": "%{count}分前",
-    "month_0": "%{count}ヶ月前",
+    "day_other": "%{count}日前",
+    "hour_other": "%{count}時間前",
+    "min_other": "%{count}分前",
+    "month_other": "%{count}ヶ月前",
     "now": "たった今",
-    "second_0": "%{count}秒前",
-    "week_0": "%{count}週間前",
-    "year_0": "%{count}年前"
+    "second_other": "%{count}秒前",
+    "week_other": "%{count}週間前",
+    "year_other": "%{count}年前"
   },
   "userAlertModal": {
     "comment": {

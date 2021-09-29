@@ -1,6 +1,6 @@
 # rubocop:disable Style/StringLiterals, Style/TopLevelMethodDefinition, Lint/MissingCopEnableDirective
 require 'yaml'
-require 'json'
+require 'oj'
 require 'deepsort'
 require 'active_support'
 require 'active_support/core_ext'
@@ -323,8 +323,8 @@ YAML.add_tag '!html', HTMLTag
 YAML.add_tag '!pl', PlTag
 
 PLURALS = {
-  en: { 1 => nil, 'n' => 'plural' },
-  ja: { 'n' => nil },
+  en: { 1 => 'one', 'n' => 'other' },
+  ja: { 'n' => 'other' },
 }.freeze
 
 def lang_pl(code)
@@ -361,10 +361,7 @@ def insert(entry, lang, tree, path, **options)
       case hash[t]
       when String, HTMLTag
         hash[t].gsub! '%1', '%{count}' # rubocop:disable Style/FormatStringToken
-        # the :static option branch is a temporary remedy for a mysterious behavior
-        # that only asset pipeline i18next requires _0 for a non-plural language
-        # while the other stumbles on it. (version discrepancy?)
-        insert_string tree, v ? path[0..-2] + ["#{path[-1]}_#{v}"] : k == 'n' && options[:static] ? path[0..-2] + ["#{path[-1]}_0"] : path, hash[t], **options # rubocop:disable Layout/LineLength, Metrics/BlockNesting, Style/NestedTernaryOperator
+        insert_string tree, v ? path[0..-2] + ["#{path[-1]}_#{v}"] : path, hash[t], **options
       else
         raise "Unsupported text value! #{lang}:#{path.join '.'}(#{t}) = (#{hash[t].class}) #{hash[t].inspect}"
       end
@@ -408,18 +405,15 @@ def convert(doc, lang, node, tree, which, scope = [], path = [], **options) # ru
   end
 end
 
-def orphan(lang, map, tree, existing, which, path = []) # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+def orphan(lang, map, tree, existing, which, path = [])
   node = path.empty? ? map : map.dig(*path.map(&:intern))
   if (orphans = node[:__orphan]&.[](which))
     orphans.each do |op|
       raise "Already Exists! #{path.join '.'}.#{op}[#{which}] = #{tree.dig(*path, op).inspect}" if tree.dig(*path, op)
 
       tree.bury(*path, op, existing.dig(*path, op)) if existing.dig(*path, op)
-      PLURALS[lang_pl(lang)].each do |k, suffix|
-        static = which.positive? && k == 'n' && suffix.nil? # see above
-        next unless suffix || static
-
-        suffixed = "#{op}_#{static ? '0' : suffix}"
+      PLURALS[lang_pl(lang)].each do |_, suffix|
+        suffixed = "#{op}_#{suffix}"
         if (pl = existing.dig(*path, suffixed))
           tree.bury(*path, suffixed, pl)
         end
