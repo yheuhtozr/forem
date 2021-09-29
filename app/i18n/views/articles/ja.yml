@@ -50,7 +50,7 @@ v:
     series:
       subtitle: "%{slug}（%{size}）"
       size: !pl
-        n: 全 %1 部
+        n: 全 %{count} 部
       published: "%{date}に公開"
       inbetween:
         num: "︙"

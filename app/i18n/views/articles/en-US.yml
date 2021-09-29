@@ -50,7 +50,7 @@ v:
     series:
       subtitle: "%{slug} (%{size})"
       size: !pl
-        n: "%1 Part Series"
+        n: "%{count} Part Series"
       published: Published %{date}
       inbetween:
         num: "..."
