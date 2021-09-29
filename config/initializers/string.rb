@@ -1010,4 +1010,11 @@ class String
   def normalize
     split(CJKCI_SPLITTER).each.with_index { |sub, i| i.even? ? sub.unicode_normalize : CJKCI2VAR[sub] }.join nil
   end
+
+  def sluggify(locales)
+    locales = %i[cyrillic latin vietnamese greek hindi] if locales.blank?
+    # the implementation requires babosa gem
+    unicode_normalize(:nfkc).to_slug.transliterate(*locales).word_chars.downcase.with_separators(?\uFFFD)
+      .to_s.split(/\uFFFD|-?([^[:ascii:]\uFFFD]+)-?/).reject(&:blank?).join "-"
+  end
 end

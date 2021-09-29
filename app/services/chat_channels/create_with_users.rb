@@ -24,9 +24,7 @@ module ChatChannels
                usernames.join("/")
              else
                # simplified equivalent of /app/models/concerns/sluggifiable.rb
-               sluggified = contrived_name.to_s.unicode_normalize(:nfkc).to_slug
-                 .transliterate(:cyrillic, :latin, :vietnamese, :greek, :hindi).word_chars.clean.downcase
-                 .with_separators.to_s.split(/([[:^ascii:]]+)/).join("-")
+               sluggified = contrived_name.to_s.sluggify
                "#{sluggified}-#{rand(100_000).to_s(26)}"
              end
 

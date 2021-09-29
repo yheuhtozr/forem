@@ -25,7 +25,6 @@ module Sluggifiable
     }.detect { |k, _v| locale&.start_with? k }&.[](1) || :cyrillic
     # cyrillic comes first to suppress unwanted serbian cyrillic seeping in Babosa
     locales = [cyril, latin, :vietnamese, :greek, :hindi]
-    string.to_s.unicode_normalize(:nfkc).to_slug.transliterate(*locales).word_chars.clean.downcase.with_separators
-      .to_s.split(/([[:^ascii:]]+)/).join("-")
+    string.to_s.sluggify(locales)
   end
 end
