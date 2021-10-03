@@ -1,8 +1,10 @@
+/* eslint-disable no-irregular-whitespace */
 import { h } from 'preact';
 import { render } from '@testing-library/preact';
 import { axe } from 'jest-axe';
 import '@testing-library/jest-dom';
 import { Article } from '..';
+import { locale } from '../../utilities/locale';
 import {
   article,
   articleWithOrganization,

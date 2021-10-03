@@ -137,7 +137,7 @@ module ApplicationHelper
     followable_name = followable.name
 
     tag.button(
-      "Follow",
+      I18n.t("core.follow"),
       name: :button,
       type: :button,
       data: {
@@ -149,7 +149,7 @@ module ApplicationHelper
         }
       },
       class: "crayons-btn follow-action-button whitespace-nowrap #{classes} #{user_follow}",
-      aria: { label: "Follow #{followable_type}: #{followable_name}" },
+      aria: { label: "Follow #{followable_type}: #{followable_name}", pressed: "false" },
     )
   end
 

@@ -35,11 +35,13 @@ class UnopenedChannelNotice extends Component {
     });
     this.fetchUnopenedChannel(this.updateMessageNotification);
 
-    document.getElementById('connect-link').onclick = () => {
-      // Hack, should probably be its own component in future
-      document.getElementById('connect-number').classList.add('hidden');
-      this.setState({ visible: false });
-    };
+    if(document.getElementById('connect-link')) {
+      document.getElementById('connect-link').onclick = () => {
+        // Hack, should probably be its own component in future
+        document.getElementById('connect-number').classList.add('hidden');
+        this.setState({ visible: false });
+      };
+    }
   }
 
   updateMessageNotification = (unopenedChannels) => {

@@ -30,15 +30,27 @@ function showUserAlertModal(title, text, confirm_text) {
  * Displays a user rate limit alert modal letting the user know what they did that exceeded a rate limit,
  * and gives them links to explain why they must wait
  *
- * @function showUserAlertModal
- * @param {string} action_text Description of the action taken by the user
- * @param {string} next_action_text Description of the next action that can be taken
+ * @function showRateLimitModal
+ * @param {string} element Description of the element that throw the error
+ * @param {string} action_ing The -ing form of the action taken by the user
+ * @param {string} action_past The past tense of the action taken by the user
+ * @param {string} timeframe Description of the time that we need to wait
  *
  * @example
  * showRateLimitModal('Made a comment', 'comment again')
  */
-function showRateLimitModal(action_text, next_action_text) {
-  let rateLimitText = buildRateLimitText(action_text, next_action_text);
+function showRateLimitModal({
+  element,
+  action_ing,
+  action_past,
+  timeframe = 'a moment',
+}) {
+  let rateLimitText = buildRateLimitText({
+    element,
+    action_ing,
+    action_past,
+    timeframe,
+  });
   let rateLimitLink = '/faq';
   showUserAlertModal(
     i18next.t('userAlertModal.wait'),
@@ -47,6 +59,48 @@ function showRateLimitModal(action_text, next_action_text) {
     rateLimitLink,
     i18next.t('userAlertModal.why'),
   );
+}
+/**
+ * Displays the corresponding modal after an error.
+ *
+ * @function showModalAfterError
+ * @param {Object} response The response from the API
+ * @param {string} element Description of the element that throw the error
+ * @param {string} action_ing The -ing form of the action taken by the user
+ * @param {string} action_past The past tense of the action taken by the user
+ * @param {string} timeframe Description of the time that we need to wait
+ *
+ * @example
+ * showModalAfterError(response, 'made a comment', 'making another comment', 'a moment');
+ */
+function showModalAfterError({
+  response,
+  element,
+  action_ing,
+  action_past,
+  timeframe = 'a moment',
+}) {
+  response
+    .json()
+    .then(function parseError(errorReponse) {
+      if (response.status === 429) {
+        showRateLimitModal({ element, action_ing, action_past, timeframe });
+      } else {
+        showUserAlertModal(
+          `Error ${action_ing} ${element}`,
+          `Your ${element} could not be ${action_past} due to an error: ` +
+            errorReponse.error,
+          'OK',
+        );
+      }
+    })
+    .catch(function parseError(error) {
+      showUserAlertModal(
+        `Error ${action_ing} ${element}`,
+        `Your ${element} could not be ${action_past} due to a server error`,
+        'OK',
+      );
+    });
 }
 
 /**
@@ -61,17 +115,17 @@ function showRateLimitModal(action_text, next_action_text) {
  * @returns {string} HTML for the modal
  */
 const getModalHtml = (text, confirm_text) => `
-  <div id="${modalId}" hidden>
-    <div class="flex flex-col">
-      <p class="color-base-70">
-        ${text}
-      </p>
-      <button class="crayons-btn mt-4 ml-auto" type="button" onClick="window.Forem.closeModal()">
-        ${confirm_text}
-      </button>
-    </div>
-  </div>
-`;
+   <div id="${modalId}" hidden>
+     <div class="flex flex-col">
+       <p class="color-base-70">
+         ${text}
+       </p>
+       <button class="crayons-btn mt-4 ml-auto" type="button" onClick="window.Forem.closeModal()">
+         ${confirm_text}
+       </button>
+     </div>
+   </div>
+ `;
 
 /**
  * Constructs wording for rate limit modals
@@ -79,8 +133,10 @@ const getModalHtml = (text, confirm_text) => `
  * @private
  * @function buildRateLimitText
  *
- * @param {string} action_text Description of the action taken by the user
- * @param {string} next_action_text Description of the next action that can be taken
+ * @param {string} element Description of the element that throw the error
+ * @param {string} action_ing The -ing form of the action taken by the user
+ * @param {string} action_past The past tense of the action taken by the user
+ * @param {string} timeframe Description of the time that we need to wait
  *
  * @returns {string} Formatted body text for a rate limit modal
  */
@@ -107,6 +163,8 @@ function buildModalDiv(text, confirm_text) {
   if (!modalDiv) {
     modalDiv = getModal(text, confirm_text);
     document.body.appendChild(modalDiv);
+  } else {
+    modalDiv.outerHTML = getModal(text, confirm_text).outerHTML;
   }
   return modalDiv;
 }

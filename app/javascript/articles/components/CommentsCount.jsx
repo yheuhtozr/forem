@@ -2,6 +2,8 @@ import { h } from 'preact';
 import PropTypes from 'prop-types';
 import { i18next } from '../../i18n/l10n';
 import { Button } from '../../crayons/Button';
+import { locale } from '../../utilities/locale';
+
 
 export const CommentsCount = ({ count, articlePath }) => {
   const commentsSVG = () => (

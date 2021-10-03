@@ -23,10 +23,17 @@ export const TagsFollowed = ({ tags = [] }) => {
             className="crayons-link crayons-link--block"
             href={`/t/${tag.name}`}
           >
-            {`#${tag.name}`}
-          </a>
-        </div>
-      ))}
+            <a
+              title={`${tag.name} tag`}
+              onClick={trackSidebarTagClick}
+              className="crayons-link crayons-link--block"
+              href={`/t/${tag.name}`}
+            >
+              {`#${tag.name}`}
+            </a>
+          </div>
+        ) : null,
+      )}
     </Fragment>
   );
 };

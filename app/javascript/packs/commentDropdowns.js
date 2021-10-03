@@ -4,6 +4,7 @@ import {
   initializeDropdown,
   getDropdownRepositionListener,
 } from '@utilities/dropdownUtils';
+import { locale } from '@utilities/locale';
 
 /* global Runtime   */
 

@@ -4,6 +4,7 @@ import { forwardRef } from 'preact/compat';
 import { i18next } from '../i18n/l10n';
 import { Button } from '@crayons';
 
+
 const SearchIcon = () => (
   <svg
     width="24"
