@@ -21,8 +21,8 @@
         data-comment-id="<%= comment.id %>"
         data-path="<%= commentable.path %>/comments/<%= comment.id_code_generated %>"
         rel="nofollow">
-        <%= inline_svg_tag("small-comment.svg", aria: true, class: "crayons-icon reaction-icon not-reacted", title: _t.reply.icon) %>
-        <span class="hidden m:inline-block"><%= _t.reply.text %></span>
+        <%= inline_svg_tag("small-comment.svg", aria: true, class: "crayons-icon reaction-icon not-reacted", title: "Comment button") %>
+        <span class="hidden m:inline-block"><%= t("core.reply") %></span>
       </a>
     <% else %>
       <span class="fs-s inline-flex items-center fs-italic color-base-50 pl-1">

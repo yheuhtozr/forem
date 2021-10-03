@@ -53,9 +53,11 @@ module CommentsHelper
   def like_button_text(comment)
     case comment.public_reactions_count
     when 0
-      I18n.t("helpers.comments_helper.like")
+      I18n.t("core.like")
+    when 1
+      "&nbsp;#{I18n.t('core.like').downcase}"
     else
-      I18n.t("helpers.comments_helper.nbsp_likes", count: comment.public_reactions_count)
+      "&nbsp;#{I18n.t('core.like').downcase}s"
     end
   end
 

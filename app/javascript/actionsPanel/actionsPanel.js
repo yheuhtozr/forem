@@ -191,9 +191,8 @@ function clearAdjustmentReason() {
 }
 
 function renderTagOnArticle(tagName, colors) {
-  const [articleTagsContainer] = window.parent.document
-    .getElementsByClassName('article-iframe')[0]
-    .contentWindow.document.getElementsByClassName('spec__tags');
+  const articleTagsContainer =
+    getArticleContainer().getElementsByClassName('spec__tags')[0];
 
   const newTag = document.createElement('a');
   newTag.innerText = `#${tagName}`;
@@ -202,6 +201,15 @@ function renderTagOnArticle(tagName, colors) {
   newTag.style = `background-color: ${colors.bg}; color: ${colors.text};`;
 
   articleTagsContainer.appendChild(newTag);
+}
+
+function getArticleContainer() {
+  const articleIframe =
+    window.parent.document?.getElementsByClassName('article-iframe')[0];
+
+  return articleIframe
+    ? articleIframe.contentWindow.document
+    : window.parent.document.getElementById('main-content');
 }
 
 async function adjustTag(el) {
@@ -244,11 +252,8 @@ async function adjustTag(el) {
       if (outcome.result === 'addition') {
         renderTagOnArticle(adjustedTagName, outcome.colors);
       } else {
-        window.parent.document
-          .getElementsByClassName('article-iframe')[0]
-          .contentWindow.document.querySelector(
-            `.crayons-tag[href="/t/${adjustedTagName}"]`,
-          )
+        getArticleContainer()
+          .querySelector(`.crayons-tag[href="/t/${adjustedTagName}"]`)
           .remove();
       }
 

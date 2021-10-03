@@ -1,7 +1,6 @@
-<% _t = t.v.auth %>
-<a href="<%= sign_up_path(state: "new-user") %>" class="crayons-btn" aria-label="<%= _t.create.aria_label %>" data-no-instant>
-  <%= _t.create.text %>
+<a href="<%= sign_up_path(state: "new-user") %>" class="crayons-btn" aria-label="Create new account" data-no-instant>
+  <%= t("core.create_account") %>
 </a>
-<a href="<%= sign_up_path %>" class="crayons-btn crayons-btn--ghost-brand" aria-label="<%= _t.login.aria_label %>">
-  <%= _t.login.text %>
+<a href="<%= sign_up_path %>" class="crayons-btn crayons-btn--ghost-brand" aria-label="Log in">
+  <%= t("core.log_in") %>
 </a>

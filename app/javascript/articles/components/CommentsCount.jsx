@@ -2,6 +2,8 @@ import { h } from 'preact';
 import PropTypes from 'prop-types';
 import { i18next } from '../../i18n/l10n';
 import { Button } from '../../crayons/Button';
+import { locale } from '../../utilities/locale';
+
 
 export const CommentsCount = ({ count, articlePath }) => {
   const commentsSVG = () => (
@@ -26,9 +28,11 @@ export const CommentsCount = ({ count, articlePath }) => {
         tagName="a"
         className="crayons-reaction"
       >
-        <span title={i18next.t('comments.number')}>
-          <span className="crayons-reaction__count">
-            {count}
+        <span title="Number of comments">
+          {count}
+          <span className="hidden s:inline">
+            &nbsp;
+            {`${count > 1 ? `${locale('core.comment')}s` : locale('core.comment') }`}
           </span>
         </span>
       </Button>
@@ -46,7 +50,8 @@ export const CommentsCount = ({ count, articlePath }) => {
         data-testid="add-a-comment"
         className="crayons-reaction"
       >
-        <span className="crayons-reaction__count">{i18next.t('comments.empty')}</span>
+        <span className="inline s:hidden">0</span>
+        <span className="hidden s:inline">{locale('core.add_comment')}</span>
       </Button>
     );
   }

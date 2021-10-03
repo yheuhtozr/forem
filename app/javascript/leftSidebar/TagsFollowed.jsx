@@ -11,22 +11,24 @@ export const TagsFollowed = ({ tags = [] }) => {
 
   return (
     <Fragment>
-      {tags.map((tag) => (
-        <div
-          key={tag.id}
-          className="sidebar-nav-element"
-          id={`sidebar-element-${tag.name}`}
-        >
-          <a
-            title={i18next.t('main.tag', { tag: tag.name })}
-            onClick={trackSidebarTagClick}
-            className="crayons-link crayons-link--block"
-            href={`/t/${tag.name}`}
+      {tags.map((tag) =>
+        tag.points >= 1 ? (
+          <div
+            key={tag.id}
+            className="sidebar-nav-element"
+            id={`sidebar-element-${tag.name}`}
           >
-            {`#${tag.name}`}
-          </a>
-        </div>
-      ))}
+            <a
+              title={`${tag.name} tag`}
+              onClick={trackSidebarTagClick}
+              className="crayons-link crayons-link--block"
+              href={`/t/${tag.name}`}
+            >
+              {`#${tag.name}`}
+            </a>
+          </div>
+        ) : null,
+      )}
     </Fragment>
   );
 };

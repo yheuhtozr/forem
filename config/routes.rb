@@ -146,7 +146,6 @@ Rails.application.routes.draw do
     resources :response_templates, only: %i[index create edit update destroy]
     resources :feedback_messages, only: %i[index create]
     resources :organizations, only: %i[update create destroy]
-    resources :followed_articles, only: [:index]
     resources :follows, only: %i[show create] do
       collection do
         get "/bulk_show", to: "follows#bulk_show"
@@ -158,6 +157,7 @@ Rails.application.routes.draw do
     resources :tags, only: [:index] do
       collection do
         get "/onboarding", to: "tags#onboarding"
+        get "/suggest", to: "tags#suggest", defaults: { format: :json }
       end
     end
     resources :stripe_active_cards, only: %i[create update destroy]

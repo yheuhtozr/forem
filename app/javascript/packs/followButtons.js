@@ -1,7 +1,7 @@
 import { getInstantClick } from '../topNavigation/utilities';
-import { i18next } from '../i18n/l10n';
+import { locale } from '@utilities/locale';
 
-/* global showLoginModal  userData */
+/* global showLoginModal  userData  showModalAfterError*/
 
 /**
  * Sets the text content of the button to the correct 'Follow' state
@@ -9,6 +9,8 @@ import { i18next } from '../i18n/l10n';
  * @param {HTMLElement} button The Follow button to update
  * @param {string} style The style of the button from its "info" data attribute
  */
+
+
 function addButtonFollowText(button, style) {
   const { name, className } = JSON.parse(button.dataset.info);
 
@@ -29,7 +31,7 @@ function addButtonFollowText(button, style) {
         followType: className,
         style: 'follow-back',
       });
-      button.textContent = i18next.t('followButts.followback');
+      button.textContent = locale('core.follow_back');
       break;
     default:
       addAriaLabelToButton({
@@ -38,12 +40,12 @@ function addButtonFollowText(button, style) {
         followType: className,
         style: 'follow',
       });
-      button.textContent = i18next.t('followButts.follow');
+      button.textContent = locale('core.follow');
   }
 }
 
 /**
- * Sets the aria-label of the button
+ * Sets the aria-label and aria-pressed value of the button
  *
  * @param {HTMLElement} button The Follow button to update.
  * @param {string} followType The followableType of the button.
@@ -52,23 +54,31 @@ function addButtonFollowText(button, style) {
  */
 function addAriaLabelToButton({ button, followType, followName, style = '' }) {
   let label = '';
+  let pressed = '';
   switch (style) {
     case 'follow':
       label = `Follow ${followType.toLowerCase()}: ${followName}`;
+      pressed = 'false';
       break;
     case 'follow-back':
       label = `Follow ${followType.toLowerCase()} back: ${followName}`;
+      pressed = 'false';
       break;
     case 'following':
-      label = `Unfollow ${followType.toLowerCase()}: ${followName}`;
+      label = `Follow ${followType.toLowerCase()}: ${followName}`;
+      pressed = 'true';
       break;
     case 'self':
       label = `Edit profile`;
       break;
     default:
       label = `Follow ${followType.toLowerCase()}: ${followName}`;
+      pressed = 'false';
   }
   button.setAttribute('aria-label', label);
+  pressed.length === 0
+    ? button.removeAttribute('aria-pressed')
+    : button.setAttribute('aria-pressed', pressed);
 }
 
 /**
@@ -78,10 +88,7 @@ function addAriaLabelToButton({ button, followType, followName, style = '' }) {
  * @param {string} style The style of the button from its "info" data attribute
  */
 function addButtonFollowingText(button, style) {
-  button.textContent =
-    style === 'small'
-      ? i18next.t('followButts.following_small')
-      : i18next.t('followButts.following');
+  button.textContent = style === 'small' ? '✓' : locale('core.following');
 }
 
 /**
@@ -155,7 +162,7 @@ function updateFollowingButton(button, style) {
  */
 function updateUserOwnFollowButton(button) {
   button.dataset.verb = 'self';
-  button.textContent = 'Edit profile';
+  button.textContent = locale('core.edit_profile');
   addAriaLabelToButton({
     button,
     followName: '',
@@ -219,7 +226,19 @@ function handleFollowButtonClick({ target }) {
     formData.append('followable_type', className);
     formData.append('followable_id', id);
     formData.append('verb', verb);
-    getCsrfToken().then(sendFetch('follow-creation', formData));
+    getCsrfToken()
+      .then(sendFetch('follow-creation', formData))
+      .then((response) => {
+        if (response.status !== 200) {
+          showModalAfterError({
+            response,
+            element: 'user',
+            action_ing: 'following',
+            action_past: 'followed',
+            timeframe: 'for a day',
+          });
+        }
+      });
   }
 }
 

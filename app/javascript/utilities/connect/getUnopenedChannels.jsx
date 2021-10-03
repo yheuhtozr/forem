@@ -35,11 +35,13 @@ class UnopenedChannelNotice extends Component {
     });
     this.fetchUnopenedChannel(this.updateMessageNotification);
 
-    document.getElementById('connect-link').onclick = () => {
-      // Hack, should probably be its own component in future
-      document.getElementById('connect-number').classList.add('hidden');
-      this.setState({ visible: false });
-    };
+    if(document.getElementById('connect-link')) {
+      document.getElementById('connect-link').onclick = () => {
+        // Hack, should probably be its own component in future
+        document.getElementById('connect-number').classList.add('hidden');
+        this.setState({ visible: false });
+      };
+    }
   }
 
   updateMessageNotification = (unopenedChannels) => {
@@ -173,27 +175,24 @@ class UnopenedChannelNotice extends Component {
       const message = unopenedChannels.map((channel) => {
         if (channel.notified) return null;
         return (
-          // eslint-disable-next-line react/jsx-key
-          <div>
-            <Trans
-              i18nKey={`chat.messages.${ channel.request_type === 'mentioned' ? 'mentioned' : 'new' }`}
-              values={{channel: channel.adjusted_slug}}
-              components={[
-                // eslint-disable-next-line react/jsx-key, jsx-a11y/anchor-has-content
-                <a
-                  href={`/connect/${channel.adjusted_slug}`}
-                  style="
-                    background: '#66e2d5';
-                    color: 'black';
-                    border: '1px solid black';
-                    padding: '2px 7px';
-                    display: 'inline-block';
-                    margin: '3px 6px';
-                    borderRadius: '3px';
-                  "
-                />
-              ]}
-            />
+          <div key={channel.id}>
+            {channel.request_type === 'mentioned'
+              ? 'You got mentioned in'
+              : 'New Message from'}{' '}
+            <a
+              href={`/connect/${channel.adjusted_slug}`}
+              style={{
+                background: '#66e2d5',
+                color: 'black',
+                border: '1px solid black',
+                padding: '2px 7px',
+                display: 'inline-block',
+                margin: '3px 6px',
+                borderRadius: '3px',
+              }}
+            >
+              {channel.adjusted_slug}
+            </a>
           </div>
         );
       });

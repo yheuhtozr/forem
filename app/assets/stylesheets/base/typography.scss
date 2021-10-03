@@ -91,6 +91,9 @@
 
 // Content fonts
 body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
   &.serif-article-body {
     --ff-sans-serif: var(--ff-serif);
   }

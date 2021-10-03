@@ -2,6 +2,7 @@ import { h } from 'preact';
 import { articlePropTypes } from '../../common-prop-types';
 import { i18next } from '../../i18n/l10n';
 import { Button } from '../../crayons/Button';
+import { locale } from '../../utilities/locale';
 
 export const ReactionsCount = ({ article }) => {
   const totalReactions = article.public_reactions_count || 0;
@@ -30,9 +31,11 @@ export const ReactionsCount = ({ article }) => {
       tagName="a"
       className="crayons-reaction"
     >
-      <span title={i18next.t('reactions.number')}>
-        <span className="crayons-reaction__count">
-          {totalReactions}
+      <span title="Number of reactions">
+        {totalReactions}
+        <span className="hidden s:inline">
+          &nbsp;
+          {`${totalReactions == 1 ? locale('core.reaction') : `${locale('core.reaction')}s`}`}
         </span>
       </span>
     </Button>

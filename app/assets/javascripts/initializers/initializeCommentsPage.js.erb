@@ -52,7 +52,12 @@ function initializeCommentsPage() {
                     var reactionsCountWrapper = buttForComment.querySelector('.reactions-count');
                     var reactionsLabelWrapper = buttForComment.querySelector('.reactions-label');
                     if (publicReactionCounts[i].count > 0) {
-                      reactionsLabelWrapper.innerHTML = i18next.t('comments.likes', { count: publicReactionCounts[i].count });
+
+                      if (publicReactionCounts[i].count > 1) {
+                        reactionsLabelWrapper.innerHTML = `&nbsp;${I18n.t('core.like').toLowerCase()}s`;
+                      } else {
+                        reactionsLabelWrapper.innerHTML = `&nbsp;${I18n.t('core.like').toLowerCase()}`;
+                      }
 
                       reactionsCountWrapper.id = 'reactions-count-' + publicReactionCounts[i].id;
                       reactionsCountWrapper.innerHTML = publicReactionCounts[i].count;
@@ -141,6 +146,13 @@ function initializeCommentsPage() {
             thisButt.disabled = false;
             if (response.status === 200) {
               response.json().then(successCb);
+            } else {
+              showModalAfterError({
+                response,
+                element: 'reaction',
+                action_ing: 'making',
+                action_past: 'made',
+              });
             }
           });
       };
@@ -290,15 +302,11 @@ function handleCommentSubmit(event) {
         })
       } else {
         form.classList.remove('submitting');
-        var responseStatus = response.status;
-        response.json().then(function parseError(errorReponse) {
-          if (responseStatus === 429) {
-            showRateLimitModal(i18next.t('userAlertModal.comment.action'), i18next.t('userAlertModal.comment.next'))
-          } else {
-            showUserAlertModal(i18next.t('userAlertModal.comment.title'), i18next.t('userAlertModal.comment.text', { error: errorReponse.error }), i18next.t('userAlertModal.comment.confirm'))
-          }
-        }).catch(function parseError(error){
-            showUserAlertModal(i18next.t('userAlertModal.comment.title'), i18next.t('userAlertModal.comment.text_server'), i18next.t('userAlertModal.comment.confirm'))
+        showModalAfterError({
+          response,
+          element: 'comment',
+          action_ing: 'posting',
+          action_past: 'posted',
         });
         return false;
       }
@@ -521,6 +529,13 @@ function handleImageUpload(event, randomIdNumber) {
                 messageContainer.style.top = "5px";
               }
             );
+          } else if (response.status === 429) {
+            showRateLimitModal({
+              response,
+              element: 'image',
+              action_ing: 'uploading',
+              action_past: 'uploaded',
+            });
           } else {
             response.json().then(function(responseBody) {
               var errorMessage = responseBody.error || i18next.t('comments.invalid');

@@ -3,6 +3,7 @@ import { h, Component, createRef } from 'preact';
 import { i18next } from '../../i18n/l10n';
 import { listingPropTypes } from './listingPropTypes';
 import { Button, Dropdown } from '@crayons';
+import { locale } from '@utilities/locale';
 
 const Icon = () => (
   <svg
@@ -63,7 +64,7 @@ export class DropdownMenu extends Component {
               </a>
             ) : (
               <a href={reportUrl} className="crayons-link crayons-link--block">
-                {i18next.t('listings.actions.report')}
+                {locale('core.report_abuse')}
               </a>
             )}
           </div>
