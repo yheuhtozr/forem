@@ -105,3 +105,6 @@ dump.rdb
 .pryrc
 
 /config/master.key
+
+# auto-generated locale ymls
+config/locales/cla_langs.*.yml
