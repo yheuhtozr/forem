@@ -1,9 +1,7 @@
 import { h } from 'preact';
 import PropTypes from 'prop-types';
-import { Trans } from 'react-i18next';
 import { Button } from '../../crayons/Button';
-import { i18next } from '@utilities/locale';
-
+import { i18next } from '../../utilities/locale';
 
 export const CommentsCount = ({ count, articlePath }) => {
   const commentsSVG = () => (
@@ -29,11 +27,7 @@ export const CommentsCount = ({ count, articlePath }) => {
         className="crayons-reaction"
       >
         <span title={i18next.t('comments.number')}>
-          <span className="crayons-reaction__count">
-          <Trans i18nKey="comments.counts" values={{count}}
-            // eslint-disable-next-line react/jsx-key
-            components={[<span className="hidden s:inline" />]} />
-          </span>
+          <span className="crayons-reaction__count">{count}</span>
         </span>
       </Button>
     );
@@ -50,8 +44,9 @@ export const CommentsCount = ({ count, articlePath }) => {
         data-testid="add-a-comment"
         className="crayons-reaction"
       >
-        <span className="inline s:hidden">0</span>
-        <span className="hidden s:inline">{i18next.t('comments.add')}</span>
+        <span className="crayons-reaction__count">
+          {i18next.t('comments.empty')}
+        </span>
       </Button>
     );
   }

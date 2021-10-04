@@ -12,9 +12,6 @@ v:
       vomit: ひどい
     summary:
       title: 反響
-      count: !pl
-        1: !html "%{count}%{start}\_reaction%{end}"
-        n: !html "%{count}%{start}\_reactions%{end}"
     like:
       title: ハート
       aria_label: いいね

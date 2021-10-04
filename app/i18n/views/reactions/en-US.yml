@@ -12,9 +12,6 @@ v:
       vomit: Vomit
     summary:
       title: Reactions
-      count: !pl
-        1: !html "%{count}%{start}\_reaction%{end}"
-        n: !html "%{count}%{start}\_reactions%{end}"
     like:
       title: Heart
       aria_label: Like
