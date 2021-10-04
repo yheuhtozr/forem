@@ -103,3 +103,5 @@ dump.rdb
 
 # pry configuration file
 .pryrc
+
+/config/master.key
