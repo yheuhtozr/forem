@@ -372,7 +372,6 @@ v:
     dropdown: User actions
     email_icon: Email address
     empty: 404 bio not found
-    flag: Flag @%{user}
     follow: Follow
     guidelines: "%{user}'s guidelines:"
     joined:
@@ -387,5 +386,4 @@ v:
       placeholder: Enter your message here...
       submit: Send
     social: "%{service} website"
-    unflag: Unflag @%{user}
     website: Personal website

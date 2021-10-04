@@ -360,7 +360,6 @@ v:
     dropdown: ユーザー操作
     email_icon: メールアドレス
     empty: かつ 30
-    flag: "@%{user} を通報"
     follow: フォロー
     guidelines: "%{user}'s guidelines:"
     joined:
@@ -375,5 +374,4 @@ v:
       placeholder: Enter your message here...
       submit: Send
     social: "%{service} ページ"
-    unflag: Unflag @%{user}
     website: 個人サイト
