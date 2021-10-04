@@ -18,7 +18,6 @@ v:
         icon: 通知
       skip: 内容までスキップ
     modal:
-      desc: あなたの参加を心待ちにしています。
       create:
         aria_label: 新しいアカウントを作る
         text: 新しいアカウントを作る

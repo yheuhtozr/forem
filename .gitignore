@@ -101,7 +101,5 @@ config/definitions.rb
 # ignore redis backup
 dump.rdb
 
-/config/master.key
-
-# auto-generated locale ymls
-config/locales/cla_langs.*.yml
+# pry configuration file
+.pryrc

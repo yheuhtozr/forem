@@ -93,6 +93,13 @@ helpers:
     all_posts: All posts
     app_logo: App logo
     deleted_user: "[Deleted User]"
+    follow:
+      aria_label: "Follow %{type}: %{name}"
+      type:
+        organization: organization
+        podcast: podcast
+        tag: tag
+        user: user
     latest_posts: Latest posts
     required: Required
     title_text: "%{title} - %{timeframe}"

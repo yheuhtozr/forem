@@ -136,17 +136,37 @@
     "year_other": "%{count}年前"
   },
   "userAlertModal": {
-    "comment": {
-      "action": "コメントを書いた",
-      "confirm": "OK",
-      "next": "別のコメントを書く",
-      "text": "次のエラーのためコメントは投稿できませんでした: %{error}",
-      "text_server": "サーバーエラーのためコメントは投稿できませんでした",
-      "title": "コメント投稿に失敗"
+    "action_ing": {
+      "follow": "following",
+      "make": "making",
+      "post": "posting",
+      "update": "updating",
+      "upload": "uploading"
+    },
+    "action_past": {
+      "follow": "followed",
+      "make": "made",
+      "post": "posted",
+      "update": "updating",
+      "upload": "uploaded"
+    },
+    "confirm": "OK",
+    "element": {
+      "comment": "comment",
+      "image": "image",
+      "reaction": "reaction",
+      "user": "user"
     },
     "gotit": "了解",
-    "rateLimit": "つい今しがた%{action}ばかりです。%{next}まで間を空ける必要があります。",
-    "wait": "しばらくお待ちください",
+    "rateLimit": "Since you recently %{action_past} a %{element}, you’ll need to wait %{timeframe} before %{action_ing} another %{element}.",
+    "timeframe": {
+      "a_moment": "しばらく",
+      "for_a_day": "for a day"
+    },
+    "error_text": "Your %{element} could not be %{action_past} due to an error: %{error}",
+    "server_error_text": "Your %{element} could not be %{action_past} due to a server error",
+    "title": "Error %{action_ing} %{element}",
+    "wait": "%{timeframe}お待ちください",
     "why": "待機時間の理由"
   },
   "users": {

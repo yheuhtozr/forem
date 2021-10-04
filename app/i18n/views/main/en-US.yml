@@ -18,7 +18,6 @@ v:
         icon: Notifications
       skip: Skip to content
     modal:
-      desc: We’d love for you to be a part of this community.
       create:
         aria_label: Create new account
         text: Create new account

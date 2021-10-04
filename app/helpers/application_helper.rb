@@ -149,7 +149,12 @@ module ApplicationHelper
         }
       },
       class: "crayons-btn follow-action-button whitespace-nowrap #{classes} #{user_follow}",
-      aria: { label: "Follow #{followable_type}: #{followable_name}", pressed: "false" },
+      aria: {
+        label: I18n.t("helpers.application_helper.follow.aria_label",
+                      type: I18n.t("helpers.application_helper.follow.type.#{followable_type}"),
+                      name: followable_name),
+        pressed: "false"
+      },
     )
   end
 

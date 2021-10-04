@@ -143,8 +143,10 @@
     "message": "コピーしました"
   },
   "comments": {
+    "add": "Add comment",
     "all_other": "%{count} 件のコメントをすべて見る",
     "blocked": "[blocked content]",
+    "counts_other": "%{count} <0>\u0080comments</0>",
     "delete": "本当にこのコメントを削除してもよろしいですか？",
     "empty": "書く",
     "hide": "Are you sure you want to hide this comment? It will become hidden in your post, but will still be visible via the comment's permalink.\n\nAll child comments in this thread will also be hidden.\n\nFor further actions, you may consider blocking this person and/or reporting abuse.",
@@ -555,7 +557,9 @@
     "unflag": "%{user} を警戒解除"
   },
   "reactions": {
-    "number": "Number of reactions"
+    "number": "Number of reactions",
+    "counts_one": "%{count} <0>\u0080reaction</0>",
+    "counts_other": "%{count} <0>\u0080reactions</0>"
   },
   "readingList": {
     "all": "all tags",

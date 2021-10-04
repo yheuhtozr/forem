@@ -34,6 +34,14 @@ module Constants
             description: I18n.t("lib.constants.settings.authentication.the_app_secret_portion_of"),
             placeholder: ""
           },
+          forem_key: {
+            description: I18n.t("lib.constants.settings.authentication.forem_key.description"),
+            placeholder: ""
+          },
+          forem_secret: {
+            description: I18n.t("lib.constants.settings.authentication.forem_secret.description"),
+            placeholder: ""
+          },
           github_key: {
             description: I18n.t("lib.constants.settings.authentication.the_client_id_portion_of_t"),
             placeholder: ""

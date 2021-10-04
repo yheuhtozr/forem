@@ -29,7 +29,7 @@ RSpec.describe "User visits articles by tag", type: :system do
       # Regression test for https://github.com/forem/forem/pull/12724
       it "does not display a comment count of 0", js: true do
         expect(page).to have_text("Add Comment")
-        expect(page).not_to have_text("0 #{I18n.t('core.comment').downcase}s")
+        expect(page).not_to have_text("0 comments")
       end
 
       it "shows correct articles count" do

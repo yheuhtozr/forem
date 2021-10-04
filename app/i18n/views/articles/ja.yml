@@ -87,6 +87,7 @@ v:
     edited: "%{date}に更新"
     for_org: !html '%{start} が %{end}%{org}%{start} へ執筆%{end}'
     missing: 記事は公開終了しました
+    posted: !html Posted on %{date}
     read_next: 次に読みたい
     reading_time: !pl
       n: 約 %1 字/語

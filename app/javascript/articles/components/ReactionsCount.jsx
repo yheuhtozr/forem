@@ -1,8 +1,7 @@
 import { h } from 'preact';
+import { Trans } from 'react-i18next';
 import { articlePropTypes } from '../../common-prop-types';
-import { i18next } from '../../i18n/l10n';
 import { Button } from '../../crayons/Button';
-import { locale } from '../../utilities/locale';
 
 export const ReactionsCount = ({ article }) => {
   const totalReactions = article.public_reactions_count || 0;
@@ -31,10 +30,10 @@ export const ReactionsCount = ({ article }) => {
       tagName="a"
       className="crayons-reaction"
     >
-      <span title={i18next.t('reactions.number')}>
-        <span className="crayons-reaction__count">
-          {totalReactions}
-        </span>
+      <span title="Number of reactions">
+        <Trans i18nKey="reactions.counts" values={{count: totalReactions}}
+          // eslint-disable-next-line react/jsx-key
+          components={[<span className="hidden s:inline" />]} />
       </span>
     </Button>
   );

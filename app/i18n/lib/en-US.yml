@@ -25,6 +25,10 @@ lib:
         the_team_id_of_your_apple: The "Team ID" of your Apple Developer Account
         what_is_the_google_recaptc: What is the Google reCAPTCHA site key?
         what_is_the_google_recaptc2: What is the Google reCAPTCHA secret key?
+        forem_key:
+          description: Forem key
+        forem_secret:
+          description: Forem secret
       campaign:
         campaign_sidebar_enabled_o: Campaign sidebar enabled or not
         campaign_stories_show_up_o: Campaign stories show up on sidebar with approval?
@@ -110,6 +114,8 @@ lib:
         used_cars_near_you_pokemon: used cars near you, pokemon go hack
       user_experience:
         basic_rich_or_compact: basic, rich, or compact
+        default_locale:
+          description: Determines the default language and lozalization for the Forem (currently in experimental beta)
         feed_strategy:
           description: 'Determines the main feed algorithm approach the app takes: basic or large_forem_experimental (which should only be used for 10k+ member communities)'
           placeholder: basic
@@ -117,4 +123,6 @@ lib:
         determines_the_default_rea: Determines the default reading font (registered users can change this in their UX settings)
         determines_which_default_f: Determines which default feed the users sees (rich content, more minimal, etc.)
         minimum_score_needed_for_a: Minimum score needed for a post to show up on the unauthenticated home page.
+        index_minimum_score:
+          description: Minimum score needed for a post to be indexed by search engines.
         minimum_score_needed_for_a2: Minimum score needed for a post to show up on default tag page.

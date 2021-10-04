@@ -50,11 +50,9 @@ module Admin
       @broadcast = Broadcast.find(params[:id])
 
       if @broadcast.destroy
-        flash[:success] = I18n.t("admin.broadcasts_controller.broadcast_has_been_deleted")
-        redirect_to admin_broadcasts_path
+        render json: { message: I18n.t("admin.broadcasts_controller.broadcast_has_been_deleted") }, status: :ok
       else
-        flash[:danger] = I18n.t("admin.broadcasts_controller.something_went_wrong_with")
-        render :edit
+        render json: { error: I18n.t("admin.broadcasts_controller.something_went_wrong_with") }, status: :unprocessable_entity
       end
     end
 

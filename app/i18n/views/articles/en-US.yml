@@ -88,6 +88,7 @@ v:
     edited: Updated on %{date}
     for_org: !html '%{start} for %{end}%{org}'
     missing: Article No Longer Available
+    posted: !html Posted on %{date}
     read_next: Read next
     reading_time: !pl
       n: "%1 words/chars"

@@ -77,7 +77,8 @@ v:
       og:
         title: Reading List - %{community}
   search:
-    heading: Search results
+    heading: Search results%{for}
+    for: " for %{query}"
     placeholder: Search...
     icon:
       aria_label: Search

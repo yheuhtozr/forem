@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
 import { h, Component, createRef } from 'preact';
-import { i18next } from '../../i18n/l10n';
 import { listingPropTypes } from './listingPropTypes';
 import { Button, Dropdown } from '@crayons';
-import { locale } from '@utilities/locale';
+import { i18next } from '@utilities/locale';
 
 const Icon = () => (
   <svg

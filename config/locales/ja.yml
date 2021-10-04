@@ -30,23 +30,15 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 ja:
-  hello: "Hello world"
-  errors: &errors
-    messages:
-       bad_uri: is an invalid url
-       bad_protocol: must start with %{protocols}
+  core:
+    edit_profile: プロフィールを編集
+    follow: フォロー
+    follow_back: フォローを返す
+    following: フォロー中
+    report_abuse: "Report abuse"
   create_mascot:
     name: Mascot
     error: Mascot already set
-  activemodel:
-    errors:
-      <<: *errors
-  activerecord:
-    errors:
-      <<: *errors
-  administrate:
-    actions:
-      new: 'New'
   datetime:
     distance_in_words_ago:
       about_x_hours:

@@ -1,5 +1,5 @@
 import { getInstantClick } from '../topNavigation/utilities';
-import { i18next } from '../i18n/l10n';
+import { i18next } from '@utilities/locale';
 
 /* global showLoginModal  userData  showModalAfterError*/
 
@@ -165,7 +165,7 @@ function updateFollowingButton(button, style) {
  */
 function updateUserOwnFollowButton(button) {
   button.dataset.verb = 'self';
-  button.textContent = locale('core.edit_profile');
+  button.textContent = i18next.t('followButts.edit');
   addAriaLabelToButton({
     button,
     followName: '',
@@ -235,10 +235,10 @@ function handleFollowButtonClick({ target }) {
         if (response.status !== 200) {
           showModalAfterError({
             response,
-            element: 'user',
-            action_ing: 'following',
-            action_past: 'followed',
-            timeframe: 'for a day',
+            element: i18next.t('userAlertModal.element.user'),
+            action_ing: i18next.t('userAlertModal.action_ing.follow'),
+            action_past: i18next.t('userAlertModal.action_past.follow'),
+            timeframe: i18next.t('userAlertModal.timeframe.for_a_day'),
           });
         }
       });

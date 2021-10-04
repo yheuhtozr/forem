@@ -118,24 +118,27 @@
                   <% end %>
                   <p class="fs-xs color-base-60">
                     <% if @article.published_timestamp.present? %>
-                      Posted on
-                      <%= local_date(@article.published_timestamp, show_year: @article.displayable_published_at.year != Time.current.year) %>
+                      <%= _t.posted date: local_date(@article.published_timestamp, show_year: @article.displayable_published_at.year != Time.current.year) %>
                     <% end %>
                     <% if @article.co_author_ids.present? %>
-                      with <%= @article.co_author_name_and_path.html_safe %>
+                      <%= _t.co_authors names: @article.co_author_name_and_path.html_safe %>
                     <% end %>
 
                     <% if should_show_updated_on?(@article) %>
-                      &bull; Updated on <%= local_date(@article.edited_at, show_year: @article.edited_at.year != Time.current.year) %>
+                      &bull; <%= _t.edited date: local_date(@article.edited_at, show_year: @article.edited_at.year != Time.current.year) %>
                     <% end %>
 
                     <% if should_show_crossposted_on?(@article) %>
-                      &bull; Originally published at
-                      <a href="<%= @article.canonical_url || @article.feed_source_url %>" style="color:#1395b8"><%= get_host_without_www(@article.canonical_url || @article.feed_source_url) %></a>
-                      <% if @article.crossposted_at %>
-                        on
-                        <%= local_date(@article.originally_published_at || @article.published_at, show_year: (@article.originally_published_at || @article.published_at).year != Time.current.year) %>
-                      <% end %>
+                      &bull; <%= _t.crossposted.text(
+                                url: link_to(get_host_without_www(@article.canonical_url || @article.feed_source_url), @article.canonical_url || @article.feed_source_url, style: "color:#1395b8"),
+                                on: if @article.crossposted_at
+                                      _t.crossposted.on(
+                                        date: local_date(@article.originally_published_at || @article.published_at, show_year: (@article.originally_published_at || @article.published_at).year != Time.current.year),
+                                      )
+                                    else
+                                      ""
+                                    end,
+                             ) %>
                     <% end %>
                   </p>
                 </div>
@@ -156,50 +159,6 @@
                 <% end %>
               </div>
             <% end %>
-
-            <div class="crayons-article__subheader">
-              <a href="/<%= @user.username %>" class="flex items-center mr-2 m:mr-1 mb-4 s:mb-0 fw-medium crayons-link">
-                <span class="crayons-avatar crayons-avatar--l mr-2 m:mr-1"><img class="crayons-avatar__image" src="<%= Images::Profile.call(@user.profile_image_url, length: 50) %>" alt="" /></span>
-                <span class="block m:hidden"><%= @user.name %></span>
-              </a>
-              <div class="profile-preview-card relative mr-2 mb-4 s:mb-0 fw-medium">
-                <button id="profile-preview-trigger" class="profile-preview-card__trigger crayons-btn crayons-btn--ghost px-2 hidden m:block" aria-label="<%= t.v.users.details user: @user.name %>"><%= @user.name %></button>
-                <%= render "/shared/profile_preview_card", actor: @user, id: "profile-preview-content" %>
-              </div>
-
-              <span class="fs-s mb-4 s:mb-0">
-                <% if @article.published_timestamp.present? %>
-                  <%= local_date(@article.published_timestamp, show_year: @article.displayable_published_at.year != Time.current.year) %>
-                <% end %>
-                <% if @article.co_author_ids.present? %>
-                  <em><%= _t.co_authors names: @article.co_author_name_and_path.html_safe %></em>
-                <% end %>
-
-                <% if should_show_crossposted_on?(@article) %>
-                  ・<em><%= _t.crossposted.text(
-                             url: link_to(get_host_without_www(@article.canonical_url || @article.feed_source_url), @article.canonical_url || @article.feed_source_url, style: "color:#1395b8"),
-                             on: if @article.crossposted_at
-                                   _t.crossposted.on(
-                                     date: local_date(@article.originally_published_at || @article.published_at, show_year: (@article.originally_published_at || @article.published_at).year != Time.current.year),
-                                   )
-                                 else
-                                   ""
-                                 end,
-                           ) %></em>
-                <% end %>
-                <% if should_show_updated_on?(@article) %>
-                  ・<em><%= _t.edited date: local_date(@article.edited_at, show_year: @article.edited_at.year != Time.current.year) %></em>
-                <% end %>
-
-                <% cdiv, cmod = @article.reading_time.divmod(100) %>
-                <span class="mr-4">・<%= _t.reading_time(if cdiv < 1
-                                                          100
-                                                        else
-                                                          cdiv * 100 + (cmod >= 50 ? 100 : 0)
-                                                        end) %></span>
-              </span>
-              <span id="action-space" class="mb-4 s:mb-0"></span>
-            </div>
           </div>
         </header>
 

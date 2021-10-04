@@ -4,7 +4,7 @@ v:
     copy:
       text: コピーしました
       title: 記事の URL をクリップボードにコピー
-      button: 記事の URL をコピー
+      button: リンクをコピー
     more:
       title: その他…
       aria_label: 他の方法でシェア

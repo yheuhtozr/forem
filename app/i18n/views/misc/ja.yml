@@ -77,7 +77,8 @@ v:
       og:
         title: 切り抜き帳 - %{community}
   search:
-    heading: 検索結果
+    heading: "%{for}検索結果"
+    for: 「%{query}」の
     placeholder: 検索…
     icon:
       aria_label: 検索する

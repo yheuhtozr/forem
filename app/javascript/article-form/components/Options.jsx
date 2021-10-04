@@ -1,7 +1,7 @@
 import { h } from 'preact';
 import PropTypes from 'prop-types';
 import { Trans } from 'react-i18next';
-import { i18next, locale } from '../../i18n/l10n';
+import { i18next, locale } from '@utilities/locale';
 import { Dropdown, Button } from '@crayons';
 
 const Icon = () => (
