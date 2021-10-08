@@ -80,14 +80,14 @@ v:
       subtitle: 非公開の記事
       text: " この URL を知っている人はアクセスできます。リンクを教える場合は注意してください。"
       edit: 編集画面へ
-    co_authors: !html with %{names}
+    co_authors: !html "共著者: %{names}"
     crossposted:
       text: !html 元記事は %{on} %{url} で掲載
       'on': "%{date}に"
     edited: "%{date}に更新"
     for_org: !html '%{start} が %{end}%{org}%{start} へ執筆%{end}'
     missing: 記事は公開終了しました
-    posted: !html Posted on %{date}
+    posted: !html "%{date}投稿"
     read_next: 次に読みたい
     reading_time: !pl
       n: 約 %1 字/語

@@ -51,7 +51,7 @@ v:
           Beginner: Beginner
           Expert: Expert
           Mid-level: Mid-level
-      flag: Flag user
+      flag: ユーザーを警戒
       how: How does this work?
       hidden:
         subtitle: Hidden Comments
