@@ -835,7 +835,10 @@ class Article < ApplicationRecord
   end
 
   def eponymous_translation_group
-    Article.update(translation_group, translation_group: translation_group) if translation_group && id != translation_group # rubocop:disable Layout/LineLength
+    return unless translation_group && id != translation_group
+
+    original = Article.find translation_group
+    original.update_columns(translation_group: translation_group) unless original.translation_group
   end
 
   def notify_external_services_on_new_post
