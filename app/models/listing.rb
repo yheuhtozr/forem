@@ -104,7 +104,8 @@ class Listing < ApplicationRecord
   end
 
   def notify_external_services_on_new_listing
-    return unless published && updated_at == (bumped_at || originally_published_at)
+    # a makeshift synchronicity detection
+    return unless published && (updated_at - (bumped_at || originally_published_at)).abs < 0.1.seconds
 
     TwitterClient::Bot.new_post self
     DiscordWebhook::Bot.new_listing self
