@@ -18,8 +18,3 @@
 <% if @stories.any? %>
   <%= auto_discovery_link_tag(:rss, app_url("/feed/#{@user.username}"), title: t.v.stories.meta.rss(name: community_name)) %>
 <% end %>
-
-<% if @user.suspended? %>
-  <meta name="robots" content="noindex">
-  <meta name="robots" content="nofollow">
-<% end %>

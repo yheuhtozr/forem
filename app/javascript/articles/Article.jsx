@@ -143,12 +143,27 @@ export const Article = ({
               </div>
             )}
 
-            <div className="crayons-story__save">
-              <SaveButton
-                article={article}
-                isBookmarked={isBookmarked}
-                onClick={bookmarkClick}
-              />
+            <div className="crayons-story__bottom">
+              {article.class_name !== 'User' && (
+                <div className="crayons-story__details">
+                  <ReactionsCount article={article} />
+                  <CommentsCount
+                    count={article.comments_count}
+                    articlePath={article.path}
+                    articleTitle={article.title}
+                  />
+                </div>
+              )}
+
+              <div className="crayons-story__save">
+                <ReadingTime readingTime={article.reading_time} />
+
+                <SaveButton
+                  article={article}
+                  isBookmarked={isBookmarked}
+                  onClick={bookmarkClick}
+                />
+              </div>
             </div>
           </div>
         </div>

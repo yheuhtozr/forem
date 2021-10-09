@@ -6,13 +6,13 @@ module Admin
 
     def index
       @display_ads = DisplayAd.order(id: :desc)
-        .joins(:organization)
-        .includes([:organization])
         .page(params[:page]).per(50)
 
       return if params[:search].blank?
 
-      @display_ads = @display_ads.where("organizations.name ILIKE :search", search: "%#{params[:search]}%")
+      @display_ads = @display_ads
+        .where("processed_html ILIKE :search OR placement_area ILIKE :search OR organizations.name ILIKE :search",
+               search: "%#{params[:search]}%")
     end
 
     def new
@@ -27,8 +27,8 @@ module Admin
       @display_ad = DisplayAd.new(display_ad_params)
 
       if @display_ad.save
-        flash[:success] = I18n.t("admin.display_ads_controller.display_ad_has_been_create")
-        redirect_to admin_display_ads_path
+        flash[:success] = "Display Ad has been created!"
+        redirect_to edit_admin_display_ad_path(@display_ad.id)
       else
         flash[:danger] = @display_ad.errors_as_sentence
         render :new
@@ -39,8 +39,8 @@ module Admin
       @display_ad = DisplayAd.find(params[:id])
 
       if @display_ad.update(display_ad_params)
-        flash[:success] = I18n.t("admin.display_ads_controller.display_ad_has_been_update")
-        redirect_to admin_display_ads_path
+        flash[:success] = "Display Ad has been updated!"
+        redirect_to edit_admin_display_ad_path(params[:id])
       else
         flash[:danger] = @display_ad.errors_as_sentence
         render :edit
@@ -51,11 +51,9 @@ module Admin
       @display_ad = DisplayAd.find(params[:id])
 
       if @display_ad.destroy
-        flash[:success] = I18n.t("admin.display_ads_controller.display_ad_has_been_delete")
-        redirect_to admin_display_ads_path
+        render json: { message: "Display Ad has been deleted!" }, status: :ok
       else
-        flash[:danger] = I18n.t("admin.display_ads_controller.something_went_wrong_with")
-        render :edit
+        render json: { error: "Something went wrong with deleting the Display Ad." }, status: :unprocessable_entity
       end
     end
 

@@ -133,7 +133,7 @@ export class CommentSubscription extends Component {
               ? i18next.t('comments.subscription.unsubscribe')
               : i18next.t('comments.subscription.subscribe')}
           </Button>
-          {subscribed && (
+          {subscribed ? (
             <Button
               id="subscription-settings-btn"
               data-testid="subscription-settings"
@@ -141,7 +141,7 @@ export class CommentSubscription extends Component {
               icon={CogIcon}
               contentType="icon"
             />
-          )}
+          ) : null}
         </ButtonGroup>
         {subscribed && (
           <Dropdown

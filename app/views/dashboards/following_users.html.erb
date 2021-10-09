@@ -4,13 +4,13 @@
 <div id="index-container"
   data-params="<%= params.to_json(only: %i[action per_page]) %>"
   data-which="following">
-
-    <header class="crayons-layout">
-      <h1 class="p-2 pb-0 m:p-0 crayons-title"><%= _t.heading %></h1>
+  <main id="main-content">
+    <section class="crayons-layout">
+      <h1 class="p-2 pb-0 m:p-0 crayons-title"><%= t("dashboard.page_title") %> &raquo; <%= t("dashboard.following_users") %></h1>
       <%= render "actions_mobile" %>
-    </header>
+    </section>
 
-    <div id="main-content" class="crayons-layout crayons-layout--2-cols">
+    <div class="crayons-layout crayons-layout--2-cols">
       <div class="crayons-layout__sidebar-left">
         <%= render "actions" %>
       </div>
@@ -43,9 +43,12 @@
             <% end %>
           </div>
         <% else %>
-          <div class="p-9 crayons-card crayons-card--secondary align-center fs-l h-100 flex items-center justify-center"><%= _t.empty %></div>
+          <div class="p-9 crayons-card crayons-card--secondary align-center fs-l h-100 flex items-center justify-center">
+            <%= t("dashboard.not_following_any_users") %>
+          </div>
         <% end %>
         <%= render "sublist" %>
       </div>
-    </main>
+    </div>
+  </main>
 </div>

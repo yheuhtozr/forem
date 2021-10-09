@@ -155,6 +155,47 @@
         </div>
       <% end %>
 
+    <div class="crayons-story__indention">
+      <h2 class="crayons-story__title">
+        <a href="<%= story.path %>" data-preload-image="<%= cloud_cover_url(story.main_image) %>" id="article-link-<%= story.id %>">
+          <%= story.title %>
+        </a>
+      </h2>
+      <div class="crayons-story__tags">
+        <% flare_tag = FlareTag.new(story, @tag).tag %>
+        <% if flare_tag %>
+          <a href="<%= URL.tag flare_tag %>" class="crayons-tag" style="background:<%= flare_tag.bg_color_hex %>;color:<%= flare_tag.text_color_hex %>"><span class="crayons-tag__prefix">#</span><%= flare_tag.name %></a>
+        <% end %>
+        <% tags_to_display = story.cached_tag_list_array
+           if flare_tag
+             tags_to_display = tags_to_display.reject { |tag| tag == flare_tag.name }
+           end %>
+        <% tags_to_display.each do |tag| %>
+        <a href="/t/<%= tag %>" class="crayons-tag"><span class="crayons-tag__prefix">#</span><%= tag %></a>
+        <% end %>
+      </div>
+      <div class="crayons-story__bottom">
+        <div class="crayons-story__details">
+          <% if story.public_reactions_count > 0 %>
+            <a href="<%= story.path %>" class="crayons-btn crayons-btn--s crayons-btn--ghost crayons-btn--icon-left" data-reaction-count data-reactable-id="<%= story.id %>" aria-label="Comments for post <%= story.title %> (<%= story.public_reactions_count %>)">
+              <%= inline_svg_tag("small-heart.svg", aria: true, width: 24, height: 24, class: "crayons-icon", title: "Reactions") %>
+              <%= story.public_reactions_count %>
+              <span class="hidden s:inline">&nbsp;<%= story.public_reactions_count == 1 ? t("core.reaction").downcase : t("core.reaction").downcase.pluralize %></span>
+            </a>
+          <% end %>
+          <% if story.comments_count > 0 %>
+            <a href="<%= story.path %>#comments" class="crayons-btn crayons-btn--s crayons-btn--ghost crayons-btn--icon-left" aria-label="Comments for post <%= story.title %> (<%= story.public_reactions_count %>)">
+              <%= inline_svg_tag("small-comment.svg", aria: true, width: 24, height: 24, class: "crayons-icon", title: "Comments") %>
+              <%= story.comments_count %>
+              <span class="hidden s:inline">&nbsp;<%= story.comments_count == 1 ? t("core.comment").downcase : t("core.comment").downcase.pluralize %></span>
+            </a>
+          <% else %>
+            <a href="<%= story.path %>#comments" class="crayons-btn crayons-btn--s crayons-btn--ghost crayons-btn--icon-left" aria-label="Comments for post <%= story.title %> (<%= story.public_reactions_count %>)">
+              <%= inline_svg_tag("small-comment.svg", aria: true, width: 24, height: 24, class: "crayons-icon", title: "Comments") %>
+              <span class="hidden s:inline">Add&nbsp;<%= t("core.comment") %></span>
+            </a>
+          <% end %>
+        </div>
         <div class="crayons-story__save">
           <button type="button" id="article-save-button-<%= story.id %>" class="crayons-btn crayons-btn--secondary crayons-btn--s w-max bookmark-button" data-reactable-id="<%= story.id %>" aria-label="<%= _t.save.aria_label %>" title="<%= _t.save.title %>">
             <span class="bm-initial"><%= _t.save.initial %></span>

@@ -1,6 +1,9 @@
 class FeedbackMessagesController < ApplicationController
   # No authorization required for entirely public controller
   skip_before_action :verify_authenticity_token
+  FLASH_MESSAGE = "Make sure the forms are filled. 🤖 Other possible errors: "\
+                  "%<errors>s".freeze
+  FEEDBACK_ALLOWED_PARAMS = %i[message feedback_type category reported_url offender_id].freeze
 
   def create
     flash.clear
@@ -63,8 +66,7 @@ class FeedbackMessagesController < ApplicationController
   end
 
   def feedback_message_params
-    allowed_params = %i[message feedback_type category reported_url offender_id]
-    params.require(:feedback_message).permit(allowed_params)
+    params.require(:feedback_message).permit(FEEDBACK_ALLOWED_PARAMS)
   end
 
   def rate_limit?

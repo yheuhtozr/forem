@@ -6,7 +6,7 @@
       <%= render partial: "articles/reaction_button",
                  locals: {
                    category: :like,
-                   description: t.v.reactions.like.title,
+                   description: t("core.reactions.heart"),
                    image_path: "heart.svg",
                    image_active_path: "heart-filled.svg",
                    aria_label: t.v.reactions.like.aria_label
@@ -14,7 +14,7 @@
       <%= render partial: "articles/reaction_button",
                  locals: {
                    category: :unicorn,
-                   description: t.v.reactions.unicorn.title,
+                   description: t("core.reactions.unicorn"),
                    image_path: "unicorn.svg",
                    image_active_path: "unicorn-filled.svg",
                    aria_label: t.v.reactions.unicorn.aria_label
@@ -22,7 +22,7 @@
       <%= render partial: "articles/reaction_button",
                  locals: {
                    category: :readinglist,
-                   description: t.v.reactions.readingList.title,
+                   description: t("core.reactions.save"),
                    image_path: "save.svg",
                    image_active_path: "save-filled.svg",
                    aria_label: t.v.reactions.readingList.aria_label
@@ -51,39 +51,36 @@
             target="_blank"
             class="crayons-link crayons-link--block"
             rel="noopener"
-            href='https://twitter.com/intent/tweet?text="<%= _t.share.Twitter.query(
-                                                               article: u(@article.title.strip),
-                                                               author: @article.user.twitter_username ? "@#{@article.user.twitter_username}" : @article.user.name,
-                                                             ) %> <%= u Settings::General.twitter_hashtag %> <%= article_url(@article) %>'>
-            <% _t.share.Twitter.text %>
+            href='https://twitter.com/intent/tweet?text=<%= u "\"#{@article.title.strip}\" by " %><%= u @article.user.twitter_username ? "@#{@article.user.twitter_username}" : @article.user.name %><%= u " #{Settings::General.twitter_hashtag} " %><%= u " #{article_url(@article)}" %>'>
+            <%= t("core.share_to", media: "Twitter") %>
           </a>
           <a
             target="_blank"
             class="crayons-link crayons-link--block"
             rel="noopener"
             href="https://www.linkedin.com/shareArticle?mini=true&url=<%= u article_url(@article) %>&title=<%= u @article.title %>&summary=<%= u @article.description %>&source=<%= u community_name %>">
-            <% _t.share.LinkedIn.text %>
+            <%= t("core.share_to", media: "LinkedIn") %>
           </a>
           <a
             target="_blank"
             class="crayons-link crayons-link--block"
             rel="noopener"
             href="https://www.reddit.com/submit?url=<%= u article_url(@article) %>&title=<%= u @article.title %>">
-            <% _t.share.Reddit.text %>
+            <%= t("core.share_to", media: "Reddit") %>
           </a>
           <a
             target="_blank"
             class="crayons-link crayons-link--block"
             rel="noopener"
             href="https://news.ycombinator.com/submitlink?u=<%= u article_url(@article) %>&t=<%= u @article.title %>">
-            <% _t.share.HackerNews.text %>
+            <%= t("core.share_to", media: "Hacker News") %>
           </a>
           <a
             target="_blank"
             class="crayons-link crayons-link--block"
             rel="noopener"
             href="https://www.facebook.com/sharer.php?u=<%= u article_url(@article) %>">
-            <% _t.share.Facebook.text %>
+            <%= t("core.share_to", media: "Facebook") %>
           </a>
         </div>
 

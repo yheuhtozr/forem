@@ -2,18 +2,20 @@
 <% title _t.meta.title(title: @source.title) %>
 
 <div class="crayons-layout crayons-layout--1-col">
-  <header class="flex items-center justify-between p-2 m:p-0">
-    <div>
-      <h1 class="crayons-title"><% _t.heading %></h1>
-      <h2 class="fs-base s:fs-xl fw-medium">
-        <%= _t.subhead.text for: tag.em(_t.subhead.for, class: %w[fs-italic fw-normal color-base-60]), source: link_to(@source.title, @source.path) %>
-      </h2>
-    </div>
-    <%#TODO: [@forem/delightful]: uncomment this when ready to implement CSV exports%>
-    <%#<button type="button" class="crayons-btn crayons-btn--secondary">Export CSV</button>%>
-  </header>
 
-  <main>
+  <main id="main-content">
+    <section class="flex items-center justify-between p-2 m:p-0">
+      <div>
+        <h1 class="crayons-title">Subscriptions</h1>
+        <h2 class="fs-base s:fs-xl fw-medium">
+          <em class="fs-italic fw-normal color-base-60">for</em>
+          <a href=<%= @source.path %>><%= @source.title %></a>
+        </h2>
+      </div>
+      <%#TODO: [@forem/delightful]: uncomment this when ready to implement CSV exports%>
+      <%#<button type="button" class="crayons-btn crayons-btn--secondary">Export CSV</button>%>
+    </section>
+
     <% if @subscriptions.any? %>
       <table class="crayons-table w-100">
         <tbody class="crayons-card">
