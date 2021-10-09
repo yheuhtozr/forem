@@ -90,7 +90,6 @@
 <% if Settings::General.payment_pointer.present? %>
   <div id="base-payment-pointer" data-payment-pointer="<%= Settings::General.payment_pointer %>"></div>
 <% end %>
-<style>.app-shell-loader {display: none;}</style>
 <div id="page-content" class="wrapper <%= view_class %>" data-current-page="<%= current_page %>">
   <% if flash[:global_notice] %>
     <div class="crayons-banner" aria-live="polite">

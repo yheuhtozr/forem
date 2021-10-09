@@ -87,6 +87,14 @@ function buildArticleHTML(article) {
     if ((article.comments_count || '0') > 0) {
       commentsCount = article.comments_count || '0';
     }
+
+    var commentsAriaLabelText =
+      ' aria-label="Comments for post ' +
+      article.title +
+      ' (' +
+      commentsCount +
+      ')" ';
+
     if (article.class_name !== 'User') {
       commentsDisplay =
         '<a href="' +

@@ -63,8 +63,7 @@ class FeedbackMessagesController < ApplicationController
   end
 
   def feedback_message_params
-    allowed_params = %i[message feedback_type category reported_url offender_id]
-    params.require(:feedback_message).permit(allowed_params)
+    params.require(:feedback_message).permit(FEEDBACK_ALLOWED_PARAMS)
   end
 
   def rate_limit?

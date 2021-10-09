@@ -1,5 +1,21 @@
 module Moderator
   class MergeUser < ManageActivityAndRoles
+    MULTIPLE_IDENTITIES_ERROR_MSG = <<~HEREDOC.freeze
+      The user being deleted already has two or more authentication methods.
+      Are you sure this is the right user to be deleted?
+      If so, a super admin will need to do this from the console to be safe.
+    HEREDOC
+
+    DUPLICATE_IDENTITIES_ERROR_MSG = <<~HEREDOC.freeze
+      The user has duplicate authentication methods on the two accounts.
+      Please double check and delete the identity that the user is no longer using.
+      This is usually the already-deleted social account, or the authentication method tied to the user to be deleted.
+    HEREDOC
+
+    SAME_USER_ERROR_MSG = <<~HEREDOC.freeze
+      You cannot merge the same two user IDs
+    HEREDOC
+
     def self.call(admin:, keep_user:, delete_user_id:)
       new(keep_user: keep_user, admin: admin, delete_user_id: delete_user_id).merge
     end
@@ -34,12 +50,9 @@ module Moderator
       error_message = I18n.t("services.moderator.merge_user.the_user_being_deleted_alr")
       raise error_message if @delete_user.identities.count.positive?
 
-      return true if
-        @keep_user.identities.count.positive? ||
-          @delete_user.identities.none? ||
-          @keep_user.identities.last.provider == @delete_user.identities.last.provider
+      return true if @delete_user.identities.none?
 
-      @delete_user.identities.first.update_columns(user_id: @keep_user.id)
+      @delete_user.identities.update_all(user_id: @keep_user.id)
     end
 
     def update_social
