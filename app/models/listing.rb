@@ -28,6 +28,8 @@ class Listing < ApplicationRecord
   validate :restrict_markdown_input
   validate :validate_tags
 
+  after_save :notify_external_services_on_new_listing
+
   scope :search_listings, lambda { |query|
     where(
       "ARRAY[body_markdown, cached_tag_list, location, slug, title]
@@ -99,5 +101,12 @@ class Listing < ApplicationRecord
 
   def create_slug
     self.slug = "#{sluggify(title).delete('_')}-#{rand(100_000).to_s(26)}"
+  end
+
+  def notify_external_services_on_new_listing
+    return unless published && updated_at == (bumped_at || originally_published_at)
+
+    TwitterClient::Bot.new_post self
+    DiscordWebhook::Bot.new_listing self
   end
 end

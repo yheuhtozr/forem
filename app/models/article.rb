@@ -115,6 +115,7 @@ class Article < ApplicationRecord
   after_save :bust_cache
   after_save :notify_slack_channel_about_publication
   after_save :eponymous_translation_group
+  after_save :notify_external_services_on_new_post
 
   after_update_commit :update_notifications, if: proc { |article|
                                                    article.notifications.any? && !article.saved_changes.empty?
@@ -278,6 +279,7 @@ class Article < ApplicationRecord
     boosted_additional_articles Boolean, default: false
     boosted_dev_digest_email Boolean, default: false
     boosted_additional_tags String, default: ""
+    boosted_new_post Boolean, default: false
   end
 
   def self.seo_boostable(tag = nil, time_ago = 18.days.ago)
@@ -834,5 +836,15 @@ class Article < ApplicationRecord
 
   def eponymous_translation_group
     Article.update(translation_group, translation_group: translation_group) if translation_group && id != translation_group # rubocop:disable Layout/LineLength
+  end
+
+  def notify_external_services_on_new_post
+    return unless published && !boost_states["boosted_new_post"]
+
+    TwitterClient::Bot.new_post self
+    DiscordWebhook::Bot.new_post self
+
+    boost_states["boosted_new_post"] = true
+    update_columns boost_states: boost_states
   end
 end
