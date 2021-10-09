@@ -144,6 +144,7 @@
   },
   "comments": {
     "all_other": "%{count} 件のコメントをすべて見る",
+    "aria_label": "Comments for post %{title} (%{num})",
     "blocked": "[blocked content]",
     "delete": "本当にこのコメントを削除してもよろしいですか？",
     "empty": "書く",

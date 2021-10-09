@@ -28,7 +28,7 @@ v:
       welcome: !html Since they are new to the community, could you leave a nice reply to help them feel welcome? <strong>Thank you!</strong>
     error:
       subtitle: An error occurred!
-      desc: !html This has been logged and we're tracking it. If you see too many of these, please report it to %{email}!
+      desc: This has been logged and we're tracking it.
     follow:
       and: !html '%{first} and %{second} followed you!'
       and_other: !pl
@@ -74,4 +74,4 @@ v:
       other: other popular tags
       reason: 'Reason for action:'
       remove: !html Moderators removed the <strong>%{tag}</strong> tag from your post %{title}. Certain tags have special submission guidelines, and mods need to adjust tags to best fit the community.
-      support: !html "Thanks for being part of %{community}! If you feel like this mod action was a mistake, feel free to contact %{email}. 🤗"
+      support: !html "Thanks for being part of %{community}! %{email} 🤗"

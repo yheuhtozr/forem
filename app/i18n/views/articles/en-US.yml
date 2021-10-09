@@ -6,6 +6,7 @@ v:
     actions:
       aria_label: Article actions
     comments:
+      aria_label: Comments for post %{title} (%{num})
       subtitle: !html Discussion %{count}
       count: "(%1)"
       subscribe: Subscribe

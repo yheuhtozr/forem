@@ -2,7 +2,7 @@
 v:
   tags:
     meta:
-      title: Tags on %{community}
+      title: Tags
       description: Tags to follow on %{community}
       og:
         description: "%{community} is great!"

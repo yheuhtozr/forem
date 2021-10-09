@@ -8,7 +8,7 @@
     <option value="/dashboard/following_organizations" <%= "selected" if params[:action] == "following_organizations" %>><%= _t.mobile.following_orgs @user.following_organizations_count %></option>
     <option value="/dashboard/following_podcasts" <%= "selected" if params[:action] == "following_podcasts" %>><%= _t.mobile.following_pods @user.following_podcasts_count %></option>
 
-    <option value="/listings/dashboard"><%= t("core.listings") %></option>
+    <option value="/listings/dashboard"><%= _t.listings %></option>
 
     <option value="<%= dashboard_analytics_path %>"><%= _t.analytics %></option>
 

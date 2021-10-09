@@ -926,7 +926,7 @@ DEPENDENCIES
   cloudinary (~> 1.21)
   counter_culture (~> 2.9)
   cypress-rails (~> 0.5.3)
-  ddtrace (~> 0.52.0)
+  ddtrace (~> 0.53.0)
   deepsort (~> 0.4.5)
   derailed_benchmarks (~> 2.1)
   devise (~> 4.8)

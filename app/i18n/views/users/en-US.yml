@@ -34,7 +34,6 @@ v:
         desc1b: Delete any and all content you have, such as articles, comments, your reading list or chat messages.
         desc1c: Allow your username to become available to anyone.
         desc2: !html Please, %{provide} to fully delete your account.
-        contact: !html Feel free to contact %{email} with any questions.
         provide: provide an email
         submit: Delete Account
       export:
@@ -117,7 +116,6 @@ v:
       desc_3: allow your username to become available to anyone.
       click: click here
       confirm: !html 'For confirmation, type the words: <code>%{word}</code>'
-      contact: !html Feel free to contact %{email} with any questions.
       ghost: !html If you would like to keep your content under the %{ghost} account, please %{click}
       github: GitHub profile settings
       submit: Delete account
@@ -167,7 +165,7 @@ v:
         desc1: !html Posts will land in your %{dashboard} <strong>as drafts</strong>, and then you can publish from there.
         desc2: Formatting will typically look good, but you may have to make manual fixes. In the case of Medium, you may have to manually fix embeds.
         desc3: !html To find out more about how drafts are created from your feed, read this %{guide}.
-        desc4: !html Your feed will be fetched every time you submit this form and updates will be automatically fetched periodically thereafter. Contact %{email} if you encounter issues.
+        desc4: Your feed will be fetched every time you submit this form and updates will be automatically fetched periodically thereafter.
         desc5: !html 'FYI: Medium RSS feed URLs are <em>https://medium.com/feed/@your_username</em>'
         desc6: By submitting your RSS Feed URL, you agree that you own and/or have permission to syndicate the associated content.
         dashboard: dashboard
@@ -212,7 +210,7 @@ v:
       finalize: !html You have requested a change to %{email}. Check your inbox for the verification link to finalize the change.
       for: !html Setting for %{name}
       new_org: New Organization
-      previous: !html There is an existing account authorized with that social account. Contact %{email} if this is a mistake.
+      previous: There is an existing account authorized with that social account.
       tab:
         Profile: Profile
         Customization: Customization

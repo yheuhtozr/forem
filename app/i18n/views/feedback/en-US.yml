@@ -4,7 +4,6 @@ v:
     meta:
       title: Feedback
     heading: Thank you for your report.
-    desc: !html Questions? Send an email to %{email}
     home: Return to home page
     form:
       rude_or_vulgar: Rude or vulgar

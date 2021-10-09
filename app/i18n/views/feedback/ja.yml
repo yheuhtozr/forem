@@ -4,7 +4,6 @@ v:
     meta:
       title: 問題の報告
     heading: 問題のご報告ありがとうございます。
-    desc: !html ご質問があれば %{email} までお寄せください。
     home: トップに戻る
     form:
       rude_or_vulgar: 暴言・失礼な発言

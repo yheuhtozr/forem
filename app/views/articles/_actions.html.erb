@@ -51,10 +51,10 @@
             target="_blank"
             class="crayons-link crayons-link--block"
             rel="noopener"
-            href='https://twitter.com/intent/tweet?text="<%= _t.share.Twitter.query(
-                                                               article: u(@article.title.strip),
+            href='https://twitter.com/intent/tweet?text="<%= u _t.share.Twitter.query(
+                                                               article: @article.title.strip,
                                                                author: @article.user.twitter_username ? "@#{@article.user.twitter_username}" : @article.user.name,
-                                                             ) %> <%= u Settings::General.twitter_hashtag %> <%= article_url(@article) %>'>
+                                                             ) %><%= u " #{Settings::General.twitter_hashtag}" %><%= u " #{article_url(@article)}" %>'>
             <% _t.share.Twitter.text %>
           </a>
           <a

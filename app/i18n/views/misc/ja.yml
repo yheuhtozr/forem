@@ -140,5 +140,5 @@ v:
       og:
         description: All videos on %{community}
     heading: "%{community} on Video"
-    beta: !html <strong>Video is beta:</strong> Email %{email} if you have any problems.
+    beta: !html <strong>Video is beta:</strong> %{contact}
     upload: "🎥 Upload Video File 🙌"

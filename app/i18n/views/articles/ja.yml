@@ -6,6 +6,7 @@ v:
     actions:
       aria_label: 記事へのアクション
     comments:
+      aria_label: Comments for post %{title} (%{num})
       subtitle: !html みんなの声%{count}
       count: "（%1）"
       subscribe: 投稿

@@ -36,6 +36,10 @@ ja:
     follow_back: フォローを返す
     following: フォロー中
     report_abuse: "Report abuse"
+  contact_prompts:
+    if_continued_trouble_html: <a href="/contact">Contact us</a> if you continue having trouble.
+    if_we_can_help_html: <a href="/contact">Contact us</a> if there is anything we can help with.
+    if_any_questions_html: わからないことがありましたら<a href="/contact">お問い合わせ</a>ください。
   create_mascot:
     name: Mascot
     error: Mascot already set
@@ -120,3 +124,7 @@ ja:
         other: "%{count}ヶ月後に終了"
       x_years:
         other: "%{count}年後に終了"
+  time:
+    formats:
+      short: "%-m月%-d日"
+      short_with_year: "%Y年%-m月%-d日"
