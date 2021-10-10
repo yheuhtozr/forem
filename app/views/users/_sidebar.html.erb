@@ -1,9 +1,10 @@
+<% _t = "v.users.side" %>
 <div class="m:gap-4 hidden m:grid js-user-info">
   <% cache "user-profile-sidebar-additional-#{@user.id}-#{@user.github_repos_updated_at}-#{@user.badge_achievements_count}-#{@user.organization_info_updated_at}", expires_in: 2.days do %>
     <% if @user.organizations.present? %>
       <div class="crayons-card crayons-card--secondary">
         <header class="crayons-card__header">
-          <h3 class="crayons-subtitle-3 spec-org-titles">Organizations</h3>
+          <h3 class="crayons-subtitle-3 spec-org-titles"><%= t("org", scope: _t) %></h3>
         </header>
         <div>
           <%# it's unlikely that a user will belong to enough organizations to cause a performance issue here %>
@@ -50,16 +51,16 @@
   <% cache "user-profile-sidebar-stats-#{@user.id}-#{@user.last_article_at&.rfc3339}-#{@user.last_comment_at&.rfc3339}-#{@user.following_tags_count}-#{@user.last_followed_at&.rfc3339}", expires_in: 10.days do %>
     <div class="crayons-card crayons-card--secondary p-4">
       <div class="flex items-center mb-4">
-        <%= inline_svg_tag("post.svg", aria: true, class: "crayons-icon mr-3 color-base-50", title: "Post") %>
-        <%= pluralize @user.articles.published.size, "post" %> published
+        <%= inline_svg_tag("post.svg", aria: true, class: "crayons-icon mr-3 color-base-50", title: t("post.icon", scope: _t)) %>
+        <%= t("post.text", scope: _t) @user.articles.published.size %>
       </div>
       <div class="flex items-center mb-4">
-        <%= inline_svg_tag("comment.svg", aria: true, class: "crayons-icon mr-3 color-base-50", title: "Comment") %>
-        <%= pluralize @user.comments.where(deleted: false).size, "comment" %> written
+        <%= inline_svg_tag("comment.svg", aria: true, class: "crayons-icon mr-3 color-base-50", title: t("comment.icon", scope: _t)) %>
+        <%= t("comment.text", scope: _t) @user.comments.where(deleted: false).size %>
       </div>
       <div class="flex items-center">
-        <%= inline_svg_tag("tag.svg", aria: true, class: "crayons-icon mr-3 color-base-50", title: "Tag") %>
-        <%= pluralize @user.decorate.cached_followed_tags.size, "tag" %> followed
+        <%= inline_svg_tag("tag.svg", aria: true, class: "crayons-icon mr-3 color-base-50", title: t("tag.icon", scope: _t)) %>
+        <%= t("tag.text", scope: _t) @user.decorate.cached_followed_tags.size %>
       </div>
     </div>
   <% end %>

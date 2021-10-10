@@ -1,3 +1,4 @@
+<% _t = "v.main.side" %>
 <aside class="side-bar sidebar-additional showing grid gap-4" id="sidebar-additional">
   <% cache(release_adjusted_cache_key("main-article-right-sidebar-discussions-#{params[:timeframe]}"), expires_in: (params[:timeframe].blank? ? 120 : 360).seconds) do %>
     <% @sidebar_ad = DisplayAd.for_display("sidebar_right") %>
@@ -12,9 +13,9 @@
     <% if params[:timeframe].blank? && @listings.any? %>
       <section class="crayons-card crayons-card--secondary">
         <header class="crayons-card__header">
-          <h3 class="crayons-subtitle-2"><%= t("core.listings") %></h3>
+          <h3 class="crayons-subtitle-2"><%= t("listings.heading", scope: _t) %></h3>
           <div class="crayons-card__actions">
-            <a href="/listings" class="crayons-link--branded fw-medium fs-s"><%= t("core.see_all") %></a>
+            <a href="/listings" class="crayons-link--branded fw-medium fs-s"><%= t("listings.all", scope: _t) %></a>
           </div>
         </header>
 
@@ -25,7 +26,7 @@
               <div class="crayons-link__secondary"><%= listing.category %></div>
             </a>
           <% end %>
-          <a class="crayons-link crayons-link--branded block align-center p-3 fw-medium fs-s w-100" href="/listings/new">Create a Listing</a>
+          <a class="crayons-link crayons-link--branded block align-center p-3 fw-medium fs-s w-100" href="/listings/new"><%= t("listings.new", scope: _t) %></a>
         </div>
       </section>
     <% end %>
@@ -56,7 +57,7 @@
       <% if boostable_posts.present? %>
         <section class="widget">
           <header>
-            <h4>trending guides/resources</h4>
+            <h4><%= t("trend", scope: _t) %></h4>
           </header>
           <div class="widget-body">
             <div class="widget-link-list">
@@ -71,7 +72,7 @@
       <% if params[:timeframe].blank? && recent_preamble_optimized_posts.present? %>
         <section class="widget">
           <header>
-            <h4>recently queried</h4>
+            <h4><%= t("recent", scope: _t) %></h4>
           </header>
           <div class="widget-body">
             <div class="widget-link-list">

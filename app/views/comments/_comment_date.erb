@@ -1,3 +1,4 @@
+<% _t = "v.comments.edited" %>
 <span class="color-base-30 px-2 m:pl-0" role="presentation">&bull;</span>
 
 <a href="<%= URL.comment(decorated_comment) %>" class="comment-date crayons-link crayons-link--secondary fs-s">
@@ -6,10 +7,8 @@
   </time>
 
   <% if decorated_comment.edited_at.present? %>
-    &bull; Edited
-    <span class="hidden m:inline-block">
-      on <time datetime="<%= decorated_comment.edited_timestamp %>">
-      <%= decorated_comment.edited_at.strftime('%b %-d') %></time>
-    </span>
+    <%= t("text", scope: _t, 
+          on: tag.span(t("on", scope: _t, date: tag.time(decorated_comment.edited_at.strftime(t("date.readable.no_year")), datetime: decorated_comment.edited_timestamp), class: %w[hidden m:inline-block]))
+    ) %>
   <% end %>
 </a>

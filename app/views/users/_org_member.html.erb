@@ -1,3 +1,4 @@
+<% _t = "v.users.org.leave" %>
 <div>
   <h2><%= @organization.name %></h2>
   <div class="grid gap-2">
@@ -8,9 +9,9 @@
     <% end %>
   </div>
 </div>
-<h2>Danger zone</h2>
-<%= form_tag users_leave_org_path(@organization), onsubmit: "return confirm('Are you sure you want to leave this organization?');" do %>
+<h2><%= t("v.users.danger") %></h2>
+<%= form_tag users_leave_org_path(@organization), onsubmit: "return confirm('#{t('confirm', scope: _t)}');" do %>
   <div class="field">
-    <%= submit_tag "Leave Organization", class: "danger-button" %>
+    <%= submit_tag t("submit", scope: _t), class: "danger-button" %>
   </div>
 <% end %>

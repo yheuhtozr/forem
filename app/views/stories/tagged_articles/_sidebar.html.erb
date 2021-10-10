@@ -1,3 +1,4 @@
+<% _t = "v.tags.side" %>
 <% cache "tag-sidebar-#{@tag}-#{@tag_model&.updated_at}-#{@tag_model&.taggings_count}-#{user_signed_in?}-#{@page}", expires_in: 5.hours do %>
   <div id="sidebar-wrapper-left" class="sidebar-wrapper sidebar-wrapper-left">
     <div class="sidebar-bg" id="sidebar-bg-left"></div>
@@ -5,12 +6,12 @@
       <% if @tag_model && @tag_model.rules_html.present? %>
         <div class="widget">
           <header>
-            <h4>submission guidelines</h4>
+            <h4><%= t("guidelines", scope: _t) %></h4>
           </header>
           <div class="widget-body">
             <%= sanitize @tag_model.rules_html %>
             <a class="crayons-btn crayons-btn--s" href="/new/<%= @tag %>">
-              Create Post
+              <%= t("new", scope: _t) %>
             </a>
           </div>
         </div>
@@ -18,7 +19,7 @@
       <% if @tag_model && @tag_model.wiki_body_html.present? %>
         <div class="widget">
           <header>
-            <h4>about #<%= @tag %></h4>
+            <h4><%= t "about", scope: _t, tag: @tag %></h4>
           </header>
           <div class="widget-body">
             <%= sanitize @tag_model.wiki_body_html %>
@@ -28,7 +29,7 @@
       <% if @tag_model.sponsorship && @tag_model.sponsorship.status == "live" && @tag_model.sponsorship.expires_at > Time.current %>
         <div class="widget">
           <header>
-            <h4><%= @tag %> is sponsored by</h4>
+            <h4><%= t "sponsor", scope: _t, tag: @tag %></h4>
           </header>
           <div class="widget-body">
             <%= render "articles/single_sponsor", sponsorship: @tag_model.sponsorship %>
@@ -38,7 +39,7 @@
       <% if @moderators.present? %>
         <div class="widget">
           <header>
-            <h4>tag moderators</h4>
+            <h4><%= t("mods", scope: _t) %></h4>
           </header>
           <div class="widget-body">
             <% @moderators.each do |user| %>
@@ -53,7 +54,7 @@
       <% end %>
       <div class="sidebar-data">
         <div>
-          <%= pluralize @num_published_articles, "Post" %> Published
+          <%= t("published", scope: _t) @num_published_articles %>
         </div>
         <% if user_signed_in? %>
           <div class="crayons-btn-group mt-3">
@@ -63,7 +64,7 @@
                 class="crayons-btn crayons-btn--outlined mod-action-button fs-s"
                 href="<%= tag_url(@tag_model, @page) %>/edit"
                 style="color:<%= @tag_model.text_color_hex %>;background-color:<%= @tag_model.bg_color_hex %>">
-              Edit
+              <%= t("edit", scope: _t) %>
             </a>
             <a style="display:none;"
                id="tag-admin-button"
@@ -72,7 +73,7 @@
                href="<%= edit_admin_tag_path(@tag_model.id) %>"
                style="color:<%= @tag_model.text_color_hex %>;background-color:<%= @tag_model.bg_color_hex %>"
                data-no-instant>
-              Admin
+              <%= t("admin", scope: _t) %>
             </a>
             <a style="display:none;"
                id="tag-mod-button"
@@ -80,7 +81,7 @@
                class="crayons-btn crayons-btn--outlined mod-action-button fs-s"
                href="/mod/<%= @tag_model.name %>"
                style="color:<%= @tag_model.text_color_hex %>;background-color:<%= @tag_model.bg_color_hex %>">
-              Moderate
+              <%= t("moderate", scope: _t) %>
             </a>
           </div>
         <% else %>
@@ -88,7 +89,7 @@
           <% range = number_of_pages < 10 || @page < 4 ? 1..[number_of_pages, 9].min : [@page - 3, 1].max..[@page + 5, number_of_pages].min %>
           <% if number_of_pages > 1 %>
             <hr />
-            <div class="olderposts-header">Older #<%= @tag %> posts</div>
+            <div class="olderposts-header"><%= t "older", scope: _t, tag: @tag %></div>
             <div class="olderposts-links">
               <% range.each do |n| %>
                 <% if @page == n %>

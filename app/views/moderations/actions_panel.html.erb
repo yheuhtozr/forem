@@ -1,4 +1,5 @@
-<% title "Moderating #{@moderatable.title}" %>
+<% _t = "v.moderations.actions" %>
+<% title t("meta.title", scope: _t, title: @moderatable.title) %>
 
 <% cache(release_adjusted_cache_key("mod-styling")) do %>
   <style>
@@ -10,10 +11,10 @@
 
 <div class="container mod-container">
   <header class="top-header">
-    <h1>Moderate Post</h1>
-    <h2>Rate the quality of this post</h2>
-    <button class="crayons-btn crayons-btn--secondary crayons-btn--icon-rounded close-actions-panel hidden" type="button" title="Close moderator actions panel">
-      <%= inline_svg_tag("x.svg", aria: true, class: "crayons-icon", title: "Close moderator actions panel") %>
+    <h1><%= t("heading", scope: _t) %></h1>
+    <h2><%= t("subtitle", scope: _t) %></h2>
+    <button class="crayons-btn crayons-btn--secondary crayons-btn--icon-rounded close-actions-panel hidden" type="button" title="<%= t("close", scope: _t) %>">
+      <%= inline_svg_tag("x.svg", aria: true, class: "crayons-icon", title: t("close", scope: _t)) %>
     </button>
   </header>
 
@@ -24,20 +25,20 @@
               data-category="thumbsup"
               data-reactable-type="<%= @moderatable.class.name %>">
         <div class="reaction-button-circle">
-          <%= inline_svg_tag("twemoji/thumb-up.svg", aria: true, class: "crayons-icon crayons-icon--default", width: 32, height: 32, title: "Thumb up") %>
-          <%= inline_svg_tag("checkmark.svg", aria: true, class: "crayons-icon reaction-checkmark", title: "Checkmark") %>
+          <%= inline_svg_tag("twemoji/thumb-up.svg", aria: true, class: "crayons-icon crayons-icon--default", width: 32, height: 32, title: t("thumbup", scope: _t)) %>
+          <%= inline_svg_tag("checkmark.svg", aria: true, class: "crayons-icon reaction-checkmark", title: t("checkmark", scope: _t)) %>
         </div>
-        <span class="vote-text">High Quality</span>
+        <span class="vote-text"><%= t("vote_up", scope: _t) %></span>
       </button>
       <button class="reaction-button <%= Reaction.cached_any_reactions_for?(@moderatable, current_user, "thumbsdown") ? "reacted" : "" %>"
               data-reactable-id="<%= @moderatable.id %>"
               data-category="thumbsdown"
               data-reactable-type="<%= @moderatable.class.name %>">
         <div class="reaction-button-circle">
-          <%= inline_svg_tag("twemoji/thumb-down.svg", aria: true, class: "crayons-icon crayons-icon--default", width: 32, height: 32, title: "Thumb down") %>
-          <%= inline_svg_tag("checkmark.svg", aria: true, class: "crayons-icon reaction-checkmark", title: "Checkmark") %>
+          <%= inline_svg_tag("twemoji/thumb-down.svg", aria: true, class: "crayons-icon crayons-icon--default", width: 32, height: 32, title: t("thumbdown", scope: _t)) %>
+          <%= inline_svg_tag("checkmark.svg", aria: true, class: "crayons-icon reaction-checkmark", title: t("checkmark", scope: _t)) %>
         </div>
-        <span class="vote-text">Low Quality</span>
+        <span class="vote-text"><%= t("vote_down", scope: _t) %></span>
       </button>
     </div>
     <button class="reaction-vomit-button <%= Reaction.cached_any_reactions_for?(@moderatable, current_user, "vomit") ? "reacted" : "" %>"
@@ -46,11 +47,11 @@
             data-reactable-type="<%= @moderatable.class.name %>">
       <%= inline_svg_tag("twemoji/suspicious.svg", aria: true, class: "crayons-icon crayons-icon--default mr-1", title: "Suspicious...") %>
       <span></span>
-      <%= inline_svg_tag("checkmark.svg", aria: true, class: "crayons-icon vomit-checkmark", title: "Checkmark") %>
+      <%= inline_svg_tag("checkmark.svg", aria: true, class: "crayons-icon vomit-checkmark", title: t("checkmark", scope: _t)) %>
     </button>
     <a href="<%= URL.url %>/community-moderation#using-the-quick-reactions-to-moderate-content" target="_blank" rel="noopener">
       <span class="how-this-works-section">
-        How does this work?
+        <%= t("how", scope: _t) %>
       </span>
     </a>
   </div>
@@ -58,23 +59,23 @@
   <div class="other-things-container">
     <header class="other-things">
       <h3>
-        Other things you can do
+        <%= t("other", scope: _t) %>
       </h3>
     </header>
 
     <% if current_user.any_admin? || @should_show_adjust_tags %>
-      <button aria-haspopup="true" aria-expanded="false" aria-controls="adjust-tags-options" class="other-things-btn adjust-tags" type="button" data-other-things-type="adjust-tags" aria-label="Open adjust tags section">
+      <button aria-haspopup="true" aria-expanded="false" aria-controls="adjust-tags-options" class="other-things-btn adjust-tags" type="button" data-other-things-type="adjust-tags" aria-label="<%= t("adjust.aria_label", scope: _t) %>">
         <div class="label-wrapper">
           <div class="icon circle centered-icon">
-            <%= inline_svg_tag("mod-filled.svg", aria: true, title: "Adjust tags") %>
+            <%= inline_svg_tag("mod-filled.svg", aria: true, title: t("adjust.icon", scope: _t)) %>
           </div>
           <header>
-            <h2>Adjust tags</h2>
-            <h3>Add or remove tags</h3>
+            <h2><%= t("adjust.heading", scope: _t) %></h2>
+            <h3><%= t("adjust.subtitle", scope: _t) %></h3>
           </header>
         </div>
         <div class="toggle-chevron-container">
-          <%= inline_svg_tag("chevron-toggle.svg", aria: true, title: "Toggle section") %>
+          <%= inline_svg_tag("chevron-toggle.svg", aria: true, title: t("toggle", scope: _t)) %>
         </div>
       </button>
 
@@ -82,7 +83,7 @@
         <% if current_user.any_admin? %>
           <% if @moderatable.tag_list.size < 4 %>
             <div class="add-tag-container">
-              <input id="admin-add-tag" class="crayons-textfield" type="text" placeholder="Add a tag" data-article-id="<%= @moderatable.id %>" data-adjustment-type="plus">
+              <input id="admin-add-tag" class="crayons-textfield" type="text" placeholder="<%= t("adjust.add_placeholder", scope: _t) %>" data-article-id="<%= @moderatable.id %>" data-adjustment-type="plus">
             </div>
           <% end %>
 
@@ -90,7 +91,7 @@
             <button class="adjustable-tag" type="button" data-adjustment-type="subtract" data-tag-name="<%= tag.name %>" data-article-id="<%= @moderatable.id %>">
               <span class="num-sign">#</span><%= tag.name %>
               <div class="circle centered-icon adjustment-icon subtract">
-                <%= inline_svg_tag("subtract.svg", aria: true, title: "Remove tag") %>
+                <%= inline_svg_tag("subtract.svg", aria: true, title: t("adjust.remove", scope: _t)) %>
               </div>
             </button>
           <% end %>
@@ -107,30 +108,30 @@
           <% end %>
         <% end %>
         <form id="adjustment-reason-container" class="adjustment-reason-container hidden">
-          <textarea class="crayons-textfield" placeholder="Reason for tag adjustment" id="tag-adjustment-reason" required></textarea>
-          <button class="crayons-btn" id="tag-adjust-submit" type="submit">Submit</button>
+          <textarea class="crayons-textfield" placeholder="<%= t("adjust.reason", scope: _t) %>" id="tag-adjustment-reason" required></textarea>
+          <button class="crayons-btn" id="tag-adjust-submit" type="submit"><%= t("adjust.submit", scope: _t) %></button>
         </form>
         <a href="<%= URL.url %>/tag-moderation#how-to-remove-or-add-tags" target="_blank" rel="noopener">
           <span class="how-this-works-section">
-            How does this work?
+            <%= t("how", scope: _t) %>
           </span>
         </a>
       </div>
     <% end %>
 
     <% @rating_vote = RatingVote.where(article_id: @moderatable.id, user_id: current_user.id).first %>
-    <button aria-haspopup="true" aria-expanded="false" aria-controls="set-experience-options" class="other-things-btn set-experience" type="button" data-other-things-type="set-experience" aria-label="Open experience level section">
+    <button aria-haspopup="true" aria-expanded="false" aria-controls="set-experience-options" class="other-things-btn set-experience" type="button" data-other-things-type="set-experience" aria-label="<%= t("exp.aria_label", scope: _t) %>">
       <div class="label-wrapper">
         <div class="icon circle centered-icon">
-          <%= inline_svg_tag("book.svg", aria: true, title: "Book") %>
+          <%= inline_svg_tag("book.svg", aria: true, title: t("exp.icon", scope: _t)) %>
         </div>
         <header>
-          <h2>Set experience level</h2>
-          <h3>Curate the most appropriate audience for this post</h3>
+          <h2><%= t("exp.heading", scope: _t) %></h2>
+          <h3><%= t("exp.subtitle", scope: _t) %></h3>
         </header>
       </div>
-      <div class="toggle-chevron-container">
-        <%= inline_svg_tag("chevron-toggle.svg", aria: true, title: "Toggle section") %>
+      <div class=" toggle-chevron-container ">
+        <%= inline_svg_tag("chevron-toggle.svg", aria: true, title: t("toggle", scope: _t)) %>
       </div>
     </button>
 
@@ -150,31 +151,29 @@
           <span class="level-rating-number"><%= rating_level[1] %></span>
           <span class="level-rating-text"><%= rating_name %></span>
         </div>
-        <%= inline_svg_tag("checkmark.svg", aria: true, class: "crayons-icon", title: "Checkmark") %>
+        <%= inline_svg_tag("checkmark.svg", aria: true, class: "crayons-icon", title: t("checkmark", scope: _t)) %>
       </button>
       <% end %>
-      <a href="<%= URL.url %>/community-moderation#how-to-rate-the-experience-level-of-a-post" target="_blank" rel="noopener">
-        <span class="how-this-works-section">
-          How does this work?
-        </span>
+      <a href="<%= URL.url %> community-moderation
+          <%= t("how", scope: _t) %>>
       </a>
     </div>
 
     <% if current_user.any_admin? && @moderatable.published %>
-      <div class="unpublish-article">
+      <div class=" unpublish-article ">
         <button
-          class="crayons-btn crayons-btn--danger"
-          id="unpublish-article-btn"
+          class=" crayons-btn crayons-btn--danger "
+          id=" unpublish-article-btn "
           data-article-id="<%= @moderatable.id %>"
           data-article-author="<%= @moderatable.username %>"
           data-article-slug="<%= @moderatable.slug %>">
-          Unpublish Article
+          <%= t("unpublish", scope: _t) %>
         </button>
       </div>
     <% end %>
   </div>
 
-  <div class="bottom-actions">
-    <button id="open-flag-user-modal" type="button">Flag user</button>
+  <div class=" bottom-actions ">
+    <button id=" open-flag-user-modal " type=" button "><%= t("flag", scope: _t) %></button>
   </div>
 </div>

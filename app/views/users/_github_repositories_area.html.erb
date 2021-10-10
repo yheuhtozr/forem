@@ -1,7 +1,8 @@
+<% _t = "v.users.github" %>
 <% if repositories.present? %>
   <div class="crayons-card crayons-card--secondary">
     <header class="crayons-card__header">
-      <h3 class="crayons-subtitle-3 flex items-center">GitHub Repositories</h3>
+      <h3 class="crayons-subtitle-3 flex items-center"><%= t("heading", scope: _t) %></h3>
     </header>
 
     <div>
@@ -15,7 +16,7 @@
           <% end %>
           <p class="fs-s color-base-60 flex items-center">
             <% if repo.fork %>
-              <span class="crayons-indicator mr-3">Fork</span>
+              <span class="crayons-indicator mr-3"><%= t("fork", scope: _t) %></span>
             <% end %>
 
             <% if repo.language %>
@@ -27,7 +28,7 @@
             <% end %>
 
             <% if repo.stargazers_count.to_i > 0 %>
-              <%= pluralize repo.stargazers_count, "star" %>
+              <%= t "stars", scope: _t, repo.stargazers_count %>
             <% end %>
           </p>
         </a>

@@ -1,29 +1,30 @@
+<% _t = "v.users.extensions" %>
 <%= render partial: "response_templates" %>
 
 <% if FeatureFlag.enabled?(:connect) %>
   <div class="crayons-card crayons-card--content-rows">
     <h2 class="crayons-subtitle-1">
-      Connect settings
+      <%= t("connect", scope: _t) %>
     </h2>
     <%= form_for(@users_setting, url: users_settings_path, html: { id: nil, class: "grid gap-6" }) do |f| %>
       <div class="crayons-field">
         <%= f.label :inbox_type, "Inbox privacy", class: "crayons-field__label" %>
-        <p class="crayons-field__description">Open your inbox to messages from people you don't follow or keep your inbox private to mutual follows.</p>
-        <%= f.select :inbox_type, [%w[Open open], %w[Private private]], {}, { class: "crayons-select" } %>
+        <p class="crayons-field__description"><%= t("privacy", scope: _t) %></p>
+        <%= f.select :inbox_type, [[t("open", scope: _t), "open"], [t("private", scope: _t), "private"]], {}, { class: "crayons-select" } %>
       </div>
 
       <div class="crayons-field">
-        <%= f.label :inbox_guidelines, "Open inbox guidelines/instructions", class: "crayons-field__label" %>
+        <%= f.label :inbox_guidelines, t("guidelines.label", scope: _t), class: "crayons-field__label" %>
         <p class="crayons-field__description">
-        Optional
+          <%= t("optional", scope: _t) %>
         </p>
 
-        <%= f.text_area :inbox_guidelines, maxlength: 200, class: "crayons-textfield", rows: 3, placeholder: "Please allow a few days for a response." %>
+        <%= f.text_area :inbox_guidelines, maxlength: 200, class: "crayons-textfield", rows: 3, placeholder: t("guidelines.placeholder", scope: _t) %>
       </div>
 
       <%= f.hidden_field :tab, value: @tab, id: nil %>
       <button type="submit" class="crayons-btn w-max">
-        Save Connect Settings
+        <%= t("save_connect", scope: _t) %>
       </button>
     <% end %>
   </div>
@@ -34,20 +35,20 @@
 <div class="crayons-card crayons-card--content-rows">
   <header>
     <h2 class="crayons-subtitle-1 flex items-center">
-      Web monetization
-      <span class="ml-2 crayons-indicator crayons-indicator--accent">beta</span>
+      <%= t("web", scope: _t) %>
+      <span class="ml-2 crayons-indicator crayons-indicator--accent"><%= t("v.beta") %></span>
     </h2>
     <p class="color-base-70">
-    Receive micropayments for time spent reading your posts directy. <a href="https://dev.to/hacksultan/web-monetization-like-i-m-5-1418">Learn more</a>
+      <%= t("micro", scope: _t) %><a href="https://dev.to/hacksultan/web-monetization-like-i-m-5-1418"><%= t("learn", scope: _t) %></a>
     </p>
   </header>
   <%= form_for(@user, html: { id: nil, class: "grid gap-4" }) do |f| %>
     <div class="crayons-field">
-      <%= f.label :payment_pointer, "Payment Pointer", class: "crayons-field__label" %>
+      <%= f.label :payment_pointer, t("payment", scope: _t), class: "crayons-field__label" %>
       <%= f.text_field :payment_pointer, class: "crayons-textfield", placeholder: "$pay.somethinglikethis.co/value" %>
     </div>
     <%= f.hidden_field :tab, value: @tab, id: nil %>
-    <button type="submit" class="crayons-btn w-max">Save Web Monetization Settings</button>
+    <button type="submit" class="crayons-btn w-max"><%= t("save_web", scope: _t) %></button>
   <% end %>
 </div>
 

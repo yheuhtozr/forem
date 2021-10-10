@@ -1,3 +1,4 @@
+<% _t = "v.main.side" %>
 <% if @page == 1 %>
   <div id="sidebar-wrapper-right" class="sidebar-wrapper sidebar-wrapper-right">
     <div class="sidebar-bg" id="sidebar-bg-right"></div>
@@ -6,7 +7,7 @@
       <% if active_threads.present? %>
         <div class="widget">
           <header>
-            <h4>#discuss</h4>
+            <h4><%= t("v.stories.discuss") %></h4>
           </header>
           <div class="widget-body">
             <div class="widget-link-list">
@@ -25,7 +26,7 @@
           <% if boostable_posts.present? %>
             <div class="widget">
               <header>
-                <h4>trending guides/resources</h4>
+                <h4><%= t("trend", scope: _t) %></h4>
               </header>
               <div class="widget-body">
                 <div class="widget-link-list">
@@ -38,7 +39,7 @@
           <% if params[:timeframe].blank? && recent_preamble_optimized_posts.present? %>
             <div class="widget">
               <header>
-                <h4>recently queried</h4>
+                <h4><%= t("recent", scope: _t) %></h4>
               </header>
               <div class="widget-body">
                 <div class="widget-link-list">

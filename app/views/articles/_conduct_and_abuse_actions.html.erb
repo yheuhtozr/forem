@@ -1,5 +1,6 @@
-<nav class="fs-s align-center block" aria-label="Conduct controls">
-  <a href="/code-of-conduct" class="crayons-link crayons-link--secondary">Code of Conduct</a>
+<% _t = "v.articles.conduct" %>
+<nav class="fs-s align-center block" aria-label="<%= t("aria_label", scope: _t) %>">
+  <a href="/code-of-conduct" class="crayons-link crayons-link--secondary"><%= t("code", scope: _t) %></a>
   <span class="opacity-25 px-2" role="presentation">&bull;</span>
-  <a href="/report-abuse" class="crayons-link crayons-link--secondary"><%= t("core.report_abuse") %></a>
+  <a href="/report-abuse" class="crayons-link crayons-link--secondary"><%= t("report", scope: _t) %></a>
 </nav>

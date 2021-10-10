@@ -1,3 +1,4 @@
+<% _t = "v.users" %>
 <%= javascript_packs_with_chunks_tag "colorPreview", "validateFileInputs", "stickySaveFooter", defer: true %>
 
 <%= render "users/additional_authentication" %>
@@ -5,30 +6,30 @@
 <%= form_with(url: profile_path(@user.profile_id), method: "put", html: { class: "sticky-footer-form" }) do |f| %>
 
   <div class="crayons-card crayons-card--content-rows">
-    <h2>User</h2>
+    <h2><%= t("group.user", scope: _t) %></h2>
 
     <div class="crayons-field">
-      <%= f.label :name, for: "user[name]", class: "crayons-field__label" %>
-      <%= f.text_field "user[name]", maxlength: 30, class: "crayons-textfield", placeholder: "John Doe", value: @user.name %>
+      <%= f.label :name, t("helpers.label.user.name"), for: "user[name]", class: "crayons-field__label" %>
+      <%= f.text_field "user[name]", maxlength: 30, class: "crayons-textfield", value: @user.name %>
     </div>
 
     <div class="crayons-field">
-      <%= f.label :email, for: "user[email]", class: "crayons-field__label" %>
-      <%= f.text_field "user[email]", class: "crayons-textfield", placeholder: "john.doe@example.com", value: @user.email %>
+      <%= f.label :email, t("helpers.label.user.email"), for: "user[email]", class: "crayons-field__label" %>
+      <%= f.text_field "user[email]", class: "crayons-textfield", value: @user.email %>
     </div>
 
     <div class="crayons-field crayons-field--checkbox">
       <%= f.check_box "users_setting[display_email_on_profile]", class: "crayons-checkbox", checked: @user.setting.display_email_on_profile %>
-      <%= f.label :display_email_on_profile, for: "users_setting[display_email_on_profile]", class: "crayons-field__label" %>
+      <%= f.label :display_email_on_profile, t("profile_fields.display_email_on_profile", scope: _t), for: "users_setting[display_email_on_profile]", class: "crayons-field__label" %>
     </div>
 
     <div class="crayons-field">
-      <%= f.label :username, for: "user[username]", class: "crayons-field__label" %>
-      <%= f.text_field "user[username]", maxlength: 30, class: "crayons-textfield", placeholder: "johndoe", value: @user.username %>
+      <%= f.label :username, t("helpers.label.user.username"), for: "user[username]", class: "crayons-field__label" %>
+      <%= f.text_field "user[username]", maxlength: 30, class: "crayons-textfield", value: @user.username %>
     </div>
 
     <div class="crayons-field">
-      <%= f.label :profile_image, for: "user[profile_image]", class: "crayons-field__label" %>
+      <%= f.label :profile_image, t("helpers.label.user.profile_image"), for: "user[profile_image]", class: "crayons-field__label" %>
 
       <div class="flex items-center">
         <% if @user.profile_image_url.present? %>
@@ -48,7 +49,7 @@
 
     <div class="crayons-field">
       <label class="crayons-field__label" for="profile[website_url]">
-        Website URL
+        <%= t("profile_fields.website.label", scope: _t) %>
       </label>
       <%= f.url_field "profile[website_url]",
                       value: profile.website_url,
@@ -58,21 +59,21 @@
 
     <div class="crayons-field">
       <label class="crayons-field__label" for="profile[location]">
-        Location
+        <%= t("profile_fields.location.label", scope: _t) %>
       </label>
       <%= f.text_field "profile[location]",
                        value: profile.location,
-                       placeholder: "Halifax, Nova Scotia",
+                       placeholder: t("profile_fields.location.placeholder", scope: _t),
                        class: "crayons-textfield js-color-field" %>
     </div>
 
     <div class="crayons-field">
       <label class="crayons-field__label" for="profile[summary]">
-        Bio
+        <%= t("profile_fields.bio.label", scope: _t) %>
       </label>
       <%= f.text_area "profile[summary]",
                       value: profile.summary,
-                      placeholder: "A short bio...",
+                      placeholder: t("profile_fields.bio.placeholder", scope: _t),
                       class: "crayons-textfield js-color-field" %>
     </div>
   </div>
@@ -118,7 +119,7 @@
     <h2>Branding</h2>
     <div class="crayons-field ">
       <label class="crayons-field__label" for="users_setting[brand_color1]">
-        Brand color 1
+        <%= t("v.logo.color_1.label") %>
       </label>
       <div class="flex items-center w-100 m:w-50">
         <%= f.public_send("text_field", "users_setting[brand_color1]",
@@ -130,12 +131,12 @@
                           value: users_setting.public_send("brand_color1"),
                           class: "crayons-color-selector js-color-field ml-2") %>
       </div>
-      <p class="crayons-field__description">Used for backgrounds, borders etc.</p>
+      <p class="crayons-field__description"><%= t("v.logo.color_1.desc") %></p>
     </div>
 
     <div class="crayons-field ">
       <label class="crayons-field__label" for="users_setting[brand_color1]">
-        Brand color 2
+        <%= t("v.logo.color_2.label") %>
       </label>
       <div class="flex items-center w-100 m:w-50">
         <%= f.public_send("text_field", "users_setting[brand_color2]",
@@ -147,11 +148,11 @@
                           value: users_setting.public_send("brand_color2"),
                           class: "crayons-color-selector js-color-field ml-2") %>
       </div>
-      <p class="crayons-field__description">Used for texts (usually put on Brand color 1).</p>
+      <p class="crayons-field__description"><%= t("v.logo.color_2.desc") %></p>
     </div>
   </div>
 
   <div class="save-footer crayons-card crayons-card--content-rows">
-    <button type="submit" class="crayons-btn">Save Profile Information</button>
+    <button type="submit" class="crayons-btn"><%= t("save_profile", scope: _t) %></button>
   </div>
 <% end %>

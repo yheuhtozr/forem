@@ -1,20 +1,21 @@
-<% title "Reading List" %>
+<% _t = "v.reading_list.meta" %>
+<% title t("title", scope: _t) %>
 
 <%= content_for :page_meta do %>
   <link rel="canonical" href="<%= app_url("/readinglist") %>" />
-  <meta name="description" content="My saved posts.">
+  <meta name="description" content="<%= t("description", scope: _t) %>">
   <%= meta_keywords_default %>
 
   <meta property="og:type" content="article" />
   <meta property="og:url" content="<%= app_url("/readinglist") %>" />
-  <meta property="og:title" content="Reading List - <%= community_name %>" />
-  <meta property="og:description" content="My saved posts." />
+  <meta property="og:title" content="<%= t "og.title", scope: _t, community: community_name %>" />
+  <meta property="og:description" content="<%= t("description", scope: _t) %>" />
   <meta property="og:site_name" content="<%= community_name %>" />
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@<%= Settings::General.social_media_handles["twitter"] %>">
-  <meta name="twitter:title" content="Reading List - <%= community_name %>">
-  <meta name="twitter:description" content="My saved posts.">
+  <meta name="twitter:title" content="<%= t "og.title", scope: _t, community: community_name %>">
+  <meta name="twitter:description" content="<%= t("description", scope: _t) %>">
 <% end %>
 
 <div id="reading-list" data-view="<%= @view %>"></div>

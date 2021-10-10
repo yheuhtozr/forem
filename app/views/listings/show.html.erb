@@ -1,4 +1,5 @@
+<% _t = "v.listings" %>
 <p id="notice"><%= notice %></p>
 
-<%= link_to "Edit", edit_listing_path(@listing) %> |
-<%= link_to "Back", listings_path %>
+<%= link_to t("to_edit", scope: _t), edit_listing_path(@listing) %> |
+<%= link_to t("back", scope: _t), listings_path %>

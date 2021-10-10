@@ -1,3 +1,4 @@
+<% _t = "v.admin" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,7 +37,7 @@
       <%= render "layouts/logo" %>
 
       <h1 class="pl-4 fs-l">
-        <a href="<%= admin_path %>">Admin</a>
+        <a href="<%= admin_path %>"><%= t("header.admin", scope: _t) %></a>
         <span class="color-base-60">&raquo;</span> <span class="fw-bold">
           <%= yield(:h1).presence || controller_name.titleize %>
         </span>
@@ -44,11 +45,11 @@
 
       <div class="flex items-center h-100 ml-auto">
         <a href="https://admin.forem.com/" class="crayons-btn crayons-btn--ghost-brand hidden mr-2 whitespace-nowrap s:block">
-          Forem Admin Guide
+          <%= t("header.guide", scope: _t) %>
         </a>
 
         <a href="/" class="crayons-btn hidden mr-2 whitespace-nowrap s:block">
-          Go to <%= community_name %> home page
+          <%= t "header.home", scope: _t, community: community_name %>
         </a>
       </div>
     </div>
@@ -61,7 +62,7 @@
             <li>
               <a class="crayons-link crayons-link--block <%= "crayons-link--current" if controller.controller_name == "overview" %>" href="<%= admin_path %>" aria-current "<%= "page" if controller.controller_name == "overview" %>">
                 <%= inline_svg_tag("stack-line.svg", aria: true, class: "dropdown-icon crayons-icon") %>
-                Overview
+                <%= t("nav.overview", scope: _t) %>
               </a>
             </li>
             <%= render "admin/shared/nested_sidebar", menu_items: AdminMenu.navigation_items %>
@@ -77,7 +78,7 @@
     <main class="crayons-layout__content min-w-0 p-2">
       <% flash.each do |type, message| %>
         <div class="alert alert-<%= type == "notice" || type == "success" ? "success" : "danger" %>">
-          <button class="close" data-dismiss="alert" aria-label="Close">
+          <button class="close" data-dismiss="alert" aria-label="<%= t("close", scope: _t) %>">
             <i class="fa fa-times" aria-hidden="true"></i>
           </button>
           <%= message %>
@@ -98,7 +99,7 @@
       <%= yield %>
       <% if false #@help_url HELP BUTTON NOT CURRENTLY LINKING TO PROPER PAGES %>
         <a class="admin-help-button crayons-btn crayons-btn--icon-rounded crayons-btn--s" href="<%= @help_url %>" target="_blank" rel="noopener noreferer">
-          <%= inline_svg_tag("circle-question.svg", aria: true, title: "Forem Admin Guide") %>
+          <%= inline_svg_tag("circle-question.svg", aria: true, title: t("help", scope: _t)) %>
         </a>
       <% end %>
     </main>
