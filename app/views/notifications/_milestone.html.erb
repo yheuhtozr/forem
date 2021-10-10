@@ -1,9 +1,9 @@
-<% _t = t.v.notifications.milestone %>
+<% _t = "v.notifications.milestone" %>
 <% json_data = notification.json_data %>
 <div class="p-6 m:p-8 align-center w-100">
-  <p class="fs-l m:fs-2xl mb-4"><%= _t.intro %></p>
+  <p class="fs-l m:fs-2xl mb-4"><%= t("intro", scope: _t) %></p>
   <h2 class="fw-normal fs-xl m:fs-2xl mb-4">
-    <%= _t.heading title: link_to(h(json_data["article"]["title"]), json_data["article"]["path"], class: "crayons-link fw-bold"), count: notification.milestone_count.to_i, type: _t.type[notification.milestone_type] %>
+    <%= t "heading", scope: _t, title: link_to(h(json_data["article"]["title"]), json_data["article"]["path"], class: "crayons-link fw-bold"), count: notification.milestone_count.to_i, type: _t.type[notification.milestone_type] %>
   </h2>
 
   <a href="https://giphy.com/gifs/<%= json_data["gif_id"] %>" rel="noopener noreferrer" class="block my-4" target="_blank">
@@ -11,6 +11,6 @@
   </a>
 
   <a href="/dashboard" class="crayons-btn w-100 m:w-50">
-    <%= _t.check %>
+    <%= t("check", scope: _t) %>
   </a>
 </div>

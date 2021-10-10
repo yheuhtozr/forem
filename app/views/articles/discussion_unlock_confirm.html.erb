@@ -1,18 +1,18 @@
-<% _t = t.v.articles.unlock %>
-<% title(_t.meta.title) %>
+<% _t = "v.articles.unlock" %>
+<% title(t("meta.title", scope: _t)) %>
 <main id="main-content" class="crayons-layout crayons-layout--limited-l gap-0">
   <div class="crayons-card crayons-card--secondary text-styles text-styles--secondary text-padding -mb-1 mx-3 m:mx-6 mt-3">
     <%= @article.title %>
   </div>
   <div class="crayons-card text-padding">
-    <h1 class="crayons-subtitle-1 mb-2"><%= _t.heading %></h1>
+    <h1 class="crayons-subtitle-1 mb-2"><%= t("heading", scope: _t) %></h1>
     <p class="fs-l mb-4">
-      <%= _t.desc %>
+      <%= t("desc", scope: _t) %>
     </p>
 
     <div class="fs-l mb-5">
       <div class="fw-bold">
-        <%= _t.reason %>
+        <%= t("reason", scope: _t) %>
       </div>
       <em>
         <%= @discussion_lock.reason %>
@@ -21,7 +21,7 @@
 
     <div class="fs-l mb-5">
       <div class="fw-bold">
-        <%= _t.notes %>
+        <%= t("notes", scope: _t) %>
       </div>
       <em>
         <%= @discussion_lock.notes %>
@@ -32,8 +32,8 @@
       <div class="form-group">
         <%= f.hidden_field :article_id, value: @article.id %>
       </div>
-      <%= f.submit _t.submit, class: "crayons-btn crayons-btn--danger" %>
-      <a data-no-instant href="<%= dashboard_path %>" class="crayons-btn crayons-btn--ghost"><%= _t.cancel %></a>
+      <%= f.submit t("submit", scope: _t), class: "crayons-btn crayons-btn--danger" %>
+      <a data-no-instant href="<%= dashboard_path %>" class="crayons-btn crayons-btn--ghost"><%= t("cancel", scope: _t) %></a>
     <% end %>
   </div>
 </main>

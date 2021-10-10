@@ -1,17 +1,17 @@
-<% _t = t.v.dashboard.article %>
+<% _t = "v.dashboard.article" %>
 <div class="js-dashboard-story single-article <%= "single-article-unpublished" unless article.published %> <%= "single-article-archived hidden" if article.archived %>">
   <div class="dashboard-collection-org-details">
     <% if article.organization_id %>
       <span class="dashboard-top-pill"><%= article.organization&.name %></span>
     <% end %>
     <% if article.collection_id %>
-      <span class="dashboard-top-pill"><%= _t.series_html series: article.series %></span>
+      <span class="dashboard-top-pill"><%= t "series_html", scope: _t, series: article.series %></span>
     <% end %>
   </div>
 
   <div class="js-ellipsis-menu relative inline-block float-right">
     <button id="ellipsis-menu-trigger-<%= article.id %>" aria-controls="ellipsis-menu-dropdown-<%= article.id %>" aria-expanded="false" aria-haspopup="true" class="crayons-btn crayons-btn--ghost crayons-btn--s crayons-btn--icon">
-      <%= inline_svg_tag("overflow-horizontal.svg", aria: true, class: "crayons-icon", title: _t.more.icon) %>
+      <%= inline_svg_tag("overflow-horizontal.svg", aria: true, class: "crayons-icon", title: t("more.icon", scope: _t)) %>
     </button>
 
     <div id="ellipsis-menu-dropdown-<%= article.id %>" class="crayons-dropdown top-100 right-0 z-10 align-left js-ellipsis-menu-dropdown">
@@ -26,20 +26,19 @@
   </div>
 
   <a href="<%= article.current_state_path %>"><h2>
-    <%= _t.heading.text(
-          archived: article.archived ? _t.heading.archived : "",
-          title: tag.span(article.title, class: "with-content-font", lang: article.base_lang),
-        ) %>
+    <%= t("heading.text", scope: _t,
+                          archived: article.archived ? t("heading.archived", scope: _t) : "",
+                          title: tag.span(article.title, class: "with-content-font", lang: article.base_lang)) %>
   </h2></a>
   <div class="dashboard-meta-details">
     <% if article.published %>
       <span>
-        <%= _t.published_html date: tag.time(article.readable_publish_date, datetime: article.published_timestamp) %>
+        <%= t "published_html", scope: _t, date: tag.time(article.readable_publish_date, datetime: article.published_timestamp) %>
       </span>
 
       <% if article.edited? %>
         <span>
-          · <%= _t.edited_html date: tag.time(article.readable_edit_date, datetime: article.edited_at.utc.iso8601) %>
+          · <%= t "edited_html", scope: _t, date: tag.time(article.readable_edit_date, datetime: article.edited_at.utc.iso8601) %>
         </span>
       <% end %>
 
@@ -50,50 +49,50 @@
   </div>
   <div class="dashboard-actions">
     <% if !article.published %>
-      <a href="<%= article.current_state_path %>" class="crayons-btn"><%= _t.draft %></a>
+      <a href="<%= article.current_state_path %>" class="crayons-btn"><%= t("draft", scope: _t) %></a>
     <% end %>
-    <a href="<%= article.path %>/edit" class="crayons-btn"><%= _t.edit.text %></a>
+    <a href="<%= article.path %>/edit" class="crayons-btn"><%= t("edit.text", scope: _t) %></a>
     <% if manage_view %>
-      <a href="<%= article.path %>/delete_confirm" data-no-instant class="crayons-btn crayons-btn--danger"><%= _t.delete %></a>
+      <a href="<%= article.path %>/delete_confirm" data-no-instant class="crayons-btn crayons-btn--danger"><%= t("delete", scope: _t) %></a>
       <% if article.profile_pins.any? %>
         <%= form_for(article.profile_pins.first) do |f| %>
-          <button class="crayons-btn crayons-btn--secondary"><%= _t.unpin %></button>
+          <button class="crayons-btn crayons-btn--secondary"><%= t("unpin", scope: _t) %></button>
         <% end %>
       <% else %>
         <%= form_for(ProfilePin.new) do |f| %>
           <%= f.hidden_field :pinnable_id, value: article.id %>
-          <button class="crayons-btn"><%= _t.pin.button %></button>
+          <button class="crayons-btn"><%= t("pin.button", scope: _t) %></button>
         <% end %>
       <% end %>
     <% elsif article.published %>
-      <a href="<%= article.path %>/manage" class="crayons-btn"><%= _t.manage.text %></a>
+      <a href="<%= article.path %>/manage" class="crayons-btn"><%= t("manage.text", scope: _t) %></a>
     <% elsif @user == article.user %>
-      <a href="<%= article.path %>/delete_confirm" data-no-instant class="crayons-btn crayons-btn--danger"><%= _t.delete %></a>
+      <a href="<%= article.path %>/delete_confirm" data-no-instant class="crayons-btn crayons-btn--danger"><%= t("delete", scope: _t) %></a>
     <% end %>
 
-    <a href="<%= article.path %>/stats" data-no-instant class="crayons-btn"><%= _t.stats %></a>
+    <a href="<%= article.path %>/stats" data-no-instant class="crayons-btn"><%= t("stats", scope: _t) %></a>
 
     <% if discussion_lock %>
-      <a href="<%= article.path %>/discussion_unlock_confirm" data-no-instant class="crayons-btn"><%= _t.unlock %></a>
+      <a href="<%= article.path %>/discussion_unlock_confirm" data-no-instant class="crayons-btn"><%= t("unlock", scope: _t) %></a>
     <% else %>
-      <a href="<%= article.path %>/discussion_lock_confirm" data-no-instant class="crayons-btn"><%= _t.lock %></a>
+      <a href="<%= article.path %>/discussion_lock_confirm" data-no-instant class="crayons-btn"><%= t("lock", scope: _t) %></a>
     <% end %>
 
     <% if article.published %>
       <span id="pageviews-<%= article.id %>" class="crayons-btn dashboard-pageviews-indicator" data-analytics-pageviews data-article-id="<%= article.id %>">
         <span class="page-views-count">
           <% pvs = article.page_views_count %>
-          <%= _t.views.text count: pvs, scale: tag.span(pvs > 25 ? tag.span(pvs, class: %w[value]) : _t.views.u_25, class: %w[value]) %>
+          <%= t "views.text", scope: _t, count: pvs, scale: tag.span(pvs > 25 ? tag.span(pvs, class: %w[value]) : t("views.u_25", scope: _t), class: %w[value]) %>
         </span>
         //
         <span class="reactions-count">
           <% prs = article.public_reactions_count %>
-          <%= _t.reactions.text count: prs, num: tag.span(prs, class: %w[value]) %>
+          <%= t "reactions.text", scope: _t, count: prs, num: tag.span(prs, class: %w[value]) %>
         </span>
         //
         <span class="comments-count">
           <% pcs = article.comments_count %>
-          <%= _t.comments.text count: pcs, num: tag.span(pcs, class: %w[value]) %>
+          <%= t "comments.text", scope: _t, count: pcs, num: tag.span(pcs, class: %w[value]) %>
         </span>
       </span>
     <% end %>
@@ -101,8 +100,8 @@
   <% if organization && org_admin %>
     <%= form_for(article) do |f| %>
       <input type="hidden" name="destination" value="/dashboard/organization/<%= organization.id %>" />
-      <%= _t.author_is %><%= f.select(:user_id, options_for_select(organization.users.pluck(:name, :id), article.user_id)) %>
-      <%= f.submit _t.submit, class: "crayons-btn crayons-btn--secondary" %>
+      <%= t("author_is", scope: _t) %><%= f.select(:user_id, options_for_select(organization.users.pluck(:name, :id), article.user_id)) %>
+      <%= f.submit t("submit", scope: _t), class: "crayons-btn crayons-btn--secondary" %>
     <% end %>
   <% end %>
 </div>

@@ -1,11 +1,12 @@
-<% _t = t.v.notifications.reacted %>
+<% _t = "v.notifications.reacted" %>
 <div class="flex items-center">
   <% cache "activity-profile-pic-#{notification.json_data['user']['id']}-#{notification.json_data['user']['profile_image_90']}" do %>
     <%= render "notifications/shared/profile_pic", json_data: notification.json_data %>
   <% end %>
   <div class="notification__content">
     <% category = notification.json_data["reaction"]["category"] %>
-    <%= _t.verb(
+    <%= t("verb",
+          scope: _t,
           count: 1,
           start: "",
           actors: link_to(notification.json_data["user"]["name"], notification.json_data["user"]["path"], class: "crayons-link fw-bold"),
@@ -13,7 +14,6 @@
           title: link_to(notification.json_data["reaction"]["reactable"]["title"].blank? ? _t.your[notification.json_data["reaction"]["reactable_type"].downcase] : sanitize(notification.json_data["reaction"]["reactable"]["title"]), notification.json_data["reaction"]["reactable"]["path"],
                          class: "crayons-link fw-bold"),
           end: "",
-          reactions: tag.span(inline_svg_tag(reaction_image(category), class: "crayons-icon reaction-image mx-1 reaction-icon--#{category}", title: t.v.reactions.category[category.to_s])),
-        ) %>
+          reactions: tag.span(inline_svg_tag(reaction_image(category), class: "crayons-icon reaction-image mx-1 reaction-icon--#{category}", title: t.v.reactions.category[category.to_s]))) %>
   </div>
 </div>

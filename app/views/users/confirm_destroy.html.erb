@@ -1,33 +1,33 @@
-<% _t = t.v.users.destroy %>
+<% _t = "v.users.destroy" %>
 <div class="user-settings-page crayons-layout crayons-layout--limited-l gap-0">
   <div class="crayons-card min-w-0 text-padding">
-    <h2 class="crayons-title mb-4"><%= _t.heading %></h2>
+    <h2 class="crayons-title mb-4"><%= t("heading", scope: _t) %></h2>
     <div class="settings-form">
         <%= form_tag user_full_delete_path, method: :delete, autocomplete: "off", id: "delete__account", class: "grid gap-4 mb-4" do %>
-          <%= _t.desc %>
+          <%= t("desc", scope: _t) %>
           <ul class="my-0 ml-6 list-disc">
-            <li><%= _t.desc_1 twitter: link_to(_t.twitter, "https://twitter.com/settings/applications"), github: link_to(_t.github, "https://github.com/settings/applications") %>
+            <li><%= t "desc_1", scope: _t, twitter: link_to(t("twitter", scope: _t), "https://twitter.com/settings/applications"), github: link_to(t("github", scope: _t), "https://github.com/settings/applications") %>
             </li>
             <%# TODO: expand the delete messaging later %>
-            <li><%= _t.desc_2 %></li>
-            <li><%= _t.desc_3 %></li>
+            <li><%= t("desc_2", scope: _t) %></li>
+            <li><%= t("desc_3", scope: _t) %></li>
           </ul>
-          <h3><%= _t.to_delete %></h3>
+          <h3><%= t("to_delete", scope: _t) %></h3>
         <div class="crayons-field m:w-50">
           <label for="delete__account__username__field" class="crayons-field__label">
-            <%= _t.type %>
+            <%= t("type", scope: _t) %>
           </label>
-          <input type="text" name="delete__account__username__field" class="crayons-textfield " id="delete__account__username__field" placeholder="<%= _t.username %>">
+          <input type="text" name="delete__account__username__field" class="crayons-textfield " id="delete__account__username__field" placeholder="<%= t("username", scope: _t) %>">
         </div>
         <div class="crayons-field m:w-50">
           <label for="delete__account__verification__field" class="crayons-field__label">
-            <%= _t.confirm word: _t.word %>
+            <%= t "confirm", scope: _t, word: t("word", scope: _t) %>
           </label>
           <input type="text" name="delete__account__verification__field" class="crayons-textfield" id="delete__account__verification__field">
         </div>
         <div>
           <button class="crayons-btn crayons-btn--danger" id="delete__account__btn" type="submit" disabled="true">
-            <%= _t.submit %>
+            <%= t("submit", scope: _t) %>
           </button>
         </div>
         <% end %>
@@ -36,14 +36,14 @@
         const deleteAccountUsernameInput = document.getElementById('delete__account__username__field');
         const deleteAcccountVerificationInput = document.getElementById('delete__account__verification__field');
         function bothInputsVerified() {
-          return deleteAccountUsernameInput.value === '<%= @user.username %>' && deleteAcccountVerificationInput.value === "<%= _t.word %>";
+          return deleteAccountUsernameInput.value === '<%= @user.username %>' && deleteAcccountVerificationInput.value === "<%= t("word", scope: _t) %>";
         }
         const disableDeleteAccountBtn = () => { deleteAccountBtn.disabled = !bothInputsVerified() };
         deleteAccountUsernameInput.addEventListener('input', disableDeleteAccountBtn);
         deleteAcccountVerificationInput.addEventListener('input', disableDeleteAccountBtn);
       </script>
       <p>
-        <%= _t.ghost ghost: link_to("@ghost", "/ghost"), click: email_link(text: _t.click, additional_info: { subject: "Request Account Deletion", body: @email_body }) %>
+        <%= t "ghost", scope: _t, ghost: link_to("@ghost", "/ghost"), click: email_link(text: t("click", scope: _t), additional_info: { subject: "Request Account Deletion", body: @email_body }) %>
       </p>
 
       <p>

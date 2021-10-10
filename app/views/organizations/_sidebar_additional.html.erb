@@ -1,10 +1,10 @@
-<% _t = t.v.organizations %>
+<% _t = "v.organizations" %>
 <div id="sidebar-wrapper-right" class="sidebar-wrapper sidebar-wrapper-right">
   <div class="sidebar-bg" id="sidebar-bg-right"></div>
   <div class="side-bar sidebar-additional showing" id="sidebar-additional">
     <% @organization.sponsorships.live.find_each do |sponsorship| %>
       <div class="sidebar-sponsorship-level">
-        <%= _t.sponsor.text level: _t.sponsor.level[sponsorship.level] %>
+        <%= t "sponsor.text", scope: _t, level: _t.sponsor.level[sponsorship.level] %>
       </div>
     <% end %>
 
@@ -14,7 +14,7 @@
     <% if @organization.users.any? %>
       <div class="widget">
         <div class="widget-suggested-follows-container">
-          <header><h4><%= _t.team %></h4></header>
+          <header><h4><%= t("team", scope: _t) %></h4></header>
           <div class="widget-body">
             <% @organization.users.find_each do |user| %>
               <div class="widget-user-pic">

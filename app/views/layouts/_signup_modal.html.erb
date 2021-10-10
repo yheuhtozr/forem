@@ -1,4 +1,4 @@
-<% _t = t.v.main.modal %>
+<% _t = "v.main.modal" %>
 <div id="global-signup-modal" class="authentication-modal hidden">
 <div class="authentication-modal__container">
   <figure class="authentication-modal__image-container">
@@ -13,11 +13,11 @@
     </p>
   </div>
   <div class="authentication-modal__actions">
-    <a href="<%= sign_up_path %>" class="crayons-btn" aria-label="<%= _t.login.aria_label %>" data-no-instant>
-      <%= _t.login.text %>
+    <a href="<%= sign_up_path %>" class="crayons-btn" aria-label="<%= t("login.aria_label", scope: _t) %>" data-no-instant>
+      <%= t("login.text", scope: _t) %>
     </a>
-    <a href="<%= sign_up_path(state: "new-user") %>" class="crayons-btn crayons-btn--ghost-brand" aria-label="<%= _t.create.aria_label %>" data-no-instant>
-      <%= _t.create.text %>
+    <a href="<%= sign_up_path(state: "new-user") %>" class="crayons-btn crayons-btn--ghost-brand" aria-label="<%= t("create.aria_label", scope: _t) %>" data-no-instant>
+      <%= t("create.text", scope: _t) %>
     </a>
   </div>
   </div>

@@ -1,13 +1,13 @@
-<% _t = t.v.liquids.wikipedia %>
+<% _t = "v.liquids.wikipedia" %>
 <div class="ltag__wikipedia--container">
   <div class="ltag__wikipedia--header">
-    <img src="<%= ActionController::Base.helpers.asset_path("wikipedia-logo.svg") %>" class="ltag__wikipedia--logo" alt="Wikipedia Logo" aria-label="<%= _t.logo %>">
+    <img src="<%= ActionController::Base.helpers.asset_path("wikipedia-logo.svg") %>" class="ltag__wikipedia--logo" alt="Wikipedia Logo" aria-label="<%= t("logo", scope: _t) %>">
     <a href="<%= url %>" target="_blank" rel="noopener noreferrer"><%= title %></a>
   </div>
   <div class="ltag__wikipedia--extract"><%= (HTML_Truncator.truncate extract, 150).html_safe %></div>
   <div class="ltag__wikipedia--btn--container">
     <button class="ltag__wikipedia--btn" type="button">
-      <a href="<%= url %>" target="_blank" rel="noopener noreferrer"><%= _t.view %></a>
+      <a href="<%= url %>" target="_blank" rel="noopener noreferrer"><%= t("view", scope: _t) %></a>
     </button>
   </div>
 </div>

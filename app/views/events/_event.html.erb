@@ -1,4 +1,4 @@
-<% _t = t.v.events %>
+<% _t = "v.events" %>
 <style>
   .container .event {
     padding: 20px;
@@ -60,17 +60,17 @@
     <img src="<%= optimized_image_url(event.cover_image_url, width: 500) %>" alt="event image" loading="lazy" />
   </div>
   <div class="event-details">
-    <h3><a href="/events/<%= event.slug %>"><%= _t.heading category: event.category, title: event.title %></a></h3>
+    <h3><a href="/events/<%= event.slug %>"><%= t "heading", scope: _t, category: event.category, title: event.title %></a></h3>
     <p>
-      <%= _t.date %><span class="utc-date" data-datetime="<%= event.starts_at.strftime("%d %B %Y %H:%M UTC") %>">&nbsp;</span>
+      <%= t("date", scope: _t) %><span class="utc-date" data-datetime="<%= event.starts_at.strftime("%d %B %Y %H:%M UTC") %>">&nbsp;</span>
       <br>
-      <%= _t.time %><span class="utc-time" data-datetime="<%= event.starts_at.strftime("%d %B %Y %H:%M UTC") %>">&nbsp;</span>
+      <%= t("time", scope: _t) %><span class="utc-time" data-datetime="<%= event.starts_at.strftime("%d %B %Y %H:%M UTC") %>">&nbsp;</span>
       - <span class="utc-time" data-datetime="<%= event.ends_at.strftime("%d %B %Y %H:%M UTC") %>">&nbsp;</span>
       <br>
-      <%= _t.location %><a href="<%= event.location_url %>"><%= event.location_name %></a>
+      <%= t("location", scope: _t) %><a href="<%= event.location_url %>"><%= event.location_name %></a>
     </p>
-    <div title="<%= _t.calendar.title %>" class="addeventatc">
-      <%= _t.calendar.text %>
+    <div title="<%= t("calendar.title", scope: _t) %>" class="addeventatc">
+      <%= t("calendar.text", scope: _t) %>
       <span class="start utc"><%= event.starts_at.strftime("%d %B %Y %H:%M UTC") %></span>
       <span class="end utc"><%= event.ends_at.strftime("%d %B %Y %H:%M UTC") %></span>
       <span class="timezone">America/New_York</span>
@@ -83,7 +83,7 @@
       <span class="description">
         <%= event.description_html&.html_safe %>
         ------
-        <%= _t.calendar.link url: event.location_url %>
+        <%= t "calendar.link", scope: _t, url: event.location_url %>
       </span>
     </div>
   </div>

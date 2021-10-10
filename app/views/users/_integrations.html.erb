@@ -1,23 +1,23 @@
-<% _t = t.v.users.extensions.stackbit %>
+<% _t = "v.users.extensions.stackbit" %>
 <div class="crayons-card crayons-card--content-rows">
   <h2 class="crayons-subtitle-1">
-    <%= t.v.users.extensions.generate community: community_name %>
+    <%= t "v.users.extensions.generate", community: community_name %>
   </h2>
   <div class="single-app-integration">
     <% if current_user.decorate.stackbit_integration? %>
-      <h3><%= _t.connected %> <sup><%= t.v.beta %></sup><img width="20px" style="margin-left:2px;" src="<%= asset_path("checkmark-green.svg") %>" /></h3>
-      <p style="font-size: 1.1em"><strong><a href="https://app.stackbit.com/dashboard"><%= _t.goto %></a></strong></p>
-      <p style="font-size: 1.1em"><strong><a href="https://app.stackbit.com/create?ref=devto"><%= _t.create %></a></strong></p>
+      <h3><%= t("connected", scope: _t) %> <sup><%= t("v.beta") %></sup><img width="20px" style="margin-left:2px;" src="<%= asset_path("checkmark-green.svg") %>" /></h3>
+      <p style="font-size: 1.1em"><strong><a href="https://app.stackbit.com/dashboard"><%= t("goto", scope: _t) %></a></strong></p>
+      <p style="font-size: 1.1em"><strong><a href="https://app.stackbit.com/create?ref=devto"><%= t("create", scope: _t) %></a></strong></p>
     <% else %>
       <h3 class="crayons-subtitle-2 flex items-center">
-        <%= _t.connect %>
-        <span class="ml-2 crayons-indicator crayons-indicator--accent"><%= t.v.beta %></span>
+        <%= t("connect", scope: _t) %>
+        <span class="ml-2 crayons-indicator crayons-indicator--accent"><%= t("v.beta") %></span>
       </h3>
       <p class="mb-4">
-        <%= _t.desc community: community_name %>
+        <%= t "desc", scope: _t, community: community_name %>
       </p>
       <a href="/connecting-with-stackbit" class="crayons-btn">
-        <%= _t.start %>
+        <%= t("start", scope: _t) %>
       </a>
     <% end %>
   </div>

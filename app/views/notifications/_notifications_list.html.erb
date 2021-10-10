@@ -1,4 +1,4 @@
-<% _t = t.v.notifications.error %>
+<% _t = "v.notifications.error" %>
 <% @notifications.each do |notification| %>
   <div
     class="mb-2 spec-notification <%= "unseen" unless notification.read? %>"
@@ -10,8 +10,8 @@
   <% Honeybadger.notify(e, context: { notification_id: notification.id }) %>
 
   <div class="align-center p-9 py-10 color-base-80 crayons-card mb-2">
-    <h2 class="fw-bold fs-l"><%= _t.subtitle %></h2>
-    <p class="color-base-60 pt-2"><%= _t.desc %></p>
+    <h2 class="fw-bold fs-l"><%= t("subtitle", scope: _t) %></h2>
+    <p class="color-base-60 pt-2"><%= t("desc", scope: _t) %></p>
   </div>
 <% end %>
 

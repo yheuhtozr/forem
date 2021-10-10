@@ -1,9 +1,9 @@
-<% _t = t.v.users.org.admin %>
+<% _t = "v.users.org.admin" %>
 <%= javascript_packs_with_chunks_tag "colorPreview", "clipboardCopy", defer: true %>
 <%= render "shared/webcomponents_loader_script" %>
 
 <div class="crayons-card crayons-card--content-rows">
-  <h2><%= _t.members %></h2>
+  <h2><%= t("members", scope: _t) %></h2>
 
   <div class="grid gap-2">
     <% @org_organization_memberships.each do |org_membership| %>
@@ -11,11 +11,11 @@
         <p class="fw-medium flex-1">
           <a href="<%= org_membership.user.path %>"><%= org_membership.user.name %></a>
           <% if org_membership.user == @user %>
-            <span class="crayons-indicator"><%= _t.you %></span>
+            <span class="crayons-indicator"><%= t("you", scope: _t) %></span>
           <% end %>
 
           <% if org_membership.type_of_user == "admin" %>
-            <span class="crayons-indicator crayons-indicator--critical"><%= _t.admin %></span>
+            <span class="crayons-indicator crayons-indicator--critical"><%= t("admin", scope: _t) %></span>
           <% end %>
         </p>
 
@@ -23,21 +23,21 @@
           <% if org_membership.user == @user && org_membership.type_of_user == "admin" %>
           <!-- TODO: ? -->
           <% elsif org_membership.user != @user && org_membership.type_of_user == "admin" %>
-            <%= form_tag "/users/remove_org_admin", onsubmit: "return confirm('#{_t.revoke.confirm user: org_membership.user.name}');" do %>
+            <%= form_tag "/users/remove_org_admin", onsubmit: "return confirm('#{t 'revoke.confirm', scope: _t, user: org_membership.user.name}');" do %>
               <%= hidden_field_tag "user_id", org_membership.user_id %>
               <%= hidden_field_tag "organization_id", @organization.id %>
-              <button class="crayons-btn crayons-btn--secondary ml-2" title="<%= _t.revoke.title %>" type="submit"><%= _t.revoke.text %></button>
+              <button class="crayons-btn crayons-btn--secondary ml-2" title="<%= t("revoke.title", scope: _t) %>" type="submit"><%= t("revoke.text", scope: _t) %></button>
             <% end %>
           <% else %>
-            <%= form_tag "/users/add_org_admin", onsubmit: "return confirm('#{_t.make.confirm user: org_membership.user.name}');" do %>
+            <%= form_tag "/users/add_org_admin", onsubmit: "return confirm('#{t 'make.confirm', scope: _t, user: org_membership.user.name}');" do %>
               <%= hidden_field_tag "user_id", org_membership.user_id %>
               <%= hidden_field_tag "organization_id", @organization.id %>
-              <button class="crayons-btn crayons-btn--secondary ml-2" title="<%= _t.make.title %>" type="submit"><%= _t.make.text %></button>
+              <button class="crayons-btn crayons-btn--secondary ml-2" title="<%= t("make.title", scope: _t) %>" type="submit"><%= t("make.text", scope: _t) %></button>
             <% end %>
-            <%= form_tag "/users/remove_from_org", onsubmit: "return confirm('Are you sure you want remove #{_t.remove.confirm user: org_membership.user.name} from the organization?');" do %>
+            <%= form_tag "/users/remove_from_org", onsubmit: "return confirm('Are you sure you want remove #{t 'remove.confirm', scope: _t, user: org_membership.user.name} from the organization?');" do %>
               <%= hidden_field_tag "user_id", org_membership.user_id %>
               <%= hidden_field_tag "organization_id", @organization.id %>
-              <button class="crayons-btn crayons-btn--secondary ml-2" title="<%= _t.remove.title %>" type="submit"><%= _t.remove.text %></button>
+              <button class="crayons-btn crayons-btn--secondary ml-2" title="<%= t("remove.title", scope: _t) %>" type="submit"><%= t("remove.text", scope: _t) %></button>
             <% end %>
           <% end %>
         </div>
@@ -46,36 +46,36 @@
   </div>
 
   <header>
-    <h2 class="mb-2"><%= _t.grow %></h2>
-    <p><%= _t.invite %></p>
+    <h2 class="mb-2"><%= t("grow", scope: _t) %></h2>
+    <p><%= t("invite", scope: _t) %></p>
   </header>
 
   <div class="crayons-card crayons-card--secondary p-4">
     <ol class="list-decimal pl-6 mb-2">
-      <li><%= _t.inst1 url: link_to(app_url, app_url) %></li>
-      <li><%= _t.inst2 url: link_to(app_url(user_settings_path(:organization)), app_url(user_settings_path(:organization))) %></li>
-      <li><%= _t.inst3 %></li>
+      <li><%= t "inst1", scope: _t, url: link_to(app_url, app_url) %></li>
+      <li><%= t "inst2", scope: _t, url: link_to(app_url(user_settings_path(:organization)), app_url(user_settings_path(:organization))) %></li>
+      <li><%= t("inst3", scope: _t) %></li>
     </ol>
     <p>
-      <%= _t.secret_code %>
+      <%= t("secret_code", scope: _t) %>
       <clipboard-copy for="settings-org-secret" onclick="nextElementSibling.hidden = false">
-        <input type="text" class="ff-monospace ff-s fw-medium" id="settings-org-secret" value="<%= @organization.secret %>" readonly aria-label="<%= _t.copy.aria_label %>">
-        <%= inline_svg_tag("copy.svg", aria: true, class: "crayons-icon", title: _t.copy.icon) %>
+        <input type="text" class="ff-monospace ff-s fw-medium" id="settings-org-secret" value="<%= @organization.secret %>" readonly aria-label="<%= t("copy.aria_label", scope: _t) %>">
+        <%= inline_svg_tag("copy.svg", aria: true, class: "crayons-icon", title: t("copy.icon", scope: _t)) %>
       </clipboard-copy>
-      <span class="copy-text-announcer" id="copy-text-announcer" role="alert" hidden><%= _t.copy.text %></span>
+      <span class="copy-text-announcer" id="copy-text-announcer" role="alert" hidden><%= t("copy.text", scope: _t) %></span>
   </div>
 
   <div class="flex items-center">
-    <%= form_tag "/organizations/generate_new_secret", onsubmit: "return confirm('#{_t.gen.confirm}');" do %>
+    <%= form_tag "/organizations/generate_new_secret", onsubmit: "return confirm('#{t('gen.confirm', scope: _t)}');" do %>
       <%= hidden_field_tag "organization[id]", @organization.id %>
-      <button type="submit" class="crayons-btn crayons-btn--secondary"><%= _t.gen.submit %></button>
+      <button type="submit" class="crayons-btn crayons-btn--secondary"><%= t("gen.submit", scope: _t) %></button>
     <% end %>
-    <p class="fw-medium color-accent-danger ml-3"><%= _t.gen.text %></p>
+    <p class="fw-medium color-accent-danger ml-3"><%= t("gen.text", scope: _t) %></p>
   </div>
 </div>
 
 <div class="crayons-card crayons-card--content-rows">
-  <h2><%= _t.details %></h2>
+  <h2><%= t("details", scope: _t) %></h2>
 
   <%= form_for @organization, html: { class: "grid gap-6" } do |f| %>
     <%= f.hidden_field :id %>
@@ -86,7 +86,7 @@
     <div class="crayons-field">
       <%= f.label :slug, class: "crayons-field__label" %>
       <%= f.text_field :slug, maxlength: 18, minlength: 2, class: "crayons-textfield" %>
-      <p class="crayons-field__description"><%= _t.form.slug slug: app_url(@organization.slug) %></p>
+      <p class="crayons-field__description"><%= t "form.slug", scope: _t, slug: app_url(@organization.slug) %></p>
     </div>
 
     <div class="crayons-field">
@@ -136,12 +136,12 @@
     <div class="crayons-field">
       <%= f.label :tag_line, class: "crayons-field__label" %>
       <%= f.text_field :tag_line, maxlength: 60, class: "crayons-textfield" %>
-      <p class="crayons-field__description"><%= _t.form.tag_line %></p>
+      <p class="crayons-field__description"><%= t("form.tag_line", scope: _t) %></p>
     </div>
     <div class="crayons-field">
       <%= f.label :summary, class: "crayons-field__label" %>
       <%= f.text_area :summary, maxlength: 250, class: "crayons-textfield" %>
-      <p class="crayons-field__description"><%= _t.form.summary %></p>
+      <p class="crayons-field__description"><%= t("form.summary", scope: _t) %></p>
     </div>
 
     <%= render partial: "shared/logo_design", locals: { f: f, account: @organization_membership.organization } %>
@@ -149,79 +149,79 @@
     <div class="crayons-field">
       <%= f.label :location, class: "crayons-field__label" %>
       <%= f.text_field :location, maxlength: 64, class: "crayons-textfield" %>
-      <p class="crayons-field__description"><%= _t.form.location %></p>
+      <p class="crayons-field__description"><%= t("form.location", scope: _t) %></p>
     </div>
     <div class="crayons-field">
       <%= f.label :email, class: "crayons-field__label" %>
       <%= f.text_field :email, maxlength: 64, class: "crayons-textfield" %>
-      <p class="crayons-field__description"><%= _t.form.email %></p>
+      <p class="crayons-field__description"><%= t("form.email", scope: _t) %></p>
     </div>
     <div class="crayons-field">
       <%= f.label :company_size, class: "crayons-field__label" %>
       <%= f.text_field :company_size, maxlength: 7, class: "crayons-textfield" %>
-      <p class="crayons-field__description"><%= _t.form.company_size %></p>
+      <p class="crayons-field__description"><%= t("form.company_size", scope: _t) %></p>
     </div>
     <div class="crayons-field">
       <%= f.label :story, class: "crayons-field__label" %>
       <%= f.text_area :story, maxlength: 640, class: "crayons-textfield" %>
-      <p class="crayons-field__description"><%= _t.form.story %></p>
+      <p class="crayons-field__description"><%= t("form.story", scope: _t) %></p>
     </div>
     <div class="crayons-field">
       <%= f.label :tech_stack, class: "crayons-field__label" %>
       <%= f.text_area :tech_stack, maxlength: 640, class: "crayons-textfield" %>
-      <p class="crayons-field__description"><%= _t.form.tech_stack %></p>
+      <p class="crayons-field__description"><%= t("form.tech_stack", scope: _t) %></p>
     </div>
     <header>
-      <h2 class="mb-2"><%= _t.cta %></h2>
-      <p><%= _t.cta_desc %></p>
+      <h2 class="mb-2"><%= t("cta", scope: _t) %></h2>
+      <p><%= t("cta_desc", scope: _t) %></p>
     </header>
     <div class="crayons-field">
       <%= f.label :cta_body_markdown, class: "crayons-field__label" %>
       <%= f.text_area :cta_body_markdown, maxlength: 256, class: "crayons-textfield" %>
-      <p class="crayons-field__description"><%= _t.form.cta_body_markdown %></p>
+      <p class="crayons-field__description"><%= t("form.cta_body_markdown", scope: _t) %></p>
     </div>
     <div class="crayons-field">
       <%= f.label :cta_button_text, class: "crayons-field__label" %>
       <%= f.text_field :cta_button_text, maxlength: 20, class: "crayons-textfield" %>
-      <p class="crayons-field__description"><%= _t.form.cta_button_text %></p>
+      <p class="crayons-field__description"><%= t("form.cta_button_text", scope: _t) %></p>
     </div>
     <div class="crayons-field">
       <%= f.label :cta_button_url, class: "crayons-field__label" %>
       <%= f.text_field :cta_button_url, maxlength: 150, class: "crayons-textfield" %>
     </div>
 
-    <button class="crayons-btn w-max" type="submit"><%= _t.form.submit %></button>
+    <button class="crayons-btn w-max" type="submit"><%= t("form.submit", scope: _t) %></button>
   <% end %>
 </div>
 
 <div class="crayons-card crayons-card--content-rows">
   <header>
-    <h2 class="color-accent-danger"><%= t.v.users.danger %></h2>
+    <h2 class="color-accent-danger"><%= t("v.users.danger") %></h2>
   </header>
   <div class="crayons-field">
     <div class="grid gap-2">
       <header>
-        <h2><%= _t.delete.heading %></h2>
+        <h2><%= t("delete.heading", scope: _t) %></h2>
       </header>
       <p>
-        <%= _t.delete.desc %>
+        <%= t("delete.desc", scope: _t) %>
       </p>
       <% if @org_organization_memberships.size === 1 && @organization.articles_count.zero? %>
-        <% onsubmit = "return confirm('#{_t.delete.confirm name: @organization.name}');" %>
+        <% onsubmit = "return confirm('#{t 'delete.confirm', scope: _t, name: @organization.name}');" %>
         <%= form_tag organization_path(@organization.id), method: :delete, onsubmit: onsubmit do %>
           <button class="crayons-btn crayons-btn--danger crayons-btn--icon-left" type="submit">
-            <%= _t.delete.submit name: @organization.name %>
+            <%= t "delete.submit", scope: _t, name: @organization.name %>
           </button>
         <% end %>
       <% else %>
         <div class="crayons-card crayons-card--secondary">
           <div class="crayons-card__body">
-            <%= _t.delete.unmet %>
+            <%= t("delete.unmet", scope: _t) %>
           </div>
         </div>
       <% end %>
       <p>
-        <%= _t.delete.questions email: link_to(ForemInstance.email, ForemInstance.email) %>
+        <%= t "delete.questions", scope: _t, email: link_to(ForemInstance.email, ForemInstance.email) %>
       </p>
     </div>
   </div>

@@ -1,19 +1,19 @@
-<% _t = t.v.listings.delete %>
+<% _t = "v.listings.delete" %>
 <main id="main-content" class="crayons-layout crayons-layout--limited-l gap-0">
   <div class="crayons-card crayons-card--secondary text-styles text-styles--secondary text-padding -mb-1 mx-3 m:mx-6 mt-3">
     <%= @listing.title %>
   </div>
   <div class="crayons-card text-padding">
-    <h1 class="crayons-subtitle-1 mb-2"><%= _t.subtitle %></h1>
+    <h1 class="crayons-subtitle-1 mb-2"><%= t("subtitle", scope: _t) %></h1>
     <p class="fs-l mb-4">
-      <%= _t.desc action: link_to(@listing.published ? _t.desc.unpublish : _t.desc.edit, edit_listing_path(@listing), data: { no_instant: "" }) %>
+      <%= t "desc", scope: _t, action: link_to(@listing.published ? t("desc.unpublish", scope: _t) : t("desc.edit", scope: _t), edit_listing_path(@listing), data: { no_instant: "" }) %>
     </p>
 
     <%= form_tag listing_path(@listing), method: :delete do %>
-      <button class="crayons-btn crayons-btn--danger"><%= _t.submit %></button>
+      <button class="crayons-btn crayons-btn--danger"><%= t("submit", scope: _t) %></button>
 
       <a data-no-instant href="<%= edit_listing_path(@listing) %>" class="crayons-btn crayons-btn--secondary">
-        <%= @listing.published ? _t.unpublish : _t.edit %>
+        <%= @listing.published ? t("unpublish", scope: _t) : t("edit", scope: _t) %>
       </a>
     <% end %>
   </div>

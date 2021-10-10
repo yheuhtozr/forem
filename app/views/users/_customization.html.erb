@@ -1,4 +1,4 @@
-<% _t = t.v.users.custom %>
+<% _t = "v.users.custom" %>
 <%= javascript_packs_with_chunks_tag "stickySaveFooter", defer: true %>
 
 <%= form_for @users_setting,
@@ -9,11 +9,11 @@
 
   <div class="crayons-card crayons-card--content-rows">
     <h2 class="crayons-subtitle-1">
-      <%= _t.appearance %>
+      <%= t("appearance", scope: _t) %>
     </h2>
 
     <fieldset class="crayons-field">
-      <legend class="crayons-field__label"><%= _t.theme %></legend>
+      <legend class="crayons-field__label"><%= t("theme", scope: _t) %></legend>
       <div class="theme-selector-field grid gap-4 grid-cols-2 l:grid-cols-3">
         <% Users::Setting.config_themes.keys.each do |theme| %>
           <%= render partial: "theme_selector", locals: { f: f, theme: theme } %>
@@ -22,7 +22,7 @@
     </fieldset>
 
     <div class="crayons-field">
-      <%= f.label :config_font, _t.font, class: "crayons-field__label" %>
+      <%= f.label :config_font, t("font", scope: _t), class: "crayons-field__label" %>
       <div class="theme-selector-field grid gap-4 grid-cols-2 l:grid-cols-3">
         <% Users::Setting.config_fonts.keys.each do |font| %>
           <%= render partial: "font_selector", locals: { f: f, font: font } %>
@@ -31,7 +31,7 @@
     </div>
 
     <div class="crayons-field">
-      <%= f.label :config_navbar, _t.navbar, class: "crayons-field__label" %>
+      <%= f.label :config_navbar, t("navbar", scope: _t), class: "crayons-field__label" %>
       <div class="theme-selector-field grid gap-4 grid-cols-2 l:grid-cols-3">
         <% Users::Setting.config_navbars.keys.each do |navbar| %>
           <%= render partial: "navbar_selector", locals: { f: f, navbar: navbar } %>
@@ -42,10 +42,10 @@
 
   <div class="crayons-card crayons-card--content-rows">
     <h2 class="crayons-subtitle-1">
-      <%= _t.writing %>
+      <%= t("writing", scope: _t) %>
     </h2>
     <div class="crayons-field">
-      <%= f.label :editor_version, _t.editor, class: "crayons-field__label" %>
+      <%= f.label :editor_version, t("editor", scope: _t), class: "crayons-field__label" %>
       <div class="theme-selector-field grid gap-4 grid-cols-2 l:grid-cols-3">
         <% Users::Setting.editor_versions.keys.each do |version| %>
           <%= render partial: "editor_selector", locals: { f: f, version: version } %>
@@ -53,32 +53,32 @@
       </div>
     </div>
     <div class="crayons-field">
-      <%= f.label :writing_lang, _t.lang, class: "crayons-field__label" %>
+      <%= f.label :writing_lang, t("lang", scope: _t), class: "crayons-field__label" %>
       <%= f.text_field :writing_lang, class: "crayons-textfield", placeholder: "en-GB-oed", value: @users_setting.writing_lang %>
       <% groups = { site: %i[en-us ja], special: %i[mul und zxx], discard: %i[mis] } %>
       <% categories = t("languages").group_by { |k, _| groups.detect { |_g, a| a.include?(k) }&.first || (k.to_s.start_with?("x-v3-") ? :cla : :others) } %>
       <% collator = ICU::Collation::Collator.new(I18n.locale.to_s) %>
-      <select class="crayons-select" data-for="users_setting_writing_lang" oninput="fillInOption(event)" aria-label="<%= _t.langs.aria_label %>">
-        <option disabled selected><%= _t.langs.select %></option>
+      <select class="crayons-select" data-for="users_setting_writing_lang" oninput="fillInOption(event)" aria-label="<%= t("langs.aria_label", scope: _t) %>">
+        <option disabled selected><%= t("langs.select", scope: _t) %></option>
         <%= grouped_options_for_select(%i[site cla special others].map { |gr| [_t.langs[gr], categories[gr].sort { |a, b| collator.compare a[1], b[1] }.map { |(c, l)| ["#{l} [#{c}]", c.to_s] }] }) %>
       </select>
     </div>
-    <p><%= _t.lang_desc %></p>
+    <p><%= t("lang_desc", scope: _t) %></p>
   </div>
 
   <div class="crayons-card crayons-card--content-rows">
     <h2 class="crayons-subtitle-1">
-      <%= _t.content %>
+      <%= t("content", scope: _t) %>
     </h2>
     <div class="crayons-field">
-      <%= f.label :experience_level, _t.level, class: "crayons-field__label" %>
+      <%= f.label :experience_level, t("level", scope: _t), class: "crayons-field__label" %>
       <div class="theme-selector-field grid grid-cols-5">
         <% user_experience_levels.each_with_index do |exp, i| %>
           <%= render partial: "experience_selector", locals: { f: f, exp: exp, i: i, label: user_experience_labels } %>
         <% end %>
       </div>
       <p>
-        <%= _t.level_desc %>
+        <%= t("level_desc", scope: _t) %>
       </p>
     </div>
   </div>
@@ -86,22 +86,22 @@
   <div class="crayons-card crayons-card--content-rows">
     <header>
       <h2 class="crayons-subtitle-1">
-        <%= _t.sponsor %>
+        <%= t("sponsor", scope: _t) %>
       </h2>
       <p>
-        <%= _t.sponsor_desc %>
+        <%= t("sponsor_desc", scope: _t) %>
       </p>
     </header>
 
     <fieldset class="grid gap-4">
       <div class="crayons-field crayons-field--checkbox">
         <%= f.check_box :display_sponsors, class: "crayons-checkbox" %>
-        <%= f.label :display_sponsors, _t.sponsor_field, class: "crayons-field__label" %>
+        <%= f.label :display_sponsors, t("sponsor_field", scope: _t), class: "crayons-field__label" %>
       </div>
 
       <div class="crayons-field crayons-field--checkbox">
         <%= f.check_box :permit_adjacent_sponsors, class: "crayons-checkbox" %>
-        <%= f.label :permit_adjacent_sponsors, _t.adjacent, class: "crayons-field__label" %>
+        <%= f.label :permit_adjacent_sponsors, t("adjacent", scope: _t), class: "crayons-field__label" %>
       </div>
     </fieldset>
   </div>
@@ -109,23 +109,23 @@
   <div class="crayons-card crayons-card--content-rows">
     <header>
       <h2 class="crayons-subtitle-1">
-        <%= _t.announce %>
+        <%= t("announce", scope: _t) %>
       </h2>
       <p>
-        <%= _t.announce_desc %>
+        <%= t("announce_desc", scope: _t) %>
       </p>
     </header>
 
     <fieldset class="grid gap-4">
       <div class="crayons-field crayons-field--checkbox">
         <%= f.check_box :display_announcements, class: "crayons-checkbox" %>
-        <%= f.label :display_announcements, _t.announce_field, class: "crayons-field__label" %>
+        <%= f.label :display_announcements, t("announce_field", scope: _t), class: "crayons-field__label" %>
       </div>
     </fieldset>
   </div>
 
   <div class="save-footer crayons-card crayons-card--content-rows">
-    <button class="crayons-btn" type="submit"><%= _t.save %></button>
+    <button class="crayons-btn" type="submit"><%= t("save", scope: _t) %></button>
   </div>
 <% end %>
 

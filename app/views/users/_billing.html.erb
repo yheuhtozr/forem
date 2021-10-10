@@ -1,7 +1,7 @@
-<% _t = t.v.users.billing %>
+<% _t = "v.users.billing" %>
 <div class="crayons-card crayons-card--content-rows">
   <h2 class="crayons-subtitle-1">
-    <%= _t.heading %>
+    <%= t("heading", scope: _t) %>
   </h2>
 
   <% if current_user.stripe_id_code.blank? %>
@@ -14,25 +14,25 @@
         <% end %>
       </article>
 
-      <button id="add-credit-card-button" class="crayons-btn credit-card-button" type="button"><%= _t.add %></button>
+      <button id="add-credit-card-button" class="crayons-btn credit-card-button" type="button"><%= t("add", scope: _t) %></button>
     <% end %>
   <% else %>
-    <div class="billing-history-header"><%= _t.cards %></div>
+    <div class="billing-history-header"><%= t("cards", scope: _t) %></div>
     <% @customer.sources.each do |source| %>
       <div class="billing-item">
-        <p><%= _t.number brand: source.brand, last: source.last4 %></p>
-        <p class="billing-item-detail"><%= _t.exp month: source.exp_month, year: source.exp_year %></p>
+        <p><%= t "number", scope: _t, brand: source.brand, last: source.last4 %></p>
+        <p class="billing-item-detail"><%= t "exp", scope: _t, month: source.exp_month, year: source.exp_year %></p>
         <% if source.id == @customer.default_source %>
-          <p class="billing-item-detail billing-item-green"><%= _t.primary %></p>
+          <p class="billing-item-detail billing-item-green"><%= t("primary", scope: _t) %></p>
           <%= form_tag "/stripe_active_cards/#{source.id}", method: :delete do %>
-            <button class="crayons-btn crayons-btn--danger"><%= _t.remove %></button>
+            <button class="crayons-btn crayons-btn--danger"><%= t("remove", scope: _t) %></button>
           <% end %>
         <% else %>
           <%= form_tag "/stripe_active_cards/#{source.id}", method: :patch do %>
-            <button class="crayons-btn crayons-btn--secondary"><%= _t.make %></button>
+            <button class="crayons-btn crayons-btn--secondary"><%= t("make", scope: _t) %></button>
           <% end %>
           <%= form_tag "/stripe_active_cards/#{source.id}", method: :delete do %>
-            <button class="crayons-btn crayons-btn--danger"><%= _t.remove %></button>
+            <button class="crayons-btn crayons-btn--danger"><%= t("remove", scope: _t) %></button>
           <% end %>
         <% end %>
       </div>
@@ -40,7 +40,7 @@
     <%= form_tag "/stripe_active_cards", id: "credit-card-form", method: :post do %>
       <br />
       <div class="stripe-button-wrapper">
-        <button id="add-credit-card-button" class="crayons-btn credit-card-button"><%= _t.another %></button>
+        <button id="add-credit-card-button" class="crayons-btn credit-card-button"><%= t("another", scope: _t) %></button>
       </div>
     <% end %>
   <% end %>
@@ -62,10 +62,10 @@
       document.getElementById('add-credit-card-button').addEventListener('click', function (e) {
         // Open Checkout with further options:
         handler.open({
-          description: '<%= _t.add %>',
+          description: '<%= t("add", scope: _t) %>',
           amount: 0,
           email: "<%= current_user.email %>",
-          panelLabel: "<%= _t.label %>",
+          panelLabel: "<%= t("label", scope: _t) %>",
           allowRememberMe: false,
           zipCode: true,
         });

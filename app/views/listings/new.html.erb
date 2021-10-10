@@ -1,8 +1,8 @@
-<% _t = t.v.listings.new %>
-<% title _t.meta.title %>
+<% _t = "v.listings.new" %>
+<% title t("meta.title", scope: _t) %>
 
 <header class="crayons-layout crayons-layout--limited-l flex items-center justify-between p-2 l:p-4 l:pb-0">
-  <h1 class="crayons-title"><%= _t.heading %></h1>
+  <h1 class="crayons-title"><%= t("heading", scope: _t) %></h1>
 </header>
 
 <main class="crayons-layout crayons-layout--2-cols crayons-layout--2-cols--inverted crayons-layout--limited-l">
@@ -11,17 +11,17 @@
   </div>
   <aside class="crayons-layout__sidebar-right px-3 m:px-0">
     <div class="crayons-card crayons-card--secondary p-3 m:p-6 mb-2 m:mb-4">
-      <span class="color-base-60"><%= _t.personal %></span>
+      <span class="color-base-60"><%= t("personal", scope: _t) %></span>
       <div class="flex m:flex-col items-center m:items-start justify-between">
         <strong class="fs-2xl m:fs-3xl lh-tight color-base-90 m:mb-4 block" id="test-credits-size"><%= @credits.size %></strong>
         <%# temporarily disable billing function %>
-        <%# a target="_blank" rel="noopener noreferrer" class="crayons-btn crayons-btn--secondary m:w-100" href="/credits/purchase" data-no-instant %><%#= _t.buy %><%# /a %>
+        <%# a target="_blank" rel="noopener noreferrer" class="crayons-btn crayons-btn--secondary m:w-100" href="/credits/purchase" data-no-instant %><%#= t("buy", scope: _t) %><%# /a %>
       </div>
     </div>
 
     <% if @organizations.present? %>
       <div class="crayons-card crayons-card--secondary p-3 m:p-6 mb-4">
-        <span class="color-base-60"><%= _t.organization %></label>
+        <span class="color-base-60"><%= t("organization", scope: _t) %></label>
         <% if @organizations.size > 1 %>
           <select id="org-credits-select" class="org-credits-select crayons-select my-2">
             <% @organizations.each do |org| %>
@@ -32,16 +32,16 @@
         <div class="flex m:flex-col items-center m:items-start justify-between">
           <strong class="fs-2xl m:fs-3xl lh-tight color-base-90 m:mb-4 block" id="org-credits-number"><%= @organizations.first.credits.unspent.size %></strong>
           <%# temporarily disable billing function %>
-          <%# a id="org-credits-purchase-link" target="_blank" rel="noopener noreferrer" class="crayons-btn crayons-btn--secondary m:w-100" href="/credits/purchase?organization_id=<%#= @organizations.first.id %#>" data-no-instant %><%#= _t.buy %><%# /a %>
+          <%# a id="org-credits-purchase-link" target="_blank" rel="noopener noreferrer" class="crayons-btn crayons-btn--secondary m:w-100" href="/credits/purchase?organization_id=<%#= @organizations.first.id %#>" data-no-instant %><%#= t("buy", scope: _t) %><%# /a %>
         </div>
         <%= javascript_packs_with_chunks_tag "listingForm", "orgCreditsSelector", defer: true %>
       </div>
     <% end %>
 
     <div class="fs-s color-base-60 mb-4">
-      <h3 class="fs-base fw-bold color-base-70 mb-2"><%= _t.disclaimer.subtitle %></h3>
-      <p class="mb-2"><%= _t.disclaimer.desc1 community: community_name %></p>
-      <p><%= _t.disclaimer.desc2 %></p>
+      <h3 class="fs-base fw-bold color-base-70 mb-2"><%= t("disclaimer.subtitle", scope: _t) %></h3>
+      <p class="mb-2"><%= t "disclaimer.desc1", scope: _t, community: community_name %></p>
+      <p><%= t("disclaimer.desc2", scope: _t) %></p>
     </div>
   </aside>
 </main>

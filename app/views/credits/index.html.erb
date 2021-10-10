@@ -1,5 +1,5 @@
-<% _t = t.v.credits %>
-<% title _t.meta.title %>
+<% _t = "v.credits" %>
+<% title t("meta.title", scope: _t) %>
 
 <div class="credits-container">
   <% if flash[:notice].present? %>
@@ -9,8 +9,8 @@
   <% end %>
 
   <div class="existing-credits">
-    <div class="existing-credits-status"><%= _t.status @user_unspent_credits_count %></div>
-    <a href="<%= purchase_credits_path %>" data-no-instant><%= _t.purchase %></a>
+    <div class="existing-credits-status"><%= t("status", scope: _t) @user_unspent_credits_count %></div>
+    <a href="<%= purchase_credits_path %>" data-no-instant><%= t("purchase", scope: _t) %></a>
 
     <%= render "ledger", items: @ledger[["User", current_user.id]] %>
   </div>
@@ -19,10 +19,10 @@
     <% @organizations.find_each do |org| %>
       <div class="existing-credits">
         <div class="existing-credits-status">
-          <%= _t.status.org name: org.name, num: tag.span(org.unspent_credits_count, id: "org-credits-number"), count: org.unspent_credits_count %></span>
+          <%= t "status.org", scope: _t, name: org.name, num: tag.span(org.unspent_credits_count, id: "org-credits-number"), count: org.unspent_credits_count %></span>
         </div>
         <a id="org-credits-purchase-link" href="<%= purchase_credits_path(organization_id: org.id) %>" data-no-instant>
-          <%= _t.purchase %>
+          <%= t("purchase", scope: _t) %>
         </a>
 
         <%= render "ledger", items: @ledger[["Organization", org.id]] %>
@@ -33,10 +33,10 @@
   <% if @user_unspent_credits_count.positive? %>
     <center>
       <p>
-        <a href="<%= new_listing_path %>"><%= _t.listing.create %></a>
+        <a href="<%= new_listing_path %>"><%= t("listing.create", scope: _t) %></a>
       </p>
       <p>
-        <a href="/listings/dashboard"><%= _t.listing.dashboard %></a>
+        <a href="/listings/dashboard"><%= t("listing.dashboard", scope: _t) %></a>
       </p>
     </center>
   <% end %>

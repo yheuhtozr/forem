@@ -1,4 +1,4 @@
-<% _t = t.v.sticky %>
+<% _t = "v.sticky" %>
 <div class="-mt-4">
   <a href="<%= actor.path %>" class="flex">
     <span class="<% if actor.class.name == "User" %>crayons-avatar crayons-avatar--xl<% elsif actor.class.name == "Organization" %>crayons-logo crayons-logo--xl<% end %>  mr-2 shrink-0">
@@ -13,7 +13,7 @@
 </div>
 <% if actor.tag_line.present? %>
   <div class="color-base-70">
-    <%= truncate (actor.tag_line || actor.summary || _t.no_summary), length: 200 %>
+    <%= truncate (actor.tag_line || actor.summary || t("no_summary", scope: _t)), length: 200 %>
   </div>
 <% end %>
 
@@ -23,7 +23,7 @@
       <% if actor.setting.display_email_on_profile && context != "sidebar" %>
         <li>
           <div class="key">
-            <%= _t.email %>
+            <%= t("email", scope: _t) %>
           </div>
           <div class="value">
             <a href="mailto:<%= actor.email %>"><%= actor.email %></a>
@@ -33,7 +33,7 @@
       <% if actor.profile.location.present? %>
         <li>
           <div class="key">
-            <%= _t.location %>
+            <%= t("location", scope: _t) %>
           </div>
           <div class="value">
             <%= actor.profile.location %>
@@ -54,7 +54,7 @@
       <% end %>
       <li>
         <div class="key">
-          <%= _t.created_at %>
+          <%= t("created_at", scope: _t) %>
         </div>
         <div class="value">
           <%= local_date(actor.created_at) %>
@@ -69,7 +69,7 @@
   <% if actor.cta_button_text.present? && actor.cta_button_url.present? %>
     <div>
       <a href="<%= actor.cta_button_url %>" class="crayons-btn crayons-btn--outlined w-100">
-        <%= actor.cta_button_text || _t.default_cta %>
+        <%= actor.cta_button_text || t("default_cta", scope: _t) %>
       </a>
     </div>
   <% end %>

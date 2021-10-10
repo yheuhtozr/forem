@@ -1,17 +1,17 @@
-<% _t = t.v.notifications.nav %>
-<nav class="hidden m:block pt-4" aria-label="<%= _t.aria_label %>">
+<% _t = "v.notifications.nav" %>
+<nav class="hidden m:block pt-4" aria-label="<%= t("aria_label", scope: _t) %>">
   <div>
     <% if @organizations.present? %>
       <h3 class="crayons-subtitle-3 mb-4 pl-2"><%= @user.name %></h3>
     <% end %>
     <a class="crayons-link crayons-link--block <%= "crayons-link--current" if params[:filter].blank? %>" href="/notifications">
-      <%= _t.all %>
+      <%= t("all", scope: _t) %>
     </a>
     <a class="crayons-link crayons-link--block <%= "crayons-link--current" if params[:filter].to_s.casecmp("comments").zero? && params[:org_id].blank? %>" href="/notifications/comments">
-      <%= _t.comments %>
+      <%= t("comments", scope: _t) %>
     </a>
     <a class="crayons-link crayons-link--block <%= "crayons-link--current" if params[:filter].to_s.casecmp("posts").zero? && params[:org_id].blank? %>" href="/notifications/posts">
-      <%= _t.posts %>
+      <%= t("posts", scope: _t) %>
     </a>
   </div>
   <% if @organizations.present? %>
@@ -19,17 +19,17 @@
       <div class="pt-6">
         <h3 class="crayons-subtitle-3 mb-4 pl-2"><%= org.name %></h3>
         <a class="crayons-link crayons-link--block <%= "crayons-link--current" if params[:filter].to_s.casecmp("org").zero? && params[:org_id].to_i == org.id %>" href="/notifications/org/<%= org.id %>">
-          <%= _t.all %>
+          <%= t("all", scope: _t) %>
         </a>
         <a class="crayons-link crayons-link--block <%= "crayons-link--current" if params[:filter].to_s.casecmp("comments").zero? && params[:org_id].to_i == org.id %>" href="/notifications/comments/<%= org.id %>">
-          <%= _t.comments %>
+          <%= t("comments", scope: _t) %>
         </a>
       </div>
     <% end %>
   <% end %>
 </nav>
 
-<nav class="block m:hidden px-4" aria-label="<%= _t.aria_label %>">
+<nav class="block m:hidden px-4" aria-label="<%= t("aria_label", scope: _t) %>">
   <% if @organizations.present? %>
     <select id="notifications-filter__select" class="crayons-select mb-2">
       <option value="/notifications"><%= @user.name %></option>
@@ -43,17 +43,17 @@
     <ul class="crayons-tabs__list">
       <li>
         <a data-text="All" class="crayons-tabs__item <%= "crayons-tabs__item--current" if params[:filter].blank? %>" href="/notifications" aria-current="<%= "page" if params[:filter].blank? %>">
-          <%= _t.all %>
+          <%= t("all", scope: _t) %>
         </a>
       </li>
       <li>
         <a data-text="Comments" class="crayons-tabs__item <%= "crayons-tabs__item--current" if params[:filter].to_s.casecmp("comments").zero? && params[:org_id].blank? %>" href="/notifications/comments" aria-current="<%= "page" if params[:filter].to_s.casecmp("comments").zero? && params[:org_id].blank? %>">
-          <%= _t.comments %>
+          <%= t("comments", scope: _t) %>
         </a>
       </li>
       <li>
         <a data-text="Posts" class="crayons-tabs__item <%= "crayons-tabs__item--current" if params[:filter].to_s.casecmp("posts").zero? && params[:org_id].blank? %>" href="/notifications/posts" aria-current="<%= "page" if params[:filter].to_s.casecmp("posts").zero? && params[:org_id].blank? %>">
-          <%= _t.posts %>
+          <%= t("posts", scope: _t) %>
         </a>
       </li>
     </ul>
@@ -62,10 +62,10 @@
     <% @organizations.each do |org| %>
       <div class="crayons-tabs <%= "hidden" unless params[:org_id].to_i == org.id %>">
         <a data-text="All" class="crayons-tabs__item <%= "crayons-tabs__item--current" if params[:filter].to_s.casecmp("org").zero? && params[:org_id].to_i == org.id %>" href="/notifications/org/<%= org.id %>">
-          <%= _t.all %>
+          <%= t("all", scope: _t) %>
         </a>
         <a data-text="Comments" class="crayons-tabs__item <%= "crayons-tabs__item--current" if params[:filter].to_s.casecmp("comments").zero? && params[:org_id].to_i == org.id %>" href="/notifications/comments/<%= org.id %>">
-          <%= _t.comments %>
+          <%= t("comments", scope: _t) %>
         </a>
       </div>
     <% end %>

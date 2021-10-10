@@ -1,15 +1,15 @@
-<% _t = t.v.users.extensions.github %>
+<% _t = "v.users.extensions.github" %>
 <% if show_integration %>
   <div class="crayons-card crayons-card--content-rows">
     <header>
       <h2 class="crayons-subtitle-1">
-        <%= _t.heading %>
+        <%= t("heading", scope: _t) %>
       </h2>
       <p class="color-base-70">
-        <%= _t.desc1 %>
+        <%= t("desc1", scope: _t) %>
       </p>
       <p class="color-base-70">
-        <em><%= _t.desc2 %></em>
+        <em><%= t("desc2", scope: _t) %></em>
       </p>
     </header>
 

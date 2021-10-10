@@ -1,9 +1,9 @@
-<% _t = t.v.organizations %>
+<% _t = "v.organizations" %>
 <% if @organization.company_size.present? || @organization.email.present? %>
   <div class="profile-header__bottom fs-base">
     <% if @organization.email.present? %>
       <div class="crayons-definition">
-        <strong class="crayons-definition__title"><%= _t.support %></strong>
+        <strong class="crayons-definition__title"><%= t("support", scope: _t) %></strong>
         <p class="crayons-definition__value">
           <a href="mailto:<%= sanitize @organization.email %>">
             <%= sanitize @organization.email %>
@@ -14,7 +14,7 @@
 
     <% if @organization.company_size.present? %>
       <div class="crayons-definition">
-        <strong class="crayons-definition__title"><%= _t.size %></strong>
+        <strong class="crayons-definition__title"><%= t("size", scope: _t) %></strong>
         <p class="crayons-definition__value"><%= @organization.company_size %></p>
       </div>
     <% end %>

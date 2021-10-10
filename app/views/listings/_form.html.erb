@@ -1,4 +1,4 @@
-<% _t = t.v.listings.form %>
+<% _t = "v.listings.form" %>
 <%= form_with(model: listing, local: true) do |form| %>
   <div class="crayons-card p-6 mb-6 grid gap-6">
     <%= render partial: "form_errors", locals: { listing: listing } %>
@@ -11,27 +11,27 @@
       <div class="grid gap-6">
         <div class="crayons-field">
           <%= form.label "title", class: "crayons-label" %>
-          <%= form.text_field "title", placeholder: _t.title.placeholder, class: "crayons-textfield" %>
+          <%= form.text_field "title", placeholder: t("title.placeholder", scope: _t), class: "crayons-textfield" %>
         </div>
 
         <div class="crayons-field">
           <%= form.label "body_markdown", class: "crayons-field__label" %>
-          <%= form.text_area "body_markdown", placeholder: _t.body_markdown.placeholder, class: "crayons-textfield" %>
-          <p class="crayons-field__description"><%= _t.body_markdown.desc %></p>
+          <%= form.text_area "body_markdown", placeholder: t("body_markdown.placeholder", scope: _t), class: "crayons-textfield" %>
+          <p class="crayons-field__description"><%= t("body_markdown.desc", scope: _t) %></p>
         </div>
 
         <div>
           <div class="crayons-field mb-4">
-            <label class="crayons-field__label" id="listing_category_placeholder"><%= _t.category.label %></label>
+            <label class="crayons-field__label" id="listing_category_placeholder"><%= t("category.label", scope: _t) %></label>
             <select class="crayons-select" id="listing_category_placeholder">
               <option>
-                <%= _t.category.placeholder %>
+                <%= t("category.placeholder", scope: _t) %>
               </option>
             </select>
           </div>
 
           <details>
-            <summary><%= _t.category.summary %></summary>
+            <summary><%= t("category.summary", scope: _t) %></summary>
           </details>
         </div>
         <%# The following tag_list field is overriden by the Tags JS component
@@ -41,14 +41,14 @@
         and executed. %>
         <div class="crayons-field">
           <%= form.label "tag_list", class: "crayons-field__label" %>
-          <%= form.text_field "tag_list", placeholder: _t.tags.placeholder, class: "crayons-textfield" %>
+          <%= form.text_field "tag_list", placeholder: t("tags.placeholder", scope: _t), class: "crayons-textfield" %>
         </div>
 
         <div class="crayons-field">
           <label class="crayons-field__label" for="expires_at_placeholder">
-            <%= t.helpers.label.listing.expires_at %>
+            <%= t("helpers.label.listing.expires_at") %>
             <p class="crayons-field__description">
-              <%= _t.expiry.desc %>
+              <%= t("expiry.desc", scope: _t) %>
             </p>
           </label>
           <input
@@ -60,8 +60,8 @@
         <% if @organizations.present? && @organizations.size > 0 %>
           <div class="crayons-field">
             <%= form.label "organization_id", class: "crayons-field__label" %>
-            <%= form.select :organization_id, { _t.organization.none => "None" }, {}, { class: "crayons-select m:max-w-50" } %>
-            <p class="crayons-field__description"><%= _t.organization.desc %></p>
+            <%= form.select :organization_id, { t("organization.none", scope: _t) => "None" }, {}, { class: "crayons-select m:max-w-50" } %>
+            <p class="crayons-field__description"><%= t("organization.desc", scope: _t) %></p>
           </div>
         <% end %>
 
@@ -73,8 +73,8 @@
             checked=true />
 
           <label class="crayons-field__label" for="contact_via_connect_placeholder">
-            <%= _t.connect.subtitle %>
-            <p class="crayons-field__description"><%= _t.connect.desc %></p>
+            <%= t("connect.subtitle", scope: _t) %>
+            <p class="crayons-field__description"><%= t("connect.desc", scope: _t) %></p>
           </label>
         </div>
       </div>
@@ -85,25 +85,25 @@
     <% end %>
 
     <div class="crayons-field">
-      <%= form.label "location", _t.location.label, class: "crayons-field__label" %>
-      <%= form.text_field "location", placeholder: _t.location.placeholder, class: "crayons-textfield m:max-w-50" %>
-      <p class="crayons-field__description"><%= _t.location.desc %></p>
+      <%= form.label "location", t("location.label", scope: _t), class: "crayons-field__label" %>
+      <%= form.text_field "location", placeholder: t("location.placeholder", scope: _t), class: "crayons-textfield m:max-w-50" %>
+      <p class="crayons-field__description"><%= t("location.desc", scope: _t) %></p>
     </div>
   </div>
 
   <div class="px-4 m:px-0">
     <% unless @credits.size > 0 || (@organizations.present? && @organizations.sum(:unspent_credits_count) > 0) %>
-      <div class="crayons-notice mb-4" aria-live="polite"><%= _t.no_credit %></div>
+      <div class="crayons-notice mb-4" aria-live="polite"><%= t("no_credit", scope: _t) %></div>
     <% end %>
     <div class="flex mb-4 items-center">
       <% if @credits.size > 0 || (@organizations.present? && @organizations.sum(:unspent_credits_count) > 0) %>
-        <%= form.submit _t.publish, class: "crayons-btn mr-2" %>
+        <%= form.submit t("publish", scope: _t), class: "crayons-btn mr-2" %>
       <% else %>
-        <a href="/credits/new" class="crayons-btn mr-2" data-no-instant><%= _t.purchase %></a>
+        <a href="/credits/new" class="crayons-btn mr-2" data-no-instant><%= t("purchase", scope: _t) %></a>
       <% end %>
-      <%= form.button _t.save, type: "submit", name: "listing[action]", class: "crayons-btn crayons-btn--secondary", value: "draft" %>
+      <%= form.button t("save", scope: _t), type: "submit", name: "listing[action]", class: "crayons-btn crayons-btn--secondary", value: "draft" %>
     </div>
 
-    <p class="fs-s color-base-70 mb-6"><%= _t.save_notice %></p>
+    <p class="fs-s color-base-70 mb-6"><%= t("save_notice", scope: _t) %></p>
   </div>
 <% end %>

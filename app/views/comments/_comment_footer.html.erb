@@ -1,4 +1,4 @@
-<% _t = t.v.comments.footer %>
+<% _t = "v.comments.footer" %>
 <footer class="comment__footer print-hidden">
   <button
     class="crayons-btn crayons-btn--ghost crayons-btn--icon-left crayons-btn--s mr-1 reaction-like inline-flex reaction-button"
@@ -8,9 +8,9 @@
     <%= inline_svg_tag("small-heart.svg",
                        aria: true,
                        class: "crayons-icon reaction-icon not-reacted",
-                       title: _t.heart.icon) %>
-    <%= inline_svg_tag("small-heart-filled.svg", aria: true, class: "crayons-icon reaction-icon--like reaction-icon reacted", title: _t.heart.icon) %>
-    <%= _t.heart.count num: tag.span((comment.public_reactions_count if comment.public_reactions_count.positive?), class: "reactions-count"), likes: tag.span(like_button_text(comment).html_safe, class: "reactions-label hidden m:inline-block") %>
+                       title: t("heart.icon", scope: _t)) %>
+    <%= inline_svg_tag("small-heart-filled.svg", aria: true, class: "crayons-icon reaction-icon--like reaction-icon reacted", title: t("heart.icon", scope: _t)) %>
+    <%= t "heart.count", scope: _t, num: tag.span((comment.public_reactions_count if comment.public_reactions_count.positive?), class: "reactions-count"), likes: tag.span(like_button_text(comment).html_safe, class: "reactions-label hidden m:inline-block") %>
   </button>
 
   <% unless @discussion_lock %>
@@ -21,13 +21,13 @@
         data-comment-id="<%= comment.id %>"
         data-path="<%= commentable.path %>/comments/<%= comment.id_code_generated %>"
         rel="nofollow">
-        <%= inline_svg_tag("small-comment.svg", aria: true, class: "crayons-icon reaction-icon not-reacted", title: _t.reply.icon) %>
-        <span class="hidden m:inline-block"><%= _t.reply.text %></span>
+        <%= inline_svg_tag("small-comment.svg", aria: true, class: "crayons-icon reaction-icon not-reacted", title: t("reply.icon", scope: _t)) %>
+        <span class="hidden m:inline-block"><%= t("reply.text", scope: _t) %></span>
       </a>
     <% else %>
       <span class="fs-s inline-flex items-center fs-italic color-base-50 pl-1">
-        <%= inline_svg_tag("small-thread.svg", aria: true, class: "crayons-icon", title: _t.thread.icon) %>
-        <%= _t.thread.text %>
+        <%= inline_svg_tag("small-thread.svg", aria: true, class: "crayons-icon", title: t("thread.icon", scope: _t)) %>
+        <%= t("thread.text", scope: _t) %>
       </span>
     <% end %>
   <% end %>

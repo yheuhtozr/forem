@@ -1,4 +1,4 @@
-<% _t = t.v.notifications.mention %>
+<% _t = "v.notifications.mention" %>
 <div class="crayons-card notification">
   <% json_data = notification.json_data %>
   <% cache "activity-profile-pic-#{json_data['user']['id']}-#{json_data['user']['profile_image_90']}" do %>
@@ -9,14 +9,13 @@
     <% if notification.json_data["article"] %>
       <header class="mb-4">
         <h2 class="fs-base fw-normal">
-          <%= _t.article(
-                user: link_to(json_data["user"]["name"], json_data["user"]["path"], class: "crayons-link fw-bold"),
-                if_org: if json_data["organization"]
-                          _t.if_org org: link_to(json_data["organization"]["name"], json_data["organization"]["path"], class: "crayons-link fw-bold")
-                        else
-                          ""
-                        end,
-              ) %>
+          <%= t("article", scope: _t,
+                           user: link_to(json_data["user"]["name"], json_data["user"]["path"], class: "crayons-link fw-bold"),
+                           if_org: if json_data["organization"]
+                                     t "if_org", scope: _t, org: link_to(json_data["organization"]["name"], json_data["organization"]["path"], class: "crayons-link fw-bold")
+                                   else
+                                     ""
+                                   end) %>
         </h2>
         <p class="lh-tight"><small class="fs-s color-base-60"><%= time_ago_in_words json_data["article"]["published_at"], scope: :"datetime.distance_in_words_ago" %></small></p>
       </header>
@@ -24,7 +23,7 @@
       <%= render "notifications/shared/article_preview", json_data: json_data, notification: notification, context: "default" %>
     <% elsif notification.json_data["comment"] %>
       <h2 class="fs-base fw-normal mb-4">
-        <%= _t.comment user: link_to(json_data["user"]["name"], json_data["user"]["path"], class: "crayons-link fw-bold") %>
+        <%= t "comment", scope: _t, user: link_to(json_data["user"]["name"], json_data["user"]["path"], class: "crayons-link fw-bold") %>
       </h2>
       <%= render "notifications/shared/comment_box", json_data: json_data, notification: notification, context: "default" %>
     <% end %>

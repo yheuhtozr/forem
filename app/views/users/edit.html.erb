@@ -1,5 +1,5 @@
-<% _t = t.v.users.settings %>
-<% title _t.meta.title %>
+<% _t = "v.users.settings" %>
+<% title t("meta.title", scope: _t) %>
 
 <main id="main-content">
   <% if flash[:settings_notice] %>
@@ -16,7 +16,7 @@
 
   <% if params[:state] == "previous-registration" %>
     <div class="crayons-banner crayons-banner--error" role="alert">
-      <%= _t.previous email: email_link %>
+      <%= t "previous", scope: _t, email: email_link %>
       <%= t("contact_prompts.if_any_questions_html") %>
     </div>
   <% end %>
@@ -27,15 +27,15 @@
         <% options = @organizations.pluck(:slug, :id).each do |arr| %>
           <% arr[0] = "@#{arr[0]}" %>
           <% arr[1] = "/settings/organization/#{arr[1]}" %>
-        <% end.to_h.merge(_t.new_org => "/settings/organization/new") %>
-        <%= _t.for name: tag.select(options_for_select(options, "/settings/organization/#{params[:org_id]}"), class: "crayons-select lh-tight w-25 align-text-top w-max", onchange: "window.location.href=this.value") %>
+        <% end.to_h.merge(t("new_org", scope: _t) => "/settings/organization/new") %>
+        <%= t "for", scope: _t, name: tag.select(options_for_select(options, "/settings/organization/#{params[:org_id]}"), class: "crayons-select lh-tight w-25 align-text-top w-max", onchange: "window.location.href=this.value") %>
         <%# For example: %>
         <%# <option value="/settings/organization/1>@devteam</option> %>
         <%# <option value="/settings/organization/new" selected>New Organization</option> %>
       </h1>
     <% else %>
       <h1 class="crayons-title">
-        <%= _t.for name: link_to("@#{@user.username.truncate(User::USERNAME_MAX_LENGTH)}", user_url(@user) || "#") %>
+        <%= t "for", scope: _t, name: link_to("@#{@user.username.truncate(User::USERNAME_MAX_LENGTH)}", user_url(@user) || "#") %>
       </h1>
     <% end %>
   </div>
@@ -64,13 +64,13 @@
     <div class="crayons-layout__content">
       <% if current_user.email.blank? %>
         <div class="crayons-notice crayons-notice--warning mb-6" aria-live="polite">
-          <h3 class="mb-2"><%= _t.complete.heading %></h3>
+          <h3 class="mb-2"><%= t("complete.heading", scope: _t) %></h3>
           <p>
-            <%= _t.complete.desc %>
+            <%= t("complete.desc", scope: _t) %>
             <% if @user.twitter_username.blank? %>
-              <%= _t.complete.twitter %>
+              <%= t("complete.twitter", scope: _t) %>
             <% elsif @user.github_username.blank? %>
-              <%= _t.complete.github %>
+              <%= t("complete.github", scope: _t) %>
             <% end %>
           </p>
         </div>
@@ -78,17 +78,17 @@
 
       <% if @user.unconfirmed_email.present? %>
         <div class="crayons-notice crayons-notice--warning mb-6" role="alert">
-          <h3 class="mb-2"><%= _t.email %></h3>
-          <p><%= _t.finalize email: link_to(@user.unconfirmed_email, "mailto:#{@user.unconfirmed_email}") %></p>
+          <h3 class="mb-2"><%= t("email", scope: _t) %></h3>
+          <p><%= t "finalize", scope: _t, email: link_to(@user.unconfirmed_email, "mailto:#{@user.unconfirmed_email}") %></p>
         </div>
       <% end %>
 
       <% if @user.errors.any? %>
-        <%= render partial: "users/errors", locals: { errors: @user.errors, title_suffix: t.v.users.errors.profile(@user.errors.size) } %>
+        <%= render partial: "users/errors", locals: { errors: @user.errors, title_suffix: t("v.users.errors.profile", @user.errors.size) } %>
       <% end %>
 
       <% if @organization&.errors&.any? %>
-        <%= render partial: "users/errors", locals: { errors: @organization.errors, title_suffix: t.v.users.errors.org(@organization.errors.size) } %>
+        <%= render partial: "users/errors", locals: { errors: @organization.errors, title_suffix: t("v.users.errors.org", @organization.errors.size) } %>
       <% end %>
 
       <%= render "users/#{@tab.tr('-', '_')}", tab: @tab %>

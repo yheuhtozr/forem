@@ -1,4 +1,4 @@
-<% _t = t.v.liquids.reddit %>
+<% _t = "v.liquids.reddit" %>
 <div class="ltag__reddit--container">
   <div class="ltag__reddit--title-container">
     <header>
@@ -11,7 +11,7 @@
         </h1>
         <div class="ltag__reddit--post-metadata">
           <span><%= created_at %></span>
-          <span><%= _t.author author: author %></span>
+          <span><%= t "author", scope: _t, author: author %></span>
         </div>
       </div>
     </header>
@@ -27,7 +27,7 @@
   </div>
   <div class="ltag__reddit--btn--container">
     <button class="ltag__reddit--btn" type="button">
-      <a href="<%= post_url %>" target="_blank" rel="noopener noreferrer"><%= _t.see %></a>
+      <a href="<%= post_url %>" target="_blank" rel="noopener noreferrer"><%= t("see", scope: _t) %></a>
     </button>
   </div>
 </div>

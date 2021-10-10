@@ -1,18 +1,18 @@
-<% _t = t.v.search.nav %>
+<% _t = "v.search.nav" %>
 <ul class="crayons-navigation">
   <li><a class="query-filter-button crayons-navigation__item" data-filter="class_name:Article" href="javascript:;">
-    <%= _t.posts %>
+    <%= t("posts", scope: _t) %>
   </a></li>
   <li><a class="query-filter-button crayons-navigation__item" data-filter="class_name:PodcastEpisode" href="javascript:;">
-    <%= _t.podcasts %>
+    <%= t("podcasts", scope: _t) %>
   </a></li>
   <li><a class="query-filter-button crayons-navigation__item" data-filter="class_name:User" href="javascript:;">
-    <%= _t.people %>
+    <%= t("people", scope: _t) %>
   </a></li>
   <li><a class="query-filter-button crayons-navigation__item" data-filter="class_name:Comment" href="javascript:;">
-    <%= _t.comments %>
+    <%= t("comments", scope: _t) %>
   </a></li>
   <li><a class="query-filter-button my-posts-query-button crayons-navigation__item" data-filter="MY_POSTS" href="javascript:;">
-    <%= _t.my %>
+    <%= t("my", scope: _t) %>
   </a></li>
 </ul>

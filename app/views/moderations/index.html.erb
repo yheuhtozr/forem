@@ -1,5 +1,5 @@
-<% _t = t.v.moderations %>
-<% title _t.heading %>
+<% _t = "v.moderations" %>
+<% title t("heading", scope: _t) %>
 
 <%= javascript_packs_with_chunks_tag "modCenter", defer: true %>
 
@@ -12,15 +12,15 @@
 
       <header class="mod-index-header hidden m:block">
         <h2 class="crayons-subtitle-1">
-          <%= @tag ? "##{@tag.name}" : _t.all %>
+          <%= @tag ? "##{@tag.name}" : t("all", scope: _t) %>
         </h2>
       </header>
 
       <section class="mod-index-body">
         <div class="mod-index-list-header lh-tight hidden m:grid">
-          <h2 class="mod-index-list-header__label"><%= _t.post %></h2>
-          <h2 class="mod-index-list-header__label"><%= _t.author %></h2>
-          <h2 class="mod-index-list-header__label align-center"><%= _t.date %></h2>
+          <h2 class="mod-index-list-header__label"><%= t("post", scope: _t) %></h2>
+          <h2 class="mod-index-list-header__label"><%= t("author", scope: _t) %></h2>
+          <h2 class="mod-index-list-header__label align-center"><%= t("date", scope: _t) %></h2>
         </div>
 
         <div class="mod-index-list" id="mod-index-list" data-articles="<%= @articles %>">
@@ -32,13 +32,13 @@
   </main>
 <% else %>
   <div class="container" style="margin-top: 90px;">
-    <h1 class="pt-5" style="text-align: center"><%= _t.notice.subtitle community: community_name %></h1>
+    <h1 class="pt-5" style="text-align: center"><%= t "notice.subtitle", scope: _t, community: community_name %></h1>
     <div class="body">
-      <p><%= _t.notice.desc1 community: community_name %></p>
-      <p><%= _t.notice.desc2 code: link_to(_t.notice.code, code_of_conduct_path), trusted: link_to(_t.notice.trusted, community_moderation_path), tag: link_to(_t.notice.tag, tag_moderation_path) %></p>
-      <p><%= _t.notice.desc3 email: mail_to(email_link, email_link) %></p>
+      <p><%= t "notice.desc1", scope: _t, community: community_name %></p>
+      <p><%= t "notice.desc2", scope: _t, code: link_to(t("notice.code", scope: _t), code_of_conduct_path), trusted: link_to(t("notice.trusted", scope: _t), community_moderation_path), tag: link_to(t("notice.tag", scope: _t), tag_moderation_path) %></p>
+      <p><%= t "notice.desc3", scope: _t, email: mail_to(email_link, email_link) %></p>
       <% unless user_signed_in? %>
-        <p><em><%= _t.notice.desc4 %></em></p>
+        <p><em><%= t("notice.desc4", scope: _t) %></em></p>
       <% end %>
     </div>
   </div>

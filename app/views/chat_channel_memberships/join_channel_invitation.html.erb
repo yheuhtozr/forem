@@ -1,18 +1,18 @@
-<% _t = t.v.chat.join %>
+<% _t = "v.chat.join" %>
 <div class="grid gap-6 p-6 justify-center">
   <% if @link_expired %>
-    <h1><%= _t.expired %></h1>
+    <h1><%= t("expired", scope: _t) %></h1>
   <% else %>
-    <h1 class="mt-5"><%= _t.heading name: @chat_channel.channel_name %></h1>
+    <h1 class="mt-5"><%= t "heading", scope: _t, name: @chat_channel.channel_name %></h1>
     <%= form_with(url: joining_invitation_response_path, html: { class: "align-center" }) do |f| %>
       <%= f.hidden_field :user_action, value: "accept" %>
       <%= f.hidden_field :chat_channel_id, value: @chat_channel.id %>
-      <%= f.submit _t.accept, class: "crayons-btn crayons-btn--s" %>
+      <%= f.submit t("accept", scope: _t), class: "crayons-btn crayons-btn--s" %>
     <% end %>
     <%= form_with(url: joining_invitation_response_path, html: { class: "align-center" }) do |f| %>
       <%= f.hidden_field :user_action, value: "decline" %>
       <%= f.hidden_field :chat_channel_id, value: @chat_channel.id %>
-      <%= f.submit _t.decline, class: "crayons-btn crayons-btn--danger mb-5 crayons-btn--s" %>
+      <%= f.submit t("decline", scope: _t), class: "crayons-btn crayons-btn--danger mb-5 crayons-btn--s" %>
     <% end %>
   <% end %>
 </div>

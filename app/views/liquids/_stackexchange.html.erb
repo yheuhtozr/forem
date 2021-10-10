@@ -1,4 +1,4 @@
-<% _t = t.v.liquids.stackexchange %>
+<% _t = "v.liquids.stackexchange" %>
 <div class="ltag__stackexchange--container">
   <div class="ltag__stackexchange--title-container">
     <header>
@@ -7,14 +7,14 @@
         <h1>
           <img src="<%= ActionController::Base.helpers.asset_path(logo_to_use) %>" alt="">
             <a href="<%= post_url %>" target="_blank" rel="noopener noreferrer">
-              <%= post_type == "question" ? "" : _t.answer.text(answer: tag.span(_t.answer.answer, class: "title-flare"), title: CGI.unescapeHTML(title)) %>
+              <%= post_type == "question" ? "" : t("answer.text", scope: _t, answer: tag.span(t("answer.answer", scope: _t), class: "title-flare"), title: CGI.unescapeHTML(title)) %>
             </a>
         </h1>
         <div class="ltag__stackexchange--post-metadata">
-          <span><%= Time.zone.at(created_at).strftime(t.date.stackexchange) %></span>
+          <span><%= Time.zone.at(created_at).strftime(t("date.stackexchange")) %></span>
           <% if post_type == "question" %>
-            <span><%= _t.comments count: comment_count %></span>
-            <span><%= _t.answers count: answer_count %></span>
+            <span><%= t "comments", scope: _t, count: comment_count %></span>
+            <span><%= t "answers", scope: _t, count: answer_count %></span>
           <% end %>
         </div>
       </div>
