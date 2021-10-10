@@ -20,5 +20,5 @@ v:
       Twitter:
         text: Twitter にシェア
         query: '"%{article}" (%{author})'
-      link: 記事のシェア先
+      link: シェア先を選ぶ
       report: 通報する

@@ -55,45 +55,45 @@
                                                                article: @article.title.strip,
                                                                author: @article.user.twitter_username ? "@#{@article.user.twitter_username}" : @article.user.name,
                                                              ) %><%= u " #{Settings::General.twitter_hashtag}" %><%= u " #{article_url(@article)}" %>'>
-            <% _t.share.Twitter.text %>
+            <%= _t.share.Twitter.text %>
           </a>
           <a
             target="_blank"
             class="crayons-link crayons-link--block"
             rel="noopener"
             href="https://www.linkedin.com/shareArticle?mini=true&url=<%= u article_url(@article) %>&title=<%= u @article.title %>&summary=<%= u @article.description %>&source=<%= u community_name %>">
-            <% _t.share.LinkedIn.text %>
+            <%= _t.share.LinkedIn.text %>
           </a>
           <a
             target="_blank"
             class="crayons-link crayons-link--block"
             rel="noopener"
             href="https://www.reddit.com/submit?url=<%= u article_url(@article) %>&title=<%= u @article.title %>">
-            <% _t.share.Reddit.text %>
+            <%= _t.share.Reddit.text %>
           </a>
           <a
             target="_blank"
             class="crayons-link crayons-link--block"
             rel="noopener"
             href="https://news.ycombinator.com/submitlink?u=<%= u article_url(@article) %>&t=<%= u @article.title %>">
-            <% _t.share.HackerNews.text %>
+            <%= _t.share.HackerNews.text %>
           </a>
           <a
             target="_blank"
             class="crayons-link crayons-link--block"
             rel="noopener"
             href="https://www.facebook.com/sharer.php?u=<%= u article_url(@article) %>">
-            <% _t.share.Facebook.text %>
+            <%= _t.share.Facebook.text %>
           </a>
         </div>
 
         <web-share-wrapper shareurl="<%= article_url(@article) %>" sharetitle="<%= @article.title %>" sharetext="<%= @article.description %>" template="web-share-button">
         </web-share-wrapper>
         <template id="web-share-button">
-          <a href="#" class="dropdown-link-row crayons-link crayons-link--block"><% _t.share.link %></a>
+          <a href="#" class="dropdown-link-row crayons-link crayons-link--block"><%= _t.share.link %></a>
         </template>
 
-        <a href="/report-abuse" class="crayons-link crayons-link--block"><% _t.share.report %></a>
+        <a href="/report-abuse" class="crayons-link crayons-link--block"><%= _t.share.report %></a>
       </div>
     </div>
   </div>
