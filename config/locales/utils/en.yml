@@ -1,0 +1,30 @@
+---
+en:
+  f:
+    lang: en
+    opensearch:
+      short_name: "%{community} Search"
+      description: Find posts from %{community}.
+    user:
+      image: "%{user} profile image"
+  j:
+    author: Active %{community} author
+  m:
+    adjust: Adjust your email settings
+    adjust_only_html: Don't want to get emails like this? Adjust your email settings at %{path}
+    unsubscribe: Unsubscribe
+  class:
+    Article: article
+  date:
+    comment: "%B %d, %Y"
+    github: "%b %d, %Y"
+    json: "%b %e, %Y"
+    medium: "%b %-d, %Y"
+    reddit: "%b %e '%y"
+    stackexchange: "%b %e '%y"
+    readable:
+      no_year: "%b %-d"
+      with_year: "%b %-d '%y"
+      full_year: "%b %-d, %Y"
+  datetime:
+    tweet: "%H:%M %p - %d %b %Y"

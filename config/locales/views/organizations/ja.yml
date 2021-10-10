@@ -1,0 +1,31 @@
+---
+ja:
+  v:
+    organizations:
+      empty: かつ 30
+      external:
+        icon: External link icon
+      follow: Follow
+      github:
+        icon: GitHub logo
+      joined:
+        icon: Joined
+        text_html: Joined on\_%{date}
+      location:
+        icon: Location
+      size: Employees
+      sponsor:
+        text: "%{level} Community Sponsor ❤️"
+        level:
+          gold: Gold
+          silver: Silver
+          bronze: Bronze
+          tag: Tag
+          media: Media
+          devrel: Devrel
+      stack: our stack
+      story: our story
+      support: Support email
+      team: meet the team
+      twitter:
+        icon: Twitter logo

@@ -1,0 +1,145 @@
+---
+ja:
+  admin:
+    articles_controller:
+      article_saved: Article saved!
+    badge_achievements_controller:
+      badge_achievement_has_been: Badge achievement has been deleted!
+      badges_are_being_rewarded: Badges are being rewarded. The task will finish shortly.
+      congrats: Congrats!
+      please_choose_a_badge_to_a: Please choose a badge to award
+    badges_controller:
+      badge_has_been_created: Badge has been created!
+      badge_has_been_updated: Badge has been updated!
+    broadcasts_controller:
+      broadcast_has_been_created: Broadcast has been created!
+      broadcast_has_been_deleted: Broadcast has been deleted!
+      broadcast_has_been_updated: Broadcast has been updated!
+      something_went_wrong_with: Something went wrong with deleting the broadcast.
+    chat_channels_controller:
+      channel_not_deleted_becaus: Channel NOT deleted, because it still has users.
+      channel_was_successfully_d: Channel was successfully deleted.
+    consumer_apps_controller:
+      has_been_created: "%{app_app_bundle} has been created!"
+      has_been_deleted: "%{app_app_bundle} has been deleted!"
+      has_been_updated: "%{app_app_bundle} has been updated!"
+      something_went_wrong_with: Something went wrong with deleting %{app_app_bundle}.
+    display_ads_controller:
+      display_ad_has_been_create: Display Ad has been created!
+      display_ad_has_been_delete: Display Ad has been deleted!
+      display_ad_has_been_update: Display Ad has been updated!
+      something_went_wrong_with: Something went wrong with deleting the Display Ad.
+    events_controller:
+      description_pre_requisite: "*Description* *Pre-requisites:* *Bio*"
+      successfully_created_event: 'Successfully created event: %{event_title}'
+      was_successfully_updated: "%{event_title} was successfully updated"
+    html_variants_controller:
+      fork: "%{fork_name} FORK-%{rand_10_000}"
+      html_variant_has_been_crea: HTML Variant has been created!
+      html_variant_has_been_dele: HTML Variant has been deleted!
+      html_variant_has_been_upda: HTML Variant has been updated!
+      something_went_wrong_with: Something went wrong with deleting the HTML Variant.
+    invitations_controller:
+      invitation_was_not_sent_th: 'Invitation was not sent. There is already a registered user with the email: %{email}'
+      the_invitation_has_been_de: The invitation has been deleted.
+      the_invite_has_been_sent_t: The invite has been sent to the user's email.
+    listing_categories_controller:
+      listing_category_has_been: Listing Category has been created!
+      listing_category_has_been2: Listing Category has been updated!
+      listing_category_has_been3: Listing Category has been deleted!
+    listings_controller:
+      listing_updated_successful: Listing updated successfully
+      was_destroyed_successfull: "'%{listing_title}' was destroyed successfully"
+    mods_controller:
+      now_has_trusted_role: "%{user_username} now has Trusted role!"
+    navigation_links_controller:
+      navigation_link_deleted: Navigation Link %{navigation_link_name} deleted
+      successfully_created_navig: 'Successfully created navigation link: %{navigation_link_name}'
+      successfully_updated_navig: 'Successfully updated navigation link: %{navigation_link_name}'
+    organization_memberships_controller:
+      organization_does_not_exis: 'Organization #%{organization_membership_pa} does not exist.'
+      something_went_wrong_with: Something went wrong with removing the user from %{organization_membership_or}
+      user_was_successfully_adde: User was successfully added to %{organization_name}
+      user_was_successfully_remo: User was successfully removed from %{organization_membership_or}
+      user_was_successfully_upda: User was successfully updated to %{organization_membership_ty}
+    organizations_controller:
+      sucessfully_updated_credit: Sucessfully updated credits
+    pages_controller:
+      a_page_that_describes_how: A page that describes how to behave on this platform
+      a_page_that_describes_the: A page that describes the privacy policy
+      a_page_that_describes_the2: A page that describes the terms of use for the application
+      code_of_conduct: Code of Conduct
+      page_has_been_successfully: Page has been successfully updated.
+      page_has_been_successfully2: Page has been successfully created.
+      page_has_been_successfully3: Page has been successfully deleted.
+      privacy_policy: Privacy Policy
+      terms_of_use: Terms of Use
+    podcasts_controller:
+      new_owner_added: New owner added!
+      no_such_user: No such user
+      podcast_s_episodes_fetchin: 'Podcast''s episodes fetching was scheduled (%{podcast_title}, #%{podcast_id})'
+      podcast_updated: Podcast updated
+    profile_field_groups_controller:
+      group_deleted: Group %{profile_field_group_name} deleted
+      group_updated: Group %{profile_field_group_name} updated
+      successfully_created_group: 'Successfully created group: %{profile_field_group_name}'
+    profile_fields_controller:
+      profile_field_created: Profile field %{profile_field_label} created
+      profile_field_deleted: Profile field %{profile_field_label} deleted
+      profile_field_updated: Profile field %{profile_field_label} updated
+    response_templates_controller:
+      response_template_saved_su: 'Response Template: "%{response_template_title}" saved successfully.'
+      the_response_template_was: The response template "%{response_template_title}" was updated.
+      the_response_template_was2: The response template "%{response_template_title}" was deleted.
+    secrets_controller:
+      not_in_vault: Not In Vault
+      secret_was_successfully_up: Secret %{params_key_name} was successfully updated in Vault.
+      value: "%{secret_value_first_8}******"
+    settings_controller:
+      my_username_is_and_this_ac: My username is @%{current_user_username} and this action is 100% safe and appropriate.
+    sponsorships_controller:
+      sponsorship_has_been_creat: Sponsorship has been created!
+      sponsorship_was_not_destro: Sponsorship was not destroyed
+      sponsorship_was_successful: Sponsorship was successfully updated
+      sponsorship_was_successful2: Sponsorship was successfully destroyed
+    tags:
+      moderators_controller:
+        error_user_id_was_not_foun: 'Error: User ID #%{user_id} was not found, or their account has errors: %{errors}'
+        id_was_removed_as_a_tag_m: "@%{user_username} - ID #%{user_id} was removed as a tag moderator."
+        was_added_as_a_tag_moderat: "%{user_username} was added as a tag moderator!"
+    tags_controller:
+      tag_has_been_created: "%{tag_name} has been created!"
+      tag_successfully_updated: "%{tag_name} tag successfully updated!"
+      the_tag_update_failed: 'The tag update failed: %{tag_errors_as_sentence}'
+    tools_controller:
+      article_was_successfully_b: 'Article #%{params_bust_article} was successfully busted'
+      user_was_successfully_bust: 'User #%{params_bust_user} was successfully busted'
+      was_successfully_busted: "%{params_dead_link} was successfully busted"
+    users_controller:
+      data_exported_to_the_the_j: Data exported to the %{receiver}. The job will complete momentarily.
+      email_failed_to_send: Email failed to send!
+      email_verification_mailer: Verification email sent!
+      full_delete_html: "@%{user} (email: %{email}, user_id: %{id}) has been fully deleted. If this is a GDPR delete, delete them from Mailchimp & Google Analytics and confirm on %{the_page}."
+      never: Never
+      no_email: no email
+      parameter_missing: Both subject and body are required!
+      role_has_been_successfully: 'Role: %{role_to_s_humanize_titleca} has been successfully removed from the user!'
+      the_identity_was_successfu: The %{identity_provider_capitali} identity was successfully deleted and backed up.
+      the_page: the page
+      this_user_is_being_banishe: This user is being banished in the background. The job will complete soon.
+      unlocked_user_account: Unlocked User account!
+      user_has_been_updated: User has been updated
+    welcome_controller:
+      title_welcome_thread_v0_p: |
+        ---
+        title: Welcome Thread - v0
+        published: false
+        description: Introduce yourself to the community!
+        tags: welcome
+        ---
+
+        Hey there! Welcome to %{settings_community_communi}!
+
+        ![WELCOME TO THE INTERNET](https://slack-imgs.com/?c=1&url=http%3A%2F%2Fmedia0.giphy.com%2Fmedia%2FzhbrTTpmSCYog%2Fgiphy-downsized.gif)
+
+        Leave a comment below to introduce yourself to the community!✌️
