@@ -16,7 +16,7 @@ module Admin
         flash[:success] =
           I18n.t("admin.profile_fields_controller.profile_field_updated", profile_field_label: profile_field.label)
       else
-        flash[:error] = I18n.t("common.error", errors: profile_field.errors_as_sentence)
+        flash[:error] = I18n.t("core.error", errors: profile_field.errors_as_sentence)
       end
       redirect_to admin_profile_fields_path
     end
@@ -28,7 +28,7 @@ module Admin
         flash[:success] =
           I18n.t("admin.profile_fields_controller.profile_field_created", profile_field_label: profile_field.label)
       else
-        flash[:error] = I18n.t("common.error", errors: add_result.error_message)
+        flash[:error] = I18n.t("core.error", errors: add_result.error_message)
       end
       redirect_to admin_profile_fields_path
     end
@@ -40,7 +40,7 @@ module Admin
         flash[:success] =
           I18n.t("admin.profile_fields_controller.profile_field_deleted", profile_field_label: profile_field.label)
       else
-        flash[:error] = I18n.t("common.error", errors: remove_result.error_message)
+        flash[:error] = I18n.t("core.error", errors: remove_result.error_message)
       end
       redirect_to admin_profile_fields_path
     end

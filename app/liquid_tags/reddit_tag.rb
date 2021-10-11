@@ -44,7 +44,7 @@ class RedditTag < LiquidTagBase
       author: data["author"],
       title: data["title"],
       post_url: @url,
-      created_at: Time.zone.at(data["created_utc"]).strftime(I18n.t("date.reddit")),
+      created_at: Time.zone.at(data["created_utc"]).strftime(I18n.t("time.formats.reddit")),
       post_hint: data["post_hint"],
       image_url: data["url"],
       thumbnail: data["thumbnail"],

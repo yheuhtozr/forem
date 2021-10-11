@@ -1,9 +1,10 @@
 ---
 ja:
   common:
-    error: 'Error: %{errors}'
     invalid_langtag: は 1 から 8 文字までの英数字のタグを半角ハイフンで繋いだものです
-    success_settings: Successfully updated settings.
+  create_mascot:
+    name: Mascot
+    error: Mascot already set
   errors:
     authentication:
       errors:

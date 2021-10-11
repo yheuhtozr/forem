@@ -20,10 +20,10 @@ en:
       listen: Click here to download/listen
       source: Episode source
       statuses:
-        unreachable: Podcast's feed_url is not reachable
+        ssl_failed: SSL certificate verify failed while fetching podcast's feed_url
         unparsable: Podcast's rss couldn't be parsed
         unplayable: This podcast may not be playable in the browser
-        ssl_failed: SSL certificate verify failed while fetching podcast's feed_url
+        unreachable: Podcast's feed_url is not reachable
       speed: 1x
       tag: podcast
       time: initializing...

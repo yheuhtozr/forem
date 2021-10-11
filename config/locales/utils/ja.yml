@@ -13,18 +13,3 @@ ja:
     adjust: Adjust your email settings
     adjust_only_html: Don't want to get emails like this? Adjust your email settings at %{path}
     unsubscribe: Unsubscribe
-  class:
-    Article: article
-  date:
-    comment: "%Y年%m月%d日"
-    github: "%b %d, %Y"
-    json: "%Y年%_m月%e日"
-    medium: "%b %-d, %Y"
-    reddit: "%b %e '%y"
-    stackexchange: "%b %e '%y"
-    readable:
-      no_year: "%-m月%-d日"
-      with_year: "'%y年%-m月%-d日"
-      full_year: "%Y年%-m月%-d日"
-  datetime:
-    tweet: "%H:%M %p - %d %b %Y"
