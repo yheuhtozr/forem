@@ -1,14 +1,12 @@
 ---
 en:
   core:
-    add_comment: Add comment
     beta: beta
     error: 'Error: %{errors}'
     follow: Follow
     follow_back: Follow back
     following: Following
     loading: loading...
-    reaction: Reaction
     report_abuse: Report abuse
     success_settings: Successfully updated settings.
   contact_prompts:

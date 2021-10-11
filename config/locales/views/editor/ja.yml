@@ -16,7 +16,6 @@ ja:
       modes: 記事の表示モード
       new_title: タイトルをここに
       preview: プレビュー
-      translate: 翻訳を作成
       video:
         progress:
           heading: "⏳ 動画を絶賛変換中 ⏳"

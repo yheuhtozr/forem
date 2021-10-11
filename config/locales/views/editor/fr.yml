@@ -16,7 +16,6 @@ en:
       modes: View post modes
       new_title: New post title here...
       preview: Preview
-      translate: Translate
       video:
         progress:
           heading: "⏳ Video Transcoding In Progress ⏳"

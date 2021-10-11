@@ -12,6 +12,8 @@ ja:
         unicorn: Unicorn
         vomit: ひどい
       summary:
+        count_html:
+          other: "%{start}反響%{end}\_%{count}\_%{start}件%{end}"
         title: 反響
       like:
         title: ハート

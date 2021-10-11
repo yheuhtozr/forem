@@ -137,4 +137,8 @@ en:
           other: "%{count} comments"
         empty: New
       summary:
+        count_html:
+          one: "%{count}%{start}\_commentaire%{end}"
+          other: "%{count}%{start}\_commentaires%{end}"
+        empty: "Ajouter un commentaire"
         title: Comments

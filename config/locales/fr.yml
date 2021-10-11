@@ -1,14 +1,12 @@
 ---
 fr:
   core:
-    add_comment: Ajouter un commentaire
     beta: beta
     error: 'Error: %{errors}'
     follow: Suivre
     follow_back: Suivre aussi
     following: Abonné
     loading: Chargement en cours...
-    reaction: Réaction
     report_abuse: Signaler un abus
     success_settings: Successfully updated settings.
   contact_prompts:

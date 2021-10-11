@@ -137,4 +137,9 @@ en:
           other: "%{count} comments"
         empty: New
       summary:
+        count: !pl
+          1: !html "%{count}%{start}\_comment%{end}"
+          n: !html "%{count}%{start}\_comments%{end}"
+        empty: "Add\_Comment"
         title: Comments
+
