@@ -9,7 +9,7 @@
     <% end %>
   </div>
 </div>
-<h2><%= t("v.users.danger") %></h2>
+<h2><%= t("v.settings.danger") %></h2>
 <%= form_tag users_leave_org_path(@organization), onsubmit: "return confirm('#{t('confirm', scope: _t)}');" do %>
   <div class="field">
     <%= submit_tag t("submit", scope: _t), class: "danger-button" %>
