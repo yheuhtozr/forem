@@ -52,9 +52,9 @@
 
   <div class="crayons-card crayons-card--secondary p-4">
     <ol class="list-decimal pl-6 mb-2">
-      <li><%= t "inst1", scope: _t, url: link_to(app_url, app_url) %></li>
-      <li><%= t "inst2", scope: _t, url: link_to(app_url(user_settings_path(:organization)), app_url(user_settings_path(:organization))) %></li>
-      <li><%= t("inst3", scope: _t) %></li>
+      <li><%= t "inst1_html", scope: _t, url: link_to(app_url, app_url) %></li>
+      <li><%= t "inst2_html", scope: _t, url: link_to(app_url(user_settings_path(:organization)), app_url(user_settings_path(:organization))) %></li>
+      <li><%= t("inst3_html", scope: _t) %></li>
     </ol>
     <p>
       <%= t("secret_code", scope: _t) %>
@@ -204,7 +204,7 @@
         <h2><%= t("delete.heading", scope: _t) %></h2>
       </header>
       <p>
-        <%= t("delete.desc", scope: _t) %>
+        <%= t("delete.desc_html", scope: _t) %>
       </p>
       <% if @org_organization_memberships.size === 1 && @organization.articles_count.zero? %>
         <% onsubmit = "return confirm('#{t 'delete.confirm', scope: _t, name: @organization.name}');" %>
@@ -221,7 +221,7 @@
         </div>
       <% end %>
       <p>
-        <%= t "delete.questions", scope: _t, email: link_to(ForemInstance.email, ForemInstance.email) %>
+        <%= t "delete.questions_html", scope: _t, email: link_to(ForemInstance.email, ForemInstance.email) %>
       </p>
     </div>
   </div>

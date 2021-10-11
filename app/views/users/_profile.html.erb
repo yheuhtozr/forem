@@ -45,7 +45,7 @@
   <% profile = @user.profile %>
 
   <div class="crayons-card crayons-card--content-rows">
-    <h2><%= _t.group["Basic"] %></h2>
+    <h2><%= t("group.Basic", scope: _t) %></h2>
 
     <div class="crayons-field">
       <label class="crayons-field__label" for="profile[website_url]">
@@ -80,7 +80,7 @@
 
   <% ProfileFieldGroup.non_empty_groups.each do |group| %>
     <div class="crayons-card crayons-card--content-rows">
-      <h2><%= _t.group[group.name] %></h2>
+      <h2><%= t("group.#{group.name}", scope: _t) %></h2>
       <% if group.description.present? %>
         <div class="color-base-60"><%= group.description %></div>
       <% end %>
@@ -94,11 +94,11 @@
                               checked: profile.public_send(field.attribute_name),
                               class: "crayons-checkbox") %>
             <label class="crayons-field__label" for="<%= "profile[#{field.attribute_name}]" %>">
-              <%= _t.profile_fields[field.attribute_name] | field.label %>
+              <%= t "profile_fields.#{field.attribute_name}", scope: _t, default: field.label %>
             </label>
           <% else %>
             <label class="crayons-field__label" for="<%= "profile[#{field.attribute_name}]" %>">
-              <%= _t.profile_fields[field.attribute_name] | field.label %>
+              <%= t "profile_fields.#{field.attribute_name}", scope: _t, default: field.label %>
             </label>
             <%= f.public_send(field["input_type"],
                               "profile[#{field.attribute_name}]",
@@ -106,7 +106,7 @@
                               placeholder: field["placeholder_text"],
                               class: "crayons-textfield") %>
           <% end %>
-          <p class="crayons-field__description"><%= _t.profile_descriptions[field.attribute_name] | "" %></p>
+          <p class="crayons-field__description"><%= t "profile_descriptions.#{field.attribute_name}", scope: _t, default: "" %></p>
         </div>
       <% end %>
     </div>

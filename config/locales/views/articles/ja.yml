@@ -8,8 +8,8 @@ ja:
         aria_label: 記事へのアクション
       comments:
         aria_label: Comments for post %{title} (%{num})
-        subtitle_html: みんなの声%{count}
-        count: "（%1）"
+        subtitle_html: みんなの声%{num}
+        num: "（%{num}）"
         subscribe: 投稿
         view:
           other: すべてのコメントを見る（%{count} 件）
@@ -85,7 +85,7 @@ ja:
       co_authors_html: '共著者: %{names}'
       crossposted:
         text_html: 元記事は %{on} %{url} で掲載
-        true: "%{date}に"
+        'on': "%{date}に"
       edited: "%{date}に更新"
       for_org_html: "%{start} が %{end}%{org}%{start} へ執筆%{end}"
       missing: 記事は公開終了しました

@@ -12,7 +12,7 @@
       <div class="crayons-card crayons-card--secondary crayons-notice crayons-notice--danger" role="alert" data-testid="signup-errors">
         <div class="crayons-card__header">
           <h3 class="crayons-card__headline">
-            <%= t "errors", scope: _t, resource.errors.size %>
+            <%= t "errors", scope: _t, count: resource.errors.size %>
           </h3>
         </div>
         <div class="crayons-card__body">
@@ -31,7 +31,7 @@
       Settings::Authentication.allowed_registration_email_domains.any? %>
       <div class="crayons-notice crayons-notice--info" aria-live="polite">
         <% if Settings::Authentication.allowed_registration_email_domains.one? %>
-          <%= t "allow.one", scope: _t, domain: Settings::Authentication.allowed_registration_email_domains.first %>
+          <%= t "allow.one_html", scope: _t, domain: Settings::Authentication.allowed_registration_email_domains.first %>
         <% else %>
           <%= t("allow.list", scope: _t) %>
           <ul>

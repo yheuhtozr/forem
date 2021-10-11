@@ -44,12 +44,14 @@ ja:
         if_org_html: " under %{org}"
       milestone:
         heading_html:
-          other: Your post %{title} passed %{count} %{type}!
+          other: Your post %{title} passed %{type}!
         check: Check your dashboard
         intro: "🎉🎉🎉🎉🎉🎉🎉🎉"
         type:
-          View: views
-          Reaction: reactions
+          View:
+            other: "%{count} views"
+          Reaction:
+            other: "%{count} reactions"
       nav:
         aria_label: Notifications
         all: All

@@ -10,7 +10,7 @@
     <% original, derived = translations.partition { |tl| tl.id == tl.translation_group } %>
     <% by_lang = derived.group_by(&:base_lang) %>
     <% collator = ICU::Collation::Collator.new(I18n.locale.to_s) %>
-    <% lang_keys = by_lang.keys.sort { |a, b| collator.compare lang_name(t.languages[a]), lang_name(t.languages[b]) } %>
+    <% lang_keys = by_lang.keys.sort { |a, b| collator.compare lang_name(t("languages.#{a}")), lang_name(t("languages.#{b}")) } %>
     <% by_lang[:original] = original %>
     <div class="px-4 py-2">
     <% [:original, *lang_keys].each do |k| %>

@@ -356,7 +356,7 @@ ja:
         meta:
           title: ログアウトの確認 - %{community}
         heading: 本当にログアウトしますか？
-        true: ログアウトします
+        'yes': ログアウトします
       block: "@%{user} をブロック"
       chat: チャット
       chat_with: "%{user} にチャット"
@@ -365,6 +365,7 @@ ja:
       dropdown: ユーザー操作
       email_icon: メールアドレス
       empty: かつ 30
+      flag: Flag @%{user}
       follow: フォロー
       guidelines: "%{user}'s guidelines:"
       joined:
@@ -379,4 +380,5 @@ ja:
         placeholder: Enter your message here...
         submit: Send
       social: "%{service} ページ"
+      unflag: Unflag @%{user}
       website: 個人サイト

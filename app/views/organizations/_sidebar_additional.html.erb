@@ -4,7 +4,7 @@
   <div class="side-bar sidebar-additional showing" id="sidebar-additional">
     <% @organization.sponsorships.live.find_each do |sponsorship| %>
       <div class="sidebar-sponsorship-level">
-        <%= t "sponsor.text", scope: _t, level: _t.sponsor.level[sponsorship.level] %>
+        <%= t "sponsor.text", scope: _t, level: t("sponsor.level.#{sponsorship.level}", scope: _t) %>
       </div>
     <% end %>
 

@@ -41,7 +41,7 @@
             class="flex justify-between crayons-link crayons-link--block w-100 bg-transparent border-0"
             data-postUrl="<%= article_url(@article) %>">
             <span class="fw-bold"><%= t("copy.button", scope: _t) %></span>
-            <%= inline_svg_tag("copy.svg", aria_hidden: true, id: "article-copy-icon", class: "crayons-icon mx-2 shrink-0", title: t("copy.title", scope: _t)) %>
+            <%= inline_svg_tag("copy.svg", aria_hidden: true, id: "article-copy-icon", class: "crayons-icon mx-2 shrink-0", title: t("v.actions.copy.button")) %>
           </button>
           <div id="article-copy-link-announcer" aria-live="polite" class="crayons-notice crayons-notice--success my-2 p-1" aria-live="polite" hidden><%= t("copy.text", scope: _t) %></div>
         </div>
@@ -54,45 +54,45 @@
             href='https://twitter.com/intent/tweet?text="<%= u t("share.Twitter.query", scope: _t,
                                                                                         article: @article.title.strip,
                                                                                         author: @article.user.twitter_username ? "@#{@article.user.twitter_username}" : @article.user.name) %><%= u " #{Settings::General.twitter_hashtag}" %><%= u " #{article_url(@article)}" %>'>
-            <% t("share.Twitter.text", scope: _t) %>
+            <%= t("share.Twitter.text", scope: _t) %>
           </a>
           <a
             target="_blank"
             class="crayons-link crayons-link--block"
             rel="noopener"
             href="https://www.linkedin.com/shareArticle?mini=true&url=<%= u article_url(@article) %>&title=<%= u @article.title %>&summary=<%= u @article.description %>&source=<%= u community_name %>">
-            <% t("share.LinkedIn.text", scope: _t) %>
+            <%= t("share.LinkedIn.text", scope: _t) %>
           </a>
           <a
             target="_blank"
             class="crayons-link crayons-link--block"
             rel="noopener"
             href="https://www.reddit.com/submit?url=<%= u article_url(@article) %>&title=<%= u @article.title %>">
-            <% t("share.Reddit.text", scope: _t) %>
+            <%= t("share.Reddit.text", scope: _t) %>
           </a>
           <a
             target="_blank"
             class="crayons-link crayons-link--block"
             rel="noopener"
             href="https://news.ycombinator.com/submitlink?u=<%= u article_url(@article) %>&t=<%= u @article.title %>">
-            <% t("share.HackerNews.text", scope: _t) %>
+            <%= t("share.HackerNews.text", scope: _t) %>
           </a>
           <a
             target="_blank"
             class="crayons-link crayons-link--block"
             rel="noopener"
             href="https://www.facebook.com/sharer.php?u=<%= u article_url(@article) %>">
-            <% t("share.Facebook.text", scope: _t) %>
+            <%= t("share.Facebook.text", scope: _t) %>
           </a>
         </div>
 
         <web-share-wrapper shareurl="<%= article_url(@article) %>" sharetitle="<%= @article.title %>" sharetext="<%= @article.description %>" template="web-share-button">
         </web-share-wrapper>
         <template id="web-share-button">
-          <a href="#" class="dropdown-link-row crayons-link crayons-link--block"><% t("share.link", scope: _t) %></a>
+          <a href="#" class="dropdown-link-row crayons-link crayons-link--block"><%= t("share.link", scope: _t) %></a>
         </template>
 
-        <a href="/report-abuse" class="crayons-link crayons-link--block"><% t("share.report", scope: _t) %></a>
+        <a href="/report-abuse" class="crayons-link crayons-link--block"><%= t("share.report", scope: _t) %></a>
       </div>
     </div>
   </div>

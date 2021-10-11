@@ -44,7 +44,7 @@
         <% header_fields.sort.each do |title, value| %>
           <li>
             <div class="key">
-              <%= t.v.users.profile_fields[title] %>
+              <%= t "v.users.profile_fields.#{title}" %>
             </div>
             <div class="value">
               <%= value %>

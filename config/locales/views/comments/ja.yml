@@ -38,7 +38,7 @@ ja:
       edit: コメント編集中
       edited:
         text_html: "&bull; %{on}修正"
-        true: "%{date}に"
+        'on': "%{date}に"
       expand: 展開する
       hidden:
         text_html: 非表示にされているコメントがあります（%{info}）
@@ -103,7 +103,6 @@ ja:
         icon: ドロップダウンメニュー
         copy:
           aria_label: "%{user} のコメントのリンクをコピーする"
-          text: リンクをコピー
         settings:
           aria_label: "%{user} のコメント設定へ"
         action:

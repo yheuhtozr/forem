@@ -8,7 +8,7 @@
 <div class="crayons-card crayons-card--content-rows">
   <header>
     <h2 class="mb-2"><%= t "api.heading", scope: _t, community: community_name %></h2>
-    <p><%= t "api.desc", scope: _t, community: community_name, doc: link_to(t("api.doc", scope: _t), "https://developers.forem.com/api") %></p>
+    <p><%= t "api.desc_html", scope: _t, community: community_name, doc: link_to(t("api.doc", scope: _t), "https://developers.forem.com/api") %></p>
   </header>
 
   <div>
@@ -121,7 +121,7 @@
         <div><button class="crayons-btn crayons-btn--danger" id="delete__account__btn" type="submit"><%= t("delete.submit", scope: _t) %></button></div>
       <% end %>
     <% else %>
-      <p><%= t "delete.desc2", scope: _t, email: link_to(t("delete.provide", scope: _t), "/settings/profile") %></p>
+      <p><%= t "delete.desc2_html", scope: _t, email: link_to(t("delete.provide", scope: _t), "/settings/profile") %></p>
     <% end %>
   </div>
 

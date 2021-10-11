@@ -98,7 +98,7 @@
         <% else %>
           <% @tag_moderator_tags.each do |tag| %>
             <% subtract_or_plus = @moderatable.tag_list.include?(tag.name) ? "subtract" : "plus" %>
-            <% subtract_or_plus_title = _t.adjust[subtract_or_plus == "subtract" ? :remove : :add] %>
+            <% subtract_or_plus_title = t("adjust.#{subtract_or_plus == 'subtract' ? 'remove' : 'add'}", scope: _t) %>
             <button class="adjustable-tag" type="button" data-adjustment-type="<%= subtract_or_plus %>" data-tag-name="<%= tag.name %>" data-article-id="<%= @moderatable.id %>">
               <span class="num-sign">#</span><%= tag.name %>
               <div class="circle centered-icon adjustment-icon <%= subtract_or_plus %>">
@@ -149,7 +149,7 @@
         data-group=" experience_level ">
         <div class=" level-rating-content ">
           <span class=" level-rating-number "><%= rating_level[1] %></span>
-          <span class=" level-rating-text "><%= _t.exp.level[rating_name] %></span>
+          <span class=" level-rating-text "><%= t("exp.level.#{rating_name}", scope: _t) %></span>
         </div>
         <%= inline_svg_tag("checkmark.svg", aria: true, class: "crayons-icon", title: t("checkmark", scope: _t)) %>
       </button>
