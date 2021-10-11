@@ -8,8 +8,8 @@ en:
         aria_label: Article actions
       comments:
         aria_label: Comments for post %{title} (%{num})
-        subtitle_html: Discussion %{count}
-        count: "(%1)"
+        subtitle_html: Discussion %{num}
+        num: "(%{num})"
         subscribe: Subscribe
         view:
           other: View full discussion (%{count} comments)
@@ -86,7 +86,7 @@ en:
       co_authors_html: with %{names}
       crossposted:
         text_html: Originally published at %{url}%{on}
-        true: " on %{date}"
+        'on': " on %{date}"
       edited: Updated on %{date}
       for_org_html: "%{start} for %{end}%{org}"
       missing: Article No Longer Available

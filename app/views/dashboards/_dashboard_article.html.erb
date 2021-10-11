@@ -19,16 +19,17 @@
         <%= f.hidden_field :archived, value: !article.archived %>
 
         <button type="submit" class="crayons-link crayons-link--block w-100 border-0 bg-transparent">
-          <%= _t[article.archived ? :unarchive : :archive] %>
+          <%= t(article.archived ? "unarchive" : "archive", scope: _t) %>
         </button>
       <% end %>
     </div>
   </div>
 
   <a href="<%= article.current_state_path %>"><h2>
-    <%= t("heading.text", scope: _t,
-                          archived: article.archived ? t("heading.archived", scope: _t) : "",
-                          title: tag.span(article.title, class: "with-content-font", lang: article.base_lang)) %>
+    <%= t("heading.text_html",
+          scope: _t,
+          archived: article.archived ? t("heading.archived", scope: _t) : "",
+          title: tag.span(article.title, class: "with-content-font", lang: article.base_lang)) %>
   </h2></a>
   <div class="dashboard-meta-details">
     <% if article.published %>
@@ -82,17 +83,17 @@
       <span id="pageviews-<%= article.id %>" class="crayons-btn dashboard-pageviews-indicator" data-analytics-pageviews data-article-id="<%= article.id %>">
         <span class="page-views-count">
           <% pvs = article.page_views_count %>
-          <%= t "views.text", scope: _t, count: pvs, scale: tag.span(pvs > 25 ? tag.span(pvs, class: %w[value]) : t("views.u_25", scope: _t), class: %w[value]) %>
+          <%= t "views.text_html", scope: _t, count: pvs, scale: tag.span(pvs > 25 ? tag.span(pvs, class: %w[value]) : t("views.u_25", scope: _t), class: %w[value]) %>
         </span>
         //
         <span class="reactions-count">
           <% prs = article.public_reactions_count %>
-          <%= t "reactions.text", scope: _t, count: prs, num: tag.span(prs, class: %w[value]) %>
+          <%= t "reactions.text_html", scope: _t, count: prs, num: tag.span(prs, class: %w[value]) %>
         </span>
         //
         <span class="comments-count">
           <% pcs = article.comments_count %>
-          <%= t "comments.text", scope: _t, count: pcs, num: tag.span(pcs, class: %w[value]) %>
+          <%= t "comments.text_html", scope: _t, count: pcs, num: tag.span(pcs, class: %w[value]) %>
         </span>
       </span>
     <% end %>

@@ -4,7 +4,7 @@
 
 <% if @comment.errors.any? %>
   <div class="crayons-notice crayons-notice--danger" role="alert">
-    <h2><%= t("errors", scope: _t, @comment.errors.count) %></h2>
+    <h2><%= t("errors", scope: _t, count: @comment.errors.count) %></h2>
     <ul>
       <% @comment.errors.full_messages.each do |message| %>
         <li><%= message %></li>

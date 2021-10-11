@@ -65,9 +65,10 @@
             <%= @commentable.title %>
           </h1>
           <p class="color-base-60">
-            <%= t("parent.metadata", scope: _t,
-                                     name: @commentable.is_a?(PodcastEpisode) ? @commentable.podcast.name : @commentable.user.name,
-                                     on: tag.span(@commentable.published_at ? t("parent.date", scope: _t, date: @commentable.published_at.strftime(t("date.comment"))) : "", class: %w[published-at])) %>
+            <%= t("parent.metadata_html",
+                  scope: _t,
+                  name: @commentable.is_a?(PodcastEpisode) ? @commentable.podcast.name : @commentable.user.name,
+                  on: tag.span(@commentable.published_at ? t("parent.date", scope: _t, date: @commentable.published_at.strftime(t("date.comment"))) : "", class: %w[published-at])) %>
           </p>
         </div>
       </header>
@@ -92,10 +93,11 @@
     <%= javascript_packs_with_chunks_tag "responseTemplates", "commentsDisplay", defer: true %>
     <header class="p-2 pb-4 m:p-6 m:pb-6 crayons-card crayons-card--secondary s:mx-2 m:mx-4 -mb-1 z-0">
       <h1 class="crayons-subtitle-1 mb-4">
-        <%= t("parent.subtitle", scope: _t,
-                                 start: tag("span", { class: %w[fw-normal color-base-60] }, true), # rubocop:disable Rails/ContentTag
-                                 end: "</span>".html_safe,
-                                 title: tag.span(@commentable.title, class: "with-content-font", lang: @commentable.base_lang)) %>
+        <%= t("parent.subtitle_html",
+              scope: _t,
+              start: tag("span", { class: %w[fw-normal color-base-60] }, true), # rubocop:disable Rails/ContentTag
+              end: "</span>".html_safe,
+              title: tag.span(@commentable.title, class: "with-content-font", lang: @commentable.base_lang)) %>
       </h1>
       <div class="flex">
         <a class="crayons-btn crayons-btn--outlined mr-2" href="<%= @commentable.path %>"><%= t("parent.view", scope: _t) %></a>
@@ -107,10 +109,11 @@
     <div class="p-2 pb-4 m:p-6 m:pb-6 crayons-card crayons-card--secondary s:mx-1 m:mx-2 -mb-2 z-0">
       <h2 class="crayons-subtitle-2 pb-2">
         <a href="<%= parent.path %>" class="crayons-link">
-          <%= t("parent.reply", scope: _t,
-                                start: tag("span", { class: %w[fw-normal opacity-75] }, true), # rubocop:disable Rails/ContentTag
-                                end: "</span>".html_safe,
-                                title: tag.span(parent.title(150), class: "with-content-font", lang: @commentable.base_lang)) %>
+          <%= t("parent.reply_html",
+                scope: _t,
+                start: tag("span", { class: %w[fw-normal opacity-75] }, true), # rubocop:disable Rails/ContentTag
+                end: "</span>".html_safe,
+                title: tag.span(parent.title(150), class: "with-content-font", lang: @commentable.base_lang)) %>
         </a>
       </h2>
     </div>
@@ -145,7 +148,7 @@
 
     <% if @commentable.any_comments_hidden %>
       <p class="mb-2 pt-6 fs-s align-center color-base-60">
-        <%= t "hidden.text", scope: _t, info: link_to(t("hidden.info", scope: _t), "/faq#what-does-comment-hidden-by-post-author-mean") %>
+        <%= t "hidden.text_html", scope: _t, info: link_to(t("hidden.info", scope: _t), "/faq#what-does-comment-hidden-by-post-author-mean") %>
       </p>
     <% end %>
   </section>

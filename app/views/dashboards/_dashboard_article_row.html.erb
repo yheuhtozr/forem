@@ -101,14 +101,14 @@
 
       <div id="ellipsis-menu-dropdown-<%= article.id %>" class="crayons-dropdown top-100 right-0 align-left js-ellipsis-menu-dropdown">
         <% if article.user_subscriptions_count > 0 %>
-          <a href="<%= dashboard_subscriptions_path(source_type: "Article", source_id: article.id) %>" class="crayons-link crayons-link--block w-100"><%= t "subscriptions.number", scope: _t, article.user_subscriptions_count %></a>
+          <a href="<%= dashboard_subscriptions_path(source_type: "Article", source_id: article.id) %>" class="crayons-link crayons-link--block w-100"><%= t "subscriptions.number", scope: _t, num: article.user_subscriptions_count %></a>
         <% end %>
         <a href="<%= article.path %>/stats" class="crayons-link crayons-link--block w-100"><%= t("stats", scope: _t) %></a>
         <%= form_for(article, method: :patch, remote: true, authenticity_token: true, html: { "data-type": "json", class: "js-archive-toggle" }) do |f| %>
           <%= f.hidden_field :archived, value: !article.archived, id: "article_archived_#{article.id}" %>
 
           <button type="submit" class="crayons-link crayons-link--block w-100 border-0 bg-transparent">
-            <%= _t[article.archived ? :unarchive : :archive] %>
+            <%= t(article.archived ? "unarchive" : "archive", scope: _t) %>
           </button>
         <% end %>
 

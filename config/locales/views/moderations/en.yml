@@ -46,7 +46,7 @@ en:
           aria_label: Open experience level section
           icon: Book
           desc_html: Who <em>might</em> find this post most valuable, based on overall experience level?
-          from: "%1 - "
+          from: "%{lvl} - "
           level:
             Advanced: Advanced
             Beginner: Beginner
@@ -71,7 +71,7 @@ en:
         tag:
           subtitle: Tag Adjustments
           add: Add
-          added: "<b>Currently added tag:</b> %{tag}"
+          added_html: "<b>Currently added tag:</b> %{tag}"
           live_html: "<b>Current live tags:</b> %{tags}"
           reason: Reason for adjustment (Be super kind) - Only the reason is needed, the notification will take care of the rest.
           remove: Remove

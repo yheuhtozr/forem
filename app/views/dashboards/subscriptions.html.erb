@@ -8,7 +8,7 @@
       <div>
         <h1 class="crayons-title"><% t("heading", scope: _t) %></h1>
         <h2 class="fs-base s:fs-xl fw-medium">
-          <%= t "subhead.text", scope: _t, for: tag.em(t("subhead.for", scope: _t), class: %w[fs-italic fw-normal color-base-60]), source: link_to(@source.title, @source.path) %>
+          <%= t "subhead.text_html", scope: _t, for: tag.em(t("subhead.for", scope: _t), class: %w[fs-italic fw-normal color-base-60]), source: link_to(@source.title, @source.path) %>
         </h2>
       </div>
       <%#TODO: [@forem/delightful]: uncomment this when ready to implement CSV exports%>

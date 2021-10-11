@@ -21,7 +21,7 @@ ja:
           subtitle: Bump your listing
           button: Bump listing
           desc: You can bump your listing for the same price as the original listing
-          last: 'Last Published/Bumped: %1'
+          last: 'Last Published/Bumped: %{date}'
         notice: You can only edit title/body/tags of drafts or within the first 24 hours of listing or bumping
         not_published:
           text_html: This listing is %{not} published.
@@ -33,7 +33,7 @@ ja:
         update_draft: Update draft
       to_edit: Edit
       errors:
-        one: 件のエラーが発生したため告知は保存されませんでした。
+        one: エラーが発生したため告知は保存されませんでした。
         other: "%{count} 件のエラーが発生したため告知は保存されませんでした。"
       expired: This listing has expired.
       form:

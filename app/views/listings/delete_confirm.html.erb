@@ -6,7 +6,7 @@
   <div class="crayons-card text-padding">
     <h1 class="crayons-subtitle-1 mb-2"><%= t("subtitle", scope: _t) %></h1>
     <p class="fs-l mb-4">
-      <%= t "desc", scope: _t, action: link_to(@listing.published ? t("desc.unpublish", scope: _t) : t("desc.edit", scope: _t), edit_listing_path(@listing), data: { no_instant: "" }) %>
+      <%= t "desc.text_html", scope: _t, action: link_to(@listing.published ? t("desc.unpublish", scope: _t) : t("desc.edit", scope: _t), edit_listing_path(@listing), data: { no_instant: "" }) %>
     </p>
 
     <%= form_tag listing_path(@listing), method: :delete do %>

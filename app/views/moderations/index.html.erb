@@ -34,9 +34,9 @@
   <div class="container" style="margin-top: 90px;">
     <h1 class="pt-5" style="text-align: center"><%= t "notice.subtitle", scope: _t, community: community_name %></h1>
     <div class="body">
-      <p><%= t "notice.desc1", scope: _t, community: community_name %></p>
-      <p><%= t "notice.desc2", scope: _t, code: link_to(t("notice.code", scope: _t), code_of_conduct_path), trusted: link_to(t("notice.trusted", scope: _t), community_moderation_path), tag: link_to(t("notice.tag", scope: _t), tag_moderation_path) %></p>
-      <p><%= t "notice.desc3", scope: _t, email: mail_to(email_link, email_link) %></p>
+      <p><%= t "notice.desc1_html", scope: _t, community: community_name %></p>
+      <p><%= t "notice.desc2_html", scope: _t, code: link_to(t("notice.code", scope: _t), code_of_conduct_path), trusted: link_to(t("notice.trusted", scope: _t), community_moderation_path), tag: link_to(t("notice.tag", scope: _t), tag_moderation_path) %></p>
+      <p><%= t "notice.desc3_html", scope: _t, email: mail_to(email_link, email_link) %></p>
       <% unless user_signed_in? %>
         <p><em><%= t("notice.desc4", scope: _t) %></em></p>
       <% end %>

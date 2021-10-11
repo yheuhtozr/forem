@@ -11,7 +11,7 @@
     <div class="notification__content">
       <% cache "activity-follow-button-#{first_notification['path']}-#{first_notification['name']}" do %>
         <div class="flex justify-between items-center">
-          <p><%= t "single", scope: _t, name: link_to(first_notification["name"], first_notification["path"], class: "crayons-link fw-bold") %></p>
+          <p><%= t "single_html", scope: _t, name: link_to(first_notification["name"], first_notification["path"], class: "crayons-link fw-bold") %></p>
           <%= follow_button(notification.decorate.mocked_object("user"), "follow-back") %>
         </div>
       <% end %>
@@ -27,9 +27,9 @@
     </div>
     <p>
       <% if siblings == 2 %>
-        <%= t "and", scope: _t, first: link_to(json_data_array.first["name"], json_data_array.first["path"], class: "crayons-link fw-bold"), second: link_to(json_data_array.second["name"], json_data_array.second["path"], class: "crayons-link fw-bold") %>
+        <%= t "and_html", scope: _t, first: link_to(json_data_array.first["name"], json_data_array.first["path"], class: "crayons-link fw-bold"), second: link_to(json_data_array.second["name"], json_data_array.second["path"], class: "crayons-link fw-bold") %>
       <% else %>
-        <%= t "and_other", scope: _t, first: link_to(json_data_array.first["name"], json_data_array.first["path"], class: "crayons-link fw-bold"), others: t("others", scope: _t, siblings - 1), count: siblings %>
+        <%= t "and_other_html", scope: _t, first: link_to(json_data_array.first["name"], json_data_array.first["path"], class: "crayons-link fw-bold"), others: t("others", scope: _t, count: siblings - 1), count: siblings %>
       <% end %>
     </p>
   <% end %>

@@ -38,7 +38,7 @@ en:
       edit: Editing comment
       edited:
         text_html: "&bull; Edited %{on}"
-        true: on %{date}
+        'on': on %{date}
       expand: Expand
       hidden:
         text_html: Some comments have been hidden by the post's author - %{info}
@@ -103,7 +103,6 @@ en:
         icon: Dropdown menu
         copy:
           aria_label: Copy link to %{user}'s comment
-          text: Copy link
         settings:
           aria_label: Go to %{user}'s comment settings
         action:

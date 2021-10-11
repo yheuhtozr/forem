@@ -118,10 +118,10 @@
                   <% end %>
                   <p class="fs-xs color-base-60">
                     <% if @article.published_timestamp.present? %>
-                      <%= t "posted", scope: _t, date: local_date(@article.published_timestamp, show_year: @article.displayable_published_at.year != Time.current.year) %>
+                      <%= t "posted_html", scope: _t, date: local_date(@article.published_timestamp, show_year: @article.displayable_published_at.year != Time.current.year) %>
                     <% end %>
                     <% if @article.co_author_ids.present? %>
-                      <%= t "co_authors", scope: _t, names: @article.co_author_name_and_path.html_safe %>
+                      <%= t "co_authors_html", scope: _t, names: @article.co_author_name_and_path.html_safe %>
                     <% end %>
 
                     <% if should_show_updated_on?(@article) %>
@@ -129,14 +129,16 @@
                     <% end %>
 
                     <% if should_show_crossposted_on?(@article) %>
-                      &bull; <%= t("crossposted.text", scope: _t,
-                                                       url: link_to(get_host_without_www(@article.canonical_url || @article.feed_source_url), @article.canonical_url || @article.feed_source_url, style: "color:#1395b8"),
-                                                       on: if @article.crossposted_at
-                                                             t("crossposted.on", scope: _t,
-                                                                                 date: local_date(@article.originally_published_at || @article.published_at, show_year: (@article.originally_published_at || @article.published_at).year != Time.current.year))
-                                                           else
-                                                             ""
-                                                           end) %>
+                      &bull; <%= t("crossposted.text_html",
+                                   scope: _t,
+                                   url: link_to(get_host_without_www(@article.canonical_url || @article.feed_source_url), @article.canonical_url || @article.feed_source_url, style: "color:#1395b8"),
+                                   on: if @article.crossposted_at
+                                         t("crossposted.on",
+                                           scope: _t,
+                                           date: local_date(@article.originally_published_at || @article.published_at, show_year: (@article.originally_published_at || @article.published_at).year != Time.current.year))
+                                       else
+                                         ""
+                                       end) %>
                     <% end %>
                   </p>
                 </div>

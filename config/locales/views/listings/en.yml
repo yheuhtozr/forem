@@ -21,7 +21,7 @@ en:
           subtitle: Bump your listing
           button: Bump listing
           desc: You can bump your listing for the same price as the original listing
-          last: 'Last Published/Bumped: %1'
+          last: 'Last Published/Bumped: %{date}'
         notice: You can only edit title/body/tags of drafts or within the first 24 hours of listing or bumping
         not_published:
           text_html: This listing is %{not} published.

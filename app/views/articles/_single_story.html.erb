@@ -45,11 +45,11 @@
           <small class="crayons-story__tertiary fs-xs mr-2 mb-2">
             <span class="whitespace-nowrap"><%= lang_name story.lang %> &bull; </span>
             <% cdiv, cmod = story.reading_time.divmod(100) %>
-            <span class="whitespace-nowrap"><%= t("reading_time", scope: _t, if cdiv < 1
-                                                                  100
-                                                                else
-                                                                  (cdiv * 100) + (cmod >= 50 ? 100 : 0)
-                                                                end) %></span>
+            <span class="whitespace-nowrap"><%= t("reading_time", scope: _t, count: if cdiv < 1
+                                                                                      100
+                                                                                    else
+                                                                                      (cdiv * 100) + (cmod >= 50 ? 100 : 0)
+                                                                                    end) %></span>
           </small>
         </div>
       </div>
@@ -135,10 +135,10 @@
 
             <% if story.cached_organization && !@organization_article_index %>
             <span>
-              <%= t("for_org", scope: _t,
-                               start: tag("span", { class: %w[crayons-story__tertiary fw-normal] }, true), # rubocop:disable Rails/ContentTag
-                               end: "</span>".html_safe,
-                               org: tag.a(story.cached_organization.name, href: "/#{story.cached_organization.slug}", class: %w[crayons-story__secondary fw-medium])) %>
+              <%= t("for_org_html", scope: _t,
+                                    start: tag("span", { class: %w[crayons-story__tertiary fw-normal] }, true), # rubocop:disable Rails/ContentTag
+                                    end: "</span>".html_safe,
+                                    org: tag.a(story.cached_organization.name, href: "/#{story.cached_organization.slug}", class: %w[crayons-story__secondary fw-medium])) %>
             </span>
             <% end %>
           </div>
@@ -150,7 +150,7 @@
         <div
           class="pinned color-accent-brand fw-bold"
           data-testid="pinned-article">
-          <%= inline_svg_tag("pin.svg", alt: "", aria_hidden: true, class: "mr-1 align-text-bottom color-accent-brand") %><%= t "v.pins.article", ext: tag.span(t("v.pins.ext"), class: "hidden s:inline") %>
+          <%= inline_svg_tag("pin.svg", alt: "", aria_hidden: true, class: "mr-1 align-text-bottom color-accent-brand") %><%= t "v.pins.article_html", ext: tag.span(t("v.pins.ext"), class: "hidden s:inline") %>
         </div>
       <% end %>
 

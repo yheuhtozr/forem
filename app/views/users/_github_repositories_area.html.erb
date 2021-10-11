@@ -28,7 +28,7 @@
             <% end %>
 
             <% if repo.stargazers_count.to_i > 0 %>
-              <%= t "stars", scope: _t, repo.stargazers_count %>
+              <%= t "stars", scope: _t, count: repo.stargazers_count %>
             <% end %>
           </p>
         </a>

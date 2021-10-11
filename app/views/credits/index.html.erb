@@ -9,7 +9,7 @@
   <% end %>
 
   <div class="existing-credits">
-    <div class="existing-credits-status"><%= t("status", scope: _t) @user_unspent_credits_count %></div>
+    <div class="existing-credits-status"><%= t "status.user", scope: _t, count: @user_unspent_credits_count %></div>
     <a href="<%= purchase_credits_path %>" data-no-instant><%= t("purchase", scope: _t) %></a>
 
     <%= render "ledger", items: @ledger[["User", current_user.id]] %>
@@ -19,7 +19,7 @@
     <% @organizations.find_each do |org| %>
       <div class="existing-credits">
         <div class="existing-credits-status">
-          <%= t "status.org", scope: _t, name: org.name, num: tag.span(org.unspent_credits_count, id: "org-credits-number"), count: org.unspent_credits_count %></span>
+          <%= t "status.org_html", scope: _t, name: org.name, num: tag.span(org.unspent_credits_count, id: "org-credits-number"), count: org.unspent_credits_count %></span>
         </div>
         <a id="org-credits-purchase-link" href="<%= purchase_credits_path(organization_id: org.id) %>" data-no-instant>
           <%= t("purchase", scope: _t) %>

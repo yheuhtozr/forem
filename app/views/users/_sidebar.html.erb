@@ -37,7 +37,7 @@
       <div class="crayons-card crayons-card--secondary">
         <header class="crayons-card__header">
           <h3 class="crayons-subtitle-3">
-            <%= sanitized_sidebar t.v.users.profile_fields[title] %>
+            <%= sanitized_sidebar t("v.users.profile_fields.#{title}") %>
           </h3>
         </header>
 
@@ -52,15 +52,15 @@
     <div class="crayons-card crayons-card--secondary p-4">
       <div class="flex items-center mb-4">
         <%= inline_svg_tag("post.svg", aria: true, class: "crayons-icon mr-3 color-base-50", title: t("post.icon", scope: _t)) %>
-        <%= t("post.text", scope: _t) @user.articles.published.size %>
+        <%= t "post.text", scope: _t, count: @user.articles.published.size %>
       </div>
       <div class="flex items-center mb-4">
         <%= inline_svg_tag("comment.svg", aria: true, class: "crayons-icon mr-3 color-base-50", title: t("comment.icon", scope: _t)) %>
-        <%= t("comment.text", scope: _t) @user.comments.where(deleted: false).size %>
+        <%= t "comment.text", scope: _t, count: @user.comments.where(deleted: false).size %>
       </div>
       <div class="flex items-center">
         <%= inline_svg_tag("tag.svg", aria: true, class: "crayons-icon mr-3 color-base-50", title: t("tag.icon", scope: _t)) %>
-        <%= t("tag.text", scope: _t) @user.decorate.cached_followed_tags.size %>
+        <%= t "tag.text", scope: _t, count: @user.decorate.cached_followed_tags.size %>
       </div>
     </div>
   <% end %>

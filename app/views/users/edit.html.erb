@@ -28,14 +28,14 @@
           <% arr[0] = "@#{arr[0]}" %>
           <% arr[1] = "/settings/organization/#{arr[1]}" %>
         <% end.to_h.merge(t("new_org", scope: _t) => "/settings/organization/new") %>
-        <%= t "for", scope: _t, name: tag.select(options_for_select(options, "/settings/organization/#{params[:org_id]}"), class: "crayons-select lh-tight w-25 align-text-top w-max", onchange: "window.location.href=this.value") %>
+        <%= t "for_html", scope: _t, name: tag.select(options_for_select(options, "/settings/organization/#{params[:org_id]}"), class: "crayons-select lh-tight w-25 align-text-top w-max", onchange: "window.location.href=this.value") %>
         <%# For example: %>
         <%# <option value="/settings/organization/1>@devteam</option> %>
         <%# <option value="/settings/organization/new" selected>New Organization</option> %>
       </h1>
     <% else %>
       <h1 class="crayons-title">
-        <%= t "for", scope: _t, name: link_to("@#{@user.username.truncate(User::USERNAME_MAX_LENGTH)}", user_url(@user) || "#") %>
+        <%= t "for_html", scope: _t, name: link_to("@#{@user.username.truncate(User::USERNAME_MAX_LENGTH)}", user_url(@user) || "#") %>
       </h1>
     <% end %>
   </div>
@@ -45,8 +45,8 @@
       <nav class="hidden m:block" aria-label="Settings">
         <% Constants::Settings::TAB_LIST.each do |possible_tab| %>
           <a class="crayons-link crayons-link--block <% if @tab == possible_tab.downcase.tr(' ', '-') %>crayons-link--current<% end %>" href="/settings/<%= possible_tab.downcase.tr(" ", "-") %>">
-            <%= inline_svg_tag("twemoji/#{possible_tab.downcase.tr(' ', '-')}", aria: true, class: "crayons-icon crayons-icon--default", title: _t.tab[possible_tab]) %>
-            <%= _t.tab[possible_tab] %>
+            <%= inline_svg_tag("twemoji/#{possible_tab.downcase.tr(' ', '-')}", aria: true, class: "crayons-icon crayons-icon--default", title: t("tab.#{possible_tab}", scope: _t)) %>
+            <%= t("tab.#{possible_tab}", scope: _t) %>
           </a>
         <% end %>
       </nav>
@@ -54,7 +54,7 @@
         <select id="mobile-page-selector" class="crayons-select">
           <% Constants::Settings::TAB_LIST.each do |possible_tab| %>
             <option value="/settings/<%= possible_tab.downcase.tr(" ", "-") %>" <% if @tab == possible_tab.downcase.tr(' ', '-') %> selected <% end %>>
-              <%= _t.tab[possible_tab] %>
+              <%= t("tab.#{possible_tab}", scope: _t) %>
             </option>
           <% end %>
         </select>
@@ -79,16 +79,16 @@
       <% if @user.unconfirmed_email.present? %>
         <div class="crayons-notice crayons-notice--warning mb-6" role="alert">
           <h3 class="mb-2"><%= t("email", scope: _t) %></h3>
-          <p><%= t "finalize", scope: _t, email: link_to(@user.unconfirmed_email, "mailto:#{@user.unconfirmed_email}") %></p>
+          <p><%= t "finalize_html", scope: _t, email: link_to(@user.unconfirmed_email, "mailto:#{@user.unconfirmed_email}") %></p>
         </div>
       <% end %>
 
       <% if @user.errors.any? %>
-        <%= render partial: "users/errors", locals: { errors: @user.errors, title_suffix: t("v.users.errors.profile", @user.errors.size) } %>
+        <%= render partial: "users/errors", locals: { errors: @user.errors, title_suffix: t("v.users.errors.profile", count: @user.errors.size) } %>
       <% end %>
 
       <% if @organization&.errors&.any? %>
-        <%= render partial: "users/errors", locals: { errors: @organization.errors, title_suffix: t("v.users.errors.org", @organization.errors.size) } %>
+        <%= render partial: "users/errors", locals: { errors: @organization.errors, title_suffix: t("v.users.errors.org", count: @organization.errors.size) } %>
       <% end %>
 
       <%= render "users/#{@tab.tr('-', '_')}", tab: @tab %>
