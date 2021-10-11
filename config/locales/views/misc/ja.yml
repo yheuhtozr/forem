@@ -10,7 +10,6 @@ ja:
       heading: バッジ
       desc: 実績を積んでバッジをもらおう！バッジをクリックすると獲得条件が確認できます。
       name: "🏅 %{title} バッジ 🏅"
-    beta: ベータ
     campaign:
       subtitle: Stories (%{count})
       view: See all posts
@@ -39,7 +38,6 @@ ja:
       icon: 閉じる
       icon_left: 左メニュー
       icon_right: 右メニュー
-    loading: loading...
     logo:
       color_1:
         label: Brand color 1

@@ -12,7 +12,7 @@ module Admin
         result = ::Settings::General::Upsert.call(settings_params)
         if result.success?
           Audit::Logger.log(:internal, current_user, params.dup)
-          render json: { message: I18n.t("common.success_settings") }, status: :ok
+          render json: { message: I18n.t("core.success_settings") }, status: :ok
         else
           render json: { error: result.errors.to_sentence }, status: :unprocessable_entity
         end

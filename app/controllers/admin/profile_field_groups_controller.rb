@@ -12,7 +12,7 @@ module Admin
           I18n.t("admin.profile_field_groups_controller.group_updated",
                  profile_field_group_name: profile_field_group.name)
       else
-        flash[:error] = I18n.t("common.error", errors: profile_field_group.errors_as_sentence)
+        flash[:error] = I18n.t("core.error", errors: profile_field_group.errors_as_sentence)
       end
       redirect_to admin_profile_fields_path
     end
@@ -24,7 +24,7 @@ module Admin
           I18n.t("admin.profile_field_groups_controller.successfully_created_group",
                  profile_field_group_name: profile_field_group.name)
       else
-        flash[:error] = I18n.t("common.error", errors: profile_field_group.errors_as_sentence)
+        flash[:error] = I18n.t("core.error", errors: profile_field_group.errors_as_sentence)
       end
       redirect_to admin_profile_fields_path
     end
@@ -36,7 +36,7 @@ module Admin
           I18n.t("admin.profile_field_groups_controller.group_deleted",
                  profile_field_group_name: profile_field_group.name)
       else
-        flash[:error] = I18n.t("common.error", errors: profile_field_group.errors_as_sentence)
+        flash[:error] = I18n.t("core.error", errors: profile_field_group.errors_as_sentence)
       end
       redirect_to admin_profile_fields_path
     end

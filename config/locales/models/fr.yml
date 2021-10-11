@@ -1,0 +1,128 @@
+---
+en:
+  models:
+    api_secret:
+      api_secret_limit_of_20_per: API secret limit of 20 per user has been reached
+    application_record:
+      could_not_infer_a_decorato: Could not infer a decorator for %{called_on_class_name}.
+    article:
+      a_post_by: A post by %{user_name}
+      cannot_be_added_by_member: cannot be added by member without permission
+      cannot_be_set_to_true_if_v: cannot be set to true if video is still processing
+      cannot_search_tags_for: 'Cannot search tags for: %{tag_inspect}'
+      cannot_search_tags_for2: 'Cannot search tags for: %{tags_inspect}'
+      co_author_ids_must_be_uniq: co-author IDs must be unique
+      exceed_the_maximum_of_4_ta: exceed the maximum of 4 tags
+      is_too_long: is too long.
+      must_be_entered_in_dd_mm_y: must be entered in DD/MM/YYYY format with current or past date
+      must_be_one_you_have_permi: must be one you have permission to post to
+      must_be_valid_user_ids: must be valid user IDs
+      must_not_be_the_same_user: must not be the same user as the author
+      must_not_have_spaces: must not have spaces
+      published: Published
+      user_suspended_for_too_man: User suspended for too many spammy articles, triggered by autovomit.
+      you_cannot_mention_more_th: You cannot mention more than %{settings_ratelimit_mention} users in a post!
+    broadcast:
+      you_can_only_have_one_acti: You can only have one active announcement broadcast
+    chat_channel:
+      private_group_chat: " private group chat"
+    chat_channel_membership:
+      is_not_allowed_in_chat: is not allowed in chat
+      pattern: chat between|and
+    comment:
+      deleted: "[deleted]"
+      has_been_deleted: "%{type} has been deleted."
+      hidden_by_post_author: "[hidden by post author]"
+      is_not_valid: is not valid.
+      locked: the discussion is locked on this Post
+      type:
+        Article: Article
+        item: item
+        PodcastEpisode: Podcast episode
+      user_suspended_for_too_man: User suspended for too many spammy articles, triggered by autovomit.
+      you_cannot_mention_more_th: You cannot mention more than %{settings_ratelimit_mention} users in a comment!
+    event:
+      must_be_after_start_date: must be after start date
+    feedback_message:
+      you_previously_reported_t: "(you) previously reported this URL."
+    github_issue:
+      issue_comment_not_found: Issue comment %{issue_id} not found
+      issue_not_found: Issue %{issue_id} not found
+    html_variant:
+      cannot_change_once_publish: cannot change once published and approved
+    identity:
+      no_email_msg: No email found. Please relink your %{provider} account to avoid errors.
+    listing:
+      exceed_the_maximum_of_8_ta: exceed the maximum of 8 tags
+      has_too_many_linebreaks_no: has too many linebreaks. No more than 12 allowed.
+      is_not_allowed_to_include: is not allowed to include images.
+      is_not_allowed_to_include2: is not allowed to include liquid tags.
+    mention:
+      is_not_valid: is not valid.
+    message:
+      must_be_part_of_channel: Must be part of channel.
+      something_went_wrong: Something went wrong
+      you_are_not_a_participant: You are not a participant of this chat channel.
+    organization:
+      integer_only_no_sign_allow: Integer only. No sign allowed.
+      is_taken: is taken.
+      value_s_is_a_reserved_wor: "%<value>s is a reserved word. Contact site admins for help registering your organization."
+    organization_membership:
+      private_group_chat: "@%{organization_slug} private group chat"
+    page:
+      is_taken: is taken.
+    podcast:
+      is_taken: is taken.
+      slug_is_reserved: slug is reserved
+    podcast_episode_appearance:
+      provided_role_is_not_valid: provided role is not valid
+    poll_skip:
+      cannot_vote_more_than_once: cannot vote more than once in one poll
+    poll_vote:
+      cannot_vote_more_than_once: cannot vote more than once in one poll
+    profile_pin:
+      cannot_have_more_than_five: cannot have more than five total pinned posts
+      must_have_proper_permissio: must have proper permissions for pin
+    rating_vote:
+      is_not_permitted_to_take_t: is not permitted to take this action.
+    reaction:
+      is_not_valid: is not valid.
+    response_template:
+      cannot_have_a_user_id_asso: cannot have a user ID associated.
+      comment_templates_must_use: Comment templates must use Markdown as its content type.
+      email_templates_must_use_p: Email templates must use plain text or HTML as its content type.
+      response_template_limit_of: Response template limit of 30 per user has been reached
+    settings:
+      campaign:
+        share_your_project: Share your project
+      community:
+        new_forem: New Forem
+        user: user
+      general:
+        community_sponsors: Community Sponsors
+        the_community_mascot: The community mascot
+      user_experience:
+        must_be_be_a_3_or_6_charac: 'must be be a 3 or 6 character hex (starting with #)'
+    sponsorship:
+      the_tag_is_already_sponsor: The tag is already sponsored
+      you_can_have_only_one_spon: You can have only one sponsorship of %{metal_levels_join}
+    tag_adjustment:
+      4_tags_max_per_article: 4 tags max per article.
+      does_not_have_privilege_to: does not have privilege to adjust these tags
+      selected_for_removal_is_no: selected for removal is not a current live tag.
+      unique: can't be an already adjusted tag
+    tweet:
+      tweet_not_found: Tweet not found
+    user:
+      confirmation_could_not_be: confirmation could not be sent. %{e_message}
+      doesn_t_match_password_con: doesn't match password confirmation
+      has_been_banished: has been banished.
+      is_not_a_valid_rss_atom_fe: is not a valid RSS/Atom feed
+      is_taken: "%{data_value} is taken."
+      is_taken2: is taken.
+      user_could_not_be_saved: User could not be saved. %{e_message}
+      username_is_reserved: username is reserved
+    user_subscription:
+      can_t_subscribe_with_an_ap: Can't subscribe with an Apple private relay. Please update email.
+      source_not_found_please_ma: Source not found. Please make sure your %{user_subscription_sourceab} is active!
+      user_subscriptions_are_not: User subscriptions are not enabled for the source.

@@ -68,7 +68,7 @@
             <%= t("parent.metadata_html",
                   scope: _t,
                   name: @commentable.is_a?(PodcastEpisode) ? @commentable.podcast.name : @commentable.user.name,
-                  on: tag.span(@commentable.published_at ? t("parent.date", scope: _t, date: @commentable.published_at.strftime(t("date.comment"))) : "", class: %w[published-at])) %>
+                  on: tag.span(@commentable.published_at ? t("parent.date", scope: _t, date: @commentable.published_at.strftime(t("time.formats.comment"))) : "", class: %w[published-at])) %>
           </p>
         </div>
       </header>
