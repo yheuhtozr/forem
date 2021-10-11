@@ -365,7 +365,7 @@ en:
         meta:
           title: Confirm Signout - %{community}
         heading: Are you sure you want to sign out?
-        true: Yes, sign out
+        'yes': Yes, sign out
       block: Block @%{user}
       chat: Chat
       chat_with: Chat with %{user}
@@ -374,6 +374,7 @@ en:
       dropdown: User actions
       email_icon: Email address
       empty: 404 bio not found
+      flag: Flag @%{user}
       follow: Follow
       guidelines: "%{user}'s guidelines:"
       joined:
@@ -388,4 +389,5 @@ en:
         placeholder: Enter your message here...
         submit: Send
       social: "%{service} website"
+      unflag: Unflag @%{user}
       website: Personal website

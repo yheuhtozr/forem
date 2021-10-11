@@ -61,7 +61,7 @@
         <% if @listing.published == false %>
           <input type="hidden" name="listing[action]" value="publish" />
           <%= f.submit t("publish", scope: _t), class: "crayons-btn mr-4" %>
-          <p><%= t "not_published.text", scope: _t, not: tag.strong(t("not_published.not", scope: _t), class: "color-accent-danger") %></p>
+          <p><%= t "not_published.text_html", scope: _t, not: tag.strong(t("not_published.not", scope: _t), class: "color-accent-danger") %></p>
         <% else %>
           <input type="hidden" name="listing[action]" value="unpublish" />
           <%= f.submit t("unpublish", scope: _t), class: "crayons-btn crayons-btn--danger" %>
@@ -88,7 +88,7 @@
     <% unless @listing.published %>
       <%= form_for(@listing, html: { class: "crayons-card crayons-card--secondary p-3 m:p-4 mb-2 m:mb-4" }) do |f| %>
         <p class="pb-4">
-          <%= t "not_published.aside", scope: _t, not: tag.strong(t("not_published.not", scope: _t), class: "color-accent-danger") %>
+          <%= t "not_published.aside_html", scope: _t, not: tag.strong(t("not_published.not", scope: _t), class: "color-accent-danger") %>
         </p>
         <input type="hidden" name="listing[action]" value="publish" />
         <%= f.submit t("publish", scope: _t), class: "crayons-btn w-100" %>
@@ -105,7 +105,7 @@
       </p>
       <% if @listing.bumped_at %>
         <p class="pt-3 mt-3 border-t-1 border-solid border-0 border-base-10">
-          <%= t "bump.last", scope: _t, time_ago_in_words(@listing.bumped_at, scope: :'datetime.distance_in_words_ago') %>
+          <%= t "bump.last", scope: _t, date: time_ago_in_words(@listing.bumped_at, scope: :"datetime.distance_in_words_ago") %>
         </p>
       <% end %>
     </div>

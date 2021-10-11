@@ -6,7 +6,7 @@
   <div class="crayons-card text-padding">
     <h1 class="crayons-subtitle-1 mb-2">Are you sure you want to delete this comment?</h1>
     <p class="fs-l mb-4">
-      <%= t "desc", scope: _t, action: link_to(t("action", scope: _t), "#{@comment.path}/edit", data: { no_instant: "" }) %>
+      <%= t "desc_html", scope: _t, action: link_to(t("action", scope: _t), "#{@comment.path}/edit", data: { no_instant: "" }) %>
     </p>
 
     <%= form_tag "/comments/#{@comment.id}", method: :delete do %>

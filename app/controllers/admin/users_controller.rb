@@ -115,11 +115,11 @@ module Admin
         Moderator::DeleteUser.call(user: @user)
         link = helpers.tag.a(I18n.t("admin.users_controller.the_page"), href: admin_users_gdpr_delete_requests_path,
                                                                         data: { "no-instant" => true })
-        message = "@#{@user.username} (email: #{@user.email.presence || 'no email'}, user_id: #{@user.id}) " \
-                  "has been fully deleted. " \
-                  "If this is a GDPR delete, delete them from Mailchimp & Google Analytics " \
-                  " and confirm on "
-        flash[:success] = helpers.safe_join([message, link, "."])
+        flash[:success] = I18n.t("admin.users_controller.full_delete_html",
+                                 user: @user.username,
+                                 email: @user.email.presence || I18n.t("admin.users_controller.no_email"),
+                                 id: @user.id,
+                                 the_page: link)
       rescue StandardError => e
         flash[:danger] = e.message
       end

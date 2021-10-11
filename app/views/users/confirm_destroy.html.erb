@@ -6,7 +6,7 @@
         <%= form_tag user_full_delete_path, method: :delete, autocomplete: "off", id: "delete__account", class: "grid gap-4 mb-4" do %>
           <%= t("desc", scope: _t) %>
           <ul class="my-0 ml-6 list-disc">
-            <li><%= t "desc_1", scope: _t, twitter: link_to(t("twitter", scope: _t), "https://twitter.com/settings/applications"), github: link_to(t("github", scope: _t), "https://github.com/settings/applications") %>
+            <li><%= t "desc_1_html", scope: _t, twitter: link_to(t("twitter", scope: _t), "https://twitter.com/settings/applications"), github: link_to(t("github", scope: _t), "https://github.com/settings/applications") %>
             </li>
             <%# TODO: expand the delete messaging later %>
             <li><%= t("desc_2", scope: _t) %></li>
@@ -21,7 +21,7 @@
         </div>
         <div class="crayons-field m:w-50">
           <label for="delete__account__verification__field" class="crayons-field__label">
-            <%= t "confirm", scope: _t, word: t("word", scope: _t) %>
+            <%= t "confirm_html", scope: _t, word: t("word", scope: _t) %>
           </label>
           <input type="text" name="delete__account__verification__field" class="crayons-textfield" id="delete__account__verification__field">
         </div>
@@ -43,7 +43,7 @@
         deleteAcccountVerificationInput.addEventListener('input', disableDeleteAccountBtn);
       </script>
       <p>
-        <%= t "ghost", scope: _t, ghost: link_to("@ghost", "/ghost"), click: email_link(text: t("click", scope: _t), additional_info: { subject: "Request Account Deletion", body: @email_body }) %>
+        <%= t "ghost_html", scope: _t, ghost: link_to("@ghost", "/ghost"), click: email_link(text: t("click", scope: _t), additional_info: { subject: "Request Account Deletion", body: @email_body }) %>
       </p>
 
       <p>

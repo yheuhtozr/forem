@@ -57,7 +57,7 @@
                     data-profile-user-name="@<%= @user.username %>"
                     data-is-user-flagged="<%= @is_user_flagged %>"
                     class="border-none crayons-link crayons-link--block">
-                    <%= @flag_status ? "Unflag" : "Flag" %> @<%= @user.username %>
+                    <%= t(@flag_status ? "unflag" : "flag", scope: _t, user: @user.username) %>
                   </a>
                 <% end %>
                 <span class="report-abuse-link-wrapper" data-path="/report-abuse?url=<%= user_url(@user) %>"></span>
@@ -80,7 +80,7 @@
 
             <span class="profile-header__meta__item">
               <%= inline_svg_tag("cake.svg", aria: true, class: "crayons-icon mr-2 shrink-0", title: t("joined.icon", scope: _t)) %>
-              <%= t "joined.text", scope: _t, date: local_date(@user.created_at) %>
+              <%= t "joined.text_html", scope: _t, date: local_date(@user.created_at) %>
             </span>
 
             <% if @user.setting.display_email_on_profile %>
@@ -129,7 +129,7 @@
                 <textarea id="new-message" rows="4" cols="70" placeholder="<%= t("send_pm.placeholder", scope: _t) %>" class="crayons-textfield"></textarea>
                 <button type="submit" class="submit-message crayons-btn"><%= t("send_pm.submit", scope: _t) %></button>
               </form>
-              <p class="fs-s color-base-60"><%= t "send_pm.notice", scope: _t, code: link_to(t("send_pm.code", scope: _t), "/code-of-conduct") %></p>
+              <p class="fs-s color-base-60"><%= t "send_pm.notice_html", scope: _t, code: link_to(t("send_pm.code", scope: _t), "/code-of-conduct") %></p>
             </div>
           </div>
           <div class="crayons-modal__overlay"></div>

@@ -7,7 +7,7 @@
         <h1>
           <img src="<%= ActionController::Base.helpers.asset_path(logo_to_use) %>" alt="">
             <a href="<%= post_url %>" target="_blank" rel="noopener noreferrer">
-              <%= post_type == "question" ? "" : t("answer.text", scope: _t, answer: tag.span(t("answer.answer", scope: _t), class: "title-flare"), title: CGI.unescapeHTML(title)) %>
+              <%= post_type == "question" ? "" : t("answer.text_html", scope: _t, answer: tag.span(t("answer.answer", scope: _t), class: "title-flare"), title: CGI.unescapeHTML(title)) %>
             </a>
         </h1>
         <div class="ltag__stackexchange--post-metadata">
@@ -34,7 +34,7 @@
   </div>
   <div class="ltag__stackexchange--btn--container">
     <button class="ltag__stackexchange--btn" type="button">
-      <a href="<%= post_url %>" target="_blank" rel="noopener noreferrer">Open Full <%= post_type.capitalize %></a>
+      <a href="<%= post_url %>" target="_blank" rel="noopener noreferrer"><%= t "open.#{post_type}", scope: _t %></a>
     </button>
   </div>
 </div>

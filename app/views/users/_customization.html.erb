@@ -60,10 +60,10 @@
       <% collator = ICU::Collation::Collator.new(I18n.locale.to_s) %>
       <select class="crayons-select" data-for="users_setting_writing_lang" oninput="fillInOption(event)" aria-label="<%= t("langs.aria_label", scope: _t) %>">
         <option disabled selected><%= t("langs.select", scope: _t) %></option>
-        <%= grouped_options_for_select(%i[site cla special others].map { |gr| [_t.langs[gr], categories[gr].sort { |a, b| collator.compare a[1], b[1] }.map { |(c, l)| ["#{l} [#{c}]", c.to_s] }] }) %>
+        <%= grouped_options_for_select(%i[site cla special others].map { |gr| [t("langs.#{gr}", scope: _t), categories[gr].sort { |a, b| collator.compare a[1], b[1] }.map { |(c, l)| ["#{l} [#{c}]", c.to_s] }] }) %>
       </select>
     </div>
-    <p><%= t("lang_desc", scope: _t) %></p>
+    <p><%= t("lang_desc_html", scope: _t) %></p>
   </div>
 
   <div class="crayons-card crayons-card--content-rows">

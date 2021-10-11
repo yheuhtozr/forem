@@ -44,7 +44,7 @@
 
           <span class="profile-header__meta__item">
             <%= inline_svg_tag("cake.svg", aria: true, class: "crayons-icon mr-2 shrink-0", title: t("joined.icon", scope: _t)) %>
-            <%= t "joined.text", scope: _t, date: local_date(@user.created_at) %>
+            <%= t "joined.text_html", scope: _t, date: local_date(@user.created_at) %>
           </span>
 
           <span class="profile-header__meta__item -ml-1">

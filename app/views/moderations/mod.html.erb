@@ -79,10 +79,10 @@
     <b style="font-size:1em"><%= t("hint.subtitle", scope: _t) %></b>
   </p>
   <p>
-    <%= t("hint.desc", scope: _t) %>
+    <%= t("hint.desc_html", scope: _t) %>
   </p>
   <div class="tag-mod-form" style="display: flex; flex-direction: column; align-items: center;">
-    <h2><%= t "abusive.subtitle", scope: _t, user: link_to(@moderatable.user.username, @moderatable.user.path) %></h2>
+    <h2><%= t "abusive.subtitle_html", scope: _t, user: link_to(@moderatable.user.username, @moderatable.user.path) %></h2>
     <button class="reaction-button <%= Reaction.cached_any_reactions_for?(@moderatable, current_user, "vomit") ? "reacted" : "" %>"
             data-reactable-id="<%= @moderatable.user.id %>"
             data-category="vomit"
@@ -94,7 +94,7 @@
       <span class="vote-text"><%= t("flag", scope: _t) %></span>
     </button>
     <p>
-      <%= t("abusive.desc", scope: _t) %>
+      <%= t("abusive.desc_html", scope: _t) %>
     </p>
   </div>
   <% if current_user.any_admin? && @moderatable.class.name == "Comment" && !@moderatable.deleted %>
@@ -125,10 +125,10 @@
     <div class="tag-mod-form">
       <h2><%= t("tag.subtitle", scope: _t) %></h2>
       <%= form_for(@tag_adjustment) do |f| %>
-        <b>Current live tags:</b> <%= @moderatable.tag_list %><br>
+        <%= t "tag.live_html", scope: _t, tags: @moderatable.tag_list %><br>
         <% if @tag_adjustment.errors.any? %>
           <div id="error_explanation">
-            <h2><%= t("errors", scope: _t) @tag_adjustment.errors.count %></h2>
+            <h2><%= t("errors", scope: _t, count: @tag_adjustment.errors.count) %></h2>
             <ul>
               <% @tag_adjustment.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
@@ -160,8 +160,8 @@
       <% if @adjustments.present? %>
         <% @adjustments.each do |adjustment| %>
           <% if current_user.any_admin? || adjustment.user_id == current_user.id %>
-            <%= form_for(adjustment, url: "/tag_adjustments/#{adjustment.id}", html: { method: :delete, onsubmit: "return confirm('#{t 'tag.undo.confirm', scope: _t, type: _t.tag.undo.type[adjustment.adjustment_type], tag: adjustment.tag_name}')" }) do |f| %>
-              <%= _t.tag[adjustment.adjustment_type == "removal" ? :removed : :added, adjustment.tag_name] %>
+            <%= form_for(adjustment, url: "/tag_adjustments/#{adjustment.id}", html: { method: :delete, onsubmit: "return confirm('#{t 'tag.undo.confirm', scope: _t, type: t("tag.undo.type.#{adjustment.adjustment_type}", scope: _t), tag: adjustment.tag_name}')" }) do |f| %>
+              <%= t("tag.#{adjustment.adjustment_type == 'removal' ? 'removed' : 'added'}_html", scope: _t, tag: adjustment.tag_name) %>
               <%= f.submit t("tag.undo.button", scope: _t), id: "undo" %>
             <% end %>
           <% end %>
@@ -188,13 +188,13 @@
         data-group="experience_level"
         style="margin: 0.5rem 0;">
         <div class="level-rating-content">
-          <span class="level-rating-number"><%= t "exp.from", scope: _t, rating_level %></span>
-          <span class="level-rating-text"><%= _t.exp.level[rating_name] %></span>
+          <span class="level-rating-number"><%= t "exp.from", scope: _t, lvl: rating_level %></span>
+          <span class="level-rating-text"><%= t "exp.level.#{rating_name}", scope: _t %></span>
         </div>
       </button>
       <% end %>
       <p>
-        <%= t("exp.desc", scope: _t) %>
+        <%= t("exp.desc_html", scope: _t) %>
       </p>
     </div>
   <% end %>

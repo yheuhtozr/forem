@@ -10,7 +10,7 @@
                        class: "crayons-icon reaction-icon not-reacted",
                        title: t("heart.icon", scope: _t)) %>
     <%= inline_svg_tag("small-heart-filled.svg", aria: true, class: "crayons-icon reaction-icon--like reaction-icon reacted", title: t("heart.icon", scope: _t)) %>
-    <%= t "heart.count", scope: _t, num: tag.span((comment.public_reactions_count if comment.public_reactions_count.positive?), class: "reactions-count"), likes: tag.span(like_button_text(comment).html_safe, class: "reactions-label hidden m:inline-block") %>
+    <%= t "heart.count_html", scope: _t, num: tag.span((comment.public_reactions_count if comment.public_reactions_count.positive?), class: "reactions-count"), likes: tag.span(like_button_text(comment).html_safe, class: "reactions-label hidden m:inline-block") %>
   </button>
 
   <% unless @discussion_lock %>

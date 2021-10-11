@@ -35,14 +35,14 @@
             <%= t("subscribe.button", scope: _t) %>
           </button>
           <div class="fs-s mb-3" id="logged-in-text">
-            <%= t "subscribe.desc", scope: _t, email: tag.span(class: "ltag__user-subscription-tag__subscriber-email"), update: link_to(t("subscribe.update", scope: _t), "/settings") %>
+            <%= t "subscribe.desc_html", scope: _t, email: tag.span(class: "ltag__user-subscription-tag__subscriber-email"), update: link_to(t("subscribe.update", scope: _t), "/settings") %>
           </div>
         </div>
 
         <div class="ltag__user-subscription-tag__apple-auth fs-s hidden" id="subscriber-apple-auth">
           <button disabled class="crayons-btn" id="apple-subscribe-btn"><%= t("subscribe.apple.button", scope: _t) %></button>
           <div class="fs-s" id="apple-auth-message">
-            <%= t "subscribe.apple.desc", scope: _t, update: link_to(t("subscribe.apple.update", scope: _t), "/settings") %>
+            <%= t "subscribe.apple.desc_html", scope: _t, update: link_to(t("subscribe.apple.update", scope: _t), "/settings") %>
           </div>
         </div>
 
@@ -64,7 +64,7 @@
           </header>
           <div class="crayons-modal__box__body">
             <p id="confirmation-text" class="fs-base mb-4 mt-0">
-              <%= t "confirm.text", scope: _t, email: tag.span(class: "ltag__user-subscription-tag__subscriber-email"), username: tag.span(author_username, class: "ltag__user-subscription-tag__author-username fw-medium") %>
+              <%= t "confirm.text_html", scope: _t, email: tag.span(class: "ltag__user-subscription-tag__subscriber-email"), username: tag.span(author_username, class: "ltag__user-subscription-tag__author-username fw-medium") %>
             <p>
             <div class="ltag__user-subscription-tag__confirmation-buttons">
               <button class="crayons-btn mr-1" id="confirmation-btn">

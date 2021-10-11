@@ -17,7 +17,7 @@
       </div>
       <%= form_for(@notification_subscription, url: "/notification_subscriptions/Comment/#{@comment.id}", method: "post", html: { class: "mute-form shrink-0" }) do |f| %>
         <input type="hidden" name="config" value="<%= @notification_subscription.persisted? ? "not_subscribed" : "all_comments" %>">
-        <%= f.submit @notification_subscription.persisted? ? "Mute notifications" : "Unmute notifications", class: "crayons-btn crayons-btn--secondary #{@notification_subscription.persisted? ? 'mute' : 'unmute'}" %>
+        <%= f.submit t("subscribe.#{@notification_subscription.persisted? ? 'mute' : 'unmute'}", scope: _t), class: "crayons-btn crayons-btn--secondary #{@notification_subscription.persisted? ? 'mute' : 'unmute'}" %>
       <% end %>
     </div>
 

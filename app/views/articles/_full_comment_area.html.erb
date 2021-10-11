@@ -4,9 +4,8 @@
     <% if @article.show_comments %>
       <header class="relative flex justify-between items-center mb-6">
         <h2 class="crayons-subtitle-1">
-          <%= t("subtitle", scope: _t,
-                count: tag.span(t("count", scope: _t, @article.comments_count), class: "js-comments-count", data: { comments_count: @article.comments_count }),
-              ) %>
+          <%= t("subtitle_html", scope: _t,
+                                 num: tag.span(t("num", scope: _t, num: @article.comments_count), class: "js-comments-count", data: { comments_count: @article.comments_count })) %>
         </h2>
         <div id="comment-subscription" class="print-hidden">
           <div role="presentation" class="crayons-btn-group">

@@ -54,7 +54,7 @@
       <% end %>
       <div class="sidebar-data">
         <div>
-          <%= t("published", scope: _t) @num_published_articles %>
+          <%= t "published", scope: _t, count: @num_published_articles %>
         </div>
         <% if user_signed_in? %>
           <div class="crayons-btn-group mt-3">

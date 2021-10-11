@@ -9,7 +9,7 @@
     </header>
     <% if podcast.errors.any? %>
       <div class="podcast-errors">
-        <h2><%= t("errors", scope: _t, podcast.errors.count) %></h2>
+        <h2><%= t("errors", scope: _t, count: podcast.errors.count) %></h2>
         <ul>
         <% podcast.errors.full_messages.each do |message| %>
           <li><%= message %></li>

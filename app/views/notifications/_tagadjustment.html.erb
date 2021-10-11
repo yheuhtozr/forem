@@ -9,11 +9,7 @@
     <% removal = data["adjustment_type"] == "removal" %>
       <h3 class="mb-2 color-base-90"><%= t("heading", scope: _t) %></h3>
       <p class="mb-4">
-        Moderators <%= removal ? "removed" : "added" %> the
-        <strong><a href="/t/<%= data["tag_name"] %>">#<%= data["tag_name"] %></a></strong> tag
-        <%= removal ? "from" : "to" %> your post
-        <a href="<%= data["article"]["path"] %>"><%= h(data["article"]["title"]) %></a>.
-        <%= removal ? "Certain tags have special submission guidelines, and mods need to adjust tags to best fit the community." : "Mods felt this tag represented your article." %>
+        <%= t("#{removal ? "remove" : "add"}_html", tag: link_to("##{data["tag_name"]}", "/t/#{data["tag_name"]}")), title: link_to(h(data["article"]["title"]), data["article"]["path"])) %>
       </p>
       <div class="crayons-card crayons-card--secondary p-4 mb-4">
         <p class="color-base-70">
@@ -22,10 +18,10 @@
         </p>
       </div>
       <% if removal %>
-        <p class="mb-2"><%= t "check", scope: _t, other: link_to(t("other", scope: _t), "/tags") %></p>
+        <p class="mb-2"><%= t "check_html", scope: _t, other: link_to(t("other", scope: _t), "/tags") %></p>
       <% end %>
       <p>
-        <%= t "support", scope: _t, community: community_name, email: t("contact_prompts.if_any_questions_html") %>
+        <%= t "support_html", scope: _t, community: community_name, email: t("contact_prompts.if_any_questions_html") %>
       </p>
   </div>
 </div>

@@ -21,9 +21,9 @@
 <div class="user-profile-header tag-header" style="background-color:<%= @tag.bg_color_hex %>;color:<%= @tag.text_color_hex %>;">
   <div class="slanty-accent"></div>
   <div class="tag-or-query-header-container tag-edit-tag">
-    <h1><% t "heading", scope: _t, tag: link_to(@tag.name, URL.tag(@tag), style: "color: #{@tag.text_color_hex};text-decoration: underline;") %></h1>
+    <h1><% t "heading_html", scope: _t, tag: link_to(@tag.name, URL.tag(@tag), style: "color: #{@tag.text_color_hex};text-decoration: underline;") %></h1>
     <p>
-      <%= t "markdown", scope: _t, tag: tag.code("##{@tag.name}", style: "background-color: #D2D2D2; color: black; padding: 5px; border-radius: 5px;") %>
+      <%= t "markdown_html", scope: _t, tag: tag.code("##{@tag.name}", style: "background-color: #D2D2D2; color: black; padding: 5px; border-radius: 5px;") %>
     </p>
   </div>
 </div>
@@ -45,6 +45,7 @@
         <%= t("form.example", scope: _t) %>
       </a>
     </h4>
+    <% label_i18n = ->(param) { label_tag param, t("form.#{param}.label", scope: _t) } %>
     <div class="tag-form-field">
       <%= label_tag :pretty_name %>
       <br>

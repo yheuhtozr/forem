@@ -17,9 +17,9 @@
                 <%= json_data["user"]["name"] %>
               </a>
               <% if json_data["comment"]["depth"] && json_data["comment"]["depth"] > 0 %>
-                <%= t "replied", scope: _t, params %>
+                <%= t "replied_html", scope: _t, params %>
               <% else %>
-                <%= t "commented", scope: _t, params %>
+                <%= t "commented_html", scope: _t, params %>
               <% end %>
               <a href="<%= json_data["comment"]["commentable"]["path"] %>" class="crayons-link fw-bold">
                 <%= h(json_data["comment"]["commentable"]["title"]) %>
@@ -34,9 +34,9 @@
       <% elsif notification.action == "Moderation" %>
         <header class="mb-4">
           <h2 class="fs-base fw-normal">
-            <%= t "left", scope: _t, user: link_to(json_data["comment"]["path"].split("/")[1], "/#{json_data['comment']['path'].split('/')[1]}", class: "crayons-link fw-bold"), title: params[:title] %>
+            <%= t "left_html", scope: _t, user: link_to(json_data["comment"]["path"].split("/")[1], "/#{json_data['comment']['path'].split('/')[1]}", class: "crayons-link fw-bold"), title: params[:title] %>
           </h2>
-          <p><%= t("welcome", scope: _t) %></p>
+          <p><%= t("welcome_html", scope: _t) %></p>
         </header>
 
         <%= render "notifications/shared/comment_box", json_data: json_data, notification: notification, context: "moderation" %>
@@ -46,7 +46,7 @@
       <% elsif notification.action == "First" %>
         <header class="mb-4">
           <h2 class="fs-base fw-normal">
-            <%= t "first", scope: _t, params %>
+            <%= t "first_html", scope: _t, params %>
           </h2>
           <p class="lh-tight"><small class="fs-s color-base-60"><%= time_ago_in_words notification.created_at %> ago</small></p>
 

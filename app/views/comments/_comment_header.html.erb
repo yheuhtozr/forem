@@ -30,7 +30,7 @@
       <ul class="m-0">
         <li><a href="<%= URL.comment(comment) %>" class="crayons-link crayons-link--block permalink-copybtn" aria-label="<%= t "copy.aria_label", scope: _t, user: comment.user.name %>" data-no-instant><%= t("copy.text", scope: _t) %></a></li>
         <li class="comment-actions hidden" data-user-id="<%= comment.user_id %>" data-action="settings-button" data-path="<%= URL.comment(comment) %>/settings" aria-label="<%= t "settings.aria_label", scope: _t, user: comment.user.name %>"></li>
-        <% action = _t.action[comment.hidden_by_commentable_user ? :unhide : :hide] %>
+        <% action = t("action.#{comment.hidden_by_commentable_user ? 'unhide' : 'hide'}", scope: _t) %>
         <li class="comment-actions hidden" data-action="hide-button" data-commentable-user-id="<%= commentable.user_id %>" data-user-id="<%= comment.user_id %>">
           <a href="#" class="crayons-link crayons-link--block hide-comment" data-hide-type="<%= comment.hidden_by_commentable_user ? "unhide" : "hide" %>" data-comment-id="<%= comment.id %>" aria-label="<%= t "action.aria_label", scope: _t, action: action, user: comment.user.name %>">
             <%= action %>

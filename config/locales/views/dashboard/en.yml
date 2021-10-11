@@ -7,12 +7,12 @@ en:
       heading: Dashboard
       actions:
         mobile:
-          posts: Posts (%1)
-          followers: Followers (%1)
-          following_tags: Following tags (%1)
-          following_users: Following users (%1)
-          following_orgs: Following organizations (%1)
-          following_pods: Following podcasts (%1)
+          posts: Posts (%{num})
+          followers: Followers (%{num})
+          following_tags: Following tags (%{num})
+          following_users: Following users (%{num})
+          following_orgs: Following organizations (%{num})
+          following_pods: Following podcasts (%{num})
         posts: Posts
         series: Series
         followers: Followers
@@ -67,7 +67,7 @@ en:
         subscriptions:
           title: Subscriptions
           icon: Data
-          number: Subscriptions (%1)
+          number: Subscriptions (%{num})
         delete: Delete
         unpin: Unpin
         pin:

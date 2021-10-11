@@ -4,7 +4,7 @@
   <% if show_comment_count %>
     <div class="crayons-link__secondary">
       <% if plucked_article[2] > 0 %>
-        <%= t("count", scope: _t, plucked_article[2]) %>
+        <%= t("count", scope: _t, count: plucked_article[2]) %>
       <% else %>
         <span class="crayons-indicator crayons-indicator--accent"><%= t("empty", scope: _t) %></span>
       <% end %>
