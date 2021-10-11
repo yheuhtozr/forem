@@ -397,18 +397,18 @@ class Article < ApplicationRecord
     return unless edited?
 
     if edited_at.year == Time.current.year
-      edited_at.strftime("%b %e")
+      edited_at.strftime I18n.t("date.readable.no_year")
     else
-      edited_at.strftime("%b %e '%y")
+      edited_at.strftime I18n.t("date.readable.with_year")
     end
   end
 
   def readable_publish_date
     relevant_date = displayable_published_at
     if relevant_date && relevant_date.year == Time.current.year
-      relevant_date&.strftime("%b %-e")
+      relevant_date&.strftime I18n.t("date.readable.no_year")
     else
-      relevant_date&.strftime("%b %-e '%y")
+      relevant_date&.strftime I18n.t("date.readable.with_year")
     end
   end
 

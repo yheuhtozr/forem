@@ -208,8 +208,13 @@ module ApplicationHelper
   end
 
   def collection_link(collection, **kwargs)
-    size_string = "#{collection.articles.published.size} Part Series"
-    body = collection.slug.present? ? "#{collection.slug} (#{size_string})" : size_string
+    size_string = I18n.t("v.articles.series.size", collection.articles.published.size)
+    body = if collection.slug.present?
+             I18n.t("v.articles.series.subtitle", slug: collection.slug,
+                                                  size: size_string)
+           else
+             size_string
+           end
 
     link_to body, collection.path, **kwargs
   end

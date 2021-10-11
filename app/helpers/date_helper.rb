@@ -4,7 +4,7 @@ module DateHelper
     format = show_year ? :short_with_year : :short
 
     tag.time(
-      l(datetime, format: format),
+      datetime.strftime(show_year ? I18n.t("date.readable.full_year") : I18n.t("date.readable.with_year")),
       datetime: datetime.utc.iso8601,
       class: "date#{'-no-year' unless show_year}",
     )

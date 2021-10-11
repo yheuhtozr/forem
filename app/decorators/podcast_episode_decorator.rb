@@ -14,9 +14,9 @@ class PodcastEpisodeDecorator < ApplicationDecorator
     return "" unless published_at
 
     if published_at.year == Time.current.year
-      published_at.strftime("%b %-e")
+      published_at.strftime I18n.t("date.readable.no_year")
     else
-      published_at.strftime("%b %-e '%y")
+      published_at.strftime I18n.t("date.readable.with_year")
     end
   end
 
