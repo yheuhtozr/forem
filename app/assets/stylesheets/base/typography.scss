@@ -70,24 +70,6 @@
   font-weight: bold;
   font-style: italic;
 }
-@font-face {
-  font-family: Vekos;
-  @include font-src('vekos-regular.woff2');
-  font-style: normal;
-  font-weight: normal;
-}
-@font-face {
-  font-family: Vekos;
-  @include font-src('vekos-bold.woff2');
-  font-style: normal;
-  font-weight: bold;
-}
-@font-face {
-  font-family: Maqen;
-  @include font-src('maqen.woff2');
-  font-style: normal;
-  font-weight: normal;
-}
 
 // Content fonts
 body {

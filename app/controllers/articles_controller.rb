@@ -56,14 +56,6 @@ class ArticlesController < ApplicationController
 
     @article, needs_authorization = Articles::Builder.call(@user, @tag, @prefill)
 
-    if params[:slug].present? # indicates /translate
-      origin = Article.find_by(slug: params[:slug])
-      @article.body_markdown =
-        I18n.t("v.articles.translations.stub", name: origin.title, url: origin.path).safe_concat origin.body_markdown # rubocop:disable Rails/OutputSafety
-      @article.translation_group = origin.translation_group || origin.id
-      @is_translate = true
-    end
-
     if needs_authorization
       authorize(Article)
     else
@@ -79,7 +71,6 @@ class ArticlesController < ApplicationController
     @user = @article.user
     @organizations = @user&.organizations
     @user_approved_liquid_tags = Users::ApprovedLiquidTags.call(@user)
-    @default_lang = @user.setting.writing_lang if @user
   end
 
   def manage
@@ -232,7 +223,6 @@ class ArticlesController < ApplicationController
     @tag = Tag.find_by(name: params[:template])
     @prefill = params[:prefill].to_s.gsub("\\n ", "\n").gsub("\\n", "\n")
     @user_approved_liquid_tags = Users::ApprovedLiquidTags.call(@user)
-    @default_lang = @user.setting.writing_lang if @user
   end
 
   def handle_user_or_organization_feed
@@ -275,7 +265,7 @@ class ArticlesController < ApplicationController
                      else
                        %i[
                          title body_markdown main_image published description video_thumbnail_url
-                         tag_list canonical_url series collection_id archived base_lang translation_group
+                         tag_list canonical_url series collection_id archived
                        ]
                      end
 

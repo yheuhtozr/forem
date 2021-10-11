@@ -14,8 +14,7 @@
       <span class="color-base-60"><%= t("personal", scope: _t) %></span>
       <div class="flex m:flex-col items-center m:items-start justify-between">
         <strong class="fs-2xl m:fs-3xl lh-tight color-base-90 m:mb-4 block" id="test-credits-size"><%= @credits.size %></strong>
-        <%# temporarily disable billing function %>
-        <%# a target="_blank" rel="noopener noreferrer" class="crayons-btn crayons-btn--secondary m:w-100" href="/credits/purchase" data-no-instant %><%#= t("buy", scope: _t) %><%# /a %>
+        <a target="_blank" rel="noopener noreferrer" class="crayons-btn crayons-btn--secondary m:w-100" href="/credits/purchase" data-no-instant><%= t("buy", scope: _t) %></a>
       </div>
     </div>
 
@@ -31,8 +30,7 @@
         <% end %>
         <div class="flex m:flex-col items-center m:items-start justify-between">
           <strong class="fs-2xl m:fs-3xl lh-tight color-base-90 m:mb-4 block" id="org-credits-number"><%= @organizations.first.credits.unspent.size %></strong>
-          <%# temporarily disable billing function %>
-          <%# a id="org-credits-purchase-link" target="_blank" rel="noopener noreferrer" class="crayons-btn crayons-btn--secondary m:w-100" href="/credits/purchase?organization_id=<%#= @organizations.first.id %#>" data-no-instant %><%#= t("buy", scope: _t) %><%# /a %>
+          <a id="org-credits-purchase-link" target="_blank" rel="noopener noreferrer" class="crayons-btn crayons-btn--secondary m:w-100" href="/credits/purchase?organization_id=<%= @organizations.first.id %>" data-no-instant><%= t("buy", scope: _t) %></a>
         </div>
         <%= javascript_packs_with_chunks_tag "listingForm", "orgCreditsSelector", defer: true %>
       </div>

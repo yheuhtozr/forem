@@ -6,7 +6,7 @@ class StoriesController < ApplicationController
       title path id user_id comments_count public_reactions_count organization_id
       reading_time video_thumbnail_url video video_duration_in_minutes
       experience_level_rating experience_level_rating_distribution cached_user cached_organization
-      listing_category_id base_lang
+      listing_category_id
     ],
     methods: %i[
       readable_publish_date cached_tag_list_array flare_tag class_name
@@ -273,8 +273,6 @@ class StoriesController < ApplicationController
         .published
         .order(Arel.sql("COALESCE(crossposted_at, published_at) ASC"))
     end
-
-    @parallels = @article.parallel_translations.select(&:published)
 
     @comments_to_show_count = @article.cached_tag_list_array.include?("discuss") ? 50 : 30
     set_article_json_ld

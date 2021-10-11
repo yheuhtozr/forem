@@ -59,16 +59,6 @@ ja:
           text:
             other: "…（%{count} 部分）…"
           title: すべて表示
-      translations:
-        heading: 他言語版があります
-        icon: 記事の言語版の一覧
-        original: 原文（%{lang}）
-        unpublished: 非公開
-        stub: |+
-          <!-- 作業中の注記: 完了したら取り除いてください -->
-          **（この記事は [%{name}](%{url}) から翻訳中です）**
-          <!-- 作業中の注記終わり -->
-
       unlock:
         meta:
           title: Confirm Discussion Unlock
@@ -92,6 +82,6 @@ ja:
       posted_html: "%{date}投稿"
       read_next: 次に読みたい
       reading_time:
-        other: 約 %{count} 字/語
+        other: "%{count} 分で読める"
       right_nav: 作者情報
 ...

@@ -117,6 +117,7 @@ function buildArticleHTML(article) {
 
     var reactionsCount = article.public_reactions_count;
     var reactionsDisplay = '';
+    var reactionsText = reactionsCount === 1 ? 'reaction' : 'reactions';
 
     if (article.class_name !== 'User' && reactionsCount > 0) {
       reactionsDisplay =
@@ -280,11 +281,8 @@ function buildArticleHTML(article) {
       var div = Math.floor((article.reading_time || 0) / 100);
       var mod = div % 100;
       readingTimeHTML =
-        '<small class="crayons-story__tertiary fs-xs mr-2 mb-2"><span class="whitespace-nowrap">' +
-        article.text_language +
-        ' &bull; </span><span class="whitespace-nowrap">' +
         i18next.t('articles.reading_time', {
-          count: div < 1 ? 100 : div * 100 + (mod >= 50 ? 100 : 0),
+          count: (div < 1 ? 100 : div * 100 + (mod >= 50 ? 100 : 0)),
         }) +
         '</span></small>';
     }
@@ -346,9 +344,7 @@ function buildArticleHTML(article) {
           <div class="crayons-story__body">\
             <div class="crayons-story__indention">\
               <div class="crayons-story__middle">\
-                <h3 class="crayons-story__title with-content-font" lang="${
-                  article.base_lang
-                }">
+                <h3 class="crayons-story__title">
                   <a href="${article.path}" id="article-link-${article.id}">
                     ${filterXSS(article.title)}
                   </a>

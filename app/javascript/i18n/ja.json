@@ -273,17 +273,6 @@
     "options": {
       "done": "完了",
       "heading": "記事の設定",
-      "lang": {
-        "aria_label": "言語一覧の中から選択できます",
-        "cla": "CLA コード",
-        "desc": "地の文は何語で書かれていますか？言語タグ (<code>en-US</code>) で指定してください。",
-        "existing": "言語リスト: ",
-        "label": "言語",
-        "others": "その他",
-        "select": "ここから選べます",
-        "site": "サイト",
-        "special": "特殊用途"
-      },
       "series": {
         "aria_label": "既存の連載の中から一つ選んでください",
         "desc": "この記事は連載の一部ですか？新しい連載名をつけてください（2 つめの記事ができると連載として表示されます）",
@@ -311,8 +300,7 @@
       "aria_label": "記事の表示モード",
       "edit": "編集",
       "preview": "プレビュー"
-    },
-    "translate": "翻訳を作成"
+    }
   },
   "errors": {
     "comment": "This comment already exists.",

@@ -2,10 +2,7 @@ import { h } from 'preact';
 import { articlePropTypes } from '../../common-prop-types';
 
 export const ContentTitle = ({ article }) => (
-  <h3
-    className="crayons-story__title with-content-font"
-    lang={article.base_lang}
-  >
+  <h3 className="crayons-story__title">
     <a href={article.path} id={`article-link-${article.id}`}>
       {article.class_name === 'PodcastEpisode' && (
         <span className="crayons-story__flare-tag">podcast</span>

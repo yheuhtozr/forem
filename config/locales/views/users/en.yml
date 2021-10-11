@@ -88,15 +88,6 @@ en:
         editor: Editor Version
         fixed: Fixed to window
         font: Base Reading Font
-        lang: Writing Language
-        lang_desc_html: The language you usually author an article in (used by editor as the default value). Specify in the language tag format (<code>en-US</code>).
-        langs:
-          aria_label: You can select a language from the list
-          cla: CLA codes
-          others: General
-          select: Quick select
-          site: Suggested
-          special: Specials
         level: What is your approximate experience level (1-5)?
         level_desc: This will not be displayed on your profile or anywhere publicly. It helps gently determine what content you are shown along with tags you follow etc.
         navbar: Site Navbar
@@ -197,8 +188,8 @@ en:
         user: User
         Basic: Basic
         Branding: Branding
-        Coding: Conlanging
-        Work: Publicity
+        Coding: Coding
+        Work: Work
       settings:
         meta:
           title: Settings
@@ -322,10 +313,11 @@ en:
       pin_icon: Pin
       pinned: Pinned
       profile_descriptions:
-        currently_learning: What languages (natural or artificial) are you learning right now? What are you interested to learn?
-        currently_hacking_on: Are you creating any languages right now? What are they like?
-        available_for: Are you creating any worlds right now? What are they like?
-        skills_languages: What languages do you speak or have you ever learned? How well do you speak them?
+        currently_learning: What are you learning right now? What are the new tools and languages you're picking up right now?
+        currently_hacking_on: What projects are currently occupying most of your time?
+        available_for: What kinds of collaborations or discussions are you available for? What's a good reason to say Hey! to you these days?
+        skills_languages: What tools and languages are you most experienced with? Are you specialized or more of a generalist?
+        work: "What do you do? Example: CEO at ACME Inc."
       profile_fields:
         bio:
           label: Bio
@@ -337,12 +329,12 @@ en:
         website:
           label: Website URL
           placeholder: https://yoursite.com
-        education: Activities
-        currently_learning: Languages learning
-        currently_hacking_on: Languages creating
-        available_for: Worldbuilding
-        skills_languages: Language abilities
-        work: Works/Awards
+        education: Education
+        currently_learning: Currently learning
+        currently_hacking_on: Currently hacking on
+        available_for: Available for
+        skills_languages: Skills/Languages
+        work: Work
       side:
         comment:
           icon: Comment

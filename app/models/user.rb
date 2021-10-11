@@ -221,6 +221,22 @@ class User < ApplicationRecord
   after_commit :subscribe_to_mailchimp_newsletter
   after_commit :bust_cache
 
+  def self.invalid_config_font
+    I18n.t("models.user.invalid_config_font")
+  end
+
+  def self.invalid_config_navbar
+    I18n.t("models.user.value_s_is_not_a_valid_na")
+  end
+
+  def self.invalid_config_theme
+    I18n.t("models.user.value_s_is_not_a_valid_th")
+  end
+
+  def self.invalid_editor_version
+    I18n.t("models.user.value_s_must_be_either_v1")
+  end
+
   def self.reserved_username
     I18n.t("models.user.username_is_reserved")
   end

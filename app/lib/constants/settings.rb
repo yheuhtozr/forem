@@ -5,6 +5,7 @@ module Constants
       Customization
       Notifications
       Account
+      Billing
       Organization
       Extensions
     ].freeze

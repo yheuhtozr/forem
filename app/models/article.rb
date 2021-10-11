@@ -52,10 +52,6 @@ class Article < ApplicationRecord
            inverse_of: :commentable,
            class_name: "Comment"
 
-  validates :base_lang, format: {
-    with: /\A[0-9A-Za-z]{1,8}(?:-[0-9A-Za-z]{1,8})*\z/,
-    message: proc { I18n.t("common.invalid_langtag") }
-  }, allow_blank: true
   validates :body_markdown, bytesize: { maximum: 800.kilobytes, too_long: proc {
                                                                             I18n.t("models.article.is_too_long")
                                                                           } }
@@ -113,8 +109,6 @@ class Article < ApplicationRecord
   after_save :create_conditional_autovomits
   after_save :bust_cache
   after_save :notify_slack_channel_about_publication
-  after_save :eponymous_translation_group
-  after_save :notify_external_services_on_new_post
 
   after_update_commit :update_notifications, if: proc { |article|
                                                    article.notifications.any? && !article.saved_changes.empty?
@@ -226,7 +220,7 @@ class Article < ApplicationRecord
            :video, :user_id, :organization_id, :video_source_url, :video_code,
            :video_thumbnail_url, :video_closed_caption_track_url, :social_image,
            :published_from_feed, :crossposted_at, :published_at, :featured_number,
-           :created_at, :body_markdown, :email_digest_eligible, :processed_html, :co_author_ids, :base_lang)
+           :created_at, :body_markdown, :email_digest_eligible, :processed_html, :co_author_ids)
   }
 
   scope :sorting, lambda { |value|
@@ -252,8 +246,7 @@ class Article < ApplicationRecord
   scope :feed, lambda {
                  published.includes(:taggings)
                    .select(
-                     :id, :published_at, :processed_html, :user_id, :organization_id, :title, :path, :cached_tag_list,
-                     :base_lang
+                     :id, :published_at, :processed_html, :user_id, :organization_id, :title, :path, :cached_tag_list
                    )
                }
 
@@ -454,10 +447,6 @@ class Article < ApplicationRecord
 
   def all_langs
     I18n.t("languages")
-  end
-
-  def parallel_translations
-    Article.where(translation_group: translation_group).where.not(translation_group: nil)
   end
 
   def skip_indexing?
@@ -816,22 +805,5 @@ class Article < ApplicationRecord
     return unless saved_change_to_attribute?(:processed_html)
 
     ::Articles::DetectAnimatedImagesWorker.perform_async(id)
-  end
-
-  def eponymous_translation_group
-    return unless translation_group && id != translation_group
-
-    original = Article.find translation_group
-    original.update_columns(translation_group: translation_group) unless original.translation_group
-  end
-
-  def notify_external_services_on_new_post
-    return unless published && !boost_states["boosted_new_post"]
-
-    TwitterClient::Bot.new_post self
-    DiscordWebhook::Bot.new_post self
-
-    boost_states["boosted_new_post"] = true
-    update_columns boost_states: boost_states
   end
 end

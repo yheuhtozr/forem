@@ -87,15 +87,6 @@ ja:
         editor: エディタバージョン
         fixed: ウィンドウに追従
         font: 基本フォント
-        lang: 執筆言語
-        lang_desc_html: あなたが記事を執筆する際によく使う言語です（編集画面のデフォルト値に使用）。言語タグ形式 (<code>en-US</code>) で指定してください。
-        langs:
-          aria_label: 言語一覧の中から選択できます
-          cla: CLA コード
-          select: ここから選べます
-          site: サイト
-          special: 特殊用途
-          others: その他
         level: あなたの専門レベルはどのくらいですか（1～5）？
         level_desc: これはプロフィールページを含めどこにも公開されません。フォローしているタグなどの情報と合わせて、あなたにおすすめする内容を調整するためだけに使われます。
         navbar: サイトのヘッダー
@@ -195,9 +186,9 @@ ja:
       group:
         user: ユーザー
         Basic: 基本情報
-        Branding: マイテーマ
-        Coding: 言語創作
-        Work: PR
+        Branding: Branding
+        Coding: Coding
+        Work: Work
       settings:
         meta:
           title: 設定
@@ -315,10 +306,11 @@ ja:
       pin_icon: ピン止め
       pinned: ピン止め
       profile_descriptions:
-        currently_learning: 今、何か言語（自然言語・人工言語）を勉強していますか？また、関心がありますか？
-        currently_hacking_on: 今、何か言語づくりに取り組んでいますか？それはどんな言語ですか？
-        available_for: 今、何か世界づくりに取り組んでいますか？それはどんな世界ですか？
-        skills_languages: どんな言語を使ったり、勉強したことがありますか？どのくらい上手ですか？
+        currently_learning: What are you learning right now? What are the new tools and languages you're picking up right now?
+        currently_hacking_on: What projects are currently occupying most of your time?
+        available_for: What kinds of collaborations or discussions are you available for? What's a good reason to say Hey! to you these days?
+        skills_languages: What tools and languages are you most experienced with? Are you specialized or more of a generalist?
+        work: "What do you do? Example: CEO at ACME Inc."
       profile_fields:
         bio:
           label: 自己紹介
@@ -330,13 +322,12 @@ ja:
         website:
           label: サイト URL
           placeholder: https://yoursite.com
-        website_url: サイト URL
-        education: 最近の活動
-        currently_learning: 勉強中の言語
-        currently_hacking_on: 制作中の言語
-        available_for: 制作中の世界観
-        skills_languages: 使用する言語
-        work: 作品・表彰
+        education: Education
+        currently_learning: Currently learning
+        currently_hacking_on: Currently hacking on
+        available_for: Available for
+        skills_languages: Skills/Languages
+        work: Work
       side:
         comment:
           icon: コメント
@@ -364,7 +355,7 @@ ja:
       details: "%{user} のプロフィール詳細"
       dropdown: ユーザー操作
       email_icon: メールアドレス
-      empty: かつ 30
+      empty: 404 bio not found
       flag: Flag @%{user}
       follow: フォロー
       guidelines: "%{user}'s guidelines:"

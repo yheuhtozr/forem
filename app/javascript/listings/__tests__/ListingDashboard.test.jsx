@@ -224,9 +224,9 @@ describe('<ListingDashboard />', () => {
 
     getByText('Credits', { selector: 'h3' });
 
-    // const buyCredits = getByText('Buy Credits', { selector: 'a' });
+    const buyCredits = getByText('Buy Credits', { selector: 'a' });
 
-    // expect(buyCredits.getAttribute('href')).toEqual('/credits/purchase');
+    expect(buyCredits.getAttribute('href')).toEqual('/credits/purchase');
   });
 
   it('should render for listingRow view', () => {

@@ -67,11 +67,11 @@ RSpec.describe "UserSettings", type: :request do
         expect(response.body).to include("Set new password", "Account emails", "API Keys", "Danger Zone")
       end
 
-      # it "displays content on Billing tab properly" do
-      #   get user_settings_path(:billing)
+      it "displays content on Billing tab properly" do
+        get user_settings_path(:billing)
 
-      #   expect(response.body).to include("Billing")
-      # end
+        expect(response.body).to include("Billing")
+      end
 
       it "displays content on Organization tab properly" do
         get user_settings_path(:organization)

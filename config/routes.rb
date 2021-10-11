@@ -442,7 +442,6 @@ Rails.application.routes.draw do
     get "/:username/:slug/discussion_lock_confirm", to: "articles#discussion_lock_confirm"
     get "/:username/:slug/discussion_unlock_confirm", to: "articles#discussion_unlock_confirm"
     get "/:username/:slug/stats", to: "articles#stats"
-    get "/:username/:slug/translate", to: "articles#new"
     get "/:username/:view", to: "stories#index",
                             constraints: { view: /comments|moderate|admin/ }
     get "/:username/:slug", to: "stories#show"

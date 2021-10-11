@@ -84,7 +84,6 @@ ActiveRecord::Schema.define(version: 2021_10_08_170433) do
     t.boolean "any_comments_hidden", default: false
     t.boolean "approved", default: false
     t.boolean "archived", default: false
-    t.string "base_lang"
     t.text "body_html"
     t.text "body_markdown"
     t.text "cached_organization"
@@ -142,7 +141,6 @@ ActiveRecord::Schema.define(version: 2021_10_08_170433) do
     t.string "social_image"
     t.integer "spaminess_rating", default: 0
     t.string "title"
-    t.bigint "translation_group"
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.integer "user_subscriptions_count", default: 0, null: false
@@ -1427,7 +1425,6 @@ ActiveRecord::Schema.define(version: 2021_10_08_170433) do
     t.boolean "permit_adjacent_sponsors", default: true
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
-    t.string "writing_lang"
     t.index ["feed_url"], name: "index_users_settings_on_feed_url", where: "((COALESCE(feed_url, ''::character varying))::text <> ''::text)"
     t.index ["user_id"], name: "index_users_settings_on_user_id", unique: true
   end

@@ -95,8 +95,7 @@
       "admin": "管理画面",
       "edit": "編集",
       "manage": "状態管理",
-      "stats": "統計",
-      "translate": "翻訳"
+      "stats": "統計"
     },
     "comments": {
       "moderate": "審査する",

@@ -42,7 +42,6 @@ module Exporter
 
     def general_attributes
       %i[
-        base_lang
         body_markdown
         cached_tag_list
         cached_user_name

@@ -91,7 +91,7 @@ export const Preview = ({
 
   return (
     <div className="crayons-article-form__content crayons-card">
-      <article className="crayons-article" lang={articleState.baseLang}>
+      <article className="crayons-article">
         {titleArea({
           previewResponse,
           articleState,
@@ -153,7 +153,6 @@ Preview.propTypes = {
     errors: PropTypes.any,
     edited: PropTypes.bool,
     version: PropTypes.string,
-    baseLang: PropTypes.string,
   }).isRequired,
 };
 

@@ -275,17 +275,6 @@
     "options": {
       "done": "Done",
       "heading": "Post options",
-      "lang": {
-        "aria_label": "You can select a language from the list",
-        "cla": "CLA codes",
-        "desc": "What language is the body text written in? Specify by language tag (<code>en-US</code>).",
-        "existing": "List of languages: ",
-        "label": "Language",
-        "others": "General",
-        "select": "Quick select",
-        "site": "Suggested",
-        "special": "Specials"
-      },
       "series": {
         "aria_label": "Select one of the existing series",
         "desc": "Will this post be part of a series? Give the series a unique name. (Series visible once it has multiple posts)",
@@ -313,8 +302,7 @@
       "aria_label": "View post modes",
       "edit": "Edit",
       "preview": "Preview"
-    },
-    "translate": "Translate"
+    }
   },
   "errors": {
     "comment": "This comment already exists.",

@@ -1,7 +1,7 @@
 import { h } from 'preact';
 import PropTypes from 'prop-types';
 import { Trans } from 'react-i18next';
-import { i18next, locale } from '@utilities/locale';
+import { i18next } from '@utilities/locale';
 import { Dropdown, Button } from '@crayons';
 
 const Icon = () => (
@@ -33,15 +33,12 @@ export const Options = ({
     allSeries = [],
     canonicalUrl = '',
     series = '',
-    baseLang = '',
-    allLangs = {},
   },
   onSaveDraft,
   onConfigChange,
 }) => {
   let publishedField = '';
   let existingSeries = '';
-  let existingLangs = '';
 
   if (allSeries.length > 0) {
     const seriesNames = allSeries.map((name, index) => {
@@ -66,71 +63,6 @@ export const Options = ({
             {i18next.t('editor.options.series.select')}
           </option>
           {seriesNames}
-        </select>
-      </div>
-    );
-  }
-
-  if (Object.keys(allLangs).length > 0) {
-    const mapper = (sorted) => {
-      return sorted.map((a) => {
-        const [code, name] = a;
-        return (
-          <option key={`baseLang-${code}`} value={code}>
-            {name} [{code}]
-          </option>
-        );
-      });
-    };
-    const sorter = (a, b) => {
-      return a[1].localeCompare(b[1], locale);
-    };
-    const miscSet = {};
-    const siteSet = {};
-    const specSet = {};
-    const CLA3Set = {};
-    const siteCodes = ['en-us', 'ja'];
-    const specCodes = ['mul', 'und', 'zxx'];
-    const dropCodes = ['mis'];
-    Object.entries(allLangs).forEach(([code, name]) => {
-      if (siteCodes.includes(code)) {
-        siteSet[code] = name;
-      } else if (specCodes.includes(code)) {
-        specSet[code.slice(0, 3)] = name;
-      } else if (code.startsWith('x-v3-')) {
-        CLA3Set[code] = name;
-      } else if (dropCodes.includes(code)) {
-        // discard
-      } else {
-        miscSet[code] = name;
-      }
-    });
-    existingLangs = (
-      <div className="crayons-field__description">
-        {i18next.t('editor.options.lang.existing')}
-        <select
-          value=""
-          name="baseLang"
-          className="crayons-select"
-          onInput={onConfigChange}
-          required
-          aria-label={i18next.t('editor.options.lang.aria_label')}
-        >
-          <option value="" disabled>
-            {i18next.t('editor.options.lang.select')}
-          </option>
-          <optgroup label={i18next.t('editor.options.lang.site')}>
-            {mapper(Object.entries(siteSet).sort(sorter))}
-          </optgroup>
-          <optgroup label={i18next.t('editor.options.lang.cla')}>
-            {mapper(Object.entries(CLA3Set).sort(sorter))}
-          </optgroup>
-          <optgroup label={i18next.t('editor.options.lang.special')}>
-            {mapper(Object.entries(specSet).sort(sorter))}
-          </optgroup>
-          <optgroup label={i18next.t('editor.options.lang.others')}>
-            {mapper(Object.entries(miscSet).sort(sorter))}
-          </optgroup>
         </select>
       </div>
     );
@@ -203,30 +135,6 @@ export const Options = ({
           />
           {existingSeries}
         </div>
-        <div className="crayons-field mb-6">
-          <label htmlFor="baseLang" className="crayons-field__label">
-            {i18next.t('editor.options.lang.label')}
-          </label>
-          <p
-            className="crayons-field__description"
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{
-              __html: i18next.t('editor.options.lang.desc', {
-                interpolation: { escapeValue: false },
-              }),
-            }}
-          />
-          <input
-            type="text"
-            value={baseLang}
-            className="crayons-textfield"
-            placeholder="en-GB-oed"
-            name="baseLang"
-            onKeyUp={onConfigChange}
-            id="baseLang"
-          />
-          {existingLangs}
-        </div>
         {publishedField}
         <Button
           id="post-options-done-btn"
@@ -246,8 +154,6 @@ Options.propTypes = {
     allSeries: PropTypes.array.isRequired,
     canonicalUrl: PropTypes.string.isRequired,
     series: PropTypes.string.isRequired,
-    baseLang: PropTypes.string.isRequired,
-    allLangs: PropTypes.object.isRequired,
   }).isRequired,
   onSaveDraft: PropTypes.func.isRequired,
   onConfigChange: PropTypes.func.isRequired,

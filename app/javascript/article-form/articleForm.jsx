@@ -63,19 +63,15 @@ export class ArticleForm extends Component {
     article: PropTypes.string.isRequired,
     organizations: PropTypes.string,
     siteLogo: PropTypes.string.isRequired,
-    userLang: PropTypes.string,
-    editMode: PropTypes.string,
   };
 
   static defaultProps = {
     organizations: '',
-    userLang: '',
-    editMode: '',
   };
 
   constructor(props) {
     super(props);
-    const { article, version, siteLogo, userLang, editMode } = this.props;
+    const { article, version, siteLogo } = this.props;
     let { organizations } = this.props;
     this.article = JSON.parse(article);
     organizations = organizations ? JSON.parse(organizations) : null;
@@ -126,10 +122,6 @@ export class ArticleForm extends Component {
       helpPosition: null,
       isModalOpen: false,
       markdownLintErrors: [],
-      baseLang: this.article.base_lang || userLang,
-      allLangs: this.article.all_langs || {},
-      translationGroup: this.article.translation_group,
-      editMode,
       ...previousContentState,
     };
   }
@@ -336,10 +328,6 @@ export class ArticleForm extends Component {
       helpFor: null,
       helpPosition: 0,
       isModalOpen: false,
-      baseLang: this.article.base_lang || this.userLang,
-      allLangs: this.article.all_langs,
-      translationGroup: this.article.translation_group,
-      editMode: this.state.editMode,
     });
   };
 
@@ -400,7 +388,6 @@ export class ArticleForm extends Component {
       siteLogo,
       markdownLintErrors,
       formKey,
-      editMode,
     } = this.state;
 
     return (
@@ -420,7 +407,6 @@ export class ArticleForm extends Component {
           organizations={organizations}
           organizationId={organizationId}
           onToggle={this.handleOrgIdChange}
-          titleMode={editMode}
           siteLogo={siteLogo}
           displayModal={() => this.showModal(true)}
         />

@@ -44,7 +44,7 @@ Object {
                 class="crayons-story__middle"
               >
                 <h3
-                  class="crayons-story__title with-content-font"
+                  class="crayons-story__title"
                 >
                   <a
                     href="/some-post/path"
@@ -329,7 +329,7 @@ Object {
               class="crayons-story__middle"
             >
               <h3
-                class="crayons-story__title with-content-font"
+                class="crayons-story__title"
               >
                 <a
                   href="/some-post/path"

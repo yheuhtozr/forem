@@ -136,4 +136,7 @@ ja:
           other: コメント %{count}
         empty: 書く
       summary:
+        count_html:
+          other: "%{start}コメント%{end}\_%{count}\_%{start}件%{end}"
+        empty: コメントを寄せる
         title: コメント
