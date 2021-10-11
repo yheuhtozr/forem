@@ -9,17 +9,6 @@ class Comment < ApplicationRecord
 
   COMMENTABLE_TYPES = %w[Article PodcastEpisode].freeze
 
-  TITLE_DELETED = "[deleted]".freeze
-  TITLE_HIDDEN = "[hidden by post author]".freeze
-
-  URI_REGEXP = %r{
-    \A
-    (?:https?://)?  # optional scheme
-    .+?             # host
-    (?::\d+)?       # optional port
-    \z
-  }x
-
   # The date that we began limiting the number of user mentions in a comment.
   MAX_USER_MENTION_LIVE_AT = Time.utc(2021, 3, 12).freeze
 
@@ -98,6 +87,14 @@ class Comment < ApplicationRecord
       .to_h
   end
 
+  def self.title_deleted
+    I18n.t("models.comment.deleted")
+  end
+
+  def self.title_hidden
+    I18n.t("models.comment.hidden_by_post_author")
+  end
+
   def search_id
     "comment_#{id}"
   end
@@ -135,8 +132,8 @@ class Comment < ApplicationRecord
   end
 
   def title(length = 80)
-    return TITLE_DELETED if deleted
-    return TITLE_HIDDEN if hidden_by_commentable_user
+    return title_deleted if deleted
+    return title_hidden if hidden_by_commentable_user
 
     text = ActionController::Base.helpers.strip_tags(processed_html).strip
     truncated_text = ActionController::Base.helpers.truncate(text, length: length).gsub("&#39;", "'").gsub("&amp;", "&")
@@ -308,7 +305,7 @@ class Comment < ApplicationRecord
       noteable_id: user_id,
       noteable_type: "User",
       reason: "automatic_suspend",
-      content: "User suspended for too many spammy articles, triggered by autovomit.",
+      content: I18n.t("models.comment.user_suspended_for_too_man"),
     )
   end
 
@@ -341,7 +338,9 @@ class Comment < ApplicationRecord
   end
 
   def published_article
-    errors.add(:commentable_id, "is not valid.") if commentable_type == "Article" && !commentable.published
+    return unless commentable_type == "Article" && !commentable.published
+
+    errors.add(:commentable_id, I18n.t("models.comment.is_not_valid"))
   end
 
   def user_mentions_in_markdown
@@ -351,7 +350,9 @@ class Comment < ApplicationRecord
     mentions_count = Nokogiri::HTML(processed_html).css(".mentioned-user").size
     return if mentions_count <= Settings::RateLimit.mention_creation
 
-    errors.add(:base, "You cannot mention more than #{Settings::RateLimit.mention_creation} users in a comment!")
+    errors.add(:base,
+               I18n.t("models.comment.you_cannot_mention_more_th",
+                      settings_ratelimit_mention: Settings::RateLimit.mention_creation))
   end
 
   def record_field_test_event

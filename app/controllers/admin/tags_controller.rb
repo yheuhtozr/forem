@@ -29,7 +29,7 @@ module Admin
       @tag.name = params[:tag][:name].downcase
 
       if @tag.save
-        flash[:success] = "#{@tag.name} has been created!"
+        flash[:success] = I18n.t("admin.tags_controller.tag_has_been_created")
         redirect_to edit_admin_tag_path(@tag)
       else
         flash[:danger] = @tag.errors_as_sentence
@@ -46,9 +46,10 @@ module Admin
       @tag = Tag.find(params[:id])
       if @tag.update(tag_params)
         ::Tags::AliasRetagWorker.perform_async(@tag.id) if tag_alias_updated?
-        flash[:success] = "#{@tag.name} tag successfully updated!"
+        flash[:success] = I18n.t("admin.tags_controller.tag_successfully_updated", tag_name: @tag.name)
       else
-        flash[:error] = "The tag update failed: #{@tag.errors_as_sentence}"
+        flash[:error] =
+          I18n.t("admin.tags_controller.the_tag_update_failed", tag_errors_as_sentence: @tag.errors_as_sentence)
       end
       redirect_to edit_admin_tag_path(@tag.id)
     end

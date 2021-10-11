@@ -26,7 +26,7 @@ class CodesandboxTag < LiquidTagBase
 
   def parse_id(input)
     id = input.split.first
-    raise StandardError, "CodeSandbox Error: Invalid ID" unless valid_id?(id)
+    raise StandardError, I18n.t("liquid_tags.codesandbox_tag.codesandbox_error_invalid") unless valid_id?(id)
 
     id
   end
@@ -53,7 +53,10 @@ class CodesandboxTag < LiquidTagBase
   # composed of letters, numbers, dashes, underscores, forward slashes, @ signs, periods/dots,
   # and % symbols.  Invalid options will raise an exception
   def valid_option(option)
-    raise StandardError, "CodeSandbox Error: Invalid options" unless (option =~ OPTIONS_REGEXP)&.zero?
+    unless (option =~ OPTIONS_REGEXP)&.zero?
+      raise StandardError,
+            I18n.t("liquid_tags.codesandbox_tag.codesandbox_error_invalid2")
+    end
 
     option
   end

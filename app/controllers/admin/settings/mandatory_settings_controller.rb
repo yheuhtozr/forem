@@ -1,9 +1,14 @@
 module Admin
   module Settings
-    class MandatorySettingsController < Admin::Settings::BaseController
-      Result = Struct.new(:errors) do
-        def success?
-          errors.none?
+    class MandatorySettingsController < Admin::ApplicationController
+      def create
+        errors = upsert_config(settings_params)
+
+        if errors.none?
+          Audit::Logger.log(:internal, current_user, params.dup)
+          redirect_to admin_config_path, notice: I18n.t("common.success_settings")
+        else
+          redirect_to admin_config_path, alert: I18n.t("common.error_friendly", errors: errors.to_sentence)
         end
       end
 

@@ -29,7 +29,7 @@ class ChatChannelMembership < ApplicationRecord
   end
 
   def channel_text
-    parsed_channel_name = chat_channel.channel_name&.gsub("chat between", "")&.gsub("and", "")
+    parsed_channel_name = chat_channel.channel_name&.gsub(/#{I18n.t("models.chat_channel_membership.pattern")}/, "")
     "#{parsed_channel_name} #{chat_channel.slug} #{chat_channel.channel_human_names.join(' ')}"
   end
 
@@ -91,7 +91,7 @@ class ChatChannelMembership < ApplicationRecord
     return unless chat_channel
     return unless chat_channel.direct? && chat_channel.slug.split("/").exclude?(user.username)
 
-    errors.add(:user_id, "is not allowed in chat")
+    errors.add(:user_id, I18n.t("models.chat_channel_membership.is_not_allowed_in_chat"))
 
     # To be possibly implemented in future
     # if chat_channel.users.size > 128

@@ -59,7 +59,7 @@ class Page < ApplicationRecord
     )
     return unless slug_exists
 
-    errors.add(:slug, "is taken.")
+    errors.add(:slug, I18n.t("models.page.is_taken"))
   end
 
   # As there can only be one global landing page, we want to ensure that

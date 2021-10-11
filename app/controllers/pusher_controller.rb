@@ -5,7 +5,7 @@ class PusherController < ApplicationController
                                      user_id: current_user.id) # => required
       render json: response
     else
-      render json: { text: "Forbidden", status: "403" }
+      render json: { text: I18n.t("pusher_controller.forbidden"), status: "403" }
     end
   end
 

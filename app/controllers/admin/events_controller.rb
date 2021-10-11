@@ -17,7 +17,7 @@ module Admin
       @event = Event.new(
         location_name: "#{URL.domain}/live",
         location_url: app_url,
-        description_markdown: "*Description* *Pre-requisites:* *Bio*",
+        description_markdown: I18n.t("admin.events_controller.description_pre_requisite"),
       )
     end
 
@@ -28,7 +28,7 @@ module Admin
     def create
       @event = Event.new(event_params)
       if @event.save
-        flash[:success] = "Successfully created event: #{@event.title}"
+        flash[:success] = I18n.t("admin.events_controller.successfully_created_event", event_title: @event.title)
         redirect_to admin_events_path
       else
         flash[:danger] = @event.errors.full_messages
@@ -39,7 +39,7 @@ module Admin
     def update
       @event = Event.find(params[:id])
       if @event.update(event_params)
-        flash[:success] = "#{@event.title} was successfully updated"
+        flash[:success] = I18n.t("admin.events_controller.was_successfully_updated", event_title: @event.title)
         redirect_to admin_events_path
       else
         flash[:danger] = @event.errors.full_messages

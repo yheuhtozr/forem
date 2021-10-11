@@ -24,7 +24,7 @@ class DotnetFiddleTag < LiquidTagBase
   def parse_link(link)
     stripped_link = ActionController::Base.helpers.strip_tags(link)
     the_link = stripped_link.split.first
-    raise StandardError, "Invalid DotnetFiddle URL" unless valid_link?(the_link)
+    raise StandardError, I18n.t("liquid_tags.dotnet_fiddle_tag.invalid_dotnetfiddle_url") unless valid_link?(the_link)
 
     insert_widget(the_link)
   end

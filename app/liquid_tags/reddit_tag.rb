@@ -44,7 +44,7 @@ class RedditTag < LiquidTagBase
       author: data["author"],
       title: data["title"],
       post_url: @url,
-      created_at: Time.zone.at(data["created_utc"]).strftime("%b %e '%y"),
+      created_at: Time.zone.at(data["created_utc"]).strftime(I18n.t("date.reddit")),
       post_hint: data["post_hint"],
       image_url: data["url"],
       thumbnail: data["thumbnail"],
@@ -63,7 +63,7 @@ class RedditTag < LiquidTagBase
   def validate_url
     return true if valid_url?(@url.delete(" ")) && (@url =~ URL_REGEXP)&.zero?
 
-    raise StandardError, "Invalid Reddit link: #{@url}"
+    raise StandardError, I18n.t("liquid_tags.reddit_tag.invalid_reddit_link", url: @url)
   end
 
   def valid_url?(url)

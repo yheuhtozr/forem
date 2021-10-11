@@ -23,7 +23,7 @@ module CommentsHelper
   end
 
   def get_ama_or_op_banner(commentable)
-    commentable.decorate.cached_tag_list_array.include?("ama") ? "Ask Me Anything" : "Author"
+    commentable.decorate.cached_tag_list_array.include?("ama") ? I18n.t("helpers.comments_helper.ask_me_anything") : I18n.t("helpers.comments_helper.author") # rubocop:disable Layout/LineLength
   end
 
   def tree_for(comment, sub_comments, commentable)
@@ -53,11 +53,11 @@ module CommentsHelper
   def like_button_text(comment)
     case comment.public_reactions_count
     when 0
-      I18n.t("core.like")
+      I18n.t("helpers.comments_helper.like")
     when 1
-      "&nbsp;#{I18n.t('core.like').downcase}"
+      I18n.t("helpers.comments_helper.nbsp_like")
     else
-      "&nbsp;#{I18n.t('core.like').downcase}s"
+      I18n.t("helpers.comments_helper.nbsp_likes")
     end
   end
 

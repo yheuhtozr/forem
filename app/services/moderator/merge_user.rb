@@ -29,7 +29,7 @@ module Moderator
     end
 
     def merge
-      raise StandardError, SAME_USER_ERROR_MSG if @delete_user.id == @keep_user.id
+      raise I18n.t("services.moderator.merge_user.you_cannot_merge_the_same") if @delete_user.id == @keep_user.id
 
       handle_identities
       merge_content
@@ -47,9 +47,8 @@ module Moderator
     private
 
     def handle_identities
-      raise StandardError, MULTIPLE_IDENTITIES_ERROR_MSG if @delete_user.identities.count >= 2
-      raise StandardError, DUPLICATE_IDENTITIES_ERROR_MSG if
-        (@delete_user.identities.pluck(:provider) & @keep_user.identities.pluck(:provider)).any?
+      error_message = I18n.t("services.moderator.merge_user.the_user_being_deleted_alr")
+      raise error_message if @delete_user.identities.count.positive?
 
       return true if @delete_user.identities.none?
 

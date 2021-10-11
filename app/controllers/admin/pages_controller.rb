@@ -31,9 +31,10 @@ module Admin
 
     def update
       @page = Page.find(params[:id])
-
-      if @page.update(page_params)
-        flash[:success] = "Page has been successfully updated."
+      @page.assign_attributes(page_params)
+      if @page.valid?
+        @page.update!(page_params)
+        flash[:success] = I18n.t("admin.pages_controller.page_has_been_successfully")
         redirect_to admin_pages_path
       else
         flash.now[:error] = @page.errors_as_sentence
@@ -43,9 +44,9 @@ module Admin
 
     def create
       @page = Page.new(page_params)
-
-      if @page.save
-        flash[:success] = "Page has been successfully created."
+      if @page.valid?
+        @page.save!
+        flash[:success] = I18n.t("admin.pages_controller.page_has_been_successfully2")
         redirect_to admin_pages_path
       else
         flash.now[:error] = @page.errors_as_sentence
@@ -56,8 +57,7 @@ module Admin
     def destroy
       @page = Page.find(params[:id])
       @page.destroy
-
-      flash[:success] = "Page has been successfully deleted."
+      flash[:success] = I18n.t("admin.pages_controller.page_has_been_successfully3")
       redirect_to admin_pages_path
     end
 
@@ -78,24 +78,24 @@ module Admin
                 Page.new(
                   slug: slug,
                   body_html: html,
-                  title: "Code of Conduct",
-                  description: "A page that describes how to behave on this platform",
+                  title: I18n.t("admin.pages_controller.code_of_conduct"),
+                  description: I18n.t("admin.pages_controller.a_page_that_describes_how"),
                   is_top_level_path: true,
                 )
               when "privacy"
                 Page.new(
                   slug: slug,
                   body_html: html,
-                  title: "Privacy Policy",
-                  description: "A page that describes the privacy policy",
+                  title: I18n.t("admin.pages_controller.privacy_policy"),
+                  description: I18n.t("admin.pages_controller.a_page_that_describes_the"),
                   is_top_level_path: true,
                 )
               when "terms"
                 Page.new(
                   slug: slug,
                   body_html: html,
-                  title: "Terms of Use",
-                  description: "A page that describes the terms of use for the application",
+                  title: I18n.t("admin.pages_controller.terms_of_use"),
+                  description: I18n.t("admin.pages_controller.a_page_that_describes_the2"),
                   is_top_level_path: true,
                 )
               else

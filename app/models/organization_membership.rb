@@ -22,7 +22,7 @@ class OrganizationMembership < ApplicationRecord
     return if type_of_user == "guest"
 
     role = type_of_user == "admin" ? "mod" : "member"
-    name = "@#{organization.slug} private group chat"
+    name = I18n.t("models.organization_membership.private_group_chat", organization_slug: organization.slug)
     channel = ChatChannel.find_by(channel_name: name)
 
     channel ||= ChatChannels::FindOrCreate.call("invite_only", "#{organization.slug}-private-group-chat", name)

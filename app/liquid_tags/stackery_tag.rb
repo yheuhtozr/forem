@@ -37,7 +37,7 @@ class StackeryTag < LiquidTagBase
   def validate_items(owner, repo)
     return unless owner.blank? || repo.blank?
 
-    raise StandardError, "Stackery - Missing owner and/or repository name arguments"
+    raise StandardError, I18n.t("liquid_tags.stackery_tag.stackery_missing_owner_and")
   end
 end
 

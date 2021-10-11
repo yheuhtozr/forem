@@ -23,10 +23,7 @@ class User < ApplicationRecord
 
   ANY_ADMIN_ROLES = %i[admin super_admin].freeze
   USERNAME_MAX_LENGTH = 30
-  USERNAME_REGEXP = /\A[a-zA-Z0-9_]+\z/
-  MESSAGES = {
-    reserved_username: "username is reserved"
-  }.freeze
+  USERNAME_REGEXP = /\A[a-zA-Z0-9_]+\z/.freeze
   # follow the syntax in https://interledger.org/rfcs/0026-payment-pointers/#payment-pointer-syntax
   PAYMENT_POINTER_REGEXP = %r{
     \A                # start
@@ -130,7 +127,14 @@ class User < ApplicationRecord
   validates :blocked_by_count, presence: true
   validates :blocking_others_count, presence: true
   validates :comments_count, presence: true
+  validates :config_font, inclusion: { in: FONTS + ["default".freeze], message: :invalid_config_font }
+  validates :config_font, presence: true
+  validates :config_navbar, inclusion: { in: NAVBARS, message: :invalid_config_navbar }
+  validates :config_navbar, presence: true
+  validates :config_theme, inclusion: { in: THEMES, message: :invalid_config_theme }
+  validates :config_theme, presence: true
   validates :credits_count, presence: true
+  validates :editor_version, inclusion: { in: EDITORS, message: :invalid_editor_version }
   validates :email, length: { maximum: 50 }, email: true, allow_nil: true
   validates :email, uniqueness: { allow_nil: true, case_sensitive: false }, if: :email_changed?
   validates :following_orgs_count, presence: true
@@ -146,9 +150,9 @@ class User < ApplicationRecord
   validates :subscribed_to_user_subscriptions_count, presence: true
   validates :unspent_credits_count, presence: true
   validates :username, length: { in: 2..USERNAME_MAX_LENGTH }, format: USERNAME_REGEXP
-  validates :username, presence: true, exclusion: { in: ReservedWords.all, message: MESSAGES[:invalid_username] }
+  validates :username, presence: true, exclusion: { in: ReservedWords.all, message: :invalid_username }
   validates :username, uniqueness: { case_sensitive: false, message: lambda do |_obj, data|
-    "#{data[:value]} is taken."
+    I18n.t("models.user.is_taken", data_value: (data[:value]))
   end }, if: :username_changed?
 
   # add validators for provider related usernames
@@ -224,7 +228,27 @@ class User < ApplicationRecord
   after_commit :subscribe_to_mailchimp_newsletter
   after_commit :bust_cache
 
-  def self.staff_account
+  def self.invalid_config_font
+    I18n.t("models.user.invalid_config_font")
+  end
+
+  def self.invalid_config_navbar
+    I18n.t("models.user.value_s_is_not_a_valid_na")
+  end
+
+  def self.invalid_config_theme
+    I18n.t("models.user.value_s_is_not_a_valid_th")
+  end
+
+  def self.invalid_editor_version
+    I18n.t("models.user.value_s_must_be_either_v1")
+  end
+
+  def self.reserved_username
+    I18n.t("models.user.username_is_reserved")
+  end
+
+  def self.dev_account
     find_by(id: Settings::Community.staff_user_id)
   end
 
@@ -437,11 +461,11 @@ class User < ApplicationRecord
       Page.exists?(slug: username)
     )
 
-    errors.add(:username, "is taken.") if username_taken
+    errors.add(:username, I18n.t("models.user.is_taken2")) if username_taken
   end
 
   def non_banished_username
-    errors.add(:username, "has been banished.") if BanishedUser.exists?(username: username)
+    errors.add(:username, I18n.t("models.user.has_been_banished")) if BanishedUser.exists?(username: username)
   end
 
   def banished?
@@ -617,12 +641,9 @@ class User < ApplicationRecord
       name.match?(/#{term}/i)
     end
 
-    Reaction.create!(
-      user_id: Settings::General.mascot_user_id,
-      reactable_id: id,
-      reactable_type: "User",
-      category: "vomit",
-    )
+    errors.add(:feed_url, I18n.t("models.user.is_not_a_valid_rss_atom_fe")) unless valid
+  rescue StandardError => e
+    errors.add(:feed_url, e.message)
   end
 
   # TODO: @citizen428 I don't want to completely remove this method yet, as we
@@ -652,7 +673,7 @@ class User < ApplicationRecord
     rate_limiter.track_limit_by_action(:send_email_confirmation)
     rate_limiter.check_limit!(:send_email_confirmation)
   rescue RateLimitChecker::LimitReached => e
-    errors.add(:email, "confirmation could not be sent. #{e.message}")
+    errors.add(:email, I18n.t("models.user.confirmation_could_not_be", e_message: e.message))
   end
 
   def update_rate_limit
@@ -661,13 +682,13 @@ class User < ApplicationRecord
     rate_limiter.track_limit_by_action(:user_update)
     rate_limiter.check_limit!(:user_update)
   rescue RateLimitChecker::LimitReached => e
-    errors.add(:base, "User could not be saved. #{e.message}")
+    errors.add(:base, I18n.t("models.user.user_could_not_be_saved", e_message: e.message))
   end
 
   def password_matches_confirmation
     return true if password == password_confirmation
 
-    errors.add(:password, "doesn't match password confirmation")
+    errors.add(:password, I18n.t("models.user.doesn_t_match_password_con"))
   end
 
   def strip_payment_pointer

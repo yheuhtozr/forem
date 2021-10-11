@@ -50,7 +50,11 @@ class StackexchangeTag < LiquidTagBase
     return "stackoverflow" if tag_name == "stackoverflow"
 
     site = input.match(/[a-z.]+/i)[0]
-    raise StandardError, "Invalid Stack Exchange site: {% #{tag_name} #{input} %}" unless valid_site?(site)
+    unless valid_site?(site)
+      raise StandardError,
+            I18n.t("liquid_tags.stackexchange_tag.invalid_stack_exchange_sit", tag_name: tag_name,
+                                                                               input: input)
+    end
 
     site
   end
@@ -66,11 +70,16 @@ class StackexchangeTag < LiquidTagBase
 
     return unless response["items"].length.zero?
 
-    raise StandardError, "Couldn't find a post with that ID: {% #{tag_name} #{input} %}"
+    raise StandardError,
+          I18n.t("liquid_tags.stackexchange_tag.couldn_t_find_a_post_with", tag_name: tag_name, input: input)
   end
 
   def get_data(input)
-    raise StandardError, "Invalid Stack Exchange ID: {% #{tag_name} #{input} %}" unless valid_input?(input)
+    unless valid_input?(input)
+      raise StandardError,
+            I18n.t("liquid_tags.stackexchange_tag.invalid_stack_exchange_id", tag_name: tag_name,
+                                                                              input: input)
+    end
 
     id = input.split.first
 

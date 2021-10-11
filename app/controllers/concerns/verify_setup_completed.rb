@@ -33,9 +33,7 @@ module VerifySetupCompleted
 
     link = helpers.tag.a("the configuration page", href: admin_config_path, data: { "no-instant" => true })
 
-    flash[:global_notice] = helpers.safe_join(["Setup not completed yet, missing ",
-                                               missing_configs_text,
-                                               ". Please visit ", link, "."])
+    flash[:global_notice] = I18n.t("concerns.verify_setup_completed.notice", missing: missing_configs_text, link: link)
   end
 
   def config_path?

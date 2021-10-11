@@ -19,10 +19,12 @@ module Admin
         notification_setting = user.notification_setting
         if notification_setting.update(email_tag_mod_newsletter: true)
           TagModerators::Add.call([user.id], [params[:tag_id]])
-          flash[:success] = "#{user.username} was added as a tag moderator!"
+          flash[:success] =
+            I18n.t("admin.tags.moderators_controller.was_added_as_a_tag_moderat", user_username: user.username)
         else
-          flash[:error] = "Error: User ID ##{tag_params[:user_id]} was not found,
-          or their account has errors: #{notification_setting.errors_as_sentence}"
+          flash[:error] =
+            I18n.t("admin.tags.moderators_controller.error_user_id_was_not_foun", user_id: tag_params[:user_id],
+                                                                                  errors: user&.errors_as_sentence)
         end
         redirect_to edit_admin_tag_path(params[:tag_id])
       end
@@ -38,10 +40,13 @@ module Admin
         tag = Tag.find_by(id: params[:tag_id])
         if notification_setting.update(email_tag_mod_newsletter: false)
           TagModerators::Remove.call(user, tag)
-          flash[:success] = "@#{user.username} - ID ##{user.id} was removed as a tag moderator."
+          flash[:success] =
+            I18n.t("admin.tags.moderators_controller.id_was_removed_as_a_tag_m", user_username: user.username,
+                                                                                 user_id: user.id)
         else
-          flash[:error] = "Error: User ID ##{tag_params[:user_id]} was not found,
-          or their account has errors: #{notification_setting.errors_as_sentence}"
+          flash[:error] =
+            I18n.t("admin.tags.moderators_controller.error_user_id_was_not_foun", user_id: tag_params[:user_id],
+                                                                                  errors: user&.errors_as_sentence)
         end
         redirect_to edit_admin_tag_path(tag.id)
       end

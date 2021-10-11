@@ -51,7 +51,7 @@ class Article < ApplicationRecord
            inverse_of: :commentable,
            class_name: "Comment"
 
-  validates :body_markdown, bytesize: { maximum: 800.kilobytes, too_long: "is too long." }
+  validates :body_markdown, bytesize: { maximum: 800.kilobytes, too_long: I18n.t("models.article.is_too_long") }
   validates :body_markdown, length: { minimum: 0, allow_nil: false }
   validates :body_markdown, uniqueness: { scope: %i[user_id title] }
   validates :cached_tag_list, length: { maximum: 126 }
@@ -207,7 +207,7 @@ class Article < ApplicationRecord
     when Tag
       cached_tagged_with(tag.name)
     else
-      raise TypeError, "Cannot search tags for: #{tag.inspect}"
+      raise TypeError, I18n.t("models.article.cannot_search_tags_for", tag_inspect: tag.inspect)
     end
   }
 
@@ -222,7 +222,7 @@ class Article < ApplicationRecord
     when Tag
       cached_tagged_with(tags.name)
     else
-      raise TypeError, "Cannot search tags for: #{tags.inspect}"
+      raise TypeError, I18n.t("models.article.cannot_search_tags_for2", tags_inspect: tags.inspect)
     end
   }
 
@@ -339,14 +339,11 @@ class Article < ApplicationRecord
   end
 
   def processed_description
-    if body_text.present?
-      body_text
-        .truncate(104, separator: " ")
-        .tr("\n", " ")
-        .strip
-    else
-      "A post by #{user.name}"
-    end
+    text_portion = body_text.present? ? body_text[0..100].tr("\n", " ").strip.to_s : ""
+    text_portion = "#{text_portion.strip}..." if body_text.size > 100
+    return I18n.t("models.article.a_post_by", user_name: user.name) if text_portion.blank?
+
+    text_portion.strip
   end
 
   def body_text
@@ -571,7 +568,7 @@ class Article < ApplicationRecord
   end
 
   def update_notifications
-    Notification.update_notifications(self, "Published")
+    Notification.update_notifications(self, I18n.t("models.article.published"))
   end
 
   def before_destroy_actions
@@ -627,7 +624,7 @@ class Article < ApplicationRecord
     add_tag_adjustments_to_tag_list
 
     # check there are not too many tags
-    return errors.add(:tag_list, "exceed the maximum of 4 tags") if tag_list.size > 4
+    return errors.add(:tag_list, I18n.t("models.article.exceed_the_maximum_of_4_ta")) if tag_list.size > 4
 
     # check tags names aren't too long and don't contain non alphabet characters
     tag_list.each do |tag|
@@ -654,48 +651,48 @@ class Article < ApplicationRecord
   def validate_video
     if published && video_state == "PROGRESSING"
       return errors.add(:published,
-                        "cannot be set to true if video is still processing")
+                        I18n.t("models.article.cannot_be_set_to_true_if_v"))
     end
 
     return unless video.present? && user.created_at > 2.weeks.ago
 
-    errors.add(:video, "cannot be added by member without permission")
+    errors.add(:video, I18n.t("models.article.cannot_be_added_by_member"))
   end
 
   def validate_collection_permission
     return unless collection && collection.user_id != user_id
 
-    errors.add(:collection_id, "must be one you have permission to post to")
+    errors.add(:collection_id, I18n.t("models.article.must_be_one_you_have_permi"))
   end
 
   def validate_co_authors
     return if co_author_ids.exclude?(user_id)
 
-    errors.add(:co_author_ids, "must not be the same user as the author")
+    errors.add(:co_author_ids, I18n.t("models.article.must_not_be_the_same_user"))
   end
 
   def validate_co_authors_must_not_be_the_same
     return if co_author_ids.uniq.count == co_author_ids.count
 
-    errors.add(:base, "co-author IDs must be unique")
+    errors.add(:base, I18n.t("models.article.co_author_ids_must_be_uniq"))
   end
 
   def validate_co_authors_exist
     return if User.where(id: co_author_ids).count == co_author_ids.count
 
-    errors.add(:co_author_ids, "must be valid user IDs")
+    errors.add(:co_author_ids, I18n.t("models.article.must_be_valid_user_ids"))
   end
 
   def past_or_present_date
     return unless published_at && published_at > Time.current
 
-    errors.add(:date_time, "must be entered in DD/MM/YYYY format with current or past date")
+    errors.add(:date_time, I18n.t("models.article.must_be_entered_in_dd_mm_y"))
   end
 
   def canonical_url_must_not_have_spaces
     return unless canonical_url.to_s.match?(/[[:space:]]/)
 
-    errors.add(:canonical_url, "must not have spaces")
+    errors.add(:canonical_url, I18n.t("models.article.must_not_have_spaces"))
   end
 
   def user_mentions_in_markdown
@@ -705,7 +702,9 @@ class Article < ApplicationRecord
     mentions_count = Nokogiri::HTML(processed_html).css(".mentioned-user").size
     return if mentions_count <= Settings::RateLimit.mention_creation
 
-    errors.add(:base, "You cannot mention more than #{Settings::RateLimit.mention_creation} users in a post!")
+    errors.add(:base,
+               I18n.t("models.article.you_cannot_mention_more_th",
+                      settings_ratelimit_mention: Settings::RateLimit.mention_creation))
   end
 
   def create_slug
@@ -818,7 +817,7 @@ class Article < ApplicationRecord
       noteable_id: user_id,
       noteable_type: "User",
       reason: "automatic_suspend",
-      content: "User suspended for too many spammy articles, triggered by autovomit.",
+      content: I18n.t("models.article.user_suspended_for_too_man"),
     )
   end
 

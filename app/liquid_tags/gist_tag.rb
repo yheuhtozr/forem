@@ -6,7 +6,7 @@ class GistTag < LiquidTagBase
   def initialize(_tag_name, link, _parse_context)
     super
 
-    raise StandardError, "Invalid Gist link: You must provide a Gist link" if link.blank?
+    raise StandardError, I18n.t("liquid_tags.gist_tag.invalid_gist_link_you_must") if link.blank?
 
     @uri = build_uri(link)
   end
@@ -47,7 +47,7 @@ class GistTag < LiquidTagBase
     option_no_space = option.strip
     return "?#{option_no_space}" if valid_option?(option_no_space)
 
-    raise StandardError, "Invalid Filename"
+    raise StandardError, I18n.t("liquid_tags.gist_tag.invalid_filename")
   end
 
   def valid_link?(link)

@@ -35,7 +35,10 @@ class TagAdjustmentsController < ApplicationController
       @already_adjusted_tags = @adjustments.map(&:tag_name).join(", ")
       @allowed_to_adjust = @moderatable.instance_of?(Article) && (current_user.any_admin? || @tag_moderator_tags.any?)
       respond_to do |format|
-        format.json { render json: { error: "Failure: #{tag_adjustment.errors.full_messages.to_sentence}" } }
+        format.json do
+          render json: { error: I18n.t("tag_adjustments_controller.failure",
+                                       tag_adjustment_errors_full: tag_adjustment.errors.full_messages.to_sentence) }
+        end
         format.html { render template: "moderations/mod" }
       end
     end
@@ -57,7 +60,7 @@ class TagAdjustmentsController < ApplicationController
 
     respond_to do |format|
       # TODO: add tag adjustment removal async route in actions panel
-      format.json { render json: { result: "Tag adjustment destroyed" } }
+      format.json { render json: { result: I18n.t("tag_adjustments_controller.tag_adjustment_destroyed") } }
       format.html { redirect_to "#{URI.parse(@article.path).path}/mod" }
     end
   end

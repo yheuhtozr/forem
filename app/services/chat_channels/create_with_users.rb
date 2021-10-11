@@ -1,6 +1,11 @@
 module ChatChannels
   class CreateWithUsers
-    def initialize(users: [], channel_type: "direct", contrived_name: "New Channel", membership_role: "member")
+    def initialize(
+      users: [],
+      channel_type: "direct",
+      contrived_name: I18n.t("services.chat_channels.create_with_users.new_channel"),
+      membership_role: "member"
+    )
       @users = users
       @channel_type = channel_type
       @contrived_name = contrived_name
@@ -12,7 +17,7 @@ module ChatChannels
     end
 
     def call
-      raise "Invalid direct channel" if invalid_direct_channel?(users, channel_type)
+      raise I18n.t("services.chat_channels.create_with_users.invalid_direct_channel") if invalid_direct_channel?(users, channel_type) # rubocop:disable Layout/LineLength
 
       usernames = users.map(&:username).sort
       slug = if channel_type == "direct"
@@ -39,7 +44,12 @@ module ChatChannels
     end
 
     def verify_contrived_name(usernames)
-      channel_type == "direct" ? "Direct chat between #{usernames.join(' and ')}" : contrived_name
+      if channel_type == "direct"
+        I18n.t("services.chat_channels.create_with_users.direct_chat_between",
+               usernames_join_and: usernames.join(" and "))
+      else
+        contrived_name
+      end
     end
   end
 end

@@ -1,14 +1,12 @@
 module ArticlesHelper
-  DASHBOARD_POSTS_SORT_OPTIONS = [
-    ["Recently Created", "creation-desc"],
-    ["Recently Published", "published-desc"],
-    ["Most Views", "views-desc"],
-    ["Most Reactions", "reactions-desc"],
-    ["Most Comments", "comments-desc"],
-  ].freeze
-
   def sort_options
-    DASHBOARD_POSTS_SORT_OPTIONS
+    [
+      [I18n.t("helpers.articles_helper.recently_created"), "creation-desc"],
+      [I18n.t("helpers.articles_helper.recently_published"), "published-desc"],
+      [I18n.t("helpers.articles_helper.most_views"), "views-desc"],
+      [I18n.t("helpers.articles_helper.most_reactions"), "reactions-desc"],
+      [I18n.t("helpers.articles_helper.most_comments"), "comments-desc"],
+    ]
   end
 
   def has_vid?(article)
@@ -26,7 +24,14 @@ module ArticlesHelper
     if internal_navigation?
       image_tag(name, class: "icon-img", alt: "#{service_name} logo", width: width, height: height)
     else
-      inline_svg_tag(name, class: "icon-img", aria: true, title: "#{service_name} logo", width: width, height: height)
+      inline_svg_tag(
+        name,
+        class: "icon-img",
+        aria: true,
+        title: I18n.t("helpers.articles_helper.logo", service_name: service_name),
+        width: width,
+        height: height,
+      )
     end
   end
 

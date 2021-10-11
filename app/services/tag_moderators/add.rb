@@ -42,7 +42,7 @@ module TagModerators
         channel = ChatChannels::CreateWithUsers.call(
           users: ([user] + User.with_role(:mod_relations_admin)).flatten.uniq,
           channel_type: "invite_only",
-          contrived_name: "##{tag.name} mods",
+          contrived_name: I18n.t("services.tag_moderators.add.mods", tag_name: tag.name),
         )
         tag.update_column(:mod_chat_channel_id, channel.id)
       end

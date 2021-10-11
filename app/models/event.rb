@@ -30,7 +30,7 @@ class Event < ApplicationRecord
     if ends_at.nil? || starts_at.nil?
       errors.add(:starts_at, "and ends_at must not be nil")
     elsif ends_at < starts_at
-      errors.add(:ends_at, "must be after start date")
+      errors.add(:ends_at, I18n.t("models.event.must_be_after_start_date"))
     end
   end
 
