@@ -9,10 +9,10 @@ en:
       github:
         icon: GitHub logo
       joined:
-        icon: Joined
-        text_html: "Joined on\_%{date}"
+        icon: Rejoint
+        text_html: "Rejoint le\_%{date}"
       location:
-        icon: Location
+        icon: Lieu
       size: Employees
       sponsor:
         text: "%{level} Community Sponsor ❤️"

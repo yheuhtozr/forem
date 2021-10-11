@@ -1,4 +1,4 @@
-<% _t = "v.users.account" %>
+<% _t = "v.settings.account" %>
 <%= render "users/additional_authentication" %>
 
 <%= render "users/account_set_password" %>
@@ -72,7 +72,7 @@
 
 <div class="crayons-card crayons-card--content-rows">
   <h2 class="crayons-subtitle-1 color-accent-danger">
-    <%= t("v.users.danger") %>
+    <%= t("v.settings.danger") %>
   </h2>
 
   <% if @user.identities.enabled.size > 1 %>

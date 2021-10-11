@@ -1,4 +1,4 @@
-<% _t = "v.users.settings" %>
+<% _t = "v.settings" %>
 <% title t("meta.title", scope: _t) %>
 
 <main id="main-content">
@@ -84,11 +84,11 @@
       <% end %>
 
       <% if @user.errors.any? %>
-        <%= render partial: "users/errors", locals: { errors: @user.errors, title_suffix: t("v.users.errors.profile", count: @user.errors.size) } %>
+        <%= render partial: "users/errors", locals: { errors: @user.errors, title_suffix: t("v.settings.errors.profile", count: @user.errors.size) } %>
       <% end %>
 
       <% if @organization&.errors&.any? %>
-        <%= render partial: "users/errors", locals: { errors: @organization.errors, title_suffix: t("v.users.errors.org", count: @organization.errors.size) } %>
+        <%= render partial: "users/errors", locals: { errors: @organization.errors, title_suffix: t("v.settings.errors.org", count: @organization.errors.size) } %>
       <% end %>
 
       <%= render "users/#{@tab.tr('-', '_')}", tab: @tab %>
