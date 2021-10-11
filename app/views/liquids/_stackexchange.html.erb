@@ -11,7 +11,7 @@
             </a>
         </h1>
         <div class="ltag__stackexchange--post-metadata">
-          <span><%= Time.zone.at(created_at).strftime(t("date.stackexchange")) %></span>
+          <span><%= Time.zone.at(created_at).strftime(t("time.formats.stackexchange")) %></span>
           <% if post_type == "question" %>
             <span><%= t "comments", scope: _t, count: comment_count %></span>
             <span><%= t "answers", scope: _t, count: answer_count %></span>

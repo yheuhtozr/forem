@@ -1,0 +1,25 @@
+---
+en:
+  v:
+    actions:
+      copy:
+        text: Copied to Clipboard
+        title: Copy article link to the clipboard
+        button: Copier le lien
+      more:
+        title: More...
+        aria_label: Share post options
+      share:
+        Facebook:
+          text: Partager sur Facebook
+        HackerNews:
+          text: Partager sur Hacker News
+        LinkedIn:
+          text: Partager sur LinkedIn
+        Reddit:
+          text: Partager sur Reddit
+        Twitter:
+          text: Partager sur Twitter
+          query: '"%{article}" by %{author}'
+        link: Share Post via...
+        report: Report Abuse

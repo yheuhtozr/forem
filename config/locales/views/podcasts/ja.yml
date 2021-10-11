@@ -20,10 +20,10 @@ ja:
       listen: Click here to download/listen
       source: Episode source
       statuses:
-        unreachable: ポッドキャストの feed_url にアクセスできません
+        ssl_failed: ポッドキャストの feed_url に対する SSL 証明書が検証できませんでした
         unparsable: ポッドキャストの rss がパースできません
         unplayable: このポッドキャストはブラウザ上で再生できない可能性があります
-        ssl_failed: ポッドキャストの feed_url に対する SSL 証明書が検証できませんでした
+        unreachable: ポッドキャストの feed_url にアクセスできません
       speed: 1x
       tag: podcast
       time: initializing...

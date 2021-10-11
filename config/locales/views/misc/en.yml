@@ -10,7 +10,6 @@ en:
       heading: Badges
       desc: Receive badges for being awesome! Click on a badge to see how you can earn it.
       name: "🏅 %{title} Badge 🏅"
-    beta: beta
     campaign:
       subtitle: Stories (%{count})
       view: See all posts
@@ -39,7 +38,6 @@ en:
       icon: Close
       icon_left: Left menu
       icon_right: Right menu
-    loading: loading...
     logo:
       color_1:
         label: Brand color 1

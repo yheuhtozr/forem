@@ -18,7 +18,7 @@ module Admin
           I18n.t("admin.navigation_links_controller.successfully_created_navig",
                  navigation_link_name: navigation_link.name)
       else
-        flash[:error] = I18n.t("common.error", errors: navigation_link.errors_as_sentence)
+        flash[:error] = I18n.t("core.error", errors: navigation_link.errors_as_sentence)
       end
       redirect_to admin_navigation_links_path
     end
@@ -30,7 +30,7 @@ module Admin
           I18n.t("admin.navigation_links_controller.successfully_updated_navig",
                  navigation_link_name: navigation_link.name)
       else
-        flash[:error] = I18n.t("common.error", errors: navigation_link.errors_as_sentence)
+        flash[:error] = I18n.t("core.error", errors: navigation_link.errors_as_sentence)
       end
       redirect_to admin_navigation_links_path
     end
@@ -42,7 +42,7 @@ module Admin
           I18n.t("admin.navigation_links_controller.navigation_link_deleted",
                  navigation_link_name: navigation_link.name)
       else
-        flash[:error] = I18n.t("common.error", errors: navigation_link.errors_as_sentence)
+        flash[:error] = I18n.t("core.error", errors: navigation_link.errors_as_sentence)
       end
       redirect_to admin_navigation_links_path
     end
