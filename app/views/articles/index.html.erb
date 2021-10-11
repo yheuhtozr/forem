@@ -86,7 +86,7 @@
 
       <div id="followed-podcasts" data-episodes="<%= @podcast_episodes.to_json(include: { podcast: { only: %i[slug title id], methods: %i[image_90] } }) %>"></div>
       <div class="loading-articles" id="loading-articles">
-        <%= t("v.loading") %>
+        <%= t("core.loading") %>
       </div>
     </main>
 
