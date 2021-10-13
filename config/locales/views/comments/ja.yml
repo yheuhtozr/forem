@@ -24,6 +24,8 @@ ja:
         full: コメント欄全体
         read: 完全な記事へ
         view: 記事へ
+        view_full:
+          other: すべてのコメントを見る（%{count} 件）
         reply_html: "%{start}返信元:%{end} %{title}"
       delete:
         heading: このコメントを削除してもよろしいですか？

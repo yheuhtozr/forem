@@ -11,8 +11,6 @@ ja:
         subtitle_html: みんなの声%{num}
         num: "（%{num}）"
         subscribe: 投稿
-        view:
-          other: すべてのコメントを見る（%{count} 件）
       conduct:
         aria_label: 倫理的措置
         code: お約束

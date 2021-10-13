@@ -24,6 +24,8 @@ en:
         full: Full discussion
         read: Read full post
         view: View post
+        view_full:
+          other: View full discussion (%{count} comments)
         reply_html: "%{start}Replies for:%{end} %{title}"
       delete:
         heading: Are you sure you want to delete this comment?
@@ -137,9 +139,9 @@ en:
           other: "%{count} comments"
         empty: New
       summary:
-        count: !pl
-          1: !html "%{count}%{start}\_comment%{end}"
-          n: !html "%{count}%{start}\_comments%{end}"
+        count_html:
+          one: "%{count}%{start}\_comment%{end}"
+          other: "%{count}%{start}\_comments%{end}"
         empty: "Add\_Comment"
         title: Comments
 

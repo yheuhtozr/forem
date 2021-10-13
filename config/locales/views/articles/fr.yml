@@ -11,8 +11,6 @@ en:
         subtitle_html: Discussion %{num}
         num: "(%{num})"
         subscribe: Subscribe
-        view:
-          other: View full discussion (%{count} comments)
       conduct:
         aria_label: Conduct controls
         code: Code of Conduct
