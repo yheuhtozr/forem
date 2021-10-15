@@ -33,7 +33,6 @@ fr:
             label: Rules markdown
             placeholder: Optional - Can be used for challenges, i.e. submission guidelines.
           submit: Save
-        markdown_html: "%{tag} is the name of the tag used in Markdown."
       follow: Suivre
       following_tags: Sujets suivis
       moderator:

@@ -99,8 +99,8 @@ class Tag < ActsAsTaggableOn::Tag
   end
 
   def validate_name
-    errors.add(:name, I18n.t("v.tags.error.length")) if name.length > 30
-    errors.add(:name, I18n.t("v.tags.error.chars")) unless name.match?(TAG_PATTERN)
+    errors.add(:name, I18n.t("models.tag.error.length")) if name.length > 30
+    errors.add(:name, I18n.t("models.tag.error.chars")) unless name.match?(TAG_PATTERN)
   end
 
   def errors_as_sentence

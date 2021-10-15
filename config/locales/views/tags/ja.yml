@@ -32,10 +32,6 @@ ja:
             label: Rules markdown
             placeholder: Optional - Can be used for challenges, i.e. submission guidelines.
           submit: SAVE CHANGES
-        markdown_html: "%{tag} is the name of the tag used in Markdown."
-      error:
-        length: is too long (maximum is 30 characters)
-        chars: contains non-alphanumeric characters
       follow: Follow
       following_tags: Following tags
       moderator:
