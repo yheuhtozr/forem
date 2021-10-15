@@ -20,7 +20,6 @@ en:
         visit_html: Visit %{settings} to manage your notifications.
         settings: Settings
       comment:
-        commented_html: "%{user} commented on %{title}"
         first_html: "%{user} wrote their first comment on %{title}"
         first_reply: "Give them their first reply! 🎉"
         left_html: "%{user} just left a comment on %{title}."
