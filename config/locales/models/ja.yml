@@ -106,6 +106,10 @@ ja:
     sponsorship:
       the_tag_is_already_sponsor: The tag is already sponsored
       you_can_have_only_one_spon: You can have only one sponsorship of %{metal_levels_join}
+    tag:
+      error:
+        length: is too long (maximum is 30 characters)
+        chars: contains non-alphanumeric characters
     tag_adjustment:
       4_tags_max_per_article: 4 tags max per article.
       does_not_have_privilege_to: does not have privilege to adjust these tags
