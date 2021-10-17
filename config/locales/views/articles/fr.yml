@@ -96,4 +96,3 @@ fr:
       reading_time:
         other: "%{count} words/chars"
       right_nav: Author details
-...
