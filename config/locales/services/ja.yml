@@ -60,6 +60,9 @@ ja:
     payments:
       customer:
         usd: usd
+      process_credit_purchase:
+        charge:
+          other: Purchase of %{count} credits.
     rate_limit_checker:
       invalid_cache_key_no_uniqu: 'Invalid Cache Key: no unique component present'
       rate_limit_reached_try_aga: Rate limit reached, try again in %{retry_after} seconds
