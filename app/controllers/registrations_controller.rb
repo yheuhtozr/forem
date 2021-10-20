@@ -15,7 +15,7 @@ class RegistrationsController < Devise::RegistrationsController
     authorize(params, policy_class: RegistrationPolicy)
 
     unless recaptcha_verified?
-      flash[:notice] = I18n.t("v.auth.register.error.recaptcha")
+      flash[:notice] = I18n.t("registrations_controller.error.recaptcha")
       return redirect_to new_user_registration_path(state: "email_signup")
     end
 
@@ -70,7 +70,7 @@ class RegistrationsController < Devise::RegistrationsController
     # Alright, this error message isn't quite correct.  Is the email
     # from a blocked domain?  Or an explicitly allowed domain.  I
     # think this is enough.
-    resource.errors.add(:email, I18n.t("v.auth.register.error.domain"))
+    resource.errors.add(:email, I18n.t("registrations_controller.error.domain"))
   end
 
   def build_devise_resource

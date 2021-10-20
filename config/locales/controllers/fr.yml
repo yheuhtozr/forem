@@ -57,6 +57,10 @@ en:
     your_profile_has_been_upda: Your profile has been updated
   rating_votes_controller:
     not_upserted_successfully: Not Upserted Successfully
+  registrations_controller:
+    error:
+      recaptcha: You must complete the recaptcha ✅
+      domain: is not included in allowed domains.
   response_templates_controller:
     response_template_error: 'Response template error: %{response_template_errors_a}'
     your_response_template_was: Your response template "%{response_template_title}" was created.
