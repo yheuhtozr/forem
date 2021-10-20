@@ -30,9 +30,6 @@ ja:
       register:
         errors:
           other: 問題が %{count} 件発生しました
-        error:
-          recaptcha: reCAPTCHA を完了 ✅ してください
-          domain: が許可されたドメインに含まれていません
         allow:
           one_html: "<strong>@%{domain}</strong> アドレスからのみ登録を受け付けています。"
           list: 以下のアドレスからのみ登録を受け付けています。

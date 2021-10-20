@@ -31,9 +31,6 @@ en:
         errors:
           one: Whoops, we found %{count} problem
           other: Whoops, we found %{count} problems
-        error:
-          recaptcha: You must complete the recaptcha ✅
-          domain: is not included in allowed domains.
         allow:
           one_html: Registration restricted to <strong>@%{domain}</strong> emails.
           list: Registration restricted to the following emails
