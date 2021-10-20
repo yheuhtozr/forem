@@ -12,6 +12,9 @@ ja:
     article_was_successfully_d: Article was successfully deleted.
   confirmations_controller:
     email_sent: Email sent! Please contact support at %{email} if you are having trouble receiving your confirmation instructions.
+  credits_controller:
+    done:
+      other: "%{count} new credits purchased!"
   devices_controller:
     not_found: Not Found
   discussion_locks_controller:
