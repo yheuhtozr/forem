@@ -68,7 +68,6 @@ en:
         same_user: You cannot merge the same two user IDs
     notifications:
       new_comment:
-        commented: "%{user} commented on %{title}"
         new: "💬 New Comment"
     payments:
       customer:
