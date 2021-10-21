@@ -39,7 +39,7 @@ ja:
       edit: コメント編集中
       edited:
         text_html: "&bull; %{on}修正"
-        'on': "%{date}に"
+        on_html: "%{date}に"
       expand: 展開する
       hidden:
         text_html: 非表示にされているコメントがあります（%{info}）
