@@ -162,7 +162,7 @@ export const Options = ({
         triggerButtonId="post-options-btn"
         dropdownContentId="post-options-dropdown"
         dropdownContentCloseButtonId="post-options-done-btn"
-        className="bottom-2 s:bottom-100 left-2 s:left-0 right-2 s:left-auto"
+        className="reverse left-2 s:left-0 right-2 s:left-auto p-4"
       >
         <h3 className="mb-6">{i18next.t('editor.options.heading')}</h3>
         <div className="crayons-field mb-6">

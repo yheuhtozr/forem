@@ -9,6 +9,7 @@ import {
   selectTag,
   clearSelectedTags,
 } from '../searchableItemList/searchableItemList';
+import { addSnackbarItem } from '../Snackbar';
 import { ItemListItem } from './components/ItemListItem';
 import { ItemListItemArchiveButton } from './components/ItemListItemArchiveButton';
 import { TagList } from './components/TagList';
@@ -45,7 +46,6 @@ export class ReadingList extends Component {
     const { statusView } = this.props;
 
     this.state = {
-      archiving: false,
       query: '',
       index: null,
       page: 0,
@@ -108,6 +108,8 @@ export class ReadingList extends Component {
     event.preventDefault();
 
     const { statusView, items, itemsTotal } = this.state;
+    const isStatusViewValid = this.statusViewValid();
+
     request(`/reading_list_items/${item.id}`, {
       method: 'PUT',
       body: { current_status: statusView },
@@ -116,15 +118,13 @@ export class ReadingList extends Component {
     const newItems = items;
     newItems.splice(newItems.indexOf(item), 1);
     this.setState({
-      archiving: true,
       items: newItems,
       itemsTotal: itemsTotal - 1,
     });
 
-    // hide the snackbar in a few moments
-    setTimeout(() => {
-      this.setState({ archiving: false });
-    }, 1000);
+    addSnackbarItem({
+      message: isStatusViewValid ? 'Archiving...' : 'Unarchiving...',
+    });
   };
 
   statusViewValid() {
@@ -183,7 +183,6 @@ export class ReadingList extends Component {
       availableTags,
       selectedTag = '',
       showLoadMoreButton,
-      archiving,
       loading = false,
     } = this.state;
 
@@ -216,7 +215,7 @@ export class ReadingList extends Component {
             </legend>
             <Button
               onClick={(e) => this.toggleStatusView(e)}
-              className="whitespace-nowrap l:mr-2"
+              className="whitespace-nowrap ml-auto s:w-auto"
               variant="outlined"
               url={READING_LIST_ARCHIVE_PATH}
               tagName="a"
@@ -228,6 +227,9 @@ export class ReadingList extends Component {
                 }`,
               )}
             </Button>
+          </div>
+          <fieldset className="m:flex justify-end s:pl-2 w-100 s:w-auto">
+            <legend className="hidden">Filter</legend>
             <input
               aria-label={i18next.t('readingList.aria_label')}
               onKeyUp={this.onSearchBoxType}
@@ -255,7 +257,7 @@ export class ReadingList extends Component {
           query={`(min-width: ${BREAKPOINTS.Medium}px)`}
           render={(matches) => {
             return (
-              <div className="crayons-layout crayons-layout--2-cols">
+              <Fragment>
                 {matches && (
                   <div className="crayons-layout__sidebar-left">
                     <TagList
@@ -265,7 +267,7 @@ export class ReadingList extends Component {
                     />
                   </div>
                 )}
-                <section className="crayons-layout__content crayons-card mb-4">
+                <section className="crayons-layout__content crayons-card pb-4">
                   {items.length > 0 ? (
                     <Fragment>
                       <ItemList
@@ -289,11 +291,10 @@ export class ReadingList extends Component {
                     this.renderEmptyItems()
                   )}
                 </section>
-              </div>
+              </Fragment>
             );
           }}
         />
-        {snackBar}
       </main>
     );
   }

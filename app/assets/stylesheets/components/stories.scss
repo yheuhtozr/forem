@@ -14,6 +14,7 @@
   box-shadow: 0 0 0 1px var(--card-border);
   margin-bottom: var(--su-1);
   position: relative;
+  border-radius: var(--radius-auto);
 
   &:focus-within {
     outline: none;
@@ -158,6 +159,11 @@
   &__tags {
     margin-bottom: var(--su-2);
     margin-left: calc(var(--su-1) * -1);
+    font-size: var(--fs-s);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1px;
+    color: var(--base-80);
   }
 
   &__title {
@@ -169,7 +175,7 @@
     margin-bottom: var(--su-1);
 
     @media (min-width: $breakpoint-m) {
-      margin-bottom: var(--su-2);
+      margin-bottom: var(--su-1);
     }
 
     a {
@@ -215,7 +221,7 @@
 
   &__comments {
     cursor: default;
-    background: var(--story-comments-bg);
+    background: RGB(var(--story-comments-bg));
     border-radius: var(--radius);
     position: relative;
     bottom: var(--su-2);

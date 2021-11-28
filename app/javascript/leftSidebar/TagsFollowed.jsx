@@ -11,20 +11,20 @@ export const TagsFollowed = ({ tags = [] }) => {
 
   return (
     <Fragment>
-      {tags.map((tag) =>
-        tag.points >= 1 ? (
+      {tags.map(({ name, id, points }) =>
+        points >= 1 ? (
           <div
-            key={tag.id}
+            key={id}
             className="sidebar-nav-element"
-            id={`sidebar-element-${tag.name}`}
+            id={`sidebar-element-${name}`}
           >
             <a
               title={i18next.t('main.tag', { tag: tag.name })}
               onClick={trackSidebarTagClick}
               className="crayons-link crayons-link--block"
-              href={`/t/${tag.name}`}
+              href={`/t/${name}`}
             >
-              {`#${tag.name}`}
+              {`#${name}`}
             </a>
           </div>
         ) : null,
@@ -34,13 +34,12 @@ export const TagsFollowed = ({ tags = [] }) => {
 };
 
 TagsFollowed.displayName = 'TagsFollowed';
-TagsFollowed.propTypes = PropTypes.arrayOf(
-  PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    hotness_score: PropTypes.number.isRequired,
-    points: PropTypes.number.isRequired,
-    bg_color_hex: PropTypes.string.isRequired,
-    text_color_hex: PropTypes.string.isRequired,
-  }),
-);
+TagsFollowed.propTypes = {
+  tags: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      points: PropTypes.number.isRequired,
+    }),
+  ),
+};

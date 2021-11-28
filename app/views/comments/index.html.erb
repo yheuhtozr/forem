@@ -6,6 +6,7 @@
   <% title(t("meta.title_root", scope: _t, title: @commentable.title, site: community_name)) %>
 <% end %>
 
+<% if @commentable %>
 <%= content_for :page_meta do %>
   <meta name="description" content="<%= @commentable.description || t("meta.description", scope: _t) %>">
   <%= meta_keywords_article %>
@@ -42,11 +43,12 @@
     <% end %>
   <% end %>
 <% end %>
+<% end %>
 
 <%= javascript_packs_with_chunks_tag "commentDropdowns", "followButtons", defer: true %>
 
 <div class="crayons-layout crayons-layout--limited-l gap-0" data-follow-button-container="true">
-  <% if @commentable.class.name == "Article" %>
+  <% if @commentable && @commentable.class.name == "Article" %>
     <%= render "shared/payment_pointer", user: @commentable.user %>
     <span id="comment-article-indicator" data-article-id="<%= @commentable.id %>"></span>
   <% end %>
@@ -92,6 +94,7 @@
     <div id="response-templates-data" class="hidden"></div>
     <%= javascript_packs_with_chunks_tag "responseTemplates", "commentsDisplay", defer: true %>
     <header class="p-2 pb-4 m:p-6 m:pb-6 crayons-card crayons-card--secondary s:mx-2 m:mx-4 -mb-1 z-0">
+      <% if @commentable %>
       <h1 class="crayons-subtitle-1 mb-4">
         <%= t("parent.subtitle_html",
               scope: _t,
@@ -102,6 +105,9 @@
       <div class="flex">
         <a class="crayons-btn crayons-btn--outlined mr-2" href="<%= @commentable.path %>"><%= t("parent.view", scope: _t) %></a>
       </div>
+      <% else %>
+        <%= t("views.comments.orphan.deleted") %>
+      <% end %>
     </header>
   <% end %>
 
@@ -146,7 +152,7 @@
       <% end %>
     </div>
 
-    <% if @commentable.any_comments_hidden %>
+    <% if @commentable&.any_comments_hidden %>
       <p class="mb-2 pt-6 fs-s align-center color-base-60">
         <%= t "hidden.text_html", scope: _t, info: link_to(t("hidden.info", scope: _t), "/faq#what-does-comment-hidden-by-post-author-mean") %>
       </p>
@@ -157,7 +163,7 @@
     <%= render "articles/conduct_and_abuse_actions", page: "comments_index" %>
   </div>
 
-  <% if has_vid?(@commentable) %>
+  <% if @commentable && has_vid?(@commentable) %>
     <%= render "articles/fitvids" %>
   <% end %>
 </div>
@@ -172,3 +178,5 @@
   <%== RunkitTag.script %>
 </script>
 <%== TwitterTimelineTag.script %>
+
+<%= render "comments/hide_comments_modal" %>

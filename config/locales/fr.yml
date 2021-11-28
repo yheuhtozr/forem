@@ -1,9 +1,21 @@
 ---
 fr:
+  contact_prompts:
+    if_any_questions_html: <a href="/contact">Contactez-nous</a> si vous avez des questions.
+    if_continued_trouble_html: <a href="/contact">Contactez-nous</a> si vous continuez à avoir des problèmes.
+    if_we_can_help_html: <a href="/contact">Contactez-nous</a> si nous pouvons vous aider.
   core:
     add_comment: Ajouter un commentaire
     beta: beta
     error: 'Error: %{errors}'
+    analytics: Analytique
+    comment: Commentaire
+    comments: Commentaires
+    community_name_is_great: "%{community_name} est super"
+    copy_link: Copier le lien
+    create_account: Créer un profil
+    dashboard: Tableau de bord
+    edit_profile: Editer le profil
     follow: Suivre
     follow_back: Suivre aussi
     following: Abonné
@@ -15,9 +27,43 @@ fr:
     if_continued_trouble_html: <a href="/contact">Contactez-nous</a> si vous continuez à avoir des problèmes.
     if_we_can_help_html: <a href="/contact">Contactez-nous</a> si nous pouvons vous aider.
     if_any_questions_html: <a href="/contact">Contactez-nous</a> si vous avez des questions.
+    joined: Rejoint
+    joined_on: Rejoint le
+    like: Aime
+    listings: Annonces
+    loading: Chargement en cours...
+    location: Lieu
+    log_in: Se connecter
+    more_from: Plus de la part de
+    pinned: Épinglé
+    post: Publication
+    posts: Publications
+    reaction: Réaction
+    reaction_pluralized:
+      one: réaction
+      other: réactions
+    reactions:
+      heart: Coeur
+      save: Sauver
+      unicorn: Licorne
+    reply: Répondre
+    report_abuse: Signaler un abus
+    search: Recherche
+    series: Séries
+    settings: Paramètres
+    trending_on: Populaire sur
+  dashboard:
+    empty_follower: Vous n'avez pas encore d'abonnés...
+    empty_post: C'est ici que vous pouvez gérer vos messages, mais vous n'avez encore rien écrit
+    following_users: Utilisateurs suivis
+    loading: Chargement en cours...
+    not_following_any_users: Vous ne suivez aucun utilisateur...
+    page_title: Tableau de bord
+    upload_a_video: Charger une vidéo
+    write_new_post: Écrivez votre premier message maintenant
   date:
     abbr_month_names:
-    -
+    - 
     - janv
     - févr
     - mars
@@ -196,6 +242,19 @@ fr:
       reddit: "%b %e '%y"
       stackexchange: "%b %e '%y"
       tweet: "%H:%M %p - %d %b %Y"
+  settings_menu:
+    account: Compte
+    billing: Facturation
+    customization: Personnalisation
+    extensions: Extensions
+    notifications: Notifications
+    organization: Organisation
+    profile: Profil
+  time:
+    formats:
+      comment: "%B %d, %Y"
       short: "%-e %b"
       short_with_yy: "%-e %b '%y"
       short_with_year: "%-e %b, %Y"
+      stackexchange: "%b %e '%y"
+      tweet: "%H:%M %p - %d %b %Y"

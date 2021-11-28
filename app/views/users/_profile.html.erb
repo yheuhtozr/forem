@@ -3,7 +3,7 @@
 
 <%= render "users/additional_authentication" %>
 
-<%= form_with(url: profile_path(@user.profile_id), method: "put", html: { class: "sticky-footer-form" }) do |f| %>
+<%= form_with(url: profile_path(@user.profile_id), method: "put", html: { class: "sticky-footer-form", id: "user-profile-form" }) do |f| %>
 
   <div class="crayons-card crayons-card--content-rows">
     <h2><%= t("group.user", scope: _t) %></h2>
@@ -52,9 +52,16 @@
         <%= t("v.users.profile_fields.website.label") %>
       </label>
       <%= f.url_field "profile[website_url]",
+                      maxlength: 100,
                       value: profile.website_url,
                       placeholder: "https://yoursite.com",
-                      class: "crayons-textfield js-color-field" %>
+                      class: "crayons-textfield",
+                      aria: { describedby: "url-description" },
+                      data: { character_span_id: "url-characters" } %>
+      <p id="url-description" class="crayons-field__description align-right">
+        <span class="screen-reader-only">Available characters used: </span>
+        <span id="url-characters"></span>/100
+      </p>
     </div>
 
     <div class="crayons-field">
@@ -62,6 +69,7 @@
         <%= t("v.users.profile_fields.location.label") %>
       </label>
       <%= f.text_field "profile[location]",
+                       maxlength: 100,
                        value: profile.location,
                        placeholder: t("v.users.profile_fields.location.placeholder"),
                        class: "crayons-textfield js-color-field" %>
@@ -72,6 +80,7 @@
         <%= t("v.users.profile_fields.bio.label") %>
       </label>
       <%= f.text_area "profile[summary]",
+                      maxlength: 200,
                       value: profile.summary,
                       placeholder: t("v.users.profile_fields.bio.placeholder"),
                       class: "crayons-textfield js-color-field" %>
@@ -100,10 +109,15 @@
             <label class="crayons-field__label" for="<%= "profile[#{field.attribute_name}]" %>">
               <%= t "v.users.profile_fields.#{field.attribute_name}", default: field.label %>
             </label>
+            <% if field.description.present? %>
+              <p class="crayons-field__description"><%= field.description %></p>
+            <% end %>
             <%= f.public_send(field["input_type"],
                               "profile[#{field.attribute_name}]",
                               value: profile.public_send(field.attribute_name),
                               placeholder: field["placeholder_text"],
+                              aria: { describedby: "#{field.attribute_name}-description" },
+                              data: { character_span_id: "#{field.attribute_name}-characters" },
                               class: "crayons-textfield") %>
           <% end %>
           <p class="crayons-field__description"><%= t "v.users.profile_descriptions.#{field.attribute_name}", default: "" %></p>
@@ -119,6 +133,7 @@
       <label class="crayons-field__label" for="users_setting[brand_color1]">
         <%= t("v.logo.color_1.label") %>
       </label>
+      <p class="crayons-field__description"><%= t("views.logo.color_1.description") %></p>
       <div class="flex items-center w-100 m:w-50">
         <%= f.public_send("text_field", "users_setting[brand_color1]",
                           value: users_setting.public_send("brand_color1"),
@@ -136,6 +151,7 @@
       <label class="crayons-field__label" for="users_setting[brand_color1]">
         <%= t("v.logo.color_2.label") %>
       </label>
+      <p class="crayons-field__description"><%= t("views.logo.color_2.description_html") %></p>
       <div class="flex items-center w-100 m:w-50">
         <%= f.public_send("text_field", "users_setting[brand_color2]",
                           value: users_setting.public_send("brand_color2"),

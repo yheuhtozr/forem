@@ -14,6 +14,7 @@
       <%= t("posts", scope: _t) %>
     </a>
   </div>
+
   <% if @organizations.present? %>
     <% @organizations.each do |org| %>
       <div class="pt-6">
@@ -32,9 +33,9 @@
 <nav class="block m:hidden px-4" aria-label="<%= t("aria_label", scope: _t) %>">
   <% if @organizations.present? %>
     <select id="notifications-filter__select" class="crayons-select mb-2">
-      <option value="/notifications"><%= @user.name %></option>
+      <option value="<%= notifications_path %>"><%= @user.name %></option>
       <% @organizations.each do |org| %>
-        <option value="/notifications/org/<%= org.id %>" <%= "selected" if params[:org_id].to_i == org.id %>><%= org.name %></option>
+        <option value="<%= notifications_filter_org_path(filter: :org, org_id: org.id) %>" <%= "selected" if params[:org_id].to_i == org.id %>><%= org.name %></option>
       <% end %>
     </select>
   <% end %>
@@ -58,6 +59,7 @@
       </li>
     </ul>
   </div>
+
   <% if @organizations.present? %>
     <% @organizations.each do |org| %>
       <div class="crayons-tabs <%= "hidden" unless params[:org_id].to_i == org.id %>">

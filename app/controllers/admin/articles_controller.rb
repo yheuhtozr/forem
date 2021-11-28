@@ -56,7 +56,26 @@ module Admin
       PinnedArticle.remove
 
       respond_to do |format|
-        format.html { redirect_to admin_article_path(article.id) }
+        format.html do
+          flash[:success] = "Article Pinned!"
+          redirect_to admin_article_path(article.id)
+        end
+        format.js do
+          render partial: "admin/articles/individual_article", locals: { article: article }, content_type: "text/html"
+        end
+      end
+    end
+
+    def pin
+      article = Article.find(params[:id])
+
+      PinnedArticle.set(article)
+
+      respond_to do |format|
+        format.html do
+          flash[:success] = "Article Pinned!"
+          redirect_to admin_article_path(article.id)
+        end
         format.js do
           render partial: "admin/articles/individual_article", locals: { article: article }, content_type: "text/html"
         end

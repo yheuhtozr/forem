@@ -4,7 +4,7 @@ import { i18next } from '@utilities/locale';
 
 export const SelectedTags = ({ tags, onRemoveTag, onKeyPress }) => {
   return (
-    <section class="pt-2">
+    <section>
       {tags.map((tag) => (
         <span
           className="listing-tag mr-1"

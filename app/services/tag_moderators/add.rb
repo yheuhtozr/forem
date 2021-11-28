@@ -15,11 +15,10 @@ module TagModerators
         tag = Tag.find(tag_ids[index])
         add_tag_mod_role(user, tag)
         ::TagModerators::AddTrustedRole.call(user)
-        add_to_chat_channels(user, tag) if FeatureFlag.enabled?(:connect)
         tag.update(supported: true) unless tag.supported?
 
         NotifyMailer
-          .with(user: user, tag: tag, channel_slug: chat_channel_slug(tag))
+          .with(user: user, tag: tag)
           .tag_moderator_confirmation_email
           .deliver_now
       end
@@ -62,10 +61,6 @@ module TagModerators
     def tag_mod_newsletter_enabled?
       Settings::General.mailchimp_api_key.present? &&
         Settings::General.mailchimp_tag_moderators_id.present?
-    end
-
-    def chat_channel_slug(tag)
-      tag.mod_chat_channel&.slug
     end
   end
 end

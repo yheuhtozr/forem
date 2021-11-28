@@ -38,7 +38,7 @@ export const noDefaultAltTextRule = {
         children.forEach((contentChild) => {
           if (
             contentChild.type === 'image' &&
-            contentChild.line.toLowerCase().includes('![alt text]')
+            contentChild.line.toLowerCase().includes('![image description]')
           ) {
             onError({
               lineNumber: contentChild.lineNumber,

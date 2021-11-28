@@ -137,5 +137,5 @@ export const EditorFormattingHelp = ({ openModal }) => (
 );
 
 EditorFormattingHelp.propTypes = {
-  toggleModal: PropTypes.func.isRequired,
+  openModal: PropTypes.func.isRequired,
 };

@@ -28,7 +28,6 @@ function LargeScreenTagList({ availableTags, selectedTag, onSelectTag }) {
               data-no-instant
               data-tag={tag}
               onClick={onSelectTag}
-              key={tag}
               href={`t/${tag}`}
             >
               #{tag}
@@ -65,6 +64,7 @@ export function TagList({
         // eslint-disable-next-line react/jsx-key
         <option
           selected={tag === selectedTag}
+          key={tag}
           className={`crayons-link crayons-link--block ${
             tag === selectedTag ? 'crayons-link--current' : ''
           }`}

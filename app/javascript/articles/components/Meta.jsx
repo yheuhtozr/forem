@@ -80,7 +80,7 @@ export const Meta = ({ article, organization }) => {
         <a href={article.path} className="crayons-story__tertiary fs-xs">
           <PublishDate
             readablePublishDate={article.readable_publish_date}
-            publishedTimestap={article.published_timestamp}
+            publishedTimestamp={article.published_timestamp}
             publishedAtInt={article.published_at_int}
           />
         </a>
@@ -95,7 +95,11 @@ Meta.defaultProps = {
 
 Meta.propTypes = {
   article: articlePropTypes.isRequired,
-  organization: organizationPropType,
+  organization: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    profile_image_90: PropTypes.string.isRequired,
+    slug: PropTypes.string.isRequired,
+  }),
 };
 
 Meta.displayName = 'Meta';

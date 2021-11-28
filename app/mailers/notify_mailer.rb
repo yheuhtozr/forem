@@ -151,7 +151,6 @@ class NotifyMailer < ApplicationMailer
   def tag_moderator_confirmation_email
     @user = params[:user]
     @tag = params[:tag]
-    @channel_slug = params[:channel_slug]
 
     subject = I18n.t("mailers.notify_mailer.congrats_you_re_the_modera", tag_name: @tag.name)
     mail(to: @user.email, subject: subject)

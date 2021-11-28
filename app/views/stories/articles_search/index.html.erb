@@ -15,9 +15,8 @@
               <%= inline_svg_tag("search.svg", aria_hidden: true, width: 24, height: 24, class: "crayons-icon", title: t("v.search.icon.title")) %>
             </button>
           </div>
-        </div>
-      </form>
-    </div>
+        </form>
+      </div>
 
     <div class="block s:flex items-center justify-between">
       <h1 class="crayons-title hidden s:block pl-2"><%= t "v.search.heading", for: (params[:q].present? ? t("v.search.for", query: params[:q]) : "") %></h1>
@@ -35,16 +34,13 @@
           </li>
         </ul>
       </nav>
+
+      <nav class="block s:hidden -mx-3 m:mx-0">
+        <%= render "stories/articles_search/nav_menu" %>
+      </nav>
     </div>
-  </div>
 
-  <div class="crayons-layout crayons-layout--limited-l crayons-layout--2-cols pt-0" id="index-container"
-      data-params="<%= params.to_json(only: %i[tag username q]) %>" data-which="<%= @list_of %>"
-      data-tag=""
-      data-feed="<%= params[:timeframe] || "base-feed" %>"
-      data-articles-since="<%= Timeframe.datetime_iso8601(params[:timeframe]) %>">
-
-    <div class="crayons-layout__sidebar-left search-nav">
+    <div class="crayons-layout__sidebar-left s:block hidden">
       <%= render "stories/articles_search/nav_menu" %>
     </div>
 

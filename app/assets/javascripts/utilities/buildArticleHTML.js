@@ -74,11 +74,7 @@ function buildArticleHTML(article) {
       tagList.forEach(function buildTagString(t) {
         tagString =
           tagString +
-          '<a href="/t/' +
-          t +
-          '" class="crayons-tag"><span class="crayons-tag__prefix">#</span>' +
-          t +
-          '</a>\n';
+          `<a href="/t/${t}" class="crayons-tag crayons-tag--monochrome"><span class="crayons-tag__prefix">#</span>${t}</a>\n`;
       });
     }
 
