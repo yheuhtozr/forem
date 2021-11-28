@@ -28,8 +28,7 @@ ja:
           icon: メールアドレス
           text: メールアドレスで登録
       register:
-        errors:
-          other: 問題が %{count} 件発生しました
+        errors: 問題が %{count} 件発生しました
         allow:
           one_html: "<strong>@%{domain}</strong> アドレスからのみ登録を受け付けています。"
           list: 以下のアドレスからのみ登録を受け付けています。

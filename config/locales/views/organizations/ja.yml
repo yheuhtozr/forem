@@ -1,6 +1,6 @@
 ---
 ja:
-  v:
+  views:
     organizations:
       empty: かつ 30
       external:
@@ -10,9 +10,10 @@ ja:
         icon: GitHub logo
       joined:
         icon: Joined
-        text_html: Joined on\_%{date}
+        text_html: "Joined on\_%{date}"
       location:
         icon: Location
+      logo: "%{org} のプロフィール画像"
       size: Employees
       sponsor:
         text: "%{level} Community Sponsor ❤️"

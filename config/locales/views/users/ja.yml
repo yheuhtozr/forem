@@ -1,21 +1,17 @@
 ---
 ja:
-  v:
+  views:
     users:
       meta:
         og:
           title: "%{user} — %{community} プロフィール"
       comments:
-        all:
-          other: コメント %{count} 件全部
-        last:
-          other: 最新のコメント %{count} 件
+        all: コメント %{count} 件全部
+        last: 最新のコメント %{count} 件
         recent: 最近のコメント
         view: すべての活動を見る
-        view_all:
-          other: コメント %{count} 件をすべて見る
-        view_last:
-          other: 最新のコメント %{count} 件を見る
+        view_all: コメント %{count} 件をすべて見る
+        view_last: 最新のコメント %{count} 件を見る
       github:
         heading: GitHub Repositories
         fork: Fork
@@ -50,17 +46,14 @@ ja:
       side:
         comment:
           icon: コメント
-          text:
-            other: "%{count} 件のコメントを投稿"
+          text: "%{count} 件のコメントを投稿"
         org: グループ
         post:
           icon: 記事
-          text:
-            other: "%{count} 件の記事を公開"
+          text: "%{count} 件の記事を公開"
         tag:
           icon: タグ
-          text:
-            other: "%{count} 個のタグをフォロー"
+          text: "%{count} 個のタグをフォロー"
       signout:
         meta:
           title: ログアウトの確認 - %{community}

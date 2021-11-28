@@ -17,7 +17,7 @@
     "timeAgo": "（%{ago}）"
   },
   "clipboard": {
-    "alt_text": "Image description",
+    "alt_text": "画像の説明",
     "copied": "コピー完了！",
     "copy": "コピー…",
     "copy_markdown": "画像用 Markdown をコピー",
@@ -29,7 +29,7 @@
     "blocked": "[blocked content]",
     "delete": "本当にこのコメントを削除してもよろしいですか？",
     "empty": "書く",
-    "hide": "Confirm hiding the comment",
+    "hide": "確認してコメントを隠す",
     "messages": {
       "failure": "すでに存在しています",
       "success": "書き込みました"
@@ -323,7 +323,7 @@
     "defaultAlt": {
       "context": "Consider replacing the 'Image description' in square brackets at %{place} with a description of the image",
       "description": "Images should not have the default alt text",
-      "sample": "![image description]"
+      "sample": "![画像の説明]"
     },
     "emptyAlt": {
       "context": "Consider adding an image description in the square brackets at %{place}",

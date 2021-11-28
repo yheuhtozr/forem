@@ -1,12 +1,11 @@
 ---
 ja:
-  v:
+  views:
     badges:
       meta:
         title: バッジ
         name: "%{title} バッジ"
-      all:
-        other: Show all %{count} badges
+      all: Show all %{count} badges
       heading: バッジ
       desc: 実績を積んでバッジをもらおう！バッジをクリックすると獲得条件が確認できます。
       name: "🏅 %{title} バッジ 🏅"
@@ -31,23 +30,23 @@ ja:
         desc: Please %{signin} to manage your email preferences.
         signin: sign-in
     hamburger:
-      title: メインメニュー
+      icon: メインメニュー
       back: 戻る
       forward: 進む
       refresh: 更新
-      icon: 閉じる
+      icon_close: 閉じる
       icon_left: 左メニュー
       icon_right: 右メニュー
     logo:
       color_1:
         label: Brand color 1
-        desc: Used for backgrounds, borders etc.
+        description: Used for backgrounds, borders etc.
         select:
           aria_label: Brand color 1 color selector
           label: Brand color 1 color select
       color_2:
         label: Brand color 2
-        desc_html: Used for texts (usually put on <em>Brand color 1</em>).
+        description_html: Used for texts (usually put on <em>Brand color 1</em>).
         select:
           aria_label: Brand color 2 color selector
           label: Brand color 2 color select
@@ -64,8 +63,7 @@ ja:
       welcome_html: "<span class=\"emoji\">😊</span>ようこそスレッドに挨拶する"
       write_html: "<span class=\"emoji\">✍🏾</span>%{community}に最初の記事を書く"
     pins:
-      article_html: 要注目%{ext}
-      ext: 記事
+      article: 要注目
       pinned: "📌 指定完了（要注目記事は新しい順に最大 5 件まで表示されます）"
       removed: "🗑 注目を外しました"
       error: 5 件までしか指定できません
@@ -87,7 +85,7 @@ ja:
         podcasts: ポッドキャスト
         people: 人物
         comments: コメント
-        my: 私の記事
+        my_posts: 私の記事
       sort:
         aria_label: 検索結果の並べ替え
         relevance: 関連順
@@ -106,6 +104,7 @@ ja:
         back: "%{user} の連載一覧に戻る"
         empty: この連載には記事がありません
     sponsor:
+      icon: Love
       seek: Become a sponsor
     stats:
       meta:
@@ -125,7 +124,7 @@ ja:
         source: Source
         views: Views
     sticky:
-      created_at: 登録日
+      joined: 登録日
       default_cta: 詳細
       email: メール
       hot: 話題

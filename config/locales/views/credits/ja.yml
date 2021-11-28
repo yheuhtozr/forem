@@ -1,6 +1,6 @@
 ---
 ja:
-  v:
+  views:
     credits:
       meta:
         title: Credits
@@ -47,7 +47,5 @@ ja:
       purchase: Purchase additional credits
       tag: 'Tag: %{name}'
       status:
-        user:
-          other: You have %{count} personal credits to spend
-        org_html:
-          other: "%{name} has %{num} credits to spend"
+        user: You have %{count} personal credits to spend
+        org_html: "%{name} has %{num} credits to spend"
