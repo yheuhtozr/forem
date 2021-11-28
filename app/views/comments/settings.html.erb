@@ -1,18 +1,18 @@
-<% _t = t.v.comments.settings %>
-<% title _t.meta.title %>
+<% _t = "v.comments.settings" %>
+<% title t("meta.title", scope: _t) %>
 
 <div class="crayons-layout crayons-layout--limited-m gap-0">
   <div class="crayons-card text-padding">
-    <h1 class="crayons-title mb-4"><%= _t.heading %></h1>
+    <h1 class="crayons-title mb-4"><%= t("heading", scope: _t) %></h1>
 
     <div class="flex">
       <div class="pr-4 m:pr-8 flex-1">
         <% if @notification_subscription.persisted? %>
-          <p class="fw-bold"><%= _t.state.show.subtitle %></p>
-          <p class="fs-s color-base-60"><%= _t.state.show.desc %></p>
+          <p class="fw-bold"><%= t("state.show.subtitle", scope: _t) %></p>
+          <p class="fs-s color-base-60"><%= t("state.show.desc", scope: _t) %></p>
         <% else %>
-          <p class="fw-bold"><%= _t.state.mute.subtitle %></p>
-          <p class="fs-s color-base-60"><%= _t.state.mute.desc %></p>
+          <p class="fw-bold"><%= t("state.mute.subtitle", scope: _t) %></p>
+          <p class="fs-s color-base-60"><%= t("state.mute.desc", scope: _t) %></p>
         <% end %>
       </div>
       <%= form_for(@notification_subscription, url: "/notification_subscriptions/Comment/#{@comment.id}", method: "post", html: { class: "mute-form shrink-0" }) do |f| %>
@@ -24,8 +24,8 @@
     <% if NotificationSubscription.where(user_id: current_user, notifiable_type: "Article", notifiable_id: @comment.commentable_id, config: "all_comments").any? %>
       <div class="flex pt-6">
         <div class="pr-4 m:pr-8 flex-1">
-          <p class="fw-bold"><%= _t.subscribe.subtitle %></p>
-          <p class="fs-s color-base-60"><%= _t.subscribe.desc %></p>
+          <p class="fw-bold"><%= t("subscribe.subtitle", scope: _t) %></p>
+          <p class="fs-s color-base-60"><%= t("subscribe.desc", scope: _t) %></p>
         </div>
         <%= form_for(@notification_subscription, url: "/notification_subscriptions/Article/#{@comment.commentable_id}", method: "post", html: { class: "mute-form" }) do |f| %>
           <input type="hidden" name="config" value="not_subscribed">

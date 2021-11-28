@@ -1,4 +1,4 @@
-<% _t = t.v.actions %>
+<% _t = "v.actions" %>
 <div class="crayons-article-actions print-hidden">
   <div class="crayons-article-actions__inner">
     <% if @article.published? %>
@@ -6,32 +6,32 @@
       <%= render partial: "articles/reaction_button",
                  locals: {
                    category: :like,
-                   description: t.v.reactions.like.title,
+                   description: t("v.reactions.like.title"),
                    image_path: "heart.svg",
                    image_active_path: "heart-filled.svg",
-                   aria_label: t.v.reactions.like.aria_label
+                   aria_label: t("v.reactions.like.aria_label")
                  } %>
       <%= render partial: "articles/reaction_button",
                  locals: {
                    category: :unicorn,
-                   description: t.v.reactions.unicorn.title,
+                   description: t("v.reactions.unicorn.title"),
                    image_path: "unicorn.svg",
                    image_active_path: "unicorn-filled.svg",
-                   aria_label: t.v.reactions.unicorn.aria_label
+                   aria_label: t("v.reactions.unicorn.aria_label")
                  } %>
       <%= render partial: "articles/reaction_button",
                  locals: {
                    category: :readinglist,
-                   description: t.v.reactions.readingList.title,
+                   description: t("v.reactions.readingList.title"),
                    image_path: "save.svg",
                    image_active_path: "save-filled.svg",
-                   aria_label: t.v.reactions.readingList.aria_label
+                   aria_label: t("v.reactions.readingList.aria_label")
                  } %>
     <% end %>
 
     <div class="align-center m:relative">
-      <button id="article-show-more-button" aria-controls="article-show-more-dropdown" aria-expanded="false" aria-haspopup="true" class="dropbtn crayons-btn crayons-btn--ghost-dimmed crayons-btn--icon-rounded" aria-label="<%= _t.more.aria_label %>">
-        <%= inline_svg_tag("overflow-horizontal.svg", aria_hidden: true, class: "dropdown-icon crayons-icon", title: _t.more.title) %>
+      <button id="article-show-more-button" aria-controls="article-show-more-dropdown" aria-expanded="false" aria-haspopup="true" class="dropbtn crayons-btn crayons-btn--ghost-dimmed crayons-btn--icon-rounded" aria-label="<%= t("more.aria_label", scope: _t) %>">
+        <%= inline_svg_tag("overflow-horizontal.svg", aria_hidden: true, class: "dropdown-icon crayons-icon", title: t("more.title", scope: _t)) %>
       </button>
 
       <div id="article-show-more-dropdown" class="crayons-dropdown side-bar left-2 right-2 m:right-auto m:left-100 s:left-auto bottom-100 m:bottom-auto m:top-0 mb-1 m:mb-0">
@@ -40,10 +40,10 @@
             id="copy-post-url-button"
             class="flex justify-between crayons-link crayons-link--block w-100 bg-transparent border-0"
             data-postUrl="<%= article_url(@article) %>">
-            <span class="fw-bold"><%= _t.copy.button %></span>
-            <%= inline_svg_tag("copy.svg", aria_hidden: true, id: "article-copy-icon", class: "crayons-icon mx-2 shrink-0", title: _t.copy.title) %>
+            <span class="fw-bold"><%= t("copy.button", scope: _t) %></span>
+            <%= inline_svg_tag("copy.svg", aria_hidden: true, id: "article-copy-icon", class: "crayons-icon mx-2 shrink-0", title: t("copy.title", scope: _t)) %>
           </button>
-          <div id="article-copy-link-announcer" aria-live="polite" class="crayons-notice crayons-notice--success my-2 p-1" aria-live="polite" hidden><%= _t.copy.text %></div>
+          <div id="article-copy-link-announcer" aria-live="polite" class="crayons-notice crayons-notice--success my-2 p-1" aria-live="polite" hidden><%= t("copy.text", scope: _t) %></div>
         </div>
 
         <div class="Desktop-only">
@@ -51,49 +51,48 @@
             target="_blank"
             class="crayons-link crayons-link--block"
             rel="noopener"
-            href='https://twitter.com/intent/tweet?text="<%= u _t.share.Twitter.query(
-                                                               article: @article.title.strip,
-                                                               author: @article.user.twitter_username ? "@#{@article.user.twitter_username}" : @article.user.name,
-                                                             ) %><%= u " #{Settings::General.twitter_hashtag}" %><%= u " #{article_url(@article)}" %>'>
-            <%= _t.share.Twitter.text %>
+            href='https://twitter.com/intent/tweet?text="<%= u t("share.Twitter.query", scope: _t,
+                                                                                        article: @article.title.strip,
+                                                                                        author: @article.user.twitter_username ? "@#{@article.user.twitter_username}" : @article.user.name) %><%= u " #{Settings::General.twitter_hashtag}" %><%= u " #{article_url(@article)}" %>'>
+            <% t("share.Twitter.text", scope: _t) %>
           </a>
           <a
             target="_blank"
             class="crayons-link crayons-link--block"
             rel="noopener"
             href="https://www.linkedin.com/shareArticle?mini=true&url=<%= u article_url(@article) %>&title=<%= u @article.title %>&summary=<%= u @article.description %>&source=<%= u community_name %>">
-            <%= _t.share.LinkedIn.text %>
+            <% t("share.LinkedIn.text", scope: _t) %>
           </a>
           <a
             target="_blank"
             class="crayons-link crayons-link--block"
             rel="noopener"
             href="https://www.reddit.com/submit?url=<%= u article_url(@article) %>&title=<%= u @article.title %>">
-            <%= _t.share.Reddit.text %>
+            <% t("share.Reddit.text", scope: _t) %>
           </a>
           <a
             target="_blank"
             class="crayons-link crayons-link--block"
             rel="noopener"
             href="https://news.ycombinator.com/submitlink?u=<%= u article_url(@article) %>&t=<%= u @article.title %>">
-            <%= _t.share.HackerNews.text %>
+            <% t("share.HackerNews.text", scope: _t) %>
           </a>
           <a
             target="_blank"
             class="crayons-link crayons-link--block"
             rel="noopener"
             href="https://www.facebook.com/sharer.php?u=<%= u article_url(@article) %>">
-            <%= _t.share.Facebook.text %>
+            <% t("share.Facebook.text", scope: _t) %>
           </a>
         </div>
 
         <web-share-wrapper shareurl="<%= article_url(@article) %>" sharetitle="<%= @article.title %>" sharetext="<%= @article.description %>" template="web-share-button">
         </web-share-wrapper>
         <template id="web-share-button">
-          <a href="#" class="dropdown-link-row crayons-link crayons-link--block"><%= _t.share.link %></a>
+          <a href="#" class="dropdown-link-row crayons-link crayons-link--block"><% t("share.link", scope: _t) %></a>
         </template>
 
-        <a href="/report-abuse" class="crayons-link crayons-link--block"><%= _t.share.report %></a>
+        <a href="/report-abuse" class="crayons-link crayons-link--block"><% t("share.report", scope: _t) %></a>
       </div>
     </div>
   </div>

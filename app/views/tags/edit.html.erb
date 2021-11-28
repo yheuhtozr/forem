@@ -1,5 +1,5 @@
-<% _t = t.v.tags.edit %>
-<% title _t.meta.title(tag: @tag.name) %>
+<% _t = "v.tags.edit" %>
+<% title t("meta.title", scope: _t, tag: @tag.name) %>
 
 <style>
   .widget header {
@@ -21,9 +21,9 @@
 <div class="user-profile-header tag-header" style="background-color:<%= @tag.bg_color_hex %>;color:<%= @tag.text_color_hex %>;">
   <div class="slanty-accent"></div>
   <div class="tag-or-query-header-container tag-edit-tag">
-    <h1><% _t.heading tag: link_to(@tag.name, URL.tag(@tag), style: "color: #{@tag.text_color_hex};text-decoration: underline;") %></h1>
+    <h1><% t "heading", scope: _t, tag: link_to(@tag.name, URL.tag(@tag), style: "color: #{@tag.text_color_hex};text-decoration: underline;") %></h1>
     <p>
-      <%= _t.markdown tag: tag.code("##{@tag.name}", style: "background-color: #D2D2D2; color: black; padding: 5px; border-radius: 5px;") %>
+      <%= t "markdown", scope: _t, tag: tag.code("##{@tag.name}", style: "background-color: #D2D2D2; color: black; padding: 5px; border-radius: 5px;") %>
     </p>
   </div>
 </div>
@@ -42,14 +42,14 @@
     <% end %>
     <h4>
       <a target="_blank" rel="noopener" href="https://thepracticaldev.s3.amazonaws.com/i/cc8vz48djnhty6c31jog.png">
-        <%= _t.form.example %>
+        <%= t("form.example", scope: _t) %>
       </a>
     </h4>
     <% label_i18n = ->(param) { label_tag param, _t.form[param][:label] } %>
     <div class="tag-form-field">
       <%= label_i18n[:pretty_name] %>
       <br>
-      <%= text_field_tag "tag[pretty_name]", @tag.pretty_name, placeholder: _t.form.pretty_name.placeholder, class: "tag-form-text-field" %>
+      <%= text_field_tag "tag[pretty_name]", @tag.pretty_name, placeholder: t("form.pretty_name.placeholder", scope: _t), class: "tag-form-text-field" %>
     </div>
     <div class="tag-form-field">
       <%= label_i18n[:bg_color_hex] %>
@@ -64,27 +64,27 @@
     <div class="tag-form-field">
       <%= label_i18n[:short_summary] %>
       <br>
-      <%= text_area_tag "tag[short_summary]", @tag.short_summary, placeholder: _t.form.short_summary.placeholder, class: "tag-form-text-field tag-area-text" %>
+      <%= text_area_tag "tag[short_summary]", @tag.short_summary, placeholder: t("form.short_summary.placeholder", scope: _t), class: "tag-form-text-field tag-area-text" %>
     </div>
     <div class="tag-form-field">
       <%= label_i18n[:wiki_body_markdown] %>
       <br>
-      <%= text_area_tag "tag[wiki_body_markdown]", @tag.wiki_body_markdown, placeholder: _t.form.wiki_body_markdown.placeholder, class: "tag-form-text-field tag-area-text" %>
+      <%= text_area_tag "tag[wiki_body_markdown]", @tag.wiki_body_markdown, placeholder: t("form.wiki_body_markdown.placeholder", scope: _t), class: "tag-form-text-field tag-area-text" %>
     </div>
     <div class="tag-form-field">
       <%= label_i18n[:rules_markdown] %>
       <br>
-      <%= text_area_tag "tag[rules_markdown]", @tag.rules_markdown, placeholder: _t.form.rules_markdown.placeholder, class: "tag-form-text-field tag-area-text" %>
+      <%= text_area_tag "tag[rules_markdown]", @tag.rules_markdown, placeholder: t("form.rules_markdown.placeholder", scope: _t), class: "tag-form-text-field tag-area-text" %>
     </div>
     <div class="tag-form-field">
-      <%= submit_tag _t.form.submit, class: "tag-edit-submit" %>
+      <%= submit_tag t("form.submit", scope: _t), class: "tag-edit-submit" %>
     </div>
   </div>
 <% end %>
 
 <% if current_user.has_role?(:super_admin) || current_user.has_role?(:admin) %>
   <center>
-    <h1><a href="<%= edit_admin_tag_path(@tag.id) %>" data-no-instant><%= _t.admin tag: @tag.name %></a></h1>
+    <h1><a href="<%= edit_admin_tag_path(@tag.id) %>" data-no-instant><%= t "admin", scope: _t, tag: @tag.name %></a></h1>
     <br />
     <br />
     <br />

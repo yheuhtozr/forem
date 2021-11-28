@@ -1,4 +1,4 @@
-<% _t = t.v.chat.join %>
+<% _t = "v.chat.join" %>
 <% if flash[:settings_notice] %>
   <div class="crayons-banner" id="notice" style="padding: 35px 4px" aria-live="polite">
     <%= flash[:settings_notice] %>
@@ -6,25 +6,25 @@
 <% end %>
 <div class="crayons-card mb-6 grid grid-flow-row gap-6 p-6">
   <% if @pending_invites.any? %>
-    <h1><%= _t.pending.heading %></h1>
-    <h3><%= _t.pending.desc %></h3>
+    <h1><%= t("pending.heading", scope: _t) %></h1>
+    <h3><%= t("pending.desc", scope: _t) %></h3>
     <% @pending_invites.each do |membership| %>
       <div class="crayons-field">
         <h2><%= membership.chat_channel.channel_name %></h2>
         <p><%= membership.chat_channel.description %></p>
         <%= form_for(membership, html: { class: "grid grid-cols-5" }) do |f| %>
           <%= f.hidden_field :user_action, value: "accept" %>
-          <%= f.submit _t.accept, class: "crayons-btn" %>
+          <%= f.submit t("accept", scope: _t), class: "crayons-btn" %>
         <% end %>
         <%= form_for(membership, html: { class: "grid grid-cols-5" }) do |f| %>
           <%= f.hidden_field :user_action, value: "decline" %>
-          <%= f.submit _t.decline, class: "crayons-btn crayons-btn--danger" %>
+          <%= f.submit t("decline", scope: _t), class: "crayons-btn crayons-btn--danger" %>
         <% end %>
       </div>
     <% end %>
   <% else %>
     <p>
-      <em><%= _t.pending.empty %></em>
+      <em><%= t("pending.empty", scope: _t) %></em>
     </p>
   <% end %>
 </div>

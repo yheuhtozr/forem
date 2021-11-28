@@ -1,4 +1,4 @@
-<% _t = t.v.notifications.tag %>
+<% _t = "v.notifications.tag" %>
 <div class="crayons-card notification">
   <span class="crayons-avatar crayons-avatar--l m:crayons-avatar--xl shrink-0">
     <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--LnVw15KE--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://thepracticaldev.s3.amazonaws.com/uploads/user/profile_image/31047/af153cd6-9994-4a68-83f4-8ddf3e13f0bf.jpg" class="crayons-avatar__image" alt="Sloan, the sloth mascot" width="48" height="48">
@@ -7,21 +7,21 @@
   <div class="notification__content">
     <% data = notification.json_data %>
     <% removal = data["adjustment_type"] == "removal" %>
-      <h3 class="mb-2 color-base-90"><%= _t.heading %></h3>
+      <h3 class="mb-2 color-base-90"><%= t("heading", scope: _t) %></h3>
       <p class="mb-4">
         <%= _t[removal ? :remove : :add](tag: link_to("##{data["tag_name"]}", "/t/#{data["tag_name"]}")), title: link_to(h(data["article"]["title"]), data["article"]["path"])) %>
       </p>
       <div class="crayons-card crayons-card--secondary p-4 mb-4">
         <p class="color-base-70">
-          <strong><%= _t.reason %></strong>
+          <strong><%= t("reason", scope: _t) %></strong>
           <em><%= data["reason_for_adjustment"] %></em>
         </p>
       </div>
       <% if removal %>
-        <p class="mb-2"><%= _t.check other: link_to(_t.other, "/tags") %></p>
+        <p class="mb-2"><%= t "check", scope: _t, other: link_to(t("other", scope: _t), "/tags") %></p>
       <% end %>
       <p>
-        <%= _t.support community: community_name, email: t("contact_prompts.if_any_questions_html") %>
+        <%= t "support", scope: _t, community: community_name, email: t("contact_prompts.if_any_questions_html") %>
       </p>
   </div>
 </div>

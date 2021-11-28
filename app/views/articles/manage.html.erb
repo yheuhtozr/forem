@@ -1,14 +1,14 @@
-<% _t = t.v.manager %>
-<% title _t.heading(title: @article.title) %>
+<% _t = "v.manager" %>
+<% title t("heading", scope: _t, title: @article.title) %>
 <main id="main-content">
   <div class="dashboard-manage-header">
     <div class="dashboard-manage-header-inner-container">
       <div class="dashboard-manage-nav">
-        <a href="/dashboard"><%= _t.nav.dashboard %></a><%= _t.nav.text %>
+        <a href="/dashboard"><%= t("nav.dashboard", scope: _t) %></a><%= t("nav.text", scope: _t) %>
       </div>
       <% if flash[:error] %>
         <div role="alert">
-          <h3 class="manage-page-error"><%= _t.error.pins(error: flash[:pins_error]) %></h3>
+          <h3 class="manage-page-error"><%= t("error.pins", scope: _t, error: flash[:pins_error]) %></h3>
         </div>
       <% end %>
       <% if flash[:success] %>
@@ -16,18 +16,18 @@
           <h3 class="manage-page-success"><%= flash[:success] %></h3>
         </div>
       <% end %>
-      <h2><%= _t.desc.heading %></h2>
-      <p><strong><%= _t.desc.subtitle %></strong><%= _t.desc.text %>
-      <h2><%= _t.tips.heading %></h2>
+      <h2><%= t("desc.heading", scope: _t) %></h2>
+      <p><strong><%= t("desc.subtitle", scope: _t) %></strong><%= t("desc.text", scope: _t) %>
+      <h2><%= t("tips.heading", scope: _t) %></h2>
       <ol>
         <li>
-          <%= _t.tips.text_1 %>
+          <%= t("tips.text_1", scope: _t) %>
         </li>
         <li>
-          <%= _t.tips.text_2 %>
+          <%= t("tips.text_2", scope: _t) %>
         </li>
         <li>
-          <%= _t.tips.text_3 %>
+          <%= t("tips.text_3", scope: _t) %>
         </li>
       </ol>
     </div>
@@ -37,7 +37,7 @@
     <%= render "dashboards/dashboard_article", article: @article, discussion_lock: @discussion_lock, organization: @article.organization, org_admin: @user.org_admin?(@article.organization), manage_view: true %>
     <div class="single-article single-article-manage-form-wrapper">
       <%= form_for(RatingVote.new) do |f| %>
-        <h2><%= _t.rating.heading %></h2>
+        <h2><%= t("rating.heading", scope: _t) %></h2>
         <%= f.hidden_field :article_id, value: @article.id %>
         <%= f.hidden_field :group, value: "experience_level" %>
         <span class="button-section button-section-newbie">
@@ -56,8 +56,8 @@
           <button value="9" name="rating_vote[rating]" class="level-rating-button <%= "selected" if @rating_vote&.rating.to_d == 9.0.to_d %>">9</button>
           <button value="10" name="rating_vote[rating]" class="level-rating-button <%= "selected" if @rating_vote&.rating.to_d == 10.0.to_d %>">10</button>
         </span>
-        <p><%= _t.rating.text %></p>
-        <p><span class="scale-pod"><%= _t.rating.lower %></span><span class="scale-pod"><%= _t.rating.higher %></span></p>
+        <p><%= t("rating.text", scope: _t) %></p>
+        <p><span class="scale-pod"><%= t("rating.lower", scope: _t) %></span><span class="scale-pod"><%= t("rating.higher", scope: _t) %></span></p>
       <% end %>
     </div>
   </div>

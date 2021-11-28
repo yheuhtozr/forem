@@ -1,4 +1,4 @@
-<% _t = t.v.reactions %>
+<% _t = "v.reactions" %>
 <article class="notification__preview crayons-card">
   <a href="<%= json_data["article"]["path"] %>" class="crayons-link block notification__preview__inner">
     <h3 class="notification__preview__title"><%= h(json_data["article"]["title"]) %></h3>
@@ -16,9 +16,9 @@
         data-reactable-id="<%= json_data["article"]["id"] %>"
         data-category="like"
         data-reactable-type="Article">
-        <%= inline_svg_tag("small-heart.svg", aria: true, class: "crayons-icon reaction-icon not-reacted", title: _t.like.icon) %>
-        <%= inline_svg_tag("small-heart-filled.svg", aria: true, class: "crayons-icon reaction-icon--like reaction-icon reacted", title: _t.like.icon) %>
-        <span class="hidden m:inline-block"><%= _t.like.text %></span>
+        <%= inline_svg_tag("small-heart.svg", aria: true, class: "crayons-icon reaction-icon not-reacted", title: t("like.icon", scope: _t)) %>
+        <%= inline_svg_tag("small-heart-filled.svg", aria: true, class: "crayons-icon reaction-icon--like reaction-icon reacted", title: t("like.icon", scope: _t)) %>
+        <span class="hidden m:inline-block"><%= t("like.text", scope: _t) %></span>
       </button>
 
       <button
@@ -26,9 +26,9 @@
         data-reactable-id="<%= json_data["article"]["id"] %>"
         data-category="readinglist"
         data-reactable-type="Article">
-        <span class="reaction-button-text hidden m:inline-block"><%= _t.readingList.text %></span>
-        <%= inline_svg_tag("small-save.svg", aria: true, class: "crayons-icon reaction-icon not-reacted", title: _t.readingList.icon) %>
-        <%= inline_svg_tag("small-save-filled.svg", aria: true, class: "crayons-icon reaction-icon--readinglist reaction-icon reacted", title: _t.readingList.icon) %>
+        <span class="reaction-button-text hidden m:inline-block"><%= t("readingList.text", scope: _t) %></span>
+        <%= inline_svg_tag("small-save.svg", aria: true, class: "crayons-icon reaction-icon not-reacted", title: t("readingList.icon", scope: _t)) %>
+        <%= inline_svg_tag("small-save-filled.svg", aria: true, class: "crayons-icon reaction-icon--readinglist reaction-icon reacted", title: t("readingList.icon", scope: _t)) %>
       </button>
     </footer>
   <% end %>

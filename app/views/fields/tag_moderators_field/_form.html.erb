@@ -1,10 +1,10 @@
-<% _t = t.v.tags.moderator %>
+<% _t = "v.tags.moderator" %>
 <div class="field-unit__label">
   <%= f.label field.attribute %>
 </div>
 <div class="field-unit__field">
-  <%= f.text_field field.attribute, value: field.to_s, placeholder: _t.placeholder %>
+  <%= f.text_field field.attribute, value: field.to_s, placeholder: t("placeholder", scope: _t) %>
   <sub>
-    <%= _t.text code: tag.code(_t.code, style: "background: #D2D2D2; padding: 4px; border-radius: 5px; font-weight: bold;") %>
+    <%= t "text", scope: _t, code: tag.code(t("code", scope: _t), style: "background: #D2D2D2; padding: 4px; border-radius: 5px; font-weight: bold;") %>
   </sub>
 </div>

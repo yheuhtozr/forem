@@ -1,17 +1,17 @@
-<% _t = t.v.editor %>
-<% title _t.heading.edit %>
+<% _t = "v.editor" %>
+<% title t("heading.edit", scope: _t) %>
 
 <% if @article.video.present? %>
   <div class="article-form-video-preview">
     <% if @article.video_state == "PROGRESSING" %>
-      <h1 style="color:#062144;margin-top:1.1em"><%= _t.video.progress.heading %></h1>
+      <h1 style="color:#062144;margin-top:1.1em"><%= t("video.progress.heading", scope: _t) %></h1>
       <img src="https://media.giphy.com/media/tXL4FHPSnVJ0A/giphy.gif" style="border-radius:12px;height:317px" alt="Bored kid incessantly tapping his fingers">
       <div style="max-width:500px;margin:18px auto 0px;font-size:0.8em;">
         <p>
-          <strong><%= _t.video.progress.notice_1 %></strong>
+          <strong><%= t("video.progress.notice_1", scope: _t) %></strong>
         </p>
         <p>
-          <em><%= _t.video.progress.notice_2 %></em>
+          <em><%= t("video.progress.notice_2", scope: _t) %></em>
         </p>
       </div>
     <% elsif @article.video_state == "COMPLETED" %>
@@ -19,8 +19,8 @@
       <%= render "articles/video_player", meta_tags: false, article: @article %>
       <div class="article-form-video-image-url">
         <%= form_for(@article) do |f| %>
-          <%= _t.video.submit_image.text %><%= f.text_field :video_thumbnail_url, placeholder: _t.video.submit_image.placeholder %>
-          <%= f.submit _t.video.submit_image.button, class: "crayons-btn" %>
+          <%= t("video.submit_image.text", scope: _t) %><%= f.text_field :video_thumbnail_url, placeholder: t("video.submit_image.placeholder", scope: _t) %>
+          <%= f.submit t("video.submit_image.button", scope: _t), class: "crayons-btn" %>
         <% end %>
       </div>
     <% end %>

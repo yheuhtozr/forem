@@ -1,8 +1,8 @@
-<% _t = t.v.podcasts %>
+<% _t = "v.podcasts" %>
 <div class="hidden-audio" id="hidden-audio-<%= episode.slug %>" style="display:none" data-episode="<%= episode.slug %>" data-podcast="<%= podcast.slug %>">
   <audio id="audio" data-episode="<%= episode.slug %>" data-podcast="<%= podcast.slug %>">
     <source src="<%= episode.media_url %>" type="audio/mpeg">
-    <%= _t.unsupported %>
+    <%= t("unsupported", scope: _t) %>
   </audio>
   <div id="progressBar" class="audio-player-display">
     <a href="/<%= podcast.slug %>/<%= episode.slug %>">
@@ -27,13 +27,13 @@
       <span id="mutebutt" class="volume-icon-wrapper hidden">
         <%= image_tag("volume-mute.png", alt: "volume-mute", class: "icon-img", height: 16, width: 16) %>
       </span>
-      <span class="speed" id="speed" data-speed=1><%= _t.speed %></span>
+      <span class="speed" id="speed" data-speed=1><%= t("speed", scope: _t) %></span>
     </span>
     <span class="buffer-wrapper" id="bufferwrapper">
       <span id="buffer"></span>
       <span id="progress"></span>
-      <span id="time"><%= _t.time %></span>
-      <span id="closebutt"><%= _t.close %></span>
+      <span id="time"><%= t("time", scope: _t) %></span>
+      <span id="closebutt"><%= t("close", scope: _t) %></span>
     </span>
   </div>
 </div>

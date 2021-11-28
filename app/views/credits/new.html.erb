@@ -1,19 +1,19 @@
-<% _t = t.v.credits.new %>
-<% title _t.meta.title %>
+<% _t = "v.credits.new" %>
+<% title t("meta.title", scope: _t) %>
 
 <div class="credits-container">
   <div class="credits-banner">
-    <h1><%= _t.heading @purchaser.username %></h1>
+    <h1><%= t("heading", scope: _t) @purchaser.username %></h1>
 
     <% if @organizations %>
         <% @organizations.each do |org| %>
           <% unless @purchaser.id == org.id %>
-            <a href="/credits/purchase?organization_id=<%= org.id %>" data-no-instant><%= _t.switch.org name: org.name %></a>
+            <a href="/credits/purchase?organization_id=<%= org.id %>" data-no-instant><%= t "switch.org", scope: _t, name: org.name %></a>
           <% end %>
         <% end %>
       <% end %>
       <% unless @purchaser.is_a? User %>
-        <a href="/credits/purchase" data-no-instant><%= _t.switch.user %></a>
+        <a href="/credits/purchase" data-no-instant><%= t("switch.user", scope: _t) %></a>
       <% end %>
   </div>
 
@@ -75,33 +75,33 @@
     </details>
     <details>
       <summary>
-        <%= params[:organization_id].present? ? _t.status.subtitle.org(name: @purchaser.name) : _t.status.subtitle.user %>
+        <%= params[:organization_id].present? ? t("status.subtitle.org", scope: _t, name: @purchaser.name) : t("status.subtitle.user", scope: _t) %>
       </summary>
       <div>
         <p>
           <% count = @purchaser.credits.where(spent: false).size %>
-          <%= params[:organization_id].present? ? _t.status.desc.org(name: @purchaser.name, count: count) : _t.status.desc.user(count: count) %>
+          <%= params[:organization_id].present? ? t("status.desc.org", scope: _t, name: @purchaser.name, count: count) : t("status.desc.user", scope: _t, count: count) %>
         </p>
       </div>
     </details>
     <details>
       <summary>
-        <%= _t.how.subtitle %>
+        <%= t("how.subtitle", scope: _t) %>
       </summary>
       <div>
         <p>
-          <%= _t.how.desc %>
+          <%= t("how.desc", scope: _t) %>
         </p>
       </div>
     </details>
     <%= form_for(@credit) do |f| %>
       <label for="amount-input" class="main-form-label">
-        <%= _t.form.amount.label %>
+        <%= t("form.amount.label", scope: _t) %>
       </label>
       <div class="amount-wrapper">
         <%= f.number_field :number_to_purchase,
                            id: "amount-input",
-                           placeholder: _t.form.amount.placeholder, autocomplete: "off",
+                           placeholder: t("form.amount.placeholder", scope: _t), autocomplete: "off",
                            min: "0",
                            max: "10000000",
                            required: true %>
@@ -112,7 +112,7 @@
       <% end %>
       <div class="form-row">
       <label for="card-element" class="main-form-label">
-        <%= _t.form.method.label %>
+        <%= t("form.method.label", scope: _t) %>
       </label>
       <% if @customer %>
         <div id="cards-wrapper">
@@ -122,12 +122,12 @@
               name="selected_card" value="<%= source.id %>" id="existing-card-<%= source.id %>" />
             <label for="existing-card-<%= source.id %>">
               <span class="credit-card-component credit-card-component--bold"><%= source.brand %></span>
-              <span class="credit-card-component"><%= _t.form.method.number last: source.last4 %></span>
-              <span class="credit-card-component"><%= _t.form.method.exp mm: source.exp_month, yy: source.exp_year.to_s.last(2) %></span>
+              <span class="credit-card-component"><%= t "form.method.number", scope: _t, last: source.last4 %></span>
+              <span class="credit-card-component"><%= t "form.method.exp", scope: _t, mm: source.exp_month, yy: source.exp_year.to_s.last(2) %></span>
             </label>
             </div>
           <% end %>
-          <button id="add-new-card"><%= _t.form.method.add %></button>
+          <button id="add-new-card"><%= t("form.method.add", scope: _t) %></button>
         </div>
       <% else %>
         <div id="card-element">
@@ -137,9 +137,9 @@
       <%# Used to display form errors. %>
       <div id="card-errors" role="alert"></div>
       </div>
-      <button id="add-credit-card-button" class="credit-card-button"><%= _t.form.submit %></button>
+      <button id="add-credit-card-button" class="credit-card-button"><%= t("form.submit", scope: _t) %></button>
       <% if @purchaser.is_a? Organization %>
-        <p><em><%= _t.form.note_org %></em></p>
+        <p><em><%= t("form.note_org", scope: _t) %></em></p>
       <% end %>
     <% end %>
   </div>
@@ -153,7 +153,7 @@
 
     var form = document.getElementById('new_credit');
     form.onsubmit = function(_event) {
-      changeSubmitButton({ text: <%= _t.form.submitting %>, active: false })
+      changeSubmitButton({ text: <%= t("form.submitting", scope: _t) %>, active: false })
     }
 
     var stripe = Stripe('<%= Settings::General.stripe_publishable_key %>');
@@ -218,7 +218,7 @@
           stripe.createToken(card).then(function(result) {
             if (result.error) {
               // Inform the user if there was an error.
-              changeSubmitButton({ text: <%= _t.form.submit %>, active: true });
+              changeSubmitButton({ text: <%= t("form.submit", scope: _t) %>, active: true });
               var errorElement = document.getElementById('card-errors');
               errorElement.textContent = result.error.message;
             } else {

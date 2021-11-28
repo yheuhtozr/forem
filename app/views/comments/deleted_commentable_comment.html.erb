@@ -1,12 +1,12 @@
-<% _t = t.v.comments.orphan %>
+<% _t = "v.comments.orphan" %>
 <div class="comments-container comments-dedicated-page-container">
-  <h3><%= _t.heading %></h3>
+  <h3><%= t("heading", scope: _t) %></h3>
   <div class="single-comment-node root">
     <% @user ||= @root_comment.user %>
     <% if @root_comment.blank? || @root_comment.deleted %>
       <div class="inner-comment">
         <div class="body">
-          <%= _t.deleted %>
+          <%= t("deleted", scope: _t) %>
         </div>
       </div>
     <% else %>
@@ -16,7 +16,7 @@
         <% if decorated_comment.low_quality %>
           <div class="crayons-notice crayons-notice--warning low-quality-comment-marker">
             <%= image_tag(Images::Optimizer.call(Settings::General.mascot_image_url, width: 50, height: 50, crop: "imagga_scale"), class: "sloan", alt: "Sloan, the sloth mascot", loading: "lazy") %>
-            <%= t.v.comments.quality.low %> <a href="/code-of-conduct"><%= t.v.comments.quality.conduct %></a>
+            <%= t("v.comments.quality.low") %> <a href="/code-of-conduct"><%= t("v.comments.quality.conduct") %></a>
           </div>
         <% end %>
 
@@ -53,8 +53,8 @@
         <div class="actions">
           <% if @root_comment.user_id == current_user&.id %>
             <span class="current-user-actions">
-              <a href="<%= @root_comment.path %>/delete_confirm" class="edit-butt" rel="nofollow"><%= _t.delete %></a>
-              <a href="<%= @root_comment.path %>/edit" class="edit-butt" rel="nofollow"><%= _t.edit %></a>
+              <a href="<%= @root_comment.path %>/delete_confirm" class="edit-butt" rel="nofollow"><%= t("delete", scope: _t) %></a>
+              <a href="<%= @root_comment.path %>/edit" class="edit-butt" rel="nofollow"><%= t("edit", scope: _t) %></a>
             </span>
           <% end %>
         </div>

@@ -1,4 +1,4 @@
-<% _t = t.v.notifications.broadcast %>
+<% _t = "v.notifications.broadcast" %>
 <div class="crayons-card notification notification--promoted">
   <% json_data = notification.json_data %>
   <% user = User.find_by(id: json_data["user"]["id"]) %>
@@ -10,7 +10,7 @@
       <%= json_data["broadcast"]["processed_html"].html_safe %>
 
       <% if notification.json_data['broadcast']['type_of'] == "Welcome" %>
-        <p class="fs-base pt-6 color-base-70"><%= _t.visit settings: link_to(_t.settings, user_settings_path(tab: :notifications)) %></p>
+        <p class="fs-base pt-6 color-base-70"><%= t "visit", scope: _t, settings: link_to(t("settings", scope: _t), user_settings_path(tab: :notifications)) %></p>
       <% end %>
     </div>
   <% end %>

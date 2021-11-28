@@ -1,11 +1,11 @@
-<% _t = t.v.email_subscriptions.invalid %>
+<% _t = "v.email_subscriptions.invalid" %>
 <meta name="robots" content="noindex" />
 <div class="unsubscribed unsubscribed--red">
   <div class="unsubscribed__title">
-    <%= _t.heading %>
+    <%= t("heading", scope: _t) %>
   </div>
   <br />
   <div class="unsubscribed__message">
-    <%= _t.desc link: tag.a(_t.signin, href: app_url(user_settings_path(:notifications))) %>
+    <%= t "desc", scope: _t, link: tag.a(t("signin", scope: _t), href: app_url(user_settings_path(:notifications))) %>
   </div>
 </div>

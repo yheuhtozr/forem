@@ -1,16 +1,16 @@
-<% _t = t.v.users.account %>
+<% _t = "v.users.account" %>
 <div class="crayons-card crayons-card--content-rows" id="emails">
-  <h2><%= _t.emails %></h2>
+  <h2><%= t("emails", scope: _t) %></h2>
   <ul class="list-none">
     <li class="mb-2">
-      <strong class="color-base-60"><%= _t.primary %></strong>
+      <strong class="color-base-60"><%= t("primary", scope: _t) %></strong>
       <span class="pl-2"><%= @user.email %></span>
     </li>
 
     <% @user.identities_enabled.each do |identity| %>
       <% provider = authentication_provider(identity.provider) %>
       <li class="mb-2">
-        <strong class="color-base-60"><%= _t.provider_email provider: provider.official_name %></strong>
+        <strong class="color-base-60"><%= t "provider_email", scope: _t, provider: provider.official_name %></strong>
         <span class="pl-2"><%= identity.email %></span>
       </li>
     <% end %>

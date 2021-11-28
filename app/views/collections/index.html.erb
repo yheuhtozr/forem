@@ -1,6 +1,6 @@
-<% _t = t.v.series %>
-<% title_string = _t.heading user: @user.name %>
-<% description_string = _t.meta.description title: title_string, site: community_name %>
+<% _t = "v.series" %>
+<% title_string = t "heading", scope: _t, user: @user.name %>
+<% description_string = t "meta.description", scope: _t, title: title_string, site: community_name %>
 
 <%= content_for :page_meta do %>
   <%= render "collections/meta", title_string: title_string, description_string: description_string, path: "#{@user.username}/series/" %>
@@ -21,7 +21,7 @@
         </div>
       <% end %>
     <% else %>
-      <p><%= _t.empty %></p>
+      <p><%= t("empty", scope: _t) %></p>
     <% end %>
   </div>
 </main>

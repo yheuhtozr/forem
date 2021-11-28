@@ -1,4 +1,4 @@
-<% _t = t.v.articles.delete %>
+<% _t = "v.articles.delete" %>
 <main id="main-content" class="crayons-layout crayons-layout--limited-l gap-0">
   <div
     class="crayons-card crayons-card--secondary text-styles text-styles--secondary text-padding -mb-1 mx-3 m:mx-6 mt-3">
@@ -6,21 +6,20 @@
   </div>
 
   <div class="crayons-card text-padding">
-    <h1 class="crayons-subtitle-1 mb-2"><%= _t.heading %></h1>
+    <h1 class="crayons-subtitle-1 mb-2"><%= t("heading", scope: _t) %></h1>
     <p class="fs-l mb-4">
-      <%= _t.desc.text(
-            action: link_to(@article.published ? _t.desc.unpublish : _t.desc.edit, "#{@article.path}/edit", data: { no_instant: "" }),
-          ) %>
+      <%= t("desc.text", scope: _t,
+                         action: link_to(@article.published ? t("desc.unpublish", scope: _t) : t("desc.edit", scope: _t), "#{@article.path}/edit", data: { no_instant: "" })) %>
     </p>
 
     <%= form_tag article_path(@article.id), method: :delete do %>
-      <button class="crayons-btn crayons-btn--danger"><%= _t.action.button %></button>
+      <button class="crayons-btn crayons-btn--danger"><%= t("action.button", scope: _t) %></button>
 
       <a data-no-instant href="<%= @article.path %>/edit" class="crayons-btn crayons-btn--secondary">
-        <%= @article.published ? _t.action.unpublish : _t.action.edit %>
+        <%= @article.published ? t("action.unpublish", scope: _t) : t("action.edit", scope: _t) %>
       </a>
 
-      <a data-no-instant href="<%= dashboard_path %>" class="crayons-btn crayons-btn--ghost"><%= _t.action.cancel %></a>
+      <a data-no-instant href="<%= dashboard_path %>" class="crayons-btn crayons-btn--ghost"><%= t("action.cancel", scope: _t) %></a>
     <% end %>
   </div>
 </main>

@@ -1,11 +1,11 @@
-<% _t = t.v.organizations %>
+<% _t = "v.organizations" %>
 <div id="sidebar-wrapper-left" class="sidebar-wrapper sidebar-wrapper-left">
   <div class="sidebar-bg" id="sidebar-bg-left"></div>
   <div class="side-bar">
     <% if @organization.story.present? %>
       <div class="widget">
         <header>
-          <h4><%= _t.story %></h4>
+          <h4><%= t("story", scope: _t) %></h4>
         </header>
         <div class="widget-body">
           <%= sanitized_sidebar @organization.story %>
@@ -15,7 +15,7 @@
     <% if @organization.tech_stack.present? %>
       <div class="widget">
         <header>
-          <h4><%= _t.stack %></h4>
+          <h4><%= t("stack", scope: _t) %></h4>
         </header>
         <div class="widget-body">
           <%= sanitized_sidebar @organization.tech_stack %>

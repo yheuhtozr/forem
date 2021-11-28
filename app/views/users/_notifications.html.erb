@@ -1,9 +1,9 @@
-<% _t = t.v.users.notifications %>
+<% _t = "v.users.notifications" %>
 <%= form_for @users_notification_setting, url: users_notification_settings_path do |f| %>
   <div class="crayons-card crayons-card--content-rows">
     <header>
       <h2 class="crayons-subtitle-1">
-        <%= _t.email %>
+        <%= t("email", scope: _t) %>
       </h2>
     </header>
     <div class="crayons-field crayons-field--checkbox">
@@ -54,18 +54,18 @@
     </div>
     <div class="crayons-field crayons-field--checkbox">
       <%= f.check_box :email_unread_notifications, class: "crayons-checkbox" %>
-      <%= f.label :email_unread_notifications, t.helpers.label.users_notification_setting.email_unread_notifications(community: community_name), class: "crayons-field__label" %>
+      <%= f.label :email_unread_notifications, t("helpers.label.users_notification_setting.email_unread_notifications", community: community_name), class: "crayons-field__label" %>
     </div>
   </div>
 
   <div class="crayons-card crayons-card--content-rows">
     <header>
       <h2 class="crayons-subtitle-1 flex items-center">
-        <%= _t.mobile %>
-        <span class="ml-2 crayons-indicator crayons-indicator--accent"><%= t.v.beta %></span>
+        <%= t("mobile", scope: _t) %>
+        <span class="ml-2 crayons-indicator crayons-indicator--accent"><%= t("v.beta") %></span>
       </h2>
       <p class="color-base-70">
-        <%= _t.mobile_notice %>
+        <%= t("mobile_notice", scope: _t) %>
       </p>
     </header>
     <div class="crayons-field crayons-field--checkbox">
@@ -77,15 +77,15 @@
   <div class="crayons-card crayons-card--content-rows">
     <header>
       <h2 class="crayons-subtitle-1">
-        <%= _t.general %>
+        <%= t("general", scope: _t) %>
       </h2>
       <p class="color-base-70">
-        <%= _t.general_desc page: link_to(_t.page, notifications_path) %>
+        <%= t "general_desc", scope: _t, page: link_to(t("page", scope: _t), notifications_path) %>
       </p>
     </header>
     <div class="crayons-field crayons-field--checkbox">
       <%= f.check_box :welcome_notifications, class: "crayons-checkbox" %>
-      <%= f.label :welcome_notifications, t.helpers.label.users_notification_setting.welcome_notifications(community: community_name), class: "crayons-field__label" %>
+      <%= f.label :welcome_notifications, t("helpers.label.users_notification_setting.welcome_notifications", community: community_name), class: "crayons-field__label" %>
     </div>
     <div class="crayons-field crayons-field--checkbox">
       <%= f.check_box :reaction_notifications, class: "crayons-checkbox" %>
@@ -96,7 +96,7 @@
   <% if current_user.trusted %>
     <div class="crayons-card crayons-card--content-rows">
       <h2 class="crayons-subtitle-1">
-        <%= _t.moderator %>
+        <%= t("moderator", scope: _t) %>
       </h2>
       <div class="crayons-field crayons-field--checkbox">
         <%= f.check_box :mod_roundrobin_notifications, class: "crayons-checkbox" %>
@@ -106,7 +106,7 @@
   <% end %>
 
   <div class="crayons-card crayons-card--content-rows">
-    <button type="submit" class="crayons-btn"><%= _t.save %></button>
+    <button type="submit" class="crayons-btn"><%= t("save", scope: _t) %></button>
   </div>
 
 <% end %>

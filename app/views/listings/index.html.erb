@@ -1,6 +1,6 @@
-<% _t = t.v.listings %>
+<% _t = "v.listings" %>
 <%= content_for :page_meta do %>
-  <% title _t.heading %>
+  <% title t("heading", scope: _t) %>
 
   <link rel="canonical" href="<%= app_url(request.path) %>" />
   <meta name="description" content="<%= Settings::Community.community_description %>">
@@ -11,10 +11,10 @@
   <meta property="og:site_name" content="<%= community_name %>" />
   <% if @displayed_listing %>
     <meta property="og:title" content="<%= truncate @displayed_listing.title, length: 54 %>">
-    <meta property="og:description" content="<%= _t.meta.description community: community_name %>" />
+    <meta property="og:description" content="<%= t "meta.description", scope: _t, community: community_name %>" />
     <meta property="og:image" content="<%= listing_social_image_url @displayed_listing %>">
     <meta name="twitter:title" content="<%= truncate @displayed_listing.title, length: 54 %>">
-    <meta name="twitter:description" content="<%= _t.meta.description community: community_name %>">
+    <meta name="twitter:description" content="<%= t "meta.description", scope: _t, community: community_name %>">
     <meta name="twitter:image:src" content="<%= listing_social_image_url @displayed_listing %>">
   <% else %>
     <meta property="og:title" content="Listings" />
@@ -31,12 +31,12 @@
 <main id="main-content">
 
   <div class="crayons-layout flex items-center justify-between p-2 l:p-4 l:pb-0">
-    <h1 class="crayons-title"><%= _t.heading %></h1>
+    <h1 class="crayons-title"><%= t("heading", scope: _t) %></h1>
 
-    <nav class="flex items-center" aria-label="<%= _t.nav.aria_label %>">
+    <nav class="flex items-center" aria-label="<%= t("nav.aria_label", scope: _t) %>">
       <ul class="list-none flex">
-        <li> <a href="<%= new_listing_path %>" class="crayons-btn crayons-btn--secondary"><%= _t.nav.create %></a></li>
-        <li> <a href="<%= listings_dashboard_path %>" class="crayons-btn crayons-btn--secondary ml-2"><%= _t.nav.manage %></a></li>
+        <li> <a href="<%= new_listing_path %>" class="crayons-btn crayons-btn--secondary"><%= t("nav.create", scope: _t) %></a></li>
+        <li> <a href="<%= listings_dashboard_path %>" class="crayons-btn crayons-btn--secondary ml-2"><%= t("nav.manage", scope: _t) %></a></li>
       </ul>
     </nav>
   </div>

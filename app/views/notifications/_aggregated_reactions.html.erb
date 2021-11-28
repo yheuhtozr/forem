@@ -1,4 +1,4 @@
-<% _t = t.v.notifications.reacted %>
+<% _t = "v.notifications.reacted" %>
 <%# TODO: change to map of IDs %>
 <% actors = siblings.map { |n| n["user"] }.uniq %>
 <% reactable_data = notification.json_data["reaction"]["reactable"] %>
@@ -20,32 +20,29 @@
 
 <div class="notification__content pt-2">
   <% reaction_categories = siblings.map { |n| n["category"] } %>
-  <%= _t.verb(
-        count: actors.size,
-        start: tag("span", { class: %w[inline-block py-1] }, true), # rubocop:disable Rails/ContentTag
-        actors: if actors.size == 1
-                  link_to actors.first["name"], actors.first["path"], class: "crayons-link fw-bold"
-                elsif actors.size == 2
-                  _t.and(
-                    first: link_to(actors.first["name"], actors.first["path"], class: "crayons-link fw-bold"),
-                    last: link_to(actors.last["name"], actors.last["path"], class: "crayons-link fw-bold"),
-                  )
-                elsif actors.size > 1
-                  _t.and_other(
-                    first: link_to(actors.first["name"], actors.first["path"], class: "crayons-link fw-bold"),
-                    count: actors.size - 1,
-                  )
-                end,
-        # your article/comment or the actual title of the article/comment
-        title: link_to(reactable_data["title"].blank? ? _t.your[reactable_data["class"]["name"].downcase] : h(reactable_data["title"]), reactable_data["path"], class: "crayons-link fw-bold"),
-        end: "</span>".html_safe,
-        reactions: safe_join(
-          reaction_categories.filter_map do |cat|
-            image_path = reaction_image(cat)
-            if image_path.present?
-              inline_svg_tag(image_path, aria: true, class: "crayons-icon reaction-image mx-1 my-1 reaction-icon--#{cat}", title: t.v.reactions.category[cat.to_s])
-            end
-          end, "\n"
-        ),
-      ) %>
+  <%= t("verb", scope: _t,
+                count: actors.size,
+                start: tag("span", { class: %w[inline-block py-1] }, true), # rubocop:disable Rails/ContentTag
+                actors: if actors.size == 1
+                          link_to actors.first["name"], actors.first["path"], class: "crayons-link fw-bold"
+                        elsif actors.size == 2
+                          t("and", scope: _t,
+                                   first: link_to(actors.first["name"], actors.first["path"], class: "crayons-link fw-bold"),
+                                   last: link_to(actors.last["name"], actors.last["path"], class: "crayons-link fw-bold"))
+                        elsif actors.size > 1
+                          t("and_other", scope: _t,
+                                         first: link_to(actors.first["name"], actors.first["path"], class: "crayons-link fw-bold"),
+                                         count: actors.size - 1)
+                        end,
+                # your article/comment or the actual title of the article/comment
+                title: link_to(reactable_data["title"].blank? ? _t.your[reactable_data["class"]["name"].downcase] : h(reactable_data["title"]), reactable_data["path"], class: "crayons-link fw-bold"),
+                end: "</span>".html_safe,
+                reactions: safe_join(
+                  reaction_categories.filter_map do |cat|
+                    image_path = reaction_image(cat)
+                    if image_path.present?
+                      inline_svg_tag(image_path, aria: true, class: "crayons-icon reaction-image mx-1 my-1 reaction-icon--#{cat}", title: t.v.reactions.category[cat.to_s])
+                    end
+                  end, "\n"
+                )) %>
 </div>

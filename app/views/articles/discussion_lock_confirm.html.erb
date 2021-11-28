@@ -1,34 +1,34 @@
-<% _t = t.v.articles.lock %>
-<% title(_t.meta.title) %>
+<% _t = "v.articles.lock" %>
+<% title(t("meta.title", scope: _t)) %>
 <main id="main-content" class="crayons-layout crayons-layout--limited-l gap-0">
   <div class="crayons-card crayons-card--secondary text-styles text-styles--secondary text-padding -mb-1 mx-3 m:mx-6 mt-3">
     <%= @article.title %>
   </div>
   <div class="crayons-card text-padding">
-    <h1 class="crayons-subtitle-1 mb-2"><% _t.heading %></h1>
+    <h1 class="crayons-subtitle-1 mb-2"><% t("heading", scope: _t) %></h1>
     <p class="fs-l mb-4">
-      <% _t.desc %>
+      <% t("desc", scope: _t) %>
     </p>
 
     <%= form_for @discussion_lock, method: :post do |f| %>
       <div class="form-group">
         <%= f.hidden_field :article_id, value: @article.id %>
         <div class="crayons-field mb-5">
-          <%= f.label :reason, _t.reason.label, class: "crayons-field__label" %>
+          <%= f.label :reason, t("reason.label", scope: _t), class: "crayons-field__label" %>
           <%= f.text_field :reason,
-                           placeholder: _t.reason.placeholder,
+                           placeholder: t("reason.placeholder", scope: _t),
                            required: false,
                            class: "crayons-textfield" %>
         <div class="crayons-field">
-          <%= f.label :notes, _t.notes.label, class: "crayons-field__label" %>
+          <%= f.label :notes, t("notes.label", scope: _t), class: "crayons-field__label" %>
           <%= f.text_field :notes,
-                           placeholder: _t.notes.placeholder,
+                           placeholder: t("notes.placeholder", scope: _t),
                            required: false,
                            class: "crayons-textfield" %>
         </div>
       </div>
-      <%= f.submit _t.submit, class: "crayons-btn crayons-btn--danger" %>
-      <a data-no-instant href="<%= dashboard_path %>" class="crayons-btn crayons-btn--ghost"><%= _t.cancel %></a>
+      <%= f.submit t("submit", scope: _t), class: "crayons-btn crayons-btn--danger" %>
+      <a data-no-instant href="<%= dashboard_path %>" class="crayons-btn crayons-btn--ghost"><%= t("cancel", scope: _t) %></a>
     <% end %>
   </div>
 </main>

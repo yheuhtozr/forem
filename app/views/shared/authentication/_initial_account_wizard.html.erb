@@ -1,22 +1,22 @@
-<% _t = t.v.auth.wizard %>
-<% title _t.meta.title %>
+<% _t = "v.auth.wizard" %>
+<% title t("meta.title", scope: _t) %>
 <div class="crayons-card crayons-card--secondary crayons-notice crayons-notice--success mx-auto mt-8 mb-10 p-4 fs-2xl lh-base align-center" style="width:96%;max-width:1300px;" aria-live="polite">
-  <h1 class="m-7 mb-3"><%= _t.heading %></h1>
+  <h1 class="m-7 mb-3"><%= t("heading", scope: _t) %></h1>
   <img class="m-7 mb-2 radius-default" alt="Dancing Baby Groot GIF" src="https://media.giphy.com/media/F9hQLAVhWnL56/giphy.gif" style="height:220px" />
   <p class="mb-4 mt-6">
-    <%= _t.step_1 %>
+    <%= t("step_1", scope: _t) %>
   </p>
   <p class="mb-4">
-    <%= _t.step_2 path: link_to(admin_config_path, admin_config_path) %>
+    <%= t "step_2", scope: _t, path: link_to(admin_config_path, admin_config_path) %>
   </p>
   <p class="mb-4">
-    <%= _t.step_3 %>
+    <%= t("step_3", scope: _t) %>
   </p>
   <p class="mb-8">
-    <%= _t.step_4 %>
+    <%= t("step_4", scope: _t) %>
   </p>
   <p class="mb-7 fw-bold">
-    <%= _t.step_5 %>
+    <%= t("step_5", scope: _t) %>
   </p>
   <%= render "shared/authentication/email_registration_form" %>
 </div>

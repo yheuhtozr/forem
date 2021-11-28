@@ -1,9 +1,9 @@
-<% _t = t.v.notifications.badge %>
+<% _t = "v.notifications.badge" %>
 <% json_data = notification.json_data %>
 <div class="crayons-card notification notification--promoted grid gap-4">
     <header class="mb-2 m:mb-4">
       <h3 class="fw-normal fs-l s:fs-xl m:fs-2xl">
-      <%= _t.heading badge: tag.strong(sanitize(json_data["badge_achievement"]["badge"]["title"]), class: "fw-bold") %>
+      <%= t "heading", scope: _t, badge: tag.strong(sanitize(json_data["badge_achievement"]["badge"]["title"]), class: "fw-bold") %>
       </h3>
       <p class="fs-l"><%= json_data["badge_achievement"]["badge"]["description"] %></p>
     </header>
@@ -13,10 +13,10 @@
       <p class="color-base-70"><em><%= json_data["badge_achievement"]["rewarding_context_message"].to_s.html_safe %></em></p>
     </div>
 
-  <p class="self-stretch"><a href="<%= json_data["user"]["path"] %>" class="crayons-btn w-100 m:w-50"><%= _t.profile %></a></p>
+  <p class="self-stretch"><a href="<%= json_data["user"]["path"] %>" class="crayons-btn w-100 m:w-50"><%= t("profile", scope: _t) %></a></p>
   <% credits_awarded = json_data["badge_achievement"]["badge"]["credits_awarded"] %>
   <% unless credits_awarded.present? && credits_awarded.zero? %>
-    <p class="max-w-75 mx-auto"><%= _t.awarded credits: link_to(_t.credits(json_data["badge_achievement"]["badge"]["credits_awarded"]), "/credits", class: "crayons-link crayons-link--brand fw-bold"), listings: link_to(_t.listings, "/listings") %></p>
-    <p class="fs-s"><a href="<%= about_listings_url %>" class="crayons-link crayons-link--secondary"><%= _t.more %><a></p>
+    <p class="max-w-75 mx-auto"><%= t "awarded", scope: _t, credits: link_to(t("credits", scope: _t, json_data["badge_achievement"]["badge"]["credits_awarded"]), "/credits", class: "crayons-link crayons-link--brand fw-bold"), listings: link_to(t("listings", scope: _t), "/listings") %></p>
+    <p class="fs-s"><a href="<%= about_listings_url %>" class="crayons-link crayons-link--secondary"><%= t("more", scope: _t) %><a></p>
   <% end %>
 </div>
