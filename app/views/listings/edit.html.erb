@@ -1,57 +1,48 @@
-<% _t = "v.listings.edit" %>
-<% _f = "v.listings.form" %>
-<% title t("heading", scope: _t) %>
+<% title t("views.listings.edit.heading") %>
 
 <header class="crayons-layout crayons-layout--limited-l flex items-center justify-between p-2 l:p-4 l:pb-0">
-  <h1 class="crayons-title"><%= t("heading", scope: _t) %></h1>
+  <h1 class="crayons-title"><%= t("views.listings.edit.heading") %></h1>
 </header>
 
 <main class="crayons-layout crayons-layout--2-cols crayons-layout--2-cols--inverted crayons-layout--limited-l">
   <div class="crayons-layout__content">
     <div class="crayons-card mb-6 p-6">
       <%= form_for(@listing, html: { class: "grid gap-6 mb-6" }) do |f| %>
-        <div class="crayons-notice" aria-live="polite"><%= t("notice", scope: _t) %></div>
+        <div class="crayons-notice" aria-live="polite"><%= t("views.listings.edit.notice") %></div>
 
         <%= render partial: "form_errors", locals: { listing: @listing } %>
 
         <% if (@listing.bumped_at && @listing.bumped_at > 24.hours.ago) || @listing.updated_at && !@listing.published %>
           <div class="crayons-field">
             <%= f.label "title", class: "crayons-field__label" %>
-            <%= f.text_field "title", maxlength: 128, placeholder: t("title.placeholder", scope: _f), class: "crayons-textfield" %>
+            <%= f.text_field "title", maxlength: 128, placeholder: t("views.listings.form.title.placeholder"), class: "crayons-textfield" %>
           </div>
           <div class="crayons-field">
             <%= f.label "body_markdown", class: "crayons-field__label" %>
-            <%= f.text_area "body_markdown", maxlength: 400, placeholder: t("body_markdown.placeholder", scope: _f), class: "crayons-textfield" %>
-            <p class="crayons-field__description"><%= t("body_markdown.desc", scope: _f) %></p>
+            <%= f.text_area "body_markdown", maxlength: 400, placeholder: t("views.listings.form.body_markdown.placeholder"), class: "crayons-textfield" %>
+            <p class="crayons-field__description"><%= t("views.listings.form.body_markdown.description") %></p>
           </div>
           <div class="crayons-field">
             <%= f.label "tag_list", class: "crayons-field__label" %>
-            <%= f.text_field "tag_list", value: @listing.cached_tag_list, placeholder: t("tags.placeholder", scope: _f), class: "crayons-textfield" %>
+            <%= f.text_field "tag_list", value: @listing.cached_tag_list, placeholder: t("views.listings.form.tags.placeholder"), class: "crayons-textfield" %>
           </div>
           <div class="crayons-field">
             <%= f.label "expires_at", class: "crayons-field__label" %>
             <%= f.date_field "expires_at", min: Date.tomorrow, max: @listing.natural_expiration_date, class: "crayons-textfield m:max-w-50" %>
             <p class="crayons-field__description">
-                <%= t("expiry.desc", scope: _f) %>
+                <%= t("views.listings.form.expiry.description") %>
               </p>
-          </div>
-          <div class="crayons-field crayons-field--checkbox">
-            <%= f.check_box "contact_via_connect", class: "crayons-checkbox" %>
-            <label class="crayons-field__label" for="contact_via_connect">
-              <%= t("connect.subtitle", scope: _f) %>
-              <p class="crayons-field__description"><%= t("connect.desc", scope: _f) %></p>
-            </label>
           </div>
           <div class="crayons-field">
             <%= f.label "location", class: "crayons-field__label" %>
-            <%= f.text_field "location", maxlength: 32, placeholder: t("location.placeholder", scope: _f), class: "crayons-textfield m:max-w-50" %>
-            <p class="crayons-field__description"><%= t("location.desc", scope: _f) %></p>
+            <%= f.text_field "location", maxlength: 32, placeholder: t("views.listings.form.location.placeholder"), class: "crayons-textfield m:max-w-50" %>
+            <p class="crayons-field__description"><%= t("views.listings.form.location.description") %></p>
           </div>
           <div>
             <% if @listing.published %>
-              <%= f.submit t("update", scope: _t), class: "crayons-btn" %>
+              <%= f.submit t("views.listings.edit.update"), class: "crayons-btn" %>
             <% else %>
-              <%= f.submit t("update_draft", scope: _t), class: "crayons-btn crayons-btn--secondary" %>
+              <%= f.submit t("views.listings.edit.update_draft"), class: "crayons-btn crayons-btn--secondary" %>
             <% end %>
           </div>
         <% end %>
@@ -60,11 +51,11 @@
       <%= form_for(@listing, html: { class: "pt-6 mt-6 border-t-1 border-solid border-0 border-base-20 flex items-center" }) do |f| %>
         <% if @listing.published == false %>
           <input type="hidden" name="listing[action]" value="publish" />
-          <%= f.submit t("publish", scope: _t), class: "crayons-btn mr-4" %>
-          <p><%= t "not_published.text_html", scope: _t, not: tag.strong(t("not_published.not", scope: _t), class: "color-accent-danger") %></p>
+          <%= f.submit t("views.listings.edit.publish"), class: "crayons-btn mr-4" %>
+          <p><%= t("views.listings.edit.not_published.text_html", not: tag.strong(t("views.listings.edit.not_published.not"), class: "color-accent-danger")) %></p>
         <% else %>
           <input type="hidden" name="listing[action]" value="unpublish" />
-          <%= f.submit t("unpublish", scope: _t), class: "crayons-btn crayons-btn--danger" %>
+          <%= f.submit t("views.listings.edit.unpublish"), class: "crayons-btn crayons-btn--danger" %>
         <% end %>
       <% end %>
     </div>
@@ -72,12 +63,12 @@
     <% if @listing.bumped_at %>
       <%= form_for(@listing, html: { class: "crayons-card grid gap-6 p-6 mb-6" }) do |f| %>
         <header>
-          <h2 class="mb-2"><%= t("bump.subtitle", scope: _t) %></h2>
-          <p><%= t("bump.desc", scope: _t) %></p>
+          <h2 class="mb-2"><%= t("views.listings.edit.bump.subtitle") %></h2>
+          <p><%= t("views.listings.edit.bump.description") %></p>
         </header>
         <div class="flex items-center">
-          <%= f.submit t("bump.button", scope: _t), class: "crayons-btn crayons-btn--secondary mr-4" %>
-          <p class="color-base-70"><%= t "bump.last", scope: _t, time_ago_in_words(@listing.bumped_at, scope: :'datetime.distance_in_words_ago') %></p>
+          <%= f.submit t("views.listings.edit.bump.button"), class: "crayons-btn crayons-btn--secondary mr-4" %>
+          <p class="color-base-70"><%= t("views.listings.edit.bump.last", date: time_ago_in_words(@listing.bumped_at, scope: :"datetime.distance_in_words_ago")) %></p>
         </div>
         <input type="hidden" name="listing[action]" value="bump" />
       <% end %>
@@ -88,10 +79,10 @@
     <% unless @listing.published %>
       <%= form_for(@listing, html: { class: "crayons-card crayons-card--secondary p-3 m:p-4 mb-2 m:mb-4" }) do |f| %>
         <p class="pb-4">
-          <%= t "not_published.aside_html", scope: _t, not: tag.strong(t("not_published.not", scope: _t), class: "color-accent-danger") %>
+          <%= t("views.listings.edit.not_published.aside_html", not: tag.strong(t("views.listings.edit.not_published.not"), class: "color-accent-danger")) %>
         </p>
         <input type="hidden" name="listing[action]" value="publish" />
-        <%= f.submit t("publish", scope: _t), class: "crayons-btn w-100" %>
+        <%= f.submit t("views.listings.edit.publish"), class: "crayons-btn w-100" %>
       <% end %>
     <% end %>
 
@@ -105,7 +96,7 @@
       </p>
       <% if @listing.bumped_at %>
         <p class="pt-3 mt-3 border-t-1 border-solid border-0 border-base-10">
-          <%= t "bump.last", scope: _t, date: time_ago_in_words(@listing.bumped_at, scope: :"datetime.distance_in_words_ago") %>
+          <%= t("views.listings.edit.bump.last", date: time_ago_in_words(@listing.bumped_at, scope: :"datetime.distance_in_words_ago")) %>
         </p>
       <% end %>
     </div>

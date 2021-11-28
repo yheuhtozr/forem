@@ -38,14 +38,14 @@ export const noDefaultAltTextRule = {
         children.forEach((contentChild) => {
           if (
             contentChild.type === 'image' &&
-            contentChild.line.toLowerCase().includes('![alt text]')
+            contentChild.line.toLowerCase().includes('![image description]')
           ) {
             onError({
               lineNumber: contentChild.lineNumber,
               detail: '/p/editor_guide#alt-text-for-images',
-              context: i18next.t('markdownLint.defaultAlt.context', {
-                place: getImageTextString(contentChild.line),
-              }),
+              context: `Consider replacing the 'Image description' in square brackets at ${getImageTextString(
+                contentChild.line,
+              )} with a description of the image`,
             });
           }
         });

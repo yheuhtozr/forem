@@ -1,6 +1,6 @@
 ---
 en:
-  v:
+  views:
     actions:
       copy:
         text: Copied to Clipboard
@@ -10,15 +10,15 @@ en:
         title: More...
         aria_label: Share post options
       share:
-        Facebook:
+        facebook:
           text: Share to Facebook
-        HackerNews:
+        hackernews:
           text: Share to Hacker News
-        LinkedIn:
+        linkedin:
           text: Share to LinkedIn
-        Reddit:
+        reddit:
           text: Share to Reddit
-        Twitter:
+        twitter:
           text: Share to Twitter
           query: '"%{article}" by %{author}'
         link: Share Post via...

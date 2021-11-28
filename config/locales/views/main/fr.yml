@@ -1,15 +1,15 @@
 ---
-en:
-  v:
+fr:
+  views:
     main:
       aria_home: "%{community} Home"
       header:
-        create: Créer un profil
+        create_account: Créer un profil
         connect:
           aria_label: Connect
           icon: Connect
         login: Se connecter
-        menu:
+        nav:
           aria_label: Navigation menu
         moderation:
           aria_label: Moderation
@@ -19,19 +19,19 @@ en:
           icon: Notifications
         skip: Skip to content
       modal:
-        create:
+        create_account:
           aria_label: Create new account
-          text: Create new account
+          text: Créer un profil
         login:
           aria_label: Log in
           text: Se connecter
         footer: We strive for transparency and don't collect excess data.
       nav:
         admin: Admin
-        dashboard: Dashboard
-        etc: "..."
-        list: Reading list
-        moderator: Moderator Center
+        dashboard: Tableau de bord
+        placeholder: "..."
+        list: Liste de lecture
+        moderator_center: Centre de modération
         other: Other
         settings: Settings
       nav_name:
@@ -57,8 +57,8 @@ en:
       tags:
         aria_label: Customize tag priority
         follow: Suivre
-        my: Mes sujets
-        popular: Sujets populaires
+        my_tags: Mes sujets
+        popular_tags: Sujets populaires
       footer:
         aria_label: Site information
         built:
@@ -72,6 +72,6 @@ en:
           text_html: Made with love and %{rails}. %{community} <span title="copyright">&copy;</span> %{copyright}.
           rails: Ruby on Rails
       home: Page D'Accueil
-      new: Créer une publication
-      signout: Sign Out
+      create_post: Créer une publication
+      signout: Se déconnecter
       signup: Sign In/Up

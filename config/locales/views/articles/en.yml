@@ -1,6 +1,6 @@
 ---
 en:
-  v:
+  views:
     articles:
       meta:
         description: An article from the community
@@ -11,8 +11,6 @@ en:
         subtitle_html: Discussion %{num}
         num: "(%{num})"
         subscribe: Subscribe
-        view:
-          other: View full discussion (%{count} comments)
       conduct:
         aria_label: Conduct controls
         code: Code of Conduct
@@ -43,6 +41,7 @@ en:
         submit: Lock discussion
       preview_discuss_html:
         zero: New Discussion!
+        one: '#discuss <img src="%{image}" />%{count}'
         other: '#discuss <img src="%{image}" />%{count}'
       save:
         title: Save to reading list
@@ -52,6 +51,7 @@ en:
       series:
         subtitle: "%{slug} (%{size})"
         size:
+          one: "%{count} Part Series"
           other: "%{count} Part Series"
         published: Published %{date}
         inbetween:
@@ -60,16 +60,6 @@ en:
             one: one more part...
             other: "%{count} more parts..."
           title: View more
-      translations:
-        heading: Available in other languages
-        icon: Multi-language versions list
-        original: Original (%{lang})
-        unpublished: Unpublished
-        stub: |+
-          <!-- Stub note: please delete this when you are done. -->
-          **(This is a translation stub created from [%{name}](%{url}).)**
-          <!-- end stub note -->
-
       unlock:
         meta:
           title: Confirm Discussion Unlock
@@ -85,14 +75,15 @@ en:
         edit: Click to edit
       co_authors_html: with %{names}
       crossposted:
-        text_html: Originally published at %{url}%{on}
-        'on': " on %{date}"
+        text_html: Originally published at %{url} %{on}
+        on_html: on %{date}
       edited: Updated on %{date}
+      edited_html: Updated on %{date}
       for_org_html: "%{start} for %{end}%{org}"
       missing: Article No Longer Available
       posted_html: Posted on %{date}
       read_next: Read next
       reading_time:
-        other: "%{count} words/chars"
+        one: "1 min read"
+        other: "%{count} min read"
       right_nav: Author details
-...

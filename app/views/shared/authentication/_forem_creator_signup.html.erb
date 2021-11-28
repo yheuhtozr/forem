@@ -53,13 +53,12 @@
 
         <div class="js-creator-signup-username-hint-row hidden">
           <div class="fs-xs color-base-60 flex">
-            <%= t "hint.text_html", scope: _t, start: tag("span", nil, true), end: "</span>".html_safe, # rubocop:disable Rails/ContentTag
-                                    button: tag.button(
-                                      [tag.span(class: "js-creator-signup-username-hint"), inline_svg_tag("pencil.svg", class: "cursor-pointer crayons-icon opacity-75 ml-1", aria_hidden: true, title: t("hint.icon", scope: _t))],
-                                      class: "cursor-pointer border-none bg-transparent p-0 js-creator-edit-username flex color-base-90",
-                                      role: "button",
-                                      aria: { label: t("hint.aria_label", scope: _t) },
-                                    ) %>
+            <span>Your username will be&nbsp;</span>
+            <button type="button" aria-label="Edit username" class="cursor-pointer border-none bg-transparent p-0 js-creator-edit-username flex color-base-90" role="button">
+              <span class="js-creator-signup-username-hint"></span>
+              <%= inline_svg_tag("pencil.svg", class: "cursor-pointer crayons-icon opacity-75 ml-1", aria_hidden: true, title: "Edit username") %>
+            </button>
+          </div>
           </div>
         </div>
       </div>
@@ -79,10 +78,10 @@
       <div class="crayons-field mt-6">
         <%= f.label :password, t("field.password.label", scope: _r), class: "crayons-field__label" %>
         <div class="relative">
-          <%= f.password_field :password, minlength: "8", class: "crayons-textfield js-password", placeholder: t("field.password.placeholder", scope: _r), required: true, aria: { describedby: "password-helper-text" } %>
-          <button class="crayons-btn crayons-btn--ghost crayons-btn--s js-creator-password-visibility h-100 absolute z-elevate right-0" aria-label="<%= t("field.password.show", scope: _r) %>" aria-pressed="false">
-            <%= inline_svg_tag("eye.svg", class: "crayons-icon js-eye", data: { testid: "mask-icon" }, aria_hidden: true, title: t("field.password.show", scope: _r)) %>
-            <%= inline_svg_tag("eye-off.svg", class: "crayons-icon hidden js-eye-off", data: { testid: "unmask-icon" }, aria_hidden: true, title: t("field.password.hide", scope: _r)) %>
+          <%= f.password_field :password, minlength: "8", class: "crayons-textfield js-password", placeholder: "••••••••", required: true, aria: { describedby: "password-helper-text" } %>
+          <button type="button" class="crayons-btn crayons-btn--ghost crayons-btn--s js-creator-password-visibility h-100 absolute z-elevate right-0" aria-label="Show password" aria-pressed="false">
+            <%= inline_svg_tag("eye.svg", class: "crayons-icon js-eye", data: { testid: "mask-icon" }, aria_hidden: true, title: "Show password") %>
+            <%= inline_svg_tag("eye-off.svg", class: "crayons-icon hidden js-eye-off", data: { testid: "unmask-icon" }, aria_hidden: true, title: "Hide password") %>
           </button>
         </div>
         <p id="password-helper-text" class="fs-xs color-base-60 mt-1"><%= t("field.password.desc", scope: _r) %></p>
@@ -102,8 +101,7 @@
       <div class="flex flex-col pt-6">
         <%= f.submit t("submit", scope: _t), class: "crayons-btn" %>
       </div>
-
     <% end %>
   </div>
-  <%= inline_svg_tag("forem-background.svg", aria: true, title: t("v.auth.background"), class: "absolute bottom-0 right-0 hidden m:block") %>
+  <%= inline_svg_tag("forem-background.svg", aria: true, title: "forem background", class: "forem-background absolute bottom-0 right-0 hidden m:block") %>
 </main>

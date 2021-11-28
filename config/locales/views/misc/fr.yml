@@ -1,11 +1,12 @@
 ---
-en:
-  v:
+fr:
+  views:
     badges:
       meta:
         title: Badges
         name: "%{title} Badge"
       all:
+        one: Show one badge
         other: Show all %{count} badges
       heading: Badges
       desc: Receive badges for being awesome! Click on a badge to see how you can earn it.
@@ -21,33 +22,24 @@ en:
         back: Take me back
         again: Try again
         install: Install the app
-    email_subscriptions:
-      unsubscribe:
-        heading: "You have been unsubscribed from %{type}. 😔"
-        desc: You will no longer receive emails like this. If you'd like to re-subscribe or manage your full email preferences, please %{link}.
-        link: click here
-      invalid:
-        heading: Token expired or invalid
-        desc: Please %{signin} to manage your email preferences.
-        signin: sign-in
     hamburger:
-      title: Navigation menu
+      icon: Navigation menu
       back: Back
       forward: Forward
       refresh: Refresh
-      icon: Close
+      icon_close: Close
       icon_left: Left menu
       icon_right: Right menu
     logo:
       color_1:
         label: Brand color 1
-        desc: Used for backgrounds, borders etc.
+        description: Used for backgrounds, borders etc.
         select:
           aria_label: Brand color 1 color selector
           label: Brand color 1 color select
       color_2:
         label: Brand color 2
-        desc_html: Used for texts (usually put on <em>Brand color 1</em>).
+        description_html: Used for texts (usually put on <em>Brand color 1</em>).
         select:
           aria_label: Brand color 2 color selector
           label: Brand color 2 color select
@@ -64,8 +56,7 @@ en:
       welcome_html: "<span class=\"emoji\">😊</span>Join the Welcome thread"
       write_html: "<span class=\"emoji\">✍🏾</span>Write your first %{community} post"
     pins:
-      article_html: Pinned%{ext}
-      ext: "\_post"
+      article: Épinglé
       pinned: "📌 Pinned! (pinned posts display chronologically, 5 max)"
       removed: "🗑 Pin removed"
       error: You can only have five pins
@@ -87,14 +78,15 @@ en:
         podcasts: Podcasts
         people: People
         comments: Comments
-        my: My posts only
+        my_posts: My posts only
       sort:
         aria_label: Search result sort options
         relevance: Most Relevant
         newest: Newest
         oldest: Oldest
       meta:
-        title: Search Results
+        title: Search Results%{for}
+        for: " for %{query}"
         description: "%{site} => Search Results"
     series:
       meta:
@@ -106,30 +98,14 @@ en:
         back: Back to %{user}'s Series
         empty: This series doesn't have any articles
     sponsor:
+      icon: Love
       seek: Become a sponsor
-    stats:
-      meta:
-        title: Stats for Your Article
-      heading_html: Stats for "%{article}"
-      period:
-        aria_label: Analytics period
-        week: Week
-        month: Month
-        infinity: Infinity
-      readers: Readers Summary
-      followers: New Followers Summary
-      reactions: "Reactions Summary ❤🦄🔖"
-      comments: "Comments Summary 💬"
-      traffic:
-        text: "Traffic Source Summary 🚦"
-        source: Source
-        views: Views
     sticky:
-      created_at: Joined
+      joined: Rejoint
       default_cta: Learn more
       email: Email
       hot: Hot
-      location: Location
+      location: Lieu
       more_from_html: Plus de la part de %{actor}
       no_summary: Posts in this tag
       trending_html: Populaire sur %{app}
@@ -138,6 +114,6 @@ en:
         title: Videos
         og:
           description: All videos on %{community}
-      heading: "%{community} on Video"
-      beta_html: "<strong>Video is beta:</strong> %{contact}"
-      upload: "🎥 Upload Video File 🙌"
+      heading: "%{community} en Vidéo"
+      beta_html: "<strong>Vidéo est en bêta:</strong> %{contact}"
+      upload: "🎥 Télécharger un fichier vidéo 🙌"

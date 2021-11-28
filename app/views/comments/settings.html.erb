@@ -1,31 +1,30 @@
-<% _t = "v.comments.settings" %>
-<% title t("meta.title", scope: _t) %>
+<% title t("views.comments.settings.meta.title") %>
 
 <div class="crayons-layout crayons-layout--limited-m gap-0">
   <div class="crayons-card text-padding">
-    <h1 class="crayons-title mb-4"><%= t("heading", scope: _t) %></h1>
+    <h1 class="crayons-title mb-4"><%= t("views.comments.settings.heading") %></h1>
 
     <div class="flex">
       <div class="pr-4 m:pr-8 flex-1">
         <% if @notification_subscription.persisted? %>
-          <p class="fw-bold"><%= t("state.show.subtitle", scope: _t) %></p>
-          <p class="fs-s color-base-60"><%= t("state.show.desc", scope: _t) %></p>
+          <p class="fw-bold"><%= t("views.comments.settings.state.show.subtitle") %></p>
+          <p class="fs-s color-base-60"><%= t("views.comments.settings.state.show.desc") %></p>
         <% else %>
-          <p class="fw-bold"><%= t("state.mute.subtitle", scope: _t) %></p>
-          <p class="fs-s color-base-60"><%= t("state.mute.desc", scope: _t) %></p>
+          <p class="fw-bold"><%= t("views.comments.settings.state.mute.subtitle") %></p>
+          <p class="fs-s color-base-60"><%= t("views.comments.settings.state.mute.desc") %></p>
         <% end %>
       </div>
       <%= form_for(@notification_subscription, url: "/notification_subscriptions/Comment/#{@comment.id}", method: "post", html: { class: "mute-form shrink-0" }) do |f| %>
         <input type="hidden" name="config" value="<%= @notification_subscription.persisted? ? "not_subscribed" : "all_comments" %>">
-        <%= f.submit t("subscribe.#{@notification_subscription.persisted? ? 'mute' : 'unmute'}", scope: _t), class: "crayons-btn crayons-btn--secondary #{@notification_subscription.persisted? ? 'mute' : 'unmute'}" %>
+        <%= f.submit t("views.comments.settings.subscribe.#{@notification_subscription.persisted? ? 'mute' : 'unmute'}"), class: "crayons-btn crayons-btn--secondary #{@notification_subscription.persisted? ? 'mute' : 'unmute'}" %>
       <% end %>
     </div>
 
     <% if NotificationSubscription.where(user_id: current_user, notifiable_type: "Article", notifiable_id: @comment.commentable_id, config: "all_comments").any? %>
       <div class="flex pt-6">
         <div class="pr-4 m:pr-8 flex-1">
-          <p class="fw-bold"><%= t("subscribe.subtitle", scope: _t) %></p>
-          <p class="fs-s color-base-60"><%= t("subscribe.desc", scope: _t) %></p>
+          <p class="fw-bold"><%= t("views.comments.settings.subscribe.subtitle") %></p>
+          <p class="fs-s color-base-60"><%= t("views.comments.settings.subscribe.desc") %></p>
         </div>
         <%= form_for(@notification_subscription, url: "/notification_subscriptions/Article/#{@comment.commentable_id}", method: "post", html: { class: "mute-form" }) do |f| %>
           <input type="hidden" name="config" value="not_subscribed">

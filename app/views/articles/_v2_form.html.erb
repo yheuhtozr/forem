@@ -53,7 +53,7 @@
       </span>
 
       <div class="crayons-field__label">
-        <span class="hidden s:inline-block mr-2"><%= trans ? t("translate", scope: _t) : t("create", scope: _t) %></span>
+        <span class="hidden s:inline-block mr-2"><%= t("views.editor.create") %></span>
         <% if organizations && organizations.size > 0 %>
           <select name="article[organization_id]" id="article_publish_under_org" class="crayons-select w-auto mt-0">
             <%= options_for_select({ "Personal" => "" }.merge(organizations.pluck(:name, :id).to_h), article.organization_id || "") %>
@@ -61,20 +61,20 @@
         <% end %>
       </div>
 
-      <nav class="crayons-article-form__tabs crayons-tabs ml-auto" aria-label="<%= t("modes", scope: _t) %>">
+      <nav class="crayons-article-form__tabs crayons-tabs ml-auto" aria-label="<%= t("views.editor.modes") %>">
         <ul class="crayons-tabs__list">
           <li>
-            <button data-text="Edit" class="crayons-tabs__item crayons-tabs__item--current" type="button" aria-current="page"><%= t("edit", scope: _t) %></button>
+            <button data-text="Edit" class="crayons-tabs__item crayons-tabs__item--current" type="button" aria-current="page"><%= t("views.editor.edit") %></button>
           </li>
           <li>
-            <button data-text="Preview" class="crayons-tabs__item " type="button"><%= t("preview", scope: _t) %></button>
+            <button data-text="Preview" class="crayons-tabs__item " type="button"><%= t("views.editor.preview") %></button>
           </li>
         </ul>
       </nav>
 
       <div class="crayons-article-form__close">
-        <a href="/" class="crayons-btn crayons-btn--ghost-dimmed crayons-btn--icon" title="<%= t("close.title", scope: _t) %>">
-          <%= inline_svg_tag("x.svg", aria: true, class: "crayons-icon", title: t("close.icon", scope: _t)) %>
+        <a href="/" class="crayons-btn crayons-btn--ghost-dimmed crayons-btn--icon" title="<%= t("views.editor.close.title") %>">
+          <%= inline_svg_tag("x.svg", aria: true, class: "crayons-icon", title: t("views.editor.close.icon")) %>
         </a>
       </div>
     </div>
@@ -88,13 +88,13 @@
             <% end %>
             <button class="crayons-btn crayons-btn--outlined mr-2">
               <label for="cover-image-input">
-                <% if article.main_image.present? %><%= t("cover.change", scope: _t) %><% else %><%= t("cover.add", scope: _t) %><% end %>
+                <% if article.main_image.present? %><%= t("views.editor.cover_image.change") %><% else %><%= t("views.editor.cover_image.add") %><% end %>
               </label>
               <input id="cover-image-input" type="file" accept="image/*" class="w-100 h-100 absolute left-0 right-0 top-0 bottom-0 overflow-hidden opacity-0 cursor-pointer" data-max-file-size-mb="25">
             </button>
           </div>
           <div class="crayons-article-form__title">
-            <textarea class="crayons-textfield crayons-textfield--ghost fs-3xl m:fs-4xl l:fs-5xl fw-bold s:fw-heavy lh-tight" type="text" id="article-form-title" placeholder="<%= t("new_title", scope: _t) %>" autocomplete="off"><%= article.title %></textarea>
+            <textarea class="crayons-textfield crayons-textfield--ghost fs-3xl m:fs-4xl l:fs-5xl fw-bold s:fw-heavy lh-tight" type="text" id="article-form-title" placeholder="<%= t("views.editor.new_title") %>" autocomplete="off"><%= article.title %></textarea>
           </div>
         </div>
       <% end %>

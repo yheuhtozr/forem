@@ -93,8 +93,8 @@ export const EditorFormattingHelp = ({ openModal }) => (
                   &gt; {i18next.t('editor.help.basics.quote')}
                 </td>
                 <td>
-                  <span className="pl-2 border-0 border-solid border-l-4 border-base-50">
-                    {i18next.t('editor.help.basics.quote')}
+                  <span className="pl-2 border-0 border-solid border-l-2 border-base-50">
+                    quoted text
                   </span>
                 </td>
               </tr>
@@ -137,5 +137,5 @@ export const EditorFormattingHelp = ({ openModal }) => (
 );
 
 EditorFormattingHelp.propTypes = {
-  toggleModal: PropTypes.func.isRequired,
+  openModal: PropTypes.func.isRequired,
 };

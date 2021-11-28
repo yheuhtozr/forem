@@ -1,4 +1,6 @@
 class Tag < ActsAsTaggableOn::Tag
+  self.ignored_columns = %w[mod_chat_channel_id].freeze
+
   attr_accessor :points, :tag_moderator_id, :remove_moderator_id
 
   acts_as_followable
@@ -37,7 +39,6 @@ class Tag < ActsAsTaggableOn::Tag
   \z/ux
 
   belongs_to :badge, optional: true
-  belongs_to :mod_chat_channel, class_name: "ChatChannel", optional: true
 
   has_many :articles, through: :taggings, source: :taggable, source_type: "Article"
 

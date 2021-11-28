@@ -1,10 +1,9 @@
 ---
-en:
-  v:
+fr:
+  views:
     comments:
       meta:
-        title: "%{title} - %{site}"
-        title_root: Discussion of %{title} - %{site}
+        title_root: Discussion of %{title}
         description: An article from the community
         og:
           title: Discussion of %{title}
@@ -23,7 +22,10 @@ en:
         date: " on %{date}"
         full: Full discussion
         read: Read full post
-        view: View post
+        view: Voir la publication
+        view_full:
+          one: Voir la discussion complète (%{count} commentaires)
+          other: Voir la discussion complète (%{count} commentaires)
         reply_html: "%{start}Replies for:%{end} %{title}"
       delete:
         heading: Are you sure you want to delete this comment?
@@ -38,17 +40,14 @@ en:
       edit: Editing comment
       edited:
         text_html: "&bull; Edited %{on}"
-        'on': on %{date}
+        on_html: on %{date}
       expand: Expand
       hidden:
         text_html: Some comments have been hidden by the post's author - %{info}
         info: find out more
       locked: The discussion has been locked. New comments can't be added.
       orphan:
-        heading: Comment from a deleted article or podcast
-        deleted: "[deleted]"
-        delete: DELETE
-        edit: EDIT
+        deleted: "[Comment from a deleted post]"
       re:
         text_html: "%{re}%{title}"
         re: 'Re: '
@@ -103,12 +102,15 @@ en:
         icon: Dropdown menu
         copy:
           aria_label: Copy link to %{user}'s comment
+          text: Copier le lien
         settings:
           aria_label: Go to %{user}'s comment settings
         action:
           aria_label: "%{action} %{user}'s comment"
           hide: Hide
           unhide: Unhide
+          hide_text: Hide
+          unhide_text: Unhide
         moderate:
           aria_label: Moderate %{user}'s comment
         report:
@@ -131,10 +133,13 @@ en:
         view:
           icon: View button
           text: View
-      plucked:
-        count:
-          one: "%{count} comment"
-          other: "%{count} comments"
-        empty: New
+      count:
+        one: "%{count} comment"
+        other: "%{count} comments"
+      empty: New
+      add: "Ajouter un commentaire"
       summary:
+        count_html:
+          one: "%{count}%{start}\_commentaire%{end}"
+          other: "%{count}%{start}\_commentaires%{end}"
         title: Comments

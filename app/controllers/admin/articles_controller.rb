@@ -40,9 +40,7 @@ module Admin
       article = Article.find(params[:id])
 
       if article.update(article_params)
-        PinnedArticle.set(article) if params.dig(:article, :pinned)
-
-        flash[:success] = I18n.t("admin.articles_controller.article_saved")
+        flash[:success] = "Article saved!"
       else
         flash[:danger] = article.errors_as_sentence
       end
@@ -56,7 +54,26 @@ module Admin
       PinnedArticle.remove
 
       respond_to do |format|
-        format.html { redirect_to admin_article_path(article.id) }
+        format.html do
+          flash[:success] = "Article Pinned!"
+          redirect_to admin_article_path(article.id)
+        end
+        format.js do
+          render partial: "admin/articles/individual_article", locals: { article: article }, content_type: "text/html"
+        end
+      end
+    end
+
+    def pin
+      article = Article.find(params[:id])
+
+      PinnedArticle.set(article)
+
+      respond_to do |format|
+        format.html do
+          flash[:success] = "Article Pinned!"
+          redirect_to admin_article_path(article.id)
+        end
         format.js do
           render partial: "admin/articles/individual_article", locals: { article: article }, content_type: "text/html"
         end

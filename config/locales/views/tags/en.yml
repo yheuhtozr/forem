@@ -1,6 +1,6 @@
 ---
 en:
-  v:
+  views:
     tags:
       meta:
         title: Tags
@@ -12,9 +12,10 @@ en:
         meta:
           title: Edit %{tag}
         heading_html: " Editing: %{tag}"
-        admin: "%{tag}'s admin page"
+        admin: "Admin"
+        help: "Help"
+        view: "View"
         form:
-          example: Click here to see an example of attributes.
           pretty_name:
             label: Pretty name
             placeholder: This is the name at the top of the show page.
@@ -31,21 +32,17 @@ en:
           rules_markdown:
             label: Rules markdown
             placeholder: Optional - Can be used for challenges, i.e. submission guidelines.
-          submit: SAVE CHANGES
-        markdown_html: "%{tag} is the name of the tag used in Markdown."
-      error:
-        length: is too long (maximum is 30 characters)
-        chars: contains non-alphanumeric characters
+          submit: Save
       follow: Follow
       following_tags: Following tags
       moderator:
-        text_html: 'comma separated, space is optional. Example: %{code}'
+        text_html: "comma separated, space is optional. Example: %{code}"
         code: 123
-        placeholder: 'comma separated, space is optional. Example: 1,2,3'
+        placeholder: "comma separated, space is optional. Example: 1,2,3"
       published:
         one: 1 post published
         other: "%{count} posts published"
-      side:
+      sidebar:
         about: 'about #%{tag}'
         admin: Admin
         edit: Edit

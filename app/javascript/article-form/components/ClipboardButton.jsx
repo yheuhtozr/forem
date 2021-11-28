@@ -5,7 +5,7 @@ import { Button } from '@crayons';
 
 function linksToMarkdownForm(imageLinks) {
   return imageLinks
-    .map((imageLink) => `![${i18next.t('clipboard.alt_text')}](${imageLink})`)
+    .map((imageLink) => `![Image description](${imageLink})`)
     .join('\n');
 }
 

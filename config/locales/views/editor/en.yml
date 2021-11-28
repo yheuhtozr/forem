@@ -1,22 +1,22 @@
 ---
 en:
-  v:
+  views:
     editor:
+      meta:
+        title: Edit Post
       heading:
-        edit: Edit Post
         new: New Post
       create: Create Post
       close:
         icon: Close
         title: Close the editor
-      cover:
+      cover_image:
         add: Add a cover image
         change: Change
       edit: Edit
       modes: View post modes
       new_title: New post title here...
       preview: Preview
-      translate: Translate
       video:
         progress:
           heading: "⏳ Video Transcoding In Progress ⏳"

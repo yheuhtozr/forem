@@ -1,6 +1,6 @@
 ---
-en:
-  v:
+fr:
+  views:
     stories:
       meta:
         description_tagged: "%{tag} content on %{name}"

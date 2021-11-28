@@ -12,8 +12,7 @@ export const ErrorList = ({ errors }) => {
       <ul className="list-disc pl-6">
         {Object.keys(errors).map((key) => {
           return (
-            // eslint-disable-next-line react/jsx-key
-            <li>
+            <li key={key}>
               {key}
               {`: `}
               {errors[key]}
@@ -26,7 +25,7 @@ export const ErrorList = ({ errors }) => {
 };
 
 ErrorList.propTypes = {
-  errors: PropTypes.objectOf(PropTypes.string).isRequired,
+  errors: PropTypes.object.isRequired,
 };
 
 ErrorList.displayName = 'ErrorList';

@@ -4,12 +4,12 @@
     <% if @article.show_comments %>
       <header class="relative flex justify-between items-center mb-6">
         <h2 class="crayons-subtitle-1">
-          <%= t("subtitle_html", scope: _t,
-                                 num: tag.span(t("num", scope: _t, num: @article.comments_count), class: "js-comments-count", data: { comments_count: @article.comments_count })) %>
+          <%= t("views.articles.comments.subtitle_html",
+                num: tag.span(t("views.articles.comments.num", num: @article.comments_count), class: "js-comments-count", data: { comments_count: @article.comments_count })) %>
         </h2>
         <div id="comment-subscription" class="print-hidden">
           <div role="presentation" class="crayons-btn-group">
-            <span class="crayons-btn crayons-btn--outlined"><%= t("subscribe", scope: _t) %></span>
+            <span class="crayons-btn crayons-btn--outlined"><%= t("views.articles.comments.subscribe") %></span>
           </div>
         </div>
       </header>
@@ -29,11 +29,7 @@
 
         <div class="comments" id="comment-trees-container">
           <% if @article.comments_count > 0 %>
-            <% Comment.tree_for(@article, @comments_to_show_count).each do |comment, sub_comments| %>
-              <% cache ["comment_root_cached_tree", comment] do %>
-                <%= tree_for(comment, sub_comments, @article) %>
-              <% end %>
-            <% end %>
+            <%= render partial: "articles/comment_tree", collection: Comment.tree_for(@article, @comments_to_show_count), as: :comment_node, cached: proc { |comment, _sub_comments| comment } %>
           <% end %>
         </div>
       </div>
@@ -41,5 +37,6 @@
       <%= render "articles/comments_actions" %>
     <% end %>
   </section>
+  <%= render "comments/hide_comments_modal" %>
 <% end %>
 <% return if @warm_only %>

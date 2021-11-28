@@ -1,35 +1,6 @@
 <% _t = "v.settings.extensions" %>
 <%= render partial: "response_templates" %>
 
-<% if FeatureFlag.enabled?(:connect) %>
-  <div class="crayons-card crayons-card--content-rows">
-    <h2 class="crayons-subtitle-1">
-      <%= t("connect", scope: _t) %>
-    </h2>
-    <%= form_for(@users_setting, url: users_settings_path, html: { id: nil, class: "grid gap-6" }) do |f| %>
-      <div class="crayons-field">
-        <%= f.label :inbox_type, "Inbox privacy", class: "crayons-field__label" %>
-        <p class="crayons-field__description"><%= t("privacy", scope: _t) %></p>
-        <%= f.select :inbox_type, [[t("open", scope: _t), "open"], [t("private", scope: _t), "private"]], {}, { class: "crayons-select" } %>
-      </div>
-
-      <div class="crayons-field">
-        <%= f.label :inbox_guidelines, t("guidelines.label", scope: _t), class: "crayons-field__label" %>
-        <p class="crayons-field__description">
-          <%= t("optional", scope: _t) %>
-        </p>
-
-        <%= f.text_area :inbox_guidelines, maxlength: 200, class: "crayons-textfield", rows: 3, placeholder: t("guidelines.placeholder", scope: _t) %>
-      </div>
-
-      <%= f.hidden_field :tab, value: @tab, id: nil %>
-      <button type="submit" class="crayons-btn w-max">
-        <%= t("save_connect", scope: _t) %>
-      </button>
-    <% end %>
-  </div>
-<% end %>
-
 <%= render partial: "publishing_from_rss" %>
 
 <div class="crayons-card crayons-card--content-rows">

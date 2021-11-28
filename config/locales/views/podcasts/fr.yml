@@ -1,12 +1,14 @@
 ---
-en:
-  v:
+fr:
+  views:
     podcasts:
       meta:
         title: Podcasts
         description: Discover technical podcasts for %{member}
         og:
           title: Podcasts on %{community}
+      browse: Parcourir
+      heading: Podcasts
       close: "×"
       form:
         heading: Suggest a Podcast
@@ -26,5 +28,9 @@ en:
         unreachable: Le feed_url du podcast n'est pas accessible
       speed: 1x
       tag: podcast
-      time: initializing...
+      initializing: initializing...
       unsupported: Your browser does not support the audio element.
+      featured_shows: Épisodes en vedette
+      latest_episodes: Épisodes Récents
+      suggest_a_podcast: Suggérer un podcast
+      view_all_podcasts: Voir tous les podcasts

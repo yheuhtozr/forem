@@ -1,6 +1,6 @@
 ---
 en:
-  v:
+  views:
     reactions:
       category:
         hands: Hands
@@ -12,6 +12,9 @@ en:
         unicorn: Unicorn
         vomit: Vomit
       summary:
+        count_html:
+          one: "%{count}%{start}\_reaction%{end}"
+          other: "%{count}%{start}\_reactions%{end}"
         title: Reactions
       like:
         title: Heart
