@@ -70,6 +70,7 @@ export class ArticleForm extends Component {
 
   static defaultProps = {
     organizations: '[]',
+    editMode: '',
   };
 
   constructor(props) {

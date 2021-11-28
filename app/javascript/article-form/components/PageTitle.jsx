@@ -37,6 +37,7 @@ PageTitle.propTypes = {
   organizations: PropTypes.arrayOf(PropTypes.string).isRequired,
   organizationId: PropTypes.string,
   onToggle: PropTypes.func.isRequired,
+  titleMode: PropTypes.string,
 };
 
 PageTitle.displayName = 'Organization';
