@@ -59,7 +59,7 @@ class ArticlesController < ApplicationController
     if params[:slug].present? # indicates /translate
       origin = Article.find_by(slug: params[:slug])
       @article.body_markdown =
-        I18n.t("v.articles.translations.stub", name: origin.title, url: origin.path).safe_concat origin.body_markdown # rubocop:disable Rails/OutputSafety
+        I18n.t("views.articles.translations.stub", name: origin.title, url: origin.path).safe_concat origin.body_markdown # rubocop:disable Rails/OutputSafety, Layout/LineLength
       @article.translation_group = origin.translation_group || origin.id
       @is_translate = true
     end

@@ -64,7 +64,7 @@ class CommentsController < ApplicationController
 
       if @comment.invalid?
         @comment.destroy
-        render json: { error: I18n.t("v.comments.messages.create.failure") }, status: :unprocessable_entity
+        render json: { error: I18n.t("views.comments.messages.create.failure") }, status: :unprocessable_entity
         return
       end
 
@@ -77,7 +77,7 @@ class CommentsController < ApplicationController
     )[1])
 
       comment.destroy
-      render json: { error: I18n.t("v.comments.messages.create.failure") }, status: :unprocessable_entity
+      render json: { error: I18n.t("views.comments.messages.create.failure") }, status: :unprocessable_entity
     else
       message = @comment.errors_as_sentence
       render json: { error: message }, status: :unprocessable_entity
@@ -91,7 +91,7 @@ class CommentsController < ApplicationController
   rescue StandardError => e
     skip_authorization
 
-    message = I18n.t("v.comments.messages.markdown", error: e)
+    message = I18n.t("views.comments.messages.markdown", error: e)
     render json: { error: message }, status: :unprocessable_entity
   end
 
@@ -112,11 +112,11 @@ class CommentsController < ApplicationController
       Notification.send_new_comment_notifications_without_delay(@comment)
       Mention.create_all(@comment)
 
-      render json: { status: I18n.t("v.comments.messages.create.success"), path: @comment.path }
+      render json: { status: I18n.t("views.comments.messages.create.success"), path: @comment.path }
     elsif (@comment = Comment.where(body_markdown: @comment.body_markdown,
                                     commentable_id: @comment.commentable.id,
                                     ancestry: @comment.ancestry)[0])
-      render json: { status: I18n.t("v.comments.messages.create.failure") }, status: :conflict
+      render json: { status: I18n.t("views.comments.messages.create.failure") }, status: :conflict
     else
       render json: { status: @comment&.errors&.full_messages&.to_sentence }, status: :unprocessable_entity
     end
@@ -125,7 +125,7 @@ class CommentsController < ApplicationController
   rescue StandardError => e
     skip_authorization
 
-    message = I18n.t("v.comments.messages.markdown", error: e)
+    message = I18n.t("views.comments.messages.markdown", error: e)
     render json: { error: "error", status: message }, status: :unprocessable_entity
   end
 
@@ -169,7 +169,7 @@ class CommentsController < ApplicationController
     end
   rescue StandardError => e
     @commentable = @comment.commentable
-    flash.now[:error] = I18n.t("v.comments.messages.markdown", error: e)
+    flash.now[:error] = I18n.t("views.comments.messages.markdown", error: e)
     render :edit
   end
 
@@ -186,7 +186,7 @@ class CommentsController < ApplicationController
     redirect = @comment.commentable&.path || user_path(current_user)
     # NOTE: Brakeman doesn't like redirecting to a path, because of a "possible
     # unprotected redirect". Using URI.parse().path is the recommended workaround.
-    redirect_to Addressable::URI.parse(redirect).path, notice: I18n.t("v.comments.delete.notice")
+    redirect_to Addressable::URI.parse(redirect).path, notice: I18n.t("views.comments.delete.notice")
   end
 
   def delete_confirm
@@ -202,7 +202,7 @@ class CommentsController < ApplicationController
       parsed_markdown = MarkdownProcessor::Parser.new(fixed_body_markdown, source: Comment.new, user: current_user)
       processed_html = parsed_markdown.finalize
     rescue StandardError => e
-      processed_html = I18n.t("v.comments.messages.markdown_html", error: e)
+      processed_html = I18n.t("views.comments.messages.markdown_html", error: e)
     end
     respond_to do |format|
       format.json { render json: { processed_html: processed_html }, status: :ok }
@@ -262,7 +262,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_url = @comment.commentable&.path
       if redirect_url
-        flash[:success] = I18n.t("v.comments.delete.notice")
+        flash[:success] = I18n.t("views.comments.delete.notice")
         redirect_to Addressable::URI.parse(redirect_url).path
       else
         redirect_to_comment_path
@@ -300,7 +300,7 @@ class CommentsController < ApplicationController
   end
 
   def redirect_to_comment_path
-    flash[:error] = I18n.t("v.comments.delete.error")
+    flash[:error] = I18n.t("views.comments.delete.error")
     redirect_to "#{@comment.path}/mod"
   end
 

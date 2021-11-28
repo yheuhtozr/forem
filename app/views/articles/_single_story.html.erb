@@ -1,4 +1,3 @@
-<% _t = "v.articles" %>
 <div class="crayons-story <% if featured == true %>crayons-story--featured<% end %>" data-content-user-id="<%= story.user_id %>">
   <a href="<%= story.path %>" aria-labelledby="article-link-<%= story.id %>" class="crayons-story__hidden-navigation-link"><%= story.title %></a>
   <% if featured == true %>
@@ -45,33 +44,31 @@
           <small class="crayons-story__tertiary fs-xs mr-2 mb-2">
             <span class="whitespace-nowrap"><%= lang_name story.lang %> &bull; </span>
             <% cdiv, cmod = story.reading_time.divmod(100) %>
-            <span class="whitespace-nowrap"><%= t("reading_time", scope: _t, count: if cdiv < 1
-                                                                                      100
-                                                                                    else
-                                                                                      (cdiv * 100) + (cmod >= 50 ? 100 : 0)
-                                                                                    end) %></span>
+            <span class="whitespace-nowrap">
+              <%= t("views.articles.reading_time", count: cdiv < 1 ? 100 : (cdiv * 100) + (cmod >= 50 ? 100 : 0)) %>
+            </span>
           </small>
         </div>
       </div>
       <div class="crayons-story__bottom">
         <div class="crayons-story__details">
           <% if story.public_reactions_count > 0 %>
-            <a href="<%= story.path %>" class="crayons-btn crayons-btn--s crayons-btn--ghost crayons-btn--story crayons-reaction" data-reaction-count data-reactable-id="<%= story.id %>" aria-label="<%= t("comments.aria_label", scope: _t, title: story.title, num: story.public_reactions_count) %>>
-              <span class="crayons-reaction__icon"><%= inline_svg_tag("small-heart.svg", aria: true, width: 24, height: 24, class: "crayons-icon", title: t("v.reactions.summary.title")) %></span>
+            <a href="<%= story.path %>" class="crayons-btn crayons-btn--s crayons-btn--ghost crayons-btn--story crayons-reaction" data-reaction-count data-reactable-id="<%= story.id %>" aria-label="<%= t("views.articles.comments.aria_label", title: story.title, num: story.public_reactions_count) %>>
+              <span class="crayons-reaction__icon"><%= inline_svg_tag("small-heart.svg", aria: true, width: 24, height: 24, class: "crayons-icon", title: t("views.reactions.summary.title")) %></span>
               <span class="crayons-reaction__count">
                 <%= story.public_reactions_count %>
               </span>
             </a>
           <% end %>
-          <a href="<%= story.path %>#comments" class="crayons-btn crayons-btn--s crayons-btn--ghost crayons-btn--story crayons-reaction" aria-label="<%= t("comments.aria_label", scope: _t, title: story.title, num: story.public_reactions_count) %>">
+          <a href="<%= story.path %>#comments" class="crayons-btn crayons-btn--s crayons-btn--ghost crayons-btn--story crayons-reaction" aria-label="<%= t("views.articles.comments.aria_label", title: story.title, num: story.public_reactions_count) %>">
             <% if story.comments_count > 0 %>
-              <span class="crayons-reaction__icon"><%= inline_svg_tag("small-comment.svg", aria: true, width: 24, height: 24, class: "crayons-icon", title: t("v.comments.summary.title")) %></span>
+              <span class="crayons-reaction__icon"><%= inline_svg_tag("small-comment.svg", aria: true, width: 24, height: 24, class: "crayons-icon", title: t("views.comments.summary.title")) %></span>
               <span class="crayons-reaction__count">
                 <%= story.comments_count %>
               </span>
             <% else %>
-              <span class="crayons-reaction__icon"><%= inline_svg_tag("small-comment.svg", aria: true, width: 24, height: 24, class: "crayons-icon", title: t("v.comments.summary.title")) %></span>
-              <span class="crayons-reaction__count"><%= t("v.comments.plucked.empty") %></span>
+              <span class="crayons-reaction__icon"><%= inline_svg_tag("small-comment.svg", aria: true, width: 24, height: 24, class: "crayons-icon", title: t("views.comments.summary.title")) %></span>
+              <span class="crayons-reaction__count"><%= t("views.comments.plucked.empty") %></span>
             <% end %>
           </a>
         </div>

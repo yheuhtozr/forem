@@ -1,10 +1,8 @@
-<% _t = "v.articles.translations" %>
-
 <% if translations.size > 1 || (translations.present? && translations[0].id != this_id) %>
   <details id="article-translations" class="mb-4">
     <summary class="crayons-btn crayons-btn--icon-left">
-      <%= inline_svg_tag("translate-2.svg", aria: true, class: "crayons-icon", title: t("icon", scope: _t)) %>
-      <%= t("heading", scope: _t) %>
+      <%= inline_svg_tag("translate-2.svg", aria: true, class: "crayons-icon", title: t("views.articles.translations.icon")) %>
+      <%= t("views.articles.translations.heading") %>
     </summary>
 
     <% original, derived = translations.partition { |tl| tl.id == tl.translation_group } %>
@@ -15,7 +13,7 @@
     <div class="px-4 py-2">
     <% [:original, *lang_keys].each do |k| %>
       <% label = if k == :original
-                   t("original", scope: _t, lang: by_lang[k].present? ? lang_name(by_lang[k].first.base_lang.presence || "und") : t("unpublished", scope: _t))
+                   t("views.articles.translations.original", lang: by_lang[k].present? ? lang_name(by_lang[k].first.base_lang.presence || "und") : t("views.articles.translations.unpublished"))
                  else
                    lang_name(k)
                  end %>
