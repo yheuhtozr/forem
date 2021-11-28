@@ -1,10 +1,9 @@
 ---
 en:
-  v:
+  views:
     comments:
       meta:
-        title: "%{title} - %{site}"
-        title_root: Discussion of %{title} - %{site}
+        title_root: Discussion of %{title}
         description: An article from the community
         og:
           title: Discussion of %{title}
@@ -24,6 +23,9 @@ en:
         full: Full discussion
         read: Read full post
         view: View post
+        view_full:
+          one: View full discussion (%{count} comment)
+          other: View full discussion (%{count} comments)
         reply_html: "%{start}Replies for:%{end} %{title}"
       delete:
         heading: Are you sure you want to delete this comment?
@@ -38,17 +40,21 @@ en:
       edit: Editing comment
       edited:
         text_html: "&bull; Edited %{on}"
-        'on': on %{date}
+        on_html: on %{date}
       expand: Expand
       hidden:
         text_html: Some comments have been hidden by the post's author - %{info}
         info: find out more
+      hider:
+        description_html: Are you sure you want to hide this comment? It will become hidden in your post, but will still be visible via the comment's %{permalink}.
+        hide_child: Hide child comments as well
+        note_html: For further actions, you may consider blocking this person and/or %{reporting}
+        permalink: permalink
+        reporting: reporting abuse
+        submit: Confirm
       locked: The discussion has been locked. New comments can't be added.
       orphan:
-        heading: Comment from a deleted article or podcast
-        deleted: "[deleted]"
-        delete: DELETE
-        edit: EDIT
+        deleted: "[Comment from a deleted post]"
       re:
         text_html: "%{re}%{title}"
         re: 'Re: '
@@ -73,7 +79,9 @@ en:
         conduct: View Code of Conduct
         hidden:
           icon: Info
-          text: Comment hidden by post author - thread only visible in this permalink
+          text:
+            visible_in_permalink: Comment hidden by post author - thread only visible in this permalink
+            accessible_via_permalink: Comment hidden by post author - thread only accessible via permalink
       write:
         errors:
           one: '1 error prohibited this comment from being saved:'
@@ -103,12 +111,15 @@ en:
         icon: Dropdown menu
         copy:
           aria_label: Copy link to %{user}'s comment
+          text: Copy link
         settings:
           aria_label: Go to %{user}'s comment settings
         action:
           aria_label: "%{action} %{user}'s comment"
           hide: Hide
           unhide: Unhide
+          hide_text: Hide
+          unhide_text: Unhide
         moderate:
           aria_label: Moderate %{user}'s comment
         report:
@@ -131,10 +142,11 @@ en:
         view:
           icon: View button
           text: View
-      plucked:
-        count:
-          one: "%{count} comment"
-          other: "%{count} comments"
-        empty: New
+      count:
+        one: "%{count} comment"
+        other: "%{count} comments"
+      empty: New
+      add: "Add\_Comment"
       summary:
         title: Comments
+

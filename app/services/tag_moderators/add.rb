@@ -28,25 +28,6 @@ module TagModerators
 
     attr_accessor :user_ids, :tag_ids
 
-    def add_to_chat_channels(user, tag)
-      user_channels = user.chat_channels
-
-      unless user_channels.exists?(slug: "tag-moderators")
-        ChatChannel.find_by(slug: "tag-moderators")&.add_users(user)
-      end
-
-      if tag.mod_chat_channel_id && !user_channels.exists?(id: tag.mod_chat_channel_id)
-        ChatChannel.find(tag.mod_chat_channel_id).add_users(user)
-      elsif tag.mod_chat_channel_id.blank?
-        channel = ChatChannels::CreateWithUsers.call(
-          users: ([user] + User.with_role(:mod_relations_admin)).flatten.uniq,
-          channel_type: "invite_only",
-          contrived_name: I18n.t("services.tag_moderators.add.mods", tag_name: tag.name),
-        )
-        tag.update_column(:mod_chat_channel_id, channel.id)
-      end
-    end
-
     def add_tag_mod_role(user, tag)
       unless user.notification_setting.email_tag_mod_newsletter?
         user.notification_setting.update(email_tag_mod_newsletter: true)

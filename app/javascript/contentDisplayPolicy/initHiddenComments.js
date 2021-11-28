@@ -2,26 +2,6 @@ import i18next from 'i18next';
 
 /* eslint-disable no-alert */
 export function initHiddenComments() {
-  function hide(commentId) {
-    const confirmMsg = i18next.t('comments.hide');
-    const confirmHide = window.confirm(confirmMsg);
-    if (confirmHide) {
-      fetch(`/comments/${commentId}/hide`, {
-        method: 'PATCH',
-        headers: {
-          'X-CSRF-Token': window.csrfToken,
-        },
-      })
-        .then((response) => response.json())
-        .then((response) => {
-          if (response.hidden === 'true') {
-            /* eslint-disable-next-line no-restricted-globals */
-            location.reload();
-          }
-        });
-    }
-  }
-
   function unhide(commentId) {
     fetch(`/comments/${commentId}/unhide`, {
       method: 'PATCH',
@@ -53,7 +33,7 @@ export function initHiddenComments() {
     comment_permalink.href = commentUrl;
 
     window.Forem.showModal({
-      title: 'Confirm hiding the comment',
+      title: i18next.t('comments.hide'),
       contentSelector: '#hide-comments-modal',
       overlay: true,
     }).then(() => {

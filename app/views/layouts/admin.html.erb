@@ -99,10 +99,8 @@
       <% end %>
 
       <%= yield %>
-      <% if false #@help_url HELP BUTTON NOT CURRENTLY LINKING TO PROPER PAGES %>
-        <a class="admin-help-button crayons-btn crayons-btn--icon-rounded crayons-btn--s" href="<%= @help_url %>" target="_blank" rel="noopener noreferer">
-          <%= inline_svg_tag("circle-question.svg", aria: true, title: t("help", scope: _t)) %>
-        </a>
+      <% if @help_url %>
+        <%= render "shared/help_icon" %>
       <% end %>
     </main>
   </div>

@@ -1,6 +1,6 @@
 ---
-en:
-  v:
+fr:
+  views:
     notifications:
       meta:
         description: Notifications inbox for %{community}
@@ -11,6 +11,7 @@ en:
         heading_html: You received the %{badge} badge
         awarded_html: "You also get %{credits} to use for %{listings} if you have anything you'd like to promote. 🎉"
         credits:
+          one: "%{count} new credits"
           other: "%{count} new credits"
         listings: community listings
         more: More information about listings
@@ -23,7 +24,6 @@ en:
         first_html: "%{user} wrote their first comment on %{title}"
         first_reply: "Give them their first reply! 🎉"
         left_html: "%{user} just left a comment on %{title}."
-        new: "💬 New Comment"
         replied_html: "%{user} replied to a thread in %{title}"
         report: All negative reactions are 100% private. If this comment violates the code of conduct, please downvote/report as inappropriate.
         welcome_html: Since they are new to the community, could you leave a nice reply to help them feel welcome? <strong>Thank you!</strong>
@@ -33,8 +33,10 @@ en:
       follow:
         and_html: "%{first} and %{second} followed you!"
         and_other_html:
+          one: "%{first} and %{others} followed you!"
           other: "%{first} and %{others} followed you!"
         others:
+          one: "%{count} others"
           other: "%{count} others"
         single_html: "%{name} followed you!"
       load: Load More
@@ -43,14 +45,15 @@ en:
         comment_html: "%{user} mentioned you in a comment"
         if_org_html: " under %{org}"
       milestone:
-        heading_html:
-          other: Your post %{title} passed %{type}!
+        heading_html: Your post %{title} passed %{type}!
         check: Check your dashboard
         intro: "🎉🎉🎉🎉🎉🎉🎉🎉"
         type:
           View:
+            one: "%{count} views"
             other: "%{count} views"
           Reaction:
+            one: "%{count} reactions"
             other: "%{count} reactions"
       nav:
         aria_label: Notifications
@@ -63,8 +66,10 @@ en:
       reacted:
         and_html: "%{first} and %{last}"
         and_other_html:
+          one: "%{first} and %{count} others"
           other: "%{first} and %{count} others"
         verb_html:
+          one: "%{start}%{actors} reacted to %{title} with%{end} %{reactions}"
           other: "%{start}%{actors} reacted to %{title} with%{end} %{reactions}"
         your:
           article: your article

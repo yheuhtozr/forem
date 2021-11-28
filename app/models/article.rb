@@ -30,8 +30,6 @@ class Article < ApplicationRecord
 
   # The date that we began limiting the number of user mentions in an article.
   MAX_USER_MENTION_LIVE_AT = Time.utc(2021, 4, 7).freeze
-  UNIQUE_URL_ERROR = "has already been taken. " \
-                     "Email #{ForemInstance.email} for further details.".freeze
 
   has_one :discussion_lock, dependent: :delete
 
@@ -69,12 +67,12 @@ class Article < ApplicationRecord
   validates :body_markdown, uniqueness: { scope: %i[user_id title] }
   validates :cached_tag_list, length: { maximum: 126 }
   validates :canonical_url,
-            uniqueness: { allow_nil: true, scope: :published, message: UNIQUE_URL_ERROR },
+            uniqueness: { allow_nil: true, scope: :published, message: :unique_url_error },
             if: :published?
   validates :canonical_url, url: { allow_blank: true, no_local: true, schemes: %w[https http] }
   validates :comments_count, presence: true
   validates :feed_source_url,
-            uniqueness: { allow_nil: true, scope: :published, message: UNIQUE_URL_ERROR },
+            uniqueness: { allow_nil: true, scope: :published, message: :unique_url_error },
             if: :published?
   validates :feed_source_url, url: { allow_blank: true, no_local: true, schemes: %w[https http] }
   validates :main_image, url: { allow_blank: true, schemes: %w[https http] }
@@ -312,6 +310,10 @@ class Article < ApplicationRecord
     else
       relation.pluck(*fields)
     end
+  end
+
+  def self.unique_url_error
+    I18n.t("models.article.unique_url", email: ForemInstance.email)
   end
 
   def search_id
@@ -793,27 +795,7 @@ class Article < ApplicationRecord
   end
 
   def create_conditional_autovomits
-    return unless Settings::RateLimit.spam_trigger_terms.any? do |term|
-                    Regexp.new(term.downcase).match?(title.downcase)
-                  end
-
-    Reaction.create(
-      user_id: Settings::General.mascot_user_id,
-      reactable_id: id,
-      reactable_type: "Article",
-      category: "vomit",
-    )
-
-    return unless Reaction.article_vomits.where(reactable_id: user.articles.pluck(:id)).size > 2
-
-    user.add_role(:suspended)
-    Note.create(
-      author_id: Settings::General.mascot_user_id,
-      noteable_id: user_id,
-      noteable_type: "User",
-      reason: "automatic_suspend",
-      content: I18n.t("models.article.user_suspended_for_too_man"),
-    )
+    Spam::ArticleHandler.handle!(article: self)
   end
 
   def async_bust

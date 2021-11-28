@@ -1,6 +1,6 @@
 ---
-en:
-  v:
+fr:
+  views:
     credits:
       meta:
         title: Credits
@@ -15,11 +15,6 @@ en:
       listing:
         create: Create a Listing
         dashboard: Go to Listings Dashboard
-      messages:
-        charge:
-          other: Purchase of %{count} credits.
-        done:
-          other: "%{count} new credits purchased!"
       new:
         meta:
           title: Purchase Credits

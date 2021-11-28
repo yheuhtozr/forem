@@ -20,15 +20,11 @@ ja:
       must_not_be_the_same_user: は作者と異なるユーザーを入れてください
       must_not_have_spaces: はスペースを入れないでください
       published: 公開しました
+      unique_url: has already been taken. Email %{email} for further details.
       user_suspended_for_too_man: ユーザーはスパム記事を大量に投稿したため、自動検出により凍結されました。
       you_cannot_mention_more_th: 1 つの記事内で %{settings_ratelimit_mention} 人より多く呼びかけることはできません！
     broadcast:
       you_can_only_have_one_acti: You can only have one active announcement broadcast
-    chat_channel:
-      private_group_chat: " private group chat"
-    chat_channel_membership:
-      is_not_allowed_in_chat: is not allowed in chat
-      pattern: chat between|and
     comment:
       deleted: "[削除]"
       has_been_deleted: "%{type}は削除されました"
@@ -41,8 +37,6 @@ ja:
         PodcastEpisode: 配信
       user_suspended_for_too_man: ユーザーはスパム記事を大量に投稿したため、自動検出により凍結されました。
       you_cannot_mention_more_th: 1 つのコメント内で %{settings_ratelimit_mention} 人より多く呼びかけることはできません！
-    event:
-      must_be_after_start_date: must be after start date
     feedback_message:
       you_previously_reported_t: "(you) previously reported this URL."
     github_issue:
@@ -59,16 +53,10 @@ ja:
       is_not_allowed_to_include2: is not allowed to include liquid tags.
     mention:
       is_not_valid: is not valid.
-    message:
-      must_be_part_of_channel: Must be part of channel.
-      something_went_wrong: Something went wrong
-      you_are_not_a_participant: You are not a participant of this chat channel.
     organization:
       integer_only_no_sign_allow: Integer only. No sign allowed.
       is_taken: は取られています
       value_s_is_a_reserved_wor: "%<value>s is a reserved word. Contact site admins for help registering your organization."
-    organization_membership:
-      private_group_chat: "@%{organization_slug} private group chat"
     page:
       is_taken: は取られています
     podcast:

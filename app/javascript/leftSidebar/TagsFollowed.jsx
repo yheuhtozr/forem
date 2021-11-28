@@ -19,7 +19,7 @@ export const TagsFollowed = ({ tags = [] }) => {
             id={`sidebar-element-${name}`}
           >
             <a
-              title={i18next.t('main.tag', { tag: tag.name })}
+              title={i18next.t('main.tag', { tag: name })}
               onClick={trackSidebarTagClick}
               className="crayons-link crayons-link--block"
               href={`/t/${name}`}

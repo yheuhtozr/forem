@@ -60,10 +60,7 @@ describe('<ImageUploader />', () => {
     });
 
     it('handles a native bridge message correctly', () => {
-      const { container, findByTitle } = render(<ImageUploader />);
-      const nativeInput = container.querySelector(
-        '#native-image-upload-message',
-      );
+      const { container, findByTitle } = render(<ImageUploader />); // eslint-disable-line no-unused-vars
 
       // Fire a change event in the hidden input with JSON payload for success
       const fakeSuccessMessage = JSON.stringify({

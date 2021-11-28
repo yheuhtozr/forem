@@ -11,7 +11,7 @@
         </h1>
         <div class="ltag__reddit--post-metadata">
           <span><%= created_at %></span>
-          <span><%= t "author", scope: _t, author: author %></span>
+          <span><%= t("views.liquids.reddit.author", author: author) %></span>
         </div>
       </div>
     </header>
@@ -27,7 +27,7 @@
   </div>
   <div class="ltag__reddit--btn--container">
     <button class="ltag__reddit--btn" type="button">
-      <a href="<%= post_url %>" target="_blank" rel="noopener noreferrer"><%= t("see", scope: _t) %></a>
+      <a href="<%= post_url %>" target="_blank" rel="noopener noreferrer"><%= t("views.liquids.reddit.see") %></a>
     </button>
   </div>
 </div>

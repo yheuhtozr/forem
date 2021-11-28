@@ -1,4 +1,3 @@
-<% _t = "v.notifications.follow" %>
 <% siblings = notification.json_data["aggregated_siblings"].length %>
 <div class="crayons-card notification <% if siblings == 1 %> notification--middle <% else %> flex-col items-center <% end %>">
   <% if siblings == 1 %>
@@ -11,7 +10,7 @@
     <div class="notification__content">
       <% cache "activity-follow-button-#{first_notification['path']}-#{first_notification['name']}" do %>
         <div class="flex justify-between items-center">
-          <p><%= t "single_html", scope: _t, name: link_to(first_notification["name"], first_notification["path"], class: "crayons-link fw-bold") %></p>
+          <p><%= t("views.notifications.follow.single_html", name: link_to(first_notification["name"], first_notification["path"], class: "crayons-link fw-bold")) %></p>
           <%= follow_button(notification.decorate.mocked_object("user"), "follow-back") %>
         </div>
       <% end %>
@@ -27,9 +26,9 @@
     </div>
     <p>
       <% if siblings == 2 %>
-        <%= t "and_html", scope: _t, first: link_to(json_data_array.first["name"], json_data_array.first["path"], class: "crayons-link fw-bold"), second: link_to(json_data_array.second["name"], json_data_array.second["path"], class: "crayons-link fw-bold") %>
+        <%= t("views.notifications.follow.and_html", first: link_to(json_data_array.first["name"], json_data_array.first["path"], class: "crayons-link fw-bold"), second: link_to(json_data_array.second["name"], json_data_array.second["path"], class: "crayons-link fw-bold")) %>
       <% else %>
-        <%= t "and_other_html", scope: _t, first: link_to(json_data_array.first["name"], json_data_array.first["path"], class: "crayons-link fw-bold"), others: t("others", scope: _t, count: siblings - 1), count: siblings %>
+        <%= t("views.notifications.follow.and_other_html", first: link_to(json_data_array.first["name"], json_data_array.first["path"], class: "crayons-link fw-bold"), others: t("views.notifications.follow.others", count: siblings - 1), count: siblings) %>
       <% end %>
     </p>
   <% end %>

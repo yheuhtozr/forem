@@ -123,7 +123,9 @@ export class ReadingList extends Component {
     });
 
     addSnackbarItem({
-      message: isStatusViewValid ? 'Archiving...' : 'Unarchiving...',
+      message: i18next.t(
+          `readingList.${isStatusViewValid ? 'archiving' : 'unarchiving'}`
+        )
     });
   };
 
@@ -191,28 +193,19 @@ export class ReadingList extends Component {
       `readingList.${isStatusViewValid ? 'to_archive' : 'to_unarchive'}`,
     );
 
-    const snackBar = archiving ? (
-      <div className="snackbar">
-        {i18next.t(
-          `readingList.${isStatusViewValid ? 'archiving' : 'unarchiving'}`,
-        )}
-      </div>
-    ) : (
-      ''
-    );
     return (
-      <main id="main-content">
-        <header className="crayons-layout l:grid-cols-2 pb-0">
-          <h1 class="crayons-title">
-            {i18next.t(
-              `readingList.${isStatusViewValid ? 'heading' : 'archive'}`,
-            )}
-            {i18next.t('readingList.total', { total: itemsTotal })}
-          </h1>
-          <fieldset className="grid gap-2 m:flex m:justify-end m:items-center l:mb-0 mb-2 px-2 m:px-0">
-            <legend className="hidden">
-              {i18next.t('readingList.filter')}
-            </legend>
+      <main
+        id="main-content"
+        className="crayons-layout crayons-layout--header-inside crayons-layout--2-cols"
+      >
+        <header className="crayons-page-header block s:flex">
+          <div className="flex justify-between items-center flex-1 mb-2 s:mb-0">
+            <h1 class="crayons-title flex-1">
+              {i18next.t(
+                `readingList.${isStatusViewValid ? 'heading' : 'archive'}`,
+              )}
+              {i18next.t('readingList.total', { total: itemsTotal })}
+            </h1>
             <Button
               onClick={(e) => this.toggleStatusView(e)}
               className="whitespace-nowrap ml-auto s:w-auto"
@@ -229,12 +222,13 @@ export class ReadingList extends Component {
             </Button>
           </div>
           <fieldset className="m:flex justify-end s:pl-2 w-100 s:w-auto">
-            <legend className="hidden">Filter</legend>
+            <legend className="hidden">{i18next.t('readingList.filter')}</legend>
             <input
               aria-label={i18next.t('readingList.aria_label')}
               onKeyUp={this.onSearchBoxType}
+              type="text"
               placeholder={i18next.t('readingList.placeholder')}
-              className="crayons-textfield"
+              className="crayons-textfield mb-2 s:mb-0"
             />
             <MediaQuery
               query={`(max-width: ${BREAKPOINTS.Medium - 1}px)`}

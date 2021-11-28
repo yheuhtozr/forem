@@ -1,9 +1,7 @@
 import { h } from 'preact';
 import { Trans } from 'react-i18next';
-import {
-  articlePropTypes,
-  organizationPropType,
-} from '../../common-prop-types';
+import PropTypes from 'prop-types';
+import { articlePropTypes } from '../../common-prop-types';
 import { MinimalProfilePreviewCard } from '../../profilePreviewCards/MinimalProfilePreviewCard';
 import { PublishDate } from './PublishDate';
 

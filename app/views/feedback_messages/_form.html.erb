@@ -31,41 +31,41 @@
   <div class="crayons-fields">
     <div class="crayons-field crayons-field--radio">
       <%= f.radio_button :category, "rude or vulgar", required: "required", class: "crayons-radio" %>
-      <%= label_tag(:feedback_message_category_rude_or_vulgar, t("rude_or_vulgar", scope: _t), class: "crayons-field__label") %>
+      <%= label_tag(:feedback_message_category_rude_or_vulgar, t("views.feedback.form.rude_or_vulgar"), class: "crayons-field__label") %>
     </div>
 
     <div class="crayons-field crayons-field--radio">
       <%= f.radio_button :category, "harassment", class: "crayons-radio" %>
-      <%= label_tag(:feedback_message_category_harassment, t("harassment", scope: _t), class: "crayons-field__label") %>
+      <%= label_tag(:feedback_message_category_harassment, t("views.feedback.form.harassment"), class: "crayons-field__label") %>
     </div>
 
     <div class="crayons-field crayons-field--radio">
       <%= f.radio_button :category, "spam", class: "crayons-radio" %>
-      <%= label_tag(:feedback_message_category_spam, t("spam", scope: _t), class: "crayons-field__label") %>
+      <%= label_tag(:feedback_message_category_spam, t("views.feedback.form.spam"), class: "crayons-field__label") %>
     </div>
 
     <div class="crayons-field crayons-field--radio">
       <%= f.radio_button :category, "listings", class: "crayons-radio" %>
-      <%= label_tag(:feedback_message_category_listings, t("listings", scope: _t), class: "crayons-field__label") %>
+      <%= label_tag(:feedback_message_category_listings, t("views.feedback.form.listings"), class: "crayons-field__label") %>
     </div>
 
     <div class="crayons-field crayons-field--radio">
       <%= f.radio_button :category, "other", class: "crayons-radio" %>
-      <%= label_tag(:feedback_message_category_other, t("other", scope: _t), class: "crayons-field__label") %>
+      <%= label_tag(:feedback_message_category_other, t("views.feedback.form.other"), class: "crayons-field__label") %>
     </div>
   </div>
 
   <div class="crayons-field">
-    <label for="feedback_message_reported_url" class="crayons-field__label"><%= t("url", scope: _t) %></label>
+    <label for="feedback_message_reported_url" class="crayons-field__label"><%= t("views.feedback.form.url") %></label>
     <%= f.text_field :reported_url, value: feedback_message.reported_url, class: "crayons-textfield", required: true %>
   </div>
 
   <div class="crayons-field">
     <label for="feedback_message_message">
-      <%= t("message.subtitle", scope: _t) %>
-      <p class="crayons-field__description m-0"><%= t("message.desc", scope: _t) %></p>
+      <%= t("views.feedback.form.message.subtitle") %>
+      <p class="crayons-field__description m-0"><%= t("views.feedback.form.message.description") %></p>
     </label>
-    <%= f.text_area :message, class: "crayons-textfield", placeholder: t("message.placeholder", scope: _t), value: @previous_message, required: true %>
+    <%= f.text_area :message, class: "crayons-textfield", placeholder: t("views.feedback.form.message.placeholder"), value: @previous_message, required: true %>
   </div>
 
   <% if ReCaptcha::CheckEnabled.call(current_user) %>
@@ -74,5 +74,5 @@
     </div>
   <% end %>
 
-  <div><button type="submit" name="commit" class="crayons-btn"><%= t("submit", scope: _t) %></button></div>
+  <div><button type="submit" name="commit" class="crayons-btn"><%= t("views.feedback.form.submit") %></button></div>
 <% end %>

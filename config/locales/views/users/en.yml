@@ -1,18 +1,21 @@
 ---
 en:
-  v:
+  views:
     users:
       meta:
         og:
           title: "%{user} — %{community} Profile"
       comments:
         all:
+          one: All %{count} comments
           other: All %{count} comments
         last:
+          one: Last %{count} comments
           other: Last %{count} comments
         recent: Recent comments
         view: View all activity
         view_all:
+          one: View all %{count} comments
           other: View all %{count} comments
         view_last:
           one: View last 1 Comment
@@ -70,9 +73,6 @@ en:
         heading: Are you sure you want to sign out?
         'yes': Yes, sign out
       block: Block @%{user}
-      chat: Chat
-      chat_with: Chat with %{user}
-      close: Close modal
       details: "%{user} profile details"
       dropdown: User actions
       email_icon: Email address

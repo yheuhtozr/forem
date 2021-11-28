@@ -19,14 +19,7 @@ fr:
     follow: Suivre
     follow_back: Suivre aussi
     following: Abonné
-    loading: Chargement en cours...
-    reaction: Réaction
-    report_abuse: Signaler un abus
     success_settings: Successfully updated settings.
-  contact_prompts:
-    if_continued_trouble_html: <a href="/contact">Contactez-nous</a> si vous continuez à avoir des problèmes.
-    if_we_can_help_html: <a href="/contact">Contactez-nous</a> si nous pouvons vous aider.
-    if_any_questions_html: <a href="/contact">Contactez-nous</a> si vous avez des questions.
     joined: Rejoint
     joined_on: Rejoint le
     like: Aime
@@ -39,9 +32,6 @@ fr:
     post: Publication
     posts: Publications
     reaction: Réaction
-    reaction_pluralized:
-      one: réaction
-      other: réactions
     reactions:
       heart: Coeur
       save: Sauver
@@ -233,15 +223,6 @@ fr:
       wrong_length:
         one: est la mauvaise longueur (devrait être 1 caractère)
         other: est la mauvaise longueur (devrait être %{count} caractères)
-  time:
-    formats:
-      comment: "%B %d, %Y"
-      github: "%b %d, %Y"
-      json: "%b %e, %Y"
-      medium: "%b %-d, %Y"
-      reddit: "%b %e '%y"
-      stackexchange: "%b %e '%y"
-      tweet: "%H:%M %p - %d %b %Y"
   settings_menu:
     account: Compte
     billing: Facturation
@@ -253,6 +234,10 @@ fr:
   time:
     formats:
       comment: "%B %d, %Y"
+      github: "%b %d, %Y"
+      json: "%b %e, %Y"
+      medium: "%b %-d, %Y"
+      reddit: "%b %e '%y"
       short: "%-e %b"
       short_with_yy: "%-e %b '%y"
       short_with_year: "%-e %b, %Y"

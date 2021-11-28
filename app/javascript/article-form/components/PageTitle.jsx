@@ -34,10 +34,9 @@ export const PageTitle = ({
 };
 
 PageTitle.propTypes = {
-  organizations: PropTypes.string.isRequired,
-  organizationId: PropTypes.string.isRequired,
-  onToggle: PropTypes.string.isRequired,
-  titleMode: PropTypes.string,
+  organizations: PropTypes.arrayOf(PropTypes.string).isRequired,
+  organizationId: PropTypes.string,
+  onToggle: PropTypes.func.isRequired,
 };
 
 PageTitle.displayName = 'Organization';

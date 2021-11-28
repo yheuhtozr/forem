@@ -18,7 +18,7 @@ MAP = {
     },
   },
   articles: {
-    __orphan: [%w[duration pinned timeAgo], %w[flare]],
+    __orphan: [%w[duration pinned timeAgo]],
     conduct: {
       __scope: ['articles'],
       report: [true],
@@ -34,19 +34,6 @@ MAP = {
   },
   campaign: {
     __orphan: [nil, %w[close]],
-  },
-  chat: {
-    __orphan: [%w[announcement bottom compose config create delete draw edited filter loading messages meta more notifications removed search users welcome]],
-    join: {
-      __orphan: [%w[accept got heading join message1 message2 reject request requested toggle]],
-      pending: {
-        heading: ['chat.settings.pending'],
-        empty: ['chat.join.empty'],
-      },
-    },
-    settings: {
-      __orphan: [%w[add all aria_invite aria_member channel contact description discoverable join invitation invite leave leave_channel members membership mod no_member notifications personal promote questions receive remove role search submit unmod update]],
-    },
   },
   clipboard: {
     __orphan: [%w[alt_text copied copy copy_markdown]],
@@ -198,10 +185,6 @@ MAP = {
         label: [true],
         summary: [true],
       },
-      connect: {
-        subtitle: [true],
-        desc: [true],
-      },
       expiry: {
         desc: [true],
       },
@@ -214,9 +197,6 @@ MAP = {
       }
     },
     heading: [true],
-    message: {
-      __orphan: [%w[aria_label desc1 desc2 heading relevant]],
-    },
   },
   podcasts: {
     __orphan: [%w[today], %w[rate]],
@@ -260,15 +240,7 @@ MAP = {
       __scope: ['users.card'],
       education: [true],
       work: [true],
-    },
-    send_pm: {
-      __scope: ['listings.message'],
-      code: [true],
-      notice: [true],
-      _notice: { html_trans: [%w[code]] },
-      placeholder: [true],
-      submit: [true],
-    },
+    }
   },
 
   helpers: {

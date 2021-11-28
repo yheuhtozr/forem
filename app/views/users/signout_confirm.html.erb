@@ -1,13 +1,12 @@
-<% _t = "v.users.signout" %>
-<% title t("meta.title", scope: _t, community: community_name) %>
+<% title t("views.users.signout.meta.title", community: community_name) %>
 <div class="signout_confirm-wrapper">
 
   <h1 class="fs-2xl mb-2">
-  <%= t("heading", scope: _t) %>
+  <%= t("views.users.signout.heading") %>
   </h1>
   <%= form_tag destroy_user_session_path, method: :delete do %>
     <button class="crayons-btn crayons-btn--l">
-      <%= t("yes", scope: _t) %>
+      <%= t("views.users.signout.yes") %>
     </button>
   <% end %>
 

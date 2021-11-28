@@ -56,8 +56,11 @@ export const ItemListItem = ({ item, children }) => {
             <span datatestid="item-tags">
               <span class="color-base-30"> • </span>
               {adaptedItem.tags.map((tag) => (
-                // eslint-disable-next-line react/jsx-key
-                <a className="crayons-tag" href={`/t/${tag.name}`}>
+                <a
+                  className="crayons-tag crayons-tag--monochrome"
+                  key={tag}
+                  href={`/t/${tag.name}`}
+                >
                   {`#${tag.name}`}
                 </a>
               ))}

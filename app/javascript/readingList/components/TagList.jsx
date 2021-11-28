@@ -5,7 +5,7 @@ import { i18next } from '@utilities/locale';
 function LargeScreenTagList({ availableTags, selectedTag, onSelectTag }) {
   return (
     <nav aria-label={i18next.t('readingList.aria_tag')}>
-      <ul className="list-none grid grid-cols-1 gap-2">
+      <ul className="list-none">
         <li>
           <a
             className={`crayons-link crayons-link--block${
@@ -19,8 +19,7 @@ function LargeScreenTagList({ availableTags, selectedTag, onSelectTag }) {
           </a>
         </li>
         {availableTags.map((tag) => (
-          // eslint-disable-next-line react/jsx-key
-          <li>
+          <li key={tag}>
             <a
               className={`crayons-link crayons-link--block${
                 selectedTag === tag ? ' crayons-link--current' : ''

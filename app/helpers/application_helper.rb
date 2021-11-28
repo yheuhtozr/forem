@@ -4,7 +4,7 @@ module ApplicationHelper
   LARGE_USERBASE_THRESHOLD = 1000
 
   def deleted_user
-    # rubocop:disable Performance/OpenStruct
+    # rubocop:disable Style/OpenStructUse, Performance/OpenStruct
     OpenStruct.new(
       id: nil,
       darker_color: Color::CompareHex.new(USER_COLORS).brightness,
@@ -14,7 +14,7 @@ module ApplicationHelper
       twitter_username: nil,
       github_username: nil,
     )
-    # rubocop:enable Performance/OpenStruct
+    # rubocop:enable Style/OpenStructUse, Performance/OpenStruct
   end
 
   def subtitles

@@ -2,7 +2,7 @@
 /* eslint-disable no-alert, import/order */
 import { request } from '@utilities/http';
 import { i18next } from '@utilities/locale';
-import { getUserDataAndCsrfToken } from '../chat/util';
+import { getUserDataAndCsrfToken } from '@utilities/getUserDataAndCsrfToken';
 
 function addFlagUserBehavior(flagButton) {
   const { profileUserId, profileUserName } = flagButton.dataset;

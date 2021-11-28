@@ -88,12 +88,12 @@
   }
 }
 
-.theme-selector--default {
-  --preview-body-bg: #{image-url('nice-snow.png')} #{nth($theme-colors, 2)};
-  --preview-body-color: #{nth($base-colors, 1)};
-  --preview-header: #{nth($theme-colors, 1)};
-  --preview-form: #f1f3ef;
-  --preview-card: #f1f3ef;
+.theme-selector--light-theme {
+  --preview-body-bg: #f9f9fa;
+  --preview-body-color: #0a0a0a;
+  --preview-header: #fdf9f3;
+  --preview-form: #e8e7e7;
+  --preview-card: #fff;
   --preview-border: rgba(0, 0, 0, 0.1);
 }
 

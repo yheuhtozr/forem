@@ -5,11 +5,6 @@
     "show_regexp": "表示"
   },
   "articles": {
-    "flare": {
-      "comment": "コメント",
-      "person": "人物",
-      "podcast": "ポッドキャスト"
-    },
     "for_org": "%{- start} が %{- end}%{- org}%{- start} へ執筆%{- end}",
     "reading_time_other": "約 %{count} 字/語",
     "save": {

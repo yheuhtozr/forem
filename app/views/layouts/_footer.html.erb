@@ -1,20 +1,18 @@
 <% _t = "v.main.footer" %>
 <footer class="crayons-footer print-hidden">
   <div id="footer-container" class="crayons-layout crayons-layout--limited-m crayons-footer__container">
-    <p class="fs-s crayons-footer__description"><a href="/" aria-label="<%= t "v.main.aria_home", community: community_name %>" class="crayons-link"><%= t "desc", scope: _t, community: community_name, desc: Settings::Community.community_description %></p>
+    <p class="fs-s crayons-footer__description"><a href="/" aria-label="<%= t("views.main.aria_home", community: community_name) %>" class="crayons-link"><%= t("views.main.footer.desc", community: community_name, desc: Settings::Community.community_description) %></p>
     <div class="m:-mb-4 crayons-footer__description">
       <%# The following copy is necessary for compatibility with the Forem AGPL licence which requires instances to link back to the source. %>
-      <p class="fs-s"><%= t("built.text_html",
-                            scope: _t,
-                            forem: link_to(t("built.forem", scope: _t), "https://www.forem.com", class: "crayons-link", target: "_blank", rel: "noopener"),
-                            opensource: link_to(t("built.opensource", scope: _t), "https://dev.to/t/opensource", target: "_blank", rel: "noopener", class: "crayons-link"),
-                            dev: link_to(t("built.dev", scope: _t), "https://dev.to", target: "_blank", rel: "noopener", class: "crayons-link")) %></p>
-      <p class="fs-s"><%= t("powered.text_html",
-                            scope: _t,
-                            rails: link_to(t("powered.rails", scope: _t), "https://dev.to/t/rails", target: "_blank", rel: "noopener", class: "crayons-link"),
+      <p class="fs-s"><%= t("views.main.footer.built.text_html",
+                            forem: link_to(t("views.main.footer.built.forem"), "https://www.forem.com", class: "crayons-link", target: "_blank", rel: "noopener"),
+                            opensource: link_to(t("views.main.footer.built.opensource"), "https://dev.to/t/opensource", target: "_blank", rel: "noopener", class: "crayons-link"),
+                            dev: link_to(t("views.main.footer.built.dev"), "https://dev.to", target: "_blank", rel: "noopener", class: "crayons-link")) %></p>
+      <p class="fs-s"><%= t("views.main.footer.powered.text_html",
+                            rails: link_to(t("views.main.footer.powered.rails"), "https://dev.to/t/rails", target: "_blank", rel: "noopener", class: "crayons-link"),
                             community: community_name,
                             copyright: copyright_notice) %></p>
-      <div><a href="https://www.forem.com" target="_blank" rel="noopener" class="inline-block mt-4"><%= inline_svg_tag("logo-forem.svg", aria: true, class: "crayons-icon crayons-icon--default", title: t("logo", scope: _t)) %></a></div>
+      <div><a href="https://www.forem.com" target="_blank" rel="noopener" class="inline-block mt-4"><%= inline_svg_tag("logo-forem.svg", aria: true, class: "crayons-icon crayons-icon--default", title: t("views.main.footer.logo")) %></a></div>
     </div>
   </div>
 </footer>

@@ -5,8 +5,8 @@ import { CategoryLinksMobile } from './CategoryLinksMobile';
 import { i18next } from '@utilities/locale';
 
 export const ListingFiltersCategories = ({ categories, category, onClick }) => (
-  <div className="listing-filters px-2 m:px-0" id="listing-filters">
-    <nav className="hidden m:block" aria-label={i18next.t('listings.category')}>
+  <div className="listing-filters px-3 s:px-0" id="listing-filters">
+    <nav className="hidden m:block" aria-label="Listings by category">
       <a
         id="listings-link"
         href="/listings"

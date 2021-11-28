@@ -38,7 +38,7 @@ export const noDefaultAltTextRule = {
         children.forEach((contentChild) => {
           if (
             contentChild.type === 'image' &&
-            contentChild.line.toLowerCase().includes('![image description]')
+            contentChild.line.toLowerCase().includes(i18next.t('markdownLint.defaultAlt.sample'))
           ) {
             onError({
               lineNumber: contentChild.lineNumber,

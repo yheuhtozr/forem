@@ -16,9 +16,6 @@ ja:
       broadcast_has_been_deleted: Broadcast has been deleted!
       broadcast_has_been_updated: Broadcast has been updated!
       something_went_wrong_with: Something went wrong with deleting the broadcast.
-    chat_channels_controller:
-      channel_not_deleted_becaus: Channel NOT deleted, because it still has users.
-      channel_was_successfully_d: Channel was successfully deleted.
     consumer_apps_controller:
       has_been_created: "%{app_app_bundle} has been created!"
       has_been_deleted: "%{app_app_bundle} has been deleted!"
@@ -29,10 +26,6 @@ ja:
       display_ad_has_been_delete: Display Ad has been deleted!
       display_ad_has_been_update: Display Ad has been updated!
       something_went_wrong_with: Something went wrong with deleting the Display Ad.
-    events_controller:
-      description_pre_requisite: "*Description* *Pre-requisites:* *Bio*"
-      successfully_created_event: 'Successfully created event: %{event_title}'
-      was_successfully_updated: "%{event_title} was successfully updated"
     html_variants_controller:
       fork: "%{fork_name} FORK-%{rand_10_000}"
       html_variant_has_been_crea: HTML Variant has been created!

@@ -20,26 +20,4 @@ class OrganizationMembership < ApplicationRecord
   def update_user_organization_info_updated_at
     user.touch(:organization_info_updated_at)
   end
-
-  private
-
-  def upsert_chat_channel_membership
-    return if type_of_user == "guest"
-
-    role = type_of_user == "admin" ? "mod" : "member"
-    name = I18n.t("models.organization_membership.private_group_chat", organization_slug: organization.slug)
-    channel = ChatChannel.find_by(channel_name: name)
-
-    channel ||= ChatChannels::FindOrCreate.call("invite_only", "#{organization.slug}-private-group-chat", name)
-
-    add_chat_channel_membership(user, channel, role)
-  end
-
-  def add_chat_channel_membership(user, channel, role)
-    return unless FeatureFlag.enabled?(:connect)
-
-    membership = ChatChannelMembership.find_or_initialize_by(user_id: user.id, chat_channel_id: channel.id)
-    membership.role = role
-    membership.save
-  end
 end

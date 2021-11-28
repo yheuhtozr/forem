@@ -67,6 +67,9 @@ class RegistrationsController < Devise::RegistrationsController
     return true if Settings::Authentication.acceptable_domain?(domain: domain)
 
     resource.email = nil
+    # Alright, this error message isn't quite correct.  Is the email
+    # from a blocked domain?  Or an explicitly allowed domain.  I
+    # think this is enough.
     resource.errors.add(:email, I18n.t("v.auth.register.error.domain"))
   end
 

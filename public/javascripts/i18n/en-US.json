@@ -5,11 +5,6 @@
     "show_regexp": "Show"
   },
   "articles": {
-    "flare": {
-      "comment": "comment",
-      "person": "person",
-      "podcast": "podcast"
-    },
     "for_org": "%{- start} for %{- end}%{- org}",
     "reading_time_one": "%{count} words/chars",
     "reading_time_other": "%{count} words/chars",

@@ -2,9 +2,9 @@
 <div id="sidebar-wrapper-right" class="sidebar-wrapper sidebar-wrapper-right crayons-layout__sidebar-right">
   <div id="quick-stat-card" class="crayons-card">
     <div class="crayons-card__body mod-saying-hello">
-      <p class="fw-medium fs-2xl"><%= t("hello", scope: _t) %></p>
+      <p class="fw-medium fs-2xl"><%= t("views.moderations.aside.hello") %></p>
       <p>
-        <%= t "thanks", scope: _t, community: Settings::Community.community_name %>
+        <%= t("views.moderations.aside.thanks", community: Settings::Community.community_name) %>
       </p>
     </div>
   </div>

@@ -51,6 +51,7 @@ gem "honeycomb-beeline", "~> 2.7.1" # Monitoring and Observability gem
 gem "html_truncator", "~> 0.4" # Truncate an HTML string properly
 gem "htmlentities", "~> 4.3", ">= 4.3.4" # A module for encoding and decoding (X)HTML entities
 gem "httparty", "~> 0.20" # Makes http fun! Also, makes consuming restful web services dead easy
+gem "httpclient", "~> 2.8.3" # Gives something like the functionality of libwww-perl (LWP) in Ruby
 gem "imgproxy", "~> 2.0" # A gem that easily generates imgproxy URLs for your images
 gem "inline_svg", "~> 1.7" # Embed SVG documents in your Rails views and style them with CSS
 gem "jbuilder", "~> 2.11" # Create JSON structures via a Builder-style DSL
@@ -135,8 +136,8 @@ group :development do
   gem "i18n-tasks", "~> 0.9.35" # Helpers to find and manage missing and unused translations
   gem "listen", "~> 3.7", require: false # Helps 'listen' to file system modifications events (also used by other gems like guard)
   gem "memory_profiler", "~> 1.0", require: false # Memory profiling routines for Ruby 2.3+
-  gem "solargraph", ">= 0", require: false
-  gem "web-console", "~> 4.1" # Rails Console on the Browser
+  gem "solargraph", "~> 0.44", require: false # For LSP support (such as symbol renaming, documentation lookup)
+  gem "web-console", "~> 4.2" # Rails Console on the Browser
 end
 
 group :development, :test do

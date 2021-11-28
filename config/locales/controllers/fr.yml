@@ -20,7 +20,6 @@ en:
   email_subscriptions_controller:
     badge_notifications: badge notifications
     comment_notifications: comment notifications
-    connect_messages: "%{community} connect messages"
     digest_emails: "%{community} digest emails"
     follower_notifications: follower notifications
     mention_notifications: mention notifications
@@ -43,12 +42,6 @@ en:
   listings_controller:
     listing_was_successfully_d: Listing was successfully deleted.
     not_enough_available_credi: Not enough available credits
-  messages_controller:
-    message_was_deleted: Message was deleted
-    message_was_edited: Message was edited
-    you_can_not_do_that_becaus: You can not do that because you are suspended
-  moderations_controller:
-    community_mods_team: 'Community Mods: Team%'
   omniauth_callbacks_controller:
     log_in_error: 'Log in error: %{e}'
     username_taken: username has already been taken
@@ -62,8 +55,6 @@ en:
     podcast_suggested: Podcast suggested
   profiles_controller:
     your_profile_has_been_upda: Your profile has been updated
-  pusher_controller:
-    forbidden: Forbidden
   rating_votes_controller:
     not_upserted_successfully: Not Upserted Successfully
   response_templates_controller:
