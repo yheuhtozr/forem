@@ -142,7 +142,7 @@ MAP = {
     }
   },
   editor: {
-    __orphan: [%w[a11y aria_label aria_new content help image leave publish publishing revert revert_button save save_draft saving saving_draft], %w[continue]],
+    __orphan: [%w[a11y aria_label aria_new content help image leave publish publishing revert revert_button save save_draft saving saving_draft toolbar], %w[continue]],
     close: {
       __scope: ['editor'],
       title: ['close']

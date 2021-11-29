@@ -140,8 +140,12 @@
     },
     "image": {
       "aria_label": "画像をアップロードする",
+      "aria_cancel": "画像のアップロードを中止",
+      "cancel": "中止",
       "icon": "画像をアップロード",
+      "placeholder": "![画像アップロード中](...)",
       "text": "画像をアップロード",
+      "title_cancel": "アップロード中止",
       "uploading": "アップロード中…"
     },
     "leave": {
@@ -192,6 +196,23 @@
       "aria_label": "記事の表示モード",
       "edit": "編集",
       "preview": "プレビュー"
+    },
+    "toolbar": {
+      "aria_help": "ヘルプ",
+      "aria_label": "Markdown 書式ツールバー",
+      "aria_options": "その他の機能",
+      "bold": "太字",
+      "code": "コード",
+      "codeBlock": "コードブロック",
+      "divider": "区切り線",
+      "heading": "見出し",
+      "italic": "斜体",
+      "link": "リンク",
+      "ordered": "番号リスト",
+      "quote": "引用",
+      "strikethrough": "打ち消し線",
+      "underline": "下線",
+      "unordered": "箇条書き"
     },
     "translate": "翻訳を作成"
   },

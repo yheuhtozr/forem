@@ -1,5 +1,6 @@
 import { h } from 'preact';
 import { useState, useLayoutEffect } from 'preact/hooks';
+import { ImageUploader } from '../../article-form/components/ImageUploader';
 import {
   coreSyntaxFormatters,
   secondarySyntaxFormatters,
@@ -8,7 +9,54 @@ import { Overflow, Help } from './icons';
 import { Button } from '@crayons';
 import { KeyboardShortcuts } from '@components/useKeyboardShortcuts';
 import { BREAKPOINTS, useMediaQuery } from '@components/useMediaQuery';
+import { getSelectionData } from '@utilities/textAreaUtils';
+import { i18next } from '@utilities/locale';
 
+// Placeholder text displayed while an image is uploading
+const UPLOADING_IMAGE_PLACEHOLDER = i18next.t('editor.image.placeholder');
+
+/**
+ * Returns the next sibling in the DOM which matches the given CSS selector.
+ * This makes sure that only toolbar buttons are cycled through on Arrow key press,
+ * and not e.g. the hidden file input from ImageUploader
+ *
+ * @param {HTMLElement} element The current HTML element
+ * @param {string} selector The CSS selector to match
+ * @returns
+ */
+const getNextMatchingSibling = (element, selector) => {
+  let sibling = element.nextElementSibling;
+
+  while (sibling) {
+    if (sibling.matches(selector)) return sibling;
+    sibling = sibling.nextElementSibling;
+  }
+};
+
+/**
+ * Returns the previous sibling in the DOM which matches the given CSS selector.
+ * This makes sure that only toolbar buttons are cycled through on Arrow key press,
+ * and not e.g. the hidden file input from ImageUploader
+ *
+ * @param {HTMLElement} element The current HTML element
+ * @param {string} selector The CSS selector to match
+ * @returns
+ */
+const getPreviousMatchingSibling = (element, selector) => {
+  let sibling = element.previousElementSibling;
+
+  while (sibling) {
+    if (sibling.matches(selector)) return sibling;
+    sibling = sibling.previousElementSibling;
+  }
+};
+
+/**
+ * UI component providing markdown shortcuts, to be inserted into the textarea with the given ID
+ *
+ * @param {object} props
+ * @param {string} props.textAreaId The ID of the textarea the markdown formatting should be added to
+ */
 export const MarkdownToolbar = ({ textAreaId }) => {
   const [textArea, setTextArea] = useState(null);
   const [overflowMenuOpen, setOverflowMenuOpen] = useState(false);
@@ -85,10 +133,9 @@ export const MarkdownToolbar = ({ textAreaId }) => {
   // Handles keyboard 'roving tabindex' pattern for toolbar
   const handleToolbarButtonKeyPress = (event, className) => {
     const { key, target } = event;
-    const {
-      nextElementSibling: nextButton,
-      previousElementSibling: previousButton,
-    } = target;
+
+    const nextButton = getNextMatchingSibling(target, `.${className}`);
+    const previousButton = getPreviousMatchingSibling(target, `.${className}`);
 
     switch (key) {
       case 'ArrowRight':
@@ -132,8 +179,46 @@ export const MarkdownToolbar = ({ textAreaId }) => {
       markdownSyntaxFormatters[syntaxName].getFormatting(textArea);
 
     textArea.value = newTextAreaValue;
+    textArea.dispatchEvent(new Event('input'));
     textArea.focus({ preventScroll: true });
     textArea.setSelectionRange(newCursorStart, newCursorEnd);
+  };
+
+  const handleImageUploadStarted = () => {
+    const { textBeforeSelection, textAfterSelection, selectionEnd } =
+      getSelectionData(textArea);
+
+    const textWithPlaceholder = `${textBeforeSelection}\n${UPLOADING_IMAGE_PLACEHOLDER}${textAfterSelection}`;
+    textArea.value = textWithPlaceholder;
+    // Make sure Editor text area updates via linkstate
+    textArea.dispatchEvent(new Event('input'));
+
+    textArea.focus({ preventScroll: true });
+
+    // Set cursor to the end of the placeholder
+    const newCursorPosition =
+      selectionEnd + UPLOADING_IMAGE_PLACEHOLDER.length + 1;
+    textArea.setSelectionRange(newCursorPosition, newCursorPosition);
+  };
+
+  const handleImageUploadSuccess = (imageMarkdown) => {
+    const newTextValue = textArea.value.replace(
+      UPLOADING_IMAGE_PLACEHOLDER,
+      imageMarkdown,
+    );
+    textArea.value = newTextValue;
+    // Make sure Editor text area updates via linkstate
+    textArea.dispatchEvent(new Event('input'));
+  };
+
+  const handleImageUploadError = () => {
+    const newTextValue = textArea.value.replace(
+      UPLOADING_IMAGE_PLACEHOLDER,
+      '',
+    );
+    textArea.value = newTextValue;
+    // Make sure Editor text area updates via linkstate
+    textArea.dispatchEvent(new Event('input'));
   };
 
   const getSecondaryFormatterButtons = (isOverflow) =>
@@ -181,7 +266,7 @@ export const MarkdownToolbar = ({ textAreaId }) => {
   return (
     <div
       className="editor-toolbar relative overflow-x-auto m:overflow-visible"
-      aria-label="Markdown formatting toolbar"
+      aria-label={i18next.t('editor.toolbar.aria_label')}
       role="toolbar"
       aria-controls={textAreaId}
     >
@@ -214,6 +299,25 @@ export const MarkdownToolbar = ({ textAreaId }) => {
           />
         );
       })}
+
+      <ImageUploader
+        editorVersion="v2"
+        onImageUploadStart={handleImageUploadStarted}
+        onImageUploadSuccess={handleImageUploadSuccess}
+        onImageUploadError={handleImageUploadError}
+        buttonProps={{
+          onKeyUp: (e) => handleToolbarButtonKeyPress(e, 'toolbar-btn'),
+          tooltip: smallScreen ? null : (
+            <span aria-hidden="true">{i18next.t('editor.image.text')}</span>
+          ),
+          key: 'image-btn',
+          variant: 'ghost',
+          contentType: 'icon',
+          className: 'toolbar-btn formatter-btn',
+          tabindex: '-1',
+        }}
+      />
+
       {smallScreen ? getSecondaryFormatterButtons(false) : null}
 
       {smallScreen ? null : (
@@ -228,7 +332,7 @@ export const MarkdownToolbar = ({ textAreaId }) => {
           icon={Overflow}
           className="toolbar-btn ml-auto hidden m:block"
           tabindex="-1"
-          aria-label="More options"
+          aria-label={i18next.t('editor.toolbar.aria_options')}
         />
       )}
 
@@ -248,7 +352,7 @@ export const MarkdownToolbar = ({ textAreaId }) => {
             icon={Help}
             className="overflow-menu-btn"
             tabindex="-1"
-            aria-label="Help"
+            aria-label={i18next.t('editor.toolbar.aria_help')}
             onKeyUp={(e) => handleToolbarButtonKeyPress(e, 'overflow-menu-btn')}
           />
         </div>

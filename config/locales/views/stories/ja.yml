@@ -15,7 +15,7 @@ ja:
       sort:
         aria_label: 記事の表示条件
         aria_tagged: タグ内の記事の表示条件
-        feed: おすすめ
+        relevant: おすすめ
         week: 今週
         month: 今月
         year: 今年

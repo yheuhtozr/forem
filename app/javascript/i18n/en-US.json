@@ -141,9 +141,13 @@
       }
     },
     "image": {
-      "aria_label": "Upload an image",
+      "aria_label": "Upload image",
+      "aria_cancel": "Cancel image upload",
+      "cancel": "Cancel",
       "icon": "Upload image",
+      "placeholder": "![Uploading image](...)",
       "text": "Upload image",
+      "title_cancel": "Cancel upload",
       "uploading": "Uploading..."
     },
     "leave": {
@@ -194,6 +198,23 @@
       "aria_label": "View post modes",
       "edit": "Edit",
       "preview": "Preview"
+    },
+    "toolbar": {
+      "aria_help": "Help",
+      "aria_label": "Markdown formatting toolbar",
+      "aria_options": "More options",
+      "bold": "Bold",
+      "code": "Code",
+      "codeBlock": "Code block",
+      "divider": "Line divider",
+      "heading": "Heading",
+      "italic": "Italic",
+      "link": "Link",
+      "ordered": "Ordered list",
+      "quote": "Quote",
+      "strikethrough": "Strikethrough",
+      "underline": "Underline",
+      "unordered": "Unordered list"
     },
     "translate": "Translate"
   },

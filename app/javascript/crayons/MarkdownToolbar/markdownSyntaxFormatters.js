@@ -20,6 +20,7 @@ import {
   Strikethrough,
   Divider,
 } from './icons';
+import { i18next } from '@utilities/locale';
 
 const ORDERED_LIST_ITEM_REGEX = /^\d+\.\s+.*/;
 const MARKDOWN_LINK_REGEX =
@@ -387,7 +388,7 @@ const undoOrAddFormattingForMultilineSyntax = ({
 export const coreSyntaxFormatters = {
   bold: {
     icon: Bold,
-    label: 'Bold',
+    label: i18next.t('editor.toolbar.bold'),
     getKeyboardShortcut: () => {
       const modifier = Runtime.getOSKeyboardModifierKeyString();
       return {
@@ -407,7 +408,7 @@ export const coreSyntaxFormatters = {
   },
   italic: {
     icon: Italic,
-    label: 'Italic',
+    label: i18next.t('editor.toolbar.italic'),
     getKeyboardShortcut: () => {
       const modifier = Runtime.getOSKeyboardModifierKeyString();
       return {
@@ -427,7 +428,7 @@ export const coreSyntaxFormatters = {
   },
   link: {
     icon: Link,
-    label: 'Link',
+    label: i18next.t('editor.toolbar.link'),
     getKeyboardShortcut: () => {
       const modifier = Runtime.getOSKeyboardModifierKeyString();
       return {
@@ -483,7 +484,7 @@ export const coreSyntaxFormatters = {
   },
   orderedList: {
     icon: OrderedList,
-    label: 'Ordered list',
+    label: i18next.t('editor.toolbar.ordered'),
     getFormatting: ({ selectionStart, selectionEnd, value }) => {
       const { selectedText, textBeforeSelection, textAfterSelection } =
         getSelectionData({ selectionStart, selectionEnd, value });
@@ -568,7 +569,7 @@ export const coreSyntaxFormatters = {
   },
   unorderedList: {
     icon: UnorderedList,
-    label: 'Unordered list',
+    label: i18next.t('editor.toolbar.unordered'),
     getFormatting: ({ selectionStart, selectionEnd, value }) => {
       return undoOrAddFormattingForMultilineSyntax({
         selectionStart,
@@ -580,7 +581,7 @@ export const coreSyntaxFormatters = {
   },
   heading: {
     icon: Heading,
-    label: 'Heading',
+    label: i18next.t('editor.toolbar.heading'),
     getFormatting: ({ selectionStart, selectionEnd, value }) => {
       let currentLineSelectionStart = selectionStart;
 
@@ -645,7 +646,7 @@ export const coreSyntaxFormatters = {
   },
   quote: {
     icon: Quote,
-    label: 'Quote',
+    label: i18next.t('editor.toolbar.quote'),
     getFormatting: ({ selectionStart, selectionEnd, value }) =>
       undoOrAddFormattingForMultilineSyntax({
         selectionStart,
@@ -656,7 +657,7 @@ export const coreSyntaxFormatters = {
   },
   code: {
     icon: Code,
-    label: 'Code',
+    label: i18next.t('editor.toolbar.code'),
     getFormatting: ({ selectionStart, selectionEnd, value }) =>
       undoOrAddFormattingForInlineSyntax({
         selectionStart,
@@ -668,7 +669,7 @@ export const coreSyntaxFormatters = {
   },
   codeBlock: {
     icon: CodeBlock,
-    label: 'Code block',
+    label: i18next.t('editor.toolbar.codeBlock'),
     getFormatting: ({ selectionStart, selectionEnd, value }) =>
       undoOrAddFormattingForMultilineSyntax({
         selectionStart,
@@ -683,7 +684,7 @@ export const coreSyntaxFormatters = {
 export const secondarySyntaxFormatters = {
   underline: {
     icon: Underline,
-    label: 'Underline',
+    label: i18next.t('editor.toolbar.underline'),
     getKeyboardShortcut: () => {
       const modifier = Runtime.getOSKeyboardModifierKeyString();
       return {
@@ -702,7 +703,7 @@ export const secondarySyntaxFormatters = {
   },
   strikethrough: {
     icon: Strikethrough,
-    label: 'Strikethrough',
+    label: i18next.t('editor.toolbar.strikethrough'),
     getKeyboardShortcut: () => {
       const modifier = Runtime.getOSKeyboardModifierKeyString();
       return {
@@ -721,7 +722,7 @@ export const secondarySyntaxFormatters = {
   },
   divider: {
     icon: Divider,
-    label: 'Line divider',
+    label: i18next.t('editor.toolbar.divider'),
     getFormatting: ({ selectionStart, selectionEnd, value }) =>
       undoOrAddFormattingForMultilineSyntax({
         selectionStart,

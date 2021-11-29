@@ -72,7 +72,11 @@ export class ArticleCoverImage extends Component {
       const { files: image } = event.dataTransfer || event.target;
       const payload = { image };
 
-      generateMainImage(payload, this.onImageUploadSuccess, this.onUploadError);
+      generateMainImage({
+        payload,
+        successCb: this.onImageUploadSuccess,
+        failureCb: this.onUploadError,
+      });
     }
   };
 
