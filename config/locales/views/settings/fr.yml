@@ -80,6 +80,15 @@ en:
         editor: Editor Version
         fixed: Fixed to window
         font: Base Reading Font
+        lang: Writing Language
+        lang_desc_html: The language you usually author an article in (used by editor as the default value). Specify in the language tag format (<code>en-US</code>).
+        langs:
+          aria_label: You can select a language from the list
+          cla: CLA codes
+          others: General
+          select: Quick select
+          site: Suggested
+          special: Specials
         level: What is your approximate experience level (1-5)?
         level_desc: This will not be displayed on your profile or anywhere publicly. It helps gently determine what content you are shown along with tags you follow etc.
         navbar: Site Navbar
