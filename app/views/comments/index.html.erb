@@ -69,7 +69,7 @@
           <p class="color-base-60">
             <%= t("views.comments.parent.metadata_html",
                   name: @commentable.is_a?(PodcastEpisode) ? @commentable.podcast.name : @commentable.user.name,
-                  on: tag.span(@commentable.published_at ? t("views.comments.parent.date", date: @commentable.published_at.strftime(t("time.formats.comment"))) : "", class: %w[published-at])) %>
+                  on: tag.span(@commentable.published_at ? t("views.comments.parent.date", date: l(@commentable.published_at, format: :short)) : "", class: %w[published-at])) %>
           </p>
         </div>
       </header>
