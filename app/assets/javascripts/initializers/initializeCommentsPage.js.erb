@@ -554,7 +554,7 @@ function updateItemSummaryHtml(item) {
   var usernames = item.getElementsByClassName("js-comment-username");
   var number = "";
   if (usernames.length > 1) {
-    number = i18next.t('comments.replies', { count: (usernames.length - 1) }) replies"
+    number = i18next.t('comments.replies', { count: (usernames.length - 1) })
   }
   var itemUsername = usernames[0].textContent + number
   if (item.open) {
