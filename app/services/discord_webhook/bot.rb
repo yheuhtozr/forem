@@ -4,15 +4,15 @@ module DiscordWebhook
 
     class << self
       def new_post(article)
-        target.execute do |post|
-          post.content = "Migdal の新着記事です"
-          post.add_embed do |embed|
-            embed.title = article.title
-            embed.url = URL.url(article.path)
-            embed.description = article.description
-            embed.author = embed_author(article.user)
-            embed.timestamp = article.published_at
-          end
+        builder = Discordrb::Webhooks::Builder.new(content: "Migdal の新着記事です", embeds: [post_embed(article)])
+        target.execute builder
+        target(url: ApplicationConfig["DISCORD_KIITA_HOOK_URL"]).execute builder
+      end
+
+      def edited_post(article)
+        target(url: ApplicationConfig["DISCORD_KIITA_HOOK_URL"]).execute do |post|
+          post.content = "Migdal の記事が更新されました"
+          post << post_embed(article)
         end
       end
 
@@ -32,8 +32,18 @@ module DiscordWebhook
 
       private
 
-      def target
-        Discordrb::Webhooks::Client.new(url: ApplicationConfig["DISCORD_WEBHOOK_URL"])
+      def target(url: ApplicationConfig["DISCORD_WEBHOOK_URL"])
+        Discordrb::Webhooks::Client.new(url: url)
+      end
+
+      def post_embed(article)
+        Discordrb::Webhooks::Embed.new(
+          title: article.title,
+          url: URL.url(article.path),
+          description: article.description,
+          author: embed_author(article.user),
+          timestamp: article.published_at,
+        )
       end
 
       def embed_author(user)

@@ -827,12 +827,16 @@ class Article < ApplicationRecord
   end
 
   def notify_external_services_on_new_post
-    return unless published && !boost_states["boosted_new_post"]
+    return unless published
 
-    TwitterClient::Bot.new_post self
-    DiscordWebhook::Bot.new_post self
+    if boost_states["boosted_new_post"]
+      DiscordWebhook::Bot.edited_post self
+    else
+      TwitterClient::Bot.new_post self
+      DiscordWebhook::Bot.new_post self
 
-    boost_states["boosted_new_post"] = true
-    update_columns boost_states: boost_states
+      boost_states["boosted_new_post"] = true
+      update_columns boost_states: boost_states
+    end
   end
 end
