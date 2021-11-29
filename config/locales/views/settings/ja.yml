@@ -90,6 +90,10 @@ ja:
         sponsor_field: Display Sponsors (When browsing)
         static: ページ最上部に固定
         theme: サイトテーマ
+        theme_selector:
+          dark_theme: ダークテーマ
+          minimal_theme: ライトテーマ
+          light_theme: Migdal テーマ
         writing: 執筆
       danger: キケン
       destroy:

@@ -8,6 +8,10 @@
 
       if (bodyClass.includes('dark-theme')) {
         document.getElementById('body-styles').innerHTML = '<style><%= Rails.application.assets["themes/dark.css"].to_s.squish.html_safe %></style>';
+      } else if(bodyClass.includes('minimal-theme')) {
+        document.getElementById('body-styles').innerHTML = '<style><%= Rails.application.assets["themes/minimal.css"].to_s.squish.html_safe %></style>'
+      } else {
+        document.getElementById('body-styles').innerHTML = '';
       }
 
       if (bodyClass.includes('open-dyslexic-article-body')) { // Preloading custom font for anticipated use
