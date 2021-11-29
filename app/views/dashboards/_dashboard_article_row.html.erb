@@ -92,7 +92,7 @@
     <% elsif @user == article.user %>
       <a href="<%= article.path %>/delete_confirm" data-no-instant class="crayons-btn crayons-btn--ghost-danger crayons-btn--s"><%= t("delete", scope: _t) %></a>
     <% end %>
-    <a href="<%= article.path %>/edit" class="crayons-btn crayons-btn--ghost crayons-btn--s" aria-label="<%= t "edit.aria_label", scope: _t, article.title %>"><%= t("edit.text", scope: _t) %></a>
+    <a href="<%= article.path %>/edit" class="crayons-btn crayons-btn--ghost crayons-btn--s" aria-label="<%= t "edit.aria_label", scope: _t, title: article.title %>"><%= t("edit.text", scope: _t) %></a>
 
     <div class="js-ellipsis-menu relative inline-block">
       <button id="ellipsis-menu-trigger-<%= article.id %>" aria-controls="ellipsis-menu-dropdown-<%= article.id %>" aria-expanded="false" aria-haspopup="true" class="crayons-btn crayons-btn--ghost crayons-btn--s crayons-btn--icon">
