@@ -146,6 +146,6 @@ fr:
         one: "%{count} comment"
         other: "%{count} comments"
       empty: New
-      add: "Ajouter un commentaire"
+      add: Dire
       summary:
         title: Comments

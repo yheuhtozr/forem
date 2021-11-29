@@ -146,7 +146,7 @@ en:
         one: "%{count} comment"
         other: "%{count} comments"
       empty: New
-      add: "Add\_Comment"
+      add: Add
       summary:
         title: Comments
 
