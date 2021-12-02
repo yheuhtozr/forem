@@ -139,7 +139,7 @@
             <% if story.cached_organization && !@organization_article_index %>
             <span>
               <%= t("views.articles.for_org_html",
-                    start: tag("span", { class: %w[crayons-story__tertiary fw-normal] }, true), # rubocop:disable Rails/ContentTag
+                    start: tag("span", { class: %w[crayons-story__tertiary fw-normal] }, true),
                     end: "</span>".html_safe,
                     org: tag.a(story.cached_organization.name, href: "/#{story.cached_organization.slug}", class: %w[crayons-story__secondary fw-medium])) %>
             </span>
