@@ -10,6 +10,7 @@ class Article < ApplicationRecord
   acts_as_taggable_on :tags
   resourcify
 
+  include StringAttributeCleaner.for(:canonical_url, on: :before_save)
   DEFAULT_FEED_PAGINATION_WINDOW_SIZE = 50
 
   attr_accessor :publish_under_org
@@ -107,7 +108,7 @@ class Article < ApplicationRecord
   before_validation :evaluate_markdown, :create_slug
   before_save :update_cached_user
   before_save :set_all_dates
-  before_save :clean_data
+
   before_save :calculate_base_scores
   before_save :fetch_video_duration
   before_save :set_caches
@@ -150,6 +151,11 @@ class Article < ApplicationRecord
       .where("published_at <= ?", Time.current)
   }
   scope :unpublished, -> { where(published: false) }
+
+  # [@jeremyf] For approved articles is there always an assumption of
+  #            published?  Regardless, the scope helps us deal with
+  #            that in the future.
+  scope :approved, -> { where(approved: true) }
 
   scope :admin_published_with, lambda { |tag_name|
     published
@@ -255,6 +261,8 @@ class Article < ApplicationRecord
 
     order(column => dir.to_sym)
   }
+
+  scope :featured, -> { where(featured: true) }
 
   scope :feed, lambda {
                  published.includes(:taggings)
@@ -771,10 +779,6 @@ class Article < ApplicationRecord
     "#{sluggify(title, base_lang).tr('_', '')}-#{rand(100_000).to_s(26)}"
   end
 
-  def clean_data
-    self.canonical_url = nil if canonical_url == ""
-  end
-
   def touch_actor_latest_article_updated_at(destroying: false)
     return unless destroying || saved_changes.keys.intersection(%w[title cached_tag_list]).present?
 
@@ -797,7 +801,7 @@ class Article < ApplicationRecord
   end
 
   def create_conditional_autovomits
-    Spam::ArticleHandler.handle!(article: self)
+    Spam::Handler.handle_article!(article: self)
   end
 
   def async_bust

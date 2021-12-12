@@ -82,14 +82,15 @@ function showModalAfterError({
 }) {
   response
     .json()
-    .then(function parseError(errorReponse) {
+    .then(function parseError(errorResponse) {
       if (response.status === 429) {
         showRateLimitModal({ element, action_ing, action_past, timeframe });
       } else {
         showUserAlertModal(
-          i18next.t('userAlertModal.title', {action_ing, element}),
-          i18next.t('userAlertModal.error_text', {element, action_past, error: errorReponse.error}),
-          i18next.t('userAlertModal.confirm'),
+          `Error ${action_ing} ${element}`,
+          `Your ${element} could not be ${action_past} due to an error: ` +
+            errorResponse.error,
+          'OK',
         );
       }
     })

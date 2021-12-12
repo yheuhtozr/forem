@@ -180,6 +180,7 @@ export class FollowUsers extends Component {
                 return (
                   // eslint-disable-next-line react/jsx-key
                   <div
+                    key={user.id}
                     data-testid="onboarding-user-button"
                     className={`user content-row ${
                       selected ? 'selected' : 'unselected'

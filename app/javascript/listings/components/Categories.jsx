@@ -14,8 +14,11 @@ export class Categories extends Component {
           </option>
         );
       }
-      // eslint-disable-next-line react/jsx-key
-      return <option value={value}>{text}</option>;
+      return (
+        <option key={value} value={value}>
+          {text}
+        </option>
+      );
     });
   };
 
@@ -27,8 +30,7 @@ export class Categories extends Component {
           <strong>{category.name}:</strong> {category.rules}
         </li>
       );
-      // eslint-disable-next-line react/jsx-key
-      return <ul>{paragraphText}</ul>;
+      return <ul key={category.name}>{paragraphText}</ul>;
     });
 
     return (

@@ -2,8 +2,8 @@
 <% _t = "f.opensearch" %>
 <?xml version="1.0" encoding="UTF-8"?>
  <OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
-   <ShortName><%= t "short_name", scope: _t, community: helper.community_name %></ShortName>
-   <Description><%= t "description", scope: _t, community: helper.community_name %></Description>
+   <ShortName><%= t("xml.opensearch.short_name", community: helper.community_name) %></ShortName>
+   <Description><%= t("xml.opensearch.description", community: helper.community_name) %></Description>
    <Contact><%= ForemInstance.email %></Contact>
    <Url type="text/html" template="<%= URL.url("search") %>?q={searchTerms}" />
  </OpenSearchDescription>

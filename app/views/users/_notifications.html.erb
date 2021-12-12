@@ -3,7 +3,7 @@
   <div class="crayons-card crayons-card--content-rows">
     <header>
       <h2 class="crayons-subtitle-1">
-        <%= t("email", scope: _t) %>
+        <%= t("views.settings.notifications.email") %>
       </h2>
     </header>
     <div class="crayons-field crayons-field--checkbox">
@@ -57,12 +57,8 @@
   <div class="crayons-card crayons-card--content-rows">
     <header>
       <h2 class="crayons-subtitle-1 flex items-center">
-        <%= t("mobile", scope: _t) %>
-        <span class="ml-2 crayons-indicator crayons-indicator--accent"><%= t("core.beta") %></span>
+        <%= t("views.settings.notifications.mobile") %>
       </h2>
-      <p class="color-base-70">
-        <%= t("mobile_notice", scope: _t) %>
-      </p>
     </header>
     <div class="crayons-field crayons-field--checkbox">
       <%= f.check_box :mobile_comment_notifications, class: "crayons-checkbox" %>
@@ -73,10 +69,10 @@
   <div class="crayons-card crayons-card--content-rows">
     <header>
       <h2 class="crayons-subtitle-1">
-        <%= t("general", scope: _t) %>
+        <%= t("views.settings.notifications.general") %>
       </h2>
       <p class="color-base-70">
-        <%= t "general_desc_html", scope: _t, page: link_to(t("page", scope: _t), notifications_path) %>
+        <%= t("views.settings.notifications.general_desc_html", page: link_to(t("views.settings.notifications.page"), notifications_path)) %>
       </p>
     </header>
     <div class="crayons-field crayons-field--checkbox">
@@ -89,10 +85,10 @@
     </div>
   </div>
 
-  <% if current_user.trusted %>
+  <% if current_user.trusted? %>
     <div class="crayons-card crayons-card--content-rows">
       <h2 class="crayons-subtitle-1">
-        <%= t("moderator", scope: _t) %>
+        <%= t("views.settings.notifications.moderator") %>
       </h2>
       <div class="crayons-field crayons-field--checkbox">
         <%= f.check_box :mod_roundrobin_notifications, class: "crayons-checkbox" %>
@@ -102,7 +98,7 @@
   <% end %>
 
   <div class="crayons-card crayons-card--content-rows">
-    <button type="submit" class="crayons-btn"><%= t("save", scope: _t) %></button>
+    <button type="submit" class="crayons-btn"><%= t("views.settings.notifications.save") %></button>
   </div>
 
 <% end %>

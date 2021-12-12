@@ -129,7 +129,8 @@ module Constants
           }
           # Dynamic values ommitted: configurable_rate_limits and social_media_handles
         }
-      end
+        # Dynamic values omitted: configurable_rate_limits and social_media_handles
+      }.freeze
     end
   end
 end

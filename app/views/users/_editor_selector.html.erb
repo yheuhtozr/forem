@@ -4,9 +4,9 @@
   <%= f.radio_button :editor_version, version, checked: @users_setting.editor_version == version, class: "crayons-radio" %>
   <div class="crayons-field__label">
     <% if version == "v1" %>
-      <%= t("basic", scope: _t) %>
+      <%= t("views.settings.custom.basic") %>
     <% else %>
-      <%= t("rich", scope: _t) %>
+      <%= t("views.settings.custom.rich") %>
     <% end %>
   </div>
 </label>

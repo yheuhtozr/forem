@@ -1,18 +1,17 @@
-<% _t = "v.dashboard.analytics" %>
-<% title t("meta.title", scope: _t) %>
+<% title t("views.dashboard.analytics.meta.title") %>
 
 <main class="dashboard-container analytics-container crayons-layout" id="main-content">
   <nav aria-label="Dashboards">
     <ul class="list-none">
       <li>
-        <a href="<%= dashboard_path %>" class="rounded-btn crayons-link--block rounded-btn--transparent"><%= t("back", scope: _t) %></a>
+        <a href="<%= dashboard_path %>" class="rounded-btn crayons-link--block rounded-btn--transparent"><%= t("views.dashboard.analytics.back") %></a>
       </li>
       <% if @organizations.any? %>
         <li>
           <a class="rounded-btn crayons-link--block organization" 
              href="<%= dashboard_analytics_path %>"
              <%= params[:org_id] ? "" : 'aria-current="page"'.html_safe %>>
-             <%= t("your", scope: _t) %>
+             <%= t("views.dashboard.analytics.your") %>
           </a>
         </li>
         <% @organizations.each do |org| %>
@@ -22,7 +21,7 @@
               href="<%= dashboard_analytics_org_path(org.id) %>"
               data-organization-id="<%= org.id %>"
               <%= params[:org_id].to_i == org.id ? 'aria-current="page"'.html_safe : "" %>>
-              <%= t "org", scope: _t, org: org.name %>
+              <%= t("views.dashboard.analytics.org", org: org.name) %>
             </a>
           </li>
         <% end %>
@@ -32,9 +31,9 @@
       
 
   <div class="crayons-card p-3 mt-5">
-    <h1 class="fs-4xl fw-medium"><%= t "heading", scope: _t, name: @user_or_org.name %></h1>
-    <p><%= t "desc_1", scope: _t, members: Settings::Community.member_label %></p>
-    <p><%= t "desc_2", scope: _t, members: Settings::Community.member_label %></p>
+    <h1 class="fs-4xl fw-medium"><%= t("views.dashboard.analytics.heading", name: @user_or_org.name) %></h1>
+    <p><%= t("views.dashboard.analytics.desc_1", members: Settings::Community.member_label) %></p>
+    <p><%= t("views.dashboard.analytics.desc_2", members: Settings::Community.member_label) %></p>
   </div>
 
   <%= render "shared/stats" %>

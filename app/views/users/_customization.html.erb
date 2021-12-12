@@ -9,11 +9,11 @@
 
   <div class="crayons-card crayons-card--content-rows">
     <h2 class="crayons-subtitle-1">
-      <%= t("appearance", scope: _t) %>
+      <%= t("views.settings.custom.appearance") %>
     </h2>
 
     <fieldset class="crayons-field">
-      <legend class="crayons-field__label"><%= t("theme", scope: _t) %></legend>
+      <legend class="crayons-field__label"><%= t("views.settings.custom.theme") %></legend>
       <div class="theme-selector-field grid gap-4 grid-cols-2 l:grid-cols-3">
         <%# This is temporary while we're migrating themes %>
         <% %w[light_theme minimal_theme dark_theme].each do |theme| %>
@@ -23,7 +23,7 @@
     </fieldset>
 
     <div class="crayons-field">
-      <%= f.label :config_font, t("font", scope: _t), class: "crayons-field__label" %>
+      <%= f.label :config_font, t("views.settings.custom.font"), class: "crayons-field__label" %>
       <div class="theme-selector-field grid gap-4 grid-cols-2 l:grid-cols-3">
         <% Users::Setting.config_fonts.keys.each do |font| %>
           <%= render partial: "font_selector", locals: { f: f, font: font } %>
@@ -32,7 +32,7 @@
     </div>
 
     <div class="crayons-field">
-      <%= f.label :config_navbar, t("navbar", scope: _t), class: "crayons-field__label" %>
+      <%= f.label :config_navbar, t("views.settings.custom.navbar"), class: "crayons-field__label" %>
       <div class="theme-selector-field grid gap-4 grid-cols-2 l:grid-cols-3">
         <% Users::Setting.config_navbars.keys.each do |navbar| %>
           <%= render partial: "navbar_selector", locals: { f: f, navbar: navbar } %>
@@ -43,10 +43,10 @@
 
   <div class="crayons-card crayons-card--content-rows">
     <h2 class="crayons-subtitle-1">
-      <%= t("writing", scope: _t) %>
+      <%= t("views.settings.custom.writing") %>
     </h2>
     <div class="crayons-field">
-      <%= f.label :editor_version, t("editor", scope: _t), class: "crayons-field__label" %>
+      <%= f.label :editor_version, t("views.settings.custom.editor"), class: "crayons-field__label" %>
       <div class="theme-selector-field grid gap-4 grid-cols-2 l:grid-cols-3">
         <% Users::Setting.editor_versions.keys.each do |version| %>
           <%= render partial: "editor_selector", locals: { f: f, version: version } %>
@@ -69,17 +69,17 @@
 
   <div class="crayons-card crayons-card--content-rows">
     <h2 class="crayons-subtitle-1">
-      <%= t("content", scope: _t) %>
+      <%= t("views.settings.custom.content") %>
     </h2>
     <div class="crayons-field">
-      <%= f.label :experience_level, t("level", scope: _t), class: "crayons-field__label" %>
+      <%= f.label :experience_level, t("views.settings.custom.level"), class: "crayons-field__label" %>
       <div class="theme-selector-field grid grid-cols-5">
         <% user_experience_levels.each_with_index do |exp, i| %>
           <%= render partial: "experience_selector", locals: { f: f, exp: exp, i: i, label: user_experience_labels } %>
         <% end %>
       </div>
       <p>
-        <%= t("level_desc", scope: _t) %>
+        <%= t("views.settings.custom.level_desc") %>
       </p>
     </div>
   </div>
@@ -87,22 +87,22 @@
   <div class="crayons-card crayons-card--content-rows">
     <header>
       <h2 class="crayons-subtitle-1">
-        <%= t("sponsor", scope: _t) %>
+        <%= t("views.settings.custom.sponsor") %>
       </h2>
       <p>
-        <%= t("sponsor_desc", scope: _t) %>
+        <%= t("views.settings.custom.sponsor_desc") %>
       </p>
     </header>
 
     <fieldset class="grid gap-4">
       <div class="crayons-field crayons-field--checkbox">
         <%= f.check_box :display_sponsors, class: "crayons-checkbox" %>
-        <%= f.label :display_sponsors, t("sponsor_field", scope: _t), class: "crayons-field__label" %>
+        <%= f.label :display_sponsors, t("views.settings.custom.sponsor_field"), class: "crayons-field__label" %>
       </div>
 
       <div class="crayons-field crayons-field--checkbox">
         <%= f.check_box :permit_adjacent_sponsors, class: "crayons-checkbox" %>
-        <%= f.label :permit_adjacent_sponsors, t("adjacent", scope: _t), class: "crayons-field__label" %>
+        <%= f.label :permit_adjacent_sponsors, t("views.settings.custom.adjacent"), class: "crayons-field__label" %>
       </div>
     </fieldset>
   </div>
@@ -110,23 +110,23 @@
   <div class="crayons-card crayons-card--content-rows">
     <header>
       <h2 class="crayons-subtitle-1">
-        <%= t("announce", scope: _t) %>
+        <%= t("views.settings.custom.announce") %>
       </h2>
       <p>
-        <%= t("announce_desc", scope: _t) %>
+        <%= t("views.settings.custom.announce_desc") %>
       </p>
     </header>
 
     <fieldset class="grid gap-4">
       <div class="crayons-field crayons-field--checkbox">
         <%= f.check_box :display_announcements, class: "crayons-checkbox" %>
-        <%= f.label :display_announcements, t("announce_field", scope: _t), class: "crayons-field__label" %>
+        <%= f.label :display_announcements, t("views.settings.custom.announce_field"), class: "crayons-field__label" %>
       </div>
     </fieldset>
   </div>
 
   <div class="save-footer crayons-card crayons-card--content-rows">
-    <button class="crayons-btn" type="submit"><%= t("save", scope: _t) %></button>
+    <button class="crayons-btn" type="submit"><%= t("views.settings.custom.save") %></button>
   </div>
 <% end %>
 
