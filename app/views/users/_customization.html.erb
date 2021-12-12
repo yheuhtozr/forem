@@ -54,17 +54,17 @@
       </div>
     </div>
     <div class="crayons-field">
-      <%= f.label :writing_lang, t("lang", scope: _t), class: "crayons-field__label" %>
+      <%= f.label :writing_lang, t("views.settings.custom.lang"), class: "crayons-field__label" %>
       <%= f.text_field :writing_lang, class: "crayons-textfield", placeholder: "en-GB-oed", value: @users_setting.writing_lang %>
       <% groups = { site: %i[en-us ja], special: %i[mul und zxx], discard: %i[mis] } %>
       <% categories = t("languages").group_by { |k, _| groups.detect { |_g, a| a.include?(k) }&.first || (k.to_s.start_with?("x-v3-") ? :cla : :others) } %>
       <% collator = ICU::Collation::Collator.new(I18n.locale.to_s) %>
-      <select class="crayons-select" data-for="users_setting_writing_lang" oninput="fillInOption(event)" aria-label="<%= t("langs.aria_label", scope: _t) %>">
-        <option disabled selected><%= t("langs.select", scope: _t) %></option>
-        <%= grouped_options_for_select(%i[site cla special others].map { |gr| [t("langs.#{gr}", scope: _t), categories[gr].sort { |a, b| collator.compare a[1], b[1] }.map { |(c, l)| ["#{l} [#{c}]", c.to_s] }] }) %>
+      <select class="crayons-select" data-for="users_setting_writing_lang" oninput="fillInOption(event)" aria-label="<%= t("views.settings.custom.langs.aria_label") %>">
+        <option disabled selected><%= t("views.settings.custom.langs.select") %></option>
+        <%= grouped_options_for_select(%i[site cla special others].map { |gr| [t("views.settings.custom.langs.#{gr}"), categories[gr].sort { |a, b| collator.compare a[1], b[1] }.map { |(c, l)| ["#{l} [#{c}]", c.to_s] }] }) %>
       </select>
     </div>
-    <p><%= t("lang_desc_html", scope: _t) %></p>
+    <p><%= t("views.settings.custom.lang_desc_html") %></p>
   </div>
 
   <div class="crayons-card crayons-card--content-rows">
