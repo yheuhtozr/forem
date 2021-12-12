@@ -21,6 +21,7 @@ class User < ApplicationRecord
     end
   end
 
+  include StringAttributeCleaner.for(:email)
   ANY_ADMIN_ROLES = %i[admin super_admin].freeze
   USERNAME_MAX_LENGTH = 30
   USERNAME_REGEXP = /\A[a-zA-Z0-9_]+\z/
@@ -159,7 +160,7 @@ class User < ApplicationRecord
   end
 
   validate :non_banished_username, :username_changed?
-  validate :unique_including_orgs_and_podcasts, if: :username_changed?
+  validates :username, unique_cross_model_slug: true, if: :username_changed?
   validate :can_send_confirmation_email
   validate :update_rate_limit
   # NOTE: when updating the password on a Devise enabled model, the :encrypted_password
@@ -205,8 +206,8 @@ class User < ApplicationRecord
   }
   before_validation :check_for_username_change
   before_validation :downcase_email
+
   # make sure usernames are not empty, to be able to use the database unique index
-  before_validation :verify_email
   before_validation :set_username
   before_validation :strip_payment_pointer
   before_create :create_users_settings_and_notification_settings_records
@@ -350,11 +351,16 @@ class User < ApplicationRecord
     has_role?(:suspended)
   end
 
-  def warned
+  def warned?
     has_role?(:warned)
   end
 
-  def admin?
+  def warned
+    ActiveSupport::Deprecation.warn("User#warned is deprecated, favor User#warned?")
+    warned?
+  end
+
+  def super_admin?
     has_role?(:super_admin)
   end
 
@@ -370,16 +376,21 @@ class User < ApplicationRecord
     has_role?(:tech_admin) || has_role?(:super_admin)
   end
 
-  def vomitted_on?
+  def vomited_on?
     Reaction.exists?(reactable_id: id, reactable_type: "User", category: "vomit", status: "confirmed")
   end
 
-  def trusted
+  def trusted?
     return @trusted if defined? @trusted
 
     @trusted = Rails.cache.fetch("user-#{id}/has_trusted_role", expires_in: 200.hours) do
       has_role?(:trusted)
     end
+  end
+
+  def trusted
+    ActiveSupport::Deprecation.warn("User#trusted is deprecated, favor User#trusted?")
+    trusted?
   end
 
   def moderator_for_tags
@@ -398,21 +409,21 @@ class User < ApplicationRecord
   end
 
   def admin_organizations
-    org_ids = organization_memberships.where(type_of_user: "admin").pluck(:organization_id)
+    org_ids = organization_memberships.admin.pluck(:organization_id)
     organizations.where(id: org_ids)
   end
 
   def member_organizations
-    org_ids = organization_memberships.where(type_of_user: %w[admin member]).pluck(:organization_id)
+    org_ids = organization_memberships.member.pluck(:organization_id)
     organizations.where(id: org_ids)
   end
 
   def org_member?(organization)
-    OrganizationMembership.exists?(user: self, organization: organization, type_of_user: %w[admin member])
+    organization_memberships.member.exists?(organization: organization)
   end
 
   def org_admin?(organization)
-    OrganizationMembership.exists?(user: self, organization: organization, type_of_user: "admin")
+    organization_memberships.admin.exists?(organization: organization)
   end
 
   def block; end
@@ -483,7 +494,7 @@ class User < ApplicationRecord
   end
 
   def auditable?
-    trusted || tag_moderator? || any_admin?
+    trusted? || tag_moderator? || any_admin?
   end
 
   def tag_moderator?
@@ -536,6 +547,10 @@ class User < ApplicationRecord
     notification_setting.email_follower_notifications
   end
 
+  def reactions_to
+    Reaction.for_user(self)
+  end
+
   protected
 
   # Send emails asynchronously
@@ -556,10 +571,6 @@ class User < ApplicationRecord
     return unless (set_up_profile_broadcast = Broadcast.active.find_by(title: "Welcome Notification: set_up_profile"))
 
     Notification.send_welcome_notification(id, set_up_profile_broadcast.id)
-  end
-
-  def verify_email
-    self.email = nil if email == ""
   end
 
   def set_username
@@ -597,10 +608,6 @@ class User < ApplicationRecord
 
     self.old_old_username = old_username
     self.old_username = username_was
-    articles.find_each do |article|
-      article.path = article.path.gsub(username_was, username)
-      article.save
-    end
   end
 
   def bust_cache
@@ -608,16 +615,7 @@ class User < ApplicationRecord
   end
 
   def create_conditional_autovomits
-    return unless Settings::RateLimit.spam_trigger_terms.any? do |term|
-      name.match?(/#{term}/i)
-    end
-
-    Reaction.create!(
-      user_id: Settings::General.mascot_user_id,
-      reactable_id: id,
-      reactable_type: "User",
-      category: "vomit",
-    )
+    Spam::Handler.handle_user!(user: self)
   end
 
   # TODO: @citizen428 I don't want to completely remove this method yet, as we

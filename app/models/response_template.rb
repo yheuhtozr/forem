@@ -37,7 +37,7 @@ class ResponseTemplate < ApplicationRecord
 
   def template_count
     return unless user
-    return if user.trusted || user.response_templates.count <= 30
+    return if user.trusted? || user.response_templates.count <= 30
 
     errors.add(:user, I18n.t("models.response_template.response_template_limit_of"))
   end

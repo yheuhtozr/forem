@@ -277,8 +277,7 @@ class Comment < ApplicationRecord
   end
 
   def synchronous_spam_score_check
-    return unless
-      Settings::RateLimit.spam_trigger_terms.any? { |term| Regexp.new(term.downcase).match?(title.downcase) }
+    return unless Settings::RateLimit.trigger_spam_for?(text: [title, body_markdown].join("\n"))
 
     self.score = -1 # ensure notification is not sent if possibly spammy
   end

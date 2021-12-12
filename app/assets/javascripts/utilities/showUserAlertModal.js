@@ -82,7 +82,7 @@ function showModalAfterError({
 }) {
   response
     .json()
-    .then(function parseError(errorReponse) {
+    .then(function parseError(errorResponse) {
       if (response.status === 429) {
         showRateLimitModal({ element, action_ing, action_past, timeframe });
       } else {

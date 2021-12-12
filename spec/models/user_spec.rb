@@ -538,36 +538,10 @@ RSpec.describe User, type: :model do
   end
 
   describe "spam" do
-    before do
-      allow(Settings::General).to receive(:mascot_user_id).and_return(user.id)
-      allow(Settings::RateLimit).to receive(:spam_trigger_terms).and_return(
-        ["yahoomagoo gogo", "testtestetest", "magoo.+magee"],
-      )
-    end
+    it "delegates spam handling to Spam::Handler.handle_user!" do
+      allow(Spam::Handler).to receive(:handle_user!).with(user: user).and_call_original
 
-    it "creates vomit reaction if possible spam" do
-      user.name = "Hi my name is Yahoomagoo gogo"
       user.save
-      expect(Reaction.last.category).to eq("vomit")
-      expect(Reaction.last.reactable_id).to eq(user.id)
-    end
-
-    it "creates vomit reaction if possible spam based on pattern" do
-      user.name = "Hi my name is magoo to the magee"
-      user.save
-      expect(Reaction.last.category).to eq("vomit")
-      expect(Reaction.last.reactable_id).to eq(user.id)
-    end
-
-    it "does not create vomit reaction if does not have matching title" do
-      user.save
-      expect(Reaction.last).to be nil
-    end
-
-    it "does not create vomit reaction if does not have pattern match" do
-      user.name = "Hi my name is magoo to"
-      user.save
-      expect(Reaction.last).to be nil
     end
   end
 
@@ -638,7 +612,7 @@ RSpec.describe User, type: :model do
 
     it "creates proper body class with defaults" do
       # rubocop:disable Layout/LineLength
-      classes = "light-theme sans-serif-article-body trusted-status-#{user.trusted} #{user.setting.config_navbar}-header"
+      classes = "light-theme sans-serif-article-body trusted-status-#{user.trusted?} #{user.setting.config_navbar}-header"
       # rubocop:enable Layout/LineLength
       expect(user.decorate.config_body_class).to eq(classes)
     end
@@ -647,7 +621,7 @@ RSpec.describe User, type: :model do
       user.setting.config_font = "sans_serif"
 
       # rubocop:disable Layout/LineLength
-      classes = "light-theme sans-serif-article-body trusted-status-#{user.trusted} #{user.setting.config_navbar}-header"
+      classes = "light-theme sans-serif-article-body trusted-status-#{user.trusted?} #{user.setting.config_navbar}-header"
       # rubocop:enable Layout/LineLength
       expect(user.decorate.config_body_class).to eq(classes)
     end
@@ -656,7 +630,7 @@ RSpec.describe User, type: :model do
       user.setting.config_font = "open_dyslexic"
 
       # rubocop:disable Layout/LineLength
-      classes = "light-theme open-dyslexic-article-body trusted-status-#{user.trusted} #{user.setting.config_navbar}-header"
+      classes = "light-theme open-dyslexic-article-body trusted-status-#{user.trusted?} #{user.setting.config_navbar}-header"
       # rubocop:enable Layout/LineLength
       expect(user.decorate.config_body_class).to eq(classes)
     end
@@ -664,7 +638,8 @@ RSpec.describe User, type: :model do
     it "creates proper body class with dark theme" do
       user.setting.config_theme = "dark_theme"
 
-      classes = "dark-theme sans-serif-article-body trusted-status-#{user.trusted} #{user.setting.config_navbar}-header"
+      classes =
+        "dark-theme sans-serif-article-body trusted-status-#{user.trusted?} #{user.setting.config_navbar}-header"
       expect(user.decorate.config_body_class).to eq(classes)
     end
   end
@@ -827,7 +802,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe "#trusted" do
+  describe "#trusted?" do
     it "memoizes the result from rolify" do
       allow(Rails.cache)
         .to receive(:fetch)
@@ -835,7 +810,7 @@ RSpec.describe User, type: :model do
         .and_return(false)
         .once
 
-      2.times { user.trusted }
+      2.times { user.trusted? }
     end
   end
 

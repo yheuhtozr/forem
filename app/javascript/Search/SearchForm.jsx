@@ -40,11 +40,8 @@ export const SearchForm = forwardRef(({ searchTerm, onSubmitSearch }, ref) => (
         />
         <Button
           type="submit"
-          variant="ghost"
-          contentType="icon-rounded"
           icon={SearchIcon}
-          size="s"
-          className="absolute right-2 bottom-0 top-0 m-1"
+          className="absolute inset-px left-auto mt-0 py-0"
           aria-label="Search"
         />
       </div>

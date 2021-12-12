@@ -28,6 +28,7 @@ export class CategoryLinksMobile extends Component {
             return (
               // eslint-disable-next-line react/jsx-key
               <option
+                key={category.slug}
                 value={`/listings/${category.slug}`}
                 selected={category.slug === selectedCategory}
               >

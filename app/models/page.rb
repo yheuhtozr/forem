@@ -6,7 +6,7 @@ class Page < ApplicationRecord
   validates :slug, presence: true, format: /\A[0-9a-z\-_]*\z/
   validates :template, inclusion: { in: TEMPLATE_OPTIONS }
   validate :body_present
-  validate :unique_slug_including_users_and_orgs, if: :slug_changed?
+  validates :slug, unique_cross_model_slug: true, if: :slug_changed?
 
   before_validation :set_default_template
   before_save :evaluate_markdown

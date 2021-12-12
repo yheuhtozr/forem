@@ -18,6 +18,7 @@ en:
     edit_profile: Edit profile
     follow: Follow
     follow_back: Follow back
+    follower: Follower
     following: Following
     loading: loading...
     joined: Joined
@@ -29,7 +30,6 @@ en:
     more_from: More from
     pinned: Pinned
     post: Post
-    posts: Posts
     reaction: Reaction
     reactions:
       heart: Heart
@@ -38,18 +38,8 @@ en:
     reply: Reply
     report_abuse: Report abuse
     search: Search
-    series: Series
     settings: Settings
     trending_on: Trending on
-  dashboard:
-    empty_follower: You don't have any followers yet...
-    empty_post: This is where you can manage your posts, but you haven't written anything yet.
-    following_users: Following users
-    loading: loading...
-    not_following_any_users: You don't follow any users...
-    page_title: Dashboard
-    upload_a_video: Upload a video
-    write_new_post: Write your first post now
   datetime:
     distance_in_words_ago: # https://github.com/openstreetmap/openstreetmap-website/issues/2255
       about_x_hours:
@@ -199,16 +189,9 @@ en:
       wrong_length:
         one: is the wrong length (should be 1 character)
         other: is the wrong length (should be %{count} characters)
-  settings_menu:
-    account: Account
-    billing: Billing
-    customization: Customization
-    extensions: Extensions
-    notifications: Notifications
-    organization: Organization
-    profile: Profile
   time:
     formats:
+      json: "%b %e, %Y"
       comment: "%B %d, %Y"
       github: "%b %d, %Y"
       json: "%b %e, %Y"
