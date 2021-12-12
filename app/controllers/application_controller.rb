@@ -179,11 +179,11 @@ class ApplicationController < ActionController::Base
   end
 
   def determine_locale
-    I18n.locale = if %w[en fr].include?(params[:locale])
-                    params[:locale]
-                  else
-                    Settings::UserExperience.default_locale
-                  end
+    I18n.locale = # if %w[en fr].include?(params[:locale])
+      params[:locale]
+    # else
+    #  Settings::UserExperience.default_locale
+    # end
   end
 
   def remember_cookie_sync
