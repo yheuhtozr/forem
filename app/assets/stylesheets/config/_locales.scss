@@ -17,22 +17,29 @@
 }
 
 $l-ja: article-lang('ja');
+@mixin ja-styles {
+  font-size: var(--fs-base);
+  $scale: 1.25;
+  line-height: calc(var(--lh-base) * #{$scale});
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    line-height: calc(var(--lh-tight) * #{$scale});
+  }
+}
 
 // overrides typography.scss
-.text-styles {
-  #{$l-ja} & {
+#{$l-ja} .text-styles {
+  @include ja-styles;
+}
+#{sel-lang('.localized-text-styles', 'ja')} {
+  @include ja-styles;
+  pre {
     font-size: var(--fs-base);
-    $scale: 1.25;
-    line-height: calc(var(--lh-base) * #{$scale});
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      line-height: calc(var(--lh-tight) * #{$scale});
-    }
   }
 }
 
