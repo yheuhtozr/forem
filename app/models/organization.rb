@@ -154,15 +154,4 @@ class Organization < ApplicationRecord
   def bust_cache
     Organizations::BustCacheWorker.perform_async(id, slug)
   end
-
-  def unique_slug_including_users_and_podcasts
-    slug_taken = (
-      User.exists?(username: slug) ||
-      Podcast.exists?(slug: slug) ||
-      Page.exists?(slug: slug) ||
-      slug&.include?("sitemap-")
-    )
-
-    errors.add(:slug, I18n.t("models.organization.is_taken")) if slug_taken
-  end
 end

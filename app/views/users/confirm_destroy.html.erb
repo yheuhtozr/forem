@@ -1,33 +1,33 @@
 <% _t = "v.settings.destroy" %>
 <div class="user-settings-page crayons-layout crayons-layout--limited-l gap-0">
   <div class="crayons-card min-w-0 text-padding">
-    <h2 class="crayons-title mb-4"><%= t("heading", scope: _t) %></h2>
+    <h2 class="crayons-title mb-4"><%= t("views.settings.destroy.heading") %></h2>
     <div class="settings-form">
         <%= form_tag user_full_delete_path, method: :delete, autocomplete: "off", id: "delete__account", class: "grid gap-4 mb-4" do %>
-          <%= t("desc", scope: _t) %>
+          <%= t("views.settings.destroy.desc") %>
           <ul class="my-0 ml-6 list-disc">
-            <li><%= t "desc_1_html", scope: _t, twitter: link_to(t("twitter", scope: _t), "https://twitter.com/settings/applications"), github: link_to(t("github", scope: _t), "https://github.com/settings/applications") %>
+            <li><%= t("views.settings.destroy.desc_1_html", twitter: link_to(t("views.settings.destroy.twitter"), "https://twitter.com/settings/applications"), github: link_to(t("views.settings.destroy.github"), "https://github.com/settings/applications")) %>
             </li>
             <%# TODO: expand the delete messaging later %>
-            <li><%= t("desc_2", scope: _t) %></li>
-            <li><%= t("desc_3", scope: _t) %></li>
+            <li><%= t("views.settings.destroy.desc_2") %></li>
+            <li><%= t("views.settings.destroy.desc_3") %></li>
           </ul>
-          <h3><%= t("to_delete", scope: _t) %></h3>
+          <h3><%= t("views.settings.destroy.to_delete") %></h3>
         <div class="crayons-field m:w-50">
           <label for="delete__account__username__field" class="crayons-field__label">
-            <%= t("type", scope: _t) %>
+            <%= t("views.settings.destroy.type") %>
           </label>
-          <input type="text" name="delete__account__username__field" class="crayons-textfield " id="delete__account__username__field" placeholder="<%= t("username", scope: _t) %>">
+          <input type="text" name="delete__account__username__field" class="crayons-textfield " id="delete__account__username__field" placeholder="<%= t("views.settings.destroy.username") %>">
         </div>
         <div class="crayons-field m:w-50">
           <label for="delete__account__verification__field" class="crayons-field__label">
-            <%= t "confirm_html", scope: _t, word: t("word", scope: _t) %>
+            <%= t("views.settings.destroy.confirm_html", word: t("views.settings.destroy.word")) %>
           </label>
           <input type="text" name="delete__account__verification__field" class="crayons-textfield" id="delete__account__verification__field">
         </div>
         <div>
           <button class="crayons-btn crayons-btn--danger" id="delete__account__btn" type="submit" disabled="true">
-            <%= t("submit", scope: _t) %>
+            <%= t("views.settings.destroy.submit") %>
           </button>
         </div>
         <% end %>
@@ -36,14 +36,14 @@
         const deleteAccountUsernameInput = document.getElementById('delete__account__username__field');
         const deleteAccountVerificationInput = document.getElementById('delete__account__verification__field');
         function bothInputsVerified() {
-          return deleteAccountUsernameInput.value === '<%= @user.username %>' && deleteAcccountVerificationInput.value === "<%= t("word", scope: _t) %>";
+          return deleteAccountUsernameInput.value === '<%= @user.username %>' && deleteAccountVerificationInput.value === "<%= t("views.settings.destroy.word") %>";
         }
         const disableDeleteAccountBtn = () => { deleteAccountBtn.disabled = !bothInputsVerified() };
         deleteAccountUsernameInput.addEventListener('input', disableDeleteAccountBtn);
         deleteAccountVerificationInput.addEventListener('input', disableDeleteAccountBtn);
       </script>
       <p>
-        <%= t "ghost_html", scope: _t, ghost: link_to("@ghost", "/ghost"), click: email_link(text: t("click", scope: _t), additional_info: { subject: "Request Account Deletion", body: @email_body }) %>
+        <%= t("views.settings.destroy.ghost_html", ghost: link_to("@ghost", "/ghost"), click: email_link(text: t("views.settings.destroy.click"), additional_info: { subject: "Request Account Deletion", body: @email_body })) %>
       </p>
 
       <p>

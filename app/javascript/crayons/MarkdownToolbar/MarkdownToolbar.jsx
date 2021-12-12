@@ -322,7 +322,7 @@ export const MarkdownToolbar = ({ textAreaId }) => {
 
   return (
     <div
-      className="editor-toolbar relative overflow-x-auto m:overflow-visible"
+      className="editor-toolbar relative"
       aria-label={i18next.t('editor.toolbar.aria_label')}
       role="toolbar"
       aria-controls={textAreaId}

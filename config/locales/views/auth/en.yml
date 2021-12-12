@@ -1,11 +1,11 @@
 ---
 en:
-  v:
+  views:
     auth:
       background: forem background
       create:
         aria_label: Create new account
-        text: Create new account
+        text: Create account
       creator:
         text1: Let's start your Forem journey!
         text2: Create your admin account first.
@@ -73,4 +73,5 @@ en:
         step_5: "For Empowering Community 🌱"
       tagline: Log in to customize your experience and get involved.
       title:
-        text_html: <a href="/">%{name}</a>, a haven for conlang & conworld fans
+        text_html: <a href="/">%{name}</a> is a community of %{maybe_size}amazing %{label}
+        size: "%{num} "

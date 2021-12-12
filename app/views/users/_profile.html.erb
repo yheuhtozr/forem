@@ -6,7 +6,7 @@
 <%= form_with(url: profile_path(@user.profile_id), method: "put", html: { class: "sticky-footer-form", id: "user-profile-form" }) do |f| %>
 
   <div class="crayons-card crayons-card--content-rows">
-    <h2><%= t("group.user", scope: _t) %></h2>
+    <h2><%= t("views.settings.group.user") %></h2>
 
     <div class="crayons-field">
       <%= f.label :name, t("helpers.label.user.name"), for: "user[name]", class: "crayons-field__label" %>
@@ -57,7 +57,7 @@
   <% profile = @user.profile %>
 
   <div class="crayons-card crayons-card--content-rows">
-    <h2><%= t("group.Basic", scope: _t) %></h2>
+    <h2><%= t("views.settings.group.Basic") %></h2>
 
     <div class="crayons-field">
       <label class="crayons-field__label" for="profile[website_url]">
@@ -113,7 +113,7 @@
 
   <% ProfileFieldGroup.non_empty_groups.each do |group| %>
     <div class="crayons-card crayons-card--content-rows">
-      <h2><%= t("group.#{group.name}", scope: _t) %></h2>
+      <h2><%= t("views.settings.group.#{group.name}", default: group.name) %></h2>
       <% if group.description.present? %>
         <div class="color-base-60"><%= group.description %></div>
       <% end %>
@@ -195,6 +195,6 @@
   </div>
 
   <div class="save-footer crayons-card crayons-card--content-rows">
-    <button type="submit" class="crayons-btn"><%= t("save_profile", scope: _t) %></button>
+    <button type="submit" class="crayons-btn"><%= t("views.settings.save_profile") %></button>
   </div>
 <% end %>

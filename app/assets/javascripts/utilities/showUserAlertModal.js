@@ -88,7 +88,7 @@ function showModalAfterError({
       } else {
         showUserAlertModal(
           i18next.t('userAlertModal.title', {action_ing, element}),
-          i18next.t('userAlertModal.error_text', {element, action_past, error: errorReponse.error}),
+          i18next.t('userAlertModal.error_text', {element, action_past, error: errorResponse.error}),
           i18next.t('userAlertModal.confirm'),
         );
       }

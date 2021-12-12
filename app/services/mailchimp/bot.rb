@@ -196,7 +196,7 @@ module Mailchimp
       md5_email(email)
     end
 
-    def previously_subcribed?(error)
+    def previously_subscribed?(error)
       error.title.include?(I18n.t("services.mailchimp.bot.member_in_compliance_state"))
     end
   end

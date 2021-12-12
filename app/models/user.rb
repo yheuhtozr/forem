@@ -440,16 +440,6 @@ class User < ApplicationRecord
     UserBlock.blocking?(blocker_id, id)
   end
 
-  def unique_including_orgs_and_podcasts
-    username_taken = (
-      Organization.exists?(slug: username) ||
-      Podcast.exists?(slug: username) ||
-      Page.exists?(slug: username)
-    )
-
-    errors.add(:username, I18n.t("models.user.is_taken2")) if username_taken
-  end
-
   def non_banished_username
     errors.add(:username, I18n.t("models.user.has_been_banished")) if BanishedUser.exists?(username: username)
   end

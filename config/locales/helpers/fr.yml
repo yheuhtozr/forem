@@ -2,26 +2,6 @@
 fr:
   helpers:
     label:
-      organization:
-        name: Name
-        slug: Username
-        profile_image: Profile image
-        nav_image: Logo for light themes
-        dark_nav_image: Logo for dark themes
-        twitter_username: Twitter username
-        github_username: GitHub username
-        url: Website url
-        tag_line: Tag line
-        summary: Summary
-        location: Location
-        email: Support email
-        company_size: Organization size
-        story: Our story
-        tech_stack: Our stack
-        cta_body_markdown: Body text
-        cta_button_text: Link text
-        cta_button_url: Link url
-        proof: Proof
       listing:
         body_markdown: Body Markdown
         expires_at: Custom Expire Date

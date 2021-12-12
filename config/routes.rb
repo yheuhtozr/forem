@@ -26,19 +26,8 @@ Rails.application.routes.draw do
 
   # [@forem/delightful] - all routes are nested under this optional scope to
   # begin supporting i18n.
-  scope "(/::locale)", defaults: { locale: nil } do
-    get "/", to: "stories#index"
-    require "sidekiq/web"
-    require "sidekiq_unique_jobs/web"
-    require "sidekiq/cron/web"
-
-    authenticated :user, ->(user) { user.tech_admin? } do
-      Sidekiq::Web.class_eval do
-        use Rack::Protection, permitted_origins: [URL.url] # resolve Rack Protection HttpOrigin
-      end
-      mount Sidekiq::Web => "/sidekiq"
-      mount FieldTest::Engine, at: "abtests"
-    end
+  scope "(/locale/:locale)", defaults: { locale: nil } do
+    get "/locale/:locale", to: "stories#index"
 
     draw :admin
 

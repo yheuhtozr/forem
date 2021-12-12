@@ -50,18 +50,6 @@ class Page < ApplicationRecord
     errors.add(:body_markdown, "must exist if body_html or body_json doesn't exist.")
   end
 
-  def unique_slug_including_users_and_orgs
-    slug_exists = (
-      User.exists?(username: slug) ||
-      Organization.exists?(slug: slug) ||
-      Podcast.exists?(slug: slug) ||
-      slug.include?("sitemap-")
-    )
-    return unless slug_exists
-
-    errors.add(:slug, I18n.t("models.page.is_taken"))
-  end
-
   # As there can only be one global landing page, we want to ensure that
   # data integrity is preserved by setting `landing_page` to `false` for all
   # other pages if the current one was transformed into a landing page
