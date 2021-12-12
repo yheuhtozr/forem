@@ -99,6 +99,10 @@ en:
         sponsor_field: Display Sponsors (When browsing)
         static: Static top of page
         theme: Site Theme
+        theme_selector:
+          dark_theme: Dark Theme
+          minimal_theme: Light Theme
+          light_theme: Migdal Theme
         writing: Writing
       danger: Danger Zone
       destroy:
