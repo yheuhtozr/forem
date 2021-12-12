@@ -18,31 +18,19 @@
   <article id="main-content" class="body localized-text-styles">
     <h1 style="font-size: 57px; font-weight: 700; line-height: 73px;">Editor Guide 🤓</h1>
 
-    <% if version == "1" %>
-      <%= render "pages/v1_editor_guide_preamble" %>
-    <% else %>
-      <p>
-        <em>
-          <strong>Our editor has two versions</strong>.
-          If you prefer Jekyll-style "frontmatter", switch to "basic markdown" in
-          <a href="<%= user_settings_path(:customization) %>">Settings → Customization</a>.
-        </em>
-      </p>
-
-      <h2 style="font-size:2.8em" id="#things-to-know" class="permalink-heading">
-        <strong>Things to Know</strong>
-        <a href="#things-to-know" aria-label="permalink for Things to know">
-          <%= inline_svg_tag("small-link.svg", aria_hidden: true) %>
-        </a>
-      </h2>
-      <ul>
-        <li>Use <a href="#markdown"><strong>markdown</strong></a> to write and format <a href="<%= root_path %>"><%= community_name %></a> posts.</li>
-        <li>Most of the time, you can write inline HTML directly into your posts.</li>
-        <li>You can use <strong><a href="#liquidtags">Liquid tags</a></strong> to make add rich content such as tweets and videos.</li>
-        <li>Links to unpublished posts are shareable for feedback/review.</li>
-        <li>The best size for your <b>cover image</b> is 1000 X 420.</li>
-      </ul>
-    <% end %>
+    <h2 style="font-size:2.8em" id="#things-to-know" class="permalink-heading">
+      <strong>Things to Know</strong>
+      <a href="#things-to-know" aria-label="permalink for Things to know">
+        <%= inline_svg_tag("small-link.svg", aria_hidden: true) %>
+      </a>
+    </h2>
+    <ul>
+      <li>Use <a href="#markdown"><strong>markdown</strong></a> to write and format <a href="<%= root_path %>"><%= community_name %></a> posts.</li>
+      <li>Most of the time, you can write inline HTML directly into your posts.</li>
+      <li>You can use <strong><a href="#liquidtags">Liquid tags</a></strong> to make add rich content such as tweets and videos.</li>
+      <li>Links to unpublished posts are shareable for feedback/review.</li>
+      <li>The best size for your <b>cover image</b> is 1000 X 420.</li>
+    </ul>
 
     <h2 style="font-size:2.8em" id="markdown" class="permalink-heading">
       <strong>✍ Markdown Basics</strong>

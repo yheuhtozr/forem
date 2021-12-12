@@ -18,31 +18,19 @@
   <article id="main-content" class="body localized-text-styles" lang="ja">
     <h1 style="font-size: 57px; font-weight: 700; line-height: 73px;">編集ガイド 🤓</h1>
 
-    <% if version == "1" %>
-      <%= render "pages/v1_editor_guide_preamble" %>
-    <% else %>
-      <p>
-        <em>
-          <strong>Our editor has two versions</strong>.
-          If you prefer Jekyll-style "frontmatter", switch to "basic markdown" in
-          <a href="<%= user_settings_path(:customization) %>">Settings → Customization</a>.
-        </em>
-      </p>
-
-      <h2 style="font-size:2.8em" id="#things-to-know" class="permalink-heading">
-        <strong>ポイント</strong>
-        <a href="#things-to-know" aria-label="「ポイント」のパーマリンク">
-          <%= inline_svg_tag("small-link.svg", aria_hidden: true) %>
-        </a>
-      </h2>
-      <ul>
-        <li><a href="<%= root_path %>"><%= community_name %></a> への書き込みは <a href="#markdown"><strong>Markdown</strong></a> 記法で整形します。</li>
-        <li>多くの場合、本文の行中に直接 HTML を挟むことができます。</li>
-        <li><strong><a href="#liquidtags">Liquid タグ</a></strong>を使ってツイートや動画などの高度なコンテンツを埋め込むことができます。</li>
-        <li>意見をもらうためなどに、非公開記事も特定の URL からアクセス可能です。</li>
-        <li><b>見出し画像</b>のサイズは 1000 × 420 がおすすめです。</li>
-      </ul>
-    <% end %>
+    <h2 style="font-size:2.8em" id="#things-to-know" class="permalink-heading">
+      <strong>ポイント</strong>
+      <a href="#things-to-know" aria-label="「ポイント」のパーマリンク">
+        <%= inline_svg_tag("small-link.svg", aria_hidden: true) %>
+      </a>
+    </h2>
+    <ul>
+      <li><a href="<%= root_path %>"><%= community_name %></a> への書き込みは <a href="#markdown"><strong>Markdown</strong></a> 記法で整形します。</li>
+      <li>多くの場合、本文の行中に直接 HTML を挟むことができます。</li>
+      <li><strong><a href="#liquidtags">Liquid タグ</a></strong>を使ってツイートや動画などの高度なコンテンツを埋め込むことができます。</li>
+      <li>意見をもらうためなどに、非公開記事も特定の URL からアクセス可能です。</li>
+      <li><b>見出し画像</b>のサイズは 1000 × 420 がおすすめです。</li>
+    </ul>
 
     <h2 style="font-size:2.8em" id="markdown" class="permalink-heading">
       <strong>✍ Markdown 入門</strong>
