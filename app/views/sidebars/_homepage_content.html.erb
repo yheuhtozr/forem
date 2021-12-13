@@ -1,4 +1,3 @@
-<% _t = "v.main.side" %>
 <aside class="side-bar sidebar-additional showing grid gap-4" id="sidebar-additional">
   <% cache(release_adjusted_cache_key("main-article-right-sidebar-discussions-#{params[:timeframe]}"), expires_in: (params[:timeframe].blank? ? 120 : 360).seconds) do %>
     <% @sidebar_ad = DisplayAd.for_display("sidebar_right") %>

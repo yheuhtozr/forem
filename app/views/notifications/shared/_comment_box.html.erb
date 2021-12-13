@@ -1,4 +1,3 @@
-<% _t = "v.comments.footer" %>
 <% cache "comment-box-#{@last_user_reaction}-#{@last_user_comment}-#{json_data['comment']['updated_at']}-#{json_data['comment']['id']}" do %>
   <% if json_data["comment"]["commentable"] %>
     <% if json_data["comment"]["depth"] && json_data["comment"]["depth"] > 0 %>

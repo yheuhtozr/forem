@@ -1,4 +1,3 @@
-<% _t = "v.notifications.reacted" %>
 <div class="flex items-center">
   <% cache "activity-profile-pic-#{notification.json_data['user']['id']}-#{notification.json_data['user']['profile_image_90']}" do %>
     <%= render "notifications/shared/profile_pic", json_data: notification.json_data %>
