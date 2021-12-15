@@ -1,0 +1,19 @@
+@import '../variables';
+
+.ltag_glyph {
+  display: inline !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  height: 1em !important;
+}
+
+.ltag_hidden {
+  background-color: var(--body-color);
+  color: var(--body-color);
+  padding: 0.1em 0;
+  &:hover,
+  &:focus {
+    background-color: var(--base-a10);
+    color: inherit;
+  }
+}
