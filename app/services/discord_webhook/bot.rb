@@ -4,12 +4,16 @@ module DiscordWebhook
 
     class << self
       def new_post(article)
+        return unless ApplicationConfig["DISCORD_KIITA_HOOK_URL"]
+
         builder = Discordrb::Webhooks::Builder.new(content: "Migdal の新着記事です", embeds: [post_embed(article)])
         target.execute builder
         target(url: ApplicationConfig["DISCORD_KIITA_HOOK_URL"]).execute builder
       end
 
       def edited_post(article)
+        return unless ApplicationConfig["DISCORD_KIITA_HOOK_URL"]
+
         target(url: ApplicationConfig["DISCORD_KIITA_HOOK_URL"]).execute do |post|
           post.content = "Migdal の記事が更新されました"
           post << post_embed(article)
@@ -17,6 +21,8 @@ module DiscordWebhook
       end
 
       def new_listing(listing)
+        return unless ApplicationConfig["DISCORD_WEBHOOK_URL"]
+
         target.execute do |post|
           post.content = "Migdal の告知情報です"
           post.add_embed do |embed|

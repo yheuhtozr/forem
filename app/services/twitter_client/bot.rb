@@ -3,12 +3,12 @@ module TwitterClient
   class Bot
     class << self
       def tweet(status)
-        target.update(status)
+        target.update(status) if active?
       end
 
       def new_post(article)
         # because an article's title is max 128 chars, title + URL (t.co) never exceeds current Twitter char limit
-        tweet "#{article.title} #{URL.url(article.path)}"
+        tweet "#{article.title} #{URL.url(article.path)}" if active?
       end
 
       private
@@ -63,6 +63,13 @@ module TwitterClient
             write: 5
           },
         )
+      end
+
+      def active?
+        ApplicationConfig["TWITTER_BOT_API_KEY"] &&
+          ApplicationConfig["TWITTER_BOT_API_SECRET"] &&
+          ApplicationConfig["TWITTER_BOT_ACCESS_TOKEN"] &&
+          ApplicationConfig["TWITTER_BOT_ACCESS_SECRET"]
       end
     end
   end
