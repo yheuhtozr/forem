@@ -2,5 +2,7 @@
 en-US:
   migdal:
     liquid:
+      dartpad:
+        invalid: Invalid DartPad (Gist) ID
       glyph:
         no_name: unknown glyph

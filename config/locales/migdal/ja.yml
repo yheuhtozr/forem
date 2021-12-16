@@ -2,5 +2,7 @@
 ja:
   migdal:
     liquid:
+      dartpad:
+        invalid: 無効な DartPad (Gist) ID です
       glyph:
         no_name: 外字
