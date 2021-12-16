@@ -1,5 +1,5 @@
 <iframe
-  src="https://dartpad.dev/embed-<%= type %>.html?id=<%= id %>"
+  src="https://dartpad.dev/embed-<%= type %>.html?id=<%= id %>&<%= options.map { |k, v| "#{k}=#{v}" }.join("&") %>"
   scrolling="no"
   frameborder="no"
   allowtransparency="true"
