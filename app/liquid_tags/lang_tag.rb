@@ -13,7 +13,7 @@ class LangTag < Liquid::Block
   end
 
   def render(_context)
-    content = super.sub(/\A\s*(?:<br>\s)+|(?:<br>\s)+\z/, "").html_safe # rubocop:disable Rails/OutputSafety
+    content = super.gsub(/\A\s*(?:<br>\s)+|(?:<br>\s)+\z/, "").html_safe # rubocop:disable Rails/OutputSafety
 
     ApplicationController.render(
       partial: PARTIAL,

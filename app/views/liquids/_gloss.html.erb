@@ -1,0 +1,26 @@
+<% if include_js %>
+  <script src="/javascripts/leipzig.min.js" defer async></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      Leipzig(".ltag_gloss", { lastLineFree: false }).gloss();
+    });
+  </script>
+<% end %>
+<%# use <ul> instead of <div> to work around some quirks of the markdown parser %>
+<ul class="ltag_gloss">
+  <% if orig %>
+    <li class="gloss__line--original">
+      <%== orig %>
+    </li>
+  <% end %>
+  <% lines.each do |gl| %>
+    <li>
+      <%== gl %>
+    </li>
+  <% end %>
+  <% if free %>
+    <li class="gloss__line--free">
+      <%== free %>
+    </li>
+  <% end %>
+</ul>
