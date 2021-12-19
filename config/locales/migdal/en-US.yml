@@ -6,3 +6,7 @@ en-US:
         invalid: Invalid DartPad (Gist) ID
       glyph:
         no_name: unknown glyph
+    reactions:
+      babel:
+        aria_label: React with babel
+        title: Babel

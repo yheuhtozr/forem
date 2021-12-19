@@ -6,3 +6,7 @@ ja:
         invalid: 無効な DartPad (Gist) ID です
       glyph:
         no_name: 外字
+    reactions:
+      babel:
+        aria_label: バベルをつける
+        title: バベル
