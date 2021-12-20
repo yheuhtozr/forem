@@ -49,7 +49,7 @@ ja:
       medium: "%b %-d, %Y"
       reddit: "%b %e '%y"
       stackexchange: "%b %e '%y"
-      tweet: "%H:%M %p - %d %b %Y"
+      tweet: "%p%H:%M - %Y年%-m月%-d日"
       short: "%-m月%-d日"
       short_with_yy: "%y年%-m月%-d日"
       short_with_year: "%Y年%-m月%-d日"
