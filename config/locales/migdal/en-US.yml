@@ -10,3 +10,16 @@ en-US:
       babel:
         aria_label: React with babel
         title: Babel
+    users:
+      profile_descriptions:
+        currently_learning: What languages (natural or artificial) are you learning right now? What are you interested to learn?
+        currently_hacking_on: Are you creating any languages right now? What are they like?
+        available_for: Are you creating any worlds right now? What are they like?
+        skills_languages: What languages do you speak or have you ever learned? How well do you speak them?
+      profile_fields:
+        education: Activities
+        currently_learning: Languages learning
+        currently_hacking_on: Languages creating
+        available_for: Worldbuilding
+        skills_languages: Language abilities
+        work: Works/Awards

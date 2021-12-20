@@ -10,3 +10,16 @@ ja:
       babel:
         aria_label: バベルをつける
         title: バベル
+    users:
+      profile_descriptions:
+        currently_learning: 今、何か言語（自然言語・人工言語）を勉強していますか？また、関心がありますか？
+        currently_hacking_on: 今、何か言語づくりに取り組んでいますか？それはどんな言語ですか？
+        available_for: 今、何か世界づくりに取り組んでいますか？それはどんな世界ですか？
+        skills_languages: どんな言語を使ったり、勉強したことがありますか？どのくらい上手ですか？
+      profile_fields:
+        education: 最近の活動
+        currently_learning: 勉強中の言語
+        currently_hacking_on: 制作中の言語
+        available_for: 制作中の世界観
+        skills_languages: 使用する言語
+        work: 作品・表彰

@@ -126,17 +126,17 @@
                               checked: profile.public_send(field.attribute_name),
                               class: "crayons-checkbox") %>
             <label class="crayons-field__label" for="<%= "profile[#{field.attribute_name}]" %>">
-              <%= field.label %>
+              <%= t("migdal.users.profile_fields.#{field.attribute_name}", default: field.label) %>
               <% if field.description.present? %>
-                <p class="crayons-field__description"><%= field.description %></p>
+                <p class="crayons-field__description"><%= t("migdal.users.profile_descriptions.#{field.attribute_name}", default: field.description) %></p>
               <% end %>
             </label>
           <% else %>
             <label class="crayons-field__label" for="<%= "profile[#{field.attribute_name}]" %>">
-              <%= t "v.users.profile_fields.#{field.attribute_name}", default: field.label %>
+              <%= t("migdal.users.profile_fields.#{field.attribute_name}", default: field.label) %>
             </label>
             <% if field.description.present? %>
-              <p class="crayons-field__description"><%= field.description %></p>
+              <p class="crayons-field__description"><%= t("migdal.users.profile_descriptions.#{field.attribute_name}", default: field.description) %></p>
             <% end %>
             <%= f.public_send(field["input_type"],
                               "profile[#{field.attribute_name}]",
