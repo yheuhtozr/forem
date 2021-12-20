@@ -64,6 +64,7 @@ ja:
         make: Make primary
         primary: primary
         remove: Remove card
+      characters: "文字数上限まで: "
       complete:
         heading: メールアドレスを追加してプロフィールを完成させましょう
         desc: ついでに他の情報も記入しておきましょう。
