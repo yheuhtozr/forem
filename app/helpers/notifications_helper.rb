@@ -1,7 +1,7 @@
 module NotificationsHelper
   REACTION_IMAGES = {
     "like" => "heart-filled.svg",
-    "unicorn" => "unicorn-filled.svg",
+    "unicorn" => "babel-filled.svg",
     "hands" => "twemoji/hands.svg",
     "thinking" => "twemoji/thinking.svg",
     "readinglist" => "save-filled.svg",
