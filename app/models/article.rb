@@ -331,7 +331,7 @@ class Article < ApplicationRecord
   def processed_description
     if body_text.present?
       body_text
-        .truncate(104, separator: " ")
+        .truncate(104, separator: /[\p{P}\p{Z}\p{Ideo}\p{Hang}]/)
         .tr("\n", " ")
         .strip
     else

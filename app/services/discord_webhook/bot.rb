@@ -29,7 +29,7 @@ module DiscordWebhook
             embed.title = "[告知] #{listing.title}"
             embed.url = URL.url(listing.path)
             embed.description = ActionView::Base.full_sanitizer.sanitize(listing.processed_html)
-              .truncate(100, separator: " ").tr("\n", " ").strip
+              .truncate(100, separator: /[\p{P}\p{Z}\p{Ideo}\p{Hang}]/).tr("\n", " ").strip
             embed.author = embed_author(listing.user)
             embed.timestamp = listing.originally_published_at
           end
