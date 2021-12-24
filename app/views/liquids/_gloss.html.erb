@@ -1,10 +1,12 @@
 <% if include_js %>
-  <script src="/javascripts/leipzig.min.js" defer async></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      Leipzig(".ltag_gloss", { lastLineFree: false }).gloss();
-    });
-  </script>
+<script defer>
+{
+  let lzscript = document.createElement('script');
+  lzscript.src = '/javascripts/leipzig.min.js';
+  document.body.appendChild(lzscript);
+  lzscript.onload = () => Leipzig(".ltag_gloss", { lastLineFree: false }).gloss();
+}
+</script>
 <% end %>
 <%# use <ul> instead of <div> to work around some quirks of the markdown parser %>
 <ul class="ltag_gloss">
