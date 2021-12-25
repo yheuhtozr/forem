@@ -21,6 +21,11 @@
     }
   }
 
+  &__trigger {
+    text-align: left;
+    overflow-wrap: anywhere;
+  }
+
   &__trigger:hover + .profile-preview-card__content.crayons-dropdown {
     display: block;
     animation: hoverAppear var(--dropdown-hover-delay);

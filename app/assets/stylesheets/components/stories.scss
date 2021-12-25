@@ -112,6 +112,14 @@
     margin: 0 calc(var(--story-spacing-unit) * -1);
     border-radius: 0 0 var(--radius) var(--radius);
 
+    .pinned {
+      white-space: nowrap;
+      margin-inline-end: var(--su-2);
+      @media (min-width: $breakpoint-m) {
+        margin-inline-end: var(--su-4);
+      }
+    }
+
     .pinned svg {
       fill: var(--accent-brand);
     }
@@ -149,6 +157,7 @@
     align-items: center;
     line-height: var(--lh-tight);
     font-size: var(--fs-s);
+    flex-grow: 1;
   }
 
   &__author-pic {

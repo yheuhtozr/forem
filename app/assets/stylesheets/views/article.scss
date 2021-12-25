@@ -155,8 +155,9 @@
   &__count {
     color: var(--base-70);
     font-size: var(--fs-s);
-    display: inline-flex;
-    margin-left: var(--su-1);
+    /* suppress for ideal mobile site styling */
+    // display: inline-flex;
+    // margin-left: var(--su-1);
     min-width: var(--su-6);
 
     @media (min-width: $breakpoint-m) {
