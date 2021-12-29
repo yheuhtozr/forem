@@ -3,26 +3,26 @@ ja:
   views:
     liquids:
       github:
-        view: View on GitHub
+        view: GitHub で見る
       medium:
-        logo: Medium Logo
+        logo: Medium ロゴ
       poll:
-        show_results: Just show me the results
+        show_results: 結果だけを見る
       reddit:
-        author: 'Author: %{author}'
-        see: See Full Post
+        author: '投稿者: %{author}'
+        see: 元の投稿を見る
       stackexchange:
         answer:
-          text_html: "%{answer} re: %{title}"
-          answer: answer
-        answers: 'Answers: %{count}'
-        comments: 'Comments: %{count}'
+          text_html: "「%{title}」への%{answer}"
+          answer: 回答
+        answers: '回答数: %{count}'
+        comments: 'コメント数: %{count}'
         open:
-          answer: Open Full Answer
-          article: Open Full Article
-          question: Open Full Question
+          answer: 元の回答を見る
+          article: 元の投稿を見る
+          question: 元の質問を見る
       twitter:
-        view: View on Twitter
+        view: Twitter で見る
       user_subscription:
         confirm:
           subtitle: Confirm subscribe
@@ -40,5 +40,5 @@ ja:
           desc_html: You'll subscribe with %{email} the email address associated with your DEV account. To use a different email address, you can %{update}.
           update: update your email address in Settings
       wikipedia:
-        logo: Wikipedia Logo
-        view: View on Wikipedia
+        logo: Wikipedia ロゴ
+        view: Wikipedia で見る

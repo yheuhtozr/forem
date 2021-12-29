@@ -8,7 +8,7 @@ ja:
       back: Back
       delete:
         subtitle: Are you sure you want to delete this listing?
-        desc:
+        description:
           text_html: この操作は取り消せません。それとも%{action}ますか？
           edit: edit
           unpublish: unpublish
@@ -20,7 +20,7 @@ ja:
         bump:
           subtitle: Bump your listing
           button: Bump listing
-          desc: You can bump your listing for the same price as the original listing
+          description: You can bump your listing for the same price as the original listing
           last: 'Last Published/Bumped: %{date}'
         notice: You can only edit title/body/tags of drafts or within the first 24 hours of listing or bumping
         not_published:
@@ -32,13 +32,11 @@ ja:
         update: Update listing
         update_draft: Update draft
       to_edit: Edit
-      errors:
-        one: エラーが発生したため告知は保存されませんでした。
-        other: "%{count} 件のエラーが発生したため告知は保存されませんでした。"
+      errors: "%{count} 件のエラーが発生したため告知は保存されませんでした。"
       expired: This listing has expired.
       form:
         body_markdown:
-          desc: 400 characters max, 12 line break max, no images allowed, *markdown is encouraged*. Please include a contact method if necessary.
+          description: 400 characters max, 12 line break max, no images allowed, *markdown is encouraged*. Please include a contact method if necessary.
           placeholder: "..."
         category:
           label: Category
@@ -46,16 +44,16 @@ ja:
           summary: Category details/rules
         connect:
           subtitle: Connect messaging
-          desc: Allow Users to message me via Connect.
+          description: Allow Users to message me via Connect.
         expiry:
-          desc: If applicable for time sensitive events, deadlines, etc.
+          description: If applicable for time sensitive events, deadlines, etc.
         location:
-          desc: 32 characters max, plain text
+          description: 32 characters max, plain text
           label: Location (If applicable for events, etc.)
           placeholder: New York
         no_credit: You need at least one credit to create a listing.
         organization:
-          desc: Posting on behalf of an organization spends the organization's credits.
+          description: Posting on behalf of an organization spends the organization's credits.
           none: None
         publish: Publish listing
         purchase: Purchase credits

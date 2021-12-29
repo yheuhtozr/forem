@@ -41,26 +41,26 @@ ja:
       icon_right: 右メニュー
     logo:
       color_1:
-        label: Brand color 1
-        description: Used for backgrounds, borders etc.
+        label: イメージカラー 1
+        description: 背景、枠線などに使われます。
         select:
-          aria_label: Brand color 1 color selector
-          label: Brand color 1 color select
+          aria_label: イメージカラー 1 の色を選択
+          label: イメージカラー 1 の色を選択
       color_2:
-        label: Brand color 2
-        description_html: Used for texts (usually put on <em>Brand color 1</em>).
+        label: イメージカラー 2
+        description_html: テキスト（<em>カラー 1</em> の上に乗る）などに使われます。
         select:
-          aria_label: Brand color 2 color selector
-          label: Brand color 2 color select
+          aria_label: イメージカラー 2 の色を選択
+          label: イメージカラー 2 の色を選択
       preview:
-        icon: App logo
-        text: 'Preview:'
+        icon: アプリロゴ
+        text: 'プレビュー:'
     onboardings:
       meta:
         title: "%{community} へようこそ！"
       heading: 今日から私たちの一員です！
       subtitle: まず何をしたらいい？
-      close: Close Welcome Message
+      close: ようこそメッセージを閉じる
       settings_html: "<span class=\"emoji\">💅🏼</span>プロフィールを設定する"
       welcome_html: "<span class=\"emoji\">😊</span>ようこそスレッドに挨拶する"
       write_html: "<span class=\"emoji\">✍🏾</span>%{community}に最初の記事を書く"
@@ -117,14 +117,14 @@ ja:
         week: 今週
         month: 今月
         infinity: 全期間
-      readers: Readers Summary
-      followers: New Followers Summary
-      reactions: "Reactions Summary ❤🗼🔖"
-      comments: "Comments Summary 💬"
+      readers: 読者数の推移
+      followers: 新着フォローの推移
+      reactions: "反響数の推移 ❤🗼🔖"
+      comments: "コメント数の推移 💬"
       traffic:
-        text: "Traffic Source Summary 🚦"
-        source: Source
-        views: Views
+        text: "アクセスの内訳 🚦"
+        source: 訪問元
+        views: 訪問数
     sticky:
       joined: 登録日
       default_cta: 詳細
@@ -136,9 +136,9 @@ ja:
       trending_html: "%{app} で今話題"
     videos:
       meta:
-        title: Videos
+        title: 動画
         og:
-          description: All videos on %{community}
-      heading: "%{community} on Video"
-      beta_html: "<strong>Video is beta:</strong> %{contact}"
-      upload: "🎥 Upload Video File 🙌"
+          description: "%{community} のすべての動画"
+      heading: 動画でみる %{community}
+      beta_html: "<strong>動画機能はベータ版です:</strong> %{contact}"
+      upload: "🎥 動画をアップロード 🙌"

@@ -13,11 +13,9 @@ ja:
         view_all: コメント %{count} 件をすべて見る
         view_last: 最新のコメント %{count} 件を見る
       github:
-        heading: GitHub Repositories
-        fork: Fork
-        stars:
-          one: 1 star
-          other: "%{count} stars"
+        heading: GitHub リポジトリ
+        fork: フォーク
+        stars: "☆ %{count}"
       pin_icon: ピン止め
       pinned: ピン止め
       profile_fields:

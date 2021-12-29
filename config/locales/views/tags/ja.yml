@@ -3,41 +3,42 @@ ja:
   views:
     tags:
       meta:
-        title: Tags
-        description: Tags to follow on %{community}
+        title: タグ一覧
+        description: "%{community} でタグをフォロー"
         og:
           description: "%{community} is great!"
       heading: 人気のタグ
       edit:
         meta:
-          title: Edit %{tag}
-        heading_html: " Editing: %{tag}"
-        admin: "%{tag}'s admin page"
+          title: 「%{tag}」を編集
+        heading_html: " 編集中: %{tag}"
+        admin: 管理画面
+        help: ヘルプ
+        view: 表示を確認
         form:
-          example: Click here to see an example of attributes.
           pretty_name:
-            label: Pretty name
-            placeholder: This is the name at the top of the show page.
+            label: 表示名
+            placeholder: タグのページの上部に表示される名称です。
           bg_color_hex:
-            label: Bg color hex
+            label: 背景色 (HEX)
           text_color_hex:
-            label: Text color hex
+            label: 文字色 (HEX)
           short_summary:
-            label: Short summary
-            placeholder: Brief overview of what this tag is all about.
+            label: 概要
+            placeholder: 何を表すタグなのかについての簡単な説明。
           wiki_body_markdown:
-            label: Wiki body markdown
-            placeholder: This is an 'about' section. Feel free to add an FAQ, additional resources, etc.
+            label: Wiki 本文 (Markdown)
+            placeholder: タグの解説文です。FAQ や追加情報など、何でも入れてください。
           rules_markdown:
-            label: Rules markdown
-            placeholder: Optional - Can be used for challenges, i.e. submission guidelines.
-          submit: Save
-      follow: Follow
-      following_tags: Following tags
+            label: ルール (Markdown)
+            placeholder: 任意項目――投稿基準などを掲示するために使うことができます。
+          submit: 保存する
+      follow: フォロー
+      following_tags: フォロー中のタグ
       moderator:
-        text_html: 'comma separated, space is optional. Example: %{code}'
+        text_html: '半角コンマ区切り（スペースを挟んでもよい）。例: %{code}'
         code: 123
-        placeholder: 'comma separated, space is optional. Example: 1,2,3'
+        placeholder: '半角コンマ区切り（スペースを挟んでもよい）。例: 1,2,3'
       published: 公開記事数 %{count}
       sidebar:
         about: "#%{tag} とは"
@@ -49,5 +50,5 @@ ja:
         new: 記事を作成
         older: '以前の #%{tag} 記事'
         published: 公開記事数 %{count}
-        sponsor: "%{tag} is sponsored by"
-      sponsor: "| Sponsored by %{org} ❤️"
+        sponsor: "「%{tag}」のスポンサー"
+      sponsor: "| %{org} が応援しています ❤️"

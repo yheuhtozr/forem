@@ -3,9 +3,9 @@ ja:
   views:
     stories:
       meta:
-        description_tagged: "%{tag} content on %{name}"
-        page: " Page %{page}"
-        rss: "%{name} RSS Feed"
+        description_tagged: "%{tag} の中の「%{name}」"
+        page: " ページ %{page}"
+        rss: "%{name} RSS フィード"
       heading: 記事
       discuss: "#discuss"
       follow: フォロー

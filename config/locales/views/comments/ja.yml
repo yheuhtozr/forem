@@ -44,12 +44,12 @@ ja:
         text_html: 非表示にされているコメントがあります（%{info}）
         info: 詳細
       hider:
-        description_html: Are you sure you want to hide this comment? It will become hidden in your post, but will still be visible via the comment's %{permalink}.
-        hide_child: Hide child comments as well
-        note_html: For further actions, you may consider blocking this person and/or %{reporting}
-        permalink: permalink
-        reporting: reporting abuse
-        submit: Confirm
+        description_html: 本当にこのコメントを隠しますか？あなたの記事からは見えなくなりますが、このコメントの%{permalink}を開けば見ることができます。
+        hide_child: コメントへの返信も隠す
+        note_html: お困りの場合は、このユーザーをブロックしたり%{reporting}したりすることもできます
+        permalink: パーマリンク
+        reporting: 違反行為を通報
+        submit: 了承して実行
       locked: コメント欄は凍結中です。新しいコメントは書き込めません。
       orphan:
         deleted: "[削除された投稿へのコメント]"

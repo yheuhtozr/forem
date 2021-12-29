@@ -3,69 +3,69 @@ ja:
   views:
     notifications:
       meta:
-        description: Notifications inbox for %{community}
+        description: "%{community} からの通知"
         og:
-          title: Notifications - %{community}
-      heading: Notifications
+          title: 通知 - %{community}
+      heading: 通知
       badge:
-        heading_html: You received the %{badge} badge
-        awarded_html: "You also get %{credits} to use for %{listings} if you have anything you'd like to promote. 🎉"
-        credits: "%{count} new credits"
-        listings: community listings
-        more: More information about listings
-        profile: Visit your profile
+        heading_html: "%{badge} バッジを獲得しました"
+        awarded_html: 何か宣伝したいことがあった時に%{listings}できる%{credits}も贈呈します🎉
+        credits: "%{count} クレジット"
+        listings: サイト上で告知
+        more: 告知についての詳細
+        profile: あなたのプロフィールを確認
       broadcast:
-        visit_html: Visit %{settings} to manage your notifications.
-        settings: Settings
+        visit_html: "%{settings}で通知項目を管理します。"
+        settings: 設定
       comment:
-        commented_html: "%{user} commented on %{title}"
-        first_html: "%{user} wrote their first comment on %{title}"
-        first_reply: "Give them their first reply! 🎉"
-        left_html: "%{user} just left a comment on %{title}."
-        replied_html: "%{user} replied to a thread in %{title}"
-        report: All negative reactions are 100% private. If this comment violates the code of conduct, please downvote/report as inappropriate.
-        welcome_html: Since they are new to the community, could you leave a nice reply to help them feel welcome? <strong>Thank you!</strong>
+        commented_html: "%{user} が「%{title}」にコメントしました"
+        first_html: "%{user} が初めてのコメントを「%{title}」に書きました"
+        first_reply: "最初の返信をしてあげましょう！🎉"
+        left_html: "%{user} が今「%{title}」にコメントしました。"
+        replied_html: "%{user} が「%{title}」のスレッドに返信しました"
+        report: 悪い評価をつけたことは 100% 非公開です。もしこのコメントがルールに反しているなら、低評価をつけるか不適切な投稿として通報してください。
+        welcome_html: このユーザーは新メンバーです。暖かい返信で迎えてあげましょう。<strong>よろしくお願いします！</strong>
       error:
-        subtitle: An error occurred!
-        desc: This has been logged and we're tracking it.
+        subtitle: エラーが発生しました
+        desc: 対応までしばらくお待ちください。
       follow:
-        and_html: "%{first} and %{second} followed you!"
-        and_other_html: "%{first} and %{others} followed you!"
-        others: "%{count} others"
-        single_html: "%{name} followed you!"
-      load: Load More
+        and_html: "%{first} と %{second} にフォローされました！"
+        and_other_html: "%{first} ほか %{others} にフォローされました！"
+        others: "%{count} 人"
+        single_html: "%{name} にフォローされました！"
+      load: さらに表示
       mention:
-        article_html: "%{user} mentioned you in a post%{if_org}"
-        comment_html: "%{user} mentioned you in a comment"
-        if_org_html: " under %{org}"
+        article_html: "%{user} が%{if_org}記事の中であなたに触れました"
+        comment_html: "%{user} がコメントの中であなたに触れました"
+        if_org_html: " %{org} への"
       milestone:
-        heading_html: Your post %{title} passed %{type}!
-        check: Check your dashboard
+        heading_html: あなたの記事「%{title}」が%{type}を達成しました！
+        check: マイページを確認
         intro: "🎉🎉🎉🎉🎉🎉🎉🎉"
         type:
-          View: "%{count} views"
-          Reaction: "%{count} reactions"
+          View: "閲覧数 %{count} 回"
+          Reaction: "反響 %{count} 件"
       nav:
-        aria_label: Notifications
-        all: All
-        comments: Comments
-        posts: Posts
+        aria_label: 通知
+        all: すべて
+        comments: コメント
+        posts: 記事
       new_post:
-        if_org_html: " under %{org}"
-        verb_html: "%{user} made a new post%{if_org}"
+        if_org_html: " %{org} へ"
+        verb_html: "%{user} が%{if_org}新しい記事を投稿しました"
       reacted:
-        and_html: "%{first} and %{last}"
-        and_other_html: "%{first} and %{count} others"
-        verb_html: "%{start}%{actors} reacted to %{title} with%{end} %{reactions}"
+        and_html: "%{first} と %{last}"
+        and_other_html: "%{first} ほか %{count} 人が"
+        verb_html: "%{start}%{actors} が「%{title}」に%{end} %{reactions} をつけました"
         your:
-          article: your article
-          comment: your comment
-      settings: Settings
+          article: （あなたの記事）
+          comment: （あなたのコメント）
+      settings: 設定
       tag:
-        heading: "Hey there 👋"
-        add_html: Moderators added the <strong>%{tag}</strong> tag to your post %{title}. Mods felt this tag represented your article.
-        check_html: Check out %{other} which may be more appropriate
-        other: other popular tags
-        reason: 'Reason for action:'
-        remove_html: Moderators removed the <strong>%{tag}</strong> tag from your post %{title}. Certain tags have special submission guidelines, and mods need to adjust tags to best fit the community.
-        support_html: "Thanks for being part of %{community}! %{email} 🤗"
+        heading: "いつもありがとう 👋"
+        add_html: 審査員の人があなたの記事「%{title}」に <strong>%{tag}</strong> タグをつけました。この記事に合っていますか？
+        check_html: "よりふさわしい%{other}がないか探す"
+        other: 他の人気タグ
+        reason: '判断の理由:'
+        remove_html: 審査員の人があなたの記事「%{title}」から<strong>%{tag}</strong> タグを外しました。投稿規則が定められているタグもあるので、審査員はサイトのためにタグを調整することがあります。
+        support_html: "これからも %{community} をよろしくお願いします！ %{email} 🤗"

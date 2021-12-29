@@ -183,7 +183,7 @@
         "label": "正規 URL"
       }
     },
-    "personal": "Personal",
+    "personal": "個人",
     "publish": "公開",
     "publishing": "公開実行中…",
     "revert": "前回保存した状態に戻します。よろしいですか？",
@@ -217,29 +217,29 @@
     "translate": "翻訳を作成"
   },
   "errors": {
-    "comment": "This comment already exists.",
+    "comment": "このコメントはすでにあります。",
     "comment_sub": "Unable to load Comment Subscription component.<br />Try refreshing the page.",
-    "error": "Error: %{error}",
-    "feed": "There was a problem fetching your feed.",
+    "error": "エラー: %{error}",
+    "feed": "フィードの取得に問題が発生しました。",
     "file": {
-      "format": "Invalid file format (%{type}). Only %{list} files are permitted.",
+      "format": "非対応のファイル形式 (%{type}) です。%{list} ファイルのみ許可されています。",
       "format_sep": ", ",
-      "limit": " The limit is %{mb} MB.",
-      "too_large": "File size too large (%{mb} MB).",
-      "too_long": "File name is too long. It can't be longer than %{len} characters."
+      "limit": "上限は %{mb} MB です。",
+      "too_large": "ファイルサイズが大きすぎます (%{mb} MB)。",
+      "too_long": "ファイル名が長すぎます。%{len} 文字が上限です。"
     },
     "instantClick": "Unable to resolve InstantClick",
-    "occurred": "An error occurred: %{error}",
-    "sad": "Error 😞",
-    "submit": "There was a problem submitting this comment: %{error}",
-    "subscription": "An error occurred, please try again",
-    "update": "Failed to update article.",
-    "went": "Something went wrong: ${error}",
-    "whoops": "Whoops, something went wrong:",
-    "wrong": "Something went wrong: ${error}. -- Please refresh the page to try again."
+    "occurred": "エラーが発生しました: %{error}",
+    "sad": "エラー 😞",
+    "submit": "コメント送信時に問題が発生しました: %{error}",
+    "subscription": "エラーです。もう一度お試しください",
+    "update": "記事の更新に失敗しました。",
+    "went": "問題が発生: ${error}",
+    "whoops": "問題があるようです:",
+    "wrong": "問題が発生: ${error}。――ページを再読み込みしてからお試しください。"
   },
   "feed": {
-    "loading": "Loading posts..."
+    "loading": "記事を読み込み中……"
   },
   "feedback": {
     "block": "The message will be reported.\n\nWould you like to block this person as well?\n\nThis will:\n- prevent them from commenting on your posts\n- block all notifications from them\n- prevent them from messaging you via chat",
@@ -333,12 +333,12 @@
     "personal": "Personal"
   },
   "main": {
-    "close_bar": "Dismiss",
+    "close_bar": "消す",
     "forem": "Forem",
-    "forem_app": "Open with the Forem app",
-    "forem_icon": "Dismiss banner: Open with the Forem app",
-    "tag": "%{tag} tag",
-    "who": "who to follow"
+    "forem_app": "Forem アプリで開く",
+    "forem_icon": "「Forem アプリで開く」バナーを消す",
+    "tag": "%{tag} タグ",
+    "who": "おすすめユーザー"
   },
   "markdownLint": {
     "defaultAlt": {
@@ -471,29 +471,29 @@
     "view_list": "View reading list"
   },
   "search": {
-    "aria_label": "Search term",
+    "aria_label": "検索ワード",
     "empty": "一致する結果がありません",
     "placeholder": "検索…"
   },
   "stats": {
     "charts": {
-      "bookmarks": "Bookmarks",
-      "comments": "Comments",
-      "followers": "Followers",
-      "likes": "Likes",
-      "reads": "Reads",
-      "total": "Total",
-      "unicorns": "Unicorns"
+      "bookmarks": "切り抜き",
+      "comments": "コメント",
+      "followers": "フォロワー",
+      "likes": "いいね",
+      "reads": "閲覧",
+      "total": "合計",
+      "unicorns": "バベル"
     },
-    "comments": "Comments %{time}",
-    "external": "All other external referrers",
-    "followers": "Followers %{time}",
-    "new_followers": "New Followers %{time}",
-    "reactions": "Reactions %{time}",
-    "readers": "Readers %{time}",
-    "reads": "Reads %{time}",
-    "this_month": "this Month",
-    "this_week": "this Week"
+    "comments": "%{time}のコメント",
+    "external": "その他の外部リファラ",
+    "followers": "%{time}のフォロワー",
+    "new_followers": "%{time}の新フォロワー",
+    "reactions": "%{time}の反響",
+    "readers": "%{time}の読者",
+    "reads": "%{time}の閲覧",
+    "this_month": "今月",
+    "this_week": "今週"
   },
   "tags": {
     "aria_label": "Post Tags",

@@ -25,34 +25,34 @@ ja:
             submit: API キーを生成する
           revoke: 破棄
         delete:
-          heading: Delete account
-          desc1: 'Deleting your account will:'
+          heading: アカウントを削除
+          desc1: アカウントを削除すると、
           desc1a: |
-            Delete your profile, along with your authentication associations.
+            あなたのプロフィールと認証情報が削除されます。
 
-            This does not include applications permissions. You will have to remove them yourself:
-          desc1b: Delete any and all content you have, such as articles, comments, your reading list or chat messages.
-          desc1c: Allow your username to become available to anyone.
-          desc2_html: Please, %{provide} to fully delete your account.
-          provide: provide an email
-          submit: Delete Account
+            ただしアプリケーションに与えた許可は取り消されません。以下は別途削除してください。
+          desc1b: あなたの記事・コメント・切り抜き帳などの内容がすべて削除されます。
+          desc1c: あなたが使用していたユーザー名は誰でも使えるようになります。
+          desc2_html: アカウントを完全に削除するには、%{provide}してください。
+          provide: メールアドレスを入力
+          submit: アカウントを削除する
         export:
-          heading: Export content
-          desc: You can request an export of all your content. Currently we only support the export of your posts and comments. They will be emailed to your inbox.
-          label: Request an export of your content
-          requested: You have recently requested an export of your content. Please check your email.
-          submit: Submit Data Request
+          heading: 投稿データのエクスポート
+          desc: 投稿データのエクスポートを申請することができます。現在、記事とコメントのエクスポートにしか対応していません。内容はメールアドレスへ送信されます。
+          label: 投稿データのエクスポートを申請します
+          requested: 最近エクスポートを申請しました。メールを確認してください。
+          submit: データ申請を送信
         remove:
-          heading: Remove OAuth Associations
-          desc1: You can remove one of your authentication methods. We'll still need one to authenticate you.
-          desc2: 'Removing an OAuth association will:'
-          desc2a: remove your ability to sign in with that account
-          desc2b: remove the associated URL from your profile
+          heading: OAuth 連携を解除
+          desc1: 認証元のうちどれかを削除できます。最低一つはあなたの認証を維持するために必要です。
+          desc2: OAuth 連携を解除すると、
+          desc2a: そのアカウントからログインできなくなります
+          desc2b: プロフィールから関連づけられた URL が削除されます
           desc3: |
-            Note that this does not revoke our OAuth app access;
-            you will have to do so in your settings for the specific provider:
-          confirm: Are you absolutely sure you want to remove your %{provider} account?
-          submit: Remove %{provider}
+            ただし、このサイトに与えた OAuth アクセス許可は取り消されません。
+            以下のプロバイダの設定から手動で行ってください。
+          confirm: 本当に %{provider} アカウントとの連携を解除しますか？
+          submit: "%{provider} を解除する"
       billing:
         heading: Billing
         add: Add Credit Card
@@ -107,21 +107,21 @@ ja:
         writing: 執筆
       danger: キケン
       destroy:
-        heading: Destroy your account
-        desc: 'Deleting your account will:'
-        desc_1_html: delete your profile, along with your Twitter and/or GitHub associations. This does not include app permissions. You will have to remove them yourself on %{twitter} and %{github}.
-        desc_2: delete any and all content you have, such as articles, comments, or your reading list.
-        desc_3: allow your username to become available to anyone.
-        click: click here
-        confirm_html: 'For confirmation, type the words: <code>%{word}</code>'
-        ghost_html: If you would like to keep your content under the %{ghost} account, please %{click}
-        github: GitHub profile settings
-        submit: Delete account
-        to_delete: 'To delete your account:'
-        twitter: Twitter profile settings
-        type: Type in your username
+        heading: アカウントを完全に削除
+        desc: アカウントを削除すると、
+        desc_1_html: あなたのプロフィールおよび Twitter や GitHub 連携が削除されます。ただしアプリの許可は取り消されません。手動で %{twitter}や %{github}から削除してください。
+        desc_2: あなたの記事・コメント・切り抜き帳などの内容がすべて削除されます。
+        desc_3: あなたの使用していたユーザー名は誰でも使えるようになります。
+        click: ここをクリック
+        confirm_html: '確認のため、次の言葉を打ち込んでください: <code>%{word}</code>'
+        ghost_html: もし %{ghost} アカウントに内容を引き継がせたい場合は、%{click}してください。
+        github: GitHub のプロフィール設定
+        submit: アカウントを削除する
+        to_delete: アカウントを削除するためには、
+        twitter: Twitter のプロフィール設定
+        type: ユーザー名を入力してください
         username: username
-        word: delete my account
+        word: アカウントを削除します
       email: メールアドレスを認証する
       errors:
         org:
@@ -143,16 +143,16 @@ ja:
           remove: 削除
           save: 定型文を保存する
           saved: 保存した定型文
-        generate: Generate a personal blog from your %{community} posts
+        generate: あなたの %{community} 投稿から個人ブログを生成
         github:
           heading: GitHub
-          desc1: Pin your GitHub repositories to your profile.
-          desc2: Repositories will be disappear from your profile if you remove the OAuth association with GitHub.
-        learn: Learn more
-        micro: 'Receive micropayments for time spent reading your posts directly. '
+          desc1: あなたの GitHub リポジトリをプロフィールに固定します。
+          desc2: GitHub との OAuth 連携を解除すると、リポジトリはプロフィールに表示されなくなります。
+        learn: 詳細
+        micro: あなたの記事が直接読まれた時間に応じてマイクロペイメントを受け取れます。
         payment: Payment Pointer
         rss:
-          heading: Publishing to %{community} from RSS
+          heading: RSS から %{community} に投稿
           desc1_html: Posts will land in your %{dashboard} <strong>as drafts</strong>, and then you can publish from there.
           desc2: Formatting will typically look good, but you may have to make manual fixes. In the case of Medium, you may have to manually fix embeds.
           desc3_html: To find out more about how drafts are created from your feed, read this %{guide}.
@@ -174,7 +174,7 @@ ja:
       group:
         user: ユーザー
         Basic: 基本情報
-        Branding: Branding
+        Branding: マイカラー
         Coding: Coding
         Work: Work
       new_org: 新規グループ
