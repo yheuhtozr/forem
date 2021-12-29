@@ -74,7 +74,6 @@ en:
       empty: 404 bio not found
       flag: Flag @%{user}
       follow: Follow
-      guidelines: "%{user}'s guidelines:"
       joined:
         icon: Joined
         text_html: "Joined on\_%{date}"

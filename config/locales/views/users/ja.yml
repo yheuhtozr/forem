@@ -61,7 +61,6 @@ ja:
       empty: かつ 30
       flag: Flag @%{user}
       follow: フォロー
-      guidelines: "%{user}'s guidelines:"
       joined:
         icon: 登録日
         text_html: "%{date}に登録"
