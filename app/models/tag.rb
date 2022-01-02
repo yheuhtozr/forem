@@ -108,7 +108,7 @@ class Tag < ActsAsTaggableOn::Tag
   end
 
   def self.smart_tr(str)
-    str.tr("'", ?\u02BC) # ASCII apostrophe to MODIFIER LETTER APOSTROPHE
+    str&.tr("'", ?\u02BC) # ASCII apostrophe to MODIFIER LETTER APOSTROPHE
   end
 
   def quick_validate
