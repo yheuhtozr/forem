@@ -187,6 +187,12 @@
     },
     "personal": "Personal",
     "publish": "Publish",
+    "publishConfirm": {
+      "no": "Resume editing",
+      "text": "If you proceed, the article will be published or updated. Are you ready, or go back for other actions?",
+      "title": "Posting the article",
+      "yes": "Post it"
+    },
     "publishing": "Publishing...",
     "revert": "Are you sure you want to revert to the previous save?",
     "revert_button": "Revert <0>new changes</0>",
