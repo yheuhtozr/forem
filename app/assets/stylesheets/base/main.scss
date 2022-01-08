@@ -91,6 +91,7 @@ a {
     vertical-align: middle;
     display: inline-block;
     outline: 0;
+    background-color: var(--site-logo-bg, inherit);
   }
 
   @media (min-width: $breakpoint-s) {

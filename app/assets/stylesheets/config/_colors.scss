@@ -97,7 +97,10 @@
   --card-info-bg: #{rgba($brand, 0.1)};
 
   // Header
-  --header-bg: var(--base-inverted);
+  --header-bg: #{nth($theme-colors, 1)};
+  --header-bg-hover: var(--base-10);
+  --header-button-focus-color: var(--accent-brand);
+  --header-bg-current: var(--accent-brand-lighter);
   --header-shadow: rgba(0, 0, 0, 0.1);
 
   // Footer
