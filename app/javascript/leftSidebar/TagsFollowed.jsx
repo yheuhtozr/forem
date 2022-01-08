@@ -2,6 +2,7 @@ import { h, Fragment } from 'preact';
 import ahoy from 'ahoy.js';
 import PropTypes from 'prop-types';
 import { i18next } from '@utilities/locale';
+import { Link } from '@crayons';
 
 export const TagsFollowed = ({ tags = [] }) => {
   const trackSidebarTagClick = (event) => {
@@ -15,20 +16,13 @@ export const TagsFollowed = ({ tags = [] }) => {
         points >= 1 ? (
           <Link
             key={id}
-            title={`${name} tag`}
+            title={i18next.t('main.tag', { tag: name })}
             onClick={trackSidebarTagClick}
             block
             href={`/t/${name}`}
           >
-            <a
-              title={i18next.t('main.tag', { tag: name })}
-              onClick={trackSidebarTagClick}
-              className="crayons-link crayons-link--block"
-              href={`/t/${name}`}
-            >
-              {`#${name}`}
-            </a>
-          </div>
+            {`#${name}`}
+          </Link>
         ) : null,
       )}
     </Fragment>

@@ -20,6 +20,7 @@ ja:
       bad_uri: is an invalid url
       blank: を入力してください
       confirmation: と%{attribute}の入力が一致しません
+      contains_prohibited_characters: contains non-alphanumeric or prohibited unicode characters
       empty: を入力してください
       equal_to: は%{count}にしてください
       even: は偶数にしてください

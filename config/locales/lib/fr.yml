@@ -85,7 +85,7 @@ fr:
           secret_stripe_key_for_rece: 'Secret Stripe key for receiving payments. See: https://stripe.com/docs/keys'
           sustaining_members_newslet: Sustaining Members Newsletter ID
           tag_moderators_newsletter: Tag Moderators Newsletter ID
-          used_as_a_fallback_to_the: Used as a fallback to the SVG. Recommended minimum of 512x512px for PWA support
+          used_as_a_fallback_to_the: Used as a fallback to the SVG. Recommended minimum of 512x512px
           used_as_the_main_image_in: Used as the main image in social networks and OpenGraph. Recommended aspect ratio of 16:9 (600x337px,1200x675px)
           used_as_the_mascot_image: Used as the mascot image.
           used_as_the_site_favicon: Used as the site favicon

@@ -54,12 +54,7 @@ class CodesandboxTag < LiquidTagBase
   end
 
   def valid_option(option)
-    unless (option =~ OPTIONS_REGEXP)&.zero?
-      raise StandardError,
-            I18n.t("liquid_tags.codesandbox_tag.codesandbox_error_invalid2")
-    end
-
-    option
+    (option =~ OPTIONS_REGEXP)&.zero?
   end
 end
 

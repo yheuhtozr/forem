@@ -37,6 +37,8 @@ ja:
       mention:
         article_html: "%{user} が%{if_org}記事の中であなたに触れました"
         comment_html: "%{user} がコメントの中であなたに触れました"
+        article_mobile: "%{user} が記事「%{title}」の中であなたに触れました"
+        comment_mobile: "%{user} がコメント「%{title}」の中であなたに触れました"
         if_org_html: " %{org} への"
       milestone:
         heading_html: あなたの記事「%{title}」が%{type}を達成しました！

@@ -37,11 +37,9 @@ class SpotifyTag < LiquidTagBase
 
   def parse_input(input)
     match = pattern_match_for(input, REGEXP_OPTIONS)
-    raise StandardError, "Invalid Spotify URI or URL." unless match
+    raise StandardError, I18n.t("liquid_tags.spotify_tag.invalid_spotify_uri") unless match
 
-  def raise_error
-    msg = I18n.t("liquid_tags.spotify_tag.invalid_spotify_link_be_su")
-    raise StandardError, msg
+    [match[:type], match[:id]]
   end
 end
 

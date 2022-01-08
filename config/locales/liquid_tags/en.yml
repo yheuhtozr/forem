@@ -4,13 +4,12 @@ en:
     asciinema_tag:
       invalid_asciinema_id: 'Invalid Asciinema ID: %{id}'
     blogcast_tag:
-      invalid_blogcast_id: Invalid Blogcast Id
+      invalid_blogcast_id: Invalid Blogcast ID
     codepen_tag:
       invalid_codepen_url: Invalid CodePen URL
       invalid_options: Invalid Options
     codesandbox_tag:
       codesandbox_error_invalid: 'CodeSandbox Error: Invalid ID'
-      codesandbox_error_invalid2: 'CodeSandbox Error: Invalid options'
     dotnet_fiddle_tag:
       invalid_dotnetfiddle_url: Invalid DotnetFiddle URL
     gist_tag:
@@ -31,7 +30,7 @@ en:
       invalid_glitch_id: Invalid Glitch ID
       invalid_options: Invalid Options
     instagram_tag:
-      invalid_instagram_id: Invalid Instagram Id
+      invalid_instagram_id: Invalid Instagram ID
     js_fiddle_tag:
       invalid_jsfiddle_url: Invalid JSFiddle URL
       invalid_options: Invalid Options
@@ -40,7 +39,7 @@ en:
     kotlin_tag:
       invalid_kotlin_playground: Invalid Kotlin Playground URL
     link_tag:
-      the_article_you_re_looking: 'The article you''re looking for does not exist: {% link %{slug} %}'
+      the_article_you_re_looking: 'The article you''re looking for does not exist: %{slug}'
     liquid_tag_base:
       invalid_context_this_liqui: Invalid context. This liquid tag can only be used in %{valid_contexts}.
       no_source_found: No source found
@@ -63,7 +62,7 @@ en:
     reddit_tag:
       invalid_reddit_link: 'Invalid Reddit link: %{url}'
     replit_tag:
-      invalid_replit_id: Invalid replit Id
+      invalid_replit_id: Invalid Replit URL or @user/slug
     runkit_tag:
       runkit_tag_is_invalid: Runkit tag is invalid
     slideshare_tag:
@@ -73,7 +72,7 @@ en:
     speakerdeck_tag:
       invalid_speakerdeck_id: Invalid Speakerdeck Id
     spotify_tag:
-      invalid_spotify_link_be_su: Invalid Spotify Link - Be sure you're using the uri of a specific track, album, artist, playlist, or podcast episode.
+      invalid_spotify_uri: Invalid Spotify URI or URL.
     stackblitz_tag:
       invalid_options: Invalid Options
       invalid_stackblitz_id: Invalid Stackblitz Id

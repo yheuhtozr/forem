@@ -6,28 +6,19 @@ fr:
     if_we_can_help_html: <a href="/contact">Contactez-nous</a> si nous pouvons vous aider.
   core:
     add_comment: Ajouter un commentaire
-    beta: beta
-    error: 'Error: %{errors}'
-    analytics: Analytique
+    beta: bêta
     comment: Commentaire
     copy_link: Copier le lien
     edit_profile: Editer le profil
     follow: Suivre
     follow_back: Suivre aussi
     following: Abonné
-    success_settings: Successfully updated settings.
-    joined: Rejoint
-    joined_on: Rejoint le
     like: Aime
     loading: Chargement en cours...
     reaction: Réaction
-    reactions:
-      heart: Coeur
-      save: Sauver
-      unicorn: Licorne
-    reply: Répondre
     report_abuse: Signaler un abus
     search: Recherche
+    success_settings: Successfully updated settings.
   date:
     abbr_month_names:
     - 

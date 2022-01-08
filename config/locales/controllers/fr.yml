@@ -1,5 +1,5 @@
 ---
-en:
+fr:
   api_secrets_controller:
     an_error_occurred_please_t: 'An error occurred. Please try again or send an email to: %{settings_general_email_add}'
     your_api_key_has_been_gene: 'Your API Key has been generated: %{secret_secret}'

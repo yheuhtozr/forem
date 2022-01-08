@@ -127,7 +127,7 @@ export function FlagUserModal({ modCenterArticleUrl, authorId }) {
         </header>
         <div class="crayons-modal__box__body">
           <div class="grid gap-4">
-            <p>{i18next.t('flagUser.desc')}</p>
+            <p>{i18next.t('flagUser.desc', { community: communityName }) /* TODO: unideal i18n interpolation */}</p>
             <div class="crayons-field crayons-field--radio">
               <input
                 type="radio"

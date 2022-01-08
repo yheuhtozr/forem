@@ -57,9 +57,13 @@ ja:
     notifications:
       new_comment:
         new: "💬 New Comment"
+      new_mention:
+        new: "🗣️ New Mention"
     payments:
       customer:
         usd: usd
+      errors:
+        select_payment_method: "Please select a payment method"
       process_credit_purchase:
         charge: Purchase of %{count} credits.
     rate_limit_checker:

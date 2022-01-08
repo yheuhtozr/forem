@@ -41,7 +41,7 @@ class StackblitzTag < LiquidTagBase
     inputs = input.split
 
     # Validation
-    validated_views = inputs.map { |input_option| validator.call(input_option) }.reject(&:nil?)
+    validated_views = inputs.filter_map { |input_option| validator.call(input_option) }
     raise StandardError, I18n.t("liquid_tags.stackblitz_tag.invalid_options") unless validated_views.length.between?(0,
                                                                                                                      1)
 

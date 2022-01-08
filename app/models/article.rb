@@ -30,6 +30,7 @@ class Article < ApplicationRecord
 
   # The date that we began limiting the number of user mentions in an article.
   MAX_USER_MENTION_LIVE_AT = Time.utc(2021, 4, 7).freeze
+  PROHIBITED_UNICODE_CHARACTERS_REGEX = /[\u202a-\u202e]/ # BIDI embedding controls
 
   has_one :discussion_lock, dependent: :delete
 
@@ -851,5 +852,11 @@ class Article < ApplicationRecord
       boost_states["boosted_new_post"] = true
       update_columns boost_states: boost_states
     end
+  end
+
+  def remove_prohibited_unicode_characters
+    return unless title&.match?(PROHIBITED_UNICODE_CHARACTERS_REGEX)
+
+    self.title = title.gsub(PROHIBITED_UNICODE_CHARACTERS_REGEX, "")
   end
 end

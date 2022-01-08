@@ -7,35 +7,18 @@ en:
   core:
     add_comment: Add comment
     beta: beta
-    error: 'Error: %{errors}'
-    analytics: Analytics
     comment: Comment
     copy_link: Copy link
     edit_profile: Edit profile
     follow: Follow
     follow_back: Follow back
     following: Following
-    loading: loading...
-    joined: Joined
-    joined_on: Joined on
-    like: Like
-    listings: Listings
-    location: Location
-    log_in: Log in
-    more_from: More from
-    pinned: Pinned
-    post: Post
-    reaction: Reaction
-    reactions:
-      heart: Heart
-      save: Save
-      unicorn: Unicorn
-    reply: Reply
     like: Like
     loading: loading...
     reaction: Reaction
     report_abuse: Report abuse
     search: Search
+    success_settings: Successfully updated settings.
   datetime:
     distance_in_words_ago: # https://github.com/openstreetmap/openstreetmap-website/issues/2255
       about_x_hours:
