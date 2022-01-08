@@ -71,5 +71,4 @@ ja:
         step_5: "For Empowering Community 🌱"
       tagline: 交流や便利な機能を利用するにはログイン
       title:
-        text_html: <a href="/" class="c-link c-link--branded">%{name}</a> is a community of %{maybe_size}amazing %{label}
-        size: "%{num} "
+        text_html: <a href="/" class="c-link c-link--branded">%{name}</a> は創作言語・世界愛好者の憩いの場です
