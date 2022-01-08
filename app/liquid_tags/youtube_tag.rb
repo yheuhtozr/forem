@@ -1,8 +1,8 @@
 class YoutubeTag < LiquidTagBase
   PARTIAL = "liquids/youtube".freeze
   # rubocop:disable Layout/LineLength
-  REGISTRY_REGEXP = %r{https?://(?:www\.)?(?:youtube\.com|youtu\.be)/(?:embed/|watch\?v=)?(?<video_id>[a-zA-Z0-9_-]{11})(?:\?|&)?(?:t=|start=)?(?<time_parameter>(?:\d{1,}h?)?(?:\d{1,2}m)?(?:\d{1,2}s)?{5,11})?}
-  VALID_ID_REGEXP = /\A(?<video_id>[a-zA-Z0-9_-]{11})(?:\?|&)?(?:t=|start=)?(?<time_parameter>(?:\d{1,}h?)?(?:\d{1,2}m)?(?:\d{1,2}s)?{5,11})?\Z/
+  REGISTRY_REGEXP = %r{https?://(?:www\.)?(?:youtube\.com|youtu\.be)/(?:embed/|watch\?v=)?(?<video_id>[a-zA-Z0-9_-]{11})(?:(?:&|\?)(?:t=|start=)(?<time_parameter>(?:\d{1,}h)?(?:\d{1,2}m)?(?:\d{1,2}s)?))?}
+  VALID_ID_REGEXP = /\A(?<video_id>[a-zA-Z0-9_-]{11})(?:(?:&|\?)(?:t=|start=)(?<time_parameter>(?:\d{1,}h)?(?:\d{1,2}m)?(?:\d{1,2}s)?))?\Z/
   # rubocop:enable Layout/LineLength
   REGEXP_OPTIONS = [REGISTRY_REGEXP, VALID_ID_REGEXP].freeze
 
@@ -35,8 +35,8 @@ class YoutubeTag < LiquidTagBase
   private
 
   def parse_id_or_url(input)
-    match = pattern_match_for(input)
-    raise StandardError, I18n.t("liquid_tags.youtube_tag.invalid_youtube_id") unless match
+    match = pattern_match_for(input, REGEXP_OPTIONS)
+    raise StandardError, "Invalid YouTube ID" unless match
 
     video_id       = match[:video_id]
     time_parameter = match[:time_parameter]
@@ -44,12 +44,6 @@ class YoutubeTag < LiquidTagBase
     return video_id if time_parameter.blank?
 
     translate_start_time(video_id, time_parameter)
-  end
-
-  def pattern_match_for(input)
-    REGEXP_OPTIONS
-      .filter_map { |regex| input.match(regex) }
-      .first
   end
 
   def translate_start_time(video_id, time_parameter)

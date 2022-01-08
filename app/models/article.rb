@@ -1,7 +1,6 @@
 class Article < ApplicationRecord
   include CloudinaryHelper
   include ActionView::Helpers
-  include Storext.model
   include Reactable
   include UserSubscriptionSourceable
   include PgSearch::Model
@@ -31,6 +30,9 @@ class Article < ApplicationRecord
 
   # The date that we began limiting the number of user mentions in an article.
   MAX_USER_MENTION_LIVE_AT = Time.utc(2021, 4, 7).freeze
+  UNIQUE_URL_ERROR = "has already been taken. " \
+                     "Email #{ForemInstance.email} for further details.".freeze
+  PROHIBITED_UNICODE_CHARACTERS_REGEX = /[\u202a-\u202e]/ # BIDI embedding controls
 
   has_one :discussion_lock, dependent: :delete
 
@@ -86,7 +88,6 @@ class Article < ApplicationRecord
   validates :slug, presence: { if: :published? }
   validates :slug, uniqueness: { scope: :user_id }
   validates :title, presence: true, length: { maximum: 128 }
-  validates :user_id, presence: true
   validates :user_subscriptions_count, presence: true
   validates :video, url: { allow_blank: true, schemes: %w[https http] }
   validates :video_closed_caption_track_url, url: { allow_blank: true, schemes: ["https"] }
@@ -106,6 +107,7 @@ class Article < ApplicationRecord
   validate :validate_co_authors_exist, unless: -> { co_author_ids.blank? }
 
   before_validation :evaluate_markdown, :create_slug
+  before_validation :remove_prohibited_unicode_characters
   before_save :update_cached_user
   before_save :set_all_dates
 
@@ -260,6 +262,16 @@ class Article < ApplicationRecord
       end
 
     order(column => dir.to_sym)
+  }
+
+  # @note This includes the `featured` scope, which may or may not be
+  #       something we expose going forward.  However, it was
+  #       something used in two of the three queries we had that
+  #       included the where `score > Settings::UserExperience.home_feed_minimum_score`
+  scope :with_at_least_home_feed_minimum_score, lambda {
+    featured.or(
+      where(score: Settings::UserExperience.home_feed_minimum_score..),
+    )
   }
 
   scope :featured, -> { where(featured: true) }
@@ -823,24 +835,9 @@ class Article < ApplicationRecord
     ::Articles::EnrichImageAttributesWorker.perform_async(id)
   end
 
-  def eponymous_translation_group
-    return unless translation_group && id != translation_group
+  def remove_prohibited_unicode_characters
+    return unless title&.match?(PROHIBITED_UNICODE_CHARACTERS_REGEX)
 
-    original = Article.find translation_group
-    original.update_columns(translation_group: translation_group) unless original.translation_group
-  end
-
-  def notify_external_services_on_new_post
-    return unless published
-
-    if boost_states["boosted_new_post"]
-      DiscordWebhook::Bot.edited_post self
-    else
-      TwitterClient::Bot.new_post self
-      DiscordWebhook::Bot.new_post self
-
-      boost_states["boosted_new_post"] = true
-      update_columns boost_states: boost_states
-    end
+    self.title = title.gsub(PROHIBITED_UNICODE_CHARACTERS_REGEX, "")
   end
 end

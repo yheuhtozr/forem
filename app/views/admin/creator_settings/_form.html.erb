@@ -7,7 +7,7 @@
   <%= f.text_field :community_name, placeholder: "Climbing Life", class: "crayons-textfield", required: true %>
 </div>
 
-<%= render partial: "admin/shared/logo_upload", locals: { allowed_types: @logo_allowed_types, max_file_size: @max_file_size, f: f } %>
+<%= render partial: "admin/shared/logo_upload", locals: { allowed_types: @logo_allowed_types, max_file_size: @max_file_size, f: f, logo: Settings::General.resized_logo } %>
 
 <div class="crayons-field mt-6 align-left">
   <%= f.label :primary_brand_color_hex, class: "crayons-field__label" do %>
@@ -47,7 +47,7 @@
       </div>
       <div>
         <%= f.radio_button :invite_only_mode, true, class: "crayons-radio", role: "radio" %>
-        <%= label_tag "creator_settings_form_invite_only_mode_true", "Members Only" %>
+        <%= label_tag "creator_settings_form_invite_only_mode_true", "Invite Only" %>
       </div>
     </div>
   </fieldset>
@@ -76,11 +76,15 @@
       <p class="crayons-field__description">You will have the opportunity to establish the Code of Conduct and Terms and Conditions for the users of your Forem during the setup process.</p>
       <div class="mb-2">
         <%= f.check_box :checked_code_of_conduct, class: "crayons-checkbox", required: true %>
-        <label for="checked_code_of_conduct">I agree to uphold our <a href="/code-of-conduct" target="code-of-conduct">Code of Conduct</a>.</label>
+        <%= f.label :checked_code_of_conduct do %>
+          I agree to uphold our <a href="/code-of-conduct" target="code-of-conduct">Code of Conduct</a>.
+        <% end %>
       </div>
       <div>
         <%= f.check_box :checked_terms_and_conditions, class: "crayons-checkbox", required: true %>
-        <label for="checked_terms_and_conditions">I agree to our <a href="/terms" target="terms-and-conditions">Terms and Conditions</a>.</label>
+        <%= f.label :checked_terms_and_conditions do %>
+          I agree to our <a href="/terms" target="terms-and-conditions">Terms and Conditions</a>.
+        <% end %>
       </div>
     </div>
   </fieldset>

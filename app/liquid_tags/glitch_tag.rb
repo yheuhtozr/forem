@@ -67,11 +67,8 @@ class GlitchTag < LiquidTagBase
     options -= %w[app code] if (options & %w[app code]) == %w[app code]
 
     # Validation
-    validated_options = options.map { |option| valid_option(option) }.reject(&:nil?)
-    unless options.empty? || !validated_options.empty?
-      raise StandardError,
-            I18n.t("liquid_tags.glitch_tag.invalid_options")
-    end
+    validated_options = options.filter_map { |option| valid_option(option) }
+    raise StandardError, "Invalid Options" unless options.empty? || !validated_options.empty?
 
     build_options(options)
   end
