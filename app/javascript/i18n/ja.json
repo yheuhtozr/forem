@@ -41,6 +41,7 @@
       "author": "記事の作者のコメント",
       "author_desc": "記事の作者がコメントした時だけ通知を受け取ります。",
       "done": "Done",
+      "options": "コメント更新通知設定",
       "subscribe": "更新通知",
       "subscribed": "%{type}が通知されます",
       "top": "独立したコメント",
@@ -60,6 +61,28 @@
     "cog_icon": "設定",
     "danger": "キケン",
     "etc": "..."
+  },
+  "crayons": {
+    "mention": {
+      "ariaHelper_one": "Mention user, 1 result found",
+      "ariaHelper_other": "Mention user, %{count} results found",
+      "aria_label": "Mention user",
+      "empty": "No results found",
+      "type": "Type to search for a user"
+    },
+    "mobileDrawerNav": {
+      "cancel": "Cancel"
+    },
+    "modal": {
+      "aria_close": "閉じる",
+      "aria_label": "モーダル",
+      "icon": "閉じる"
+    },
+    "tagAutocomplete": {
+      "aria_edit": "Edit %{item}",
+      "aria_remove": "Remove %{item}",
+      "selected": "Selected items:"
+    }
   },
   "editor": {
     "a11y": {

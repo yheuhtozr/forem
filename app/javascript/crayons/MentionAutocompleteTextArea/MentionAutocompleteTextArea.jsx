@@ -16,6 +16,7 @@ import {
   useTextAreaAutoResize,
 } from '@utilities/textAreaUtils';
 import { useMediaQuery, BREAKPOINTS } from '@components/useMediaQuery';
+import { i18next } from '@utilities/locale';
 
 const MIN_SEARCH_CHARACTERS = 2;
 const MAX_RESULTS_DISPLAYED = 6;
@@ -167,7 +168,9 @@ export const MentionAutocompleteTextArea = forwardRef(
         // Let screen reader users know a list has populated
         if (!ariaHelperText && fetchedUsers.length > 0) {
           setAriaHelperText(
-            `Mention user, ${fetchedUsers.length} results found`,
+            i18next.t('crayons.mention.ariaHelper', {
+              count: fetchedUsers.length,
+            }),
           );
         }
       });
@@ -348,7 +351,7 @@ export const MentionAutocompleteTextArea = forwardRef(
           <ComboboxInput
             {...autocompleteInputProps}
             data-gramm_editor="false"
-            aria-label="Mention user"
+            aria-label={i18next.t('crayons.mention.aria_label')}
             ref={comboboxRef}
             value={textContent}
             data-mention-autocomplete-active="true"
@@ -402,8 +405,8 @@ export const MentionAutocompleteTextArea = forwardRef(
               ) : (
                 <span className="crayons-autocomplete__empty">
                   {searchTerm.length >= MIN_SEARCH_CHARACTERS
-                    ? 'No results found'
-                    : 'Type to search for a user'}
+                    ? i18next.t('crayons.mention.empty')
+                    : i18next.t('cryaons.mention.type')}
                 </span>
               )}
             </ComboboxPopover>

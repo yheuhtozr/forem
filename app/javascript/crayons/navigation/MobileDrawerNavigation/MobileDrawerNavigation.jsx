@@ -3,6 +3,7 @@ import { useState } from 'preact/hooks';
 import PropTypes from 'prop-types';
 import { MobileDrawer } from '@crayons/MobileDrawer';
 import { Button } from '@crayons/Button';
+import { i18next } from '@utilities/locale';
 
 const OverflowIcon = () => (
   <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg">
@@ -94,7 +95,7 @@ export const MobileDrawerNavigation = ({
             className="w-100 mt-4"
             onClick={() => setIsDrawerOpen(false)}
           >
-            Cancel
+            {i18next.t('crayons.mobileDrawerNav.cancel')}
           </Button>
         </MobileDrawer>
       )}

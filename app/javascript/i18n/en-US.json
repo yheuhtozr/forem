@@ -43,6 +43,7 @@
       "author": "Post author comments",
       "author_desc": "You’ll receive notifications only if post author sends a new comment.",
       "done": "Done",
+      "options": "Comment subscription options",
       "subscribe": "Subscribe",
       "subscribed": "You have been subscribed to %{type}",
       "top": "Top-level comments",
@@ -62,6 +63,28 @@
     "cog_icon": "Preferences",
     "danger": "Danger Zone",
     "etc": "..."
+  },
+  "crayons": {
+    "mention": {
+      "ariaHelper_one": "Mention user, 1 result found",
+      "ariaHelper_other": "Mention user, %{count} results found",
+      "aria_label": "Mention user",
+      "empty": "No results found",
+      "type": "Type to search for a user"
+    },
+    "mobileDrawerNav": {
+      "cancel": "Cancel"
+    },
+    "modal": {
+      "aria_close": "Close",
+      "aria_label": "modal",
+      "icon": "Close"
+    },
+    "tagAutocomplete": {
+      "aria_edit": "Edit %{item}",
+      "aria_remove": "Remove %{item}",
+      "selected": "Selected items:"
+    }
   },
   "editor": {
     "a11y": {

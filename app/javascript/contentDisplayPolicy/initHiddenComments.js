@@ -1,4 +1,4 @@
-import i18next from 'i18next';
+import { i18next } from '@utilities/locale';
 
 /* eslint-disable no-alert */
 export function initHiddenComments() {

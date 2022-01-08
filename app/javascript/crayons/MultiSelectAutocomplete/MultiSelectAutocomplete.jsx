@@ -4,6 +4,7 @@ import { h, Fragment } from 'preact';
 import { useEffect, useRef, useReducer } from 'preact/hooks';
 import { Icon, Button } from '@crayons';
 import { Close } from '@images/x.svg';
+import { i18next } from '@utilities/locale';
 
 const KEYS = {
   UP: 'ArrowUp',
@@ -277,7 +278,7 @@ export const MultiSelectAutocomplete = ({ labelText, fetchSuggestions }) => {
         <Button
           variant="secondary"
           className="c-autocomplete--multi__selected p-1 cursor-text"
-          aria-label={`Edit ${item}`}
+          aria-label={i18next.t('crayons.tagAutocomplete.aria_edit', { item })}
           onClick={() => enterEditState(item, index)}
         >
           {item}
@@ -285,7 +286,7 @@ export const MultiSelectAutocomplete = ({ labelText, fetchSuggestions }) => {
         <Button
           variant="secondary"
           className="c-autocomplete--multi__selected p-1"
-          aria-label={`Remove ${item}`}
+          aria-label={i18next.t('crayons.tagAutocomplete.aria_edit', { item })}
           onClick={() => deselectItem(item)}
         >
           <Icon src={Close} />
@@ -330,7 +331,7 @@ export const MultiSelectAutocomplete = ({ labelText, fetchSuggestions }) => {
 
       {/* A visually hidden list provides confirmation messages to screen reader users as an item is selected or removed */}
       <div className="screen-reader-only">
-        <p>Selected items:</p>
+        <p>{i18next.t('crayons.tagAutocomplete.selected')}</p>
         <ul
           ref={selectedItemsRef}
           className="screen-reader-only list-none"

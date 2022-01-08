@@ -10,7 +10,7 @@ js1 = Dir.new "#{__dir__}/../app/javascript/i18n"
 js2 = Dir.new "#{__dir__}/../public/javascripts/i18n"
 
 MAP = {
-  __orphan: [%w[common errors feed flagUser followButts gitHub main markdownLint modActions notifications onboarding org profile readingList templates], %w[archivedPosts csrf loginModal unitAgo userAlertModal]],
+  __orphan: [%w[common crayons errors feed flagUser followButts gitHub main markdownLint modActions notifications onboarding org profile readingList templates], %w[archivedPosts csrf loginModal unitAgo userAlertModal]],
   actions: {
     copy: {
       __scope: ['clipboard'],
@@ -142,7 +142,7 @@ MAP = {
     }
   },
   editor: {
-    __orphan: [%w[a11y aria_label aria_new content help image leave publish publishing revert revert_button save save_draft saving saving_draft toolbar], %w[continue]],
+    __orphan: [%w[a11y aria_label aria_new content help image leave publish publishConfirm publishing revert revert_button save save_draft saving saving_draft toolbar], %w[continue]],
     close: {
       __scope: ['editor'],
       title: ['close']
