@@ -97,6 +97,8 @@ export function FlagUserModal({ modCenterArticleUrl, authorId }) {
   const [isConfirmButtonEnabled, enableConfirmButton] = useState(false);
   const vomitAllRef = useRef(null);
 
+  const { communityName } = document.body.dataset;
+
   return (
     <div
       data-testid="flag-user-modal"

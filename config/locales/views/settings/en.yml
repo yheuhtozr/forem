@@ -110,7 +110,7 @@ en:
         heading: Destroy your account
         desc: 'Deleting your account will:'
         desc_1_html: delete your profile, along with your Twitter and/or GitHub associations. This does not include app permissions. You will have to remove them yourself on %{twitter} and %{github}.
-        desc_2: delete any and all content you have, such as articles, comments, your reading list or chat messages.
+        desc_2: delete any and all content you have, such as articles, comments, or your reading list.
         desc_3: allow your username to become available to anyone.
         click: click here
         confirm_html: 'For confirmation, type the words: <code>%{word}</code>'

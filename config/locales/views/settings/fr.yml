@@ -31,7 +31,7 @@ fr:
             Delete your profile, along with your authentication associations.
 
             This does not include applications permissions. You will have to remove them yourself:
-          desc1b: Delete any and all content you have, such as articles, comments, your reading list or chat messages.
+          desc1b: Delete any and all content you have, such as articles, comments, or your reading list.
           desc1c: Allow your username to become available to anyone.
           desc2_html: Please, %{provide} to fully delete your account.
           provide: provide an email

@@ -56,15 +56,8 @@ class StoriesController < ApplicationController
   end
 
   def get_latest_campaign_articles
-    campaign_articles_scope = Article.tagged_with(Campaign.current.featured_tags, any: true)
-      .where("published_at > ? AND score > ?", Settings::Campaign.articles_expiry_time.weeks.ago, 0)
-      .order(hotness_score: :desc)
-
-    requires_approval = Campaign.current.articles_require_approval?
-    campaign_articles_scope = campaign_articles_scope.approved if requires_approval
-
-    @campaign_articles_count = campaign_articles_scope.count
-    @latest_campaign_articles = campaign_articles_scope.limit(5).pluck(:path, :title, :comments_count, :created_at)
+    @campaign_articles_count = Campaign.current.count
+    @latest_campaign_articles = Campaign.current.plucked_article_attributes
   end
 
   def redirect_to_changed_username_profile
@@ -241,27 +234,9 @@ class StoriesController < ApplicationController
       @stories = Articles::Feeds::Latest.call
     else
       @default_home_feed = true
-      strategy = AbExperiment.get(experiment: :feed_strategy, controller: self, user: current_user,
-                                  default_value: "original")
-      feed = if strategy.weighted_query_strategy?
-               # I'm uncertain why we don't pass a user here, but it mimics
-               # the behavior of the original LargeForemExperimental.
-               Articles::Feeds::WeightedQueryStrategy.new(user: nil, page: @page, tags: params[:tag])
-             else
-               Articles::Feeds::LargeForemExperimental.new(page: @page, tag: params[:tag])
-             end
-      Datadog.tracer.trace("feed.query",
-                           span_type: "db",
-                           resource: "#{self.class}.#{__method__}",
-                           tags: { feed_class: feed.class.to_s.dasherize }) do
-        # Hey, why the to_a you say?  Because the
-        # LargeForemExperimental has already done this.  But the
-        # weighted strategy has not.  I also don't want to alter the
-        # weighted query implementation as it returns a lovely
-        # ActiveRecord::Relation.  So this is a concession.
-        @featured_story, @stories = feed.featured_story_and_default_home_feed(user_signed_in: user_signed_in?)
-        @stories = @stories.to_a
-      end
+      feed = Articles::Feeds::LargeForemExperimental.new(page: @page, tag: params[:tag])
+      @featured_story, @stories = feed.featured_story_and_default_home_feed(user_signed_in: user_signed_in?)
+      @stories = @stories.to_a
     end
 
     @pinned_article = pinned_article&.decorate

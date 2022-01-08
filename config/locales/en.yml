@@ -10,15 +10,10 @@ en:
     error: 'Error: %{errors}'
     analytics: Analytics
     comment: Comment
-    comments: Comments
-    community_name_is_great: "%{community_name} is great!"
     copy_link: Copy link
-    create_account: Create account
-    dashboard: Dashboard
     edit_profile: Edit profile
     follow: Follow
     follow_back: Follow back
-    follower: Follower
     following: Following
     loading: loading...
     joined: Joined
@@ -36,10 +31,11 @@ en:
       save: Save
       unicorn: Unicorn
     reply: Reply
+    like: Like
+    loading: loading...
+    reaction: Reaction
     report_abuse: Report abuse
     search: Search
-    settings: Settings
-    trending_on: Trending on
   datetime:
     distance_in_words_ago: # https://github.com/openstreetmap/openstreetmap-website/issues/2255
       about_x_hours:
@@ -162,6 +158,7 @@ en:
       bad_uri: is an invalid url
       blank: can't be blank
       confirmation: doesn't match %{attribute}
+      contains_prohibited_characters: contains non-alphanumeric or prohibited unicode characters
       empty: can't be empty
       equal_to: must be equal to %{count}
       even: must be even

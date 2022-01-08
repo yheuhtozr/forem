@@ -10,6 +10,8 @@ module Admin
     layout "admin"
 
     def show
+      @logo_allowed_types = LogoUploader::ALLOWED_TYPES
+      @logo_max_file_size = LogoUploader::MAX_FILE_SIZE
       @confirmation_text =
         I18n.t("admin.settings_controller.my_username_is_and_this_ac", current_user_username: current_user.username)
     end

@@ -13,10 +13,12 @@ export const TagsFollowed = ({ tags = [] }) => {
     <Fragment>
       {tags.map(({ name, id, points }) =>
         points >= 1 ? (
-          <div
+          <Link
             key={id}
-            className="sidebar-nav-element"
-            id={`sidebar-element-${name}`}
+            title={`${name} tag`}
+            onClick={trackSidebarTagClick}
+            block
+            href={`/t/${name}`}
           >
             <a
               title={i18next.t('main.tag', { tag: name })}

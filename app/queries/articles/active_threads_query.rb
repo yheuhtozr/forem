@@ -15,7 +15,7 @@ module Articles
       tags, time_ago, count = options.values_at(:tags, :time_ago, :count)
 
       relation = relation.limit(count)
-      relation = tags.size == 1 ? relation.cached_tagged_with(tags.first) : relation.tagged_with(tags)
+      relation = relation.cached_tagged_with(tags)
       relation = if time_ago == "latest"
                    relation = relation.where(score: MINIMUM_SCORE..).presence || relation
                    relation.order(published_at: :desc)
