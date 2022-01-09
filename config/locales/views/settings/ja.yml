@@ -143,7 +143,6 @@ ja:
           remove: 削除
           save: 定型文を保存する
           saved: 保存した定型文
-        generate: あなたの %{community} 投稿から個人ブログを生成
         github:
           heading: GitHub
           desc1: あなたの GitHub リポジトリをプロフィールに固定します。
