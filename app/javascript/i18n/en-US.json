@@ -299,11 +299,38 @@
     "vomit_desc": "This author consistently posts content that violates DEV's code of conduct because it is harassing, offensive or spammy."
   },
   "followButts": {
+    "aria_follow": {
+      "Organization": "Follow organization: %{name}",
+      "Tag": "Follow tag: %{name}",
+      "User": "Follow user: %{name}",
+      "default": "Follow %{type}: %{name}"
+    },
+    "aria_followback": {
+      "Organization": "Follow organization back: %{name}",
+      "Tag": "Follow tag back: %{name}",
+      "User": "Follow user back: %{name}",
+      "default": "Follow %{type} back: %{name}"
+    },
     "edit": "Edit profile",
-    "follow": "Follow",
+    "follow": {
+      "Organization": "Follow",
+      "Tag": "Follow",
+      "User": "Follow",
+      "default": "Follow"
+    },
     "follow_small": "+",
-    "followback": "Follow back",
-    "following": "Following",
+    "followback": {
+      "Organization": "Follow back",
+      "Tag": "Follow back",
+      "User": "Follow back",
+      "default": "Follow back"
+    },
+    "following": {
+      "Organization": "Following",
+      "Tag": "Following",
+      "User": "Following",
+      "default": "Following"
+    },
     "following_small": "✓"
   },
   "gitHub": {

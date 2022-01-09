@@ -297,11 +297,38 @@
     "vomit_desc": "This author consistently posts content that violates DEV's code of conduct because it is harassing, offensive or spammy."
   },
   "followButts": {
+    "aria_follow": {
+      "Organization": "グループ「%{name}」をフォロー",
+      "Tag": "タグ「%{name}」をフォロー",
+      "User": "「%{name}」さんをフォロー",
+      "default": "%{type}「%{name}」をフォロー"
+    },
+    "aria_followback": {
+      "Organization": "グループ「%{name}」にフォローを返す",
+      "Tag": "タグ「%{name}」にフォローを返す",
+      "User": "「%{name}」さんにフォローを返す",
+      "default": "%{type}「%{name}」にフォローを返す"
+    },
     "edit": "プロフィールを編集",
-    "follow": "フォロー",
+    "follow": {
+      "Organization": "フォロー",
+      "Tag": "フォロー",
+      "User": "フォロー",
+      "default": "フォロー"
+    },
     "follow_small": "+",
-    "followback": "フォローを返す",
-    "following": "フォロー中",
+    "followback": {
+      "Organization": "フォローを返す",
+      "Tag": "フォローを返す",
+      "User": "フォローを返す",
+      "default": "フォローを返す"
+    },
+    "following": {
+      "Organization": "フォロー中",
+      "Tag": "フォロー中",
+      "User": "フォロー中",
+      "default": "フォロー中"
+    },
     "following_small": "✓"
   },
   "gitHub": {

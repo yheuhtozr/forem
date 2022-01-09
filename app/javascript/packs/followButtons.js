@@ -10,7 +10,6 @@ import { i18next } from '@utilities/locale';
  * @param {string} style The style of the button from its "info" data attribute
  */
 
-
 function addButtonFollowText(button, style) {
   const { name, className } = JSON.parse(button.dataset.info);
 
@@ -31,7 +30,10 @@ function addButtonFollowText(button, style) {
         followType: className,
         style: 'follow-back',
       });
-      button.textContent = i18next.t('followButts.followback');
+      button.textContent = i18next.t([
+        `followButts.followback.${className}`,
+        'followButts.followback.default',
+      ]);
       break;
     default:
       addAriaLabelToButton({
@@ -40,7 +42,10 @@ function addButtonFollowText(button, style) {
         followType: className,
         style: 'follow',
       });
-      button.textContent = i18next.t('followButts.follow');
+      button.textContent = i18next.t([
+        `followButts.follow.${className}`,
+        'followButts.follow.default',
+      ]);
   }
 }
 
@@ -57,22 +62,46 @@ function addAriaLabelToButton({ button, followType, followName, style = '' }) {
   let pressed = '';
   switch (style) {
     case 'follow':
-      label = `Follow ${followType.toLowerCase()}: ${followName}`;
+      label = i18next.t(
+        [
+          `followButts.aria_follow.${followType}`,
+          'followButts.aria_follow.default',
+        ],
+        { type: followType, name: followName },
+      );
       pressed = 'false';
       break;
     case 'follow-back':
-      label = `Follow ${followType.toLowerCase()} back: ${followName}`;
+      label = i18next.t(
+        [
+          `followButts.aria_followback.${followType}`,
+          'followButts.aria_follow.default',
+        ],
+        { type: followType, name: followName },
+      );
       pressed = 'false';
       break;
     case 'following':
-      label = `Follow ${followType.toLowerCase()}: ${followName}`;
+      label = i18next.t(
+        [
+          `followButts.aria_follow.${followType}`,
+          'followButts.aria_follow.default',
+        ],
+        { type: followType, name: followName },
+      );
       pressed = 'true';
       break;
     case 'self':
-      label = `Edit profile`;
+      label = i18next.t('followButts.edit');
       break;
     default:
-      label = `Follow ${followType.toLowerCase()}: ${followName}`;
+      label = i18next.t(
+        [
+          `followButts.aria_follow.${followType}`,
+          'followButts.aria_follow.default',
+        ],
+        { type: followType, name: followName },
+      );
       pressed = 'false';
   }
   button.setAttribute('aria-label', label);
@@ -87,11 +116,14 @@ function addAriaLabelToButton({ button, followType, followName, style = '' }) {
  * @param {HTMLElement} button The Follow button to update
  * @param {string} style The style of the button from its "info" data attribute
  */
-function addButtonFollowingText(button, style) {
+function addButtonFollowingText(button, style, followClass) {
   button.textContent =
     style === 'small'
       ? i18next.t('followButts.following_small')
-      : i18next.t('followButts.following');
+      : i18next.t([
+          `followButts.following.${followClass}`,
+          'followButts.following.default',
+        ]);
 }
 
 /**
@@ -146,7 +178,7 @@ function optimisticallyUpdateButtonUI(button) {
 function updateFollowingButton(button, style) {
   const { name, className } = JSON.parse(button.dataset.info);
   button.dataset.verb = 'follow';
-  addButtonFollowingText(button, style);
+  addButtonFollowingText(button, style, className);
   button.classList.remove('crayons-btn--primary');
   button.classList.remove('crayons-btn--secondary');
   button.classList.add('crayons-btn--outlined');

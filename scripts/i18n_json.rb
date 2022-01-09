@@ -10,7 +10,7 @@ js1 = Dir.new "#{__dir__}/../app/javascript/i18n"
 js2 = Dir.new "#{__dir__}/../public/javascripts/i18n"
 
 MAP = {
-  __orphan: [%w[common crayons errors feed flagUser followButts gitHub main markdownLint modActions notifications onboarding org profile readingList templates], %w[archivedPosts csrf loginModal unitAgo userAlertModal]],
+  __orphan: [%w[common crayons errors feed flagUser gitHub main markdownLint modActions notifications onboarding org profile readingList templates], %w[archivedPosts csrf loginModal unitAgo userAlertModal]],
   actions: {
     copy: {
       __scope: ['clipboard'],
@@ -175,6 +175,9 @@ MAP = {
       listings: [true],
     },
   },
+  followButts: {
+    __orphan: [%w[aria_followback edit follow_small followback following following_small]],
+  },
   listings: {
     __orphan: [%w[actions all available bumped buy category create created credits expired expires filter made modal more options personal]],
     form: {
@@ -244,6 +247,24 @@ MAP = {
   },
 
   helpers: {
+    application_helper: {
+      follow: {
+        aria_label: {
+          __scope: ['followButts.aria_follow'],
+          Organization: [true],
+          Tag: [true],
+          User: [true],
+          default: [true],
+        },
+        text: {
+          __scope: ['followButts.follow'],
+          Organization: [true],
+          Tag: [true],
+          User: [true],
+          default: [true],
+        },
+      },
+    },
     comments_helper: {
       __scope: [nil, 'comments'],
       like: [nil, true],
