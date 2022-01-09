@@ -1,6 +1,6 @@
 ---
 ja:
-  v:
+  views:
     auth:
       background: forem 背景
       create:

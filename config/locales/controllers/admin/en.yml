@@ -56,7 +56,7 @@ en:
       user_was_successfully_remo: User was successfully removed from %{organization_membership_or}
       user_was_successfully_upda: User was successfully updated to %{organization_membership_ty}
     organizations_controller:
-      sucessfully_updated_credit: Sucessfully updated credits
+      sucessfully_updated_credit: Successfully updated credits
     pages_controller:
       a_page_that_describes_how: A page that describes how to behave on this platform
       a_page_that_describes_the: A page that describes the privacy policy

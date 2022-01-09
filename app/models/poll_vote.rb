@@ -22,9 +22,7 @@ class PollVote < ApplicationRecord
   def one_vote_per_poll_per_user
     return false unless poll
 
-    has_votes = (
-      poll.poll_votes.where(user_id: user_id).any? || poll.poll_skips.where(user_id: user_id).any?)
-    errors.add(:base, I18n.t("models.poll_vote.cannot_vote_more_than_once")) if has_votes
+    errors.add(:base, I18n.t("models.poll_vote.cannot_vote_more_than_once"))
   end
 
   def touch_poll_votes_count

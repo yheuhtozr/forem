@@ -35,7 +35,7 @@ ja:
         Article: 記事
         item: 項目
         PodcastEpisode: 配信
-      user_suspended_for_too_man: ユーザーはスパム記事を大量に投稿したため、自動検出により凍結されました。
+      user_suspended_for_too_man: ユーザーはスパム書き込みを大量に行ったため、自動検出により凍結されました。
       you_cannot_mention_more_th: 1 つのコメント内で %{settings_ratelimit_mention} 人より多く呼びかけることはできません！
     feedback_message:
       you_previously_reported_t: "(you) previously reported this URL."
@@ -55,12 +55,8 @@ ja:
       is_not_valid: is not valid.
     organization:
       integer_only_no_sign_allow: Integer only. No sign allowed.
-      is_taken: は取られています
       value_s_is_a_reserved_wor: "%<value>s is a reserved word. Contact site admins for help registering your organization."
-    page:
-      is_taken: は取られています
     podcast:
-      is_taken: は取られています
       slug_is_reserved: slug is reserved
     podcast_episode_appearance:
       provided_role_is_not_valid: provided role is not valid
@@ -84,7 +80,7 @@ ja:
       campaign:
         share_your_project: Share your project
       community:
-        new_forem: New Forem
+        message: may not include the "<" nor ">" character
         user: user
       general:
         community_sponsors: Community Sponsors
@@ -111,7 +107,6 @@ ja:
       has_been_banished: は追放されました
       is_not_a_valid_rss_atom_fe: は正しい RSS/Atom フィードではありません
       is_taken: "%{data_value} は取られています"
-      is_taken2: は取られています
       user_could_not_be_saved: ユーザーを保存できませんでした。%{e_message}
       username_is_reserved: ユーザー名は予約されています
     user_subscription:

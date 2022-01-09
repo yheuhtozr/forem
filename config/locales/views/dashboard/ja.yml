@@ -1,6 +1,6 @@
 ---
 ja:
-  v:
+  views:
     dashboard:
       meta:
         title: Dashboard - %{site}

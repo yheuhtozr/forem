@@ -21,10 +21,14 @@ class YoutubeTag < LiquidTagBase
 
   private
 
-  def parse_id(input)
-    input_no_space = input.delete(" ")
-    raise StandardError, I18n.t("liquid_tags.youtube_tag.invalid_youtube_id") unless valid_id?(input_no_space)
-    return translate_start_time(input_no_space) if input_no_space.include?("?t=")
+  def parse_id_or_url(input)
+    match = pattern_match_for(input)
+    raise StandardError, I18n.t("liquid_tags.youtube_tag.invalid_youtube_id") unless match
+
+    video_id       = match[:video_id]
+    time_parameter = match[:time_parameter]
+
+    return video_id if time_parameter.blank?
 
     input_no_space
   end

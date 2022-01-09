@@ -7,10 +7,9 @@
     <%= render "analytics" %>
   </section>
 
-  <div class="crayons-layout crayons-layout--2-cols">
-    <div class="crayons-layout__sidebar-left">
-      <%= render "actions" %>
-    </div>
+  <div class="crayons-layout__sidebar-left">
+    <%= render "actions" %>
+  </div>
 
     <div class="crayons-layout__content flex flex-col">
       <div class="flex items-center justify-between mb-3">
@@ -25,6 +24,7 @@
               <%= select_tag "dashboard_sort", options_for_select(sort_options, params[:sort]), "aria-label": t("option.aria_label", scope: _t), class: "crayons-select w-auto ml-2 my-1" %>
             <% end %>
           <% end %>
+        <% end %>
 
           <% if @organizations && @organizations.size > 0 && (params[:which].blank? || params[:which] == "organization") %>
             <select id="dashboard_author" class="crayons-select w-auto ml-2 my-1">
@@ -36,6 +36,7 @@
           <% end %>
         </div>
       </div>
+    </div>
 
       <% if @articles.any? %>
         <%= javascript_packs_with_chunks_tag "dashboardDropdowns", defer: true %>
@@ -64,7 +65,7 @@
             <p><a href="/new" class="crayons-btn crayons-btn--l"><%= t("empty.new", scope: _t) %></a></p>
           </div>
         </div>
-    <% end %>
       </div>
+    <% end %>
   </div>
 </main>

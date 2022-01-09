@@ -1,6 +1,6 @@
 ---
 ja:
-  v:
+  views:
     settings:
       meta:
         title: 設定
@@ -167,13 +167,6 @@ ja:
           save: Save Feed Settings
           submit: Submit Feed Settings
         save_web: Save Web Monetization Settings
-        stackbit:
-          connect: Connect to Stackbit
-          connected: Connected to Stackbit
-          create: Create New Stackbit Site
-          desc: Automatically generate a self-hosted static blog feed from your %{community} posts.
-          goto: Go To Your Stackbit Dashboard
-          start: Get Started
         web: Web monetization
       finalize_html: あなたは %{email} への変更を申請しました。お送りした認証リンクから認証を完了させてください。
       for_html: "%{name} の設定"
@@ -189,7 +182,6 @@ ja:
         general: 通常の通知
         general_desc_html: "%{page}にのみ表示される通知です。"
         mobile: モバイル通知
-        mobile_notice: 新しい通知機能が実装されしだい、設定項目が追加される予定です。
         moderator: 審査者用通知
         page: 通知ページ
         save: 保存する

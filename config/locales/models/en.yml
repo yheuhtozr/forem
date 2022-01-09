@@ -35,7 +35,7 @@ en:
         Article: Article
         item: item
         PodcastEpisode: Podcast episode
-      user_suspended_for_too_man: User suspended for too many spammy articles, triggered by autovomit.
+      user_suspended_for_too_man: User suspended for too many spammy interactions, triggered by autovomit.
       you_cannot_mention_more_th: You cannot mention more than %{settings_ratelimit_mention} users in a comment!
     feedback_message:
       you_previously_reported_t: "(you) previously reported this URL."
@@ -55,12 +55,8 @@ en:
       is_not_valid: is not valid.
     organization:
       integer_only_no_sign_allow: Integer only. No sign allowed.
-      is_taken: is taken.
       value_s_is_a_reserved_wor: "%<value>s is a reserved word. Contact site admins for help registering your organization."
-    page:
-      is_taken: is taken.
     podcast:
-      is_taken: is taken.
       slug_is_reserved: slug is reserved
     podcast_episode_appearance:
       provided_role_is_not_valid: provided role is not valid
@@ -84,7 +80,7 @@ en:
       campaign:
         share_your_project: Share your project
       community:
-        new_forem: New Forem
+        message: may not include the "<" nor ">" character
         user: user
       general:
         community_sponsors: Community Sponsors
@@ -111,7 +107,6 @@ en:
       has_been_banished: has been banished.
       is_not_a_valid_rss_atom_fe: is not a valid RSS/Atom feed
       is_taken: "%{data_value} is taken."
-      is_taken2: is taken.
       user_could_not_be_saved: User could not be saved. %{e_message}
       username_is_reserved: username is reserved
     user_subscription:
