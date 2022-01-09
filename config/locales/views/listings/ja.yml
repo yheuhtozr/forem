@@ -42,9 +42,6 @@ ja:
           label: Category
           placeholder: Conference CFP (1 Credit)
           summary: Category details/rules
-        connect:
-          subtitle: Connect messaging
-          description: Allow Users to message me via Connect.
         expiry:
           description: If applicable for time sensitive events, deadlines, etc.
         location:
@@ -74,8 +71,8 @@ ja:
         buy: Buy more
         disclaimer:
           subtitle: Disclaimer
-          desc1: "%{community} admins may modify tags and categories to ensure accuracy. We may also take down and refund inappropriate listings."
-          desc2: Listings expire 30 days after they are published or "bumped".
+          description1: "%{community} admins may modify tags and categories to ensure accuracy. We may also take down and refund inappropriate listings."
+          description2: Listings expire 30 days after they are published or "bumped".
         organization: Organization credits
         personal: Personal credits
       preview_icon: DEV logo

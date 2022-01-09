@@ -4,7 +4,6 @@ ja:
     actions:
       copy:
         text: コピーしました
-        title: 記事の URL をクリップボードにコピー
         button: リンクをコピー
       more:
         title: その他…
