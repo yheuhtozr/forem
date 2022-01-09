@@ -137,7 +137,8 @@ module ApplicationHelper
     followable_name = followable.name
 
     tag.button(
-      I18n.t("core.follow"),
+      I18n.t("helpers.application_helper.follow.#{followable_type}",
+             default: I18n.t("helpers.application_helper.follow.default")),
       name: :button,
       type: :button,
       data: {
@@ -150,9 +151,10 @@ module ApplicationHelper
       },
       class: "crayons-btn follow-action-button whitespace-nowrap #{classes} #{user_follow}",
       aria: {
-        label: I18n.t("helpers.application_helper.follow.aria_label",
-                      type: I18n.t("helpers.application_helper.follow.type.#{followable_type}"),
-                      name: followable_name),
+        label: I18n.t("helpers.application_helper.follow.aria_label.#{followable_type}",
+                      name: followable_name,
+                      default: I18n.t("helpers.application_helper.follow.aria_label.default", type: followable_type,
+                                                                                              name: followable_name)),
         pressed: "false"
       },
     )
@@ -216,7 +218,7 @@ module ApplicationHelper
     size_string = I18n.t("views.articles.series.size", count: collection.articles.published.size)
     body = if collection.slug.present?
              I18n.t("views.articles.series.subtitle", slug: collection.slug,
-                                                  size: size_string)
+                                                      size: size_string)
            else
              size_string
            end
