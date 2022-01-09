@@ -1,5 +1,5 @@
 ---
-en:
+fr:
   concerns:
     development_dependency_checks:
       sidekiq_is_not_running_and: Sidekiq is not running and is needed for the app to function properly.                            Use bin/startup to start the application properly.

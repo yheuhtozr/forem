@@ -9,9 +9,12 @@ class LiquidTagPolicy
   end
 
   def initialize?
-    return true unless record.class.const_defined?("VALID_ROLES")
+    # NOTE: This check the liquid tag then send that liquid tag's method to the
+    # user is "fragile".  Would it make more sense to ask the liquid tag?  Or
+    # the user given the liquid tag?  My inclination is ask the user (and by
+    # extension the Authorizer).  But that is a future refactor.
+    return true unless liquid_tag.user_authorization_method_name
     raise Pundit::NotAuthorizedError, I18n.t("policies.liquid_tag_policy.no_user_found") unless user
-
     # Manually raise error to use a custom error message
     unless user_allowed_to_use_tag?
       raise Pundit::NotAuthorizedError,

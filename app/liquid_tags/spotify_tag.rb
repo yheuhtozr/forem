@@ -32,13 +32,9 @@ class SpotifyTag < LiquidTagBase
 
   private
 
-  def parse_uri(uri)
-    Regexp.union(URI_REGEXP, URI_PLAYLIST_REGEXP).match(uri) || raise_error
-  end
-
-  def generate_embed_link(parsed_uri)
-    parsed_uri.split(":")[1..].unshift("https://open.spotify.com/embed").join("/")
-  end
+  def parse_input(input)
+    match = pattern_match_for(input, REGEXP_OPTIONS)
+    raise StandardError, I18n.t("liquid_tags.spotify_tag.invalid_spotify_uri") unless match
 
   def raise_error
     msg = I18n.t("liquid_tags.spotify_tag.invalid_spotify_link_be_su")

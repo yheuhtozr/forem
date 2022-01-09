@@ -1,5 +1,5 @@
 ---
-en:
+fr:
   services:
     analytics_service:
       you_can_t_view_this_articl: You can't view this article's stats
@@ -57,9 +57,13 @@ en:
     notifications:
       new_comment:
         new: "💬 New Comment"
+      new_mention:
+        new: "🗣️ New Mention"
     payments:
       customer:
         usd: usd
+      errors:
+        select_payment_method: "Please select a payment method"
       process_credit_purchase:
         charge:
           other: Purchase of %{count} credits.

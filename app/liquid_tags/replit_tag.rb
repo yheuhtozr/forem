@@ -16,12 +16,9 @@ class ReplitTag < LiquidTagBase
 
   private
 
-  def parse_id(input)
-    input_no_space = input.delete(" ")
-    raise StandardError, I18n.t("liquid_tags.replit_tag.invalid_replit_id") unless valid_id?(input_no_space)
-
-    input_no_space
-  end
+  def parse_input(input)
+    match = pattern_match_for(input, REGEXP_OPTIONS)
+    raise StandardError, I18n.t("liquid_tags.replit_tag.invalid_replit_id") unless match
 
   def valid_id?(id)
     id =~ %r{\A@\w{2,15}/[a-zA-Z0-9\-]{0,60}\Z}

@@ -28,6 +28,7 @@ class Article < ApplicationRecord
 
   # The date that we began limiting the number of user mentions in an article.
   MAX_USER_MENTION_LIVE_AT = Time.utc(2021, 4, 7).freeze
+  PROHIBITED_UNICODE_CHARACTERS_REGEX = /[\u202a-\u202e]/ # BIDI embedding controls
 
   has_one :discussion_lock, dependent: :destroy
 
@@ -837,8 +838,29 @@ class Article < ApplicationRecord
     original.update_columns(translation_group: translation_group) unless original.translation_group
   end
 
+  def eponymous_translation_group
+    return unless translation_group && id != translation_group
+
+    original = Article.find translation_group
+    original.update_columns(translation_group: translation_group) unless original.translation_group
+  end
+
   def notify_external_services_on_new_post
     return unless published
+
+    if boost_states["boosted_new_post"]
+      DiscordWebhook::Bot.edited_post self
+    else
+      TwitterClient::Bot.new_post self
+      DiscordWebhook::Bot.new_post self
+
+      boost_states["boosted_new_post"] = true
+      update_columns boost_states: boost_states
+    end
+  end
+
+  def remove_prohibited_unicode_characters
+    return unless title&.match?(PROHIBITED_UNICODE_CHARACTERS_REGEX)
 
     if boost_states["boosted_new_post"]
       DiscordWebhook::Bot.edited_post self

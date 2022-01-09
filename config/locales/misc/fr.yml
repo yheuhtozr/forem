@@ -1,5 +1,5 @@
 ---
-en:
+fr:
   common:
     invalid_langtag: must be a chain of 1 to 8 letter alphanumeric tags connected by hyphens
   create_mascot:

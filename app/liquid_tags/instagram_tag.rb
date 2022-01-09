@@ -17,9 +17,9 @@ class InstagramTag < LiquidTagBase
 
   private
 
-  def parse_id(input)
-    input_no_space = input.delete(" ")
-    raise StandardError, I18n.t("liquid_tags.instagram_tag.invalid_instagram_id") unless valid_id?(input_no_space)
+  def parse_id_or_url(input)
+    match = pattern_match_for(input, REGEXP_OPTIONS)
+    raise StandardError, I18n.t("liquid_tags.instagram_tag.invalid_instagram_id") unless match
 
     input_no_space
   end

@@ -10,6 +10,24 @@ module Articles
       }.with_indifferent_access
     end
 
+    # Get the "plucked" attribute information for the article thread.
+    #
+    # @param relation [ActiveRecord::Relation] the original Article scope
+    # @param options [Hash]
+    # @option options [Array<String>] :tags which tags to select
+    # @option options [NilClass, String, ActiveSupport::TimeWithZone] :time_ago
+    # @option options [Integer] :count the number of records to pluck
+    #
+    # @return [Array<Array>] The inner array is the plucked attribute
+    #         values for the selected articles.  Which means be mindful
+    #         of the order you pass for attributes.
+    #
+    # @note The order of attributes and behavior of this method is from
+    #       past implementations.  A refactor to consider would be to
+    #       create a data structure.
+    #
+    # @see `./app/views/articles/_widget_list_item.html.erb` for the
+    #      importance of maintaining position of these parameters.
     def self.call(relation: Article.published, **options)
       options = default_options.merge(options)
       tags, time_ago, count = options.values_at(:tags, :time_ago, :count)

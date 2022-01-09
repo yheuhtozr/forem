@@ -18,7 +18,7 @@ gem "ahoy_email", "~> 2.1.0" # Email analytics for Rails
 gem "ahoy_matey", "~> 4.0" # Tracking analytics for Rails
 gem "ancestry", "~> 4.1" # Ancestry allows the records of a ActiveRecord model to be organized in a tree structure
 gem "babosa", "~> 2.0"
-gem "blazer", "~> 2.4.8" # Allows admins to query data
+gem "blazer", "~> 2.5.0" # Allows admins to query data
 gem "bootsnap", ">= 1.1.0", require: false # Boot large ruby/rails apps faster
 gem "carrierwave", "~> 2.2" # Upload files in your Ruby applications, map them to a range of ORMs, store them on different backends
 gem "carrierwave-bombshelter", "~> 0.2" # Protect your carrierwave from image bombs
@@ -26,7 +26,7 @@ gem "cloudinary", "~> 1.21" # Client library for easily using the Cloudinary ser
 gem "counter_culture", "~> 2.9" # counter_culture provides turbo-charged counter caches that are kept up-to-date
 gem "ddtrace", "~> 0.53.0" # ddtrace is Datadog’s tracing client for Ruby.
 gem "devise", "~> 4.8" # Flexible authentication solution for Rails
-gem "devise_invitable", "~> 2.0.5" # Allows invitations to be sent for joining
+gem "devise_invitable", "~> 2.0.6" # Allows invitations to be sent for joining
 gem "discordrb-webhooks", "~> 3.4.2"
 gem "dogstatsd-ruby", "~> 4.8" # A client for DogStatsD, an extension of the StatsD metric server for Datadog
 gem "doorkeeper", "~> 5.5" # Oauth 2 provider
@@ -106,9 +106,7 @@ gem "sidekiq-unique-jobs", "~> 7.0.12" # Ensures that Sidekiq jobs are unique wh
 gem "slack-notifier", "~> 2.4" # A slim ruby wrapper for posting to slack webhooks
 gem "sprockets", "~> 4.0" # Sprockets is a Rack-based asset packaging system
 gem "staccato", "~> 0.5" # Ruby Google Analytics Measurement
-gem "store_attribute", "~> 0.9.3" # ActiveRecord extension which adds typecasting to store accessors.
-gem "storext", "~> 3.3" # Add type-casting and other features on top of ActiveRecord::Store.store_accessor
-gem "stripe", "~> 5.38" # Ruby library for the Stripe API
+gem "stripe", "~> 5.42" # Ruby library for the Stripe API
 gem "strong_migrations", "~> 0.7" # Catch unsafe migrations
 gem "twitter", "~> 7.0" # A Ruby interface to the Twitter API
 gem "uglifier", "~> 4.2" # Uglifier minifies JavaScript files

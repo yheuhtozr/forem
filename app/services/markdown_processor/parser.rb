@@ -67,7 +67,7 @@ module MarkdownProcessor
       end
     end
 
-    def evaluate_markdown
+    def evaluate_markdown(allowed_tags: MarkdownProcessor::AllowedTags::MARKDOWN_PROCESSOR_DEFAULT)
       return if @content.blank?
 
       renderer = Redcarpet::Render::HTMLRouge.new(hard_wrap: true, filter_html: false)

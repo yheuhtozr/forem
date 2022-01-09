@@ -98,8 +98,11 @@ class Tag < ActsAsTaggableOn::Tag
   end
 
   def validate_name
-    errors.add(:name, I18n.t("models.tag.error.length")) if name.length > 30
-    errors.add(:name, I18n.t("models.tag.error.chars")) unless name.match?(TAG_PATTERN)
+    errors.add(:name, I18n.t("errors.messages.too_long", count: 30)) if name.length > 30
+    # [:alnum:] is not used here because it supports diacritical characters.
+    # If we decide to allow diacritics in the future, we should replace the
+    # following regex with [:alnum:].
+    errors.add(:name, I18n.t("errors.messages.contains_prohibited_characters")) unless name.match?(/\A[[:alnum:]]+\z/i)
   end
 
   def errors_as_sentence

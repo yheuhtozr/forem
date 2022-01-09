@@ -16,12 +16,9 @@ class BlogcastTag < LiquidTagBase
 
   private
 
-  def parse_id(input)
-    input_no_space = input.delete(" ")
-    raise StandardError, I18n.t("liquid_tags.blogcast_tag.invalid_blogcast_id") unless valid_id?(input_no_space)
-
-    input_no_space
-  end
+  def parse_id_or_url(input)
+    match = pattern_match_for(input, REGEXP_OPTIONS)
+    raise StandardError, I18n.t("liquid_tags.blogcast_tag.invalid_blogcast_id") unless match
 
   def valid_id?(id)
     (id =~ /\A\d{1,9}\Z/i)&.zero?
