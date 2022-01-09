@@ -10,14 +10,6 @@
       <%= render "actions_mobile" %>
     </section>
 
-    <div class="crayons-layout crayons-layout--2-cols">
-      <div class="crayons-layout__sidebar-left">
-        <%= render "actions" %>
-      </div>
-      <div class="crayons-layout__content mb-5" id="user-dashboard">
-        <% if @followed_tags.any? %>
-          <%= javascript_packs_with_chunks_tag "dashboardTagsDisableUnchangedButtons", defer: true %>
-
           <div class="crayons-notice p-4 px-6 mb-4 mx-2 m:mx-0" aria-live="polite">
               <%= t("adjust", scope: _t) %>
               <span class="crayons-indicator crayons-indicator--outlined crayons-indicator--accent ml-3"><%= t("default", scope: _t) %></span>

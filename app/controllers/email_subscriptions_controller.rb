@@ -23,10 +23,6 @@ class EmailSubscriptionsController < ApplicationController
       email_comment_notifications: -> { I18n.t("email_subscriptions_controller.comment_notifications") },
       email_follower_notifications: -> { I18n.t("email_subscriptions_controller.follower_notifications") },
       email_mention_notifications: -> { I18n.t("email_subscriptions_controller.mention_notifications") },
-      email_connect_messages: lambda {
-                                I18n.t("email_subscriptions_controller.connect_messages",
-                                       community: Settings::Community.community_name)
-                              },
       email_unread_notifications: -> { I18n.t("email_subscriptions_controller.unread_notifications") },
       email_badge_notifications: -> { I18n.t("email_subscriptions_controller.badge_notifications") }
     }.freeze

@@ -23,6 +23,10 @@ module Constants
             description: I18n.t("lib.constants.settings.authentication.the_pem_key_from_the_authe"),
             placeholder: "-----BEGIN PRIVATE KEY-----\nMIGTAQrux...QPe8Yb\n-----END PRIVATE KEY-----\\n"
           },
+          blocked_registration_email_domains: {
+            description: I18n.t("lib.constants.settings.authentication.blocked_registration"),
+            placeholder: "seo-hunt.com"
+          },
           display_email_domain_allow_list_publicly: {
             description: I18n.t("lib.constants.settings.authentication.do_you_want_to_display_the")
           },
@@ -32,6 +36,14 @@ module Constants
           },
           facebook_secret: {
             description: I18n.t("lib.constants.settings.authentication.the_app_secret_portion_of"),
+            placeholder: ""
+          },
+          forem_key: {
+            description: I18n.t("lib.constants.settings.authentication.forem_key.description"),
+            placeholder: ""
+          },
+          forem_secret: {
+            description: I18n.t("lib.constants.settings.authentication.forem_secret.description"),
             placeholder: ""
           },
           github_key: {

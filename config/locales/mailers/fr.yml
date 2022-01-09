@@ -19,13 +19,10 @@ en:
       congrats_you_re_the_modera: 'Congrats! You''re the moderator for #%{tag_name}'
       just_followed_you_on: just followed you on %{community}
       just_mentioned_you_in_thei: "%{mentioner_name} just mentioned you in their %{mentionable_type}"
-      just_messaged_you: "%{message_user_name} just messaged you"
       organization_deletion_con: "%{community} - Organization Deletion Confirmation"
       replied_to_your: "%{comment_user_name} replied to your %{comment_parent_type}"
       thanks_for_your_report_on: Thanks for your report on %{community}
       the_export_of_your_content: The export of your content is ready
-      you_are_invited_to_the_cha: You are invited to the %{channel} channel as moderator.
-      you_are_invited_to_the_cha2: You are invited to the %{channel} channel.
       you_have_unread_notificat:
         other: "🔥 You have %{count} unread notifications on %{community}"
       you_just_got_a_badge: You just got a badge

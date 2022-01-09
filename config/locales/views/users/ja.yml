@@ -67,9 +67,6 @@ ja:
         heading: 本当にログアウトしますか？
         'yes': ログアウトします
       block: "@%{user} をブロック"
-      chat: チャット
-      chat_with: "%{user} にチャット"
-      close: ポップアップを閉じる
       details: "%{user} のプロフィール詳細"
       dropdown: ユーザー操作
       email_icon: メールアドレス

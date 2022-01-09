@@ -58,6 +58,16 @@ en:
             one: one more part...
             other: "%{count} more parts..."
           title: View more
+      translations:
+        heading: Available in other languages
+        icon: Multi-language versions list
+        original: Original (%{lang})
+        unpublished: Unpublished
+        stub: |+
+          <!-- Stub note: please delete this when you are done. -->
+          **(This is a translation stub created from [%{name}](%{url}).)**
+          <!-- end stub note -->
+
       unlock:
         meta:
           title: Confirm Discussion Unlock
@@ -81,5 +91,6 @@ en:
       posted_html: Posted on %{date}
       read_next: Lire ensuite
       reading_time:
-        other: "%{count} min read"
+        other: "%{count} words/chars"
       right_nav: Author details
+...

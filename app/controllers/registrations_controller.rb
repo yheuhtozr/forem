@@ -64,7 +64,10 @@ class RegistrationsController < Devise::RegistrationsController
     return if allow_list.empty? || allow_list.include?(domain)
 
     resource.email = nil
-    resource.errors.add(:email, I18n.t("registrations_controller.error.domain"))
+    # Alright, this error message isn't quite correct.  Is the email
+    # from a blocked domain?  Or an explicitly allowed domain.  I
+    # think this is enough.
+    resource.errors.add(:email, I18n.t("v.auth.register.error.domain"))
   end
 
   def build_devise_resource

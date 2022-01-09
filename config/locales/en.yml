@@ -7,12 +7,36 @@ en:
     follow_back: Follow back
     following: Following
     loading: loading...
+    joined: Joined
+    joined_on: Joined on
+    like: Like
+    listings: Listings
+    location: Location
+    log_in: Log in
+    more_from: More from
+    pinned: Pinned
+    post: Post
+    posts: Posts
+    reaction: Reaction
+    reactions:
+      heart: Heart
+      save: Save
+      unicorn: Unicorn
+    reply: Reply
     report_abuse: Report abuse
-    success_settings: Successfully updated settings.
-  contact_prompts:
-    if_continued_trouble_html: <a href="/contact">Contact us</a> if you continue having trouble.
-    if_we_can_help_html: <a href="/contact">Contact us</a> if there is anything we can help with.
-    if_any_questions_html: <a href="/contact">Contact us</a> if you have any questions.
+    search: Search
+    series: Series
+    settings: Settings
+    trending_on: Trending on
+  dashboard:
+    empty_follower: You don't have any followers yet...
+    empty_post: This is where you can manage your posts, but you haven't written anything yet.
+    following_users: Following users
+    loading: loading...
+    not_following_any_users: You don't follow any users...
+    page_title: Dashboard
+    upload_a_video: Upload a video
+    write_new_post: Write your first post now
   datetime:
     distance_in_words_ago: # https://github.com/openstreetmap/openstreetmap-website/issues/2255
       about_x_hours:
@@ -162,6 +186,14 @@ en:
       wrong_length:
         one: is the wrong length (should be 1 character)
         other: is the wrong length (should be %{count} characters)
+  settings_menu:
+    account: Account
+    billing: Billing
+    customization: Customization
+    extensions: Extensions
+    notifications: Notifications
+    organization: Organization
+    profile: Profile
   time:
     formats:
       comment: "%B %d, %Y"
@@ -169,8 +201,6 @@ en:
       json: "%b %e, %Y"
       medium: "%b %-d, %Y"
       reddit: "%b %e '%y"
-      stackexchange: "%b %e '%y"
-      tweet: "%H:%M %p - %d %b %Y"
       short: "%b %-e"
       short_with_yy: "%b %-d '%y"
       short_with_year: "%b %-e, %Y"

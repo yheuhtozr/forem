@@ -6,13 +6,38 @@ fr:
     follow: Suivre
     follow_back: Suivre aussi
     following: Abonné
-    loading: Chargement en cours...
-    report_abuse: Signaler un abus
     success_settings: Successfully updated settings.
-  contact_prompts:
-    if_continued_trouble_html: <a href="/contact">Contactez-nous</a> si vous continuez à avoir des problèmes.
-    if_we_can_help_html: <a href="/contact">Contactez-nous</a> si nous pouvons vous aider.
-    if_any_questions_html: <a href="/contact">Contactez-nous</a> si vous avez des questions.
+    joined: Rejoint
+    joined_on: Rejoint le
+    like: Aime
+    listings: Annonces
+    loading: Chargement en cours...
+    location: Lieu
+    log_in: Se connecter
+    more_from: Plus de la part de
+    pinned: Épinglé
+    post: Publication
+    posts: Publications
+    reaction: Réaction
+    reactions:
+      heart: Coeur
+      save: Sauver
+      unicorn: Licorne
+    reply: Répondre
+    report_abuse: Signaler un abus
+    search: Recherche
+    series: Séries
+    settings: Paramètres
+    trending_on: Populaire sur
+  dashboard:
+    empty_follower: Vous n'avez pas encore d'abonnés...
+    empty_post: C'est ici que vous pouvez gérer vos messages, mais vous n'avez encore rien écrit
+    following_users: Utilisateurs suivis
+    loading: Chargement en cours...
+    not_following_any_users: Vous ne suivez aucun utilisateur...
+    page_title: Tableau de bord
+    upload_a_video: Charger une vidéo
+    write_new_post: Écrivez votre premier message maintenant
   date:
     abbr_month_names:
     -
@@ -185,6 +210,14 @@ fr:
       wrong_length:
         one: est la mauvaise longueur (devrait être 1 caractère)
         other: est la mauvaise longueur (devrait être %{count} caractères)
+  settings_menu:
+    account: Compte
+    billing: Facturation
+    customization: Personnalisation
+    extensions: Extensions
+    notifications: Notifications
+    organization: Organisation
+    profile: Profil
   time:
     formats:
       comment: "%B %d, %Y"
@@ -192,8 +225,6 @@ fr:
       json: "%b %e, %Y"
       medium: "%b %-d, %Y"
       reddit: "%b %e '%y"
-      stackexchange: "%b %e '%y"
-      tweet: "%H:%M %p - %d %b %Y"
       short: "%-e %b"
       short_with_yy: "%-e %b '%y"
       short_with_year: "%-e %b, %Y"

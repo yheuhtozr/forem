@@ -27,18 +27,6 @@ en:
       welcome_notification:
         generator:
           welcome: 'Welcome Notification: %{key}'
-    chat_channels:
-      create_with_users:
-        direct_chat_between: Direct chat between %{usernames_join_and}
-        invalid_direct_channel: Invalid direct channel
-        new_channel: New Channel
-      find_or_create:
-        blocked_channel: Blocked channel
-      send_invitation:
-        sent:
-          zero: No invitations sent. Check for username typos.
-          one: "%{count} invitations sent."
-          other: "%{count} invitations sent."
     error_messages:
       clean:
         there_was_a_problem_parsin: There was a problem parsing the front-matter YAML. Perhaps you need to escape a quote or a colon or something. Email %{s} if you are having trouble.
@@ -107,9 +95,6 @@ en:
             '
         sponsorship:
           user_s_bought_a_type_s_sp: "%{user} bought a %{type} sponsorship for %{organization}\n"
-    tag_moderators:
-      add:
-        mods: "#%{tag_name} mods"
     user_subscriptions:
       create_from_controller_params:
         source_not_found: Source not found.
