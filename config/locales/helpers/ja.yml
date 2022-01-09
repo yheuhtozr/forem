@@ -95,12 +95,16 @@ ja:
       app_logo: App logo
       deleted_user: "[Deleted User]"
       follow:
-        aria_label: 'Follow %{type}: %{name}'
-        type:
-          organization: organization
-          podcast: podcast
-          tag: tag
-          user: user
+        aria_label:
+          Organization: 'グループ「%{name}」をフォロー'
+          Tag: 'タグ「%{name}」をフォロー'
+          User: '「 %{name}」さんをフォロー'
+          default: '%{type}「%{name}」をフォロー'
+        text:
+          Organization: フォロー
+          Tag: フォロー
+          User: フォロー
+          default: フォロー
       latest_posts: Latest posts
       required: Required
       title_text: "%{title} - %{timeframe}"
