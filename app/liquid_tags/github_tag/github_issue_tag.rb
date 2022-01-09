@@ -26,7 +26,7 @@ class GithubTag
         locals: {
           body: @body,
           created_at: @created_at.rfc3339,
-          date: @created_at.utc.strftime(I18n.t("time.formats.github")),
+          date: I18n.l(@created_at.utc, format: :github),
           html_url: @content_json[:html_url],
           issue_number: issue_number,
           tagline: tagline,

@@ -401,18 +401,20 @@ class Article < ApplicationRecord
     return unless edited?
 
     if edited_at.year == Time.current.year
-      edited_at.strftime I18n.t("time.formats.short")
+      I18n.l(edited_at, format: :short)
     else
-      edited_at.strftime I18n.t("time.formats.short_with_yy")
+      I18n.l(edited_at, format: :short_with_yy)
     end
   end
 
   def readable_publish_date
     relevant_date = displayable_published_at
-    if relevant_date && relevant_date.year == Time.current.year
-      relevant_date&.strftime I18n.t("time.formats.short")
-    else
-      relevant_date&.strftime I18n.t("time.formats.short_with_yy")
+    return unless relevant_date
+
+    if relevant_date.year == Time.current.year
+      I18n.l(relevant_date, format: :short)
+    elsif relevant_date
+      I18n.l(relevant_date, format: :short_with_yy)
     end
   end
 
