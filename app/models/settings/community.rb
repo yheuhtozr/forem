@@ -10,7 +10,7 @@ module Settings
     setting(
       :community_name,
       type: :string,
-      default: ApplicationConfig["COMMUNITY_NAME"],
+      default: ApplicationConfig["COMMUNITY_NAME"] || I18n.t("models.settings.community.new_forem"),
       validates: {
         format: {
           with: /\A[^[<|>]]+\Z/,

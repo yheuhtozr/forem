@@ -81,6 +81,7 @@ ja:
         share_your_project: Share your project
       community:
         message: may not include the "<" nor ">" character
+        new_forem: New Forem
         user: user
       general:
         community_sponsors: Community Sponsors

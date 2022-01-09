@@ -73,6 +73,16 @@ module Authentication
 
     private
 
+    def guard_against_spam_from!(identity:)
+      domain = identity.email.split("@")[-1]
+      return unless domain
+      return if Settings::Authentication.acceptable_domain?(domain: domain)
+
+      message = I18n.t("services.authentication.authenticator.not_allowed")
+
+      raise Authentication::Errors::SpammyEmailDomain, message
+    end
+
     attr_reader :provider, :current_user, :cta_variant
 
     # Loads the proper authentication provider from the available ones
