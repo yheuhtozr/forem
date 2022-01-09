@@ -27,12 +27,13 @@
     <% end %>
     <% @comments.each do |comment| %>
       <% if comment.commentable.present? && comment.commentable.published && !comment.deleted %>
+        <% lang = comment.commentable.base_lang %>
         <a href="<%= comment.path %>" class="profile-comment-row ">
-          <h4 class="fw-bold fs-base m-0 mb-1">
+          <h4 class="fw-bold fs-base m-0 mb-1 with-content-font" lang="<%= lang %>">
             <%= comment.commentable.title %>
           </h4>
           <div class="flex items-center fs-s">
-            <p class="color-base-80">
+            <p class="color-base-80 with-content-font" lang="<%= lang %>">
               <%= truncate(strip_tags(comment.processed_html), length: 64).html_safe %>
             <p>
             <small class="ml-2 color-base-60 fs-s comment-date whitespace-nowrap">

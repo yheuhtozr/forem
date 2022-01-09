@@ -20,7 +20,7 @@ ja:
       must_not_be_the_same_user: は作者と異なるユーザーを入れてください
       must_not_have_spaces: はスペースを入れないでください
       published: 公開しました
-      unique_url: has already been taken. Email %{email} for further details.
+      unique_url: はすでに取られています。詳しくは %{email} にご連絡ください。
       user_suspended_for_too_man: ユーザーはスパム記事を大量に投稿したため、自動検出により凍結されました。
       you_cannot_mention_more_th: 1 つの記事内で %{settings_ratelimit_mention} 人より多く呼びかけることはできません！
     broadcast:

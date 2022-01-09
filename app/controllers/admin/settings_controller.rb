@@ -9,7 +9,7 @@ module Admin
 
     def show
       @confirmation_text =
-        "My username is @#{current_user.username} and this action is 100% safe and appropriate."
+        I18n.t("admin.settings_controller.my_username_is_and_this_ac", current_user_username: current_user.username)
     end
 
     private

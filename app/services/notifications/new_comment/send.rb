@@ -43,7 +43,7 @@ module Notifications
         PushNotifications::Send.call(
           user_ids: targets,
           title: I18n.t("services.notifications.new_comment.new"),
-          body: "#{I18n.t('v.notifications.comment.commented_html', user: comment.user.username,
+          body: "#{I18n.t('views.notifications.comment.commented_html', user: comment.user.username,
                                                                     title: comment.commentable.title.strip)}:\n" \
                 "#{strip_tags(comment.processed_html).strip}",
           payload: {

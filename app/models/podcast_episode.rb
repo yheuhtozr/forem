@@ -30,9 +30,7 @@ class PodcastEpisode < ApplicationRecord
   after_destroy :purge, :purge_all
   after_save :bust_cache
 
-  pg_search_scope :search_podcast_episodes,
-                  against: %i[body subtitle title],
-                  using: { tsearch: { prefix: true } }
+  scope :search_podcast_episodes, ->(query) { where "ARRAY[body, subtitle, podcast_episodes.title] &@~ ?", query }
 
   scope :reachable, -> { where(reachable: true) }
   scope :published, -> { joins(:podcast).where(podcasts: { published: true }) }

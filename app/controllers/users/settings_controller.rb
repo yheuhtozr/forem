@@ -17,6 +17,7 @@ module Users
                         feed_url
                         inbox_guidelines
                         inbox_type
+                        writing_lang
                         permit_adjacent_sponsors].freeze
 
     def update
@@ -31,7 +32,7 @@ module Users
           cookies.permanent[:user_experience_level] = users_setting.experience_level.to_s
         end
         current_user.touch(:profile_updated_at)
-        flash[:settings_notice] = "Your config has been updated. Refresh to see all changes."
+        flash[:settings_notice] = I18n.t("users_controller.your_config_has_been_updat")
       else
         Honeycomb.add_field("error", users_setting.errors.messages.compact_blank)
         Honeycomb.add_field("errored", true)

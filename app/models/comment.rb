@@ -9,6 +9,14 @@ class Comment < ApplicationRecord
 
   COMMENTABLE_TYPES = %w[Article PodcastEpisode].freeze
 
+  URI_REGEXP = %r{
+    \A
+    (?:https?://)?  # optional scheme
+    .+?             # host
+    (?::\d+)?       # optional port
+    \z
+  }x
+
   # The date that we began limiting the number of user mentions in a comment.
   MAX_USER_MENTION_LIVE_AT = Time.utc(2021, 3, 12).freeze
 
@@ -49,7 +57,8 @@ class Comment < ApplicationRecord
   validates :user_id, presence: true
   validates :commentable, on: :create, presence: {
     message: lambda do |object, _data|
-      "#{object.commentable_type.presence || 'item'} has been deleted."
+      I18n.t("models.comment.has_been_deleted",
+             type: I18n.t("models.comment.type.#{object.commentable_type.presence || 'item'}"))
     end
   }
 
@@ -62,18 +71,7 @@ class Comment < ApplicationRecord
 
   after_update_commit :update_notifications, if: proc { |comment| comment.saved_changes.include? "body_markdown" }
 
-  pg_search_scope :search_comments,
-                  against: %i[body_markdown],
-                  using: {
-                    tsearch: {
-                      prefix: true,
-                      highlight: {
-                        StartSel: "<mark>",
-                        StopSel: "</mark>",
-                        MaxFragments: 2
-                      }
-                    }
-                  }
+  scope :search_comments, ->(query) { where "comments.body_markdown &@~ ?", query }
 
   scope :eager_load_serialized_data, -> { includes(:user, :commentable) }
 
@@ -132,8 +130,8 @@ class Comment < ApplicationRecord
   end
 
   def title(length = 80)
-    return title_deleted if deleted
-    return title_hidden if hidden_by_commentable_user
+    return self.class.title_deleted if deleted
+    return self.class.title_hidden if hidden_by_commentable_user
 
     text = ActionController::Base.helpers.strip_tags(processed_html).strip
     truncated_text = ActionController::Base.helpers.truncate(text, length: length).gsub("&#39;", "'").gsub("&amp;", "&")
@@ -334,7 +332,7 @@ class Comment < ApplicationRecord
   def discussion_not_locked
     return unless commentable_type == "Article" && commentable.discussion_lock
 
-    errors.add(:commentable_id, "the discussion is locked on this Post")
+    errors.add(:commentable_id, I18n.t("models.comment.locked"))
   end
 
   def published_article

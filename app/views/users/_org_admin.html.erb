@@ -1,4 +1,4 @@
-<% _t = "v.users.org.admin" %>
+<% _t = "v.settings.org.admin" %>
 <%= javascript_packs_with_chunks_tag "colorPreview", "clipboardCopy", defer: true %>
 <%= render "shared/webcomponents_loader_script" %>
 
@@ -81,7 +81,7 @@
     <%= f.hidden_field :id %>
     <div class="crayons-field">
       <%= f.label :name, class: "crayons-field__label" %>
-      <%= f.text_field :name, maxlength: 50, class: "crayons-textfield", placeholder: "Acme Inc." %>
+      <%= f.text_field :name, maxlength: 50, class: "crayons-textfield" %>
     </div>
     <div class="crayons-field">
       <%= f.label :slug, class: "crayons-field__label" %>
@@ -90,7 +90,7 @@
     </div>
 
     <div class="crayons-field">
-      <%= f.label :profile_image, "Profile image *", class: "crayons-field__label" %>
+      <%= f.label :profile_image, class: "crayons-field__label" %>
       <div class="flex items-center">
           <span class="crayons-logo crayons-logo--xl mr-2">
             <% if @organization.profile_image_url.present? %>
@@ -102,7 +102,7 @@
     </div>
 
     <div class="crayons-field">
-      <%= f.label :nav_image, "Logo for light themes", class: "crayons-field__label" %>
+      <%= f.label :nav_image, class: "crayons-field__label" %>
       <div class="flex items-center">
         <% if @organization.nav_image_url.present? %>
           <img alt="<%= @organization.name %> profile image" class="max-w-50 h-auto" src="<%= optimized_image_url(@organization.nav_image_url, width: 50) %>" />
@@ -112,7 +112,7 @@
     </div>
 
     <div class="crayons-field">
-      <%= f.label :dark_nav_image, "Logo for dark themes", class: "crayons-field__label" %>
+      <%= f.label :dark_nav_image, class: "crayons-field__label" %>
       <div class="flex items-center">
         <% if @organization.dark_nav_image_url.present? %>
           <img alt="<%= @organization.name %> profile image" class="max-w-50 h-auto" src="<%= optimized_image_url(@organization.dark_nav_image_url, width: 50) %>" />
@@ -122,16 +122,16 @@
     </div>
 
     <div class="crayons-field">
-      <%= f.label :twitter_username, "Twitter username", class: "crayons-field__label" %>
+      <%= f.label :twitter_username, class: "crayons-field__label" %>
       <%= f.text_field :twitter_username, class: "crayons-textfield" %>
     </div>
     <div class="crayons-field">
-      <%= f.label :github_username, "GitHub username", class: "crayons-field__label" %>
+      <%= f.label :github_username, class: "crayons-field__label" %>
       <%= f.text_field :github_username, class: "crayons-textfield" %>
     </div>
     <div class="crayons-field">
-      <%= f.label :url, "Website url", class: "crayons-field__label" %>
-      <%= f.url_field :url, maxlength: 128, placeholder: "https://yoursite.com", class: "crayons-textfield" %>
+      <%= f.label :url, class: "crayons-field__label" %>
+      <%= f.url_field :url, maxlength: 128, class: "crayons-textfield" %>
     </div>
     <div class="crayons-field">
       <%= f.label :tag_line, class: "crayons-field__label" %>
@@ -186,8 +186,8 @@
       <p class="crayons-field__description"><%= t("form.cta_button_text", scope: _t) %></p>
     </div>
     <div class="crayons-field">
-      <%= f.label :cta_button_url, "Link url", class: "crayons-field__label" %>
-      <%= f.text_field :cta_button_url, maxlength: 150, placeholder: "https://example.com", class: "crayons-textfield" %>
+      <%= f.label :cta_button_url, class: "crayons-field__label" %>
+      <%= f.text_field :cta_button_url, maxlength: 150, class: "crayons-textfield" %>
     </div>
 
     <button class="crayons-btn w-max" type="submit"><%= t("form.submit", scope: _t) %></button>

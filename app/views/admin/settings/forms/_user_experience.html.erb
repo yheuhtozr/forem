@@ -13,35 +13,35 @@
       <fieldset class="grid gap-4">
         <div class="crayons-fieldx">
           <%= admin_config_label :feed_style, model: Settings::UserExperience %>
-          <%= admin_config_description Constants::Settings::UserExperience::DETAILS[:feed_style][:description] %>
+          <%= admin_config_description Constants::Settings::UserExperience.details[:feed_style][:description] %>
           <%= f.text_field :feed_style,
                            class: "crayons-textfield",
                            value: Settings::UserExperience.feed_style,
-                           placeholder: Constants::Settings::UserExperience::DETAILS[:feed_style][:placeholder] %>
+                           placeholder: Constants::Settings::UserExperience.details[:feed_style][:placeholder] %>
         </div>
         <div class="crayons-field">
           <%= admin_config_label :feed_strategy, model: Settings::UserExperience %>
-          <%= admin_config_description Constants::Settings::UserExperience::DETAILS[:feed_strategy][:description] %>
+          <%= admin_config_description Constants::Settings::UserExperience.details[:feed_strategy][:description] %>
           <%= f.text_field :feed_strategy,
                            class: "crayons-textfield",
                            value: Settings::UserExperience.feed_strategy,
-                           placeholder: Constants::Settings::UserExperience::DETAILS[:feed_strategy][:placeholder] %>
+                           placeholder: Constants::Settings::UserExperience.details[:feed_strategy][:placeholder] %>
         </div>
         <div class="crayons-field">
           <%= admin_config_label :tag_feed_minimum_score, model: Settings::UserExperience %>
-          <%= admin_config_description Constants::Settings::UserExperience::DETAILS[:tag_feed_minimum_score][:description] %>
+          <%= admin_config_description Constants::Settings::UserExperience.details[:tag_feed_minimum_score][:description] %>
           <%= f.number_field :tag_feed_minimum_score,
                              class: "crayons-textfield",
                              value: Settings::UserExperience.tag_feed_minimum_score,
-                             placeholder: Constants::Settings::UserExperience::DETAILS[:tag_feed_minimum_score][:placeholder] %>
+                             placeholder: Constants::Settings::UserExperience.details[:tag_feed_minimum_score][:placeholder] %>
         </div>
         <div class="crayons-field">
           <%= admin_config_label :home_feed_minimum_score, model: Settings::UserExperience %>
-          <%= admin_config_description Constants::Settings::UserExperience::DETAILS[:home_feed_minimum_score][:description] %>
+          <%= admin_config_description Constants::Settings::UserExperience.details[:home_feed_minimum_score][:description] %>
           <%= f.number_field :home_feed_minimum_score,
                              class: "crayons-textfield",
                              value: Settings::UserExperience.home_feed_minimum_score,
-                             placeholder: Constants::Settings::UserExperience::DETAILS[:home_feed_minimum_score][:placeholder] %>
+                             placeholder: Constants::Settings::UserExperience.details[:home_feed_minimum_score][:placeholder] %>
         </div>
         <div class="crayons-field">
           <%= admin_config_label :index_minimum_score, model: Settings::UserExperience %>
@@ -53,7 +53,7 @@
         </div>
         <div class="crayons-field">
           <%= admin_config_label :default_font, model: Settings::UserExperience %>
-          <%= admin_config_description Constants::Settings::UserExperience::DETAILS[:default_font][:description] %>
+          <%= admin_config_description Constants::Settings::UserExperience.details[:default_font][:description] %>
           <%= select_tag "settings_user_experience[default_font]",
                          options_for_select(
                            [%w[sans-serif sans_serif], %w[serif serif], %w[open-dyslexic open_dyslexic]],
@@ -75,12 +75,12 @@
         </div>
         <div class="crayons-field">
           <%= admin_config_label :primary_brand_color_hex, model: Settings::UserExperience %>
-          <%= admin_config_description Constants::Settings::UserExperience::DETAILS[:primary_brand_color_hex][:description] %>
+          <%= admin_config_description Constants::Settings::UserExperience.details[:primary_brand_color_hex][:description] %>
           <%= f.color_field :primary_brand_color_hex,
                             class: "crayons-color-selector",
                             value: Settings::UserExperience.primary_brand_color_hex,
                             pattern: "^#+([a-fA-F0-9]{6})$",
-                            placeholder: Constants::Settings::UserExperience::DETAILS[:primary_brand_color_hex][:placeholder] %>
+                            placeholder: Constants::Settings::UserExperience.details[:primary_brand_color_hex][:placeholder] %>
         </div>
         <div class="crayons-field crayons-field--checkbox">
           <%= f.check_box :public, checked: Settings::UserExperience.public, class: "crayons-checkbox" %>

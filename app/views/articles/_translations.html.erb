@@ -1,0 +1,32 @@
+<% if translations.size > 1 || (translations.present? && translations[0].id != this_id) %>
+  <details id="article-translations" class="mb-4">
+    <summary class="crayons-btn crayons-btn--icon-left">
+      <%= inline_svg_tag("translate-2.svg", aria: true, class: "crayons-icon", title: t("views.articles.translations.icon")) %>
+      <%= t("views.articles.translations.heading") %>
+    </summary>
+
+    <% original, derived = translations.partition { |tl| tl.id == tl.translation_group } %>
+    <% by_lang = derived.group_by(&:base_lang) %>
+    <% collator = ICU::Collation::Collator.new(I18n.locale.to_s) %>
+    <% lang_keys = by_lang.keys.sort { |a, b| collator.compare lang_name(a), lang_name(b) } %>
+    <% by_lang[:original] = original %>
+    <div class="px-4 py-2">
+    <% [:original, *lang_keys].each do |k| %>
+      <% label = if k == :original
+                   t("views.articles.translations.original", lang: by_lang[k].present? ? lang_name(by_lang[k].first.base_lang.presence || "und") : t("views.articles.translations.unpublished"))
+                 else
+                   lang_name(k)
+                 end %>
+      <% unless k == :original %> &bull; <% end %>
+      <% if by_lang[k].size > 1 %><%= label %><% end %>
+      <% by_lang[k].sort_by(&:id).each.with_index(1) do |a, i| %>
+        <% if a.id == this_id %>
+          <span class="crayons-link--current"><%= by_lang[k].size > 1 ? "(#{i})" : label %></span>
+        <% else %>
+          <a href="<%= loc << a.path %>" class="crayons-link"><%= by_lang[k].size > 1 ? "(#{i})" : label %></a>
+        <% end %>
+      <% end %>
+    <% end %>
+    </span>
+  </details>
+<% end %>

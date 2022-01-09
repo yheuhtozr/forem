@@ -61,8 +61,7 @@ ja:
           title: Views
           icon: Views
           lt_25: "< 25"
-          text_html:
-            other: "%{scale} views"
+          text_html: "%{scale} views"
           u_25: under 25
         subscriptions:
           title: Subscriptions

@@ -79,7 +79,7 @@
         <div class="crayons-notice crayons-notice--warning mb-4" aria-live="polite"><%= t("v.editor.video.progress.heading") %></div>
       <% end %>
 
-      <article class="crayons-card crayons-article mb-4"
+      <article class="crayons-card crayons-article mb-4" lang="<%= @article.base_lang %>"
         id="article-show-container"
         data-article-id="<%= @article.id %>"
         data-author-id="<%= @article.user_id %>"
@@ -163,6 +163,9 @@
         </header>
 
         <div class="crayons-article__main">
+          <% if @parallels %>
+            <%= render "articles/translations", translations: @parallels, this_id: @article.id %>
+          <% end %>
           <% if @collection %>
             <%= render "articles/collection",
                        rendered_article: @article,

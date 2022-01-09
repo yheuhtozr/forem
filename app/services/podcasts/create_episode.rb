@@ -37,7 +37,8 @@ module Podcasts
       {
         podcast_id: podcast_id,
         title: item.title,
-        slug: item.title.parameterize,
+        # simplified equivalent of /app/models/concerns/sluggifiable.rb
+        slug: item.title.sluggify,
         subtitle: item.itunes_subtitle,
         summary: item.itunes_summary,
         website_url: item.link,

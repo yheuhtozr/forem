@@ -6,10 +6,12 @@ module Constants
           default_font: {
             description: I18n.t("lib.constants.settings.user_experience.determines_the_default_rea")
           },
+          default_locale: {
+            description: I18n.t("lib.constants.settings.user_experience.default_locale.description"),
+          },
           feed_strategy: {
-            description: "Determines the main feed algorithm approach the app takes: basic or large_forem_experimental
-        (which should only be used for 10k+ member communities)",
-            placeholder: "basic"
+            description: I18n.t("lib.constants.settings.user_experience.feed_strategy.description"),
+            placeholder: I18n.t("lib.constants.settings.user_experience.feed_strategy.placeholder")
           },
           feed_style: {
             description: I18n.t("lib.constants.settings.user_experience.determines_which_default_f"),
@@ -17,6 +19,10 @@ module Constants
           },
           home_feed_minimum_score: {
             description: I18n.t("lib.constants.settings.user_experience.minimum_score_needed_for_a"),
+            placeholder: "0"
+          },
+          index_minimum_score: {
+            description: I18n.t("lib.constants.settings.user_experience.index_minimum_score.description"),
             placeholder: "0"
           },
           primary_brand_color_hex: {

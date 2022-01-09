@@ -15,7 +15,8 @@
     <fieldset class="crayons-field">
       <legend class="crayons-field__label"><%= t("theme", scope: _t) %></legend>
       <div class="theme-selector-field grid gap-4 grid-cols-2 l:grid-cols-3">
-        <% Users::Setting.config_themes.keys.each do |theme| %>
+        <%# This is temporary while we're migrating themes %>
+        <% %w[light_theme minimal_theme dark_theme].each do |theme| %>
           <%= render partial: "theme_selector", locals: { f: f, theme: theme } %>
         <% end %>
       </div>
@@ -52,6 +53,18 @@
         <% end %>
       </div>
     </div>
+    <div class="crayons-field">
+      <%= f.label :writing_lang, t("lang", scope: _t), class: "crayons-field__label" %>
+      <%= f.text_field :writing_lang, class: "crayons-textfield", placeholder: "en-GB-oed", value: @users_setting.writing_lang %>
+      <% groups = { site: %i[en-us ja], special: %i[mul und zxx], discard: %i[mis] } %>
+      <% categories = t("languages").group_by { |k, _| groups.detect { |_g, a| a.include?(k) }&.first || (k.to_s.start_with?("x-v3-") ? :cla : :others) } %>
+      <% collator = ICU::Collation::Collator.new(I18n.locale.to_s) %>
+      <select class="crayons-select" data-for="users_setting_writing_lang" oninput="fillInOption(event)" aria-label="<%= t("langs.aria_label", scope: _t) %>">
+        <option disabled selected><%= t("langs.select", scope: _t) %></option>
+        <%= grouped_options_for_select(%i[site cla special others].map { |gr| [t("langs.#{gr}", scope: _t), categories[gr].sort { |a, b| collator.compare a[1], b[1] }.map { |(c, l)| ["#{l} [#{c}]", c.to_s] }] }) %>
+      </select>
+    </div>
+    <p><%= t("lang_desc_html", scope: _t) %></p>
   </div>
 
   <div class="crayons-card crayons-card--content-rows">
@@ -116,3 +129,10 @@
     <button class="crayons-btn" type="submit"><%= t("save", scope: _t) %></button>
   </div>
 <% end %>
+
+<script defer>
+function fillInOption(e) {
+  e.preventDefault();
+  document.getElementById(e.currentTarget.dataset.for).value = e.currentTarget.value;
+}
+</script>

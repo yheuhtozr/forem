@@ -13,7 +13,6 @@ validators:
   profile_validator:
     is_not_a_valid_hex_color: is not a valid hex color
     is_too_long: is too long
-    maximum:
-      other: is too long (maximum is %{count} characters)
+    maximum: is too long (maximum is %{count} characters)
   valid_domain_csv_validator:
     must_be_a_comma_separated: must be a comma-separated list of valid domains

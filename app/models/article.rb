@@ -5,6 +5,7 @@ class Article < ApplicationRecord
   include Reactable
   include UserSubscriptionSourceable
   include PgSearch::Model
+  include Sluggifiable
 
   acts_as_taggable_on :tags
   resourcify
@@ -49,6 +50,10 @@ class Article < ApplicationRecord
            inverse_of: :commentable,
            class_name: "Comment"
 
+  validates :base_lang, format: {
+    with: /\A[0-9A-Za-z]{1,8}(?:-[0-9A-Za-z]{1,8})*\z/,
+    message: proc { I18n.t("common.invalid_langtag") }
+  }, allow_blank: true
   validates :body_markdown, bytesize: { maximum: 800.kilobytes, too_long: proc {
                                                                             I18n.t("models.article.is_too_long")
                                                                           } }
@@ -71,7 +76,7 @@ class Article < ApplicationRecord
   validates :public_reactions_count, presence: true
   validates :rating_votes_count, presence: true
   validates :reactions_count, presence: true
-  validates :slug, presence: { if: :published? }, format: /\A[0-9a-z\-_]*\z/
+  validates :slug, presence: { if: :published? }
   validates :slug, uniqueness: { scope: :user_id }
   validates :title, presence: true, length: { maximum: 128 }
   validates :user_id, presence: true
@@ -106,6 +111,8 @@ class Article < ApplicationRecord
   after_save :create_conditional_autovomits
   after_save :bust_cache
   after_save :notify_slack_channel_about_publication
+  after_save :eponymous_translation_group
+  after_save :notify_external_services_on_new_post
 
   after_update_commit :update_notifications, if: proc { |article|
                                                    article.notifications.any? && !article.saved_changes.empty?
@@ -113,59 +120,16 @@ class Article < ApplicationRecord
 
   after_commit :async_score_calc, :touch_collection, :detect_animated_images, on: %i[create update]
 
-  # The trigger `update_reading_list_document` is used to keep the `articles.reading_list_document` column updated.
-  #
-  # Its body is inserted in a PostgreSQL trigger function and that joins the columns values
-  # needed to search documents in the context of a "reading list".
-  #
-  # Please refer to https://github.com/jenseng/hair_trigger#usage in case you want to change or update the trigger.
-  #
-  # Additional information on how triggers work can be found in
-  # => https://www.postgresql.org/docs/11/trigger-definition.html
-  # => https://www.cybertec-postgresql.com/en/postgresql-how-to-write-a-trigger/
-  #
-  # Adapted from https://dba.stackexchange.com/a/289361/226575
-  trigger
-    .name(:update_reading_list_document).before(:insert, :update).for_each(:row)
-    .declare("l_org_vector tsvector; l_user_vector tsvector") do
-    <<~SQL
-      NEW.reading_list_document :=
-        setweight(to_tsvector('simple'::regconfig, unaccent(coalesce(NEW.title, ''))), 'A') ||
-        setweight(to_tsvector('simple'::regconfig, unaccent(coalesce(NEW.cached_tag_list, ''))), 'B') ||
-        setweight(to_tsvector('simple'::regconfig, unaccent(coalesce(NEW.body_markdown, ''))), 'C') ||
-        setweight(to_tsvector('simple'::regconfig, unaccent(coalesce(NEW.cached_user_name, ''))), 'D') ||
-        setweight(to_tsvector('simple'::regconfig, unaccent(coalesce(NEW.cached_user_username, ''))), 'D') ||
-        setweight(to_tsvector('simple'::regconfig,
-          unaccent(
-            coalesce(
-              array_to_string(
-                -- cached_organization is serialized to the DB as a YAML string, we extract only the name attribute
-                regexp_match(NEW.cached_organization, 'name: (.*)$', 'n'),
-                ' '
-              ),
-              ''
-            )
-          )
-        ), 'D');
-    SQL
-  end
-
   serialize :cached_user
   serialize :cached_organization
 
-  # TODO: [@rhymes] Rename the article column and the trigger name.
-  # What was initially meant just for the reading list (filtered using the `reactions` table),
-  # is also used for the article search page.
-  # The name of the `tsvector` column and its related trigger should be adapted.
-  pg_search_scope :search_articles,
-                  against: :reading_list_document,
-                  using: {
-                    tsearch: {
-                      prefix: true,
-                      tsvector_column: :reading_list_document
-                    }
-                  },
-                  ignoring: :accents
+  scope :search_articles, lambda { |query|
+    where(
+      "ARRAY[title, cached_tag_list, body_markdown, cached_user_name, cached_user_username]
+      &@~ (?, ARRAY[10, 4, 2, 1, 1, 1], 'index_articles_full_text')::pgroonga_full_text_search_condition",
+      query,
+    )
+  }
 
   # [@jgaskins] We use an index on `published`, but since it's a boolean value
   #   the Postgres query planner often skips it due to lack of diversity of the
@@ -249,8 +213,8 @@ class Article < ApplicationRecord
            :video, :user_id, :organization_id, :video_source_url, :video_code,
            :video_thumbnail_url, :video_closed_caption_track_url,
            :experience_level_rating, :experience_level_rating_distribution, :cached_user, :cached_organization,
-           :published_at, :crossposted_at, :description, :reading_time, :video_duration_in_seconds,
-           :last_comment_at)
+           :published_at, :crossposted_at, :boost_states, :description, :reading_time, :video_duration_in_seconds,
+           :last_comment_at, :base_lang)
   }
 
   scope :limited_columns_internal_select, lambda {
@@ -260,7 +224,7 @@ class Article < ApplicationRecord
            :video, :user_id, :organization_id, :video_source_url, :video_code,
            :video_thumbnail_url, :video_closed_caption_track_url, :social_image,
            :published_from_feed, :crossposted_at, :published_at, :featured_number,
-           :created_at, :body_markdown, :email_digest_eligible, :processed_html, :co_author_ids)
+           :created_at, :body_markdown, :email_digest_eligible, :processed_html, :co_author_ids, :base_lang)
   }
 
   scope :sorting, lambda { |value|
@@ -286,7 +250,8 @@ class Article < ApplicationRecord
   scope :feed, lambda {
                  published.includes(:taggings)
                    .select(
-                     :id, :published_at, :processed_html, :user_id, :organization_id, :title, :path, :cached_tag_list
+                     :id, :published_at, :processed_html, :user_id, :organization_id, :title, :path, :cached_tag_list,
+                     :base_lang
                    )
                }
 
@@ -298,6 +263,10 @@ class Article < ApplicationRecord
                      }
 
   scope :eager_load_serialized_data, -> { includes(:user, :organization, :tags) }
+
+  store_attributes :boost_states do
+    boosted_new_post Boolean, default: false
+  end
 
   def self.seo_boostable(tag = nil, time_ago = 18.days.ago)
     # Time ago sometimes returns this phrase instead of a date
@@ -343,11 +312,14 @@ class Article < ApplicationRecord
   end
 
   def processed_description
-    text_portion = body_text.present? ? body_text[0..100].tr("\n", " ").strip.to_s : ""
-    text_portion = "#{text_portion.strip}..." if body_text.size > 100
-    return I18n.t("models.article.a_post_by", user_name: user.name) if text_portion.blank?
-
-    text_portion.strip
+    if body_text.present?
+      body_text
+        .truncate(104, separator: " ")
+        .tr("\n", " ")
+        .strip
+    else
+      I18n.t("models.article.a_post_by", user_name: user.name)
+    end
   end
 
   def body_text
@@ -492,6 +464,10 @@ class Article < ApplicationRecord
     I18n.t("languages")
   end
 
+  def parallel_translations
+    Article.where(translation_group: translation_group).where.not(translation_group: nil)
+  end
+
   def skip_indexing?
     # should the article be skipped indexed by crawlers?
     # true if unpublished, or spammy,
@@ -537,7 +513,7 @@ class Article < ApplicationRecord
     fixed_body_markdown = MarkdownProcessor::Fixer::FixAll.call(body_markdown || "")
     parsed = FrontMatterParser::Parser.new(:md).call(fixed_body_markdown)
     parsed_markdown = MarkdownProcessor::Parser.new(parsed.content, source: self, user: user)
-    self.reading_time = parsed_markdown.calculate_reading_time
+    self.reading_time = parsed_markdown.word_char_count
     self.processed_html = parsed_markdown.finalize
 
     if parsed.front_matter.any?
@@ -579,6 +555,10 @@ class Article < ApplicationRecord
 
   def update_notifications
     Notification.update_notifications(self, I18n.t("models.article.published"))
+  end
+
+  def update_notification_subscriptions
+    NotificationSubscription.update_notification_subscriptions(self)
   end
 
   def before_destroy_actions
@@ -639,7 +619,7 @@ class Article < ApplicationRecord
     # check tags names aren't too long and don't contain non alphabet characters
     tag_list.each do |tag|
       new_tag = Tag.new(name: tag)
-      new_tag.validate_name
+      new_tag.quick_validate
       new_tag.errors.messages[:name].each { |message| errors.add(:tag, "\"#{tag}\" #{message}") }
     end
   end
@@ -848,5 +828,26 @@ class Article < ApplicationRecord
     return unless saved_change_to_attribute?(:processed_html)
 
     ::Articles::DetectAnimatedImagesWorker.perform_async(id)
+  end
+
+  def eponymous_translation_group
+    return unless translation_group && id != translation_group
+
+    original = Article.find translation_group
+    original.update_columns(translation_group: translation_group) unless original.translation_group
+  end
+
+  def notify_external_services_on_new_post
+    return unless published
+
+    if boost_states["boosted_new_post"]
+      DiscordWebhook::Bot.edited_post self
+    else
+      TwitterClient::Bot.new_post self
+      DiscordWebhook::Bot.new_post self
+
+      boost_states["boosted_new_post"] = true
+      update_columns boost_states: boost_states
+    end
   end
 end

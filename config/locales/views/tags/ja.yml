@@ -1,6 +1,6 @@
 ---
 ja:
-  v:
+  views:
     tags:
       meta:
         title: Tags
@@ -31,17 +31,15 @@ ja:
           rules_markdown:
             label: Rules markdown
             placeholder: Optional - Can be used for challenges, i.e. submission guidelines.
-          submit: SAVE CHANGES
-        markdown_html: "%{tag} is the name of the tag used in Markdown."
+          submit: Save
       follow: Follow
       following_tags: Following tags
       moderator:
         text_html: 'comma separated, space is optional. Example: %{code}'
         code: 123
         placeholder: 'comma separated, space is optional. Example: 1,2,3'
-      published:
-        other: 公開記事数 %{count}
-      side:
+      published: 公開記事数 %{count}
+      sidebar:
         about: "#%{tag} とは"
         admin: 管理画面
         edit: 編集
@@ -50,7 +48,6 @@ ja:
         mods: このタグの審査員
         new: 記事を作成
         older: '以前の #%{tag} 記事'
-        published:
-          other: 公開記事数 %{count}
+        published: 公開記事数 %{count}
         sponsor: "%{tag} is sponsored by"
       sponsor: "| Sponsored by %{org} ❤️"

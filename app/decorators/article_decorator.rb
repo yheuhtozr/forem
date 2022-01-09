@@ -102,4 +102,10 @@ class ArticleDecorator < ApplicationDecorator
 
     id == PinnedArticle.id
   end
+
+  def lang
+    base_lang
+  rescue NameError
+    nil
+  end
 end

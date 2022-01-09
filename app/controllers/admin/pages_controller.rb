@@ -31,9 +31,8 @@ module Admin
 
     def update
       @page = Page.find(params[:id])
-      @page.assign_attributes(page_params)
-      if @page.valid?
-        @page.update!(page_params)
+
+      if @page.update(page_params)
         flash[:success] = I18n.t("admin.pages_controller.page_has_been_successfully")
         redirect_to admin_pages_path
       else
@@ -44,8 +43,8 @@ module Admin
 
     def create
       @page = Page.new(page_params)
-      if @page.valid?
-        @page.save!
+
+      if @page.save
         flash[:success] = I18n.t("admin.pages_controller.page_has_been_successfully2")
         redirect_to admin_pages_path
       else

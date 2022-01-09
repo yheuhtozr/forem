@@ -80,6 +80,15 @@ ja:
         editor: エディタバージョン
         fixed: ウィンドウに追従
         font: 基本フォント
+        lang: 執筆言語
+        lang_desc_html: あなたが記事を執筆する際によく使う言語です（編集画面のデフォルト値に使用）。言語タグ形式 (<code>en-US</code>) で指定してください。
+        langs:
+          aria_label: 言語一覧の中から選択できます
+          cla: CLA コード
+          select: ここから選べます
+          site: サイト
+          special: 特殊用途
+          others: その他
         level: あなたの専門レベルはどのくらいですか（1～5）？
         level_desc: これはプロフィールページを含めどこにも公開されません。フォローしているタグなどの情報と合わせて、あなたにおすすめする内容を調整するためだけに使われます。
         navbar: サイトのヘッダー
@@ -90,6 +99,10 @@ ja:
         sponsor_field: Display Sponsors (When browsing)
         static: ページ最上部に固定
         theme: サイトテーマ
+        theme_selector:
+          dark_theme: ダークテーマ
+          minimal_theme: ライトテーマ
+          light_theme: Migdal テーマ
         writing: 執筆
       danger: キケン
       destroy:

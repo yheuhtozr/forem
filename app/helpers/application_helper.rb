@@ -149,7 +149,12 @@ module ApplicationHelper
         }
       },
       class: "crayons-btn follow-action-button whitespace-nowrap #{classes} #{user_follow}",
-      aria: { label: "Follow #{followable_type}: #{followable_name}", pressed: "false" },
+      aria: {
+        label: I18n.t("helpers.application_helper.follow.aria_label",
+                      type: I18n.t("helpers.application_helper.follow.type.#{followable_type}"),
+                      name: followable_name),
+        pressed: "false"
+      },
     )
   end
 
@@ -208,9 +213,9 @@ module ApplicationHelper
   end
 
   def collection_link(collection, **kwargs)
-    size_string = I18n.t("v.articles.series.size", collection.articles.published.size)
+    size_string = I18n.t("views.articles.series.size", count: collection.articles.published.size)
     body = if collection.slug.present?
-             I18n.t("v.articles.series.subtitle", slug: collection.slug,
+             I18n.t("views.articles.series.subtitle", slug: collection.slug,
                                                   size: size_string)
            else
              size_string

@@ -30,7 +30,7 @@ class WikipediaTag < LiquidTagBase
     url = ActionController::Base.helpers.strip_tags(input).strip
     raise StandardError, I18n.t("liquid_tags.wikipedia_tag.invalid_wikipedia_url") unless valid_url?(url)
 
-    uri = URI.parse(url)
+    uri = Addressable::URI.parse(url)
     lang = uri.host.split(".", 2).first
     title = uri.path.split("/").last
     anchor = uri.fragment

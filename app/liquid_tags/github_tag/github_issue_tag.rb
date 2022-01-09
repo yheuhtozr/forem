@@ -53,7 +53,7 @@ class GithubTag
     end
 
     def generate_api_link(input)
-      uri = URI.parse(input).normalize
+      uri = Addressable::URI.parse(input).normalize
       uri.host = nil if uri.host == "github.com"
 
       # public PRs URLs are "/pull/{id}" but the API requires "/pulls/{id}"
@@ -75,7 +75,7 @@ class GithubTag
       # remove leading forward slash in the path
       path = uri.path.delete_prefix("/")
 
-      URI.parse(API_BASE_ENDPOINT).merge(path).to_s
+      Addressable::URI.parse(API_BASE_ENDPOINT).merge(path).to_s
     end
 
     def valid_link?(link)

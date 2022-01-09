@@ -29,7 +29,7 @@ module Articles
         src = img.attr("src")
         next unless src
 
-        image = if URI.parse(src).relative?
+        image = if Addressable::URI.parse(src).relative?
                   retrieve_image_from_uploader_store(src)
                 else
                   src

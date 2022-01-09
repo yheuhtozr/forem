@@ -1,6 +1,6 @@
 ---
 ja:
-  v:
+  views:
     actions:
       copy:
         text: コピーしました
@@ -10,16 +10,16 @@ ja:
         title: その他…
         aria_label: 他の方法でシェア
       share:
-        Facebook:
+        facebook:
           text: Facebook にシェア
-        HackerNews:
+        hackernews:
           text: Hacker News にシェア
-        LinkedIn:
+        linkedin:
           text: LinkedIn にシェア
-        Reddit:
+        reddit:
           text: Reddit にシェア
-        Twitter:
+        twitter:
           text: Twitter にシェア
           query: '"%{article}" (%{author})'
-        link: 記事のシェア先
+        link: シェア先を選ぶ…
         report: 通報する

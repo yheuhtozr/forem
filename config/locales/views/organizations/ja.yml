@@ -1,8 +1,8 @@
 ---
 ja:
-  v:
+  views:
     organizations:
-      empty: 404 bio not found
+      empty: かつ 30
       external:
         icon: External link icon
       follow: Follow
@@ -13,6 +13,7 @@ ja:
         text_html: "Joined on\_%{date}"
       location:
         icon: Location
+      logo: "%{org} のプロフィール画像"
       size: Employees
       sponsor:
         text: "%{level} Community Sponsor ❤️"

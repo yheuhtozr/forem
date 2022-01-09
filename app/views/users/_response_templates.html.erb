@@ -54,10 +54,10 @@
         <p class="crayons-field__description">
           <%= t("cue", scope: _t) %>
         </p>
-        <%= f.text_field :title, placeholder: "...", value: title, class: "crayons-textfield" %>
+        <%= f.text_field :title, value: title, class: "crayons-textfield" %>
       </div>
       <div class="crayons-field">
-        <%= f.label :content, "Comment body (Markdown)", class: "crayons-field__label" %>
+        <%= f.label :content, class: "crayons-field__label" %>
         <%= f.text_area :content, value: content, class: "crayons-textfield" %>
       </div>
 

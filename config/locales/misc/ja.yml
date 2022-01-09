@@ -1,5 +1,7 @@
 ---
 ja:
+  common:
+    invalid_langtag: は 1 から 8 文字までの英数字のタグを半角ハイフンで繋いだものです
   create_mascot:
     name: Mascot
     error: Mascot already set

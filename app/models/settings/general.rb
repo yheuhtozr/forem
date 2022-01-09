@@ -43,15 +43,17 @@ module Settings
     setting :enable_video_upload, type: :boolean, default: false
 
     # Mascot
-    field :mascot_user_id, type: :integer, default: nil
-    field :mascot_image_url,
-          type: :string,
-          default: proc { URL.local_image("mascot.png") },
-          validates: { url: true }
-    field :mascot_image_description, type: :string, default: I18n.t("models.settings.general.the_community_mascot")
-    field :mascot_footer_image_url, type: :string, validates: { url: true }
-    field :mascot_footer_image_width, type: :integer, default: 52
-    field :mascot_footer_image_height, type: :integer, default: 120
+    setting :mascot_user_id, type: :integer, default: nil
+    setting :mascot_image_url,
+            type: :string,
+            default: proc { URL.local_image("mascot.png") },
+            validates: { url: true }
+    setting :mascot_image_description, type: :string, default: lambda {
+                                                                 I18n.t("models.settings.general.the_community_mascot")
+                                                               }
+    setting :mascot_footer_image_url, type: :string, validates: { url: true }
+    setting :mascot_footer_image_width, type: :integer, default: 52
+    setting :mascot_footer_image_height, type: :integer, default: 120
 
     # Meta keywords
     setting :meta_keywords, type: :hash, default: {
@@ -93,7 +95,7 @@ module Settings
     setting :twitter_hashtag, type: :string
 
     # Sponsors
-    field :sponsor_headline, default: I18n.t("models.settings.general.community_sponsors")
+    setting :sponsor_headline, default: -> { I18n.t("models.settings.general.community_sponsors") }
 
     # Tags
     setting :sidebar_tags, type: :array, default: %w[]

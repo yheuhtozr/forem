@@ -1,21 +1,17 @@
 ---
 ja:
-  v:
+  views:
     users:
       meta:
         og:
           title: "%{user} — %{community} プロフィール"
       comments:
-        all:
-          other: コメント %{count} 件全部
-        last:
-          other: 最新のコメント %{count} 件
+        all: コメント %{count} 件全部
+        last: 最新のコメント %{count} 件
         recent: 最近のコメント
         view: すべての活動を見る
-        view_all:
-          other: コメント %{count} 件をすべて見る
-        view_last:
-          other: 最新のコメント %{count} 件を見る
+        view_all: コメント %{count} 件をすべて見る
+        view_last: 最新のコメント %{count} 件を見る
       github:
         heading: GitHub Repositories
         fork: Fork
@@ -25,11 +21,10 @@ ja:
       pin_icon: ピン止め
       pinned: ピン止め
       profile_descriptions:
-        currently_learning: What are you learning right now? What are the new tools and languages you're picking up right now?
-        currently_hacking_on: What projects are currently occupying most of your time?
-        available_for: What kinds of collaborations or discussions are you available for? What's a good reason to say Hey! to you these days?
-        skills_languages: What tools and languages are you most experienced with? Are you specialized or more of a generalist?
-        work: "What do you do? Example: CEO at ACME Inc."
+        currently_learning: 今、何か言語（自然言語・人工言語）を勉強していますか？また、関心がありますか？
+        currently_hacking_on: 今、何か言語づくりに取り組んでいますか？それはどんな言語ですか？
+        available_for: 今、何か世界づくりに取り組んでいますか？それはどんな世界ですか？
+        skills_languages: どんな言語を使ったり、勉強したことがありますか？どのくらい上手ですか？
       profile_fields:
         bio:
           label: 自己紹介
@@ -41,26 +36,24 @@ ja:
         website:
           label: サイト URL
           placeholder: https://yoursite.com
-        education: Education
-        currently_learning: Currently learning
-        currently_hacking_on: Currently hacking on
-        available_for: Available for
-        skills_languages: Skills/Languages
-        work: Work
+        website_url: サイト URL
+        education: 最近の活動
+        currently_learning: 勉強中の言語
+        currently_hacking_on: 制作中の言語
+        available_for: 制作中の世界観
+        skills_languages: 使用する言語
+        work: 作品・表彰
       side:
         comment:
           icon: コメント
-          text:
-            other: "%{count} 件のコメントを投稿"
+          text: "%{count} 件のコメントを投稿"
         org: グループ
         post:
           icon: 記事
-          text:
-            other: "%{count} 件の記事を公開"
+          text: "%{count} 件の記事を公開"
         tag:
           icon: タグ
-          text:
-            other: "%{count} 個のタグをフォロー"
+          text: "%{count} 個のタグをフォロー"
       signout:
         meta:
           title: ログアウトの確認 - %{community}
@@ -70,7 +63,7 @@ ja:
       details: "%{user} のプロフィール詳細"
       dropdown: ユーザー操作
       email_icon: メールアドレス
-      empty: 404 bio not found
+      empty: かつ 30
       flag: Flag @%{user}
       follow: フォロー
       guidelines: "%{user}'s guidelines:"

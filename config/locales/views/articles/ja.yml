@@ -1,6 +1,6 @@
 ---
 ja:
-  v:
+  views:
     articles:
       meta:
         description: このコミュニティに投稿された記事
@@ -49,14 +49,22 @@ ja:
         success: 保存済
       series:
         subtitle: "%{slug}（%{size}）"
-        size:
-          other: 全 %{count} 部
+        size: 全 %{count} 部
         published: "%{date}に公開"
         inbetween:
           num: "︙"
-          text:
-            other: "…（%{count} 部分）…"
+          text: "…（%{count} 部分）…"
           title: すべて表示
+      translations:
+        heading: 他言語版があります
+        icon: 記事の言語版の一覧
+        original: 原文（%{lang}）
+        unpublished: 非公開
+        stub: |+
+          <!-- 作業中の注記: 完了したら取り除いてください -->
+          **（この記事は [%{name}](%{url}) から翻訳中です）**
+          <!-- 作業中の注記終わり -->
+
       unlock:
         meta:
           title: Confirm Discussion Unlock
@@ -74,11 +82,10 @@ ja:
       crossposted:
         text_html: 元記事は %{on} %{url} で掲載
         'on': "%{date}に"
-      edited: "%{date}に更新"
+      edited_html: "%{date}に更新"
       for_org_html: "%{start} が %{end}%{org}%{start} へ執筆%{end}"
       missing: 記事は公開終了しました
       posted_html: "%{date}投稿"
       read_next: 次に読みたい
-      reading_time:
-        other: "%{count} 分で読める"
+      reading_time: 約 %{count} 字/語
       right_nav: 作者情報

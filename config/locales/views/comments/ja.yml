@@ -1,10 +1,9 @@
 ---
 ja:
-  v:
+  views:
     comments:
       meta:
-        title: "%{title} - %{site}"
-        title_root: "%{title} への声 - %{site}"
+        title_root: "%{title} への声"
         description: このコミュニティに投稿された記事
         og:
           title: "%{title} への声"
@@ -24,8 +23,7 @@ ja:
         full: コメント欄全体
         read: 完全な記事へ
         view: 記事へ
-        view_full:
-          other: すべてのコメントを見る（%{count} 件）
+        view_full: すべてのコメントを見る（%{count} 件）
         reply_html: "%{start}返信元:%{end} %{title}"
       delete:
         heading: このコメントを削除してもよろしいですか？
@@ -40,7 +38,7 @@ ja:
       edit: コメント編集中
       edited:
         text_html: "&bull; %{on}修正"
-        'on': "%{date}に"
+        on_html: "%{date}に"
       expand: 展開する
       hidden:
         text_html: 非表示にされているコメントがあります（%{info}）
@@ -54,10 +52,7 @@ ja:
         submit: Confirm
       locked: コメント欄は凍結中です。新しいコメントは書き込めません。
       orphan:
-        heading: 削除された記事またはポッドキャストへのコメント
-        deleted: "[削除済]"
-        delete: 削除する
-        edit: 編集する
+        deleted: "[削除された投稿へのコメント]"
       re:
         text_html: "「%{title}」%{re}"
         re: への返信
@@ -112,12 +107,15 @@ ja:
         icon: ドロップダウンメニュー
         copy:
           aria_label: "%{user} のコメントのリンクをコピーする"
+          text: リンクをコピー
         settings:
           aria_label: "%{user} のコメント設定へ"
         action:
           aria_label: "%{user} のコメントを%{action}"
           hide: 隠す
           unhide: 再表示する
+          hide_text: 隠す
+          unhide_text: 再表示
         moderate:
           aria_label: "%{user} のコメントを審査"
         report:
@@ -140,12 +138,8 @@ ja:
         view:
           icon: 表示するボタン
           text: 表示
-      plucked:
-        count:
-          other: コメント %{count}
-        empty: 書く
+      count: コメント %{count}
+      empty: 新着
+      add: 書く
       summary:
-        count_html:
-          other: "%{start}コメント%{end}\_%{count}\_%{start}件%{end}"
-        empty: コメントを寄せる
         title: コメント

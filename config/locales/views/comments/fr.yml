@@ -142,10 +142,10 @@ en:
         view:
           icon: View button
           text: View
-      plucked:
-        count:
-          one: "%{count} comment"
-          other: "%{count} comments"
-        empty: New
+      count:
+        one: "%{count} comment"
+        other: "%{count} comments"
+      empty: New
+      add: Dire
       summary:
         title: Comments

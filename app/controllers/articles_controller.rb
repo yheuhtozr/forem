@@ -56,6 +56,14 @@ class ArticlesController < ApplicationController
 
     @article, needs_authorization = Articles::Builder.call(@user, @tag, @prefill)
 
+    if params[:slug].present? # indicates /translate
+      origin = Article.find_by(slug: params[:slug])
+      @article.body_markdown =
+        I18n.t("views.articles.translations.stub", name: origin.title, url: origin.path).safe_concat origin.body_markdown # rubocop:disable Rails/OutputSafety, Layout/LineLength
+      @article.translation_group = origin.translation_group || origin.id
+      @is_translate = true
+    end
+
     if needs_authorization
       authorize(Article)
     else
@@ -71,6 +79,7 @@ class ArticlesController < ApplicationController
     @user = @article.user
     @organizations = @user&.organizations
     @user_approved_liquid_tags = Users::ApprovedLiquidTags.call(@user)
+    @default_lang = @user.setting.writing_lang if @user
   end
 
   def manage
@@ -141,7 +150,7 @@ class ArticlesController < ApplicationController
           return
         end
         if params[:destination]
-          redirect_to(URI.parse(params[:destination]).path)
+          redirect_to(Addressable::URI.parse(params[:destination]).path)
           return
         end
         if params[:article][:video_thumbnail_url]
@@ -223,6 +232,7 @@ class ArticlesController < ApplicationController
     @tag = Tag.find_by(name: params[:template])
     @prefill = params[:prefill].to_s.gsub("\\n ", "\n").gsub("\\n", "\n")
     @user_approved_liquid_tags = Users::ApprovedLiquidTags.call(@user)
+    @default_lang = @user.setting.writing_lang if @user
   end
 
   def handle_user_or_organization_feed
@@ -265,7 +275,7 @@ class ArticlesController < ApplicationController
                      else
                        %i[
                          title body_markdown main_image published description video_thumbnail_url
-                         tag_list canonical_url series collection_id archived
+                         tag_list canonical_url series collection_id archived base_lang translation_group
                        ]
                      end
 
@@ -277,6 +287,8 @@ class ArticlesController < ApplicationController
       # change the organization of the article only if explicitly asked to do so
       allowed_params << :organization_id
     end
+
+    params["article"]["tag_list"] = Tag.smart_tr params["article"]["tag_list"]
 
     params.require(:article).permit(allowed_params)
   end

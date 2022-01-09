@@ -23,7 +23,7 @@ class User < ApplicationRecord
 
   ANY_ADMIN_ROLES = %i[admin super_admin].freeze
   USERNAME_MAX_LENGTH = 30
-  USERNAME_REGEXP = /\A[a-zA-Z0-9_]+\z/.freeze
+  USERNAME_REGEXP = /\A[a-zA-Z0-9_]+\z/
   # follow the syntax in https://interledger.org/rfcs/0026-payment-pointers/#payment-pointer-syntax
   PAYMENT_POINTER_REGEXP = %r{
     \A                # start
@@ -228,27 +228,11 @@ class User < ApplicationRecord
   after_commit :subscribe_to_mailchimp_newsletter
   after_commit :bust_cache
 
-  def self.invalid_config_font
-    I18n.t("models.user.invalid_config_font")
-  end
-
-  def self.invalid_config_navbar
-    I18n.t("models.user.value_s_is_not_a_valid_na")
-  end
-
-  def self.invalid_config_theme
-    I18n.t("models.user.value_s_is_not_a_valid_th")
-  end
-
-  def self.invalid_editor_version
-    I18n.t("models.user.value_s_must_be_either_v1")
-  end
-
   def self.reserved_username
     I18n.t("models.user.username_is_reserved")
   end
 
-  def self.dev_account
+  def self.staff_account
     find_by(id: Settings::Community.staff_user_id)
   end
 

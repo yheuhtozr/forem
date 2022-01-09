@@ -1,6 +1,6 @@
 ---
 ja:
-  v:
+  views:
     listings:
       meta:
         description: "%{community} Listing"

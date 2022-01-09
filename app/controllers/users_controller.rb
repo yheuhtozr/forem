@@ -50,9 +50,6 @@ class UsersController < ApplicationController
       import_articles_from_feed(@user)
 
       notice = I18n.t("users_controller.your_profile_was_successfu")
-      if config_changed?
-        notice = I18n.t("users_controller.your_config_has_been_updat")
-      end
       if @user.export_requested?
         notice += I18n.t("users_controller.the_export_will_be_emailed")
         ExportContentWorker.perform_async(@user.id, @user.email)
@@ -133,7 +130,7 @@ class UsersController < ApplicationController
   def remove_identity
     set_current_tab("account")
 
-    error_message = I18n.t("users_controller.error", email: Settings::General.email_addresses[:default])
+    error_message = I18n.t("users_controller.error", email: ForemInstance.email)
     unless Authentication::Providers.enabled?(params[:provider])
       flash[:error] = error_message
       redirect_to user_settings_path(@tab)

@@ -29,7 +29,7 @@
             <%= f.text_field "tag_list", value: @listing.cached_tag_list, placeholder: t("tags.placeholder", scope: _f), class: "crayons-textfield" %>
           </div>
           <div class="crayons-field">
-            <%= f.label "expires_at", "Custom Expire Date", class: "crayons-field__label" %>
+            <%= f.label "expires_at", class: "crayons-field__label" %>
             <%= f.date_field "expires_at", min: Date.tomorrow, max: @listing.natural_expiration_date, class: "crayons-textfield m:max-w-50" %>
             <p class="crayons-field__description">
                 <%= t("expiry.desc", scope: _f) %>

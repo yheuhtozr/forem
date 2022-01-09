@@ -40,7 +40,7 @@ class GithubTag
       validate_options!(*options)
 
       path.delete_suffix!("/") # remove optional trailing forward slash
-      repository_path = URI.parse(path)
+      repository_path = Addressable::URI.parse(path)
       repository_path.query = repository_path.fragment = nil
 
       [repository_path.normalize.to_s, options]

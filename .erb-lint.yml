@@ -30,10 +30,18 @@ linters:
         Max: 289
         Exclude:
           - '**/app/views/comments/_comment_proper.html.erb'
+          - '**/app/views/notifications/_nav_menu.html.erb'
+          - '**/app/views/stories/tagged_articles/index.html.erb'
       Layout/TrailingEmptyLines:
         Enabled: false
+      Lint/FloatComparison:
+        Exclude:
+          - '**/app/views/moderations/actions_panel.html.erb' # allow locale code hyphens
       Lint/UselessAssignment:
         Enabled: false
+      Naming/FileName:
+        Exclude:
+          - '**/app/views/pages/*'
       Rails/OutputSafety:
         Enabled: false
         Exclude:

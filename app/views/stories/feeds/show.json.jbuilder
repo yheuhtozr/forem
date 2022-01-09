@@ -1,7 +1,7 @@
 article_attributes_to_include = %i[
   title path id user_id comments_count public_reactions_count organization_id
   reading_time video_thumbnail_url video video_duration_in_minutes
-  experience_level_rating experience_level_rating_distribution
+  experience_level_rating experience_level_rating_distribution base_lang
 ]
 article_methods_to_include = %i[
   readable_publish_date flare_tag class_name
@@ -34,4 +34,6 @@ json.array!(@stories) do |article|
     json.extract! comment, :user_id, :published_timestamp, :published_at_int, :safe_processed_html, :path
     json.extract! comment.user, :username, :name, :profile_image_90
   end
+
+  json.text_language lang_name(article.base_lang)
 end

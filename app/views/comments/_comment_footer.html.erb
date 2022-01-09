@@ -14,7 +14,7 @@
   </button>
 
   <% unless @discussion_lock %>
-    <% if (comment.depth < 2 || is_childless) %>
+    <% if comment.depth < 2 || is_childless %>
       <a
         class="actions crayons-btn crayons-btn--ghost crayons-btn--s crayons-btn--icon-left toggle-reply-form mr-1 inline-flex"
         href="#<%= commentable.path %>/comments/new/<%= comment.id_code_generated %>"

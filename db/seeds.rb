@@ -1,4 +1,4 @@
-# rubocop:disable Rails/Output
+# rubocop:disable Metrics/BlockLength
 
 return if Rails.env.production?
 
@@ -36,7 +36,7 @@ end
 seeder.create_if_none(Organization) do
   3.times do
     Organization.create!(
-      name: Faker::TvShows::SiliconValley.company,
+      name: Faker::Company.name,
       summary: Faker::Company.bs,
       remote_profile_image_url: logo = Faker::Company.logo,
       nav_image: logo,
@@ -63,7 +63,7 @@ users_in_random_order = seeder.create_if_none(User, num_users) do
     user = User.create!(
       name: name,
       profile_image: File.open(Rails.root.join("app/assets/images/#{rand(1..40)}.png")),
-      twitter_username: Faker::Internet.username(specifier: name),
+      twitter_username: Faker::Internet.username,
       # Emails limited to 50 characters
       email: Faker::Internet.email(name: name, separators: "+", domain: Faker::Internet.domain_word.first(20)),
       confirmed_at: Time.current,
@@ -529,6 +529,9 @@ end
 ##############################################################################
 
 seeder.create_if_none(Page) do
+  # change locale to en to work around non-ascii slug problem
+  loc = I18n.locale
+  Faker::Config.locale = "en"
   5.times do
     Page.create!(
       title: Faker::Hacker.say_something_smart,
@@ -538,6 +541,7 @@ seeder.create_if_none(Page) do
       template: %w[contained full_within_layout].sample,
     )
   end
+  Faker::Config.locale = loc
 end
 
 ##############################################################################
@@ -579,4 +583,4 @@ puts <<-ASCII
   All done!
 ASCII
 
-# rubocop:enable Rails/Output
+# rubocop:enable Metrics/BlockLength

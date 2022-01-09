@@ -7,6 +7,21 @@ module MarkdownProcessor
       %r{data:text/html[,;][\sa-z0-9]*}i,
     ].freeze
 
+    # TODO: parse jamo, break Thai/Lao
+    # rubocop:disable Layout/LineLength
+    CHAR_AS_WORD = /
+    (
+      \p{Ideo}\p{VS}?[\u302A-\u302D\uA700-\uA707]? |
+      \p{Bopo}[\u302A-\u302D]? |
+      [\p{Hira}\p{Kana}][\u3099\u309A]? |
+      [\u3033\u3034]\u3035 |
+      [\p{Emoji_Presentation}\p{Hang}\p{IDSB}\p{IDST}\p{Laoo}\p{Thai}\p{Yiii}] |
+      # compensation for missing scx function, and more
+      [\u3001-\u303F\u3099-\u309C\u30A0\u30FB\u30FC\u3190-\u319F\u31C0-\u31EF\u3220-\u33FF\uA700-\uA707\uFE45\uFE46\uFF61-\uFF65\uFF70\uFF9E\uFF9F\u{1D360}-\u{1D371}\u{1F210}-\u{1F2FF}]
+    )
+    /x.freeze
+    # rubocop:enable Layout/LineLength
+
     WORDS_READ_PER_MINUTE = 275.0
     ALLOWED_ATTRIBUTES = %w[href src alt].freeze
 
@@ -44,6 +59,12 @@ module MarkdownProcessor
     def calculate_reading_time
       word_count = @content.split(/\W+/).count
       (word_count / WORDS_READ_PER_MINUTE).ceil
+    end
+
+    def word_char_count
+      @content.split(CHAR_AS_WORD).each_with_index.reduce(0) do |r, (s, i)|
+        r + (i.even? ? s.split(/(?u)\W+/u).size : 1)
+      end
     end
 
     def evaluate_markdown

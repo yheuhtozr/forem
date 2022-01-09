@@ -1,8 +1,17 @@
 ---
 fr:
   core:
+    add_comment: Ajouter un commentaire
     beta: beta
     error: 'Error: %{errors}'
+    analytics: Analytique
+    comment: Commentaire
+    comments: Commentaires
+    community_name_is_great: "%{community_name} est super"
+    copy_link: Copier le lien
+    create_account: Créer un profil
+    dashboard: Tableau de bord
+    edit_profile: Editer le profil
     follow: Suivre
     follow_back: Suivre aussi
     following: Abonné

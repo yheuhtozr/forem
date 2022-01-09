@@ -12,18 +12,25 @@ module Users
          _suffix: :font
     enum inbox_type: { private: 0, open: 1 }, _suffix: :inbox
     enum config_navbar: { default: 0, static: 1 }, _suffix: :navbar
-    enum config_theme: { default: 0, minimal_light_theme: 1, night_theme: 2, pink_theme: 3,
-                         ten_x_hacker_theme: 4 }
+    # NOTE: We previously had a set of 5 themes with values from 0 to 4.
+    enum config_theme: { light_theme: 0, minimal_theme: 1, dark_theme: 2 }
+    enum config_homepage_feed: { default: 0, latest: 1, top_week: 2, top_month: 3, top_year: 4, top_infinity: 5 },
+         _suffix: :feed
 
     validates :brand_color1,
               :brand_color2,
-              format: { with: HEX_COLOR_REGEXP, message: "is not a valid hex color" },
+              format: { with: HEX_COLOR_REGEXP,
+                        message: I18n.t("validators.profile_validator.is_not_a_valid_hex_color") },
               allow_nil: true
     validates :user_id, presence: true
     validates :experience_level, numericality: { less_than_or_equal_to: 10 }, allow_blank: true
     validates :feed_referential_link, inclusion: { in: [true, false] }
     validates :feed_url, length: { maximum: 500 }, allow_nil: true
     validates :inbox_guidelines, length: { maximum: 250 }, allow_nil: true
+    validates :writing_lang, format: {
+      with: /\A[0-9A-Za-z]{1,8}(?:-[0-9A-Za-z]{1,8})*\z/,
+      message: proc { I18n.t("common.invalid_langtag") }
+    }, allow_blank: true
 
     validate :validate_feed_url, if: :feed_url_changed?
 
@@ -38,7 +45,7 @@ module Users
 
       valid = Feeds::ValidateUrl.call(feed_url)
 
-      errors.add(:feed_url, "is not a valid RSS/Atom feed") unless valid
+      errors.add(:feed_url, I18n.t("models.user.is_not_a_valid_rss_atom_fe")) unless valid
     rescue StandardError => e
       errors.add(:feed_url, e.message)
     end

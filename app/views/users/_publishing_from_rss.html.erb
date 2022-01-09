@@ -31,8 +31,8 @@
 
   <%= form_for @users_setting, url: users_settings_path, html: { class: "grid gap-6" } do |f| %>
     <div class="crayons-field">
-      <%= f.label :feed_url, "RSS Feed URL", class: "crayons-field__label" %>
-      <%= f.url_field :feed_url, placeholder: "https://yoursite.com/feed", class: "crayons-textfield" %>
+      <%= f.label :feed_url, class: "crayons-field__label" %>
+      <%= f.url_field :feed_url, class: "crayons-textfield" %>
     </div>
 
     <div class="crayons-field crayons-field--checkbox">

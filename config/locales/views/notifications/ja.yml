@@ -1,6 +1,6 @@
 ---
 ja:
-  v:
+  views:
     notifications:
       meta:
         description: Notifications inbox for %{community}
@@ -10,8 +10,7 @@ ja:
       badge:
         heading_html: You received the %{badge} badge
         awarded_html: "You also get %{credits} to use for %{listings} if you have anything you'd like to promote. 🎉"
-        credits:
-          other: "%{count} new credits"
+        credits: "%{count} new credits"
         listings: community listings
         more: More information about listings
         profile: Visit your profile
@@ -31,10 +30,8 @@ ja:
         desc: This has been logged and we're tracking it.
       follow:
         and_html: "%{first} and %{second} followed you!"
-        and_other_html:
-          other: "%{first} and %{others} followed you!"
-        others:
-          other: "%{count} others"
+        and_other_html: "%{first} and %{others} followed you!"
+        others: "%{count} others"
         single_html: "%{name} followed you!"
       load: Load More
       mention:
@@ -42,15 +39,12 @@ ja:
         comment_html: "%{user} mentioned you in a comment"
         if_org_html: " under %{org}"
       milestone:
-        heading_html:
-          other: Your post %{title} passed %{type}!
+        heading_html: Your post %{title} passed %{type}!
         check: Check your dashboard
         intro: "🎉🎉🎉🎉🎉🎉🎉🎉"
         type:
-          View:
-            other: "%{count} views"
-          Reaction:
-            other: "%{count} reactions"
+          View: "%{count} views"
+          Reaction: "%{count} reactions"
       nav:
         aria_label: Notifications
         all: All
@@ -61,10 +55,8 @@ ja:
         verb_html: "%{user} made a new post%{if_org}"
       reacted:
         and_html: "%{first} and %{last}"
-        and_other_html:
-          other: "%{first} and %{count} others"
-        verb_html:
-          other: "%{start}%{actors} reacted to %{title} with%{end} %{reactions}"
+        and_other_html: "%{first} and %{count} others"
+        verb_html: "%{start}%{actors} reacted to %{title} with%{end} %{reactions}"
         your:
           article: your article
           comment: your comment

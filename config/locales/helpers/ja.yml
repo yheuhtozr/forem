@@ -123,8 +123,7 @@ ja:
       ask_me_anything: Ask Me Anything
       author: Author
       like: いいね
-      nbsp_likes_html:
-        other: いいね&nbsp;
+      nbsp_likes_html: いいね&nbsp;
     feedback_messages_helper:
       code_of_conduct_violation: "%{community} Code of Conduct Violation"
       courtesy_notice_from: Courtesy Notice from %{community}
