@@ -88,6 +88,12 @@
   font-style: normal;
   font-weight: normal;
 }
+@font-face {
+  font-family: Cirlxarli_liparxe;
+  @include font-src('Cirlxarli_liparxe.woff2');
+  font-style: normal;
+  font-weight: normal;
+}
 
 // Content fonts
 body {
