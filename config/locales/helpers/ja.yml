@@ -93,7 +93,6 @@ ja:
     application_helper:
       all_posts: All posts
       app_logo: App logo
-      deleted_user: "[Deleted User]"
       follow:
         aria_label:
           Organization: 'グループ「%{name}」をフォロー'

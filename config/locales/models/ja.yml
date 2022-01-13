@@ -110,3 +110,6 @@ ja:
       can_t_subscribe_with_an_ap: Can't subscribe with an Apple private relay. Please update email.
       source_not_found_please_ma: Source not found. Please make sure your %{user_subscription_sourceab} is active!
       user_subscriptions_are_not: User subscriptions are not enabled for the source.
+    users:
+      deleted_user:
+        name: "[Deleted User]"
