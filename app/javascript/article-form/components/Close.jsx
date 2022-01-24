@@ -23,10 +23,10 @@ export const Close = ({ displayModal = () => {} }) => {
   return (
     <div className="crayons-article-form__close">
       <Button
-        variant="ghost"
-        contentType="icon"
-        icon={Icon}
+        icon={CloseIcon}
         onClick={() => displayModal()}
+        title="Close the editor"
+        aria-label="Close the editor"
       />
     </div>
   );

@@ -46,11 +46,9 @@ const CancelIcon = () => (
 const SpinnerOrCancel = () => (
   <span className="spinner-or-cancel">
     <Spinner />
-    <CancelIcon />
+    <Icon className="cancel" src={CancelIcon} />
   </span>
 );
-
-ImageIcon.displayName = 'ImageIcon';
 
 function imageUploaderReducer(state, action) {
   const { type, payload } = action;
@@ -97,9 +95,7 @@ const NativeIosV1ImageUpload = ({ uploadingImage }) => (
     {!uploadingImage && (
       <Button
         aria-label="Upload an image"
-        className="mr-2 fw-normal"
-        variant="ghost"
-        contentType="icon-left"
+        className="mr-2"
         icon={ImageIcon}
         onClick={initNativeImagePicker}
       >

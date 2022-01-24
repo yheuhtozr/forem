@@ -6,7 +6,6 @@ class UserTag < LiquidTagBase
   def initialize(_tag_name, user, _parse_context)
     super
     @user = parse_username_to_user(user.delete(" "))
-    @follow_button = follow_button(@user)
     @user_colors = user_colors(@user)
   end
 
@@ -14,10 +13,9 @@ class UserTag < LiquidTagBase
     ApplicationController.render(
       partial: PARTIAL,
       locals: {
-        user: user_object_for_partial(@user),
-        follow_button: @follow_button,
+        user: @user.decorate,
         user_colors: @user_colors,
-        user_path: path_to_profile(@user)
+        user_path: @user.path
       },
     )
   end

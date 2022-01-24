@@ -78,6 +78,7 @@ class Tag < ActsAsTaggableOn::Tag
 
   before_validation :normalize_names # not sure if working on save
   before_validation :evaluate_markdown
+  before_validation :tidy_short_summary
   before_validation :pound_it
 
   before_save :calculate_hotness_score
@@ -107,6 +108,13 @@ class Tag < ActsAsTaggableOn::Tag
 
   scope :eager_load_serialized_data, -> {}
   scope :supported, -> { where(supported: true) }
+
+  # @return [String]
+  #
+  # @see ApplicationRecord#class_name
+  def class_name
+    self.class.name
+  end
 
   # possible social previews templates for articles with a particular tag
   def self.social_preview_templates
@@ -158,6 +166,10 @@ class Tag < ActsAsTaggableOn::Tag
   end
 
   private
+
+  def tidy_short_summary
+    self.short_summary = ActionController::Base.helpers.strip_tags(short_summary)
+  end
 
   def evaluate_markdown
     self.rules_html = MarkdownProcessor::Parser.new(rules_markdown).evaluate_markdown

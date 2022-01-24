@@ -16,7 +16,7 @@ import { TagList } from './components/TagList';
 import { MediaQuery } from '@components/MediaQuery';
 import { BREAKPOINTS } from '@components/useMediaQuery';
 import { debounceAction } from '@utilities/debounceAction';
-import { Button } from '@crayons';
+import { ButtonNew as Button, Link } from '@crayons';
 import { request } from '@utilities/http';
 import { i18next } from '@utilities/locale';
 
@@ -206,12 +206,15 @@ export class ReadingList extends Component {
               )}
               {i18next.t('readingList.total', { total: itemsTotal })}
             </h1>
-            <Button
+            <Link
               onClick={(e) => this.toggleStatusView(e)}
+              href={
+                isStatusViewValid
+                  ? READING_LIST_ARCHIVE_PATH
+                  : READING_LIST_PATH
+              }
               className="whitespace-nowrap ml-auto s:w-auto"
-              variant="outlined"
-              url={READING_LIST_ARCHIVE_PATH}
-              tagName="a"
+              block
               data-no-instant
             >
               {i18next.t(

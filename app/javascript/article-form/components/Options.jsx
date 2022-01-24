@@ -232,6 +232,7 @@ export const Options = ({
           id="post-options-done-btn"
           className="w-100"
           data-content="exit"
+          variant="secondary"
         >
           {i18next.t('editor.options.done')}
         </Button>

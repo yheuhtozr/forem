@@ -128,12 +128,7 @@ module ApplicationHelper
     return if followable == deleted_user
 
     user_follow = followable.instance_of?(User) ? "follow-user" : ""
-    followable_type = if followable.respond_to?(:decorated?) && followable.decorated?
-                        followable.object.class.name
-                      else
-                        followable.class.name
-                      end
-
+    followable_type = followable.class_name
     followable_name = followable.name
 
     tag.button(
@@ -142,12 +137,7 @@ module ApplicationHelper
       name: :button,
       type: :button,
       data: {
-        info: {
-          id: followable.id,
-          className: followable_type,
-          name: followable_name,
-          style: style
-        }
+        info: DataInfo.to_json(object: followable, className: followable_type, style: style)
       },
       class: "crayons-btn follow-action-button whitespace-nowrap #{classes} #{user_follow}",
       aria: {

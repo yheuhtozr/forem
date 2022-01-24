@@ -5,7 +5,7 @@ import { Button } from '@crayons';
 
 export const ActionButtons = ({ isDraft, editUrl, deleteConfirmUrl }) => {
   return (
-    <div className="listing-row-actions crayons-btn-actions">
+    <div className="listing-row-actions flex">
       {isDraft && (
         <Button tagName="a" url={editUrl}>
           {i18next.t('listings.actions.delete')}

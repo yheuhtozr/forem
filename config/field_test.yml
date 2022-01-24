@@ -28,10 +28,22 @@ experiments:
   feed_strategy:
     variants:
       - original
-      - weighted_query_strategy
+      - final_order_by_score
+      - final_order_by_comment_score
+      - final_order_by_last_comment_at
+      - final_order_by_random
+      - final_order_by_random_weighted_to_score
+      - final_order_by_random_weighted_to_comment_score
+      - final_order_by_random_weighted_to_last_comment_at
     weights:
-      - 80
-      - 20
+      - 51
+      - 7
+      - 7
+      - 7
+      - 7
+      - 7
+      - 7
+      - 7
     goals:
       - user_creates_comment
       - user_creates_comment_four_days_in_week

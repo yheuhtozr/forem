@@ -65,7 +65,7 @@ class GithubTag
       if uri.fragment&.start_with?("issuecomment-")
         uri.path = uri.path.gsub(%r{(issues|pulls)/\d+}, "issues/comments/")
         comment_id = uri.fragment.split("-").last
-        uri.merge!(comment_id)
+        uri.join!(comment_id)
       end
 
       # fragments and query params are not needed in the API call

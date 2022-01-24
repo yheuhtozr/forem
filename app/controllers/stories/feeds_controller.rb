@@ -42,7 +42,18 @@ module Stories
              elsif Settings::UserExperience.feed_strategy == "basic"
                Articles::Feeds::Basic.new(user: current_user, page: @page, tag: params[:tag])
              else
-               Articles::Feeds::LargeForemExperimental.new(user: current_user, page: @page, tag: params[:tag])
+               strategy = AbExperiment.get(
+                 experiment: :feed_strategy_round_4,
+                 controller: self, user: current_user,
+                 default_value: AbExperiment::ORIGINAL_VARIANT
+               )
+               Articles::Feeds::WeightedQueryStrategy.new(
+                 user: current_user,
+                 number_of_articles: 25,
+                 page: @page,
+                 tags: params[:tag],
+                 strategy: strategy,
+               )
              end
       Datadog.tracer.trace("feed.query",
                            span_type: "db",

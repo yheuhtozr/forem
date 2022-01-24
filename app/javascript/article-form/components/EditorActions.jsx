@@ -88,10 +88,8 @@ export const EditorActions = ({
 
       {edited && (
         <Button
-          variant="ghost"
           onClick={onClearChanges}
-          className="whitespace-nowrap fw-normal"
-          size="s"
+          className="whitespace-nowrap fw-normal fs-s"
         >
           <Trans
             i18nKey="editor.revert_button"

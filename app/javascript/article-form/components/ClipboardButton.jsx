@@ -50,9 +50,8 @@ export const ClipboardButton = ({
     />
     <Button
       className="spec__image-markdown-copy whitespace-nowrap fw-normal"
-      variant="ghost"
-      contentType="icon-left"
       icon={CopyIcon}
+      title="Copy markdown for image"
     >
       {i18next.t(showCopyMessage ? 'clipboard.copied' : 'clipboard.copy')}
     </Button>
