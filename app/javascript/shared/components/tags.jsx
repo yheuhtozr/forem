@@ -26,6 +26,10 @@ const KEYS = {
 // broadest tag format character range (with lazy apostrophe) cf. /app/modesl/tag.rb
 // const TAG_CHARACTERS = /['\p{XIDC}\p{No}\u00B7\u05F3\u05F4\u0F0B\u200C\u200D]/u;
 
+// chain of full tag pattern syntax with permissive apostrophe cf. /app/models/tag.rb
+export const DEFAULT_TAG_FORMAT =
+  "(?:(?:['\\p{XIDS}\\p{Nd}\\p{No}](?:['\\p{XIDC}\\p{No}\u00B7\u0F0B\u05F3\u05F4\u200C\u200D]*['\\p{XIDC}\\p{No}\u0F0B])?)?(?:, |$))+";
+
 /* TODO: Remove all instances of this.props.listing
    and refactor this component to be more generic */
 

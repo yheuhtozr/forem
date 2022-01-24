@@ -75,7 +75,7 @@ class GithubTag
       # remove leading forward slash in the path
       path = uri.path.delete_prefix("/")
 
-      Addressable::URI.parse(API_BASE_ENDPOINT).merge(path).to_s
+      Addressable::URI.parse(API_BASE_ENDPOINT).join(path).to_s
     end
 
     def valid_link?(link)

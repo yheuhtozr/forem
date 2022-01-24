@@ -1,7 +1,4 @@
 class TagAdjustment < ApplicationRecord
-  validates :user_id, presence: true
-  validates :article_id, presence: true
-  validates :tag_id, presence: true
   validates :tag_name, presence: true,
                        uniqueness: { scope: :article_id, message: I18n.t("models.tag_adjustment.unique") }
   validates :reason_for_adjustment, presence: true

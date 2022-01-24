@@ -58,7 +58,6 @@
   },
   "common": {
     "close": "×",
-    "cog_icon": "設定",
     "danger": "キケン",
     "etc": "..."
   },
@@ -70,17 +69,16 @@
       "empty": "No results found",
       "type": "Type to search for a user"
     },
-    "mobileDrawerNav": {
-      "cancel": "Cancel"
-    },
     "modal": {
       "aria_close": "閉じる",
       "aria_label": "モーダル",
       "icon": "閉じる"
     },
     "tagAutocomplete": {
+      "add_another": "Add another...",
       "aria_edit": "Edit %{item}",
       "aria_remove": "Remove %{item}",
+      "maximum": "Maximum %{maxSelections} selections",
       "selected": "Selected items:"
     }
   },
@@ -164,8 +162,7 @@
     "image": {
       "aria_label": "画像をアップロードする",
       "aria_cancel": "画像のアップロードを中止",
-      "cancel": "中止",
-      "icon": "画像をアップロード",
+      "aria_v1": "Upload an image",
       "placeholder": "![画像アップロード中](...)",
       "text": "画像をアップロード",
       "title_cancel": "アップロード中止",
@@ -392,7 +389,7 @@
     "close_bar": "消す",
     "forem": "Forem",
     "forem_app": "Forem アプリで開く",
-    "forem_icon": "「Forem アプリで開く」バナーを消す",
+    "forem_icon": "バナーを消す",
     "tag": "%{tag} タグ",
     "who": "おすすめユーザー"
   },
@@ -506,7 +503,6 @@
     "all": "All tags",
     "archive": "Archive",
     "archiving": "Archiving...",
-    "aria_archive": "Archive item",
     "aria_label": "Filter reading list by text",
     "aria_tag": "Filter by tag",
     "click1": "Click the ",
@@ -553,6 +549,11 @@
   },
   "tags": {
     "aria_label": "Post Tags",
+    "autocomplete": {
+      "label": "タグを最大 4 つまで",
+      "placeholder": "タグを最大 4 つまで…"
+    },
+    "heading": "Top tags",
     "hide": "Hide Rules",
     "label": "Tags",
     "placeholder_other": "タグを最大 %{count} つまで",

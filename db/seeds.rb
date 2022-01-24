@@ -71,7 +71,7 @@ users_in_random_order = seeder.create_if_none(User, num_users) do
     user = User.create!(
       name: name,
       profile_image: File.open(Rails.root.join("app/assets/images/#{rand(1..40)}.png")),
-      twitter_username: Faker::Internet.username,
+      twitter_username: Faker::Internet.username(specifier: username),
       # Emails limited to 50 characters
       email: Faker::Internet.email(name: username, separators: "+", domain: Faker::Internet.domain_word.first(20)),
       confirmed_at: Time.current,

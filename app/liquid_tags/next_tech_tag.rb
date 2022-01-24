@@ -22,8 +22,7 @@ class NextTechTag < LiquidTagBase
   def parse_share_url(share_url)
     clean_share_url = ActionController::Base.helpers.strip_tags(share_url).delete(" ").gsub(/\?.*/, "")
     unless valid_share_url?(clean_share_url)
-      raise StandardError,
-            I18n.t("liquid_tags.next_tech_tag.invalid_next_tech_share_ur")
+      raise StandardError, I18n.t("liquid_tags.next_tech_tag.invalid_url")
     end
 
     clean_share_url.split("/").last

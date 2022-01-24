@@ -25,10 +25,12 @@ module AuthenticationHelper
     providers = Authentication::Providers.enabled_for_user(user)
 
     # If the user did not authenticate with any provider, they signed up with an email.
-    auth_method = providers.any? ? providers.map(&:official_name).to_sentence : I18n.t("helpers.authentication_helper.email_password") # rubocop:disable Layout/LineLength
-    verb = providers.size > 1 ? I18n.t("helpers.authentication_helper.any_of_those") : I18n.t("helpers.authentication_helper.that") # rubocop:disable Layout/LineLength
+    # rubocop:disable Layout/LineLength
+    auth_method = providers.any? ? providers.map(&:official_name).to_sentence : I18n.t("helpers.authentication_helper.email_password")
+    demonstrative = providers.size > 1 ? I18n.t("helpers.authentication_helper.any_of_those") : I18n.t("helpers.authentication_helper.that")
+    # rubocop:enable Layout/LineLength
 
-    I18n.t("helpers.authentication_helper.reminder_you_used_to_authe", auth_method: auth_method, verb: verb)
+    I18n.t("helpers.authentication_helper.reminder", method: auth_method, dem: demonstrative)
   end
 
   def available_providers_array
@@ -59,7 +61,7 @@ module AuthenticationHelper
 
   def tooltip_text_email_or_auth_provider_btns
     if invite_only_mode_or_no_enabled_auth_options
-      I18n.t("helpers.authentication_helper.you_cannot_do_this_until_y")
+      I18n.t("helpers.authentication_helper.invite_only")
     else
       ""
     end

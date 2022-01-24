@@ -130,6 +130,8 @@ class Article < ApplicationRecord
 
   after_commit :async_score_calc, :touch_collection, :enrich_image_attributes, on: %i[create update]
 
+  # @todo Enforce the serialization class (e.g., Articles::CachedEntity)
+  # @see https://api.rubyonrails.org/classes/ActiveRecord/AttributeMethods/Serialization/ClassMethods.html#method-i-serialize
   serialize :cached_user
 
   # @todo Enforce the serialization class (e.g., Articles::CachedEntity)

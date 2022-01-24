@@ -1,5 +1,6 @@
 import { h } from 'preact';
 import { i18next } from '@utilities/locale';
+import { ButtonNew as Button } from '@crayons';
 
 export const MinimalProfilePreviewCard = ({
   triggerId,
@@ -52,7 +53,7 @@ export const MinimalProfilePreviewCard = ({
             })}
           >
             {i18next.t('users.follow')}
-          </button>
+          </Button>
         </div>
         <div
           class="author-preview-metadata-container"

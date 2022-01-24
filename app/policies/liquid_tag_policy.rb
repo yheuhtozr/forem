@@ -27,10 +27,11 @@ class LiquidTagPolicy
     # extension the Authorizer).  But that is a future refactor.
     return true unless liquid_tag.user_authorization_method_name
     raise Pundit::NotAuthorizedError, I18n.t("policies.liquid_tag_policy.no_user_found") unless user
+
     # Manually raise error to use a custom error message
     unless user_allowed_to_use_tag?
       raise Pundit::NotAuthorizedError,
-            I18n.t("policies.liquid_tag_policy.user_is_not_permitted_to_u")
+            I18n.t("policies.liquid_tag_policy.not_permitted")
     end
 
     true

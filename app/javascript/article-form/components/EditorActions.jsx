@@ -1,10 +1,9 @@
 import { h } from 'preact';
 import PropTypes from 'prop-types';
 import { Trans } from 'react-i18next';
-import { useState } from 'preact/hooks';
 import { Options } from './Options';
-import { Button, Modal } from '@crayons';
 import { i18next } from '@utilities/locale';
+import { ButtonNew as Button } from '@crayons';
 
 export const EditorActions = ({
   onSaveDraft,
@@ -19,12 +18,16 @@ export const EditorActions = ({
 }) => {
   const isVersion1 = version === 'v1';
   const isVersion2 = version === 'v2';
-  const [wannaPublish, setWannaPublish] = useState(false);
 
   if (submitting) {
     return (
       <div className="crayons-article-form__footer">
-        <Button className="mr-2 whitespace-nowrap" onClick={onPublish} disabled>
+        <Button
+          variant="primary"
+          className="mr-2 whitespace-nowrap"
+          onClick={onPublish}
+          disabled
+        >
           {i18next.t(
             published && isVersion2
               ? 'editor.publishing'
@@ -40,36 +43,15 @@ export const EditorActions = ({
   return (
     <div className="crayons-article-form__footer">
       <Button
+        variant="primary"
         className="mr-2 whitespace-nowrap"
-        onClick={() => setWannaPublish(true)}
+        onClick={onPublish}
       >
         {i18next.t(published || isVersion1 ? 'editor.save' : 'editor.publish')}
       </Button>
 
-      {wannaPublish && (
-        <Modal
-          size="s"
-          title={i18next.t('editor.publishConfirm.title')}
-          onClose={() => setWannaPublish(false)}
-        >
-          <p>{i18next.t('editor.publishConfirm.text')}</p>
-          <div className="pt-4">
-            <Button className="mr-2" variant="danger" onClick={onPublish}>
-              {i18next.t('editor.publishConfirm.yes')}
-            </Button>
-            <Button variant="secondary" onClick={() => setWannaPublish(false)}>
-              {i18next.t('editor.publishConfirm.no')}
-            </Button>
-          </div>
-        </Modal>
-      )}
-
       {!(published || isVersion1) && (
-        <Button
-          variant="secondary"
-          className="mr-2 whitespace-nowrap"
-          onClick={onSaveDraft}
-        >
+        <Button className="mr-2 whitespace-nowrap" onClick={onSaveDraft}>
           <Trans
             i18nKey="editor.save_draft"
             // eslint-disable-next-line react/jsx-key, jsx-a11y/anchor-has-content

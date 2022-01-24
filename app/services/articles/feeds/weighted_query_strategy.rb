@@ -141,7 +141,8 @@ module Articles
           cases: [[1, 1]],
           fallback: 0.85,
           requires_user: false,
-          group_by: "articles.featured"
+          group_by: "articles.featured",
+          enabled: true
         },
         # Weight to give when the given user follows the article's
         # author.
@@ -360,7 +361,8 @@ module Articles
               Article.sanitize_sql(unsanitized_sub_sql),
             ),
           ),
-        ).limited_column_select.includes(top_comments: :user).order(published_at: :desc)
+        ).limited_column_select.includes(top_comments: :user)
+        final_order_logic(finalized_results)
       end
       # rubocop:enable Layout/LineLength
 

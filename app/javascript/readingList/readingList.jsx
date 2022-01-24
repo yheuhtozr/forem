@@ -124,8 +124,8 @@ export class ReadingList extends Component {
 
     addSnackbarItem({
       message: i18next.t(
-          `readingList.${isStatusViewValid ? 'archiving' : 'unarchiving'}`
-        )
+        `readingList.${isStatusViewValid ? 'archiving' : 'unarchiving'}`,
+      ),
     });
   };
 
@@ -222,10 +222,12 @@ export class ReadingList extends Component {
                   isStatusViewValid ? 'view_archive' : 'view_list'
                 }`,
               )}
-            </Button>
+            </Link>
           </div>
           <fieldset className="m:flex justify-end s:pl-2 w-100 s:w-auto">
-            <legend className="hidden">{i18next.t('readingList.filter')}</legend>
+            <legend className="hidden">
+              {i18next.t('readingList.filter')}
+            </legend>
             <input
               aria-label={i18next.t('readingList.aria_label')}
               onKeyUp={this.onSearchBoxType}
@@ -274,11 +276,7 @@ export class ReadingList extends Component {
                       />
                       {showLoadMoreButton && (
                         <div className="flex justify-center my-2">
-                          <Button
-                            onClick={this.loadNextPage}
-                            variant="secondary"
-                            className="w-max"
-                          >
+                          <Button onClick={this.loadNextPage} className="w-max">
                             {i18next.t('readingList.more')}
                           </Button>
                         </div>

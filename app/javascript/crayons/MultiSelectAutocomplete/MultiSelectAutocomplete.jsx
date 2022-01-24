@@ -3,8 +3,7 @@
 import { h, Fragment } from 'preact';
 import PropTypes from 'prop-types';
 import { useEffect, useRef, useReducer } from 'preact/hooks';
-import { Icon, Button } from '@crayons';
-import { Close } from '@images/x.svg';
+import { DefaultSelectionTemplate } from './DefaultSelectionTemplate';
 import { i18next } from '@utilities/locale';
 
 const KEYS = {
@@ -18,7 +17,6 @@ const KEYS = {
 };
 
 const ALLOWED_CHARS_REGEX = /([a-zA-Z0-9])/;
-const PLACEHOLDER_SELECTIONS_MADE = 'Add another...';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -506,53 +504,34 @@ export const MultiSelectAutocomplete = ({
     });
   };
 
-  const allSelectedItemElements = selectedItems.map((item, index) => (
-    <li key={item} className="w-max">
-      <div role="group" aria-label={item} className="flex mr-1 mb-1 w-max">
-        <Button
-          variant="secondary"
-          className="c-autocomplete--multi__selected p-1 cursor-text"
-          aria-label={i18next.t('crayons.tagAutocomplete.aria_edit', { item })}
-          onClick={() => enterEditState(item, index)}
-        >
-          {item}
-        </Button>
-        <Button
-          variant="secondary"
-          className="c-autocomplete--multi__selected p-1"
-          aria-label={i18next.t('crayons.tagAutocomplete.aria_edit', { item })}
-          onClick={() => deselectItem(item)}
-        >
-          <Icon src={Close} />
-        </Button>
-      </div>
-    </li>
-  ));
+  const allSelectedItemElements = selectedItems.map((item, index) => {
+    // When we are in "edit mode" we visually display the input between the other selections
+    const defaultPosition = index + 1;
+    const appearsBeforeInput = inputPosition === null || index < inputPosition;
+    const position = appearsBeforeInput ? defaultPosition : defaultPosition + 1;
 
-  // When a user edits a tag, we need to move the input inside the selected items
-  const splitSelectionsAt =
-    inputPosition !== null ? inputPosition : selectedItems.length;
+    const { name: displayName } = item;
+    return (
+      <li
+        key={displayName}
+        className="c-autocomplete--multi__selection-list-item w-max"
+        style={{ order: position }}
+      >
+        <SelectionTemplate
+          {...item}
+          onEdit={() => enterEditState(item, index)}
+          onDeselect={() => deselectItem(item)}
+        />
+      </li>
+    );
+  });
 
-  const input = (
-    <li className="self-center">
-      <input
-        ref={inputRef}
-        autocomplete="off"
-        className="c-autocomplete--multi__input"
-        aria-activedescendant={
-          activeDescendentIndex !== null
-            ? suggestions[activeDescendentIndex]
-            : null
-        }
-        aria-autocomplete="list"
-        aria-labelledby="multi-select-label selected-items-list"
-        type="text"
-        onChange={handleInputChange}
-        onKeyDown={handleKeyDown}
-        onBlur={handleInputBlur}
-      />
-    </li>
-  );
+  const selectionsPlaceholder =
+    selectedItems.length > 0
+      ? i18next.t('crayons.tagAutocomplete.add_another')
+      : placeholder;
+
+  const inputPlaceholder = allowSelections ? selectionsPlaceholder : null;
 
   return (
     <Fragment>
@@ -568,7 +547,9 @@ export const MultiSelectAutocomplete = ({
         {labelText}
       </label>
       <span id="input-description" className="screen-reader-only">
-        {maxSelections ? `Maximum ${maxSelections} selections` : ''}
+        {maxSelections
+          ? i18next.t('crayons.tagAutocomplete.maximum', { maxSelections })
+          : ''}
       </span>
 
       {/* A visually hidden list provides confirmation messages to screen reader users as an item is selected or removed */}

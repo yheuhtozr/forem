@@ -60,7 +60,6 @@
   },
   "common": {
     "close": "×",
-    "cog_icon": "Preferences",
     "danger": "Danger Zone",
     "etc": "..."
   },
@@ -72,17 +71,16 @@
       "empty": "No results found",
       "type": "Type to search for a user"
     },
-    "mobileDrawerNav": {
-      "cancel": "Cancel"
-    },
     "modal": {
       "aria_close": "Close",
       "aria_label": "modal",
       "icon": "Close"
     },
     "tagAutocomplete": {
+      "add_another": "Add another...",
       "aria_edit": "Edit %{item}",
       "aria_remove": "Remove %{item}",
+      "maximum": "Maximum %{maxSelections} selections",
       "selected": "Selected items:"
     }
   },
@@ -166,8 +164,7 @@
     "image": {
       "aria_label": "Upload image",
       "aria_cancel": "Cancel image upload",
-      "cancel": "Cancel",
-      "icon": "Upload image",
+      "aria_v1": "Upload an image",
       "placeholder": "![Uploading image](...)",
       "text": "Upload image",
       "title_cancel": "Cancel upload",
@@ -394,7 +391,7 @@
     "close_bar": "Dismiss",
     "forem": "Forem",
     "forem_app": "Open with the Forem app",
-    "forem_icon": "Dismiss banner: Open with the Forem app",
+    "forem_icon": "Dismiss banner",
     "tag": "%{tag} tag",
     "who": "who to follow"
   },
@@ -511,7 +508,6 @@
     "all": "All tags",
     "archive": "Archive",
     "archiving": "Archiving...",
-    "aria_archive": "Archive item",
     "aria_label": "Filter reading list by text",
     "aria_tag": "Filter by tag",
     "click1": "Click the ",
@@ -558,6 +554,11 @@
   },
   "tags": {
     "aria_label": "Post Tags",
+    "autocomplete": {
+      "label": "Add up to 4 tags",
+      "placeholder": "Add up to 4 tags..."
+    },
+    "heading": "Top tags",
     "hide": "Hide Rules",
     "label": "Tags",
     "placeholder_one": "Add up to %{count} tags...",

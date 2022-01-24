@@ -3,11 +3,63 @@ import { useEffect, useState } from 'preact/hooks';
 import PropTypes from 'prop-types';
 import { TagAutocompleteOption } from './TagAutocompleteOption';
 import { TagAutocompleteSelection } from './TagAutocompleteSelection';
+import { i18next } from '@utilities/locale';
 import { MultiSelectAutocomplete } from '@crayons';
 import { fetchSearch } from '@utilities/search';
 
-// chain of full tag pattern syntax with permissive apostrophe cf. /app/models/tag.rb
-export const DEFAULT_TAG_FORMAT = "(?:(?:['\\p{XIDS}\\p{Nd}\\p{No}](?:['\\p{XIDC}\\p{No}\u00B7\u0F0B\u05F3\u05F4\u200C\u200D]*['\\p{XIDC}\\p{No}\u0F0B])?)?(?:, |$))+";
+/**
+ * TagsField for the article form. Allows users to search and select up to 4 tags.
+ *
+ * @param {Function} onInput Callback to sync selections to article form state
+ * @param {string} defaultValue Comma separated list of any currently selected tags
+ * @param {Function} switchHelpContext Callback to switch the help context when the field is focused
+ */
+export const TagsField = ({ onInput, defaultValue, switchHelpContext }) => {
+  const [defaultSelections, setDefaultSelections] = useState([]);
+  const [defaultsLoaded, setDefaultsLoaded] = useState(false);
+  const [topTags, setTopTags] = useState([]);
+
+  useEffect(() => {
+    fetch('/tags/suggest')
+      .then((res) => res.json())
+      .then((results) => setTopTags(results));
+  }, []);
+
+  useEffect(() => {
+    // Previously selected tags are passed as a plain comma separated string
+    // Fetching further tag data allows us to display a richer UI
+    // This fetch only happens once on first component load
+    if (defaultValue && defaultValue !== '' && !defaultsLoaded) {
+      const tagNames = defaultValue.split(', ');
+
+      const tagRequests = tagNames.map((tagName) =>
+        fetchSearch('tags', { name: tagName }).then(({ result = [] }) => {
+          const [potentialMatch = {}] = result;
+          return potentialMatch.name === tagName
+            ? potentialMatch
+            : { name: tagName };
+        }),
+      );
+
+      Promise.all(tagRequests).then((data) => {
+        setDefaultSelections(data);
+      });
+    }
+    setDefaultsLoaded(true);
+  }, [defaultValue, defaultsLoaded]);
+
+  // Converts the array of selected items into a plain string to be saved in the article form
+  const syncSelections = (selections = []) => {
+    const selectionsString = selections
+      .map((selection) => selection.name)
+      .join(', ');
+    onInput(selectionsString);
+  };
+
+  const fetchSuggestions = (searchTerm) =>
+    fetchSearch('tags', { name: searchTerm }).then(
+      (response) => response.result,
+    );
 
   return (
     <MultiSelectAutocomplete
@@ -15,11 +67,13 @@ export const DEFAULT_TAG_FORMAT = "(?:(?:['\\p{XIDS}\\p{Nd}\\p{No}](?:['\\p{XIDC
       fetchSuggestions={fetchSuggestions}
       staticSuggestions={topTags}
       staticSuggestionsHeading={
-        <h2 className="crayons-article-form__top-tags-heading">Top tags</h2>
+        <h2 className="crayons-article-form__top-tags-heading">
+          {i18next.t('tags.heading')}
+        </h2>
       }
-      labelText="Add up to 4 tags"
+      labelText={i18next.t('tags.autocomplete.label')}
       showLabel={false}
-      placeholder="Add up to 4 tags..."
+      placeholder={i18next.t('tags.autocomplete.placeholder')}
       border={false}
       maxSelections={4}
       SuggestionTemplate={TagAutocompleteOption}

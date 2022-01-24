@@ -105,7 +105,7 @@ function buildTagsHTML(tag) {
   var antifollow = '';
   if (tag.points < 0) {
     antifollow =
-      '<span class="crayons-indicator crayons-indicator--critical crayons-indicator--outlined" title="' +
+      '<span class="c-indicator c-indicator--danger" title="' +
       i18next.t('tags.following.anti.title') +
       '">' +
       i18next.t('tags.following.anti.text') +

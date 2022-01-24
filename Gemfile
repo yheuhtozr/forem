@@ -102,7 +102,7 @@ gem "sidekiq-unique-jobs", "~> 7.1.12" # Ensures that Sidekiq jobs are unique wh
 gem "slack-notifier", "~> 2.4" # A slim ruby wrapper for posting to slack webhooks
 gem "sprockets", "~> 4.0" # Sprockets is a Rack-based asset packaging system
 gem "staccato", "~> 0.5" # Ruby Google Analytics Measurement
-gem "stripe", "~> 5.42" # Ruby library for the Stripe API
+gem "stripe", "~> 5.43" # Ruby library for the Stripe API
 gem "strong_migrations", "~> 0.7" # Catch unsafe migrations
 gem "twitter", "~> 7.0" # A Ruby interface to the Twitter API
 gem "uglifier", "~> 4.2" # Uglifier minifies JavaScript files

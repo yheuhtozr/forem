@@ -62,7 +62,7 @@
           <ul>
             <li>
               <a class="crayons-link crayons-link--block <%= "crayons-link--current" if controller.controller_name == "overview" %>" href="<%= admin_path %>" aria-current "<%= "page" if controller.controller_name == "overview" %>">
-                <%= inline_svg_tag("stack-line.svg", aria: true, class: "dropdown-icon crayons-icon") %>
+                <%= crayons_icon_tag("stack-line", class: "dropdown-icon") %>
                 <%= t("nav.overview", scope: _t) %>
               </a>
             </li>
@@ -80,7 +80,7 @@
       <% flash.each do |type, message| %>
         <div class="alert alert-<%= type == "notice" || type == "success" ? "success" : "danger" %>">
           <button class="close" data-dismiss="alert" aria-label="<%= t("close", scope: _t) %>">
-            <i class="fa fa-times" aria-hidden="true"></i>
+            <%= crayons_icon_tag(:x, aria_hidden: true) %>
           </button>
           <%= message %>
         </div>

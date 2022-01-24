@@ -22,9 +22,8 @@ class DotnetFiddleTag < LiquidTagBase
   private
 
   def parse_link(link)
-    stripped_link = ActionController::Base.helpers.strip_tags(link)
-    the_link = stripped_link.split.first
-    raise StandardError, I18n.t("liquid_tags.dotnet_fiddle_tag.invalid_dotnetfiddle_url") unless valid_link?(the_link)
+    match = pattern_match_for(link, [REGISTRY_REGEXP])
+    raise StandardError, I18n.t("liquid_tags.dotnet_fiddle_tag.invalid_dotnetfiddle_url") unless match
 
     insert_widget(link, match)
   end

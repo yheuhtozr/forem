@@ -28,8 +28,17 @@ class OrganizationTag < LiquidTagBase
   end
 
   def parse_slug_to_organization(organization)
-    organization = Organization.find_by(slug: organization)
-    raise StandardError, I18n.t("liquid_tags.organization_tag.invalid_organization_slug") if organization.nil?
+    forem_domain = URL.url
+    if organization.starts_with?(forem_domain)
+      match = pattern_match_for(organization, [REGISTRY_REGEXP])
+      raise StandardError, I18n.t("liquid_tags.organization_tag.invalid_url") unless match
+
+      organization = Organization.find_by(slug: match[:org_slug])
+    else
+      organization = Organization.find_by(slug: organization)
+    end
+
+    raise StandardError, I18n.t("liquid_tags.organization_tag.invalid_slug") if organization.nil?
 
     organization
   end

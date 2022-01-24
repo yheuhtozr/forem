@@ -2,22 +2,8 @@ import { h } from 'preact';
 import PropTypes from 'prop-types';
 import { Trans } from 'react-i18next';
 import { i18next, locale } from '@utilities/locale';
-import { Dropdown, Button } from '@crayons';
-
-const Icon = () => (
-  <svg
-    width="24"
-    className="crayons-icon"
-    height="24"
-    viewBox="0 0 24 24"
-    xmlns="http://www.w3.org/2000/svg"
-    role="img"
-    aria-labelledby="75abcb76478519ca4eb9"
-  >
-    <title id="75abcb76478519ca4eb9">{i18next.t('editor.options.title')}</title>
-    <path d="M12 1l9.5 5.5v11L12 23l-9.5-5.5v-11L12 1zm0 2.311L4.5 7.653v8.694l7.5 4.342 7.5-4.342V7.653L12 3.311zM12 16a4 4 0 110-8 4 4 0 010 8zm0-2a2 2 0 100-4 2 2 0 000 4z" />
-  </svg>
-);
+import { Dropdown, ButtonNew as Button } from '@crayons';
+import CogIcon from '@images/cog.svg';
 
 /**
  * Component comprising a trigger button and dropdown with additional post options.
@@ -142,7 +128,7 @@ export const Options = ({
         <div className="crayons-field__label color-accent-danger">
           {i18next.t('common.danger')}
         </div>
-        <Button variant="danger" onClick={onSaveDraft}>
+        <Button variant="primary" destructive onClick={onSaveDraft}>
           {i18next.t('editor.options.unpublish')}
         </Button>
       </div>
@@ -152,10 +138,9 @@ export const Options = ({
     <div className="s:relative">
       <Button
         id="post-options-btn"
-        variant="ghost"
-        contentType="icon"
-        icon={Icon}
+        icon={CogIcon}
         title={i18next.t('editor.options.title')}
+        aria-label={i18next.t('editor.options.title')}
       />
 
       <Dropdown
@@ -170,7 +155,8 @@ export const Options = ({
             {i18next.t('editor.options.url.label')}
           </label>
           <p className="crayons-field__description">
-            <Trans i18nKey="editor.options.url.desc"
+            <Trans
+              i18nKey="editor.options.url.desc"
               // eslint-disable-next-line react/jsx-key
               components={[<code />]}
             />

@@ -1,6 +1,13 @@
 module Users
   class CreateMascotAccount
-    MASCOT_PASSWORD = SecureRandom.hex.freeze
+    MASCOT_PARAMS = {
+      email: "mascot@forem.com",
+      username: "mascot",
+      profile_image: Settings::General.mascot_image_url,
+      confirmed_at: Time.current,
+      registered_at: Time.current,
+      password: SecureRandom.hex
+    }.freeze
 
     def self.call
       new.call
@@ -26,8 +33,11 @@ module Users
     end
 
     def mascot_params
-      # Set the password_confirmation
-      self.class.mascot.merge(password_confirmation: self.class.mascot[:password])
+      # Set the password_confirmation and i18n name
+      MASCOT_PARAMS.merge(
+        name: I18n.t("create_mascot.name"),
+        password_confirmation: MASCOT_PARAMS[:password],
+      )
     end
   end
 end

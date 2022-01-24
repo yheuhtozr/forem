@@ -1,7 +1,10 @@
 /* global Runtime */
 
 import { h } from 'preact';
+import { ButtonNew as Button, Icon } from '@crayons';
 import { i18next } from '@utilities/locale';
+import CloseIcon from '@images/x.svg';
+import LogoForem from '@images/logo-forem-app.svg';
 
 const BANNER_DISMISS_KEY = 'runtimeBannerDismissed';
 
@@ -100,21 +103,10 @@ export const RuntimeBanner = () => {
       </a>
       <Button
         onClick={dismissBanner}
-        type="button"
-        class="runtime-banner__dismiss crayons-btn crayons-btn--ghost crayons-btn--icon crayons-btn--inverted crayons-btn--s"
-      >
-        <svg
-          class="crayons-icon"
-          title={i18next.t('main.forem_icon')}
-          aria="true"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636l4.95 4.95z" />
-        </svg>
-      </button>
+        class="runtime-banner__dismiss color-base-inverted"
+        icon={CloseIcon}
+        tooltip={i18next.t('main.forem_icon')}
+      />
     </div>
   );
 };

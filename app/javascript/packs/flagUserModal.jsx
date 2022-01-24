@@ -3,7 +3,8 @@ import { useState, useRef } from 'preact/hooks';
 import PropTypes from 'prop-types';
 import { request } from '../utilities/http';
 import { i18next } from '@utilities/locale';
-import { Button } from '@crayons/Button/Button';
+import { ButtonNew as Button, Link } from '@crayons';
+import RemoveIcon from '@images/x.svg';
 
 async function confirmFlagUser({ reactableType, category, reactableId }) {
   const body = JSON.stringify({
@@ -109,15 +110,21 @@ export function FlagUserModal({ modCenterArticleUrl, authorId }) {
           <h2 class="crayons-modal__box__header__title">
             {i18next.t('flagUser.heading')}
           </h2>
-          <button
-            type="button"
-            class="crayons-btn crayons-btn--icon crayons-btn--ghost modal-header-close-icon"
+          <Button
+            icon={RemoveIcon}
+            className="inline-flex"
             onClick={toggleFlagUserModal}
           />
         </header>
         <div class="crayons-modal__box__body">
           <div class="grid gap-4">
-            <p>{i18next.t('flagUser.desc', { community: communityName }) /* TODO: unideal i18n interpolation */}</p>
+            <p>
+              {
+                i18next.t('flagUser.desc', {
+                  community: communityName,
+                }) /* TODO: unideal i18n interpolation */
+              }
+            </p>
             <div class="crayons-field crayons-field--radio">
               <input
                 type="radio"
@@ -152,7 +159,7 @@ export function FlagUserModal({ modCenterArticleUrl, authorId }) {
                 }`}
               >
                 {i18next.t('flagUser.other')}
-              </a>
+              </Link>
             </p>
             <div>
               <Button

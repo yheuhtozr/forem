@@ -37,8 +37,8 @@ class KotlinTag < LiquidTagBase
     "https://pl.kotl.in/#{id}?#{vetted_params}"
   end
 
-  def raise_error
-    raise StandardError, I18n.t("liquid_tags.kotlin_tag.invalid_kotlin_playground")
+  def valid_param(param)
+    (param =~ PARAM_REGEXP)&.zero?
   end
 end
 

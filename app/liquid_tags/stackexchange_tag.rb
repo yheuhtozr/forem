@@ -51,9 +51,7 @@ class StackexchangeTag < LiquidTagBase
 
     site = input.match(/[a-z.]+/i)[0]
     unless valid_site?(site)
-      raise StandardError,
-            I18n.t("liquid_tags.stackexchange_tag.invalid_stack_exchange_sit", tag_name: tag_name,
-                                                                               input: input)
+      raise StandardError, I18n.t("liquid_tags.stackexchange_tag.invalid_site", tag: tag_name, input: input)
     end
 
     site
@@ -70,15 +68,12 @@ class StackexchangeTag < LiquidTagBase
 
     return unless response["items"].length.zero?
 
-    raise StandardError,
-          I18n.t("liquid_tags.stackexchange_tag.couldn_t_find_a_post_with", tag_name: tag_name, input: input)
+    raise StandardError, I18n.t("liquid_tags.stackexchange_tag.post_not_found", tag: tag_name, input: input)
   end
 
   def get_data(input)
     unless valid_input?(input)
-      raise StandardError,
-            I18n.t("liquid_tags.stackexchange_tag.invalid_stack_exchange_id", tag_name: tag_name,
-                                                                              input: input)
+      raise StandardError, I18n.t("liquid_tags.stackexchange_tag.invalid_id", tag: tag_name, input: input)
     end
 
     id = input.split.first
