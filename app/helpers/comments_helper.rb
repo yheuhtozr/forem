@@ -23,7 +23,11 @@ module CommentsHelper
   end
 
   def get_ama_or_op_banner(commentable)
-    commentable.decorate.cached_tag_list_array.include?("ama") ? I18n.t("helpers.comments_helper.ask_me_anything") : I18n.t("helpers.comments_helper.author") # rubocop:disable Layout/LineLength
+    if commentable.decorate.cached_tag_list_array.include?(I18n.t("helpers.comments_helper.ama"))
+      I18n.t("helpers.comments_helper.ask_me_anything")
+    else
+      I18n.t("helpers.comments_helper.author")
+    end
   end
 
   def tree_for(comment, sub_comments, commentable)
@@ -52,6 +56,7 @@ module CommentsHelper
   end
 
   def like_button_text(comment)
+    # TODO: [yheuhtozr] support cross-element i18n compatible with initializeCommentsPage.js.erb
     case comment.public_reactions_count
     when 0
       I18n.t("helpers.comments_helper.like")

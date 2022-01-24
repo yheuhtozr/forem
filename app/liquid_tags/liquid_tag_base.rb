@@ -69,8 +69,7 @@ class LiquidTagBase < Liquid::Tag
     return if is_valid_source
 
     valid_contexts = self.class::VALID_CONTEXTS.map(&:pluralize).join(", ")
-    invalid_source_error_msg = I18n.t("liquid_tags.liquid_tag_base.invalid_context_this_liqui",
-                                      valid_contexts: valid_contexts)
+    invalid_source_error_msg = I18n.t("liquid_tags.liquid_tag_base.invalid_context", valid: valid_contexts)
     raise LiquidTags::Errors::InvalidParseContext, invalid_source_error_msg
   end
 end

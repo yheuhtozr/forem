@@ -130,7 +130,49 @@ class Article < ApplicationRecord
 
   after_commit :async_score_calc, :touch_collection, :enrich_image_attributes, on: %i[create update]
 
+  # The trigger `update_reading_list_document` is used to keep the `articles.reading_list_document` column updated.
+  #
+  # Its body is inserted in a PostgreSQL trigger function and that joins the columns values
+  # needed to search documents in the context of a "reading list".
+  #
+  # Please refer to https://github.com/jenseng/hair_trigger#usage in case you want to change or update the trigger.
+  #
+  # Additional information on how triggers work can be found in
+  # => https://www.postgresql.org/docs/11/trigger-definition.html
+  # => https://www.cybertec-postgresql.com/en/postgresql-how-to-write-a-trigger/
+  #
+  # Adapted from https://dba.stackexchange.com/a/289361/226575
+  trigger
+    .name(:update_reading_list_document).before(:insert, :update).for_each(:row)
+    .declare("l_org_vector tsvector; l_user_vector tsvector") do
+    <<~SQL
+      NEW.reading_list_document :=
+        setweight(to_tsvector('simple'::regconfig, unaccent(coalesce(NEW.title, ''))), 'A') ||
+        setweight(to_tsvector('simple'::regconfig, unaccent(coalesce(NEW.cached_tag_list, ''))), 'B') ||
+        setweight(to_tsvector('simple'::regconfig, unaccent(coalesce(NEW.body_markdown, ''))), 'C') ||
+        setweight(to_tsvector('simple'::regconfig, unaccent(coalesce(NEW.cached_user_name, ''))), 'D') ||
+        setweight(to_tsvector('simple'::regconfig, unaccent(coalesce(NEW.cached_user_username, ''))), 'D') ||
+        setweight(to_tsvector('simple'::regconfig,
+          unaccent(
+            coalesce(
+              array_to_string(
+                -- cached_organization is serialized to the DB as a YAML string, we extract only the name attribute
+                regexp_match(NEW.cached_organization, 'name: (.*)$', 'n'),
+                ' '
+              ),
+              ''
+            )
+          )
+        ), 'D');
+    SQL
+  end
+
+  # @todo Enforce the serialization class (e.g., Articles::CachedEntity)
+  # @see https://api.rubyonrails.org/classes/ActiveRecord/AttributeMethods/Serialization/ClassMethods.html#method-i-serialize
   serialize :cached_user
+
+  # @todo Enforce the serialization class (e.g., Articles::CachedEntity)
+  # @see https://api.rubyonrails.org/classes/ActiveRecord/AttributeMethods/Serialization/ClassMethods.html#method-i-serialize
   serialize :cached_organization
 
   scope :search_articles, lambda { |query|
@@ -151,6 +193,8 @@ class Article < ApplicationRecord
       .where("published_at <= ?", Time.current)
   }
   scope :unpublished, -> { where(published: false) }
+
+  scope :not_authored_by, ->(user_id) { where.not(user_id: user_id) }
 
   # [@jeremyf] For approved articles is there always an assumption of
   #            published?  Regardless, the scope helps us deal with

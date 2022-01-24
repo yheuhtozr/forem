@@ -50,8 +50,8 @@ class GithubTag
       return if options.empty?
       return if options.all? { |o| VALID_OPTIONS.include?(o) }
 
-      message = I18n.t("liquid_tags.github_tag.github_readme_tag.github_tag_invalid_options",
-                       options_valid_options: (options - VALID_OPTIONS), valid_options: VALID_OPTIONS)
+      message = I18n.t("liquid_tags.github_tag.github_readme_tag.invalid_options",
+                       invalid: (options - VALID_OPTIONS), valid: VALID_OPTIONS)
       raise StandardError, message
     end
 

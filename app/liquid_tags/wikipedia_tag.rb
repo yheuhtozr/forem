@@ -73,8 +73,7 @@ class WikipediaTag < LiquidTagBase
     return if response.code == 200
 
     raise StandardError,
-          I18n.t("liquid_tags.wikipedia_tag.couldn_t_find_the_wikipedi", input: input,
-                                                                         response_detail: (response["detail"]))
+          I18n.t("liquid_tags.wikipedia_tag.article_not_found", input: input, detail: (response["detail"]))
   end
 
   def get_section_contents(response, anchor, input)
@@ -88,7 +87,7 @@ class WikipediaTag < LiquidTagBase
 
     return [text, title] if title.present?
 
-    raise StandardError, I18n.t("liquid_tags.wikipedia_tag.couldn_t_find_the_section", input: input)
+    raise StandardError, I18n.t("liquid_tags.wikipedia_tag.section_not_found", input: input)
   end
 
   def text_clean_up(text)

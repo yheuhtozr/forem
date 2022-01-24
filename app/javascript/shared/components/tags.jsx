@@ -22,9 +22,8 @@ const KEYS = {
 //   KEYS.TAB,
 // ];
 
-// turned off until coming up a way not affecting dead keys
-// broadest tag format character range (with lazy apostrophe) cf. /app/modesl/tag.rb
-// const TAG_CHARACTERS = /['\p{XIDC}\p{No}\u00B7\u05F3\u05F4\u0F0B\u200C\u200D]/u;
+const LETTERS_NUMBERS = /[a-z0-9]/i;
+export const DEFAULT_TAG_FORMAT = '[0-9A-Za-z, ]+';
 
 /* TODO: Remove all instances of this.props.listing
    and refactor this component to be more generic */

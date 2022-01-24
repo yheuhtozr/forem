@@ -26,6 +26,9 @@ class BaseUploader < CarrierWave::Uploader::Base
 
   # strip EXIF (and GPS) data
   def strip_exif
+    # There will be no exif data for an SVG
+    return if file.content_type.include?("svg")
+
     manipulate! do |image|
       image.strip unless image.frames.count > FRAME_STRIP_MAX
       image = yield(image) if block_given?
@@ -37,10 +40,10 @@ class BaseUploader < CarrierWave::Uploader::Base
     begin
       return unless MiniMagick::Image.new(file.path).frames.count > FRAME_MAX
     rescue Timeout::Error
-      raise CarrierWave::IntegrityError, I18n.t("uploaders.base_uploader.image_processing_timed_out")
+      raise CarrierWave::IntegrityError, I18n.t("uploaders.base_uploader.timeout")
     end
 
     raise CarrierWave::IntegrityError,
-          I18n.t("uploaders.base_uploader.gif_contains_too_many_fram", frame_max: FRAME_MAX)
+          I18n.t("uploaders.base_uploader.too_many_frames", frame_max: FRAME_MAX)
   end
 end

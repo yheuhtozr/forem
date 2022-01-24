@@ -90,7 +90,7 @@
           <% end %>
 
           <a href="/<%= story.cached_user.username %>" class="crayons-avatar <% if story.cached_organization && !@organization_article_index %> crayons-avatar--s absolute -right-2 -bottom-2 border-solid border-2 border-base-inverted <% else %> crayons-avatar--l <% end %> ">
-            <img src="<%= Images::Profile.call(story.cached_user.profile_image_url, length: 90) %>" alt="<%= story.cached_user.username %> profile" class="crayons-avatar__image" loading="lazy" />
+            <img src="<%= story.cached_user.profile_image_90 %>" alt="<%= story.cached_user.username %> profile" class="crayons-avatar__image" loading="lazy" />
           </a>
         </div>
         <div>
@@ -114,7 +114,7 @@
                     <a href="/<%= story.cached_user.username %>" class="flex">
                       <span class="crayons-avatar crayons-avatar--xl mr-2 shrink-0">
                         <img
-                          src="<%= Images::Profile.call(story.cached_user.profile_image_url, length: 90) %>"
+                          src="<%= story.cached_user.profile_image_90 %>"
                           class="crayons-avatar__image"
                           alt=""
                           loading="lazy" />
@@ -125,7 +125,7 @@
                   <div class="print-hidden">
                     <button
                       class="crayons-btn follow-action-button whitespace-nowrap follow-user w-100"
-                      data-info='{"id": <%= story.user_id %>, "className": "User", "style": "full", "name": "<%= story.cached_user.name %>"}'>
+                      data-info='<%= story.user_data_info_to_json %>'>
                       <%= t("views.users.follow") %>
                     </button>
                   </div>
@@ -157,6 +157,51 @@
         </div>
       <% end %>
 
+    <div class="crayons-story__indention">
+      <h2 class="crayons-story__title">
+        <a href="<%= story.path %>" data-preload-image="<%= cloud_cover_url(story.main_image) %>" id="article-link-<%= story.id %>">
+          <%= story.title %>
+        </a>
+      </h2>
+      <div class="crayons-story__tags">
+        <% flare_tag = FlareTag.new(story, @tag).tag %>
+        <% if flare_tag %>
+          <%= render_tag_link(flare_tag.name, filled: true) %>
+        <% end %>
+        <% tags_to_display = story.cached_tag_list_array
+           if flare_tag
+             tags_to_display = tags_to_display.reject { |tag| tag == flare_tag.name }
+           end %>
+        <% tags_to_display.each do |tag| %>
+          <%= render_tag_link(tag, filled: false, monochrome: true) %>
+        <% end %>
+      </div>
+      <div class="crayons-story__bottom">
+        <div class="crayons-story__details">
+          <% if story.public_reactions_count > 0 %>
+            <a href="<%= story.path %>" class="crayons-btn crayons-btn--s crayons-btn--ghost crayons-btn--icon-left" data-reaction-count data-reactable-id="<%= story.id %>" aria-label="<%= t("views.articles.comments.aria_label", title: story.title, num: story.public_reactions_count) %>">
+              <%= crayons_icon_tag("small-heart", title: t("views.reactions.summary.title")) %>
+              <%= t("views.reactions.summary.count_html",
+                    count: story.public_reactions_count,
+                    start: tag("span", { class: %w[hidden s:inline] }, true),
+                    end: "</span>".html_safe) %>
+            </a>
+          <% end %>
+          <% if story.comments_count > 0 %>
+            <a href="<%= story.path %>#comments" class="crayons-btn crayons-btn--s crayons-btn--ghost crayons-btn--icon-left" aria-label="<%= t("views.articles.comments.aria_label", title: story.title, num: story.public_reactions_count) %>">
+              <%= crayons_icon_tag("small-comment", title: t("views.comments.summary.title")) %>
+              <%= t("views.comments.summary.count_html",
+                    count: story.comments_count,
+                    start: tag("span", { class: %w[hidden s:inline] }, true),
+                    end: "</span>".html_safe) %>
+            </a>
+          <% else %>
+            <a href="<%= story.path %>#comments" class="crayons-btn crayons-btn--s crayons-btn--ghost crayons-btn--icon-left" aria-label="<%= t("views.articles.comments.aria_label", title: story.title, num: story.public_reactions_count) %>">
+              <%= crayons_icon_tag("small-comment", title: t("views.comments.summary.title")) %>
+              <span class="hidden s:inline"><%= t("views.comments.add") %></span>
+            </a>
+          <% end %>
+        </div>
         <div class="crayons-story__save">
           <button type="button" id="article-save-button-<%= story.id %>" class="crayons-btn crayons-btn--secondary crayons-btn--s w-max bookmark-button" data-reactable-id="<%= story.id %>"
             aria-label="<%= t("views.articles.save.aria_label") %>" title="<%= t("views.articles.save.title") %>">

@@ -375,11 +375,11 @@ function initializeAllUserFollowButtons() {
     const { name, className } = buttonInfo;
 
     if (userStatus === 'logged-out') {
-      const { style } = JSON.parse(button.dataset.info);
+      const { style } = buttonInfo;
       addButtonFollowText(button, style);
     } else {
       addAriaLabelToButton({ button, followType: className, followName: name });
-      const { id: userId } = JSON.parse(button.dataset.info);
+      const { id: userId } = buttonInfo;
       if (userIds[userId]) {
         userIds[userId].push(button);
       } else {

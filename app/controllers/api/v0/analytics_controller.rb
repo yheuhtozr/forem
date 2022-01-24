@@ -57,13 +57,8 @@ module Api
       end
 
       def validate_date_params
-        if analytics_params[:start].blank?
-          raise ArgumentError,
-                I18n.t("api.v0.analytics_controller.required_start_parameter_i")
-        end
-
-        message = I18n.t("api.v0.analytics_controller.date_parameters_start_or_e")
-        raise ArgumentError, message unless valid_date_params?
+        raise ArgumentError, I18n.t("api.v0.analytics_controller.start_missing") if analytics_params[:start].blank?
+        raise ArgumentError, I18n.t("api.v0.analytics_controller.invalid_date_format") unless valid_date_params?
       end
 
       def analytics_params

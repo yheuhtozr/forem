@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { Trans } from 'react-i18next';
 import { useState } from 'preact/hooks';
 import { Options } from './Options';
-import { Button, Modal } from '@crayons';
-import { i18next } from '@utilities/locale';
+import { ButtonNew as Button } from '@crayons';
 
 export const EditorActions = ({
   onSaveDraft,
@@ -24,14 +23,15 @@ export const EditorActions = ({
   if (submitting) {
     return (
       <div className="crayons-article-form__footer">
-        <Button className="mr-2 whitespace-nowrap" onClick={onPublish} disabled>
-          {i18next.t(
-            published && isVersion2
-              ? 'editor.publishing'
-              : isVersion2
-              ? 'editor.saving_draft'
-              : 'editor.saving',
-          )}
+        <Button
+          variant="primary"
+          className="mr-2 whitespace-nowrap"
+          onClick={onPublish}
+          disabled
+        >
+          {published && isVersion2
+            ? 'Publishing...'
+            : `Saving ${isVersion2 ? 'draft' : ''}...`}
         </Button>
       </div>
     );
@@ -40,10 +40,11 @@ export const EditorActions = ({
   return (
     <div className="crayons-article-form__footer">
       <Button
+        variant="primary"
         className="mr-2 whitespace-nowrap"
-        onClick={() => setWannaPublish(true)}
+        onClick={onPublish}
       >
-        {i18next.t(published || isVersion1 ? 'editor.save' : 'editor.publish')}
+        {published || isVersion1 ? 'Save changes' : 'Publish'}
       </Button>
 
       {wannaPublish && (
@@ -65,16 +66,8 @@ export const EditorActions = ({
       )}
 
       {!(published || isVersion1) && (
-        <Button
-          variant="secondary"
-          className="mr-2 whitespace-nowrap"
-          onClick={onSaveDraft}
-        >
-          <Trans
-            i18nKey="editor.save_draft"
-            // eslint-disable-next-line react/jsx-key, jsx-a11y/anchor-has-content
-            components={[<span className="hidden s:inline" />]}
-          />
+        <Button className="mr-2 whitespace-nowrap" onClick={onSaveDraft}>
+          Save <span className="hidden s:inline">draft</span>
         </Button>
       )}
 
@@ -88,10 +81,8 @@ export const EditorActions = ({
 
       {edited && (
         <Button
-          variant="ghost"
           onClick={onClearChanges}
-          className="whitespace-nowrap fw-normal"
-          size="s"
+          className="whitespace-nowrap fw-normal fs-s"
         >
           <Trans
             i18nKey="editor.revert_button"

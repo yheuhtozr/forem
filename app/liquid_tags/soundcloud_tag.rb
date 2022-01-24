@@ -37,7 +37,7 @@ class SoundcloudTag < LiquidTagBase
   end
 
   def raise_error
-    raise StandardError, I18n.t("liquid_tags.soundcloud_tag.invalid_soundcloud_url_try")
+    raise StandardError, I18n.t("liquid_tags.soundcloud_tag.invalid_soundcloud_url")
   end
 end
 

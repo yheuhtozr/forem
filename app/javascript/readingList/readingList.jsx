@@ -16,7 +16,7 @@ import { TagList } from './components/TagList';
 import { MediaQuery } from '@components/MediaQuery';
 import { BREAKPOINTS } from '@components/useMediaQuery';
 import { debounceAction } from '@utilities/debounceAction';
-import { Button } from '@crayons';
+import { ButtonNew as Button, Link } from '@crayons';
 import { request } from '@utilities/http';
 import { i18next } from '@utilities/locale';
 
@@ -206,20 +206,19 @@ export class ReadingList extends Component {
               )}
               {i18next.t('readingList.total', { total: itemsTotal })}
             </h1>
-            <Button
+            <Link
               onClick={(e) => this.toggleStatusView(e)}
+              href={
+                isStatusViewValid
+                  ? READING_LIST_ARCHIVE_PATH
+                  : READING_LIST_PATH
+              }
               className="whitespace-nowrap ml-auto s:w-auto"
-              variant="outlined"
-              url={READING_LIST_ARCHIVE_PATH}
-              tagName="a"
+              block
               data-no-instant
             >
-              {i18next.t(
-                `readingList.${
-                  isStatusViewValid ? 'view_archive' : 'view_list'
-                }`,
-              )}
-            </Button>
+              {isStatusViewValid ? 'View archive' : 'View reading list'}
+            </Link>
           </div>
           <fieldset className="m:flex justify-end s:pl-2 w-100 s:w-auto">
             <legend className="hidden">{i18next.t('readingList.filter')}</legend>
@@ -271,12 +270,8 @@ export class ReadingList extends Component {
                       />
                       {showLoadMoreButton && (
                         <div className="flex justify-center my-2">
-                          <Button
-                            onClick={this.loadNextPage}
-                            variant="secondary"
-                            className="w-max"
-                          >
-                            {i18next.t('readingList.more')}
+                          <Button onClick={this.loadNextPage} className="w-max">
+                            Load more
                           </Button>
                         </div>
                       )}

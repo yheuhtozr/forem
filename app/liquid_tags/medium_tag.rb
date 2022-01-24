@@ -31,7 +31,7 @@ class MediumTag < LiquidTagBase
   end
 
   def raise_error
-    raise StandardError, I18n.t("liquid_tags.medium_tag.invalid_link_url_or_link_u")
+    raise StandardError, I18n.t("liquid_tags.medium_tag.invalid_link_url")
   end
 end
 

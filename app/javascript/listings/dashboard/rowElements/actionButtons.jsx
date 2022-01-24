@@ -1,22 +1,21 @@
 import PropTypes from 'prop-types';
 import { h } from 'preact';
-import { i18next } from '@utilities/locale';
-import { Button } from '@crayons';
+import { Link } from '@crayons';
 
 export const ActionButtons = ({ isDraft, editUrl, deleteConfirmUrl }) => {
   return (
-    <div className="listing-row-actions crayons-btn-actions">
+    <div className="listing-row-actions flex">
       {isDraft && (
-        <Button tagName="a" url={editUrl}>
-          {i18next.t('listings.actions.delete')}
-        </Button>
+        <Link block href={editUrl}>
+          View draft
+        </Link>
       )}
-      <Button tagName="a" url={editUrl}>
-        {i18next.t('listings.actions.edit')}
-      </Button>
-      <Button variant="danger" tagName="a" url={deleteConfirmUrl}>
-        {i18next.t('listings.actions.delete')}
-      </Button>
+      <Link block href={editUrl}>
+        Edit
+      </Link>
+      <Link block href={deleteConfirmUrl}>
+        Delete
+      </Link>
     </div>
   );
 };

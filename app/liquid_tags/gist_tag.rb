@@ -7,7 +7,7 @@ class GistTag < LiquidTagBase
   def initialize(_tag_name, link, _parse_context)
     super
 
-    raise StandardError, I18n.t("liquid_tags.gist_tag.invalid_gist_link_you_must") if link.blank?
+    raise StandardError, I18n.t("liquid_tags.gist_tag.invalid_gist_link") if link.blank?
 
     @uri = build_uri(link)
   end
@@ -40,7 +40,7 @@ class GistTag < LiquidTagBase
       input_no_space
     else
       raise StandardError,
-            "Invalid Gist link: #{link} Links must follow this format: https://gist.github.com/username/gist_id"
+            I18n.t("liquid_tags.gist_tag.invalid_format", link: link)
     end
   end
 

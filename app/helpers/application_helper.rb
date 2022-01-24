@@ -1,29 +1,13 @@
 module ApplicationHelper
-  USER_COLORS = ["#19063A", "#dce9f3"].freeze
-
   LARGE_USERBASE_THRESHOLD = 1000
-
-  def deleted_user
-    # rubocop:disable Style/OpenStructUse, Performance/OpenStruct
-    OpenStruct.new(
-      id: nil,
-      darker_color: Color::CompareHex.new(USER_COLORS).brightness,
-      username: "[deleted user]",
-      name: I18n.t("helpers.application_helper.deleted_user"),
-      summary: nil,
-      twitter_username: nil,
-      github_username: nil,
-    )
-    # rubocop:enable Style/OpenStructUse, Performance/OpenStruct
-  end
 
   def subtitles
     {
-      "week" => I18n.t("helpers.application_helper.top_posts_this_week"),
-      "month" => I18n.t("helpers.application_helper.top_posts_this_month"),
-      "year" => I18n.t("helpers.application_helper.top_posts_this_year"),
-      "infinity" => I18n.t("helpers.application_helper.all_posts"),
-      "latest" => I18n.t("helpers.application_helper.latest_posts")
+      "week" => I18n.t("helpers.application_helper.subtitle.week"),
+      "month" => I18n.t("helpers.application_helper.subtitle.month"),
+      "year" => I18n.t("helpers.application_helper.subtitle.year"),
+      "infinity" => I18n.t("helpers.application_helper.subtitle.infinity"),
+      "latest" => I18n.t("helpers.application_helper.subtitle.latest")
     }
   end
 
@@ -125,29 +109,19 @@ module ApplicationHelper
   end
 
   def follow_button(followable, style = "full", classes = "")
-    return if followable == deleted_user
+    return if followable == Users::DeletedUser
 
     user_follow = followable.instance_of?(User) ? "follow-user" : ""
-    followable_type = if followable.respond_to?(:decorated?) && followable.decorated?
-                        followable.object.class.name
-                      else
-                        followable.class.name
-                      end
-
+    followable_type = followable.class_name
     followable_name = followable.name
 
     tag.button(
-      I18n.t("helpers.application_helper.follow.#{followable_type}",
-             default: I18n.t("helpers.application_helper.follow.default")),
+      I18n.t("helpers.application_helper.follow.text.#{followable_type}",
+             default: I18n.t("helpers.application_helper.follow.text.default")),
       name: :button,
       type: :button,
       data: {
-        info: {
-          id: followable.id,
-          className: followable_type,
-          name: followable_name,
-          style: style
-        }
+        info: DataInfo.to_json(object: followable, className: followable_type, style: style)
       },
       class: "crayons-btn follow-action-button whitespace-nowrap #{classes} #{user_follow}",
       aria: {
@@ -166,8 +140,6 @@ module ApplicationHelper
   end
 
   def user_colors(user)
-    return { bg: "#19063A", text: "#dce9f3" } if user == deleted_user
-
     user.decorate.enriched_colors
   end
 
@@ -297,12 +269,6 @@ module ApplicationHelper
 
   def admin_config_label(method, content = nil, model: Settings::General)
     content ||= tag.span(method.to_s.humanize)
-
-    if method.to_sym.in?(Settings::Mandatory.keys)
-      required = tag.span(I18n.t("helpers.application_helper.required"),
-                          class: "crayons-indicator crayons-indicator--critical")
-      content = safe_join([content, required])
-    end
 
     label_prefix = model.name.split("::").map(&:underscore).join("_")
     tag.label(content, class: "site-config__label crayons-field__label", for: "#{label_prefix}_#{method}")
