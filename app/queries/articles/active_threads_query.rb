@@ -5,7 +5,7 @@ module Articles
 
     def self.default_options
       {
-        tags: I18n.t("queries.articles.active_threads_query.default_tags").split(","),
+        tags: ["discuss"],
         time_ago: nil,
         count: 10
       }.with_indifferent_access

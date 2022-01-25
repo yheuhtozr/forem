@@ -22,8 +22,7 @@ module Users
 
     validates :brand_color1,
               :brand_color2,
-              format: { with: HEX_COLOR_REGEXP,
-                        message: I18n.t("validators.profile_validator.is_not_a_valid_hex_color") },
+              format: { with: HEX_COLOR_REGEXP, message: "is not a valid hex color" },
               allow_nil: true
     validates :experience_level, numericality: { less_than_or_equal_to: 10 }, allow_blank: true
     validates :feed_referential_link, inclusion: { in: [true, false] }
