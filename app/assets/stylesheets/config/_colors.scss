@@ -109,7 +109,6 @@
 
   // Links
   --link-bg-hover-alt: var(--base-0);
-  --link-brand-color: var(--accent-brand-darker);
   --link-color-current: var(--base-100);
   --link-color-secondary: var(--base-60);
   --link-color-secondary-hover: var(--base-70);
@@ -131,11 +130,6 @@
   --button-secondary-bg-hover: var(--base-a30);
   --button-secondary-color: var(--base-80);
   --button-secondary-color-hover: var(--base-100);
-  //-- Inverted
-  --button-secondary-inverted-bg: var(--base-70);
-  --button-secondary-inverted-bg-hover: var(--base-60);
-  --button-secondary-inverted-color: var(--base-10);
-  --button-secondary-inverted-color-hover: var(--base-0);
 
   // Outlined buttons
   --button-outlined-bg: transparent;
@@ -144,13 +138,6 @@
   --button-outlined-border-hover: var(--base-40);
   --button-outlined-color: var(--base-80);
   --button-outlined-color-hover: var(--base-100);
-  //-- Inverted
-  --button-outlined-inverted-bg: transparent;
-  --button-outlined-inverted-bg-hover: rgba(255, 255, 255, 0.15);
-  --button-outlined-inverted-border: var(--base-60);
-  --button-outlined-inverted-border-hover: var(--base-40);
-  --button-outlined-inverted-color: var(--base-30);
-  --button-outlined-inverted-color-hover: var(--base-10);
 
   // Ghost buttons
   --button-ghost-bg: transparent;
@@ -183,30 +170,20 @@
   --snackbar-bg: var(--base-90);
   --snackbar-color: var(--body-color-inverted);
 
-  // Indicators
-  --indicator-accent-bg: var(--accent-brand);
-  --indicator-accent-color: var(--body-color-inverted);
-  --indicator-critical-bg: var(--accent-danger);
-  --indicator-critical-color: var(--body-color-inverted);
-  --indicator-default-bg: var(--button-secondary-bg);
-  --indicator-default-color: var(--button-secondary-color);
-
   // Tabs
   --tab-color: var(--base-80);
   --tab-color-hover: var(--accent-brand);
   --tab-color-current: var(--base-100);
   --tab-bg-hover: var(--accent-brand-a10);
   --tab-bg-current: var(--accent-brand);
-  --tab-muted-color: var(--base-80);
-  --tab-muted-color-hover: var(--base-90);
-  --tab-muted-color-current: var(--base-100);
-  --tab-muted-bg-hover: var(--base-a10);
-  --tab-muted-bg-current: var(--base-20);
-  --tab-pill-color-current: var(--base-inverted);
 
   // Tags
   --tag-color: var(--base-60);
   --tag-color-hover: var(--base-100);
+  --tag-bg: rgba(var(--grey-900), 0.05);
+  --tag-bg-hover: rgba(var(--grey-900), 0.05);
+  --tag-prefix: rgba(var(--grey-900), 0.6);
+  --tag-prefix-hover: rgb(var(--grey-900));
 
   // Story
   --story-comments-bg: 249, 249, 249;
@@ -309,8 +286,45 @@
   --cta-branded-border-hover: var(--accent-brand-darker);
 
   ////////////////////////////////////////////////
+  // Tooltips ////////////////////////////////////
+  ////////////////////////////////////////////////
+
+  --tooltip-bg: rgba(var(--grey-900), 0.9);
+  --tooltip-color: rgb(var(--white));
+
+  ////////////////////////////////////////////////
+  // Indicators //////////////////////////////////
+  ////////////////////////////////////////////////
+
+  // Indicators: Default
+  --indicator-bg: rgb(var(--grey-300));
+  --indicator-color: rgb(var(--grey-700));
+
+  // Indicators: Success
+  --indicator-success-bg: rgb(var(--green-400));
+  --indicator-success-color: rgb(var(--green-900));
+
+  // Indicators: Warning
+  --indicator-warning-bg: rgb(var(--yellow-300));
+  --indicator-warning-color: rgb(var(--yellow-900));
+
+  // Indicators: Danger
+  --indicator-danger-bg: rgb(var(--red-600));
+  --indicator-danger-color: rgb(var(--white));
+
+  // Indicators: Info
+  --indicator-info-bg: var(--accent-brand);
+  --indicator-info-color: rgb(var(--white));
+
+  ////////////////////////////////////////////////
   // Utilities ///////////////////////////////////
   ////////////////////////////////////////////////
 
   --focus: var(--accent-brand);
+
+  /* Shadows */
+  --shadow-1: 0 10px 15px -3px rgba(var(--black), 0.1),
+    0 4px 6px -2px rgba(var(--black), 0.05), 0 0 0 1px rgba(var(--black), 0.1);
+  --shadow-2: 0 20px 25px -5px rgba(var(--black), 0.1),
+    0 10px 10px -5px rgba(var(--black), 0.05), 0 0 0 1px rgba(var(--black), 0.1);
 }
