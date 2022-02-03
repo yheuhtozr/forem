@@ -47,7 +47,7 @@ export const EditorActions = ({
       <Button
         variant="primary"
         className="mr-2 whitespace-nowrap"
-        onClick={onPublish}
+        onClick={() => setWannaPublish(true)}
       >
         {i18next.t(published || isVersion1 ? 'editor.save' : 'editor.publish')}
       </Button>
