@@ -1,6 +1,5 @@
 module Admin
   class ListingsController < Admin::ApplicationController
-    include ListingsToolkit
     ALLOWED_PARAMS = %i[
       published body_markdown title category listing_category_id tag_list action organization_id
     ].freeze
@@ -51,6 +50,10 @@ module Admin
 
     def include_unpublished?
       params[:include_unpublished] == "1"
+    end
+
+    def process_no_credit_left
+      redirect_to admin_listings_path, notice: "Not enough available credits"
     end
   end
 end

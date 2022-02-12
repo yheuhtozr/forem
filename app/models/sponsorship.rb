@@ -23,7 +23,7 @@ class Sponsorship < ApplicationRecord
   validates :sponsorable_type, inclusion: {
     in: SPONSORABLE_TYPES,
     allow_blank: true,
-    message: "is not a sponsorable type"
+    message: I18n.t("models.sponsorship.invalid_type")
   }
 
   validate :validate_tag_uniqueness, if: proc { level.to_s == "tag" }

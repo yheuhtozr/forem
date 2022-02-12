@@ -16,7 +16,7 @@
 class Tag < ActsAsTaggableOn::Tag
   self.ignored_columns = %w[mod_chat_channel_id].freeze
 
-  attr_accessor :points, :tag_moderator_id, :remove_moderator_id
+  attr_accessor :tag_moderator_id, :remove_moderator_id
 
   acts_as_followable
   resourcify
@@ -212,7 +212,7 @@ class Tag < ActsAsTaggableOn::Tag
   def validate_alias_for
     return if Tag.exists?(name: alias_for)
 
-    errors.add(:tag, "alias_for must refer to an existing tag")
+    errors.add(:tag, I18n.t("models.tag.alias_for"))
   end
 
   def pound_it

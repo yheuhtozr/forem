@@ -7,6 +7,15 @@ import { i18next } from '@utilities/locale';
 
 /* global Runtime */
 
+const animatedImages = document.querySelectorAll('[data-animated="true"]');
+if (animatedImages.length > 0) {
+  import('@utilities/animatedImageUtils').then(
+    ({ initializePausableAnimatedImages }) => {
+      initializePausableAnimatedImages(animatedImages);
+    },
+  );
+}
+
 const fullscreenActionElements = document.getElementsByClassName(
   'js-fullscreen-code-action',
 );

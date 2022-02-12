@@ -32,6 +32,10 @@ class Article < ApplicationRecord
   MAX_USER_MENTION_LIVE_AT = Time.utc(2021, 4, 7).freeze
   PROHIBITED_UNICODE_CHARACTERS_REGEX = /[\u202a-\u202e]/ # BIDI embedding controls
 
+  def self.unique_url_error
+    I18n.t("models.article.unique_url", email: ForemInstance.email)
+  end
+
   has_one :discussion_lock, dependent: :delete
 
   has_many :mentions, as: :mentionable, inverse_of: :mentionable, dependent: :delete_all
@@ -600,9 +604,10 @@ class Article < ApplicationRecord
       article_ids.concat organization.article_ids
     end
     # perform busting cache in chunks in case there're a lot of articles
-    (article_ids.uniq.sort - [id]).each_slice(10) do |ids|
-      Articles::BustMultipleCachesWorker.perform_async(ids)
-    end
+    # NOTE: `perform_bulk` takes an array of arrays as argument. Since the worker
+    # takes an array of ids as argument, this becomes triple-nested.
+    job_params = (article_ids.uniq.sort - [id]).each_slice(10).to_a.map { |ids| [ids] }
+    Articles::BustMultipleCachesWorker.perform_bulk(job_params)
   end
 
   def evaluate_front_matter(front_matter)
@@ -610,7 +615,7 @@ class Article < ApplicationRecord
     set_tag_list(front_matter["tags"]) if front_matter["tags"].present?
     self.published = front_matter["published"] if %w[true false].include?(front_matter["published"].to_s)
     self.published_at = parse_date(front_matter["date"]) if published
-    self.main_image = determine_image(front_matter)
+    set_main_image(front_matter)
     self.canonical_url = front_matter["canonical_url"] if front_matter["canonical_url"].present?
 
     update_description = front_matter["description"].present? || front_matter["title"].present?
@@ -620,16 +625,14 @@ class Article < ApplicationRecord
     self.collection_id = Collection.find_series(front_matter["series"], user).id if front_matter["series"].present?
   end
 
-  def determine_image(front_matter)
-    # In order to clear out the cover_image, we check for the key in the front_matter.
-    # If the key exists, we use the value from it (a url or `nil`).
-    # Otherwise, we fall back to the main_image on the article.
-    has_cover_image = front_matter.include?("cover_image")
-
-    if has_cover_image && (front_matter["cover_image"].present? || main_image)
-      front_matter["cover_image"]
-    else
-      main_image
+  def set_main_image(front_matter)
+    # At one point, we have set the main_image based on the front matter. Forever will that now dictate the behavior.
+    if main_image_from_frontmatter?
+      self.main_image = front_matter["cover_image"]
+    elsif front_matter.key?("cover_image")
+      # They've chosen the set cover image in the front matter, so we'll proceed with that assumption.
+      self.main_image = front_matter["cover_image"]
+      self.main_image_from_frontmatter = true
     end
   end
 

@@ -106,7 +106,6 @@ class CommentsController < ApplicationController
     @comment.user_id = moderator.id
     @comment.body_markdown = response_template.content
     authorize @comment
-    permit_commenter
 
     if @comment.save
       Notification.send_new_comment_notifications_without_delay(@comment)
@@ -120,8 +119,6 @@ class CommentsController < ApplicationController
     else
       render json: { status: @comment&.errors&.full_messages&.to_sentence }, status: :unprocessable_entity
     end
-  rescue ModerationUnauthorizedError => e
-    render json: { error: e.message }, status: :unprocessable_entity
   rescue StandardError => e
     skip_authorization
 
@@ -315,7 +312,7 @@ class CommentsController < ApplicationController
   def permit_commenter
     return unless user_blocked?
 
-    raise ModerationUnauthorizedError, "Not allowed due to moderation action"
+    raise ModerationUnauthorizedError, I18n.t("comments_controller.moderated")
   end
 
   def user_blocked?

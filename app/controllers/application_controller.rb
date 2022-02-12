@@ -131,8 +131,11 @@ class ApplicationController < ActionController::Base
     onboarding_path
   end
 
-  def raise_suspended
-    raise SuspendedError if current_user&.suspended?
+  def check_suspended
+    return unless current_user&.suspended?
+
+    response.status = :forbidden
+    render "pages/forbidden"
   end
 
   def internal_navigation?
@@ -209,12 +212,6 @@ class ApplicationController < ActionController::Base
   def bust_content_change_caches
     EdgeCache::Bust.call(CONTENT_CHANGE_PATHS)
     Settings::General.admin_action_taken_at = Time.current # Used as cache key
-  end
-
-  # To ensure that components are sent back as HTML, we wrap their rendering in
-  # this helper method
-  def render_component(component_class, *args, **kwargs)
-    render component_class.new(*args, **kwargs), content_type: "text/html"
   end
 
   private

@@ -1,5 +1,6 @@
 import { h } from 'preact';
 import PropTypes from 'prop-types';
+import classNames from 'classnames/bind';
 import { FocusTrap } from '../../shared/components/focusTrap';
 import { defaultChildrenPropTypes } from '../../common-prop-types';
 import { Button } from '@crayons';
@@ -70,24 +71,28 @@ export const Modal = ({
   size,
   className,
   title,
-  overlay = true,
+  prompt,
+  centered,
+  noBackdrop,
+  backdropDismissible = false,
   onClose = () => {},
-  closeOnClickOutside = false,
-  focusTrapSelector = '.crayons-modal',
+  focusTrapSelector = '.crayons-modal__box',
 }) => {
+  const classes = classNames('crayons-modal', {
+    [`crayons-modal--${size}`]: size && size !== 'medium',
+    'crayons-modal--prompt': prompt,
+    'crayons-modal--centered': centered && prompt,
+    'crayons-modal--bg-dismissible': !noBackdrop && backdropDismissible,
+    [className]: className,
+  });
+
   return (
     <FocusTrap
       onDeactivate={onClose}
-      clickOutsideDeactivates={closeOnClickOutside}
+      clickOutsideDeactivates={backdropDismissible}
       selector={focusTrapSelector}
     >
-      <div
-        data-testid="modal-container"
-        className={`crayons-modal${getAdditionalClassNames({
-          size,
-          className,
-        })}`}
-      >
+      <div data-testid="modal-container" className={classes}>
         <div
           role="dialog"
           aria-modal="true"
@@ -108,12 +113,10 @@ export const Modal = ({
           )}
           <div className="crayons-modal__box__body">{children}</div>
         </div>
-        {overlay && (
+        {!noBackdrop && (
           <div
             data-testid="modal-overlay"
-            className={`crayons-modal__overlay ${
-              closeOnClickOutside ? 'background-clickable' : ''
-            }`}
+            className="crayons-modal__backdrop"
           />
         )}
       </div>
@@ -123,16 +126,15 @@ export const Modal = ({
 
 Modal.displayName = 'Modal';
 
-Modal.defaultProps = {
-  size: 'default',
-};
-
 Modal.propTypes = {
   children: defaultChildrenPropTypes.isRequired,
   className: PropTypes.string,
   title: PropTypes.string.isRequired,
-  overlay: PropTypes.bool,
+  backdrop: PropTypes.bool,
+  backdropDismissible: PropTypes.bool,
+  prompt: PropTypes.bool,
+  centered: PropTypes.bool,
   onClose: PropTypes.func,
-  size: PropTypes.oneOf(['default', 's', 'm']).isRequired,
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
   focusTrapSelector: PropTypes.string,
 };
