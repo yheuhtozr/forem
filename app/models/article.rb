@@ -61,6 +61,10 @@ class Article < ApplicationRecord
            inverse_of: :commentable,
            class_name: "Comment"
 
+  validates :base_lang, format: {
+    with: /\A[0-9A-Za-z]{1,8}(?:-[0-9A-Za-z]{1,8})*\z/,
+    message: proc { I18n.t("common.invalid_langtag") }
+  }, allow_blank: true
   validates :body_markdown, bytesize: {
     maximum: 800.kilobytes,
     too_long: proc { I18n.t("models.article.is_too_long") }
