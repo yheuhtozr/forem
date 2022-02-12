@@ -9,7 +9,7 @@ class ApiSecretsController < ApplicationController
     @secret.user_id = current_user.id
 
     if @secret.save
-      flash[:notice] = I18n.t("api_secrets_controller.your_api_key_has_been_gene", secret_secret: @secret.secret)
+      flash[:notice] = I18n.t("api_secrets_controller.generated", secret: @secret.secret)
     else
       flash[:error] = @secret.errors_as_sentence
     end
@@ -21,11 +21,10 @@ class ApiSecretsController < ApplicationController
     authorize @secret
 
     if @secret.destroy
-      flash[:notice] = I18n.t("api_secrets_controller.your_api_key_has_been_revo")
+      flash[:notice] = I18n.t("api_secrets_controller.revoked")
     else
       flash[:error] =
-        I18n.t("api_secrets_controller.an_error_occurred_please_t",
-               settings_general_email_add: ForemInstance.email)
+        I18n.t("errors.messages.try_again_email", email: ForemInstance.email)
     end
 
     redirect_back(fallback_location: root_path)

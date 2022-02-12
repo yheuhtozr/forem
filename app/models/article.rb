@@ -32,6 +32,10 @@ class Article < ApplicationRecord
   MAX_USER_MENTION_LIVE_AT = Time.utc(2021, 4, 7).freeze
   PROHIBITED_UNICODE_CHARACTERS_REGEX = /[\u202a-\u202e]/ # BIDI embedding controls
 
+  def self.unique_url_error
+    I18n.t("models.article.unique_url", email: ForemInstance.email)
+  end
+
   has_one :discussion_lock, dependent: :delete
 
   has_many :mentions, as: :mentionable, inverse_of: :mentionable, dependent: :delete_all
@@ -57,23 +61,20 @@ class Article < ApplicationRecord
            inverse_of: :commentable,
            class_name: "Comment"
 
-  validates :base_lang, format: {
-    with: /\A[0-9A-Za-z]{1,8}(?:-[0-9A-Za-z]{1,8})*\z/,
-    message: proc { I18n.t("common.invalid_langtag") }
-  }, allow_blank: true
-  validates :body_markdown, bytesize: { maximum: 800.kilobytes, too_long: proc {
-                                                                            I18n.t("models.article.is_too_long")
-                                                                          } }
+  validates :body_markdown, bytesize: {
+    maximum: 800.kilobytes,
+    too_long: proc { I18n.t("models.article.is_too_long") }
+  }
   validates :body_markdown, length: { minimum: 0, allow_nil: false }
   validates :body_markdown, uniqueness: { scope: %i[user_id title] }
   validates :cached_tag_list, length: { maximum: 126 }
   validates :canonical_url,
-            uniqueness: { allow_nil: true, scope: :published, message: :unique_url_error },
+            uniqueness: { allow_nil: true, scope: :published, message: unique_url_error },
             if: :published?
   validates :canonical_url, url: { allow_blank: true, no_local: true, schemes: %w[https http] }
   validates :comments_count, presence: true
   validates :feed_source_url,
-            uniqueness: { allow_nil: true, scope: :published, message: :unique_url_error },
+            uniqueness: { allow_nil: true, scope: :published, message: unique_url_error },
             if: :published?
   validates :feed_source_url, url: { allow_blank: true, no_local: true, schemes: %w[https http] }
   validates :main_image, url: { allow_blank: true, schemes: %w[https http] }
@@ -600,9 +601,10 @@ class Article < ApplicationRecord
       article_ids.concat organization.article_ids
     end
     # perform busting cache in chunks in case there're a lot of articles
-    (article_ids.uniq.sort - [id]).each_slice(10) do |ids|
-      Articles::BustMultipleCachesWorker.perform_async(ids)
-    end
+    # NOTE: `perform_bulk` takes an array of arrays as argument. Since the worker
+    # takes an array of ids as argument, this becomes triple-nested.
+    job_params = (article_ids.uniq.sort - [id]).each_slice(10).to_a.map { |ids| [ids] }
+    Articles::BustMultipleCachesWorker.perform_bulk(job_params)
   end
 
   def evaluate_front_matter(front_matter)
@@ -610,7 +612,7 @@ class Article < ApplicationRecord
     set_tag_list(front_matter["tags"]) if front_matter["tags"].present?
     self.published = front_matter["published"] if %w[true false].include?(front_matter["published"].to_s)
     self.published_at = parse_date(front_matter["date"]) if published
-    self.main_image = determine_image(front_matter)
+    set_main_image(front_matter)
     self.canonical_url = front_matter["canonical_url"] if front_matter["canonical_url"].present?
 
     update_description = front_matter["description"].present? || front_matter["title"].present?
@@ -620,16 +622,14 @@ class Article < ApplicationRecord
     self.collection_id = Collection.find_series(front_matter["series"], user).id if front_matter["series"].present?
   end
 
-  def determine_image(front_matter)
-    # In order to clear out the cover_image, we check for the key in the front_matter.
-    # If the key exists, we use the value from it (a url or `nil`).
-    # Otherwise, we fall back to the main_image on the article.
-    has_cover_image = front_matter.include?("cover_image")
-
-    if has_cover_image && (front_matter["cover_image"].present? || main_image)
-      front_matter["cover_image"]
-    else
-      main_image
+  def set_main_image(front_matter)
+    # At one point, we have set the main_image based on the front matter. Forever will that now dictate the behavior.
+    if main_image_from_frontmatter?
+      self.main_image = front_matter["cover_image"]
+    elsif front_matter.key?("cover_image")
+      # They've chosen the set cover image in the front matter, so we'll proceed with that assumption.
+      self.main_image = front_matter["cover_image"]
+      self.main_image_from_frontmatter = true
     end
   end
 
@@ -644,7 +644,7 @@ class Article < ApplicationRecord
     add_tag_adjustments_to_tag_list
 
     # check there are not too many tags
-    return errors.add(:tag_list, I18n.t("models.article.exceed_the_maximum_of_4_ta")) if tag_list.size > 4
+    return errors.add(:tag_list, I18n.t("models.article.too_many_tags")) if tag_list.size > 4
 
     # check tags names aren't too long and don't contain non alphabet characters
     tag_list.each do |tag|
@@ -671,42 +671,42 @@ class Article < ApplicationRecord
   def validate_video
     if published && video_state == "PROGRESSING"
       return errors.add(:published,
-                        I18n.t("models.article.cannot_be_set_to_true_if_v"))
+                        I18n.t("models.article.video_processing"))
     end
 
     return unless video.present? && user.created_at > 2.weeks.ago
 
-    errors.add(:video, I18n.t("models.article.cannot_be_added_by_member"))
+    errors.add(:video, I18n.t("models.article.video_unpermitted"))
   end
 
   def validate_collection_permission
     return unless collection && collection.user_id != user_id
 
-    errors.add(:collection_id, I18n.t("models.article.must_be_one_you_have_permi"))
+    errors.add(:collection_id, I18n.t("models.article.series_unpermitted"))
   end
 
   def validate_co_authors
     return if co_author_ids.exclude?(user_id)
 
-    errors.add(:co_author_ids, I18n.t("models.article.must_not_be_the_same_user"))
+    errors.add(:co_author_ids, I18n.t("models.article.same_author"))
   end
 
   def validate_co_authors_must_not_be_the_same
     return if co_author_ids.uniq.count == co_author_ids.count
 
-    errors.add(:base, I18n.t("models.article.co_author_ids_must_be_uniq"))
+    errors.add(:base, I18n.t("models.article.unique_coauthor"))
   end
 
   def validate_co_authors_exist
     return if User.where(id: co_author_ids).count == co_author_ids.count
 
-    errors.add(:co_author_ids, I18n.t("models.article.must_be_valid_user_ids"))
+    errors.add(:co_author_ids, I18n.t("models.article.invalid_coauthor"))
   end
 
   def past_or_present_date
     return unless published_at && published_at > Time.current
 
-    errors.add(:date_time, I18n.t("models.article.must_be_entered_in_dd_mm_y"))
+    errors.add(:date_time, I18n.t("models.article.invalid_date"))
   end
 
   def canonical_url_must_not_have_spaces
@@ -723,8 +723,7 @@ class Article < ApplicationRecord
     return if mentions_count <= Settings::RateLimit.mention_creation
 
     errors.add(:base,
-               I18n.t("models.article.you_cannot_mention_more_th",
-                      settings_ratelimit_mention: Settings::RateLimit.mention_creation))
+               I18n.t("models.article.mention_too_many", count: Settings::RateLimit.mention_creation))
   end
 
   def create_slug

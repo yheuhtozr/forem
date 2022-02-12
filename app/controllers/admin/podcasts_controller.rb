@@ -48,10 +48,8 @@ module Admin
     def fetch
       limit = params[:limit].to_i.zero? ? nil : params[:limit].to_i
       force = params[:force].to_i == 1
-      Podcasts::GetEpisodesWorker.perform_async(podcast_id: @podcast.id, limit: limit, force: force)
-      flash[:notice] =
-        I18n.t("admin.podcasts_controller.podcast_s_episodes_fetchin", podcast_title: @podcast.title,
-                                                                       podcast_id: @podcast.id)
+      Podcasts::GetEpisodesWorker.perform_async("podcast_id" => @podcast.id, "limit" => limit, "force" => force)
+      flash[:notice] = "Podcast's episodes fetching was scheduled (#{@podcast.title}, ##{@podcast.id})"
       redirect_to admin_podcasts_path
     end
 

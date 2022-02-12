@@ -15,7 +15,7 @@ class TagAdjustment < ApplicationRecord
   private
 
   def user_permissions
-    errors.add(:user_id, I18n.t("models.tag_adjustment.does_not_have_privilege_to")) unless has_privilege_to_adjust?
+    errors.add(:user_id, I18n.t("models.tag_adjustment.unpermitted")) unless has_privilege_to_adjust?
   end
 
   def has_privilege_to_adjust?
@@ -29,10 +29,10 @@ class TagAdjustment < ApplicationRecord
          tag.casecmp(tag_name).zero?
        end
       errors.add(:tag_id,
-                 I18n.t("models.tag_adjustment.selected_for_removal_is_no"))
+                 I18n.t("models.tag_adjustment.not_live"))
     end
     return unless adjustment_type == "addition" && article.tag_list.count > 3
 
-    errors.add(:base, I18n.t("models.tag_adjustment.4_tags_max_per_article"))
+    errors.add(:base, I18n.t("models.tag_adjustment.too_many_tags"))
   end
 end

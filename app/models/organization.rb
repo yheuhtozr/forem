@@ -77,11 +77,11 @@ class Organization < ApplicationRecord
   alias_attribute :website_url, :url
 
   def self.integer_only
-    I18n.t("models.organization.integer_only_no_sign_allow")
+    I18n.t("models.organization.integer_only")
   end
 
   def self.reserved_word
-    I18n.t("models.organization.value_s_is_a_reserved_wor")
+    I18n.t("models.organization.reserved_word")
   end
 
   def check_for_slug_change

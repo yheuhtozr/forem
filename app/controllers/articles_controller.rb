@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
 
   before_action :authenticate_user!, except: %i[feed new]
   before_action :set_article, only: %i[edit manage update destroy stats admin_unpublish]
-  before_action :raise_suspended, only: %i[new create update]
+  before_action :check_suspended, only: %i[new create update]
   before_action :set_cache_control_headers, only: %i[feed]
   after_action :verify_authorized
 
@@ -159,7 +159,7 @@ class ArticlesController < ApplicationController
   end
 
   def delete_confirm
-    @article = current_user.articles.find_by(slug: params[:slug])
+    @article = Article.find_by(slug: params[:slug])
     not_found unless @article
     authorize @article
   end
@@ -168,7 +168,7 @@ class ArticlesController < ApplicationController
     authorize @article
     Articles::Destroyer.call(@article)
     respond_to do |format|
-      format.html { redirect_to "/dashboard", notice: I18n.t("articles_controller.article_was_successfully_d") }
+      format.html { redirect_to "/dashboard", notice: I18n.t("articles_controller.deleted") }
       format.json { head :no_content }
     end
   end

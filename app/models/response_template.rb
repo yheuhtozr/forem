@@ -18,11 +18,11 @@ class ResponseTemplate < ApplicationRecord
   validates :content_type, inclusion: { in: CONTENT_TYPES }
   validates :content_type,
             inclusion: { in: COMMENT_CONTENT_TYPE,
-                         message: I18n.t("models.response_template.comment_templates_must_use") },
+                         message: proc { I18n.t("models.response_template.comment_markdown") } },
             if: -> { type_of&.include?("comment") }
   validates :content_type,
             inclusion: { in: EMAIL_CONTENT_TYPES,
-                         message: I18n.t("models.response_template.email_templates_must_use_p") },
+                         message: proc { I18n.t("models.response_template.email_text") } },
             if: -> { type_of&.include?("email") }
   validate :user_nil_only_for_user_nil_types
   validate :template_count
@@ -32,13 +32,13 @@ class ResponseTemplate < ApplicationRecord
   def user_nil_only_for_user_nil_types
     return unless user_id.present? && USER_NIL_TYPE_OF_TYPES.include?(type_of)
 
-    errors.add(:type_of, I18n.t("models.response_template.cannot_have_a_user_id_asso"))
+    errors.add(:type_of, I18n.t("models.response_template.user_nil_only"))
   end
 
   def template_count
     return unless user
     return if user.trusted? || user.response_templates.count <= 30
 
-    errors.add(:user, I18n.t("models.response_template.response_template_limit_of"))
+    errors.add(:user, I18n.t("models.response_template.limit_reached"))
   end
 end

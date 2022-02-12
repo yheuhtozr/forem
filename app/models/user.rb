@@ -138,9 +138,12 @@ class User < ApplicationRecord
   validates :subscribed_to_user_subscriptions_count, presence: true
   validates :unspent_credits_count, presence: true
   validates :username, length: { in: 2..USERNAME_MAX_LENGTH }, format: USERNAME_REGEXP
-  validates :username, presence: true, exclusion: { in: ReservedWords.all, message: :invalid_username }
+  validates :username, presence: true, exclusion: {
+    in: ReservedWords.all,
+    message: proc { I18n.t("models.user.username_is_reserved") }
+  }
   validates :username, uniqueness: { case_sensitive: false, message: lambda do |_obj, data|
-    I18n.t("models.user.is_taken", data_value: (data[:value]))
+    I18n.t("models.user.is_taken", username: (data[:value]))
   end }, if: :username_changed?
 
   # add validators for provider related usernames
@@ -319,6 +322,7 @@ class User < ApplicationRecord
     true
   end
 
+  # @todo Move the Query logic into Tag.  It represents User understanding the inner working of Tag.
   def cached_followed_tag_names
     cache_name = "user-#{id}-#{following_tags_count}-#{last_followed_at&.rfc3339}/followed_tag_names"
     Rails.cache.fetch(cache_name, expires_in: 24.hours) do
@@ -332,6 +336,7 @@ class User < ApplicationRecord
     end
   end
 
+  # @todo Move the Query logic into Tag.  It represents User understanding the inner working of Tag.
   def cached_antifollowed_tag_names
     cache_name = "user-#{id}-#{following_tags_count}-#{last_followed_at&.rfc3339}/antifollowed_tag_names"
     Rails.cache.fetch(cache_name, expires_in: 24.hours) do
@@ -408,11 +413,9 @@ class User < ApplicationRecord
     :suspended?,
     :tag_moderator?,
     :tech_admin?,
-    :trusted, # TODO: Remove this method from the code-base
     :trusted?,
     :user_subscription_tag_available?,
     :vomited_on?,
-    :warned, # TODO: Remove this method from the code-base
     :warned?,
     :workshop_eligible?,
     to: :authorizer,
@@ -661,7 +664,7 @@ class User < ApplicationRecord
     rate_limiter.track_limit_by_action(:send_email_confirmation)
     rate_limiter.check_limit!(:send_email_confirmation)
   rescue RateLimitChecker::LimitReached => e
-    errors.add(:email, I18n.t("models.user.confirmation_could_not_be", e_message: e.message))
+    errors.add(:email, I18n.t("models.user.could_not_send", e_message: e.message))
   end
 
   def update_rate_limit
@@ -676,7 +679,7 @@ class User < ApplicationRecord
   def password_matches_confirmation
     return true if password == password_confirmation
 
-    errors.add(:password, I18n.t("models.user.doesn_t_match_password_con"))
+    errors.add(:password, I18n.t("models.user.password_not_matched"))
   end
 
   def strip_payment_pointer
