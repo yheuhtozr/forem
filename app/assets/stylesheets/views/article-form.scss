@@ -156,7 +156,7 @@
     position: -webkit-sticky;
     position: sticky;
     top: 0;
-    background: var(--base-a5);
+    background: var(--toolbar-bg, var(--base-0));
     padding: var(--su-2) var(--content-padding-x);
     padding-right: var(--toolbar-padding-right, 0);
     overflow-x: auto;

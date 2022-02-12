@@ -37,6 +37,7 @@
   --base-30: #{mix(append($base-colors, 30%)...)};
   --base-20: #{mix(append($base-colors, 20%)...)};
   --base-10: #{mix(append($base-colors, 10%)...)};
+  --base-5: #{mix(append($base-colors, 5%)...)};
   --base-0: #{mix(append($base-colors, 0%)...)};
   --base-inverted: #fff;
 
@@ -87,7 +88,7 @@
   --card-color: var(--base-100);
   --card-color-secondary: var(--base-70);
   --card-color-tertiary: var(--base-60);
-  --card-secondary-bg: var(--base-a5);
+  --card-secondary-bg: var(--base-5);
   --card-secondary-color: var(--base-90);
   --card-headline-color: var(--base-100);
   --card-border: var(--base-20);
@@ -317,14 +318,59 @@
   --indicator-info-color: rgb(var(--white));
 
   ////////////////////////////////////////////////
+  // List items //////////////////////////////////
+  ////////////////////////////////////////////////
+
+  --list-item-bg-hover: rgb(var(--grey-50));
+
+  ////////////////////////////////////////////////
+  // Modals //////////////////////////////////////
+  ////////////////////////////////////////////////
+
+  --modal-bg: rgb(var(--white));
+  --modal-backdrop: rgba(var(--black), 0.6);
+  --modal-danger-border-color: rgb(var(--red-500));
+
+  ////////////////////////////////////////////////
+  // Colors //////////////////////////////////////
+  ////////////////////////////////////////////////
+
+  --color-primary: rgb(var(--grey-900));
+  --color-secondary: rgb(var(--grey-500));
+
+  ////////////////////////////////////////////////
+  // Pills ///////////////////////////////////////
+  ////////////////////////////////////////////////
+
+  --pill-bg: transparent;
+  --pill-bg-hover: rgb(var(--grey-50));
+  --pill-color: rgb(var(--grey-800));
+  --pill-color-hover: rgb(var(--grey-900));
+  --pill-border: rgb(var(--grey-200));
+  --pill-border-hover: rgb(var(--grey-600));
+
+  ////////////////////////////////////////////////
+  // ColorPicker /////////////////////////////////
+  ////////////////////////////////////////////////
+
+  --swatch-border-color: rgb(var(--black), 0.2);
+
+  ////////////////////////////////////////////////
   // Utilities ///////////////////////////////////
   ////////////////////////////////////////////////
 
+  // Focus
   --focus: var(--accent-brand);
 
-  /* Shadows */
+  // Divider
+  --divider: rgb(var(--grey-200));
+
+  // Shadows
   --shadow-1: 0 10px 15px -3px rgba(var(--black), 0.1),
     0 4px 6px -2px rgba(var(--black), 0.05), 0 0 0 1px rgba(var(--black), 0.1);
   --shadow-2: 0 20px 25px -5px rgba(var(--black), 0.1),
     0 10px 10px -5px rgba(var(--black), 0.05), 0 0 0 1px rgba(var(--black), 0.1);
+
+  // site styling addition
+  --toolbar-bg: var(--base-10);
 }
