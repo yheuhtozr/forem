@@ -61,7 +61,7 @@ class ApplicationRecord < ActiveRecord::Base
     return superclass.decorator_class(called_on) if superclass.respond_to?(:decorator_class)
 
     raise UninferrableDecoratorError,
-          I18n.t("models.application_record.could_not_infer_a_decorato", called_on_class_name: called_on.class.name)
+          I18n.t("models.application_record.uninferrable", class: called_on.class.name)
   end
 
   def self.statement_timeout

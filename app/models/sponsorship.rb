@@ -44,14 +44,14 @@ class Sponsorship < ApplicationRecord
     return unless self.class.where(sponsorable: sponsorable, level: :tag)
       .exists?(["expires_at > ? AND id != ?", Time.current, id.to_i])
 
-    errors.add(:level, I18n.t("models.sponsorship.the_tag_is_already_sponsor"))
+    errors.add(:level, I18n.t("models.sponsorship.already_sponsored"))
   end
 
   def validate_level_uniqueness
     return unless self.class.where(organization: organization)
       .exists?(["level IN (?) AND expires_at > ? AND id != ?", METAL_LEVELS, Time.current, id.to_i])
 
-    errors.add(:level,
-               I18n.t("models.sponsorship.you_can_have_only_one_spon", metal_levels_join: METAL_LEVELS.join(", ")))
+    levels = METAL_LEVELS.map { |l| I18n.t("models.sponsorship.level.#{l}") }.to_sentence(locale: I18n.locale)
+    errors.add(:level, I18n.t("models.sponsorship.only_one_level", levels: levels))
   end
 end

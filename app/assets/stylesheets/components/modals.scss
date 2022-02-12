@@ -89,9 +89,6 @@
     box-shadow: var(--shadow-2);
 
     @media (min-width: $breakpoint-s) {
-      background: var(--card-bg);
-      color: var(--card-color);
-      border-radius: var(--radius);
       max-height: calc(100% - var(--su-6));
       height: auto;
       width: 90%;

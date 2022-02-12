@@ -7,7 +7,14 @@ ja:
         description: "%{community} でタグをフォロー"
         og:
           description: "%{community} is great!"
-      heading: 人気のタグ
+      heading:
+        default: 人気のタグ
+        search_results: 「%{q}」の検索結果
+      search:
+        aria_labels:
+          search_input: 検索するタグ名
+          submit: タグを検索
+        placeholder: タグを検索
       edit:
         meta:
           title: 「%{tag}」を編集
@@ -19,9 +26,7 @@ ja:
             label: 表示名
             placeholder: タグのページの上部に表示される名称です。
           bg_color_hex:
-            label: 背景色 (HEX)
-          text_color_hex:
-            label: 文字色 (HEX)
+            label: タグの色
           short_summary:
             label: 概要
             placeholder: 何を表すタグなのかについての簡単な説明。

@@ -138,9 +138,12 @@ class User < ApplicationRecord
   validates :subscribed_to_user_subscriptions_count, presence: true
   validates :unspent_credits_count, presence: true
   validates :username, length: { in: 2..USERNAME_MAX_LENGTH }, format: USERNAME_REGEXP
-  validates :username, presence: true, exclusion: { in: ReservedWords.all, message: :invalid_username }
+  validates :username, presence: true, exclusion: {
+    in: ReservedWords.all,
+    message: proc { I18n.t("models.user.username_is_reserved") }
+  }
   validates :username, uniqueness: { case_sensitive: false, message: lambda do |_obj, data|
-    I18n.t("models.user.is_taken", data_value: (data[:value]))
+    I18n.t("models.user.is_taken", username: (data[:value]))
   end }, if: :username_changed?
 
   # add validators for provider related usernames
@@ -661,7 +664,7 @@ class User < ApplicationRecord
     rate_limiter.track_limit_by_action(:send_email_confirmation)
     rate_limiter.check_limit!(:send_email_confirmation)
   rescue RateLimitChecker::LimitReached => e
-    errors.add(:email, I18n.t("models.user.confirmation_could_not_be", e_message: e.message))
+    errors.add(:email, I18n.t("models.user.could_not_send", e_message: e.message))
   end
 
   def update_rate_limit
@@ -676,7 +679,7 @@ class User < ApplicationRecord
   def password_matches_confirmation
     return true if password == password_confirmation
 
-    errors.add(:password, I18n.t("models.user.doesn_t_match_password_con"))
+    errors.add(:password, I18n.t("models.user.password_not_matched"))
   end
 
   def strip_payment_pointer

@@ -10,12 +10,6 @@ ja:
           title_rel: "%{root} — %{site}"
           title_root: "[コメント] %{title} — %{site}"
           description: "%{site} に投稿されたコメント"
-      messages:
-        create:
-          success: 書き込みました
-          failure: すでに存在しています
-        markdown: 'Markdown に誤りがあります: %{error}'
-        markdown_html: "<p>😔 Markdown に誤りがあります</p><hr><p>%{error}</p>"
       parent:
         subtitle_html: "%{start}元記事: %{end}%{title}"
         metadata_html: "%{name}%{on}"
@@ -29,8 +23,6 @@ ja:
         heading: このコメントを削除してもよろしいですか？
         desc_html: この操作は取り消せません。それとも%{action}しますか？
         action: 編集
-        error: 問題が発生し、コメントが削除されませんでした。
-        notice: コメントの削除が完了しました。
         submit: 削除する
         edit: 編集する
         cancel: やめる

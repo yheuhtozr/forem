@@ -95,13 +95,13 @@ module Admin
       end
       ExportContentWorker.perform_async(user.id, email)
       flash[:success] = I18n.t("admin.users_controller.data_exported_to_the_the_j", receiver: receiver)
-      redirect_to edit_admin_user_path(user.id)
+      redirect_to admin_user_path(params[:id])
     end
 
     def banish
       Moderator::BanishUserWorker.perform_async(current_user.id, params[:id].to_i)
       flash[:success] = I18n.t("admin.users_controller.this_user_is_being_banishe")
-      redirect_to edit_admin_user_path(params[:id])
+      redirect_to admin_user_path(params[:id])
     end
 
     def full_delete

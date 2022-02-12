@@ -189,8 +189,11 @@ ja:
         admin:
           admin: 管理者
           copy:
-            aria_label: グループの暗証コード（定期的に変更してください！）
+            button:
+              aria_label: グループの暗証コードをクリップボードにコピー
             icon: クリップボードにコピー
+            input:
+              aria_label: グループの暗証コード（定期的に変更してください！）
             text: コピーしました！
           cta: Call-to-action box
           cta_desc: Customizable text that appears to the right of every post for your organization.

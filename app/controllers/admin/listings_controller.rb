@@ -21,9 +21,14 @@ module Admin
     def update
       @listing = Listing.find(params[:id])
       handle_publish_status if listing_params[:published]
-      bump_listing(@listing.cost) if listing_params[:action] == "bump"
-      update_listing_details
-      clear_listings_cache
+
+      if listing_params[:action] == "bump"
+        bump_success = Listings::Bump.call(@listing, user: current_user)
+        return process_no_credit_left unless bump_success
+      end
+
+      @listing.update(listing_params.compact)
+      @listing.clear_cache
       flash[:success] = I18n.t("admin.listings_controller.listing_updated_successful")
       redirect_to edit_admin_listing_path(@listing)
     end

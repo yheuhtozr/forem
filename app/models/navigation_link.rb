@@ -56,15 +56,12 @@ class NavigationLink < ApplicationRecord
     parsed_url = Addressable::URI.parse(url)
     return unless parsed_url.relative? && url.starts_with?("/")
 
-    self.url = Addressable::URI.parse(URL.url).merge(parsed_url).to_s
+    self.url = Addressable::URI.parse(URL.url).join(parsed_url).to_s
   end
 
   # When persisting to the database we store local links as relative URLs which
   # makes it easier to switch from a forem.cloud subdomain to the live domain.
   def strip_local_hostname
-    parsed_url = Addressable::URI.parse(url)
-    return unless url.match?(/^#{URL.url}/i)
-
-    self.url = parsed_url.path
+    self.url = self.class.normalize_url(url)
   end
 end

@@ -4,9 +4,9 @@ en:
     admin:
       header:
         admin: Admin
-        guide: Forem Admin Guide
-        home: Go to %{community} home page
+        guide: Help
+        home: Home page
       nav:
         overview: Overview
+        home: Go to %{community} home page
       close: Close
-      help: Forem Admin Guide

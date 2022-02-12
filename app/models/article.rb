@@ -61,23 +61,20 @@ class Article < ApplicationRecord
            inverse_of: :commentable,
            class_name: "Comment"
 
-  validates :base_lang, format: {
-    with: /\A[0-9A-Za-z]{1,8}(?:-[0-9A-Za-z]{1,8})*\z/,
-    message: proc { I18n.t("common.invalid_langtag") }
-  }, allow_blank: true
-  validates :body_markdown, bytesize: { maximum: 800.kilobytes, too_long: proc {
-                                                                            I18n.t("models.article.is_too_long")
-                                                                          } }
+  validates :body_markdown, bytesize: {
+    maximum: 800.kilobytes,
+    too_long: proc { I18n.t("models.article.is_too_long") }
+  }
   validates :body_markdown, length: { minimum: 0, allow_nil: false }
   validates :body_markdown, uniqueness: { scope: %i[user_id title] }
   validates :cached_tag_list, length: { maximum: 126 }
   validates :canonical_url,
-            uniqueness: { allow_nil: true, scope: :published, message: :unique_url_error },
+            uniqueness: { allow_nil: true, scope: :published, message: unique_url_error },
             if: :published?
   validates :canonical_url, url: { allow_blank: true, no_local: true, schemes: %w[https http] }
   validates :comments_count, presence: true
   validates :feed_source_url,
-            uniqueness: { allow_nil: true, scope: :published, message: :unique_url_error },
+            uniqueness: { allow_nil: true, scope: :published, message: unique_url_error },
             if: :published?
   validates :feed_source_url, url: { allow_blank: true, no_local: true, schemes: %w[https http] }
   validates :main_image, url: { allow_blank: true, schemes: %w[https http] }
@@ -197,7 +194,7 @@ class Article < ApplicationRecord
     when Tag
       cached_tagged_with(tag.name)
     else
-      raise TypeError, I18n.t("models.article.cannot_search_tags_for", tag_inspect: tag.inspect)
+      raise TypeError, "Cannot search tags for: #{tag.inspect}"
     end
   }
 
@@ -212,7 +209,7 @@ class Article < ApplicationRecord
     when Tag
       cached_tagged_with(tags.name)
     else
-      raise TypeError, I18n.t("models.article.cannot_search_tags_for2", tags_inspect: tags.inspect)
+      raise TypeError, "Cannot search tags for: #{tags.inspect}"
     end
   }
 
@@ -335,10 +332,6 @@ class Article < ApplicationRecord
     else
       relation.pluck(*fields)
     end
-  end
-
-  def self.unique_url_error
-    I18n.t("models.article.unique_url", email: ForemInstance.email)
   end
 
   def search_id
@@ -647,7 +640,7 @@ class Article < ApplicationRecord
     add_tag_adjustments_to_tag_list
 
     # check there are not too many tags
-    return errors.add(:tag_list, I18n.t("models.article.exceed_the_maximum_of_4_ta")) if tag_list.size > 4
+    return errors.add(:tag_list, I18n.t("models.article.too_many_tags")) if tag_list.size > 4
 
     # check tags names aren't too long and don't contain non alphabet characters
     tag_list.each do |tag|
@@ -674,42 +667,42 @@ class Article < ApplicationRecord
   def validate_video
     if published && video_state == "PROGRESSING"
       return errors.add(:published,
-                        I18n.t("models.article.cannot_be_set_to_true_if_v"))
+                        I18n.t("models.article.video_processing"))
     end
 
     return unless video.present? && user.created_at > 2.weeks.ago
 
-    errors.add(:video, I18n.t("models.article.cannot_be_added_by_member"))
+    errors.add(:video, I18n.t("models.article.video_unpermitted"))
   end
 
   def validate_collection_permission
     return unless collection && collection.user_id != user_id
 
-    errors.add(:collection_id, I18n.t("models.article.must_be_one_you_have_permi"))
+    errors.add(:collection_id, I18n.t("models.article.series_unpermitted"))
   end
 
   def validate_co_authors
     return if co_author_ids.exclude?(user_id)
 
-    errors.add(:co_author_ids, I18n.t("models.article.must_not_be_the_same_user"))
+    errors.add(:co_author_ids, I18n.t("models.article.same_author"))
   end
 
   def validate_co_authors_must_not_be_the_same
     return if co_author_ids.uniq.count == co_author_ids.count
 
-    errors.add(:base, I18n.t("models.article.co_author_ids_must_be_uniq"))
+    errors.add(:base, I18n.t("models.article.unique_coauthor"))
   end
 
   def validate_co_authors_exist
     return if User.where(id: co_author_ids).count == co_author_ids.count
 
-    errors.add(:co_author_ids, I18n.t("models.article.must_be_valid_user_ids"))
+    errors.add(:co_author_ids, I18n.t("models.article.invalid_coauthor"))
   end
 
   def past_or_present_date
     return unless published_at && published_at > Time.current
 
-    errors.add(:date_time, I18n.t("models.article.must_be_entered_in_dd_mm_y"))
+    errors.add(:date_time, I18n.t("models.article.invalid_date"))
   end
 
   def canonical_url_must_not_have_spaces
@@ -726,8 +719,7 @@ class Article < ApplicationRecord
     return if mentions_count <= Settings::RateLimit.mention_creation
 
     errors.add(:base,
-               I18n.t("models.article.you_cannot_mention_more_th",
-                      settings_ratelimit_mention: Settings::RateLimit.mention_creation))
+               I18n.t("models.article.mention_too_many", count: Settings::RateLimit.mention_creation))
   end
 
   def create_slug

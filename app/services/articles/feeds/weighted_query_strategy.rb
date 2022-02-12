@@ -116,7 +116,7 @@ module Articles
         # Weight to give to the number of comments on the article.
         comments_count_factor: {
           clause: "articles.comments_count",
-          cases: [[0, 0.9], [1, 0.94], [2, 0.95], [3, 0.98], [4, 0.999]],
+          cases: (0..9).map { |n| [n, 0.8 + (0.02 * n)] },
           fallback: 1,
           requires_user: false,
           group_by: "articles.comments_count"
@@ -185,8 +185,8 @@ module Articles
         # Weight to give for the number of intersecting tags the given
         # user follows and the article has.
         matching_tags_factor: {
-          clause: "COUNT(followed_tags.follower_id)",
-          cases: [[0, 0.4], [1, 0.9]],
+          clause: "LEAST(10.0, SUM(followed_tags.points))::integer",
+          cases: (0..9).map { |n| [n, 0.70 + (0.0303 * n)] },
           fallback: 1,
           requires_user: true,
           joins: ["LEFT OUTER JOIN taggings

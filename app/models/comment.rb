@@ -89,7 +89,7 @@ class Comment < ApplicationRecord
   end
 
   def self.title_hidden
-    I18n.t("models.comment.hidden_by_post_author")
+    I18n.t("models.comment.hidden")
   end
 
   def search_id
@@ -327,8 +327,8 @@ class Comment < ApplicationRecord
     return if mentions_count <= Settings::RateLimit.mention_creation
 
     errors.add(:base,
-               I18n.t("models.comment.you_cannot_mention_more_th",
-                      settings_ratelimit_mention: Settings::RateLimit.mention_creation))
+               I18n.t("models.comment.mention_too_many",
+                      count: Settings::RateLimit.mention_creation))
   end
 
   def record_field_test_event
