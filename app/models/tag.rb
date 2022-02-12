@@ -156,6 +156,15 @@ class Tag < ActsAsTaggableOn::Tag
     errors.full_messages.to_sentence
   end
 
+  def self.smart_tr(str)
+    str&.tr("'", ?\u02BC) # ASCII apostrophe to MODIFIER LETTER APOSTROPHE
+  end
+
+  def quick_validate
+    self.name = Tag.smart_tr name.normalize
+    validate_name
+  end
+
   # @param follower [#id, #class_name] An object who's class "acts_as_follower" (e.g. a User).
   #
   # @return [ActiveRecord::Relation<Tag>] with the "points" attribute and limited field selection
