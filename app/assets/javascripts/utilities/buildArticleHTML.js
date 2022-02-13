@@ -295,7 +295,7 @@ function buildArticleHTML(article) {
       saveButton =
         '<button type="button" id="article-save-button-' +
         article.id +
-        '" class="crayons-btn crayons-btn--secondary crayons-btn--s bookmark-button" data-reactable-id="' +
+        '" class="crayons-btn crayons-btn--secondary crayons-btn--s w-max bookmark-button" data-reactable-id="' +
         article.id +
         '">\
                       <span class="bm-initial">' +
