@@ -24,7 +24,7 @@ function moreCommentsButton(comments, articlePath, totalCount) {
           url={linkToCommentsSection(articlePath)}
           data-testid="see-all-comments"
         >
-          {i18next.t('comments.all')}
+          {i18next.t('comments.all', { count: totalCount })}
         </Button>
       </div>
     );
