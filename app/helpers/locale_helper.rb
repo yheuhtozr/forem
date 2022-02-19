@@ -4,9 +4,17 @@ module LocaleHelper
       tag = code.to_s.downcase
       while tag.present?
         trans = begin
-          I18n.translate!("languages.#{tag}", default: I18n.translate!(fallback ? "languages_fallback.#{tag}" : ""))
+          I18n.t!("languages.#{tag}")
         rescue StandardError
-          nil
+          # rubocop:disable Metrics/BlockNesting
+          if fallback
+            begin
+              I18n.t!("languages_fallback.#{tag}")
+            rescue StandardError
+              nil
+            end
+          end
+          # rubocop:enable Metrics/BlockNesting
         end
         return trans unless trans.nil? # rubocop:disable Layout/EmptyLineAfterGuardClause
         tag = tag.rpartition('-').first # rubocop:disable Style/StringLiterals
