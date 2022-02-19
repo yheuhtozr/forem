@@ -35,5 +35,5 @@ json.array!(@stories) do |article|
     json.extract! comment.user, :username, :name, :profile_image_90
   end
 
-  json.text_language lang_name(article.base_lang)
+  json.text_language lang_name!(article.base_lang)
 end

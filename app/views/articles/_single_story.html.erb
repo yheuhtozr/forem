@@ -42,7 +42,7 @@
             <% end %>
           </div>
           <small class="crayons-story__tertiary fs-xs mr-2 mb-2">
-            <span class="whitespace-nowrap"><%= lang_name story.lang %> &bull; </span><wbr>
+            <span class="whitespace-nowrap"><%= lang_name! story.lang %> &bull; </span><wbr>
             <% cdiv, cmod = story.reading_time.divmod(100) %>
             <span class="whitespace-nowrap">
               <%= t("views.articles.reading_time", count: if cdiv < 1

@@ -35,7 +35,7 @@ module Homepage
     attribute :published_at_int, ->(article) { article.published_at.to_i }
     attribute :tag_list, ->(article) { article.cached_tag_list.to_s.split(", ") }
     attribute :flare_tag, ->(article, params) { params.dig(:tag_flares, article.id) }
-    attribute :text_language, ->(article) { ApplicationController.helpers.lang_name article.base_lang }
+    attribute :text_language, ->(article) { ApplicationController.helpers.lang_name! article.base_lang }
 
     attribute :user do |article|
       user = article.user
