@@ -1,16 +1,22 @@
 ---
 ja:
   core:
+    add_comment: コメントを追加
     beta: ベータ
+    comment: コメント
+    copy_link: リンクをコピー
+    edit_profile: プロフィールを編集
     follow: フォロー
     follow_back: フォローを返す
     following: フォロー中
-    loading: loading...
-    report_abuse: "Report abuse"
-    success_settings: Successfully updated settings.
+    like: いいね
+    loading: ロード中…
+    report_abuse: "荒らしを報告"
+    search: 検索
+    success_settings: 設定を更新しました。
   contact_prompts:
-    if_continued_trouble_html: <a href="/contact">Contact us</a> if you continue having trouble.
-    if_we_can_help_html: <a href="/contact">Contact us</a> if there is anything we can help with.
+    if_continued_trouble_html: 問題が続くようでしたら<a href="/contact">お問い合わせ</a>ください。
+    if_we_can_help_html: 何かございましたら<a href="/contact">お問い合わせ</a>ください。
     if_any_questions_html: わからないことがありましたら<a href="/contact">お問い合わせ</a>ください。
   errors:
     messages:

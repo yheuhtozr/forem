@@ -4,17 +4,17 @@ fr:
     organizations:
       empty: 404 bio not found
       external:
-        icon: External link icon
+        icon: Org's website
       follow: Suivre
       github:
-        icon: GitHub logo
+        icon: GitHub page
       joined:
         icon: Rejoint
         text_html: "Rejoint le\_%{date}"
       location:
         icon: Lieu
       logo: "%{org} profile picture"
-      size: Employees
+      size: Members
       sponsor:
         text: "%{level} Community Sponsor ❤️"
         level:
@@ -29,4 +29,4 @@ fr:
       support: Support email
       team: meet the team
       twitter:
-        icon: Twitter logo
+        icon: Twitter page
