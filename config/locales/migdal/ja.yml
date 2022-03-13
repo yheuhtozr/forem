@@ -10,6 +10,17 @@ ja:
       babel:
         aria_label: バベルをつける
         title: バベル
+    translations:
+      heading: 他言語版があります
+      icon: 記事の言語版の一覧
+      original: 原文（%{lang}）
+      unpublished: 非公開
+      stub_title: "[翻訳中] "
+      stub_html: |+
+        <!-- 作業中の注記: 完了したら取り除いてください -->
+        **（この記事は [%{name}](%{url}) から翻訳中です）**
+        <!-- 作業中の注記終わり -->
+
     users:
       profile_descriptions:
         currently_learning: 今、何か言語（自然言語・人工言語）を勉強していますか？また、関心がありますか？

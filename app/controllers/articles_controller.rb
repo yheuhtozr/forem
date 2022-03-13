@@ -72,8 +72,10 @@ class ArticlesController < ApplicationController
 
     if params[:slug].present? # indicates /translate
       origin = Article.find_by(slug: params[:slug])
+      @article.title = I18n.t("migdal.translations.stub_title") << origin.title
+      @article.cached_tag_list = origin.cached_tag_list
       @article.body_markdown =
-        I18n.t("views.articles.translations.stub_html", name: origin.title, url: origin.path) << origin.body_markdown
+        I18n.t("migdal.translations.stub_html", name: origin.title, url: origin.path) << origin.body_markdown
       @article.translation_group = origin.translation_group || origin.id
       @is_translate = true
     end
