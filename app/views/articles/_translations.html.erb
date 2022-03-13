@@ -13,9 +13,9 @@
     <div class="px-4 py-2">
     <% [:original, *lang_keys].each do |k| %>
       <% label = if k == :original
-                   t("migdal.translations.original", lang: by_lang[k].present? ? lang_name(by_lang[k].first.base_lang.presence || "und") : t("migdal.translations.unpublished"))
+                   t("migdal.translations.original", lang: by_lang[k].present? ? lang_name!(by_lang[k].first.base_lang.presence || "und") : t("migdal.translations.unpublished"))
                  else
-                   lang_name(k)
+                   lang_name!(k)
                  end %>
       <% unless k == :original %> &bull; <% end %>
       <% if by_lang[k].size > 1 %><%= label %><% end %>
