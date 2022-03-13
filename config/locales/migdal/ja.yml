@@ -22,6 +22,9 @@ ja:
         <!-- 作業中の注記終わり -->
 
     users:
+      group:
+        Coding: 言語創作
+        Work: PR
       profile_descriptions:
         currently_learning: 今、何か言語（自然言語・人工言語）を勉強していますか？また、関心がありますか？
         currently_hacking_on: 今、何か言語づくりに取り組んでいますか？それはどんな言語ですか？

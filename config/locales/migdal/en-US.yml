@@ -22,6 +22,9 @@ en-US:
         <!-- end stub note -->
 
     users:
+      group:
+        Coding: Conlanging
+        Work: Publicity
       profile_descriptions:
         currently_learning: What languages (natural or artificial) are you learning right now? What are you interested to learn?
         currently_hacking_on: Are you creating any languages right now? What are they like?
