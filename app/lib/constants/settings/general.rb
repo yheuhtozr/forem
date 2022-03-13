@@ -2,7 +2,6 @@ module Constants
   module Settings
     module General
       IMAGE_PLACEHOLDER = "https://url/image.png".freeze
-      SVG_PLACEHOLDER = "<svg ...></svg>".freeze
 
       def self.details
         {

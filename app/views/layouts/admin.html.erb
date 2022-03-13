@@ -81,12 +81,12 @@
       </nav>
     </div>
     <main id="main-content" class="crayons-layout__content min-w-0 p-2">
-      <% flash.each do |type, message| %>
+      <%= javascript_packs_with_chunks_tag "admin/flashMessages", defer: true %>
+      <% flash.each_with_index do |(type, message), i| %>
         <div data-testid="flash-<%= type %>" class="alert alert-<%= type == "notice" || type == "success" ? "success" : "danger" %>">
           <button class="close" data-dismiss="alert" aria-label="<%= t("close", scope: _t) %>">
             <%= crayons_icon_tag(:x, aria_hidden: true) %>
           </button>
-          <%= message %>
         </div>
       <% end %>
 

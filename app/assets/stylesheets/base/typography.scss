@@ -323,6 +323,7 @@ body {
   video,
   .ff-container {
     height: auto;
+    object-fit: contain;
     display: block;
     margin: var(--content-rhythm) auto;
     max-width: 100%;

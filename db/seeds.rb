@@ -41,7 +41,7 @@ seeder.create_if_none(Organization) do
     Organization.create!(
       name: Faker::Company.name,
       summary: Faker::Company.bs,
-      remote_profile_image_url: logo = Faker::Company.logo,
+      profile_image: logo = File.open(Rails.root.join("app/assets/images/#{rand(1..40)}.png")),
       nav_image: logo,
       url: Faker::Internet.url,
       slug: "org#{rand(10_000)}",
@@ -71,9 +71,12 @@ users_in_random_order = seeder.create_if_none(User, num_users) do
     user = User.create!(
       name: name,
       profile_image: File.open(Rails.root.join("app/assets/images/#{rand(1..40)}.png")),
-      twitter_username: Faker::Internet.username(specifier: username),
+      # Twitter username should be always ASCII
+      twitter_username: Faker::Internet.username(specifier: username.transliterate),
       # Emails limited to 50 characters
-      email: Faker::Internet.email(name: username, separators: "+", domain: Faker::Internet.domain_word.first(20)),
+      email: Faker::Internet.email(
+        name: username.transliterate, separators: "+", domain: Faker::Internet.domain_word.first(20),
+      ),
       confirmed_at: Time.current,
       registered_at: Time.current,
       registered: true,
@@ -559,6 +562,9 @@ end
 
 ##############################################################################
 
+# change locale to en to work around non-ascii slug problem
+loc = I18n.locale
+Faker::Config.locale = "en"
 seeder.create_if_none(Page) do
   # change locale to en to work around non-ascii slug problem
   loc = I18n.locale
@@ -574,6 +580,7 @@ seeder.create_if_none(Page) do
   end
   Faker::Config.locale = loc
 end
+Faker::Config.locale = loc
 
 ##############################################################################
 

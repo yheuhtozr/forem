@@ -90,6 +90,9 @@ getCsrfToken().then(async () => {
   const root = document.getElementById('comment-subscription');
   const isLoggedIn = userStatus === 'logged-in';
 
+  if (!root) {
+    return;
+  }
   try {
     const {
       getCommentSubscriptionStatus,
@@ -135,3 +138,5 @@ getCsrfToken().then(async () => {
 
 const targetNode = document.querySelector('#comments');
 targetNode && embedGists(targetNode);
+
+initializeUserSubscriptionLiquidTagContent();
