@@ -43,15 +43,9 @@ ja:
       color_1:
         label: イメージカラー 1
         description: 背景、枠線などに使われます。
-        select:
-          aria_label: イメージカラー 1 の色を選択
-          label: イメージカラー 1 の色を選択
       color_2:
         label: イメージカラー 2
         description_html: テキスト（<em>カラー 1</em> の上に乗る）などに使われます。
-        select:
-          aria_label: イメージカラー 2 の色を選択
-          label: イメージカラー 2 の色を選択
       preview:
         icon: アプリロゴ
         text: 'プレビュー:'

@@ -147,9 +147,6 @@ ja:
           heading: GitHub
           desc1: あなたの GitHub リポジトリをプロフィールに固定します。
           desc2: GitHub との OAuth 連携を解除すると、リポジトリはプロフィールに表示されなくなります。
-        learn: 詳細
-        micro: あなたの記事が直接読まれた時間に応じてマイクロペイメントを受け取れます。
-        payment: Payment Pointer
         rss:
           heading: RSS から %{community} に投稿
           desc1_html: Posts will land in your %{dashboard} <strong>as drafts</strong>, and then you can publish from there.
@@ -166,8 +163,13 @@ ja:
           referential_html: Replace self-referential links with %{community}-specific links <p class='crayons-field__description'>If you check this box, the post will automatically change any URLs included in the post to refer to the version of that article on %{community} if available. This is primarily meant for folks migrating their entire blog onto %{community}.</p>
           save: Save Feed Settings
           submit: Submit Feed Settings
-        save_web: Save Web Monetization Settings
-        web: Web monetization
+        web_monetization:
+          header: Web monetization
+          receive_payments: あなたの記事が直接読まれた時間に応じてマイクロペイメントを受け取れます。
+          learn_more: 詳細
+          payment_pointer: Payment Pointer
+          save_settings: Save Web Monetization Settings
+        web: 
       finalize_html: あなたは %{email} への変更を申請しました。お送りした認証リンクから認証を完了させてください。
       for_html: "%{name} の設定"
       group:
