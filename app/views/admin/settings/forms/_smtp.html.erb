@@ -11,14 +11,6 @@
                locals: { header: "Email Server Settings (SMTP)", state: "collapse", target: "smtpSettingsBodyContainer", expanded: false } %>
     <div id="smtpSettingsBodyContainer" class="card-body collapse hide" aria-labelledby="smtpSettingsBodyContainer">
       <fieldset class="grid gap-4">
-        <% Settings::SMTP::OPTIONS.each do |config_key| %>
-          <div class="crayons-field">
-            <%= admin_config_label config_key %>
-            <%= admin_config_description Constants::Settings::SMTP.details[config_key][:description] %>
-            <%= f.text_field config_key,
-                             class: "crayons-textfield",
-                             value: Settings::SMTP.public_send(config_key),
-                             placeholder: Constants::Settings::SMTP.details[config_key][:placeholder] %>
 
         <% if ForemInstance.sendgrid_enabled? %>
           <div class="crayons-field crayons-field--checkbox mt-3">
@@ -41,11 +33,11 @@
           <% smpt_options.each do |config_key| %>
             <div class="crayons-field mt-3">
               <%= admin_config_label config_key, model: Settings::SMTP %>
-              <%= admin_config_description Constants::Settings::SMTP::DETAILS[config_key][:description] %>
+              <%= admin_config_description Constants::Settings::SMTP.details[config_key][:description] %>
               <%= f.text_field config_key,
                                class: "crayons-textfield",
                                value: Settings::SMTP.public_send(config_key),
-                               placeholder: Constants::Settings::SMTP::DETAILS[config_key][:placeholder],
+                               placeholder: Constants::Settings::SMTP.details[config_key][:placeholder],
                                "data-config-target": "smtpSetting#{config_key.to_s.camelize(:upper)}" %>
             </div>
           <% end %>

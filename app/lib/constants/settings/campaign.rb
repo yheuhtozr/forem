@@ -15,6 +15,10 @@ module Constants
             description: I18n.t("lib.constants.settings.campaign.this_text_populates_the_ca"),
             placeholder: I18n.t("lib.constants.settings.campaign.share_your_project")
           },
+          display_name: {
+            description: I18n.t("lib.constants.settings.campaign.display_name.description"),
+            placeholder: I18n.t("lib.constants.settings.campaign.display_name.placeholder")
+          },
           featured_tags: {
             description: I18n.t("lib.constants.settings.campaign.posts_with_which_tags_will"),
             placeholder: I18n.t("lib.constants.settings.campaign.list_of_campaign_tags_comm")

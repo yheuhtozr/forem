@@ -144,6 +144,7 @@ function drawCharts(data, timeRangeLabel) {
 
   drawChart({
     id: 'reactions-chart',
+    showPoints,
     title: i18next.t('stats.reactions', { time: timeRangeLabel }),
     labels,
     datasets: [
@@ -184,6 +185,7 @@ function drawCharts(data, timeRangeLabel) {
 
   drawChart({
     id: 'comments-chart',
+    showPoints,
     title: i18next.t('stats.comments', { time: timeRangeLabel }),
     labels,
     datasets: [
@@ -200,6 +202,7 @@ function drawCharts(data, timeRangeLabel) {
 
   drawChart({
     id: 'followers-chart',
+    showPoints,
     title: i18next.t('stats.new_followers', { time: timeRangeLabel }),
     labels,
     datasets: [
@@ -216,6 +219,7 @@ function drawCharts(data, timeRangeLabel) {
 
   drawChart({
     id: 'readers-chart',
+    showPoints,
     title: i18next.t('stats.reads', { time: timeRangeLabel }),
     labels,
     datasets: [

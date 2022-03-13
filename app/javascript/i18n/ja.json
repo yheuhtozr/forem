@@ -119,8 +119,8 @@
         "code_block": "コードブロック",
         "desc1": "",
         "desc2": " で記事の体裁を整えます。",
-        "desc3": "",
-        "desc4": "を使って、ツイートや YouTube 動画などの高度なコンテンツを入れることができます。",
+        "desc3": "完全な URL: <code>%{embed}</code> を使って、ツイートや YouTube 動画などの高度なコンテンツを入れることができます。",
+        "desc4": "。",
         "desc5": "ドラッグアンドドロップで画像を本文中に加え、見出し画像としても挿入できます。",
         "em": "斜体",
         "em_mono": "*斜体* または _斜体_",
@@ -131,7 +131,7 @@
         "inline_code": "行内コード",
         "inline_code_mono": "`行内コード`",
         "link": "リンク",
-        "liquid": "Liquid タグ",
+        "liquid": "対応埋め込み一覧はこちら",
         "markdown": "Markdown",
         "ol1": "項目 1",
         "ol2": "項目 2",
@@ -424,7 +424,7 @@
     "thumbsdown": "This post will be less visible.",
     "thumbsup": "This post will be more visible.",
     "title": "Moderation panel actions",
-    "unpublish": "You are unpublishing this article; are you sure?",
+    "unpublish": "You are unpublishing this post; are you sure?",
     "vomit": "You've flagged this post as abusive or spam."
   },
   "notifications": {

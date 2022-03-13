@@ -78,12 +78,8 @@ class ArticlesController < ApplicationController
       @is_translate = true
     end
 
-    if needs_authorization
-      authorize(Article)
-    else
-      skip_authorization
-      store_location_for(:user, request.path)
-    end
+    authorize(Article)
+    store_location_for(:user, request.path) if store_location
   end
 
   def edit

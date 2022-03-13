@@ -79,10 +79,10 @@ gem "pundit", "~> 2.2" # Object oriented authorization for Rails applications
 gem "rack-attack", "~> 6.6.0" # Used to throttle requests to prevent brute force attacks
 gem "rack-cors", "~> 1.1" # Middleware that will make Rack-based apps CORS compatible
 gem "rack-timeout", "~> 0.6" # Rack middleware which aborts requests that have been running for longer than a specified timeout
-gem "rails", "~> 6.1.4" # Ruby on Rails
+gem "rails", "~> 6.1.5" # Ruby on Rails
 gem "rails-i18n", "~> 6.0"
-gem "ransack", "~> 2.5" # Searching and sorting
-gem "recaptcha", "~> 5.8", require: "recaptcha/rails" # Helpers for the reCAPTCHA API
+gem "ransack", "~> 2.6" # Searching and sorting
+gem "recaptcha", "~> 5.9", require: "recaptcha/rails" # Helpers for the reCAPTCHA API
 gem "redcarpet", "~> 3.5" # A fast, safe and extensible Markdown to (X)HTML parser
 
 gem "redis", "~> 4.6.0" # Redis ruby client
@@ -103,7 +103,7 @@ gem "sidekiq-unique-jobs", "~> 7.1.15" # Ensures that Sidekiq jobs are unique wh
 gem "slack-notifier", "~> 2.4" # A slim ruby wrapper for posting to slack webhooks
 gem "sprockets", "~> 4.0" # Sprockets is a Rack-based asset packaging system
 gem "staccato", "~> 0.5" # Ruby Google Analytics Measurement
-gem "stripe", "~> 5.43" # Ruby library for the Stripe API
+gem "stripe", "~> 5.45" # Ruby library for the Stripe API
 gem "strong_migrations", "~> 0.8" # Catch unsafe migrations
 gem "twitter", "~> 7.0" # A Ruby interface to the Twitter API
 gem "uglifier", "~> 4.2" # Uglifier minifies JavaScript files

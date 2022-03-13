@@ -3,6 +3,7 @@ import { Snackbar, addSnackbarItem } from '../Snackbar';
 import { addFullScreenModeControl } from '../utilities/codeFullscreenModeSwitcher';
 import { initializeDropdown } from '../utilities/dropdownUtils';
 import { embedGists } from '../utilities/gist';
+import { initializeUserSubscriptionLiquidTagContent } from '../liquidTags/userSubscriptionLiquidTag';
 import { i18next } from '@utilities/locale';
 
 /* global Runtime */
@@ -127,9 +128,7 @@ getCsrfToken().then(async () => {
       root,
     );
   } catch (e) {
-    document.getElementById(
-      'comment-subscription',
-    ).innerHTML = `<p className="color-accent-danger">${i18next.t(
+    root.innerHTML = `<p className="color-accent-danger">${i18next.t(
       'errors.comment_sub',
       { interpolation: { escapeValue: false } },
     )}</p>`;

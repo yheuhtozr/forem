@@ -195,13 +195,13 @@ const adminFeatureArticle = async (id, featured) => {
       window.top.location.assign(`${window.location.origin}${outcome.path}`);
     } else {
       top.addSnackbarItem({
-        message: `Error: ${outcome.message}`,
+        message: i18next.t('errors.error', { error: outcome.message }),
         addCloseButton: true,
       });
     }
   } catch (error) {
     top.addSnackbarItem({
-      message: `Error: ${error}`,
+      message: i18next.t('errors.error', { error }),
       addCloseButton: true,
     });
   }

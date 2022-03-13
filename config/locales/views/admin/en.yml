@@ -8,5 +8,4 @@ en:
         home: Home page
       nav:
         overview: Overview
-        home: Go to %{community} home page
-      close: Close
+      dismiss: Dismiss message

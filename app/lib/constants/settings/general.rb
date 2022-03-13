@@ -5,6 +5,10 @@ module Constants
 
       def self.details
         {
+          contact_email: {
+            description: I18n.t("lib.constants.settings.general.contact_email.description"),
+            placeholder: "hello@example.com"
+          },
           credit_prices_in_cents: {
             small: {
               description: I18n.t("lib.constants.settings.general.price_for_small_credit_pur"),
@@ -38,10 +42,6 @@ module Constants
           logo_png: {
             description: I18n.t("lib.constants.settings.general.used_as_a_fallback_to_the"),
             placeholder: IMAGE_PLACEHOLDER
-          },
-          logo_svg: {
-            description: I18n.t("lib.constants.settings.general.used_as_the_svg_logo_of_th"),
-            placeholder: SVG_PLACEHOLDER
           },
           main_social_image: {
             description: I18n.t("lib.constants.settings.general.used_as_the_main_image_in"),

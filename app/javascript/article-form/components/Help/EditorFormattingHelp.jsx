@@ -125,7 +125,10 @@ export const EditorFormattingHelp = ({ openModal }) => (
         </details>
       </li>
       <li>
-        {i18next.t('editor.help.basics.desc3')}
+        {i18next.t('editor.help.basics.desc3', {
+          embed: '{% embed https://... %}',
+          interpolation: { escapeValue: false },
+        })}
         <a href="#liquid" onClick={() => openModal('liquidShowing')}>
           {i18next.t('editor.help.basics.liquid')}
         </a>

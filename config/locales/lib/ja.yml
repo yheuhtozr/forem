@@ -32,6 +32,9 @@ ja:
           forem_secret:
             description: Forem secret
         campaign:
+          display_name:
+            description: This text is displayed in reference to the campaign in titles, etc.
+            placeholder: My great campaign
           campaign_sidebar_enabled_o: Campaign sidebar enabled or not
           campaign_stories_show_up_o: Campaign stories show up on sidebar with approval?
           hero_htmlvariant_name: Hero HtmlVariant name
@@ -56,6 +59,8 @@ ja:
           used_in_signup_modal: Used in signup modal.
           we_re_a_place_where_coders: We're a place where coders share, stay up-to-date and grow their careers.
         general:
+          contact_email:
+            description: Used for contact links. Please provide an email address where users can get in touch with you or your team.
           a_secure_token: a secure token
           always_show_suggested_user: Always show suggested users as suggested people to follow even when auto-suggestion is available
           api_key_used_to_connect_ma: API key used to connect Mailchimp account. Found in Mailchimp backend
@@ -64,7 +69,7 @@ ja:
           community_sponsors: Community Sponsors
           determines_how_often_perio: Determines how often periodic email digests are sent (in days)
           determines_the_heading_tex: Determines the heading text of the main sponsors sidebar above the list of sponsors.
-          determines_which_tags_are: Determines which tags are shown on the homepage righthand sidebar
+          determines_which_tags_are: Determines which tags are shown on the homepage right-hand sidebar
           determines_which_tags_are2: |-
             Determines which tags are suggested to new users during onboarding (comma
                       separated, letters only)
@@ -97,7 +102,7 @@ ja:
         smtp:
           address:
             description: Address of the remote mail server
-            placeholder: ie. smtp.gmail.com
+            placeholder: i.e. smtp.gmail.com
           port:
             description: The port that your mail server runs on
             placeholder: '25'
@@ -110,6 +115,10 @@ ja:
             description: If your mail server requires authentication, copy the password from your server
           domain:
             description: If you need to specify a HELO domain, you can do it here
+          from_email:
+            description: The email address that emails should be sent from
+          reply_to:
+            description: The email address that users can reply to
         rate_limit:
           individual_case_insensitiv: Individual (case insensitive) phrases that trigger spam alerts, comma separated.
           the_number_of_days_a_user: The number of days a user is considered new. The default is 3 days, but you can disable this entirely by inputting 0.
