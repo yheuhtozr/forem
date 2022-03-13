@@ -177,6 +177,36 @@ const adminUnpublishArticle = async (id, username, slug) => {
   }
 };
 
+const adminFeatureArticle = async (id, featured) => {
+  try {
+    const response = await request(`/articles/${id}/admin_featured_toggle`, {
+      method: 'PATCH',
+      body: JSON.stringify({
+        id,
+        article: { featured: featured === 'true' ? 0 : 1 },
+      }),
+      credentials: 'same-origin',
+    });
+
+    const outcome = await response.json();
+
+    /* eslint-disable no-restricted-globals */
+    if (outcome.message == 'success') {
+      window.top.location.assign(`${window.location.origin}${outcome.path}`);
+    } else {
+      top.addSnackbarItem({
+        message: `Error: ${outcome.message}`,
+        addCloseButton: true,
+      });
+    }
+  } catch (error) {
+    top.addSnackbarItem({
+      message: `Error: ${error}`,
+      addCloseButton: true,
+    });
+  }
+};
+
 function clearAdjustmentReason() {
   document.getElementById('tag-adjustment-reason').value = '';
 }
@@ -378,6 +408,15 @@ export function addBottomActionsListeners() {
     },
   );
 
+  const featureArticleBtn = document.getElementById('feature-article-btn');
+  if (featureArticleBtn) {
+    featureArticleBtn.addEventListener('click', () => {
+      const { articleId: id, articleFeatured: featured } =
+        featureArticleBtn.dataset;
+      adminFeatureArticle(id, featured);
+    });
+  }
+
   const unpublishArticleBtn = document.getElementById('unpublish-article-btn');
   if (unpublishArticleBtn) {
     unpublishArticleBtn.addEventListener('click', () => {
@@ -387,7 +426,7 @@ export function addBottomActionsListeners() {
         articleSlug: slug,
       } = unpublishArticleBtn.dataset;
 
-      if (confirm(i18next.t('modActions.unpublish'))) {
+      if (confirm('You are unpublishing this post; are you sure?')) {
         adminUnpublishArticle(id, username, slug);
       }
     });

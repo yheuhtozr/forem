@@ -125,11 +125,16 @@ export const EditorFormattingHelp = ({ openModal }) => (
         </details>
       </li>
       <li>
-        {i18next.t('editor.help.basics.desc3')}
+        Embed rich content such as Tweets, YouTube videos, etc. Use the complete
+        URL: <code>{'{% embed https://... %}.'}</code>{' '}
         <a href="#liquid" onClick={() => openModal('liquidShowing')}>
-          {i18next.t('editor.help.basics.liquid')}
+          See a list of supported embeds
         </a>
-        {i18next.t('editor.help.basics.desc4')}
+        .
+      </li>
+      <li>
+        In addition to images for the post's content, you can also drag and drop
+        a cover image.
       </li>
       <li>{i18next.t('editor.help.basics.desc5')}</li>
     </ul>

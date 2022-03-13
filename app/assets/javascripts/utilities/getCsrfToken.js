@@ -1,5 +1,8 @@
 /* global Honeybadger */
 
+const MAX_RETRIES = 30;
+const RETRY_INTERVAL = 250;
+
 function getCsrfToken() {
   var promise = new Promise(function callback(resolve, reject) {
     var i = 0;
@@ -14,7 +17,7 @@ function getCsrfToken() {
         return resolve(authToken);
       }
 
-      if (i === 1000) {
+      if (i === MAX_RETRIES) {
         clearInterval(waitingOnCSRF);
         Honeybadger.notify(
           i18next.t('csrf.notify', {
@@ -23,7 +26,7 @@ function getCsrfToken() {
         );
         return reject(new Error(i18next.t('csrf.error')));
       }
-    }, 5);
+    }, RETRY_INTERVAL);
   });
   return promise;
 }

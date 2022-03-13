@@ -3,7 +3,7 @@ import { Snackbar, addSnackbarItem } from '../Snackbar';
 import { addFullScreenModeControl } from '../utilities/codeFullscreenModeSwitcher';
 import { initializeDropdown } from '../utilities/dropdownUtils';
 import { embedGists } from '../utilities/gist';
-import { i18next } from '@utilities/locale';
+import { initializeUserSubscriptionLiquidTagContent } from '../liquidTags/userSubscriptionLiquidTag';
 
 /* global Runtime */
 
@@ -90,6 +90,9 @@ getCsrfToken().then(async () => {
   const root = document.getElementById('comment-subscription');
   const isLoggedIn = userStatus === 'logged-in';
 
+  if (!root) {
+    return;
+  }
   try {
     const {
       getCommentSubscriptionStatus,
@@ -124,14 +127,12 @@ getCsrfToken().then(async () => {
       root,
     );
   } catch (e) {
-    document.getElementById(
-      'comment-subscription',
-    ).innerHTML = `<p className="color-accent-danger">${i18next.t(
-      'errors.comment_sub',
-      { interpolation: { escapeValue: false } },
-    )}</p>`;
+    root.innerHTML =
+      '<p className="color-accent-danger">Unable to load Comment Subscription component.<br />Try refreshing the page.</p>';
   }
 });
 
 const targetNode = document.querySelector('#comments');
 targetNode && embedGists(targetNode);
+
+initializeUserSubscriptionLiquidTagContent();

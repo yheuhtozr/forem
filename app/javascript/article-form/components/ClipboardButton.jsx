@@ -15,13 +15,7 @@ export const ClipboardButton = ({
   imageUrls,
   showCopyMessage = false,
 }) => (
-  <clipboard-copy
-    onClick={onCopy}
-    for="image-markdown-copy-link-input"
-    aria-live="polite"
-    className="flex items-center flex-1"
-    aria-controls="image-markdown-copy-link-announcer"
-  >
+  <div aria-live="polite" className="flex items-center flex-1">
     <input
       data-testid="markdown-copy-link"
       type="text"
@@ -31,13 +25,14 @@ export const ClipboardButton = ({
       value={linksToMarkdownForm(imageUrls)}
     />
     <Button
+      onClick={onCopy}
       className="spec__image-markdown-copy whitespace-nowrap fw-normal"
       icon={CopyIcon}
       title={i18next.t('clipboard.copy_markdown')}
     >
       {i18next.t(showCopyMessage ? 'clipboard.copied' : 'clipboard.copy')}
     </Button>
-  </clipboard-copy>
+  </div>
 );
 
 ClipboardButton.displayName = 'ClipboardButton';
