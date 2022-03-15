@@ -4,17 +4,17 @@ ja:
     organizations:
       empty: かつ 30
       external:
-        icon: External link icon
-      follow: Follow
+        icon: グループのサイト
+      follow: フォロー
       github:
-        icon: GitHub logo
+        icon: GitHub ページ
       joined:
-        icon: Joined
-        text_html: "Joined on\_%{date}"
+        icon: 登録日
+        text_html: "%{date}に登録"
       location:
-        icon: Location
+        icon: 場所
       logo: "%{org} のプロフィール画像"
-      size: Employees
+      size: メンバー
       sponsor:
         text: "%{level} Community Sponsor ❤️"
         level:
@@ -29,4 +29,4 @@ ja:
       support: Support email
       team: meet the team
       twitter:
-        icon: Twitter logo
+        icon: Twitter ページ
