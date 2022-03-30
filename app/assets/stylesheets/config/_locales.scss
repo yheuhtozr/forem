@@ -13,12 +13,12 @@
     $somefont-article-body: 'body.#{$body-font}-article-body';
   }
   
-    #{$somefont-article-body} #{$l-lang} .text-styles,
-    #{$somefont-article-body} #{$l-lang} .crayons-article__header h1,
-    #{$somefont-article-body} #{sel-lang('section#comments-container', $lang)} .text-styles p,
-    #{$somefont-article-body} #{sel-lang('.with-content-font', $lang)} {
-      font-family: #{$family};
-    }
+  #{$somefont-article-body} #{$l-lang} .text-styles,
+  #{$somefont-article-body} #{$l-lang} .crayons-article__header h1,
+  #{$somefont-article-body} #{sel-lang('section#comments-container', $lang)} .text-styles p,
+  #{$somefont-article-body} #{sel-lang('.with-content-font', $lang)} {
+    font-family: #{$family};
+  }
 }
 
 $l-ja: article-lang('ja');
