@@ -5,14 +5,17 @@
   @return sel-lang('article', $lang);
 }
 
-@mixin font-lang($lang, $family) {
+@mixin font-lang($lang, $family, $body-font: null) {
   $l-lang: article-lang($lang);
-
-  #{$l-lang} .text-styles,
-  #{$l-lang} .crayons-article__header h1,
-  #{sel-lang('section#comments-container', $lang)} .text-styles p,
-  #{sel-lang('.with-content-font', $lang)} {
-    font-family: #{$family};
+  $somefont-article-body: if($body-font, 'body.#{$body-font}-article-body', 'body');
+  
+  #{$somefont-article-body} {
+    #{$l-lang} .text-styles,
+    #{$l-lang} .crayons-article__header h1,
+    #{sel-lang('section#comments-container', $lang)} .text-styles p,
+    #{sel-lang('.with-content-font', $lang)} {
+      font-family: #{$family};
+    }
   }
 }
 
@@ -55,3 +58,5 @@ $l-ja: article-lang('ja');
 @include font-lang('x-v3-zph0xl', 'Vekos, sans-serif');
 @include font-lang('x-v3-mqe0bm', 'Maqen, sans-serif');
 @include font-lang('x-v3-jrlrflll', 'Cirlxarli_liparxe, sans-serif');
+@include font-lang('x-v3-arx0as', 'Kardinal, sans-serif');
+@include font-lang('x-v3-arx0as', 'Alblant, serif', 'serif');
