@@ -94,6 +94,18 @@
   font-style: normal;
   font-weight: normal;
 }
+@font-face {
+  font-family: Kardinal;
+  @include font-src('kardinal.ttf');
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: Alblant;
+  @include font-src('alblant.ttf');
+  font-style: normal;
+  font-weight: normal;
+}
 
 // Content fonts
 body {
