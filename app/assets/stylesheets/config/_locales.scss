@@ -7,17 +7,15 @@
 
 @mixin font-lang($lang, $family, $body-font: null) {
   $l-lang: article-lang($lang);
+  $somefont-article-body: if($body-font, 'body.#{$body-font}-article-body', 'body');
   
-  $somefont-article-body: '';
-  @if($body-font) {
-    $somefont-article-body: 'body.#{$body-font}-article-body';
-  }
-  
-  #{$somefont-article-body} #{$l-lang} .text-styles,
-  #{$somefont-article-body} #{$l-lang} .crayons-article__header h1,
-  #{$somefont-article-body} #{sel-lang('section#comments-container', $lang)} .text-styles p,
-  #{$somefont-article-body} #{sel-lang('.with-content-font', $lang)} {
-    font-family: #{$family};
+  #{$somefont-article-body} {
+    #{$l-lang} .text-styles,
+    #{$l-lang} .crayons-article__header h1,
+    #{sel-lang('section#comments-container', $lang)} .text-styles p,
+    #{sel-lang('.with-content-font', $lang)} {
+      font-family: #{$family};
+    }
   }
 }
 
