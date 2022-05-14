@@ -106,6 +106,7 @@ ja:
       unique: can't be an already adjusted tag
     tweet:
       tweet_not_found: Tweet not found
+      authentication_error: Authentication error; please contact your Forem admin about possible missing Twitter keys
     user:
       could_not_send: 確認メールが送信できませんでした。%{e_message}
       password_not_matched: が確認用パスワードと一致しません

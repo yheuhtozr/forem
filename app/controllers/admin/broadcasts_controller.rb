@@ -26,7 +26,7 @@ module Admin
       @broadcast = Broadcast.new(broadcast_params)
 
       if @broadcast.save
-        flash[:success] = I18n.t("admin.broadcasts_controller.broadcast_has_been_created")
+        flash[:success] = I18n.t("admin.broadcasts_controller.created")
         redirect_to admin_broadcast_path(@broadcast)
       else
         flash[:danger] = @broadcast.errors.full_messages.to_sentence
@@ -38,7 +38,7 @@ module Admin
       @broadcast = Broadcast.find(params[:id])
 
       if @broadcast.update(broadcast_params)
-        flash[:success] = I18n.t("admin.broadcasts_controller.broadcast_has_been_updated")
+        flash[:success] = I18n.t("admin.broadcasts_controller.updated")
         redirect_to admin_broadcast_path(@broadcast)
       else
         flash[:danger] = @broadcast.errors.full_messages.to_sentence
@@ -50,9 +50,9 @@ module Admin
       @broadcast = Broadcast.find(params[:id])
 
       if @broadcast.destroy
-        render json: { message: I18n.t("admin.broadcasts_controller.broadcast_has_been_deleted") }, status: :ok
+        render json: { message: I18n.t("admin.broadcasts_controller.deleted") }, status: :ok
       else
-        render json: { error: I18n.t("admin.broadcasts_controller.something_went_wrong_with") }, status: :unprocessable_entity
+        render json: { error: I18n.t("admin.broadcasts_controller.wrong") }, status: :unprocessable_entity
       end
     end
 
