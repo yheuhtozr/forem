@@ -1,15 +1,15 @@
 module LocaleHelper
-  def lang_name(code, fallback: false)
+  def lang_name(code, fallback: false, locale: nil)
     if code.present?
       tag = code.to_s.downcase
       while tag.present?
         trans = begin
-          I18n.t!("languages.#{tag}")
+          I18n.t!("languages.#{tag}", locale: locale)
         rescue StandardError
           # rubocop:disable Metrics/BlockNesting
           if fallback
             begin
-              I18n.t!("languages_fallback.#{tag}")
+              I18n.t!("languages_fallback.#{tag}", locale: locale)
             rescue StandardError
               nil
             end
@@ -19,14 +19,14 @@ module LocaleHelper
         return trans unless trans.nil? # rubocop:disable Layout/EmptyLineAfterGuardClause
         tag = tag.rpartition('-').first # rubocop:disable Style/StringLiterals
       end
-      I18n.t("languages.mis", code: code)
+      I18n.t("languages.mis", code: code, locale: locale)
     else
-      I18n.t("languages.und")
+      I18n.t("languages.und", locale: locale)
     end
   end
 
-  def lang_name!(code)
-    lang_name(code, fallback: true)
+  def lang_name!(code, locale: nil)
+    lang_name(code, fallback: true, locale: locale)
   end
 
   # temporary href locale prefix solution
