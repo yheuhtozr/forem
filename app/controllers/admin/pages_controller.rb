@@ -33,7 +33,7 @@ module Admin
       @page = Page.find(params[:id])
 
       if @page.update(page_params)
-        flash[:success] = I18n.t("admin.pages_controller.page_has_been_successfully")
+        flash[:success] = I18n.t("admin.pages_controller.updated")
         redirect_to admin_pages_path
       else
         flash.now[:error] = @page.errors_as_sentence
@@ -45,7 +45,7 @@ module Admin
       @page = Page.new(page_params)
 
       if @page.save
-        flash[:success] = I18n.t("admin.pages_controller.page_has_been_successfully2")
+        flash[:success] = I18n.t("admin.pages_controller.created")
         redirect_to admin_pages_path
       else
         flash.now[:error] = @page.errors_as_sentence
@@ -56,8 +56,7 @@ module Admin
     def destroy
       @page = Page.find(params[:id])
       @page.destroy
-
-      flash[:success] = I18n.t("admin.pages_controller.page_has_been_successfully3")
+      flash[:success] = I18n.t("admin.pages_controller.deleted")
       redirect_to admin_pages_path
     end
 
@@ -78,24 +77,24 @@ module Admin
                 Page.new(
                   slug: slug,
                   body_html: html,
-                  title: I18n.t("admin.pages_controller.code_of_conduct"),
-                  description: I18n.t("admin.pages_controller.a_page_that_describes_how"),
+                  title: I18n.t("admin.pages_controller.code_of_conduct.title"),
+                  description: I18n.t("admin.pages_controller.code_of_conduct.description"),
                   is_top_level_path: true,
                 )
               when Page::PRIVACY_SLUG
                 Page.new(
                   slug: slug,
                   body_html: html,
-                  title: I18n.t("admin.pages_controller.privacy_policy"),
-                  description: I18n.t("admin.pages_controller.a_page_that_describes_the"),
+                  title: I18n.t("admin.pages_controller.privacy_policy.title"),
+                  description: I18n.t("admin.pages_controller.privacy_policy.description"),
                   is_top_level_path: true,
                 )
               when Page::TERMS_SLUG
                 Page.new(
                   slug: slug,
                   body_html: html,
-                  title: I18n.t("admin.pages_controller.terms_of_use"),
-                  description: I18n.t("admin.pages_controller.a_page_that_describes_the2"),
+                  title: I18n.t("admin.pages_controller.terms_of_use.title"),
+                  description: I18n.t("admin.pages_controller.terms_of_use.description"),
                   is_top_level_path: true,
                 )
               else

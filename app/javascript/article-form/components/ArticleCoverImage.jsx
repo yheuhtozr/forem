@@ -7,6 +7,7 @@ import { onDragOver, onDragExit } from './dragAndDropHelpers';
 import { Button } from '@crayons';
 import { Spinner } from '@crayons/Spinner/Spinner';
 import { DragAndDropZone } from '@utilities/dragAndDrop';
+import { isNativeIOS } from '@utilities/runtime';
 import { i18next } from '@utilities/locale';
 
 const NativeIosImageUpload = ({
@@ -222,7 +223,7 @@ export class ArticleCoverImage extends Component {
                   variant="ghost-danger"
                   onClick={this.triggerMainImageRemoval}
                 >
-                  Remove
+                  {i18next.t('editor.cover.remove')}
                 </Button>
               )}
             </Fragment>

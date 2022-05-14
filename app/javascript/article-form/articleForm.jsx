@@ -13,6 +13,7 @@ import {
   noLevelOneHeadingsRule,
   headingIncrement,
 } from '@utilities/markdown/markdownLintCustomRules';
+import { getOSKeyboardModifierKeyString } from '@utilities/runtime';
 import { i18next } from '@utilities/locale';
 
 /* global activateRunkitTags */

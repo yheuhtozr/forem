@@ -151,6 +151,7 @@ export const Article = ({
                 article={article}
                 isBookmarked={isBookmarked}
                 onClick={bookmarkClick}
+                saveable={saveable}
               />
             </div>
           </div>

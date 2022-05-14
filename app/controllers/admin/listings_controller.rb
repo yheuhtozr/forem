@@ -29,14 +29,14 @@ module Admin
 
       @listing.update(listing_params.compact)
       @listing.clear_cache
-      flash[:success] = I18n.t("admin.listings_controller.listing_updated_successful")
+      flash[:success] = I18n.t("admin.listings_controller.updated")
       redirect_to edit_admin_listing_path(@listing)
     end
 
     def destroy
       @listing = Listing.find(params[:id])
       @listing.destroy
-      flash[:warning] = I18n.t("admin.listings_controller.was_destroyed_successfull", listing_title: @listing.title)
+      flash[:warning] = I18n.t("admin.listings_controller.destroyed", title: @listing.title)
       redirect_to admin_listings_path
     end
 

@@ -22,8 +22,8 @@ module Admin
       @response_template = ResponseTemplate.new(permitted_params)
       if @response_template.save
         flash[:success] =
-          I18n.t("admin.response_templates_controller.response_template_saved_su",
-                 response_template_title: @response_template.title)
+          I18n.t("admin.response_templates_controller.saved",
+                 title: @response_template.title)
         redirect_to admin_response_templates_path
       else
         flash[:danger] = @response_template.errors_as_sentence
@@ -41,8 +41,8 @@ module Admin
 
       if @response_template.update(permitted_attributes(ResponseTemplate))
         flash[:success] =
-          I18n.t("admin.response_templates_controller.the_response_template_was",
-                 response_template_title: @response_template.title)
+          I18n.t("admin.response_templates_controller.updated",
+                 title: @response_template.title)
         redirect_to edit_admin_response_template_path(@response_template)
       else
         flash[:danger] = @response_template.errors_as_sentence
@@ -55,8 +55,8 @@ module Admin
 
       if @response_template.destroy
         flash[:success] =
-          I18n.t("admin.response_templates_controller.the_response_template_was2",
-                 response_template_title: @response_template.title)
+          I18n.t("admin.response_templates_controller.deleted",
+                 title: @response_template.title)
       else
         flash[:danger] = @response_template.errors_as_sentence # this will probably never fail
       end

@@ -182,7 +182,6 @@ class Article < ApplicationRecord
 
   after_save :create_conditional_autovomits
   after_save :bust_cache
-  after_save :notify_slack_channel_about_publication
   after_save :eponymous_translation_group
   after_save :notify_external_services_on_new_post
 

@@ -24,7 +24,7 @@ module Admin
       @sponsorship = Sponsorship.new(sponsorship_params)
 
       if @sponsorship.save
-        flash[:success] = I18n.t("admin.sponsorships_controller.sponsorship_has_been_creat")
+        flash[:success] = I18n.t("admin.sponsorships_controller.created")
         redirect_to admin_sponsorships_path
       else
         flash[:danger] = @sponsorship.errors_as_sentence
@@ -35,7 +35,7 @@ module Admin
     def update
       @sponsorship = Sponsorship.find(params[:id])
       if @sponsorship.update(sponsorship_params)
-        flash[:notice] = I18n.t("admin.sponsorships_controller.sponsorship_was_successful")
+        flash[:notice] = I18n.t("admin.sponsorships_controller.updated")
         redirect_to admin_sponsorships_path
       else
         flash[:danger] = @sponsorship.errors_as_sentence
@@ -46,9 +46,9 @@ module Admin
     def destroy
       @sponsorship = Sponsorship.find(params[:id])
       if @sponsorship.destroy
-        flash[:notice] = I18n.t("admin.sponsorships_controller.sponsorship_was_successful2")
+        flash[:notice] = I18n.t("admin.sponsorships_controller.destroyed")
       else
-        flash[:danger] = I18n.t("admin.sponsorships_controller.sponsorship_was_not_destro")
+        flash[:danger] = I18n.t("admin.sponsorships_controller.not_destroyed")
       end
       redirect_to admin_sponsorships_path
     end

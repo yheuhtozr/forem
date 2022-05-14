@@ -8,13 +8,13 @@ module Admin
       flash[:success] =
         if params[:dead_link]
           handle_dead_path
-          I18n.t("admin.tools_controller.was_successfully_busted", params_dead_link: params[:dead_link])
+          I18n.t("admin.tools_controller.link_busted", link: params[:dead_link])
         elsif params[:bust_user]
           handle_user_cache
-          I18n.t("admin.tools_controller.user_was_successfully_bust", params_bust_user: params[:bust_user])
+          I18n.t("admin.tools_controller.user_busted", user: params[:bust_user])
         elsif params[:bust_article]
           handle_article_cache
-          I18n.t("admin.tools_controller.article_was_successfully_b", params_bust_article: params[:bust_article])
+          I18n.t("admin.tools_controller.article_busted", article: params[:bust_article])
         end
       redirect_to admin_tools_path
     rescue StandardError => e

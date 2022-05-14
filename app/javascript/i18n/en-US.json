@@ -22,7 +22,7 @@
     "copied": "Copied!",
     "copy": "Copy...",
     "copy_markdown": "Copy Markdown for image",
-    "message": "Copied to Clipboard"
+    "message": "Copied to clipboard"
   },
   "comments": {
     "all_one": "See all %{count} comments",
@@ -104,6 +104,7 @@
       "aria_label": "Upload cover image",
       "change": "Change",
       "number": "Only one image can be dropped at a time.",
+      "remove": "Remove",
       "uploading": "Uploading..."
     },
     "create": "Create Post",
@@ -553,18 +554,11 @@
     "this_week": "this Week"
   },
   "tags": {
-    "aria_label": "Post Tags",
     "autocomplete": {
       "label": "Add up to 4 tags",
       "placeholder": "Add up to 4 tags..."
     },
-    "heading": "Top tags",
-    "hide": "Hide Rules",
-    "label": "Tags",
-    "placeholder_one": "Add up to %{count} tags...",
-    "placeholder_other": "Add up to %{count} tags...",
-    "rules": "Some tags have rules and guidelines determined by community moderators",
-    "view": "View Rules"
+    "heading": "Top tags"
   },
   "templates": {
     "insert": "Insert",

@@ -11,8 +11,8 @@ module Admin
         format.html do
           if organization_membership.update(organization_membership_params_for_update)
             flash[:success] =
-              I18n.t("admin.organization_memberships_controller.user_was_successfully_upda",
-                    organization_membership_ty: organization_membership.type_of_user)
+              I18n.t("admin.organization_memberships_controller.updated",
+                     type: organization_membership.type_of_user)
           else
             flash[:danger] = organization_membership.errors_as_sentence
           end
@@ -23,8 +23,8 @@ module Admin
         format.js do
           if organization_membership.update(organization_membership_params_for_update)
             message =
-              I18n.t("admin.organization_memberships_controller.user_was_successfully_upda",
-                    organization_membership_ty: organization_membership.type_of_user)
+              I18n.t("admin.organization_memberships_controller.updated",
+                     type: organization_membership.type_of_user)
             render json: { result: message }, content_type: "application/json"
           else
             render json: { error: organization_membership.errors_as_sentence },
@@ -42,10 +42,10 @@ module Admin
       respond_to do |format| # rubocop:disable Metrics/BlockLength
         format.html do
           if organization && organization_membership.save
-            flash[:success] = I18n.t("admin.organization_memberships_controller.user_was_successfully_adde", organization_name: organization.name)
+            flash[:success] = I18n.t("admin.organization_memberships_controller.added", org: organization.name)
           elsif organization.blank?
-            message = I18n.t("admin.organization_memberships_controller.organization_does_not_exis",
-                            organization_membership_pa: organization_membership_params_for_create[:organization_id])
+            message = I18n.t("admin.organization_memberships_controller.not_exist",
+                             org_id: organization_membership_params_for_create[:organization_id])
             flash[:danger] = message
           else
             flash[:danger] = organization_membership.errors_as_sentence
@@ -56,12 +56,12 @@ module Admin
 
         format.js do
           if organization && organization_membership.save
-            message = I18n.t("admin.organization_memberships_controller.user_was_successfully_adde",
-                    organization_name: organization.name)
+            message = I18n.t("admin.organization_memberships_controller.added",
+                             org: organization.name)
             render json: { result: message }, content_type: "application/json", status: :created
           elsif organization.blank?
-            message = I18n.t("admin.organization_memberships_controller.organization_does_not_exis",
-                             organization_membership_pa: organization_membership_params_for_create[:organization_id])
+            message = I18n.t("admin.organization_memberships_controller.not_exist",
+                             org_id: organization_membership_params_for_create[:organization_id])
             render json: { error: message }, content_type: "application/json", status: :unprocessable_entity
           else
             render json: { error: organization_membership.errors_as_sentence },
@@ -80,11 +80,11 @@ module Admin
         format.html do
           if organization_membership.destroy
             flash[:success] =
-            I18n.t("admin.organization_memberships_controller.user_was_successfully_remo",
-                   organization_membership_or: organization.name)
+              I18n.t("admin.organization_memberships_controller.removed",
+                     org: organization.name)
           else
-            flash[:danger] = I18n.t("admin.organization_memberships_controller.something_went_wrong_with",
-              organization_membership_or: organization.name)
+            flash[:danger] = I18n.t("admin.organization_memberships_controller.wrong",
+                                    org: organization.name)
           end
 
           redirect_to admin_user_path(organization_membership.user_id)
@@ -93,12 +93,12 @@ module Admin
         format.js do
           if organization_membership.destroy
             message =
-            I18n.t("admin.organization_memberships_controller.user_was_successfully_remo",
-                   organization_membership_or: organization.name)
+              I18n.t("admin.organization_memberships_controller.removed",
+                     org: organization.name)
             render json: { result: message }, content_type: "application/json"
           else
-            message =  I18n.t("admin.organization_memberships_controller.something_went_wrong_with",
-              organization_membership_or: organization.name)
+            message = I18n.t("admin.organization_memberships_controller.wrong",
+                             org: organization.name)
             render json: { error: message },
                    content_type: "application/json",
                    status: :internal_server_error

@@ -1,8 +1,9 @@
 import { h } from 'preact';
 import { useEffect, useState } from 'preact/hooks';
 import PropTypes from 'prop-types';
-import { TagAutocompleteOption } from './TagAutocompleteOption';
-import { TagAutocompleteSelection } from './TagAutocompleteSelection';
+import { useTagsField } from '../../hooks/useTagsField';
+import { TagAutocompleteOption } from '@crayons/MultiSelectAutocomplete/TagAutocompleteOption';
+import { TagAutocompleteSelection } from '@crayons/MultiSelectAutocomplete/TagAutocompleteSelection';
 import { i18next } from '@utilities/locale';
 import { MultiSelectAutocomplete } from '@crayons';
 
@@ -32,7 +33,7 @@ export const TagsField = ({ onInput, defaultValue, switchHelpContext }) => {
       fetchSuggestions={fetchSuggestions}
       staticSuggestions={topTags}
       staticSuggestionsHeading={
-        <h2 className="crayons-article-form__top-tags-heading">
+        <h2 className="c-autocomplete--multi__top-tags-heading">
           {i18next.t('tags.heading')}
         </h2>
       }

@@ -102,6 +102,7 @@
       "aria_label": "見出し画像をアップロードする",
       "change": "変更",
       "number": "一度に一枚の画像しかドロップできません",
+      "remove": "削除",
       "uploading": "アップロード中…"
     },
     "create": "記事を作成",
@@ -548,17 +549,11 @@
     "this_week": "今週"
   },
   "tags": {
-    "aria_label": "Post Tags",
     "autocomplete": {
       "label": "タグを最大 4 つまで",
       "placeholder": "タグを最大 4 つまで…"
     },
-    "heading": "Top tags",
-    "hide": "Hide Rules",
-    "label": "Tags",
-    "placeholder_other": "タグを最大 %{count} つまで",
-    "rules": "Some tags have rules and guidelines determined by community moderators",
-    "view": "View Rules"
+    "heading": "Top tags"
   },
   "templates": {
     "insert": "Insert",

@@ -84,8 +84,16 @@ class ArticlesController < ApplicationController
       @is_translate = true
     end
 
-    authorize(Article)
-    store_location_for(:user, request.path) if store_location
+    if needs_authorization
+      authorize(Article)
+    else
+      skip_authorization
+
+      # We want the query params for the request (as that is where we have the prefill).  The
+      # `request.path` excludes the query parameters, so we're going with the `request.url` which
+      # includes the parameters.
+      store_location_for(:user, request.url)
+    end
   end
 
   def edit

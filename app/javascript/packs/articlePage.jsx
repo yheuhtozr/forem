@@ -4,9 +4,8 @@ import { addFullScreenModeControl } from '../utilities/codeFullscreenModeSwitche
 import { initializeDropdown } from '../utilities/dropdownUtils';
 import { embedGists } from '../utilities/gist';
 import { initializeUserSubscriptionLiquidTagContent } from '../liquidTags/userSubscriptionLiquidTag';
+import { isNativeAndroid, copyToClipboard } from '@utilities/runtime';
 import { i18next } from '@utilities/locale';
-
-/* global Runtime */
 
 const animatedImages = document.querySelectorAll('[data-animated="true"]');
 if (animatedImages.length > 0) {

@@ -30,7 +30,7 @@ module Admin
       Credit.public_send(update_action, org, amount)
       add_note(org)
 
-      flash[:notice] = I18n.t("admin.organizations_controller.sucessfully_updated_credit")
+      flash[:notice] = I18n.t("admin.organizations_controller.credit_updated")
       redirect_to admin_organization_path(org)
     end
 

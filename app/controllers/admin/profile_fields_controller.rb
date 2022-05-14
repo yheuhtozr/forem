@@ -14,7 +14,7 @@ module Admin
       profile_field = ProfileField.find(params[:id])
       if profile_field.update(profile_field_params)
         flash[:success] =
-          I18n.t("admin.profile_fields_controller.profile_field_updated", profile_field_label: profile_field.label)
+          I18n.t("admin.profile_fields_controller.updated", field: profile_field.label)
       else
         flash[:error] = I18n.t("errors.messages.general", errors: profile_field.errors_as_sentence)
       end
@@ -26,7 +26,7 @@ module Admin
       if add_result.success?
         profile_field = add_result.profile_field
         flash[:success] =
-          I18n.t("admin.profile_fields_controller.profile_field_created", profile_field_label: profile_field.label)
+          I18n.t("admin.profile_fields_controller.created", field: profile_field.label)
       else
         flash[:error] = I18n.t("errors.messages.general", errors: add_result.error_message)
       end
@@ -38,7 +38,7 @@ module Admin
       if remove_result.success?
         profile_field = remove_result.profile_field
         flash[:success] =
-          I18n.t("admin.profile_fields_controller.profile_field_deleted", profile_field_label: profile_field.label)
+          I18n.t("admin.profile_fields_controller.deleted", field: profile_field.label)
       else
         flash[:error] = I18n.t("errors.messages.general", errors: remove_result.error_message)
       end

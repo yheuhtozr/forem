@@ -189,7 +189,7 @@ describe('<ImageUploader />', () => {
       );
       fireEvent(document, event);
 
-      expect(findByTitle(/copy markdown for image/i)).toBeDefined();
+      expect(await findByTitle(/copy markdown for image/i)).toBeInTheDocument();
     });
   });
 

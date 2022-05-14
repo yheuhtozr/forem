@@ -9,8 +9,8 @@ module Admin
       profile_field_group = ProfileFieldGroup.find(params[:id])
       if profile_field_group.update(profile_field_group_params)
         flash[:success] =
-          I18n.t("admin.profile_field_groups_controller.group_updated",
-                 profile_field_group_name: profile_field_group.name)
+          I18n.t("admin.profile_field_groups_controller.updated",
+                 group: profile_field_group.name)
       else
         flash[:error] = I18n.t("errors.messages.general", errors: profile_field_group.errors_as_sentence)
       end
@@ -21,8 +21,8 @@ module Admin
       profile_field_group = ProfileFieldGroup.new(profile_field_group_params)
       if profile_field_group.save
         flash[:success] =
-          I18n.t("admin.profile_field_groups_controller.successfully_created_group",
-                 profile_field_group_name: profile_field_group.name)
+          I18n.t("admin.profile_field_groups_controller.created",
+                 group: profile_field_group.name)
       else
         flash[:error] = I18n.t("errors.messages.general", errors: profile_field_group.errors_as_sentence)
       end
@@ -33,8 +33,8 @@ module Admin
       profile_field_group = ProfileFieldGroup.find(params[:id])
       if profile_field_group.destroy
         flash[:success] =
-          I18n.t("admin.profile_field_groups_controller.group_deleted",
-                 profile_field_group_name: profile_field_group.name)
+          I18n.t("admin.profile_field_groups_controller.deleted",
+                 group: profile_field_group.name)
       else
         flash[:error] = I18n.t("errors.messages.general", errors: profile_field_group.errors_as_sentence)
       end

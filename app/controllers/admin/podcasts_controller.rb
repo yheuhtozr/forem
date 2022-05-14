@@ -39,7 +39,7 @@ module Admin
 
     def update
       if @podcast.update(podcast_params)
-        redirect_to admin_podcasts_path, notice: I18n.t("admin.podcasts_controller.podcast_updated")
+        redirect_to admin_podcasts_path, notice: I18n.t("admin.podcasts_controller.updated")
       else
         render :edit
       end
@@ -50,8 +50,7 @@ module Admin
       force = params[:force].to_i == 1
       Podcasts::GetEpisodesWorker.perform_async("podcast_id" => @podcast.id, "limit" => limit, "force" => force)
       flash[:notice] =
-        I18n.t("admin.podcasts_controller.podcast_s_episodes_fetchin", podcast_title: @podcast.title,
-                                                                       podcast_id: @podcast.id)
+        I18n.t("admin.podcasts_controller.scheduled", title: @podcast.title, id: @podcast.id)
       redirect_to admin_podcasts_path
     end
 

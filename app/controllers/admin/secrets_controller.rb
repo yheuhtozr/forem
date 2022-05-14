@@ -13,7 +13,7 @@ module Admin
         secret_value = AppSecrets[key]
         secret_value = if secret_value.present?
                          I18n.t("admin.secrets_controller.value",
-                                secret_value_first_8: secret_value.first(8))
+                                first8: secret_value.first(8))
                        else
                          I18n.t("admin.secrets_controller.not_in_vault")
                        end
@@ -25,7 +25,7 @@ module Admin
       AppSecrets[params[:key_name]] = params[:key_value]
 
       flash[:success] =
-        I18n.t("admin.secrets_controller.secret_was_successfully_up", params_key_name: params[:key_name])
+        I18n.t("admin.secrets_controller.updated", key: params[:key_name])
       redirect_to admin_secrets_path
     end
 

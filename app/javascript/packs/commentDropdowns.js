@@ -4,14 +4,13 @@ import {
   getDropdownRepositionListener,
 } from '@utilities/dropdownUtils';
 import { i18next } from '@utilities/locale';
-
-/* global Runtime   */
+import { copyToClipboard } from '@utilities/runtime';
 
 const handleCopyPermalink = (closeDropdown) => {
   return (event) => {
     event.preventDefault();
     const permalink = event.target.href;
-    Runtime.copyToClipboard(permalink).then(() => {
+    copyToClipboard(permalink).then(() => {
       addSnackbarItem({ message: i18next.t('clipboard.message') });
     });
     closeDropdown();

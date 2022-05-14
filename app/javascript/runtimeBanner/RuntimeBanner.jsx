@@ -1,5 +1,6 @@
 import { h } from 'preact';
 import { ButtonNew as Button, Icon } from '@crayons';
+import { currentOS, currentContext } from '@utilities/runtime';
 import { i18next } from '@utilities/locale';
 import CloseIcon from '@images/x.svg';
 import LogoForem from '@images/logo-forem-app.svg';

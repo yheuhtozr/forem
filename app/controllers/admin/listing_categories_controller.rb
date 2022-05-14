@@ -23,7 +23,7 @@ module Admin
       @listing_category = ListingCategory.new(listing_category_params)
 
       if @listing_category.save
-        flash[:success] = I18n.t("admin.listing_categories_controller.listing_category_has_been")
+        flash[:success] = I18n.t("admin.listing_categories_controller.created")
         redirect_to admin_listing_categories_path
       else
         flash[:danger] = @listing_category.errors_as_sentence
@@ -35,7 +35,7 @@ module Admin
       @listing_category = ListingCategory.find(params[:id])
 
       if @listing_category.update(listing_category_params)
-        flash[:success] = I18n.t("admin.listing_categories_controller.listing_category_has_been2")
+        flash[:success] = I18n.t("admin.listing_categories_controller.updated")
         redirect_to admin_listing_categories_path
       else
         flash[:danger] = @listing_category.errors_as_sentence
@@ -47,7 +47,7 @@ module Admin
       @listing_category = ListingCategory.find(params[:id])
 
       if @listing_category.destroy
-        flash[:success] = I18n.t("admin.listing_categories_controller.listing_category_has_been3")
+        flash[:success] = I18n.t("admin.listing_categories_controller.deleted")
         redirect_to admin_listing_categories_path
       else
         flash[:danger] = @listing_category.errors.full_messages.to_sentence

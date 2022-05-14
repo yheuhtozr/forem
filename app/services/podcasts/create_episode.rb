@@ -75,9 +75,5 @@ module Podcasts
       episode.purge_all
       episode.save if episode.processed_html.blank?
     end
-
-    def title_to_slug(title)
-      Sterile.sluggerize(title).to_s
-    end
   end
 end

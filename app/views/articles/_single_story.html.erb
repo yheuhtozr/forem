@@ -158,8 +158,14 @@
       <% end %>
 
         <div class="crayons-story__save">
-          <button type="button" id="article-save-button-<%= story.id %>" class="crayons-btn crayons-btn--secondary crayons-btn--s w-max bookmark-button" data-reactable-id="<%= story.id %>"
-            aria-label="<%= t("views.articles.save.aria_label") %>" title="<%= t("views.articles.save.title") %>">
+          <button
+            type="button"
+            id="article-save-button-<%= story.id %>"
+            class="crayons-btn crayons-btn--secondary crayons-btn--s w-max bookmark-button"
+            data-reactable-id="<%= story.id %>"
+            data-article-author-id="<%= story.user_id %>"
+            aria-label="<%= t("views.articles.save.aria_label") %>"
+            title="<%= t("views.articles.save.title") %>">
             <span class="bm-initial"><%= t("views.articles.save.initial") %></span>
             <span class="bm-success"><%= t("views.articles.save.success") %></span>
           </button>

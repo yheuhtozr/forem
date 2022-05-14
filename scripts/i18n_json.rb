@@ -276,7 +276,6 @@ MAP = {
         body_markdown: ['listings.form.body_markdown.label'],
         expires_at: ['listings.form.expiry.label'],
         organization_id: ['listings.org.label'],
-        tag_list: ['tags.label'],
         title: ['listings.form.title.label'],
       },
     },
