@@ -1,5 +1,3 @@
-/* global Runtime */
-
 import { h } from 'preact';
 import { ButtonNew as Button, Icon } from '@crayons';
 import { i18next } from '@utilities/locale';
@@ -54,7 +52,7 @@ function handleDeepLinkFallback() {
   const urlParams = new URLSearchParams(window.location.search);
   const targetPath = urlParams.get('deep_link');
 
-  if (Runtime.currentOS() === 'iOS') {
+  if (currentOS() === 'iOS') {
     // The install now must target Apple's AppStore
     installNowButton.href = FOREM_APP_STORE_URL;
 
@@ -63,7 +61,7 @@ function handleDeepLinkFallback() {
     const targetLink = `${APP_LAUNCH_SCHEME}://${window.location.host}${targetPath}`;
     retryButton.href = targetLink;
     window.location.href = targetLink;
-  } else if (Runtime.currentOS() === 'Android') {
+  } else if (currentOS() === 'Android') {
     const targetIntent = androidTargetIntent();
     retryButton.href = targetIntent;
     installNowButton.href = FOREM_GOOGLE_PLAY_URL;
@@ -80,7 +78,7 @@ export const RuntimeBanner = () => {
   // The banner shouldn't appear if it was already dismissed or if it doesn't match the context
   if (
     localStorage.getItem(BANNER_DISMISS_KEY) ||
-    Runtime.currentContext().match(/Browser-((iOS)|(Android))/) === null
+    currentContext().match(/Browser-((iOS)|(Android))/) === null
   ) {
     removeFromDOM();
     return;
@@ -98,7 +96,7 @@ export const RuntimeBanner = () => {
 
   const targetPath = `https://${window.location.host}/r/mobile?deep_link=${window.location.pathname}`;
   let targetURL = `https://udl.forem.com/${encodeURIComponent(targetPath)}`;
-  if (Runtime.currentOS() === 'Android') {
+  if (currentOS() === 'Android') {
     if (navigator.userAgent.match(/Gecko\/.+Firefox\/.+$/)) {
       // This is the Firefox browser on Android and we can't display the banner
       // here because of a bug. Read more: https://github.com/mozilla-mobile/fenix/issues/23397

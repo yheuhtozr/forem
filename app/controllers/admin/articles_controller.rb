@@ -55,7 +55,7 @@ module Admin
 
       respond_to do |format|
         format.html do
-          flash[:success] = "Article Pinned!"
+          flash[:success] = I18n.t("admin.articles_controller.pinned")
           redirect_to admin_article_path(article.id)
         end
         format.js do
@@ -71,7 +71,7 @@ module Admin
 
       respond_to do |format|
         format.html do
-          flash[:success] = "Article Pinned!"
+          flash[:success] = I18n.t("admin.articles_controller.pinned")
           redirect_to admin_article_path(article.id)
         end
         format.js do

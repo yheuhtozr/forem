@@ -58,7 +58,7 @@ module Admin
     end
 
     def process_no_credit_left
-      redirect_to admin_listings_path, notice: "Not enough available credits"
+      redirect_to admin_listings_path, notice: I18n.t("admin.listings_controller.no_credit")
     end
   end
 end

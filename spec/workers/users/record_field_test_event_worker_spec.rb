@@ -6,20 +6,24 @@ RSpec.describe Users::RecordFieldTestEventWorker, type: :worker do
 
   describe "#perform" do
     let(:worker) { subject }
+    let(:goal) { "try_to_takeover_the_world" }
 
-    let(:user) { create(:user) }
+    before do
+      allow(AbExperiment).to receive(:register_conversions_for).and_call_original
+    end
 
-    context "with no field tests configured" do
-      it "gracefully handles a case where there are no tests" do
-        allow(FieldTest).to receive(:config).and_return({ "experiments" => nil })
-        worker.perform(user.id, "user_creates_reaction")
+    context "with a non-existent user" do
+      let(:user_id) { nil }
+
+      it "gracefully exits" do
+        worker.perform(user_id, goal)
+        expect(AbExperiment).not_to have_received(:register_conversions_for)
       end
     end
 
-    context "with user who is part of field test" do
-      before do
-        field_test(AbExperiment::CURRENT_FEED_STRATEGY_EXPERIMENT, participant: user)
-      end
+    context "with a user" do
+      let(:user) { create(:user) }
+      let(:user_id) { user.id }
 
       it "records user_creates_reaction field test conversion" do
         worker.perform(user.id, "user_creates_reaction")

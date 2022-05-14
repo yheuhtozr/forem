@@ -43,7 +43,7 @@ function hideCopyLinkAnnouncerIfVisible() {
 const shareDropdownButton = document.getElementById('article-show-more-button');
 
 if (shareDropdownButton.dataset.initialized !== 'true') {
-  if (Runtime.isNativeAndroid('shareText')) {
+  if (isNativeAndroid('shareText')) {
     // Android native apps have enhanced sharing capabilities for Articles and don't use our standard dropdown
     shareDropdownButton.addEventListener('click', () =>
       AndroidBridge.shareText(location.href),
@@ -77,7 +77,7 @@ function copyArticleLink() {
   const postUrlValue = document
     .getElementById('copy-post-url-button')
     .getAttribute('data-postUrl');
-  Runtime.copyToClipboard(postUrlValue).then(() => {
+  copyToClipboard(postUrlValue).then(() => {
     showAnnouncer();
   });
 }

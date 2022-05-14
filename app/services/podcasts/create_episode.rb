@@ -11,7 +11,10 @@ module Podcasts
 
     def call
       attributes = podcast_episode_attributes
+
       attributes = add_media_url(attributes)
+      return unless attributes[:media_url]
+
       attributes = add_published_at(attributes)
 
       upsert_result = PodcastEpisode.upsert(
@@ -71,6 +74,10 @@ module Podcasts
     def finalize(episode)
       episode.purge_all
       episode.save if episode.processed_html.blank?
+    end
+
+    def title_to_slug(title)
+      Sterile.sluggerize(title).to_s
     end
   end
 end

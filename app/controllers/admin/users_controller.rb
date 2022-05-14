@@ -16,14 +16,26 @@ module Admin
       email_body
     ].freeze
 
+    ATTRIBUTES_FOR_CSV = %i[
+      id name username email registered_at
+    ].freeze
+
+    ATTRIBUTES_FOR_LAST_ACTIVITY = %i[
+      registered last_comment_at last_article_at latest_article_updated_at last_reacted_at profile_updated_at
+      last_moderation_notification last_notification_activity
+    ].freeze
+
     after_action only: %i[update user_status banish full_delete unpublish_all_articles merge] do
       Audit::Logger.log(:moderator, current_user, params.dup)
     end
 
     def index
       @users = Admin::UsersQuery.call(
+        relation: User.registered,
         options: params.permit(:role, :search),
       ).page(params[:page]).per(50)
+
+      @organization_limit = 3
     end
 
     def edit
@@ -36,6 +48,7 @@ module Admin
     def show
       @user = User.find(params[:id])
       set_current_tab(params[:tab])
+      set_banishable_user
       set_feedback_messages
       set_related_reactions
       set_user_details
@@ -68,6 +81,18 @@ module Admin
         flash[:danger] = response.error_message
       end
       redirect_to admin_user_path(params[:id])
+    end
+
+    def export
+      @users = User.registered.select(ATTRIBUTES_FOR_CSV + ATTRIBUTES_FOR_LAST_ACTIVITY).includes(:organizations)
+
+      respond_to do |format|
+        format.csv do
+          response.headers["Content-Type"] = "text/csv"
+          response.headers["Content-Disposition"] = "attachment; filename=users.csv"
+          render template: "admin/users/export"
+        end
+      end
     end
 
     def user_status
@@ -121,7 +146,7 @@ module Admin
 
     def unpublish_all_articles
       Moderator::UnpublishAllArticlesWorker.perform_async(params[:id].to_i)
-      flash[:success] = "Posts are being unpublished in the background. The job will complete soon."
+      flash[:success] = I18n.t("admin.users_controller.unpublished")
       redirect_to admin_user_path(params[:id])
     end
 
@@ -168,7 +193,7 @@ module Admin
 
       if NotifyMailer.with(email_params).user_contact_email.deliver_now
         respond_to do |format|
-          message = "Email sent!"
+          message = I18n.t("admin.users_controller.email_sent")
 
           format.html do
             flash[:success] = message
@@ -293,10 +318,10 @@ module Admin
       case user_params[:credit_action]
       when "Add"
         credit_params[:add_credits] = user_params[:credit_amount]
-        flash[:success] = "Credits have been added!"
+        flash[:success] = I18n.t("admin.users_controller.credits_added")
       when "Remove"
         credit_params[:remove_credits] = user_params[:credit_amount]
-        flash[:success] = "Credits have been removed."
+        flash[:success] = I18n.t("admin.users_controller.credits_removed")
       else
         return user_params
       end
@@ -309,6 +334,11 @@ module Admin
                      else
                        "overview"
                      end
+    end
+
+    def set_banishable_user
+      @banishable_user = (@user.comments.where("created_at < ?", 100.days.ago).empty? &&
+        @user.created_at < 100.days.ago) || current_user.super_admin? || current_user.support_admin?
     end
   end
 end

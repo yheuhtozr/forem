@@ -1,14 +1,12 @@
 module Users
   class RecordFieldTestEventWorker
-    include Sidekiq::Worker
-    include FieldTest::Helpers
+    include Sidekiq::Job
 
     sidekiq_options queue: :low_priority, retry: 10
 
     def perform(user_id, goal)
-      @user = User.find_by(id: user_id)
-      return unless @user
-      return unless FieldTest.config["experiments"]
+      user = User.find_by(id: user_id)
+      return unless user
 
       FieldTest.config["experiments"].each_key do |key|
         @experiment = key.to_sym

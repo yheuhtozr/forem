@@ -65,10 +65,14 @@ class ArticlesController < ApplicationController
     }
   end
 
+  # @note The /new path is a unique creature.  We want to ensure that folks coming to the /new with
+  #       a prefill of information are first prompted to sign-in, and then given a form that
+  #       prepopulates with that pre-fill information.  This is a feature that StackOverflow and
+  #       CodePen use to have folks post on Dev.
   def new
     base_editor_assignments
 
-    @article, store_location = Articles::Builder.call(@user, @tag, @prefill)
+    @article, needs_authorization = Articles::Builder.call(@user, @tag, @prefill)
 
     if params[:slug].present? # indicates /translate
       origin = Article.find_by(slug: params[:slug])
@@ -313,7 +317,7 @@ class ArticlesController < ApplicationController
                      end
 
     # NOTE: the organization logic is still a little counter intuitive but this should
-    # fix the bug <https://github.com/thepracticaldev/dev.to/issues/2871>
+    # fix the bug <https://github.com/forem/forem/issues/2871>
     if params["article"]["user_id"] && org_admin_user_change_privilege
       allowed_params << :user_id
     elsif params["article"]["organization_id"] && allowed_to_change_org_id?

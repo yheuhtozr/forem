@@ -1,17 +1,11 @@
+import { verifyAndDismissUserUpdatedMessage } from './userAdminUtilitites';
+
 // More on roles, https://admin.forem.com/docs/forem-basics/user-roles
 function openOrgModal(ctaText = 'Add organization') {
   cy.getModal().should('not.exist');
   cy.findByRole('button', { name: ctaText }).click();
 
   return cy.getModal();
-}
-
-function verifyAndDismissUserUpdatedMessage(message) {
-  cy.findByText(message).should('exist');
-  cy.findByRole('button', { name: 'Dismiss message' })
-    .should('have.focus')
-    .click();
-  cy.findByText(message).should('not.exist');
 }
 
 describe('Manage User Organziations', () => {
@@ -25,7 +19,7 @@ describe('Manage User Organziations', () => {
     });
 
     it(`should add a user to an organization`, () => {
-      cy.visit('/admin/users/3');
+      cy.visit('/admin/member_manager/users/3');
 
       cy.findByText('Not part of any organization yet.').should('be.visible');
 
@@ -51,7 +45,7 @@ describe('Manage User Organziations', () => {
     });
 
     it('should add a user to multiple organizations', () => {
-      cy.visit('/admin/users/3');
+      cy.visit('/admin/member_manager/users/3');
 
       cy.findByText('Not part of any organization yet.').should('be.visible');
 
@@ -95,7 +89,7 @@ describe('Manage User Organziations', () => {
     });
 
     it(`should edit a user's membership to an organization`, () => {
-      cy.visit('/admin/users/2');
+      cy.visit('/admin/member_manager/users/2');
 
       cy.findAllByRole('link', { name: 'Awesome Org' }).first().focus();
       cy.findByRole('button', {
@@ -114,7 +108,7 @@ describe('Manage User Organziations', () => {
     });
 
     it(`should add a user to another organization`, () => {
-      cy.visit('/admin/users/2');
+      cy.visit('/admin/member_manager/users/2');
 
       openOrgModal('Add organization').within(() => {
         cy.findByRole('spinbutton', { name: 'Organization ID' }).type(1);
@@ -135,7 +129,7 @@ describe('Manage User Organziations', () => {
     });
 
     it(`should revoke a user's membership to an organization`, () => {
-      cy.visit('/admin/users/2');
+      cy.visit('/admin/member_manager/users/2');
 
       cy.findAllByRole('link', { name: 'Awesome Org' }).first().focus();
       cy.findByRole('button', {

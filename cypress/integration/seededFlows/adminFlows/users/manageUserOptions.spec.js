@@ -1,3 +1,5 @@
+import { verifyAndDismissUserUpdatedMessage } from './userAdminUtilitites';
+
 function openUserOptions(callback) {
   cy.findByRole('button', { name: 'Options' })
     .should('have.attr', 'aria-haspopup', 'true')
@@ -11,29 +13,13 @@ function openUserOptions(callback) {
     });
 }
 
-function verifyAndDismissUserUpdatedMessage(message) {
-  cy.findByTestId('flash-success')
-    .as('success')
-    .then((element) => {
-      expect(element.text().trim()).equal(message);
-    });
-
-  cy.get('@success').within(() => {
-    cy.findByRole('button', { name: 'Dismiss message' })
-      .should('have.focus')
-      .click();
-  });
-
-  cy.findByTestId('flash-success').should('not.exist');
-}
-
 describe('Manage User Options', () => {
   describe('As an admin', () => {
     beforeEach(() => {
       cy.testSetup();
       cy.fixture('users/adminUser.json').as('user');
       cy.get('@user').then((user) => {
-        cy.loginAndVisit(user, '/admin/users/2');
+        cy.loginAndVisit(user, '/admin/member_manager/users/2');
       });
     });
 
@@ -102,7 +88,7 @@ describe('Manage User Options', () => {
       });
 
       verifyAndDismissUserUpdatedMessage(
-        '@trusted_user_1 (email: trusted-user-1@forem.local, user_id: 2) has been fully deleted. If this is a GDPR delete, delete them from Mailchimp & Google Analytics  and confirm on the page.',
+        '@trusted_user_1 (email: trusted-user-1@forem.local, user_id: 2) has been fully deleted. If this is a GDPR delete, delete them from Mailchimp & Google Analytics and confirm on the page.',
       );
     });
 

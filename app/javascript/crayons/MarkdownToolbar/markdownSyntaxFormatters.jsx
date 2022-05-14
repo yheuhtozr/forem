@@ -1,4 +1,3 @@
-/* global Runtime */
 import { h } from 'preact';
 import {
   getLastIndexOfCharacter,
@@ -7,6 +6,7 @@ import {
   getNumberOfNewLinesPrecedingSelection,
   getSelectionData,
 } from '../../utilities/textAreaUtils';
+import { getOSKeyboardModifierKeyString } from '@utilities/runtime';
 import BoldIcon from '@images/bold.svg';
 import ItalicIcon from '@images/italic.svg';
 import LinkIcon from '@images/link.svg';
@@ -409,7 +409,7 @@ export const coreSyntaxFormatters = {
     icon: () => <Icon src={BoldIcon} />,
     label: i18next.t('editor.toolbar.bold'),
     getKeyboardShortcut: () => {
-      const modifier = Runtime.getOSKeyboardModifierKeyString();
+      const modifier = getOSKeyboardModifierKeyString();
       return {
         command: `${modifier}+b`,
         tooltipHint: `${modifier.toUpperCase()} + B`,
@@ -429,7 +429,7 @@ export const coreSyntaxFormatters = {
     icon: () => <Icon src={ItalicIcon} />,
     label: i18next.t('editor.toolbar.italic'),
     getKeyboardShortcut: () => {
-      const modifier = Runtime.getOSKeyboardModifierKeyString();
+      const modifier = getOSKeyboardModifierKeyString();
       return {
         command: `${modifier}+i`,
         tooltipHint: `${modifier.toUpperCase()} + I`,
@@ -449,7 +449,7 @@ export const coreSyntaxFormatters = {
     icon: () => <Icon src={LinkIcon} />,
     label: i18next.t('editor.toolbar.link'),
     getKeyboardShortcut: () => {
-      const modifier = Runtime.getOSKeyboardModifierKeyString();
+      const modifier = getOSKeyboardModifierKeyString();
       return {
         command: `${modifier}+k`,
         tooltipHint: `${modifier.toUpperCase()} + K`,
@@ -722,7 +722,7 @@ export const secondarySyntaxFormatters = {
     icon: () => <Icon src={UnderlineIcon} />,
     label: i18next.t('editor.toolbar.underline'),
     getKeyboardShortcut: () => {
-      const modifier = Runtime.getOSKeyboardModifierKeyString();
+      const modifier = getOSKeyboardModifierKeyString();
       return {
         command: `${modifier}+u`,
         tooltipHint: `${modifier.toUpperCase()} + U`,
@@ -741,7 +741,7 @@ export const secondarySyntaxFormatters = {
     icon: () => <Icon src={StrikethroughIcon} />,
     label: i18next.t('editor.toolbar.strikethrough'),
     getKeyboardShortcut: () => {
-      const modifier = Runtime.getOSKeyboardModifierKeyString();
+      const modifier = getOSKeyboardModifierKeyString();
       return {
         command: `${modifier}+shift+x`,
         tooltipHint: `${modifier.toUpperCase()} + SHIFT + X`,

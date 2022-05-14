@@ -219,6 +219,8 @@ function insertArticles(articles) {
   var list = document.getElementById('substories');
   var newArticlesHTML = '';
   var el = document.getElementById('home-articles-object');
+  var currentUser = userData();
+  var currentUserId = currentUser && currentUser.id;
   if (el) {
     el.outerHTML = '';
   }
@@ -238,9 +240,12 @@ function insertArticles(articles) {
       existingEl.parentElement.classList.contains('crayons-story') &&
       !document.getElementById('video-player-' + article.id)
     ) {
-      existingEl.parentElement.outerHTML = buildArticleHTML(article);
+      existingEl.parentElement.outerHTML = buildArticleHTML(
+        article,
+        currentUserId,
+      );
     } else if (!existingEl) {
-      var newHTML = buildArticleHTML(article);
+      var newHTML = buildArticleHTML(article, currentUserId);
       newArticlesHTML += newHTML;
       initializeReadingListIcons();
     }
