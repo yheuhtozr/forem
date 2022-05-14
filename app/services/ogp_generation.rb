@@ -26,6 +26,7 @@ class OgpGeneration
   def generate!
     @exec.playwright.chromium.launch do |browser|
       page = browser.new_page viewport: { width: 1200, height: 630 }
+      page.default_timeout = 100_000
       page.goto URL.url("social_previews/article/#{@id}")
       page.wait_for_function "() => document.fonts.check('28px IBM Plex Sans JP')" # check if a used webfont loaded
       page.screenshot path: @dir.join(IMAGE_PATH)
