@@ -1,4 +1,4 @@
-<% if (header_fields = @profile.ui_attributes_for(area: :header)).present? %>
+<% if (header_fields = @profile.ui_attributes_for(area: :header, raw: true)).present? %>
   <div class="profile-header__bottom fs-base">
     <% header_fields.sort.each do |title, value| %>
       <div class="crayons-definition">
