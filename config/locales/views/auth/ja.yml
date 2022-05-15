@@ -59,6 +59,8 @@ ja:
         secret:
           label: 新しい Forem の暗証コード
           placeholder: Forem ホストから伝えられた通り入力
+          hide: 新しい Forem の暗証コードを非表示
+          show: 新しい Forem の暗証コードを表示
         submit: 登録する
       wizard:
         meta:

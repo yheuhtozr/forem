@@ -21,5 +21,5 @@ ja:
         year: 今年
         infinity: 全期間
         latest: 新着順
-        signin_html: "👋 <a href=\"%{path}\">ログイン</a>すると<strong>人気</strong>や<strong>新着</strong>順で並べ替えができます。"
+        signin_html: "👋 <a href=\"%{path}\">ログイン</a>すると<strong>おすすめ</strong>順や<strong>新着</strong>、<strong>人気</strong>順で並べ替えができます。"
         top: 人気順

@@ -20,7 +20,7 @@ ja:
     mailer:
       invitation_instructions:
         subject: '招待を承認するには'
-        hello: 'こんにちは、%{email}さん'
+        hello: 'こんにちは'
         someone_invited_you: '%{url}に招待されました。以下のリンクから承認できます。'
         accept: '招待を承認する'
         accept_until: 'この招待は%{due_date}まで有効です。'
