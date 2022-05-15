@@ -5,9 +5,7 @@ ja:
       meta:
         title: バッジ
         name: "%{title} バッジ"
-      all:
-        one: Show one badge
-        other: Show all %{count} badges
+      all: 全 %{count} 個のバッジを表示
       heading: バッジ
       desc: 実績を積んでバッジをもらおう！バッジをクリックすると獲得条件が確認できます。
       name: "🏅 %{title} バッジ 🏅"

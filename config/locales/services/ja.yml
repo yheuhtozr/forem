@@ -15,18 +15,18 @@ ja:
         not_enabled: Provider %{name} is not enabled!
     badges:
       award_beloved_comment:
-        message: "You're famous! [This is the comment](%{comment}) for which you're being recognized. 😄"
+        message: "有名人になりました！あなたが多くの人の記憶に残った[コメントはこちら](%{comment})です 😄"
       award_streak:
-        longest: 16 weeks! You've achieved the longest writing streak possible. This makes you eligible for special quests in the future. Keep up the amazing contributions to our community!
-        message: "Congrats on achieving this streak! Consistent writing is hard. The next streak badge you can get is the %{count} Week Badge. 😉"
+        longest: 最高ランクの 16 週間の連続投稿記録を達成しました！これからも目標を持って続けていけば、いいことがあるかもしれません。素晴らしい投稿をコミュニティが待っています！
+        message: "連続投稿記録を達成しました！たゆまぬ努力に頭が下がります。次はぜひ %{count} 週間バッジをめざしてください 😉"
       award_yearly_club:
-        message: Happy %{community} birthday! Can you believe it's been %{count} years already?!
-      congrats: Congrats!!!
-      thank_you: Thank you so much for your contributions!
+        message: あなたの %{community} 記念日です！登録から %{count} 年目になりました！
+      congrats: おめでとう！！
+      thank_you: これからもご活躍を期待しています。
       community_wellness:
-        first: Thank you for participating in constructive conversation! You posted two or more comments this week. Keep it up to continue the streak!
-        longest: 32 weeks! You've achieved the longest streak possible for the Community Wellness badge. Amazing job engaging in the community and keep up your amazing contributions to our community!
-        other: Congrats on achieving a %{weeks} week streak for the Community Wellness Badge! Keep the constructive comments flowing to continue the streak!
+        first: 建設的な会話をありがとうございます。今週 2 回以上コメントを投稿しました。ぜひこのペースで続けていきましょう。
+        longest: 最高ランクの 32 週間連続のコミュニティ参加バッジを獲得しました！あなたの貢献はコミュニティにとってかけがえのないものです。活気あるサイトのために積極的な活動を続けてください！
+        other:  "%{weeks} 週間連続のコミュニティ参加バッジを獲得しました！引き続き素晴らしいコメントでサイトを盛り上げ、記録を伸ばしましょう！"
     broadcasts:
       welcome_notification:
         generator:
