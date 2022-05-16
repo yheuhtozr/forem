@@ -303,7 +303,7 @@ GEM
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
       rake
-    ffi-icu (0.4.0)
+    ffi-icu (0.4.3)
       ffi (~> 1.0, >= 1.0.9)
     field_test (0.5.2)
       activerecord (>= 5.2)
