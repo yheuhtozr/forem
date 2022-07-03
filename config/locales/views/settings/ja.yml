@@ -10,20 +10,6 @@ ja:
         primary: メインアドレス
         provider_email: "%{provider} のアドレス"
         provider_profile: "%{provider} のプロフィール設定"
-        api:
-          heading: "%{community} API キー"
-          desc_html: "%{community} API の認証に使うための個人 API キーを生成できます。API 機能はまだベータ版です。詳しくは%{doc}をご覧ください。"
-          active:
-            heading: 使用中の API キー（人に見せないでください！）
-            created: '作成日時: %{time}'
-          doc: ドキュメント
-          gen:
-            heading: 新しいキーを生成
-            label: 名称
-            text: 何のための API キーですか？
-            placeholder: 私のプロジェクト
-            submit: API キーを生成する
-          revoke: 破棄
         delete:
           heading: アカウントを削除
           desc1: アカウントを削除すると、
@@ -131,6 +117,20 @@ ja:
           one: エラーが発生したため個人プロフィールは保存されませんでした。
           other: "%{count} 件のエラーが発生したため個人プロフィールは保存されませんでした。"
       extensions:
+        api:
+          heading: "%{community} API キー"
+          desc_html: "%{community} API の認証に使うための個人 API キーを生成できます。API 機能はまだベータ版です。詳しくは%{doc}をご覧ください。"
+          active:
+            heading: 使用中の API キー（人に見せないでください！）
+            created: '作成日時: %{time}'
+          doc: ドキュメント
+          gen:
+            heading: 新しいキーを生成
+            label: 名称
+            text: 何のための API キーですか？
+            placeholder: 私のプロジェクト
+            submit: API キーを生成する
+          revoke: 破棄
         comment:
           heading: コメント用定型文
           desc_html: すぐに呼び出せる<strong>コメント用定型文</strong>を保存できます。

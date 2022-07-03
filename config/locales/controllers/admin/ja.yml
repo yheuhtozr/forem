@@ -4,6 +4,7 @@ ja:
     articles_controller:
       saved: Article saved!
       pinned: Article Pinned!
+      unpinned: Article Unpinned!
     badge_achievements_controller:
       deleted: Badge achievement has been deleted!
       rewarded: Badges are being rewarded. The task will finish shortly.
@@ -137,6 +138,7 @@ ja:
       unlocked: Unlocked User account!
       unpublished: Posts are being unpublished in the background. The job will complete soon.
       updated: User has been updated
+      updated_json: Success! %{username} has been updated.
       credits_added: Credits have been added!
       credits_removed: Credits have been removed.
     welcome_controller:

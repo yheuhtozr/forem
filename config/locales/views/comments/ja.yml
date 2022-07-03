@@ -89,7 +89,7 @@ ja:
           create:
             subtitle: 定型文を作成
             desc: 定型文はよくある質問への回答やよく使う文例の保存に役立ちます。
-          moderator: 審査用
+          moderator: 協力者用
           personal: 個人用
         submit: 送信
         preview: プレビュー
