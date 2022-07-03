@@ -198,9 +198,9 @@ export const ListingDashboard = () => {
         <div className="dashboard-listings-header">
           <h3>{i18next.t('listings.credits')}</h3>
           {creditCount(selectedListings, userCredits, orgs)}
-          <a href="/credits/purchase" data-no-instant>
+          {/* <a href="/credits/purchase" data-no-instant>
               {i18next.t('listings.buy')}
-          </a>
+          </a> */}
         </div>
       </div>
       {sortingDropdown}

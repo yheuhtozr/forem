@@ -186,18 +186,14 @@ describe('<ListingDashboard />', () => {
     const createListing = screen.getByRole('link', {
       name: 'Create a Listing',
     });
-    const buyCredits = screen.getByRole('link', { name: 'Buy Credits' });
+    // const buyCredits = screen.getByRole('link', { name: 'Buy Credits' });
 
     expect(listingHeading).toBeInTheDocument();
     expect(creditsHeading).toBeInTheDocument();
     expect(createListing).toBeInTheDocument();
 
     expect(createListing.getAttribute('href')).toEqual('/listings/new');
-
-    getByText('Credits', { selector: 'h3' });
-
-    // const buyCredits = getByText('Buy Credits', { selector: 'a' });
-
+    // expect(buyCredits).toBeInTheDocument();
     // expect(buyCredits.getAttribute('href')).toEqual('/credits/purchase');
   });
 
