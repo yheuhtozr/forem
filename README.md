@@ -62,8 +62,8 @@ with general questions please visit our community at
 ## Contributing
 
 We encourage you to contribute to Forem! Please check out the
-[Contributing to Forem guide](CONTRIBUTING.md) for guidelines about how to
-proceed.
+[Contributing to Forem guide](https://developers.forem.com/contributing-guide/forem)
+for guidelines about how to proceed.
 
 ## Getting Started
 
@@ -122,22 +122,17 @@ Please see our installation guides, such as the
 - [@jessleenyc](https://dev.to/jess)
 - [@peterkimfrank](https://dev.to/peter)
 - [@maestromac](https://dev.to/maestromac)
-- [@zhao-andy](https://dev.to/andy)
 - [@lightalloy](https://dev.to/lightalloy)
 - [@joshpuetz](http://dev.to/joshpuetz)
-- [@juliannatetreault](https://dev.to/juliannatetreault)
 - [@ridhwana](https://dev.to/ridhwana)
 - [@fdoxyz](https://dev.to/fdoxyz)
-- [@msarit](https://dev.to/msarit)
 - [@jdoss](https://dev.to/jdoss)
-- [@cmgorton](https://dev.to/coffeecraftcode)
 - [@andygeorge](https://dev.to/andygeorge)
-- [@phannon716](https://dev.to/phannon716)
 - [@s_aitchison](https://dev.to/s_aitchison)
 - [@rt4914](https://dev.to/rt4914)
 - [@jeremyf](https://dev.to/jeremyf)
-- [@dscottS3](https://dev.to/dscottS3)
 - [@asheren](https://dev.to/asheren)
+- [@jaw6](https://dev.to/jaw6)
 
 ## Vulnerability disclosure
 

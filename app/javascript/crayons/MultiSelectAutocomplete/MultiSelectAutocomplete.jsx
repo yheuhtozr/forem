@@ -3,8 +3,7 @@
 import { h, Fragment } from 'preact';
 import PropTypes from 'prop-types';
 import { useEffect, useRef, useReducer } from 'preact/hooks';
-import { DefaultSelectionTemplate } from './DefaultSelectionTemplate';
-import { i18next } from '@utilities/locale';
+import { DefaultSelectionTemplate } from '../../shared/components/defaultSelectionTemplate';
 
 const KEYS = {
   UP: 'ArrowUp',
@@ -545,6 +544,7 @@ export const MultiSelectAutocomplete = ({
       >
         <SelectionTemplate
           {...item}
+          buttonVariant="secondary"
           onEdit={() => enterEditState(item, index)}
           onDeselect={() => deselectItem(item)}
         />

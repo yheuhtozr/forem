@@ -32,7 +32,10 @@ class AbExperiment
       return if experiments.nil?
 
       experiments.each do |key, data|
-        experiment_start_date = @start_date || data.fetch("start_date").beginning_of_day
+        # We've already declared a winner, let's not do any of the processing
+        next if data.key?("winner")
+
+        experiment_start_date = @start_date || data.fetch("started_at").beginning_of_day
         experiment = key.to_sym
         convert(experiment: experiment, experiment_start_date: experiment_start_date)
       end
@@ -58,6 +61,11 @@ class AbExperiment
     end
 
     def convert_pageview_goal(experiment:, experiment_start_date:)
+      # TODO: Remove once we know that this test is not over-heating the application.  That would be a
+      # few days after the deploy to DEV of this change.
+      if FeatureFlag.accessible?(:field_test_event_single_create_pageview)
+        field_test_converted(experiment, participant: user, goal: goal) # base is someone viewed a page
+      end
       pageview_goal(experiment,
                     [7.days.ago, experiment_start_date].max,
                     "DATE(created_at)",
