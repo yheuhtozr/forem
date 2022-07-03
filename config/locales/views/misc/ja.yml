@@ -87,7 +87,8 @@ ja:
         newest: 新しい順
         oldest: 古い順
       meta:
-        title: 検索結果
+        title: "%{for}検索結果"
+        for: 「%{query}」の
         description: "%{site} => 検索結果"
     series:
       meta:
