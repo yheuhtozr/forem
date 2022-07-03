@@ -45,7 +45,7 @@ export const SaveButton = ({
         onMouseout={mouseOut}
         onBlur={mouseOut}
       >
-        {i18next.t(`articles.save.${buttonText.toLowerCase}`)}
+        {i18next.t(`articles.save.${buttonText.toLowerCase()}`)}
       </button>
     );
   }

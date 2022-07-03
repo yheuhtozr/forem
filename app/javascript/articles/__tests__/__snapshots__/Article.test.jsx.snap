@@ -264,7 +264,7 @@ Object {
                   id="article-save-button-62407"
                   type="button"
                 >
-                  articles.save.function toLowerCase() { [native code] }
+                  Save
                 </button>
               </div>
             </div>
@@ -531,7 +531,7 @@ Object {
                 id="article-save-button-62407"
                 type="button"
               >
-                articles.save.function toLowerCase() { [native code] }
+                Save
               </button>
             </div>
           </div>
