@@ -3,6 +3,8 @@ module Api
     # @note This controller partially authorizes with the ArticlePolicy, in an ideal world, it would
     #       fully authorize.  However, that refactor would require significantly more work.
     class ArticlesController < ApiController
+      include Api::ArticlesController
+
       before_action :authenticate!, only: %i[create update me]
 
       before_action :validate_article_param_is_hash, only: %i[create update]

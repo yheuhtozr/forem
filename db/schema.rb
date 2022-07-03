@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_29_150448) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_07_133847) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pg_trgm"
@@ -142,7 +142,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_29_150448) do
     t.boolean "show_comments", default: true
     t.text "slug"
     t.string "social_image"
-    t.integer "spaminess_rating", default: 0
     t.string "title"
     t.bigint "translation_group"
     t.datetime "updated_at", precision: nil, null: false

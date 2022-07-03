@@ -1,13 +1,23 @@
-import { h, Component } from 'preact';
+import { h } from 'preact';
+import { useState } from 'preact/hooks';
 import PropTypes from 'prop-types';
 import { articlePropTypes } from '../../common-prop-types';
 import { i18next } from '@utilities/locale';
 
-export class SaveButton extends Component {
-  constructor(props) {
-    super(props);
+export const SaveButton = ({
+  article,
+  isBookmarked: isBookmarkedProps,
+  onClick,
+  saveable = true,
+}) => {
+  const [buttonText, setButtonText] = useState(
+    isBookmarkedProps ? 'Saved' : 'Save',
+  );
+  const [isBookmarked, setIsBookmarked] = useState(isBookmarkedProps);
 
-    const { isBookmarked } = props;
+  const mouseMove = (_e) => {
+    setButtonText(isBookmarked ? 'Unsave' : 'Save');
+  };
 
     this.state = {
       buttonText: isBookmarked ? 'saved' : 'save',

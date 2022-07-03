@@ -1,123 +1,124 @@
-import { h, Component } from 'preact';
+import { h } from 'preact';
+import { useState, useEffect } from 'preact/hooks';
 import { ListingRow } from './dashboard/listingRow';
 import { i18next } from '@utilities/locale';
 
-export class ListingDashboard extends Component {
-  state = {
-    listings: [],
-    orgListings: [],
-    orgs: [],
-    userCredits: 0,
-    selectedListings: 'user',
-    filter: 'All',
-    sort: 'created_at',
-  };
+export const ListingDashboard = () => {
+  const [listings, setListings] = useState([]);
+  const [orgListings, setOrgListings] = useState([]);
+  const [orgs, setOrgs] = useState([]);
+  const [userCredits, setUserCredits] = useState(0);
+  const [selectedListings, setSelectedListings] = useState('user');
+  const [filter, setFilter] = useState('');
+  const [sort, setSort] = useState('created_at');
 
-  componentDidMount() {
-    const t = this;
+  useEffect(() => {
     const container = document.getElementById('listings-dashboard');
-    let listings = [];
-    let orgs = [];
-    let orgListings = [];
-    listings = JSON.parse(container.dataset.listings).sort((a, b) =>
+
+    const listings = JSON.parse(container.dataset.listings).sort((a, b) =>
       a.created_at > b.created_at ? -1 : 1,
     );
-    orgs = JSON.parse(container.dataset.orgs);
-    orgListings = JSON.parse(container.dataset.orglistings);
-    const userCredits = container.dataset.usercredits;
-    t.setState({ listings, orgListings, orgs, userCredits });
-  }
 
-  render() {
-    const {
-      listings,
-      orgListings,
-      userCredits,
-      orgs,
-      selectedListings,
-      filter,
-      sort,
-    } = this.state;
+    setListings(listings);
+    setOrgs(JSON.parse(container.dataset.orgs));
+    setOrgListings(JSON.parse(container.dataset.orglistings));
+    setUserCredits(container.dataset.usercredits);
+  }, []);
 
-    const isExpired = (listing) =>
-      listing.bumped_at && !listing.published
-        ? (Date.now() - new Date(listing.bumped_at.toString()).getTime()) /
-            (1000 * 60 * 60 * 24) >
-          30
-        : false;
-    const isDraft = (listing) =>
-      listing.bumped_at ? !isExpired(listing) && !listing.published : true;
+  const isExpired = (listing) =>
+    listing.bumped_at && !listing.published
+      ? (Date.now() - new Date(listing.bumped_at.toString()).getTime()) /
+          (1000 * 60 * 60 * 24) >
+        30
+      : false;
 
-    const filterListings = (listingsToFilter, selectedFilter) => {
-      if (selectedFilter === 'Draft') {
-        return listingsToFilter.filter((listing) => isDraft(listing));
-      }
-      if (selectedFilter === 'Expired') {
-        return listingsToFilter.filter((listing) => isExpired(listing));
-      }
-      if (selectedFilter === 'Active') {
-        return listingsToFilter.filter((listing) => listing.published === true);
-      }
-      return listingsToFilter;
-    };
+  const isDraft = (listing) =>
+    listing.bumped_at ? !isExpired(listing) && !listing.published : true;
 
-    const customSort = (a, b) => {
-      if (a[sort] === null) {
-        return 1;
-      }
-      if (b[sort] === null) {
-        return -1;
-      }
-      if (a[sort] > b[sort]) {
-        return -1;
-      }
+  const filterListings = (listingsToFilter, selectedFilter) => {
+    if (selectedFilter === 'Draft') {
+      return listingsToFilter.filter((listing) => isDraft(listing));
+    }
+    if (selectedFilter === 'Expired') {
+      return listingsToFilter.filter((listing) => isExpired(listing));
+    }
+    if (selectedFilter === 'Active') {
+      return listingsToFilter.filter((listing) => listing.published === true);
+    }
+    return listingsToFilter;
+  };
+
+  const customSort = (a, b) => {
+    if (a[sort] === null) {
       return 1;
-    };
+    }
+    if (b[sort] === null) {
+      return -1;
+    }
+    if (a[sort] > b[sort]) {
+      return -1;
+    }
+    return 1;
+  };
 
-    const showListings = (
-      selected,
-      userListings,
+  const showListings = (
+    selected,
+    userListings,
+    organizationListings,
+    selectedFilter,
+  ) => {
+    let displayedListings;
+    if (selected === 'user') {
+      displayedListings = filterListings(userListings, selectedFilter).sort(
+        customSort,
+      );
+      return displayedListings.map((listing) => (
+        <ListingRow listing={listing} key={listing.id} />
+      ));
+    }
+    displayedListings = filterListings(
       organizationListings,
       selectedFilter,
-    ) => {
-      let displayedListings;
-      if (selected === 'user') {
-        displayedListings = filterListings(userListings, selectedFilter).sort(
-          customSort,
-        );
-        return displayedListings.map((listing) => (
-          <ListingRow listing={listing} key={listing.id} />
-        ));
+    ).sort(customSort);
+    return displayedListings.map((listing) =>
+      listing.organization_id === selected ? (
+        <ListingRow listing={listing} />
+      ) : null,
+    );
+  };
+
+  const setStateOnKeyPress = (event, setState) =>
+    (event.key === 'Enter' || event.key === ' ') && setState();
+
+  const filters = ['All', 'Active', 'Draft', 'Expired'];
+  const filterButtons = filters.map((f, index) => (
+    <span
+      onClick={(event) => {
+        setFilter(event.target.textContent);
+      }}
+      className={`rounded-btn ${filter === f ? 'active' : ''}`}
+      role="button"
+      key={index}
+      onKeyPress={(event) =>
+        setStateOnKeyPress(event, () => setFilter(event.target.textContent))
       }
-      displayedListings = filterListings(
-        organizationListings,
-        selectedFilter,
-      ).sort(customSort);
-      return displayedListings.map((listing) =>
-        listing.organization_id === selected ? (
-          <ListingRow listing={listing} />
-        ) : (
-          ''
-        ),
-      );
-    };
+      tabIndex="0"
+    >
+      {f}
+    </span>
+  ));
 
-    const setStateOnKeyPress = (event, state) =>
-      (event.key === 'Enter' || event.key === ' ') && this.setState(state);
-
-    const filters = ['All', 'Active', 'Draft', 'Expired'];
-    const filterButtons = filters.map((f, index) => (
-      <span
-        onClick={(event) => {
-          this.setState({ filter: event.target.textContent });
+  const sortingDropdown = (
+    <div className="dashboard-listings-actions">
+      <div className="listings-dashboard-filter-buttons">{filterButtons}</div>
+      <select
+        aria-label="Filter listings"
+        onChange={(event) => {
+          setSort(event.target.value);
         }}
-        className={`rounded-btn ${filter === f ? 'active' : ''}`}
-        role="button"
-        key={index}
-        onKeyPress={(event) =>
-          setStateOnKeyPress(event, { filter: event.target.textContent })
-        }
-        tabIndex="0"
+        onBlur={(event) => {
+          setSort(event.target.value);
+        }}
       >
         {i18next.t(`listings.filter.${f}`)}
       </span>
@@ -142,19 +143,34 @@ export class ListingDashboard extends Component {
         </select>
       </div>
     );
+  };
 
-    const orgButtons = orgs.map((org) => (
+  const creditCount = (selected, userCreds, organizations) => {
+    return selected === 'user' ? (
+      <h4>
+        Credits Available:
+        {userCreds}
+      </h4>
+    ) : (
+      <h4>
+        Credits Available:{' '}
+        {organizations.find((org) => org.id === selected).unspent_credits_count}
+      </h4>
+    );
+  };
+
+  return (
+    <div className="dashboard-listings-container">
       <span
-        onClick={() => this.setState({ selectedListings: org.id })}
-        className={`rounded-btn ${selectedListings === org.id ? 'active' : ''}`}
+        onClick={() => setSelectedListings('user')}
+        className={`rounded-btn ${selectedListings === 'user' ? 'active' : ''}`}
         role="button"
-        key={org.id}
         tabIndex="0"
         onKeyPress={(event) =>
-          setStateOnKeyPress(event, { selectedListings: org.id })
+          setStateOnKeyPress(event, () => setSelectedListings('user'))
         }
       >
-        {org.name}
+        Personal
       </span>
     ));
 
@@ -223,11 +239,18 @@ export class ListingDashboard extends Component {
             </a> */}
           </div>
         </div>
-        {sortingDropdown}
-        <div className="dashboard-listings-view">
-          {showListings(selectedListings, listings, orgListings, filter)}
+        <div className="dashboard-listings-header">
+          <h3>Credits</h3>
+          {creditCount(selectedListings, userCredits, orgs)}
+          <a href="/credits/purchase" data-no-instant>
+            Buy Credits
+          </a>
         </div>
       </div>
-    );
-  }
-}
+      {sortingDropdown}
+      <div className="dashboard-listings-view">
+        {showListings(selectedListings, listings, orgListings, filter)}
+      </div>
+    </div>
+  );
+};

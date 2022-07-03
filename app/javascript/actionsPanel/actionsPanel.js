@@ -435,6 +435,17 @@ export function addBottomActionsListeners() {
   document
     .getElementById('open-flag-user-modal')
     .addEventListener('click', toggleFlagUserModal);
+
+  document
+    .getElementById('suspend-user-btn')
+    ?.addEventListener('click', toggleModal);
+
+  document
+    .getElementById('unsuspend-user-btn')
+    ?.addEventListener('click', toggleModal);
+
+  document.getElementById('unpublish-all-posts-btn')
+    ?.addEventListener('click', toggleUnpublishAllPostsModal);
 }
 
 export function initializeActionsPanel() {

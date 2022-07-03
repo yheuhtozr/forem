@@ -16,10 +16,12 @@ export const Modal = ({
   sheet,
   centered,
   noBackdrop,
+  showHeader = true,
   sheetAlign = 'center',
   backdropDismissible = false,
   onClose = () => {},
   focusTrapSelector = '.crayons-modal__box',
+  document = window.document,
 }) => {
   const classes = classNames('crayons-modal', {
     [`crayons-modal--${size}`]: size && size !== 'medium',
@@ -36,6 +38,7 @@ export const Modal = ({
       onDeactivate={onClose}
       clickOutsideDeactivates={backdropDismissible}
       selector={focusTrapSelector}
+      document={document}
     >
       <div data-testid="modal-container" className={classes}>
         <div
@@ -81,4 +84,5 @@ Modal.propTypes = {
   focusTrapSelector: PropTypes.string,
   sheet: PropTypes.bool,
   sheetAlign: PropTypes.oneOf(['center', 'left', 'right']),
+  showHeader: PropTypes.bool,
 };

@@ -2,9 +2,13 @@ import PropTypes from 'prop-types';
 import { h, Component } from 'preact';
 import { i18next } from '@utilities/locale';
 
-export class Categories extends Component {
-  options = () => {
-    const { categoriesForSelect, categoryId } = this.props;
+export const Categories = ({
+  categoriesForDetails,
+  onChange,
+  categoriesForSelect,
+  categoryId,
+}) => {
+  const options = () => {
     return categoriesForSelect.map(([text, slug, id]) => {
       // Array example: ["Conference CFP (1 Credit)", "cfp", "1"]
       if (categoryId === id) {
@@ -22,17 +26,7 @@ export class Categories extends Component {
     });
   };
 
-  details = () => {
-    const { categoriesForDetails } = this.props;
-    const rules = categoriesForDetails.map((category) => {
-      const paragraphText = (
-        <li>
-          <strong>{category.name}:</strong> {category.rules}
-        </li>
-      );
-      return <ul key={category.name}>{paragraphText}</ul>;
-    });
-
+  const details = () => {
     return (
       <details>
         <summary>{i18next.t('listings.form.category.summary')}</summary>
@@ -61,9 +55,10 @@ export class Categories extends Component {
         </div>
         {this.details()}
       </div>
-    );
-  }
-}
+      {details()}
+    </div>
+  );
+};
 
 Categories.propTypes = {
   categoriesForSelect: PropTypes.arrayOf(PropTypes.array).isRequired,

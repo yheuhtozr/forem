@@ -34,5 +34,5 @@ export const BasicEditor = ({ openModal }) => (
 );
 
 BasicEditor.propTypes = {
-  toggleModal: PropTypes.func.isRequired,
+  openModal: PropTypes.func.isRequired,
 };
