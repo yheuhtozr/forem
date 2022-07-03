@@ -1,5 +1,6 @@
 import { h } from 'preact';
 import PropTypes from 'prop-types';
+import { Trans } from 'react-i18next';
 import { i18next } from '@utilities/locale';
 
 export const EditorFormattingHelp = ({ openModal }) => (
@@ -125,10 +126,11 @@ export const EditorFormattingHelp = ({ openModal }) => (
         </details>
       </li>
       <li>
-        {i18next.t('editor.help.basics.desc3', {
-          embed: '{% embed https://... %}',
-          interpolation: { escapeValue: false },
-        })}
+        <Trans
+          i18nKey="editor.help.basics.desc3"
+          values={{ embed: '{% embed https://... %}' }}
+          tOptions={{ interpolation: { escapeValue: false } }}
+        />
         <a href="#liquid" onClick={() => openModal('liquidShowing')}>
           {i18next.t('editor.help.basics.liquid')}
         </a>

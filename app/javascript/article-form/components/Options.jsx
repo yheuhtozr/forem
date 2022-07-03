@@ -155,11 +155,7 @@ export const Options = ({
             {i18next.t('editor.options.url.label')}
           </label>
           <p className="crayons-field__description">
-            <Trans
-              i18nKey="editor.options.url.desc"
-              // eslint-disable-next-line react/jsx-key
-              components={[<code />]}
-            />
+            <Trans i18nKey="editor.options.url.desc"/>
           </p>
           <input
             type="text"
@@ -193,15 +189,9 @@ export const Options = ({
           <label htmlFor="baseLang" className="crayons-field__label">
             {i18next.t('editor.options.lang.label')}
           </label>
-          <p
-            className="crayons-field__description"
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{
-              __html: i18next.t('editor.options.lang.desc', {
-                interpolation: { escapeValue: false },
-              }),
-            }}
-          />
+          <p className="crayons-field__description">
+            <Trans i18nKey="editor.options.lang.desc"/>
+          </p>
           <input
             type="text"
             value={baseLang}

@@ -15,7 +15,7 @@ i18next
     },
     interpolation: { prefix: '%{', suffix: '}' },
     react: {
-      transKeepBasicHtmlNodesFor: ['br', 'strong', 'b', 'em', 'i', 'p']
+      transKeepBasicHtmlNodesFor: ['br', 'strong', 'b', 'em', 'i', 'p', 'code']
     }
   });
 
