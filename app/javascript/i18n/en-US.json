@@ -105,6 +105,7 @@
       "change": "Change",
       "number": "Only one image can be dropped at a time.",
       "remove": "Remove",
+      "tooltip": "Use a ratio of 100:42 for best results.",
       "uploading": "Uploading..."
     },
     "create": "Create Post",
@@ -344,6 +345,7 @@
       "view": "View draft"
     },
     "all": "All listings",
+    "aria_filter": "Filter listings",
     "available": "Credits Available: ",
     "bumped": "Recently Bumped",
     "buy": "Buy Credits",
@@ -365,6 +367,7 @@
         "label": "Body Markdown"
       },
       "category": {
+        "details": "<strong>%{name}:</strong> %{rules}",
         "label": "Category",
         "summary": "Category details/rules"
       },
@@ -427,7 +430,12 @@
     "thumbsdown": "This post will be less visible.",
     "thumbsup": "This post will be more visible.",
     "title": "Moderation panel actions",
-    "unpublish": "You are unpublishing this post; are you sure?",
+    "unpublish": {
+      "heading": "Unpublish post",
+      "desc1": "Once unpublished, this post will become invisible to the public and only accessible to %{authorName}.",
+      "desc2": "They can still re-publish the post if they are not suspended.",
+      "submit": "Unpublish post"
+    },
     "vomit": "You've flagged this post as abusive or spam."
   },
   "notifications": {

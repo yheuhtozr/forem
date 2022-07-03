@@ -31,10 +31,9 @@ export const GithubRepos = () => {
 
   if (error) {
     return (
-      <div
-        title={i18next.t('gitHub.loading')}
-        className="github-repos loading-repos"
-      />
+      <div className="github-repos github-repos-errored" role="alert">
+        {i18next.t('errors.occurred', { error: errorMessage })}
+      </div>
     );
   }
 
@@ -56,7 +55,7 @@ export const GithubRepos = () => {
 
   return (
     <div
-      title="Loading GitHub repositories"
+      title={i18next.t('gitHub.loading')}
       className="github-repos loading-repos"
     />
   );

@@ -3,7 +3,7 @@
 import { h, Fragment } from 'preact';
 import PropTypes from 'prop-types';
 import { useEffect, useRef, useReducer } from 'preact/hooks';
-import { DefaultSelectionTemplate } from './DefaultSelectionTemplate';
+import { DefaultSelectionTemplate } from '../../shared/components/defaultSelectionTemplate';
 import { i18next } from '@utilities/locale';
 
 const KEYS = {

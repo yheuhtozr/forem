@@ -48,7 +48,7 @@ const StandardImageUpload = ({
           data-max-file-size-mb="25"
         />
         <span data-testid="tooltip" className="crayons-tooltip__content">
-          Use a ratio of 100:42 for best results.
+          {i18next.t('editor.cover.tooltip')}
         </span>
       </label>
     </Fragment>
@@ -153,23 +153,20 @@ export const ArticleCoverImage = ({ onMainImageUrlChange, mainImage }) => {
     handleMainImageUpload(event);
   };
 
-  render() {
-    const { mainImage } = this.props;
-    const { uploadError, uploadErrorMessage, uploadingImage } = this.state;
-    const uploadLabel = i18next.t(
-      mainImage ? 'editor.cover.change' : 'editor.cover.add',
-    );
+  const uploadLabel = i18next.t(
+    mainImage ? 'editor.cover.change' : 'editor.cover.add',
+  );
 
-    // When the component is rendered in an environment that supports a native
-    // image picker for image upload we want to add the aria-label attr and the
-    // onClick event to the UI button. This event will kick off the native UX.
-    // The props are unwrapped (using spread operator) in the button below
-    const extraProps = this.useNativeUpload()
-      ? {
-          onClick: this.initNativeImagePicker,
-          'aria-label': i18next.t('editor.cover.aria_label'),
-        }
-      : {};
+  // When the component is rendered in an environment that supports a native
+  // image picker for image upload we want to add the aria-label attr and the
+  // onClick event to the UI button. This event will kick off the native UX.
+  // The props are unwrapped (using spread operator) in the button below
+  const extraProps = useNativeUpload()
+    ? {
+        onClick: initNativeImagePicker,
+        'aria-label': i18next.t('editor.cover.aria_label'),
+      }
+    : {};
 
   // Native Bridge messages come through ForemMobile events
   document.addEventListener('ForemMobile', handleNativeMessage);
@@ -193,44 +190,31 @@ export const ArticleCoverImage = ({ onMainImageUrlChange, mainImage }) => {
         <div className="flex items-center">
           {uploadingImage && (
             <span class="lh-base pl-1 border-0 py-2 inline-block">
-              <Spinner /> Uploading...
+              <Spinner /> {i18next.t('editor.cover.uploading')}
             </span>
           )}
-          <div className="flex items-center">
-            {uploadingImage && (
-              <span class="lh-base pl-1 border-0 py-2 inline-block">
-                <Spinner /> {i18next.t('editor.cover.uploading')}
-              </span>
+
+          <Fragment>
+            {useNativeUpload() ? (
+              <NativeIosImageUpload
+                isUploadingImage={uploadingImage}
+                extraProps={extraProps}
+                uploadLabel={uploadLabel}
+              />
+            ) : (
+              <StandardImageUpload
+                isUploadingImage={uploadingImage}
+                uploadLabel={uploadLabel}
+                handleImageUpload={handleMainImageUpload}
+              />
             )}
 
-            <Fragment>
-              {this.useNativeUpload() ? (
-                <NativeIosImageUpload
-                  isUploadingImage={uploadingImage}
-                  extraProps={extraProps}
-                  uploadLabel={uploadLabel}
-                />
-              ) : (
-                <StandardImageUpload
-                  isUploadingImage={uploadingImage}
-                  uploadLabel={uploadLabel}
-                  handleImageUpload={this.handleMainImageUpload}
-                />
-              )}
-
-              {mainImage && !uploadingImage && (
-                <Button
-                  variant="ghost-danger"
-                  onClick={this.triggerMainImageRemoval}
-                >
-                  {i18next.t('editor.cover.remove')}
-                </Button>
-              )}
-            </Fragment>
-          </div>
-          {uploadError && (
-            <p className="articleform__uploaderror">{uploadErrorMessage}</p>
-          )}
+            {mainImage && !uploadingImage && (
+              <Button variant="ghost-danger" onClick={triggerMainImageRemoval}>
+                {i18next.t('editor.cover.remove')}
+              </Button>
+            )}
+          </Fragment>
         </div>
         {uploadError && (
           <p className="articleform__uploaderror">{uploadErrorMessage}</p>

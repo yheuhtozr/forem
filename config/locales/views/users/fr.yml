@@ -44,12 +44,12 @@ fr:
         website:
           label: Website URL
           placeholder: https://yoursite.com
-        education: Activities
-        currently_learning: Languages learning
-        currently_hacking_on: Languages creating
-        available_for: Worldbuilding
-        skills_languages: Language abilities
-        work: Works/Awards
+        education: Education
+        currently learning: Currently learning
+        currently hacking on: Currently hacking on
+        available for: Available for
+        skills/languages: Skills/Languages
+        work: Work
       side:
         comment:
           icon: Comment

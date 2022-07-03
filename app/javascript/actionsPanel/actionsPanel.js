@@ -1,6 +1,9 @@
 import { toggleFlagUserModal } from '../packs/flagUserModal';
-import { i18next } from '@utilities/locale';
+import { toggleModal } from '../packs/toggleUserSuspensionModal';
+import { toggleUnpublishPostModal } from '../packs/unpublishPostModal';
+import { toggleUnpublishAllPostsModal } from '../packs/modals/unpublishAllPosts';
 import { request } from '@utilities/http';
+import { i18next } from '@utilities/locale';
 
 export function addCloseListener() {
   const button = document.getElementsByClassName('close-actions-panel')[0];
@@ -149,33 +152,6 @@ export async function updateExperienceLevel(
     alert(error);
   }
 }
-
-const adminUnpublishArticle = async (id, username, slug) => {
-  try {
-    const response = await request(`/articles/${id}/admin_unpublish`, {
-      method: 'PATCH',
-      body: JSON.stringify({ id, username, slug }),
-      credentials: 'same-origin',
-    });
-
-    const outcome = await response.json();
-
-    /* eslint-disable no-restricted-globals */
-    if (outcome.message == 'success') {
-      window.top.location.assign(`${window.location.origin}${outcome.path}`);
-    } else {
-      top.addSnackbarItem({
-        message: i18next.t('errors.error', { error: outcome.message }),
-        addCloseButton: true,
-      });
-    }
-  } catch (error) {
-    top.addSnackbarItem({
-      message: i18next.t('errors.error', { error }),
-      addCloseButton: true,
-    });
-  }
-};
 
 const adminFeatureArticle = async (id, featured) => {
   try {
@@ -419,17 +395,7 @@ export function addBottomActionsListeners() {
 
   const unpublishArticleBtn = document.getElementById('unpublish-article-btn');
   if (unpublishArticleBtn) {
-    unpublishArticleBtn.addEventListener('click', () => {
-      const {
-        articleId: id,
-        articleAuthor: username,
-        articleSlug: slug,
-      } = unpublishArticleBtn.dataset;
-
-      if (confirm(i18next.t('modActions.unpublish'))) {
-        adminUnpublishArticle(id, username, slug);
-      }
-    });
+    unpublishArticleBtn.addEventListener('click', toggleUnpublishPostModal);
   }
 
   document

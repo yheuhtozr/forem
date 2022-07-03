@@ -32,7 +32,7 @@
       "template": {
         "create": "Create template",
         "desc": "Templates let you quickly answer FAQs or store snippets for re-use.",
-        "moderator": "Moderator",
+        "moderator": "Trusted User",
         "personal": "Personal"
       },
       "templates": "Templates",

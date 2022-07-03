@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { request } from '../utilities/http';
 import { ButtonNew as Button } from '@crayons';
 import RemoveIcon from '@images/x.svg';
+import { i18next } from '@utilities/locale';
 
 async function confirmAdminUnpublishPost(id, username, slug) {
   try {
@@ -19,13 +20,13 @@ async function confirmAdminUnpublishPost(id, username, slug) {
       window.top.location.assign(`${window.location.origin}${outcome.path}`);
     } else {
       top.addSnackbarItem({
-        message: `Error: ${outcome.message}`,
+        message: i18next.t('errors.error', { error: outcome.message }),
         addCloseButton: true,
       });
     }
   } catch (error) {
     top.addSnackbarItem({
-      message: `Error: ${error}`,
+      message: i18next.t('errors.error', { error }),
       addCloseButton: true,
     });
   }
@@ -104,7 +105,7 @@ export function UnpublishPostModal({
     >
       <div class="crayons-modal__box">
         <header class="crayons-modal__box__header unpublish-post-modal-header">
-          <h2 class="crayons-modal__box__header__title">Unpublish post</h2>
+          <h2 class="crayons-modal__box__header__title">{i18next.t('modActions.unpublish.heading')}</h2>
           <Button
             icon={RemoveIcon}
             className="inline-flex"
@@ -114,10 +115,9 @@ export function UnpublishPostModal({
         <div class="crayons-modal__box__body">
           <div class="grid gap-4">
             <p>
-              Once unpublished, this post will become invisible to the public
-              and only accessible to {authorName}.
+              {i18next.t('modActions.unpublish.desc1', { authorName }) }
             </p>
-            <p>They can still re-publish the post if they are not suspended.</p>
+            <p>{i18next.t('modActions.unpublish.desc2')}</p>
             <div>
               <Button
                 destructive
@@ -132,7 +132,7 @@ export function UnpublishPostModal({
                   );
                 }}
               >
-                Unpublish post
+                {i18next.t('modActions.unpublish.submit')}
               </Button>
             </div>
           </div>

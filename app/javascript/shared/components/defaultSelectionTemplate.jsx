@@ -2,6 +2,7 @@ import { h } from 'preact';
 import PropTypes from 'prop-types';
 import { Icon, ButtonNew as Button } from '@crayons';
 import { Close } from '@images/x.svg';
+import { i18next } from '@utilities/locale';
 
 /**
  * Responsible for the layout of a selected item in the crayons autocomplete and multi input components
@@ -23,7 +24,9 @@ export const DefaultSelectionTemplate = ({
     <Button
       variant={buttonVariant}
       className={`${className} p-1 cursor-text`}
-      aria-label={`Edit ${name}`}
+      aria-label={i18next.t('crayons.tagAutocomplete.aria_edit', {
+        item: name,
+      })}
       onClick={onEdit}
     >
       {name}
@@ -31,7 +34,9 @@ export const DefaultSelectionTemplate = ({
     <Button
       variant={buttonVariant}
       className={`${className} p-1`}
-      aria-label={`Remove ${name}`}
+      aria-label={i18next.t('crayons.tagAutocomplete.aria_remove', {
+        item: name,
+      })}
       onClick={onDeselect}
     >
       <Icon src={Close} />

@@ -242,14 +242,10 @@ function buildArticleHTML(article, currentUserId = null) {
     }">${userName}</a>
     ${
       isArticle
-        ? `<div class="profile-preview-card relative mb-4 s:mb-0 fw-medium hidden m:inline-block"><button id="story-author-preview-trigger-${
-            article.id
-          }" aria-controls="story-author-preview-content-${
-            article.id
-          }" class="profile-preview-card__trigger fs-s crayons-btn crayons-btn--ghost p-0" aria-label="${i18next.t(
-            'users.details',
-            { user: article.user.name },
-          )}">${article.user.name}</button>${previewCardContent}</div>`
+        ? `<div class="profile-preview-card relative mb-4 s:mb-0 fw-medium hidden m:inline-block"><button id="story-author-preview-trigger-${article.id}" aria-controls="story-author-preview-content-${article.id}" class="profile-preview-card__trigger fs-s crayons-btn crayons-btn--ghost p-1 -ml-1 -my-2" aria-label="${i18next.t(
+          'users.details',
+          { user: article.user.name },
+        )}">${userName}</button>${previewCardContent}</div>`
         : ''
     }
             ${forOrganization}
@@ -314,7 +310,7 @@ function buildArticleHTML(article, currentUserId = null) {
       saveButton = `
         <button type="button"
           class="crayons-btn crayons-btn--secondary crayons-btn--icon-left fs-s w-max bookmark-button article-engagement-count engage-button follow-action-button follow-user"
-          data-info='{"id": ${article.id},"className":"User", "name": "${article.user.name}"}'
+          data-info='{"id": ${article.id},"className":"User", "name": "${userName}"}'
         data-follow-action-button>
           &nbsp;
         </button>`;

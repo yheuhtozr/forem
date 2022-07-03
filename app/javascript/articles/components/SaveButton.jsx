@@ -19,67 +19,51 @@ export const SaveButton = ({
     setButtonText(isBookmarked ? 'Unsave' : 'Save');
   };
 
-    this.state = {
-      buttonText: isBookmarked ? 'saved' : 'save',
-    };
+  const mouseOut = (_e) => {
+    setButtonText(isBookmarked ? 'Saved' : 'Save');
+  };
+
+  const handleClick = (_e) => {
+    onClick(_e);
+    setButtonText(isBookmarked ? 'Save' : 'Saved');
+    setIsBookmarked((prevState) => !prevState);
+  };
+
+  if (article.class_name === 'Article' && saveable) {
+    return (
+      <button
+        type="button"
+        id={`article-save-button-${article.id}`}
+        className={`crayons-btn crayons-btn--s w-max ${
+          isBookmarked ? 'crayons-btn--ghost' : 'crayons-btn--secondary'
+        }`}
+        data-initial-feed
+        data-reactable-id={article.id}
+        onClick={handleClick}
+        onMouseMove={mouseMove}
+        onFocus={mouseMove}
+        onMouseout={mouseOut}
+        onBlur={mouseOut}
+      >
+        {i18next.t(`articles.save.${buttonText.toLowerCase}`)}
+      </button>
+    );
+  }
+  if (article.class_name === 'User') {
+    return (
+      <button
+        type="button"
+        className="crayons-btn crayons-btn--secondary fs-s"
+        data-info={`{"id":${article.id},"className":"User"}`}
+        data-follow-action-button
+      >
+        &nbsp;
+      </button>
+    );
   }
 
-  render() {
-    const { buttonText } = this.state;
-    const { article, isBookmarked, onClick, saveable = true } = this.props;
-
-    const mouseMove = (_e) => {
-      this.setState({ buttonText: isBookmarked ? 'unsave' : 'save' });
-    };
-
-    const mouseOut = (_e) => {
-      this.setState({ buttonText: isBookmarked ? 'saved' : 'save' });
-    };
-
-    const handleClick = (_e) => {
-      onClick(_e);
-      this.setState({
-        buttonText: isBookmarked ? 'save' : 'saved',
-        isBookmarked: !isBookmarked,
-      });
-    };
-
-    if (article.class_name === 'Article' && saveable) {
-      return (
-        <button
-          type="button"
-          id={`article-save-button-${article.id}`}
-          className={`crayons-btn crayons-btn--s w-max ${
-            isBookmarked ? 'crayons-btn--ghost' : 'crayons-btn--secondary'
-          }`}
-          data-initial-feed
-          data-reactable-id={article.id}
-          onClick={handleClick}
-          onMouseMove={mouseMove}
-          onFocus={mouseMove}
-          onMouseout={mouseOut}
-          onBlur={mouseOut}
-        >
-          {i18next.t(`articles.save.${buttonText}`)}
-        </button>
-      );
-    }
-    if (article.class_name === 'User') {
-      return (
-        <button
-          type="button"
-          className="crayons-btn crayons-btn--secondary fs-s"
-          data-info={`{"id":${article.id},"className":"User"}`}
-          data-follow-action-button
-        >
-          &nbsp;
-        </button>
-      );
-    }
-
-    return null;
-  }
-}
+  return null;
+};
 
 SaveButton.propTypes = {
   article: articlePropTypes.isRequired,

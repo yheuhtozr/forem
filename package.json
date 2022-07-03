@@ -132,8 +132,9 @@
     "intersection-observer": "^0.12.0",
     "linkstate": "^2.0.1",
     "lodash.debounce": "4.0.8",
+    "moment": "^2.29.3",
     "playwright": "^1.20.1",
-    "postcss": "^8.4.13",
+    "postcss": "^8.4.14",
     "postcss-cli": "^9.1.0",
     "postcss-cssnext": "^3.1.0",
     "postcss-smart-import": "^0.7.6",
@@ -142,6 +143,7 @@
     "prop-types": "^15.8.1",
     "rails-erb-loader": "^5.5.2",
     "react-colorful": "^5.5.1",
+    "react-dates": "^21.8.0",
     "react-i18next": "^11.12.0",
     "web-share-wrapper": "^0.2.2"
   }

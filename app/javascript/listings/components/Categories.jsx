@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { h, Component } from 'preact';
+import { h } from 'preact';
 import { i18next } from '@utilities/locale';
 
 export const Categories = ({
@@ -30,30 +30,34 @@ export const Categories = ({
     return (
       <details>
         <summary>{i18next.t('listings.form.category.summary')}</summary>
-        {rules}
+        {categoriesForDetails.map((category) => {
+          return (
+            <ul key={category.name}>
+              <li>
+                {i18next.t('listings.format.category.details', { name: category.name, rules: category.rules })}
+              </li>
+            </ul>
+          );
+        })}
       </details>
     );
   };
 
-  render() {
-    const { onChange } = this.props;
-    return (
-      <div>
-        <div className="crayons-field mb-4">
-          <label className="crayons-field__label" htmlFor="category">
-            {i18next.t('listings.form.category.label')}
-          </label>
-          <select
-            id="category"
-            className="crayons-select"
-            name="listing[listing_category_id]"
-            onChange={onChange}
-            onBlur={onChange}
-          >
-            {this.options()}
-          </select>
-        </div>
-        {this.details()}
+  return (
+    <div>
+      <div className="crayons-field mb-4">
+        <label className="crayons-field__label" htmlFor="category">
+          {i18next.t('listings.form.category.label')}
+        </label>
+        <select
+          id="category"
+          className="crayons-select"
+          name="listing[listing_category_id]"
+          onChange={onChange}
+          onBlur={onChange}
+        >
+          {options()}
+        </select>
       </div>
       {details()}
     </div>

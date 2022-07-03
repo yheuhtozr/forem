@@ -278,7 +278,7 @@ describe('<ArticleCoverImage />', () => {
         );
         fireEvent(document, event);
 
-        const errorElement = await findByText(error);
+        const errorElement = findByText(error);
         expect(errorElement).toBeInTheDocument();
         expect(onMainImageUrlChange).not.toHaveBeenCalled();
       });
@@ -305,7 +305,7 @@ describe('<ArticleCoverImage />', () => {
         );
         fireEvent(document, event);
 
-        const uploadingText = await findByText(/Uploading.../i);
+        const uploadingText = findByText(/Uploading.../i);
         expect(uploadingText).toBeInTheDocument();
 
         expect(onMainImageUrlChange).not.toHaveBeenCalled();

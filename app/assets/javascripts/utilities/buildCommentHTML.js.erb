@@ -62,7 +62,7 @@ function buildCommentHTML(comment) {
       </time>
     </a>
 
-    <div class="comment__dropdown">
+    <div class="comment__dropdown" data-tracking-name="comment_dropdown">
       <button  id="comment-dropdown-trigger-${comment.id}" aria-controls="comment-dropdown-${comment.id}" aria-expanded="false" class="dropbtn comment__dropdown-trigger crayons-btn crayons-btn--s crayons-btn--ghost crayons-btn--icon" aria-label="${i18next.t('comments.menu.aria_label')}" aria-haspopup="true">
         ${ iconSmallOverflowHorizontal }
       </button>

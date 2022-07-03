@@ -1,5 +1,6 @@
 import { closeWindowModal, showWindowModal } from '@utilities/showModal';
 import { request } from '@utilities/http';
+import { i18next } from '@utilities/locale';
 
 const unpublishAllPosts = async (event) => {
   event.preventDefault();
@@ -23,7 +24,7 @@ const unpublishAllPosts = async (event) => {
     });
   } catch (error) {
     top.addSnackbarItem({
-      message: `Error: ${error}`,
+      message: i18next.t('errors.error', { error }),
       addCloseButton: true,
     });
   }
