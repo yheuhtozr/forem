@@ -24,6 +24,7 @@
 
 </head>
 <body class="admin default-header"
+  data-locale="<%= j(I18n.locale) %>"
   data-honeybadger-key="<%= j(ApplicationConfig["HONEYBADGER_JS_API_KEY"]) %>"
   data-deployed-at="<%= j(ForemInstance.deployed_at) %>"
   data-latest-commit-id="<%= j(ForemInstance.latest_commit_id) %>"
