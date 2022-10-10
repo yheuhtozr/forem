@@ -1,8 +1,8 @@
 import { h } from 'preact';
 import PropTypes from 'prop-types';
 import { Trans } from 'react-i18next';
-import { i18next, locale } from '@utilities/locale';
 import moment from 'moment';
+import { i18next, locale } from '@utilities/locale';
 import { Dropdown, ButtonNew as Button } from '@crayons';
 import CogIcon from '@images/cog.svg';
 
@@ -224,7 +224,7 @@ export const Options = ({
             {i18next.t('editor.options.url.label')}
           </label>
           <p className="crayons-field__description">
-            <Trans i18nKey="editor.options.url.desc"/>
+            <Trans i18nKey="editor.options.url.desc" />
           </p>
           <input
             type="text"
@@ -260,7 +260,7 @@ export const Options = ({
             {i18next.t('editor.options.lang.label')}
           </label>
           <p className="crayons-field__description">
-            <Trans i18nKey="editor.options.lang.desc"/>
+            <Trans i18nKey="editor.options.lang.desc" />
           </p>
           <input
             type="text"
