@@ -91,7 +91,7 @@
     "sass": "1.54.0",
     "sass-loader": "^13.0.2",
     "storybook-addon-jsx": "^7.3.14",
-    "style-loader": "^2.0.0",
+    "style-loader": "^3.3.1",
     "svgo": "2.8.0",
     "webpack-bundle-analyzer": "^4.6.1",
     "webpack-dev-server": "^3.11.3"
