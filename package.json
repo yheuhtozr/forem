@@ -132,7 +132,7 @@
     "linkstate": "^2.0.1",
     "lodash.debounce": "4.0.8",
     "moment": "^2.29.4",
-    "playwright": "^1.20.1",
+    "playwright": "^1.27.0",
     "postcss": "^8.4.16",
     "postcss-cli": "^10.0.0",
     "postcss-cssnext": "^3.1.0",
