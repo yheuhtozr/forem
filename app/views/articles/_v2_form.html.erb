@@ -4,6 +4,11 @@
     padding-top: 0 !important;
   }
 
+  #post-options-dropdown { /* fix for overlong option dropdown */
+    overflow-y: scroll;
+    max-height: calc(100vh - var(--article-form-actions-height));
+  }
+
   /* This weirdness below has a reason: https://github.com/forem/forem/pull/11701#issuecomment-737319289 */
 
   .crayons-header,
