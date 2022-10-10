@@ -16,7 +16,6 @@ export const CommentsCount = ({ count, articlePath, articleTitle }) => {
   );
   const commentsAriaLabelText = i18next.t('comments.aria_label', {
     title: articleTitle,
-    num: count,
   });
 
   if (count > 0) {

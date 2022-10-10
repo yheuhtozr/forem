@@ -25,8 +25,6 @@ module Articles
         new(config: config, **kwargs)
       end
 
-      # Let's make sure that folks initialize this with a variant configuration.
-      private_class_method :new
 
       Config = Struct.new(
         :variant,
@@ -120,10 +118,10 @@ module Articles
         join_fragment = Arel.sql(
           "INNER JOIN (" \
           "\n--- The setseed needs to be called independently; later we reference seeder \n" \
-          "WITH seeder AS (SELECT setseed(#{Float(@seed)})) "\
+          "WITH seeder AS (SELECT setseed(#{Float(@seed)})) " \
           "\n--- We are using the inner logic to build relevancy score" \
           "\n--- The outer part, with seeder, is to create a stable randomized number \n" \
-          "SELECT inner_article_relevancies.id, "\
+          "SELECT inner_article_relevancies.id, " \
           "inner_article_relevancies.relevancy_score, " \
           "RANDOM() AS randomized_value " \
           "FROM seeder, " \

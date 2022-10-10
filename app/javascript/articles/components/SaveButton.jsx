@@ -3,6 +3,9 @@ import { useState } from 'preact/hooks';
 import PropTypes from 'prop-types';
 import { articlePropTypes } from '../../common-prop-types';
 import { i18next } from '@utilities/locale';
+import { ButtonNew as Button } from '@crayons';
+import BookmarkSVG from '@images/small-save.svg';
+import BookmarkFilledSVG from '@images/small-save-filled.svg';
 
 export const SaveButton = ({
   article,
@@ -10,55 +13,37 @@ export const SaveButton = ({
   onClick,
   saveable = true,
 }) => {
-  const [buttonText, setButtonText] = useState(
-    isBookmarkedProps ? 'Saved' : 'Save',
-  );
   const [isBookmarked, setIsBookmarked] = useState(isBookmarkedProps);
-
-  const mouseMove = (_e) => {
-    setButtonText(isBookmarked ? 'Unsave' : 'Save');
-  };
-
-  const mouseOut = (_e) => {
-    setButtonText(isBookmarked ? 'Saved' : 'Save');
-  };
 
   const handleClick = (_e) => {
     onClick(_e);
-    setButtonText(isBookmarked ? 'Save' : 'Saved');
     setIsBookmarked((prevState) => !prevState);
   };
 
   if (article.class_name === 'Article' && saveable) {
     return (
-      <button
-        type="button"
+      <Button
         id={`article-save-button-${article.id}`}
-        className={`crayons-btn crayons-btn--s w-max ${
-          isBookmarked ? 'crayons-btn--ghost' : 'crayons-btn--secondary'
-        }`}
+        variant="default"
+        title={i18next.t('articles.save')}
+        aria-label={i18next.t('articles.save')}
+        aria-pressed={isBookmarked}
+        icon={isBookmarked ? BookmarkFilledSVG : BookmarkSVG}
         data-initial-feed
         data-reactable-id={article.id}
         onClick={handleClick}
-        onMouseMove={mouseMove}
-        onFocus={mouseMove}
-        onMouseout={mouseOut}
-        onBlur={mouseOut}
-      >
-        {i18next.t(`articles.save.${buttonText.toLowerCase()}`)}
-      </button>
+      />
     );
   }
   if (article.class_name === 'User') {
     return (
-      <button
-        type="button"
+      <Button
         className="crayons-btn crayons-btn--secondary fs-s"
         data-info={`{"id":${article.id},"className":"User"}`}
         data-follow-action-button
       >
         &nbsp;
-      </button>
+      </Button>
     );
   }
 

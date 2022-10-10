@@ -255,7 +255,7 @@ class StoriesController < ApplicationController
     @discussion_lock = @article.discussion_lock
     @user = @article.user
     @organization = @article.organization
-
+    @comments_order = fetch_sort_order
     if @article.collection
       @collection = @article.collection
 
@@ -276,7 +276,7 @@ class StoriesController < ApplicationController
   end
 
   def permission_denied?
-    !@article.published && params[:preview] != @article.password
+    (!@article.published || @article.scheduled?) && params[:preview] != @article.password
   end
 
   def assign_co_authors
@@ -320,7 +320,7 @@ class StoriesController < ApplicationController
   end
 
   def redirect_to_lowercase_username
-    return unless params[:username] && params[:username]&.match?(/[[:upper:]]/)
+    return unless params[:username]&.match?(/[[:upper:]]/)
 
     redirect_permanently_to("/#{params[:username].downcase}")
   end
@@ -414,5 +414,11 @@ class StoriesController < ApplicationController
       @user.github_username.present? ? "https://github.com/#{@user.github_username}" : nil,
       @user.profile.website_url,
     ].compact_blank
+  end
+
+  def fetch_sort_order
+    return params[:comments_sort] if Comment::VALID_SORT_OPTIONS.include? params[:comments_sort]
+
+    "top"
   end
 end

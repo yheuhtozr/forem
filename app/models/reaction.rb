@@ -42,6 +42,7 @@ class Reaction < ApplicationRecord
   scope :article_vomits, -> { where(category: "vomit", reactable_type: "Article") }
   scope :comment_vomits, -> { where(category: "vomit", reactable_type: "Comment") }
   scope :user_vomits, -> { where(category: "vomit", reactable_type: "User") }
+  scope :valid_or_confirmed, -> { where(status: %w[valid confirmed]) }
   scope :related_negative_reactions_for_user, lambda { |user|
     article_vomits.where(reactable_id: user.article_ids)
       .or(comment_vomits.where(reactable_id: user.comment_ids))
@@ -70,7 +71,12 @@ class Reaction < ApplicationRecord
         reactions = Reaction.where(reactable_id: id, reactable_type: "Article")
         counts = reactions.group(:category).count
 
-        %w[like readinglist unicorn].map do |type|
+        reaction_types = %w[like readinglist]
+        unless FeatureFlag.enabled?(:replace_unicorn_with_jump_to_comments)
+          reaction_types << "unicorn"
+        end
+
+        reaction_types.map do |type|
           { category: type, count: counts.fetch(type, 0) }
         end
       end
@@ -86,19 +92,49 @@ class Reaction < ApplicationRecord
     end
 
     # @param user [User] the user who might be spamming the system
+    # @param threshold [Integer] the number of strikes before they are spam
+    # @param include_user_profile [Boolean] do we include the user's profile as part of the "check
+    #        for spamminess"
     #
     # @return [TrueClass] yup, they're spamming the system.
     # @return [FalseClass] they're not (yet) spamming the system
-    def user_has_been_given_too_many_spammy_article_reactions?(user:, threshold: 2)
+    def user_has_been_given_too_many_spammy_article_reactions?(user:, threshold: 2, include_user_profile: false)
+      threshold -= 1 if include_user_profile && user_has_spammy_profile_reaction?(user: user)
       article_vomits.where(reactable_id: user.articles.ids).size > threshold
     end
 
     # @param user [User] the user who might be spamming the system
+    # @param threshold [Integer] the number of strikes before they are spam
+    # @param include_user_profile [Boolean] do we include the user's profile as part of the "check
+    #        for spamminess"
     #
     # @return [TrueClass] yup, they're spamming the system.
     # @return [FalseClass] they're not (yet) spamming the system
-    def user_has_been_given_too_many_spammy_comment_reactions?(user:, threshold: 2)
+    def user_has_been_given_too_many_spammy_comment_reactions?(user:, threshold: 2, include_user_profile: false)
+      threshold -= 1 if include_user_profile && user_has_spammy_profile_reaction?(user: user)
       comment_vomits.where(reactable_id: user.comments.ids).size > threshold
+    end
+
+    # @param user [User] the user who might be spamming the system
+    def user_has_spammy_profile_reaction?(user:)
+      user_vomits.exists?(reactable_id: user.id)
+    end
+
+    # @param category [String] the reaction category type, see the CATEGORIES var
+    # @param reactable_id [Boolean] the ID of the item that was reacted on
+    # @param reactable_type [String] the type of the item, see the REACTABLE_TYPES var
+    # @param user [User] a moderator user
+
+    # @return [Array] Reactions that contain a contradictory category to the category that was passed in,
+    # example, if we pass in a "thumbsup", then we return reactions that have have a thumbsdown or vomit
+    def contradictory_mod_reactions(category:, reactable_id:, reactable_type:, user:)
+      contradictory_category = NEGATIVE_PRIVILEGED_CATEGORIES if category == "thumbsup"
+      contradictory_category = "thumbsup" if category.in?(NEGATIVE_PRIVILEGED_CATEGORIES)
+
+      Reaction.where(reactable_id: reactable_id,
+                     reactable_type: reactable_type,
+                     user: user,
+                     category: contradictory_category)
     end
   end
 

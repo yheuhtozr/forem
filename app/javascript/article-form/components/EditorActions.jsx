@@ -1,4 +1,5 @@
 import { h } from 'preact';
+import moment from 'moment';
 import PropTypes from 'prop-types';
 import { Trans } from 'react-i18next';
 import { useState } from 'preact/hooks';
@@ -11,11 +12,15 @@ export const EditorActions = ({
   onPublish,
   onClearChanges,
   published,
+  publishedAtDate,
+  publishedAtTime,
+  schedulingEnabled,
   edited,
   version,
   passedData,
   onConfigChange,
   submitting,
+  previewLoading,
 }) => {
   const isVersion1 = version === 'v1';
   const isVersion2 = version === 'v2';
@@ -42,14 +47,35 @@ export const EditorActions = ({
     );
   }
 
+  const now = moment();
+  const publishedAtObj = publishedAtDate
+    ? moment(`${publishedAtDate} ${publishedAtTime || '00:00'}`)
+    : now;
+  const schedule = publishedAtObj > now;
+  const wasScheduled = passedData.publishedAtWas > now;
+
+  let saveButtonText;
+  if (isVersion1) {
+    saveButtonText = i18next.t('editor.save');
+  } else if (schedule) {
+    saveButtonText = i18next.t('editor.schedule');
+  } else if (wasScheduled || !published) {
+    // if the article was saved as scheduled, and the user clears publishedAt in the post options, the save button text is changed to "Publish"
+    // to make it clear that the article is going to be published right away
+    saveButtonText = i18next.t('editor.publish');
+  } else {
+    saveButtonText = i18next.t('editor.save');
+  }
+
   return (
     <div className="crayons-article-form__footer">
       <Button
         variant="primary"
         className="mr-2 whitespace-nowrap"
-        onClick={() => setWannaPublish(true)}
+        onClick={onPublish}
+        disabled={previewLoading}
       >
-        {i18next.t(published || isVersion1 ? 'editor.save' : 'editor.publish')}
+        {saveButtonText}
       </Button>
 
       {wannaPublish && (
@@ -71,7 +97,11 @@ export const EditorActions = ({
       )}
 
       {!(published || isVersion1) && (
-        <Button className="mr-2 whitespace-nowrap" onClick={onSaveDraft}>
+        <Button
+          className="mr-2 whitespace-nowrap"
+          onClick={onSaveDraft}
+          disabled={previewLoading}
+        >
           <Trans
             i18nKey="editor.save_draft"
             // eslint-disable-next-line react/jsx-key, jsx-a11y/anchor-has-content
@@ -83,8 +113,10 @@ export const EditorActions = ({
       {isVersion2 && (
         <Options
           passedData={passedData}
+          schedulingEnabled={schedulingEnabled}
           onConfigChange={onConfigChange}
           onSaveDraft={onSaveDraft}
+          previewLoading={previewLoading}
         />
       )}
 
@@ -92,6 +124,7 @@ export const EditorActions = ({
         <Button
           onClick={onClearChanges}
           className="whitespace-nowrap fw-normal fs-s"
+          disabled={previewLoading}
         >
           <Trans
             i18nKey="editor.revert_button"
@@ -108,12 +141,16 @@ EditorActions.propTypes = {
   onSaveDraft: PropTypes.func.isRequired,
   onPublish: PropTypes.func.isRequired,
   published: PropTypes.bool.isRequired,
+  publishedAtTime: PropTypes.string.isRequired,
+  publishedAtDate: PropTypes.string.isRequired,
+  schedulingEnabled: PropTypes.bool.isRequired,
   edited: PropTypes.bool.isRequired,
   version: PropTypes.string.isRequired,
   onClearChanges: PropTypes.func.isRequired,
   passedData: PropTypes.object.isRequired,
   onConfigChange: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired,
+  previewLoading: PropTypes.bool.isRequired,
 };
 
 EditorActions.displayName = 'EditorActions';

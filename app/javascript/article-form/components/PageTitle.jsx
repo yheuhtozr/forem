@@ -8,12 +8,13 @@ export const PageTitle = ({
   organizationId,
   onToggle,
   titleMode,
+  previewLoading,
 }) => {
   return (
     <div className="crayons-field__label flex items-center flex-1">
       <span className="hidden s:inline-block mr-2 whitespace-nowrap">
         {i18next.t(
-          `editor.${titleMode === 'translate' ? 'translate' : 'create'}`,
+          `editor.${previewLoading ? 'loading' : titleMode === 'translate' ? 'translate' : 'create'}`,
         )}
       </span>
       {organizations && organizations.length > 0 && (
@@ -38,6 +39,7 @@ PageTitle.propTypes = {
   organizationId: PropTypes.string,
   onToggle: PropTypes.func.isRequired,
   titleMode: PropTypes.string,
+  previewLoading: PropTypes.bool.isRequired,
 };
 
 PageTitle.displayName = 'Organization';

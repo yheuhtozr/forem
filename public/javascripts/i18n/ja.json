@@ -7,11 +7,7 @@
   "articles": {
     "for_org": "%{- start} が %{- end}%{- org}%{- start} へ執筆%{- end}",
     "reading_time_other": "約 %{count} 字/語",
-    "save": {
-      "initial": "保存",
-      "remove": "解除",
-      "success": "保存済"
-    }
+    "save_to": "切り抜き帳に保存"
   },
   "campaign": {
     "close": "Close campaign banner"
@@ -34,8 +30,6 @@
         "moderator": "協力者用",
         "personal": "個人用"
       },
-      "templates": "定型文",
-      "upload": "画像をアップロード",
       "use": "定型の返信を使用"
     },
     "invalid": "無効なファイルです！",
@@ -135,15 +129,13 @@
       "follow": "following",
       "make": "making",
       "post": "posting",
-      "update": "updating",
-      "upload": "uploading"
+      "update": "updating"
     },
     "action_past": {
       "follow": "followed",
       "make": "made",
       "post": "posted",
-      "update": "updating",
-      "upload": "uploaded"
+      "update": "updating"
     },
     "confirm": "OK",
     "element": {

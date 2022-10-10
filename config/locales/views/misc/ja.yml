@@ -10,8 +10,8 @@ ja:
       desc: 実績を積んでバッジをもらおう！バッジをクリックすると獲得条件が確認できます。
       name: "🏅 %{title} バッジ 🏅"
     campaign:
-      subtitle: Stories (%{count})
-      view: See all posts
+      subtitle: 投稿 (%{count})
+      view: 投稿の一覧
     deep_links:
       subtitle: Opening the mobile app...
       alert:
@@ -61,6 +61,10 @@ ja:
       pinned: "📌 指定完了（要注目記事は新しい順に最大 5 件まで表示されます）"
       removed: "🗑 注目を外しました"
       error: 5 件までしか指定できません
+    profile:
+      color:
+        label: イメージカラー
+        description: 背景、枠線などに使われます。
     reading_list:
       meta:
         title: 切り抜き帳
@@ -99,9 +103,6 @@ ja:
         heading: 連載「%{series}」の記事一覧
         back: "%{user} の連載一覧に戻る"
         empty: この連載には記事がありません
-    sponsor:
-      icon: Love
-      seek: Become a sponsor
     stats:
       meta:
         title: あなたの記事の統計情報

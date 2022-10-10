@@ -14,7 +14,7 @@ ja:
       summary:
         title: 反響
       like:
-        title: ハート
+        title: いいね
         aria_label: いいね
         icon: お気に入りのハートマーク
         text: いいね

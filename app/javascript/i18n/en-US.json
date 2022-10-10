@@ -10,11 +10,7 @@
     "reading_time_one": "%{count} words/chars",
     "reading_time_other": "%{count} words/chars",
     "report": "Report abuse",
-    "save": {
-      "save": "Save",
-      "saved": "Saved",
-      "unsave": "Unsave"
-    },
+    "save": "Save to reading list",
     "timeAgo": " (%{ago})"
   },
   "clipboard": {
@@ -27,7 +23,7 @@
   "comments": {
     "all_one": "See all %{count} comments",
     "all_other": "See all %{count} comments",
-    "aria_label": "Comments for post %{title} (%{num})",
+    "aria_label": "Add a comment to post - %{title}",
     "blocked": "[blocked content]",
     "delete": "Are you SURE you want to delete this comment?",
     "empty": "New",
@@ -64,10 +60,7 @@
     "etc": "..."
   },
   "crayons": {
-    "mention": {
-      "ariaHelper_one": "Mention user, 1 result found",
-      "ariaHelper_other": "Mention user, %{count} results found",
-      "aria_label": "Mention user",
+    "autocomplete": {
       "empty": "No results found",
       "type": "Type to search for a user"
     },
@@ -80,6 +73,7 @@
       "add_another": "Add another...",
       "aria_edit": "Edit %{item}",
       "aria_remove": "Remove %{item}",
+      "error_reader": "Invalid entry",
       "maximum": "Maximum %{maxSelections} selections",
       "selected": "Selected items:"
     }
@@ -178,6 +172,7 @@
       "title": "You have unsaved changes",
       "yes": "Yes, leave the page"
     },
+    "loading": "Loading preview",
     "new_title": "New post title here...",
     "options": {
       "done": "Done",
@@ -193,6 +188,10 @@
         "site": "Suggested",
         "special": "Specials"
       },
+      "schedule": {
+        "aria_label": "Schedule publication date",
+        "label": "Schedule Publication"
+      },
       "series": {
         "aria_label": "Select one of the existing series",
         "desc": "Will this post be part of a series? Give the series a unique name. (Series visible once it has multiple posts)",
@@ -201,6 +200,7 @@
         "select": "Select..."
       },
       "title": "Post options",
+      "to_draft": "Convert to a Draft",
       "unpublish": "Unpublish post",
       "url": {
         "desc": "Change meta tag <code>canonical_url</code> if this post was first published elsewhere (like your own blog).",
@@ -222,6 +222,7 @@
     "save_draft": "Save <0>draft</0>",
     "saving": "Saving...",
     "saving_draft": "Saving draft...",
+    "schedule": "Schedule",
     "tabs": {
       "aria_label": "View post modes",
       "edit": "Edit",
@@ -231,6 +232,7 @@
       "aria_help": "Help",
       "aria_label": "Markdown formatting toolbar",
       "aria_options": "More options",
+      "aria_templates": "Show templates",
       "bold": "Bold",
       "code": "Code",
       "codeBlock": "Code block",
@@ -290,10 +292,12 @@
     "cancel": "Cancel",
     "confirm": "Confirm action",
     "desc": "Thanks for keeping %{community} safe. Here is what you can do to flag this user:",
+    "error_radio": "You must check the radio button first.",
     "heading": "Flag User",
     "less": "All posts by this author will be less visible.",
     "other": "Report other inappropriate conduct",
     "response": "Response from server: %{outcome}",
+    "unflag": "You have unflagged this author successfully.",
     "vomit": "Make all posts by this author less visible",
     "vomit_desc": "This author consistently posts content that violates DEV's code of conduct because it is harassing, offensive or spammy."
   },
@@ -431,10 +435,7 @@
     "thumbsup": "This post will be more visible.",
     "title": "Moderation panel actions",
     "unpublish": {
-      "heading": "Unpublish post",
-      "desc1": "Once unpublished, this post will become invisible to the public and only accessible to %{authorName}.",
-      "desc2": "They can still re-publish the post if they are not suspended.",
-      "submit": "Unpublish post"
+      "heading": "Unpublish post"
     },
     "vomit": "You've flagged this post as abusive or spam."
   },

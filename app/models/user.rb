@@ -68,7 +68,7 @@ class User < ApplicationRecord
   has_many :created_podcasts, class_name: "Podcast", foreign_key: :creator_id, inverse_of: :creator, dependent: :nullify
   has_many :credits, dependent: :destroy
   has_many :discussion_locks, dependent: :delete_all, inverse_of: :locking_user, foreign_key: :locking_user_id
-  has_many :display_ad_events, dependent: :delete_all
+  has_many :display_ad_events, dependent: :nullify
   has_many :email_authorizations, dependent: :delete_all
   has_many :email_messages, class_name: "Ahoy::Message", dependent: :destroy
   has_many :field_test_memberships, class_name: "FieldTest::Membership", as: :participant, dependent: :destroy
@@ -110,7 +110,6 @@ class User < ApplicationRecord
   has_many :subscribers, through: :source_authored_user_subscriptions, dependent: :destroy
   has_many :tweets, dependent: :nullify
   has_many :devices, dependent: :delete_all
-  has_many :sponsorships, dependent: :delete_all
 
   mount_uploader :profile_image, ProfileImageUploader
 
@@ -406,7 +405,7 @@ class User < ApplicationRecord
     :comment_suspended?,
     :creator?,
     :has_trusted_role?,
-    :moderator?,
+    :super_moderator?,
     :podcast_admin_for?,
     :restricted_liquid_tag_for?,
     :single_resource_admin_for?,

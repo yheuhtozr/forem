@@ -575,26 +575,12 @@ seeder.create_if_none(Page) do
       body_markdown: Faker::Markdown.random,
       slug: Faker::Internet.slug,
       description: Faker::Books::Dune.quote,
-      template: %w[contained full_within_layout].sample,
+      template: %w[contained full_within_layout nav_bar_included].sample,
     )
   end
   Faker::Config.locale = loc
 end
 Faker::Config.locale = loc
-
-##############################################################################
-
-seeder.create_if_none(Sponsorship) do
-  organizations = Organization.take(3)
-  organizations.each do |organization|
-    Sponsorship.create!(
-      organization: organization,
-      user: User.order(Arel.sql("RANDOM()")).first,
-      level: "silver",
-      blurb_html: Faker::Hacker.say_something_smart,
-    )
-  end
-end
 
 ##############################################################################
 

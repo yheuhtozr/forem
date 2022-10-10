@@ -34,6 +34,7 @@
         width: 100%;
         aspect-ratio: auto 650 / 273;
         object-fit: scale-down;
+        border-radius: var(--radius-auto) var(--radius) 0 0;
       }
     }
   }
@@ -150,6 +151,22 @@
     flex-direction: column;
   }
 
+  .crayons-tooltip {
+    &__content {
+      // display tooltip on top of the icon
+      @media (max-width: $breakpoint-m) {
+        top: -100%;
+      }
+    }
+  }
+
+  // We don't show tooltips on touch-only devices
+  @media (hover: none) {
+    .crayons-tooltip__content {
+      display: none;
+    }
+  }
+
   &__icon {
     padding: var(--su-2);
     box-shadow: var(--reaction-border);
@@ -213,6 +230,14 @@
     &.user-activated {
       --reaction-color: var(--reaction-save-color);
       --reaction-bg: var(--reaction-save-bg);
+    }
+  }
+
+  &--comment {
+    &:hover,
+    &.user-activated {
+      --reaction-color: var(--reaction-comment-color);
+      --reaction-bg: var(--reaction-comment-bg);
     }
   }
 }

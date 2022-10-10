@@ -24,7 +24,7 @@ gem "carrierwave", "~> 2.2" # Upload files in your Ruby applications, map them t
 gem "carrierwave-bombshelter", "~> 0.2" # Protect your carrierwave from image bombs
 gem "cloudinary", "~> 1.23" # Client library for easily using the Cloudinary service
 gem "counter_culture", "~> 3.2" # counter_culture provides turbo-charged counter caches that are kept up-to-date
-gem "ddtrace", "~> 1.1.0" # ddtrace is Datadog’s tracing client for Ruby.
+gem "ddtrace", "~> 1.3.0" # ddtrace is Datadog’s tracing client for Ruby.
 gem "devise", "~> 4.8" # Flexible authentication solution for Rails
 gem "devise_invitable", "~> 2.0.6" # Allows invitations to be sent for joining
 gem "discordrb-webhooks", "~> 3.4.2"
@@ -57,10 +57,10 @@ gem "js-routes", "~> 2.2" # Brings Rails named routes to javascript
 gem "jsonapi-serializer", "~> 2.2" # Serializer for Ruby objects
 gem "kaminari", "~> 1.2" # A Scope & Engine based, clean, powerful, customizable and sophisticated paginator
 gem "katex", "~> 0.9.0" # This rubygem enables you to render TeX math to HTML using KaTeX. It uses ExecJS under the hood
-gem "liquid", "~> 5.3" # A secure, non-evaling end user template engine with aesthetic markup
+gem "liquid", "~> 5.4" # A secure, non-evaling end user template engine with aesthetic markup
 gem "metainspector", "~> 5.12" # To get and parse website metadata for Open Graph rich objects
 gem "nokogiri", "~> 1.13" # HTML, XML, SAX, and Reader parser
-gem "octokit", "~> 4.25" # Simple wrapper for the GitHub API
+gem "octokit", "~> 5.2" # Simple wrapper for the GitHub API
 gem "oj", "~> 3.13" # JSON parser and object serializer
 gem "omniauth", "~> 2.1" # A generalized Rack framework for multiple-provider authentication
 gem "omniauth-apple", "~> 1.0" # OmniAuth strategy for Sign In with Apple
@@ -81,7 +81,7 @@ gem "pundit", "~> 2.2" # Object oriented authorization for Rails applications
 gem "rack-attack", "~> 6.6.1" # Used to throttle requests to prevent brute force attacks
 gem "rack-cors", "~> 1.1" # Middleware that will make Rack-based apps CORS compatible
 gem "rack-timeout", "~> 0.6" # Rack middleware which aborts requests that have been running for longer than a specified timeout
-gem "rails", "~> 7.0.2.2" # Ruby on Rails
+gem "rails", "~> 7.0.3.1" # Ruby on Rails
 gem "rails-i18n", "~> 7.0"
 gem "ransack", "~> 3.2" # Searching and sorting
 gem "recaptcha", "~> 5.10", require: "recaptcha/rails" # Helpers for the reCAPTCHA API
@@ -95,13 +95,13 @@ gem "rpush-redis", "~> 1.1" # Redis module capability for rpush library
 gem "request_store", "~> 1.5" # RequestStore gives you per-request global storage
 gem "reverse_markdown", "~> 2.1" # Map simple html back into markdown
 gem "rolify", "~> 6.0" # Very simple Roles library
-gem "rouge", "~> 3.29" # A pure-ruby code highlighter
+gem "rouge", "~> 3.30" # A pure-ruby code highlighter
 gem "rss", "~> 0.2.9" # Ruby's standard library for RSS
 gem "rubyzip", "~> 2.3" # Rubyzip is a ruby library for reading and writing zip files
 gem "s3_direct_upload", "~> 0.1" # Direct Upload to Amazon S3
-gem "sidekiq", "~> 6.5.1" # Sidekiq is used to process background jobs with the help of Redis
-gem "sidekiq-cron", "~> 1.6" # Allows execution of scheduled cron jobs as specific times
-gem "sidekiq-unique-jobs", "~> 7.1.25" # Ensures that Sidekiq jobs are unique when enqueued
+gem "sidekiq", "~> 6.5.3" # Sidekiq is used to process background jobs with the help of Redis
+gem "sidekiq-cron", "~> 1.7" # Allows execution of scheduled cron jobs as specific times
+gem "sidekiq-unique-jobs", "~> 7.1.27" # Ensures that Sidekiq jobs are unique when enqueued
 gem "slack-notifier", "~> 2.4" # A slim ruby wrapper for posting to slack webhooks
 gem "sprockets-rails", "~> 3.4" # Sprockets Rails integration
 gem "staccato", "~> 0.5" # Ruby Google Analytics Measurement
@@ -111,6 +111,7 @@ gem "twitter", "~> 7.0" # A Ruby interface to the Twitter API
 gem "uglifier", "~> 4.2" # Uglifier minifies JavaScript files
 gem "validate_url", "~> 1.0" # Library for validating urls in Rails
 gem "vault", "~> 0.17" # Used to store secrets
+gem "warning", "~> 1.3" # Adds custom processing for warnings, including the ability to ignore specific warning messages
 gem "wcag_color_contrast", "~> 0.1" # Detect contrast of colors to determine readability and a11y.
 gem "webpacker", "~> 5.4.3" # Use webpack to manage app-like JavaScript modules in Rails
 
@@ -142,20 +143,22 @@ group :development, :test do
   gem "capybara", "~> 3.37.1" # Capybara is an integration testing tool for rack based web applications
   gem "cypress-rails", "~> 0.5" # For end to end tests (E2E)
   gem "debug", ">= 1.0.0" # Provide a debug with step capabilities
-  gem "dotenv-rails", "~> 2.7.6" # For loading ENV variables locally
-  gem "faker", "~> 2.21" # A library for generating fake data such as names, addresses, and phone numbers
-  gem "knapsack_pro", "~> 3.2.1" # Help parallelize Ruby spec builds
+  gem "dotenv-rails", "~> 2.8.1" # For loading ENV variables locally
+  gem "faker", "~> 2.22" # A library for generating fake data such as names, addresses, and phone numbers
+  gem "knapsack_pro", "~> 3.3.1" # Help parallelize Ruby spec builds
   gem "pry", "~> 0.14" # An IRB alternative and runtime developer console
   gem "pry-rails", "~> 0.3" # Use Pry as your rails console
   gem "rspec-rails", "~> 5.1" # rspec-rails is a testing framework for Rails 3+
-  gem "rubocop", "~> 1.30", require: false # Automatic Ruby code style checking tool
+  gem "rswag-specs", "~> 2.5.1" # RSwag - Swagger-based DSL for rspec & accompanying rake task for generating Swagger files
+  gem "rubocop", "~> 1.33", require: false # Automatic Ruby code style checking tool
   gem "rubocop-performance", "~> 1.14", require: false # A collection of RuboCop cops to check for performance optimizations in Ruby code
   gem "rubocop-rails", "~> 2.15", require: false # Automatic Rails code style checking tool
-  gem "rubocop-rspec", "~> 2.11", require: false # Code style checking for RSpec files
+  gem "rubocop-rspec", "~> 2.12", require: false # Code style checking for RSpec files
   gem "sassc-rails", "~> 2.1.2" # Integrate SassC-Ruby into Rails
 end
 
 group :test do
+  gem "cuprite", "~> 0.13" # Capybara driver for Chrome
   gem "exifr", ">= 1.3.6" # EXIF Reader is a module to read EXIF from JPEG and TIFF images
   gem "factory_bot_rails", "~> 6.2" # factory_bot is a fixtures replacement with a straightforward definition syntax, support for multiple build strategies
   gem "fakeredis", "~> 0.8.0" # Fake (In-memory) driver for redis-rb. Useful for testing environment and machines without Redis.
@@ -170,8 +173,7 @@ group :test do
   gem "test-prof", "~> 1.0" # Ruby Tests Profiling Toolbox
   gem "timecop", "~> 0.9" # A gem providing "time travel" and "time freezing" capabilities, making it dead simple to test time-dependent code
   gem "vcr", "~> 6.1" # Record your test suite's HTTP interactions and replay them during future test runs for fast, deterministic, accurate tests
-  gem "webdrivers", "~> 5.0" # Run Selenium tests more easily with install and updates for all supported webdrivers
-  gem "webmock", "~> 3.14", require: false # WebMock allows stubbing HTTP requests and setting expectations on HTTP requests
+  gem "webmock", "~> 3.17", require: false # WebMock allows stubbing HTTP requests and setting expectations on HTTP requests
   gem "with_model", "~> 2.1.6" # Dynamically build a model within an RSpec context
   gem "zonebie", "~> 0.6.1" # Runs your tests in a random timezone
 end

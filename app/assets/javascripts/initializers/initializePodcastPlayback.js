@@ -488,6 +488,17 @@ function initializePodcastPlayback() {
         getById('time').innerHTML = i18next.t('podcasts.time');
         currentState.currentTime = 0;
         break;
+      case 'play':
+        ahoyMessage('play');
+        spinPodcastRecord();
+        startPodcastBar();
+        break;
+      case 'pause':
+        ahoyMessage('pause');
+        setPlaying(false);
+        stopRotatingActivePodcastIfExist();
+        pausePodcastBar();
+        break;
       case 'tick':
         currentState.currentTime = message.currentTime;
         currentState.duration = message.duration;

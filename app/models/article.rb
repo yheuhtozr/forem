@@ -26,7 +26,10 @@ class Article < ApplicationRecord
   # @see Articles::CachedEntity caching strategy for entity attributes
   ATTRIBUTES_CACHED_FOR_RELATED_ENTITY = %i[name profile_image profile_image_url slug username].freeze
 
-  attr_accessor :publish_under_org
+  # admin_update was added as a hack to bypass published_at validation when admin is updating
+  # TODO: [@lightalloy] remove published_at validation from the model and
+  # move it to the services where the create/update takes place to avoid using hacks
+  attr_accessor :publish_under_org, :admin_update
   attr_writer :series
 
   delegate :name, to: :user, prefix: true
@@ -100,6 +103,8 @@ class Article < ApplicationRecord
   has_many :mentions, as: :mentionable, inverse_of: :mentionable, dependent: :delete_all
   has_many :comments, as: :commentable, inverse_of: :commentable, dependent: :nullify
   has_many :context_notifications, as: :context, inverse_of: :context, dependent: :delete_all
+  has_many :context_notifications_published, -> { where(context_notifications: { action: "Published" }) },
+           as: :context, inverse_of: :context, class_name: "ContextNotification"
   has_many :html_variant_successes, dependent: :nullify
   has_many :html_variant_trials, dependent: :nullify
   has_many :notification_subscriptions, as: :notifiable, inverse_of: :notifiable, dependent: :delete_all
@@ -158,9 +163,10 @@ class Article < ApplicationRecord
   validates :video_source_url, url: { allow_blank: true, schemes: ["https"] }
   validates :video_state, inclusion: { in: %w[PROGRESSING COMPLETED] }, allow_nil: true
   validates :video_thumbnail_url, url: { allow_blank: true, schemes: %w[https http] }
+  validate :future_or_current_published_at, on: :create
+  validate :correct_published_at?, on: :update, unless: :admin_update
 
   validate :canonical_url_must_not_have_spaces
-  validate :past_or_present_date
   validate :validate_collection_permission
   validate :validate_tag
   validate :validate_video
@@ -169,7 +175,7 @@ class Article < ApplicationRecord
   validate :validate_co_authors_must_not_be_the_same, unless: -> { co_author_ids.blank? }
   validate :validate_co_authors_exist, unless: -> { co_author_ids.blank? }
 
-  before_validation :evaluate_markdown, :create_slug
+  before_validation :evaluate_markdown, :create_slug, :set_published_date
   before_validation :remove_prohibited_unicode_characters
   before_validation :normalize_title
   before_save :set_cached_entities
@@ -179,12 +185,11 @@ class Article < ApplicationRecord
   before_save :fetch_video_duration
   before_save :set_caches
   before_create :create_password
-  after_create :notify_slack_channel_about_publication
-  after_update :notify_slack_channel_about_publication, if: -> { published && saved_change_to_published? }
   before_destroy :before_destroy_actions, prepend: true
 
   after_save :create_conditional_autovomits
   after_save :bust_cache
+  after_save :collection_cleanup
   after_save :eponymous_translation_group
   after_save :notify_external_services_on_new_post
 
@@ -312,8 +317,8 @@ class Article < ApplicationRecord
            :main_image, :main_image_background_hex_color, :updated_at,
            :video, :user_id, :organization_id, :video_source_url, :video_code,
            :video_thumbnail_url, :video_closed_caption_track_url, :social_image,
-           :published_from_feed, :crossposted_at, :published_at, :featured_number,
-           :created_at, :body_markdown, :email_digest_eligible, :processed_html, :co_author_ids, :base_lang)
+           :published_from_feed, :crossposted_at, :published_at, :created_at,
+           :body_markdown, :email_digest_eligible, :processed_html, :co_author_ids, :base_lang)
   }
 
   scope :sorting, lambda { |value|
@@ -368,8 +373,6 @@ class Article < ApplicationRecord
 
   scope :eager_load_serialized_data, -> { includes(:user, :organization, :tags) }
 
-  self.ignored_columns = ["spaminess_rating"]
-
   def self.seo_boostable(tag = nil, time_ago = 18.days.ago)
     # Time ago sometimes returns this phrase instead of a date
     time_ago = 5.days.ago if time_ago == "latest"
@@ -403,6 +406,10 @@ class Article < ApplicationRecord
     else
       relation.pluck(*fields)
     end
+  end
+
+  def scheduled?
+    published_at? && published_at.future?
   end
 
   def search_id
@@ -441,7 +448,7 @@ class Article < ApplicationRecord
   end
 
   def current_state_path
-    published ? "/#{username}/#{slug}" : "/#{username}/#{slug}?preview=#{password}"
+    published && !scheduled? ? "/#{username}/#{slug}" : "/#{username}/#{slug}?preview=#{password}"
   end
 
   def has_frontmatter?
@@ -574,11 +581,22 @@ class Article < ApplicationRecord
       (score < Settings::UserExperience.index_minimum_score &&
        user.comments_count < 1 &&
        !featured) ||
-      featured_number.to_i < 1_500_000_000 ||
+      published_at.to_i < 1_500_000_000 ||
       score < -1
   end
 
   private
+
+  def collection_cleanup
+    # Should only check to cleanup if Article was removed from collection
+    return unless saved_change_to_collection_id? && collection_id.nil?
+
+    collection = Collection.find(collection_id_before_last_save)
+    return if collection.articles.count.positive?
+
+    # Collection is empty
+    collection.destroy
+  end
 
   def search_score
     comments_score = (comments_count * 3).to_i
@@ -687,7 +705,10 @@ class Article < ApplicationRecord
     self.title = front_matter["title"] if front_matter["title"].present?
     set_tag_list(front_matter["tags"]) if front_matter["tags"].present?
     self.published = front_matter["published"] if %w[true false].include?(front_matter["published"].to_s)
-    self.published_at = parse_date(front_matter["date"]) if published
+
+    self.published_at = front_matter["published_at"] if front_matter["published_at"]
+    self.published_at ||= parse_date(front_matter["date"]) if published
+
     set_main_image(front_matter)
     self.canonical_url = front_matter["canonical_url"] if front_matter["canonical_url"].present?
 
@@ -779,10 +800,29 @@ class Article < ApplicationRecord
     errors.add(:co_author_ids, I18n.t("models.article.invalid_coauthor"))
   end
 
-  def past_or_present_date
-    return unless published_at && published_at > Time.current
+  def future_or_current_published_at
+    # allow published_at in the future or within 15 minutes in the past
+    return if !published || published_at > 15.minutes.ago
 
-    errors.add(:date_time, I18n.t("models.article.invalid_date"))
+    errors.add(:published_at, I18n.t("models.article.future_or_current_published_at"))
+  end
+
+  def correct_published_at?
+    return unless changes["published_at"]
+
+    # for drafts (that were never published before) or scheduled articles => allow future or current dates
+    if !published_at_was || published_at_was > Time.current
+      # for articles published_from_feed (exported from rss) we allow past published_at
+      if (!published_at || published_at < 15.minutes.ago) && !published_from_feed
+        errors.add(:published_at, I18n.t("models.article.future_or_current_published_at"))
+      end
+    else
+      # for articles that have been published already (published or unpublished drafts) => immutable published_at
+      # allow changes within one minute in case of editing via frontmatter w/o specifying seconds
+      has_nils = changes["published_at"].include?(nil) # changes from nil or to nil
+      close_enough = !has_nils && (published_at_was - published_at).between?(-60, 60)
+      errors.add(:published_at, I18n.t("models.article.immutable_published_at")) if has_nils || !close_enough
+    end
   end
 
   def canonical_url_must_not_have_spaces
@@ -827,8 +867,6 @@ class Article < ApplicationRecord
   end
 
   def set_all_dates
-    set_published_date
-    set_featured_number
     set_crossposted_at
     set_last_comment_at
     set_nth_published_at
@@ -836,10 +874,6 @@ class Article < ApplicationRecord
 
   def set_published_date
     self.published_at = Time.current if published && published_at.blank?
-  end
-
-  def set_featured_number
-    self.featured_number = Time.current.to_i if featured_number.blank? && published
   end
 
   def set_crossposted_at
@@ -864,7 +898,7 @@ class Article < ApplicationRecord
   end
 
   def title_to_slug
-    "#{sluggify(title, base_lang).tr('_', '')}-#{rand(100_000).to_s(26)}"
+    "#{sluggify(title, base_lang).tr('_', '')}-#{rand(100_000).to_s(26)}" # rubocop:disable Rails/ToSWithArgument
   end
 
   def touch_actor_latest_article_updated_at(destroying: false)
@@ -897,10 +931,6 @@ class Article < ApplicationRecord
 
   def touch_collection
     collection.touch if collection && previous_changes.present?
-  end
-
-  def notify_slack_channel_about_publication
-    Slack::Messengers::ArticlePublished.call(article: self)
   end
 
   def enrich_image_attributes

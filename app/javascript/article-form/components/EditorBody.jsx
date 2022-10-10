@@ -4,39 +4,16 @@ import { useLayoutEffect, useRef } from 'preact/hooks';
 import { Toolbar } from './Toolbar';
 import { handleImagePasted } from './pasteImageHelpers';
 import {
-  handleImageDrop,
-  handleImageFailure,
-  onDragOver,
-  onDragExit,
-} from './dragAndDropHelpers';
+  handleImageUploadSuccess,
+  handleImageUploading,
+  handleImageUploadFailure,
+} from './imageUploadHelpers';
+import { handleImageDrop, onDragOver, onDragExit } from './dragAndDropHelpers';
 import { usePasteImage } from '@utilities/pasteImage';
 import { useDragAndDrop } from '@utilities/dragAndDrop';
 import { fetchSearch } from '@utilities/search';
-import { MentionAutocompleteTextArea } from '@crayons/MentionAutocompleteTextArea';
 import { i18next } from '@utilities/locale';
-
-function handleImageSuccess(textAreaRef) {
-  return function (response) {
-    // Function is within the component to be able to access
-    // textarea ref.
-    const editableBodyElement = textAreaRef.current;
-    const { links } = response;
-
-    const markdownImageLink = `![Image description](${links[0]})\n`;
-    const { selectionStart, selectionEnd, value } = editableBodyElement;
-    const before = value.substring(0, selectionStart);
-    const after = value.substring(selectionEnd, value.length);
-
-    editableBodyElement.value = `${before + markdownImageLink} ${after}`;
-    editableBodyElement.selectionStart =
-      selectionStart + markdownImageLink.length;
-    editableBodyElement.selectionEnd = editableBodyElement.selectionStart;
-
-    // Dispatching a new event so that linkstate, https://github.com/developit/linkstate,
-    // the function used to create the onChange prop gets called correctly.
-    editableBodyElement.dispatchEvent(new Event('input'));
-  };
-}
+import { AutocompleteTriggerTextArea } from '@crayons/AutocompleteTriggerTextArea';
 
 export const EditorBody = ({
   onChange,
@@ -48,8 +25,9 @@ export const EditorBody = ({
 
   const { setElement } = useDragAndDrop({
     onDrop: handleImageDrop(
-      handleImageSuccess(textAreaRef),
-      handleImageFailure,
+      handleImageUploading(textAreaRef),
+      handleImageUploadSuccess(textAreaRef),
+      handleImageUploadFailure(textAreaRef),
     ),
     onDragOver,
     onDragExit,
@@ -57,8 +35,9 @@ export const EditorBody = ({
 
   const setPasteElement = usePasteImage({
     onPaste: handleImagePasted(
-      handleImageSuccess(textAreaRef),
-      handleImageFailure,
+      handleImageUploading(textAreaRef),
+      handleImageUploadSuccess(textAreaRef),
+      handleImageUploadFailure(textAreaRef),
     ),
   });
 
@@ -75,9 +54,16 @@ export const EditorBody = ({
       className="crayons-article-form__body drop-area text-padding"
     >
       <Toolbar version={version} textAreaId="article_body_markdown" />
-      <MentionAutocompleteTextArea
+      <AutocompleteTriggerTextArea
+        triggerCharacter="@"
+        maxSuggestions={6}
+        searchInstructionsMessage="Type to search for a user"
         ref={textAreaRef}
-        fetchSuggestions={(username) => fetchSearch('usernames', { username })}
+        fetchSuggestions={(username) =>
+          fetchSearch('usernames', { username }).then(({ result }) =>
+            result.map((user) => ({ ...user, value: user.username })),
+          )
+        }
         autoResize
         onChange={onChange}
         onFocus={switchHelpContext}

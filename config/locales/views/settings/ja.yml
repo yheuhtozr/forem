@@ -143,6 +143,7 @@ ja:
           remove: 削除
           save: 定型文を保存する
           saved: 保存した定型文
+          trusted: 協力者用定型文
         github:
           heading: GitHub
           desc1: あなたの GitHub リポジトリをプロフィールに固定します。

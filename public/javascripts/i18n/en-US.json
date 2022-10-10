@@ -8,11 +8,7 @@
     "for_org": "%{- start} for %{- end}%{- org}",
     "reading_time_one": "%{count} words/chars",
     "reading_time_other": "%{count} words/chars",
-    "save": {
-      "initial": "Save",
-      "remove": "Unsave",
-      "success": "Saved"
-    }
+    "save_to": "Save to reading list"
   },
   "campaign": {
     "close": "Close campaign banner"
@@ -35,8 +31,6 @@
         "moderator": "Trusted User",
         "personal": "Personal"
       },
-      "templates": "Templates",
-      "upload": "Upload image",
       "use": "Use a response template"
     },
     "invalid": "Invalid file!",
@@ -145,15 +139,13 @@
       "follow": "following",
       "make": "making",
       "post": "posting",
-      "update": "updating",
-      "upload": "uploading"
+      "update": "updating"
     },
     "action_past": {
       "follow": "followed",
       "make": "made",
       "post": "posted",
-      "update": "updating",
-      "upload": "uploaded"
+      "update": "updating"
     },
     "confirm": "OK",
     "element": {

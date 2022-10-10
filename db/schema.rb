@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_07_133847) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_03_103855) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pg_trgm"
@@ -106,7 +106,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_07_133847) do
     t.float "experience_level_rating", default: 5.0
     t.float "experience_level_rating_distribution", default: 5.0
     t.boolean "featured", default: false
-    t.integer "featured_number"
     t.string "feed_source_url"
     t.integer "hotness_score", default: 0
     t.datetime "last_comment_at", precision: nil, default: "2017-01-01 05:00:00"
@@ -162,7 +161,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_07_133847) do
     t.index ["collection_id"], name: "index_articles_on_collection_id"
     t.index ["comment_score"], name: "index_articles_on_comment_score"
     t.index ["comments_count"], name: "index_articles_on_comments_count"
-    t.index ["featured_number"], name: "index_articles_on_featured_number"
     t.index ["feed_source_url"], name: "index_articles_on_feed_source_url", unique: true, where: "(published IS TRUE)"
     t.index ["feed_source_url"], name: "index_articles_on_feed_source_url_unscoped"
     t.index ["hotness_score", "comments_count"], name: "index_articles_on_hotness_score_and_comments_count"
@@ -462,7 +460,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_07_133847) do
     t.text "body_markdown"
     t.integer "clicks_count", default: 0
     t.datetime "created_at", precision: nil, null: false
+    t.integer "display_to", default: 0, null: false
     t.integer "impressions_count", default: 0
+    t.string "name"
     t.bigint "organization_id"
     t.string "placement_area"
     t.text "processed_html"
@@ -637,6 +637,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_07_133847) do
   create_table "navigation_links", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.boolean "display_only_when_signed_in", default: false
+    t.integer "display_to", default: 0, null: false
     t.string "icon", null: false
     t.string "name", null: false
     t.integer "position"
@@ -1053,29 +1054,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_07_133847) do
     t.index ["var"], name: "index_site_configs_on_var", unique: true
   end
 
-  create_table "sponsorships", force: :cascade do |t|
-    t.text "blurb_html"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "expires_at", precision: nil
-    t.integer "featured_number", default: 0, null: false
-    t.text "instructions"
-    t.datetime "instructions_updated_at", precision: nil
-    t.string "level", null: false
-    t.bigint "organization_id"
-    t.bigint "sponsorable_id"
-    t.string "sponsorable_type"
-    t.string "status", default: "none", null: false
-    t.string "tagline"
-    t.datetime "updated_at", precision: nil, null: false
-    t.string "url"
-    t.bigint "user_id"
-    t.index ["level"], name: "index_sponsorships_on_level"
-    t.index ["organization_id"], name: "index_sponsorships_on_organization_id"
-    t.index ["sponsorable_id", "sponsorable_type"], name: "index_sponsorships_on_sponsorable_id_and_sponsorable_type"
-    t.index ["status"], name: "index_sponsorships_on_status"
-    t.index ["user_id"], name: "index_sponsorships_on_user_id"
-  end
-
   create_table "tag_adjustments", force: :cascade do |t|
     t.string "adjustment_type"
     t.bigint "article_id"
@@ -1338,7 +1316,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_07_133847) do
 
   create_table "users_settings", force: :cascade do |t|
     t.string "brand_color1", default: "#000000"
-    t.string "brand_color2", default: "#ffffff"
     t.integer "config_font", default: 0, null: false
     t.integer "config_homepage_feed", default: 0, null: false
     t.integer "config_navbar", default: 0, null: false
@@ -1441,8 +1418,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_07_133847) do
   add_foreign_key "rating_votes", "users", on_delete: :nullify
   add_foreign_key "reactions", "users", on_delete: :cascade
   add_foreign_key "response_templates", "users"
-  add_foreign_key "sponsorships", "organizations"
-  add_foreign_key "sponsorships", "users"
   add_foreign_key "tag_adjustments", "articles", on_delete: :cascade
   add_foreign_key "tag_adjustments", "tags", on_delete: :cascade
   add_foreign_key "tag_adjustments", "users", on_delete: :cascade

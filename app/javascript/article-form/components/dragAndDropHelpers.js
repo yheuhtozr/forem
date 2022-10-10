@@ -16,7 +16,11 @@ export function matchesDataTransferType(
 }
 
 // TODO: Document functions
-export function handleImageDrop(handleImageSuccess, handleImageFailure) {
+export function handleImageDrop(
+  handleImageUploading,
+  handleImageSuccess,
+  handleImageFailure,
+) {
   return function (event) {
     event.preventDefault();
 
@@ -38,7 +42,12 @@ export function handleImageDrop(handleImageSuccess, handleImageFailure) {
       return;
     }
 
-    processImageUpload(files, handleImageSuccess, handleImageFailure);
+    processImageUpload(
+      files,
+      handleImageUploading,
+      handleImageSuccess,
+      handleImageFailure,
+    );
   };
 }
 

@@ -24,6 +24,10 @@ module Moderator
       Users::DeleteActivity.call(user)
     end
 
+    def delete_user_podcasts
+      Users::DeletePodcasts.call(user)
+    end
+
     def remove_privileges
       @user.remove_role(:workshop_pass)
       remove_mod_roles
@@ -64,8 +68,8 @@ module Moderator
       when "Suspended" || "Spammer"
         user.add_role(:suspended)
         remove_privileges
-      when "Moderator"
-        assign_elevated_role_to_user(user, :moderator)
+      when "Super Moderator"
+        assign_elevated_role_to_user(user, :super_moderator)
         TagModerators::AddTrustedRole.call(user)
       when "Good standing"
         regular_member

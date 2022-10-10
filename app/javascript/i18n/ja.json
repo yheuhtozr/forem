@@ -9,11 +9,7 @@
     },
     "reading_time_other": "約 %{count} 字/語",
     "report": "通報する",
-    "save": {
-      "save": "保存",
-      "saved": "保存済",
-      "unsave": "解除"
-    },
+    "save": "切り抜き帳に保存",
     "timeAgo": "（%{ago}）"
   },
   "clipboard": {
@@ -25,7 +21,7 @@
   },
   "comments": {
     "all_other": "%{count} 件のコメントをすべて見る",
-    "aria_label": "Comments for post %{title} (%{num})",
+    "aria_label": "記事「%{title}」にコメントを書く",
     "blocked": "[blocked content]",
     "delete": "本当にこのコメントを削除してもよろしいですか？",
     "empty": "書く",
@@ -62,10 +58,7 @@
     "etc": "..."
   },
   "crayons": {
-    "mention": {
-      "ariaHelper_one": "Mention user, 1 result found",
-      "ariaHelper_other": "Mention user, %{count} results found",
-      "aria_label": "Mention user",
+    "autocomplete": {
       "empty": "No results found",
       "type": "Type to search for a user"
     },
@@ -75,11 +68,12 @@
       "icon": "閉じる"
     },
     "tagAutocomplete": {
-      "add_another": "Add another...",
-      "aria_edit": "Edit %{item}",
-      "aria_remove": "Remove %{item}",
-      "maximum": "Maximum %{maxSelections} selections",
-      "selected": "Selected items:"
+      "add_another": "タグを追加…",
+      "aria_edit": "%{item}を編集",
+      "aria_remove": "%{item}を外す",
+      "error_reader": "無効な操作です",
+      "maximum": "最大 %{maxSelections} まで指定できます",
+      "selected": "選択した項目:"
     }
   },
   "editor": {
@@ -176,6 +170,7 @@
       "title": "未保存の変更があります",
       "yes": "はい、離れます"
     },
+    "loading": "お待ちください",
     "new_title": "タイトルをここに",
     "options": {
       "done": "完了",
@@ -191,6 +186,10 @@
         "site": "サイト",
         "special": "特殊用途"
       },
+      "schedule": {
+        "aria_label": "投稿予定日時",
+        "label": "投稿予約"
+      },
       "series": {
         "aria_label": "既存の連載の中から一つ選んでください",
         "desc": "この記事は連載の一部ですか？新しい連載名をつけてください（2 つめの記事ができると連載として表示されます）",
@@ -199,6 +198,7 @@
         "select": "選択…"
       },
       "title": "記事の設定",
+      "to_draft": "下書きにする",
       "unpublish": "記事を公開停止",
       "url": {
         "desc": "この記事が別の場所（自分のブログなど）で公開されている場合、メタタグの <code>canonical_url</code> を変更します。",
@@ -220,6 +220,7 @@
     "save_draft": "<0>下書きを</0>保存",
     "saving": "保存中…",
     "saving_draft": "下書きを保存中…",
+    "schedule": "予約投稿",
     "tabs": {
       "aria_label": "記事の表示モード",
       "edit": "編集",
@@ -229,6 +230,7 @@
       "aria_help": "ヘルプ",
       "aria_label": "Markdown 書式ツールバー",
       "aria_options": "その他の機能",
+      "aria_templates": "定型文を表示",
       "bold": "太字",
       "code": "コード",
       "codeBlock": "コードブロック",
@@ -288,10 +290,12 @@
     "cancel": "Cancel",
     "confirm": "Confirm action",
     "desc": "Thanks for keeping %{community} safe. Here is what you can do to flag this user:",
+    "error_radio": "You must check the radio button first.",
     "heading": "Flag User",
     "less": "All posts by this author will be less visible.",
     "other": "Report other inappropriate conduct",
     "response": "Response from server: %{outcome}",
+    "unflag": "You have unflagged this author successfully.",
     "vomit": "Make all posts by this author less visible",
     "vomit_desc": "This author consistently posts content that violates DEV's code of conduct because it is harassing, offensive or spammy."
   },
@@ -429,10 +433,7 @@
     "thumbsup": "This post will be more visible.",
     "title": "Moderation panel actions",
     "unpublish": {
-      "heading": "Unpublish post",
-      "desc1": "Once unpublished, this post will become invisible to the public and only accessible to %{authorName}.",
-      "desc2": "They can still re-publish the post if they are not suspended.",
-      "submit": "Unpublish post"
+      "heading": "Unpublish post"
     },
     "vomit": "You've flagged this post as abusive or spam."
   },

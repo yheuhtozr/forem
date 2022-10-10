@@ -7,8 +7,13 @@ ja:
       actions:
         aria_label: 記事へのアクション
       comments:
-        aria_label: 「%{title}」へのコメント（%{num}）
-        subtitle_html: みんなの声%{num}
+        aria_label: 記事「%{title}」にコメントを書く
+        sort_button:
+          aria_label: コメントを並び替える
+        subtitle:
+          top_html: 人気順のコメント%{num}
+          latest_html: 新しい順のコメント%{num}
+          oldest_html: 古い順のコメント%{num}
         num: "（%{num}）"
         subscribe: 投稿
       conduct:
@@ -26,6 +31,9 @@ ja:
           cancel: やめる
           edit: 編集
           unpublish: 公開停止
+      jump_to_comments:
+        aria_label: コメントに飛ぶ
+        label: コメントに飛ぶ
       lock:
         meta:
           title: コメント欄の凍結
@@ -47,6 +55,10 @@ ja:
         aria_label: 切り抜き帳に保存
         initial: 保存
         success: 保存済
+      scheduled:
+        subtitle: 予約投稿
+        text: " この URL を知っている人はアクセスできます。リンクを教える場合は注意してください。"
+        edit: 編集画面へ
       series:
         subtitle: "%{slug}（%{size}）"
         size: 全 %{count} 部
@@ -75,7 +87,8 @@ ja:
       edited_html: "%{date}に更新"
       for_org_html: "%{start} が %{end}%{org}%{start} へ執筆%{end}"
       missing: 記事は公開終了しました
-      posted_html: "%{date}投稿"
+      published_html: "%{date}投稿"
+      scheduled_html: "%{date}投稿予定"
       read_next: 次に読みたい
       reading_time: 約 %{count} 字/語
       right_nav: 作者情報

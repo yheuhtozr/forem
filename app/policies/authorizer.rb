@@ -75,6 +75,10 @@ module Authorizer
       has_role?(:creator)
     end
 
+    def accesses_mod_response_templates?
+      has_trusted_role? || any_admin? || super_moderator? || tag_moderator?
+    end
+
     # When you need to know if we trust the user, but don't want to
     # have stale information that the `trusted?` method might give
     # you.
@@ -92,8 +96,8 @@ module Authorizer
       has_role?(:trusted)
     end
 
-    def moderator?
-      has_role?(:moderator)
+    def super_moderator?
+      has_role?(:super_moderator)
     end
 
     def podcast_admin_for?(podcast)

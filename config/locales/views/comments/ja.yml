@@ -26,6 +26,7 @@ ja:
         submit: 削除する
         edit: 編集する
         cancel: やめる
+        comment_deleted: 削除されたコメント
       collapse: たたむ
       edit: コメント編集中
       edited:
@@ -35,6 +36,7 @@ ja:
       hidden:
         text_html: 非表示にされているコメントがあります（%{info}）
         info: 詳細
+        comment_hidden: 作者が非表示にしたコメント
       hider:
         description_html: 本当にこのコメントを隠しますか？あなたの記事からは見えなくなりますが、このコメントの%{permalink}を開けば見ることができます。
         hide_child: コメントへの返信も隠す
@@ -114,7 +116,8 @@ ja:
           aria_label: "%{user} のコメントに悪意がある、もしくはサイトのルールに違反しているとして報告する"
       footer:
         heart:
-          title: ハート
+          aria_label: いいね
+          title: いいね
           icon: コメントにいいね
           count_html: "%{likes}%{num}"
           text: いいね

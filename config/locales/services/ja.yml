@@ -92,8 +92,6 @@ ja:
           body: 'Potential spam user! %{url}
 
             '
-        sponsorship:
-          body: "%{user} bought a %{type} sponsorship for %{organization}\n"
     spam:
       article_handler:
         suspended_too_many: ユーザーはスパム記事を大量に投稿したため、自動検出により凍結されました。

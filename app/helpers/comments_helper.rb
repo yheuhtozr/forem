@@ -57,12 +57,22 @@ module CommentsHelper
 
   def like_button_text(comment)
     # TODO: [yheuhtozr] support cross-element i18n compatible with initializeCommentsPage.js.erb
-    case comment.public_reactions_count
-    when 0
-      I18n.t("helpers.comments_helper.like")
+    if comment.public_reactions_count.zero?
+      ""
     else
       I18n.t("helpers.comments_helper.nbsp_likes_html", count: comment.public_reactions_count)
     end
+  end
+
+  def contextual_comment_url(comment, article: nil)
+    # Liquid tag parsing doesn't have Devise/Warden (request middleware)
+    return URL.comment(comment) if request.env["warden"].nil?
+
+    # Logged in users should get the comment permalink
+    return URL.comment(comment) if user_signed_in?
+
+    # Logged out users should get the article URL with the comment anchor
+    URL.fragment_comment(comment, path: article&.path)
   end
 
   private

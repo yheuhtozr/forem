@@ -2,6 +2,7 @@ import { h } from 'preact';
 import PropTypes from 'prop-types';
 import { Trans } from 'react-i18next';
 import { i18next, locale } from '@utilities/locale';
+import moment from 'moment';
 import { Dropdown, ButtonNew as Button } from '@crayons';
 import CogIcon from '@images/cog.svg';
 
@@ -13,21 +14,33 @@ import CogIcon from '@images/cog.svg';
  * @param {Function} props.onSaveDraft Callback for when the post draft is saved
  * @param {Function} props.onConfigChange Callback for when the config options have changed
  */
+
 export const Options = ({
   passedData: {
     published = false,
+    publishedAtDate = '',
+    publishedAtTime = '',
+    publishedAtWas = '',
+    timezone = Intl.DateTimeFormat().resolvedOptions().timeZone,
     allSeries = [],
     canonicalUrl = '',
     series = '',
     baseLang = '',
     allLangs = {},
   },
+  schedulingEnabled,
   onSaveDraft,
   onConfigChange,
+  previewLoading,
 }) => {
   let publishedField = '';
   let existingSeries = '';
   let existingLangs = '';
+  let publishedAtField = '';
+
+  const wasScheduled = publishedAtWas && moment(publishedAtWas) > moment();
+  // allow to edit published at if it was not set earlier or if it's in the future
+  const editablePublishedAt = !publishedAtWas || wasScheduled;
 
   if (allSeries.length > 0) {
     const seriesNames = allSeries.map((name, index) => {
@@ -123,17 +136,72 @@ export const Options = ({
   }
 
   if (published) {
-    publishedField = (
-      <div data-testid="options__danger-zone" className="crayons-field mb-6">
-        <div className="crayons-field__label color-accent-danger">
-          {i18next.t('common.danger')}
+    if (wasScheduled) {
+      publishedField = (
+        <div data-testid="options__danger-zone" className="crayons-field mb-6">
+          <Button
+            className="c-btn c-btn--secondary w-100"
+            variant="primary"
+            onClick={onSaveDraft}
+          >
+            {i18next.t('editor.options.to_draft')}
+          </Button>
         </div>
-        <Button variant="primary" destructive onClick={onSaveDraft}>
-          {i18next.t('editor.options.unpublish')}
-        </Button>
+      );
+    } else {
+      publishedField = (
+        <div data-testid="options__danger-zone" className="crayons-field mb-6">
+          <div className="crayons-field__label color-accent-danger">
+            {i18next.t('common.danger')}
+          </div>
+          <Button variant="primary" destructive onClick={onSaveDraft}>
+            {i18next.t('editor.options.unpublish')}
+          </Button>
+        </div>
+      );
+    }
+  }
+
+  if (schedulingEnabled && editablePublishedAt) {
+    const currentDate = moment().format('YYYY-MM-DD');
+    publishedAtField = (
+      <div className="crayons-field mb-6">
+        <label htmlFor="publishedAtDate" className="crayons-field__label">
+          {i18next.t('editor.options.schedule.label')}
+        </label>
+        <input
+          aria-label={i18next.t('editor.options.schedule.aria_label')}
+          type="date"
+          min={currentDate}
+          value={publishedAtDate} // ""
+          className="crayons-textfield"
+          name="publishedAtDate"
+          onChange={onConfigChange}
+          id="publishedAtDate"
+          placeholder={i18next.t('common.etc')}
+        />
+        <input
+          aria-label={i18next.t('editor.options.schedule.aria_label')}
+          type="time"
+          value={publishedAtTime} // "18:00"
+          className="crayons-textfield"
+          name="publishedAtTime"
+          onChange={onConfigChange}
+          id="publishedAtTime"
+          placeholder={i18next.t('common.etc')}
+        />
+        <input
+          type="hidden"
+          value={timezone} // "Asia/Magadan"
+          className="crayons-textfield"
+          name="timezone"
+          id="timezone"
+          placeholder={i18next.t('common.etc')}
+        />
       </div>
     );
   }
+
   return (
     <div className="s:relative">
       <Button
@@ -141,6 +209,7 @@ export const Options = ({
         icon={CogIcon}
         title={i18next.t('editor.options.title')}
         aria-label={i18next.t('editor.options.title')}
+        disabled={previewLoading}
       />
 
       <Dropdown
@@ -167,6 +236,7 @@ export const Options = ({
             id="canonicalUrl"
           />
         </div>
+        {publishedAtField}
         <div className="crayons-field mb-6">
           <label htmlFor="series" className="crayons-field__label">
             {i18next.t('editor.options.series.label')}
@@ -220,14 +290,20 @@ export const Options = ({
 Options.propTypes = {
   passedData: PropTypes.shape({
     published: PropTypes.bool.isRequired,
+    publishedAtDate: PropTypes.string.isRequired,
+    publishedAtTime: PropTypes.string.isRequired,
+    publishedAtWas: PropTypes.string.isRequired,
+    timezone: PropTypes.string.isRequired,
     allSeries: PropTypes.array.isRequired,
     canonicalUrl: PropTypes.string.isRequired,
     series: PropTypes.string.isRequired,
     baseLang: PropTypes.string.isRequired,
     allLangs: PropTypes.object.isRequired,
   }).isRequired,
+  schedulingEnabled: PropTypes.bool.isRequired,
   onSaveDraft: PropTypes.func.isRequired,
   onConfigChange: PropTypes.func.isRequired,
+  previewLoading: PropTypes.bool.isRequired,
 };
 
 Options.displayName = 'Options';

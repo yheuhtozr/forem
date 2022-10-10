@@ -42,11 +42,16 @@ Rails.application.routes.draw do
     end
 
     namespace :api, defaults: { format: "json" } do
-      # API V1 is in pre-release: Available iff api_v1 FeatureFlag is enabled
-      constraints(->(_req) { FeatureFlag.enabled?(:api_v1) }) do
-        scope module: :v1, constraints: ApiConstraints.new(version: 1, default: false) do
-          draw :api
-        end
+      scope module: :v1, constraints: ApiConstraints.new(version: 1, default: false) do
+        # V1 only endpoints
+        put "/users/:id/suspend", to: "users#suspend", as: :user_suspend
+        put "/articles/:id/unpublish", to: "articles#unpublish", as: :article_unpublish
+        put "/users/:id/unpublish", to: "users#unpublish", as: :user_unpublish
+
+        post "/reactions", to: "reactions#create"
+        post "/reactions/toggle", to: "reactions#toggle"
+
+        draw :api
       end
 
       scope module: :v0, constraints: ApiConstraints.new(version: 0, default: true) do
@@ -215,7 +220,6 @@ Rails.application.routes.draw do
     get "/checkin", to: "pages#checkin"
     get "/💸", to: redirect("t/hiring")
     get "/survey", to: redirect("https://dev.to/ben/final-thoughts-on-the-state-of-the-web-survey-44nn")
-    get "/sponsors", to: "pages#sponsors"
     get "/search", to: "stories/articles_search#index"
     post "articles/preview", to: "articles#preview"
     post "comments/preview", to: "comments#preview"
@@ -308,8 +312,6 @@ Rails.application.routes.draw do
     get "/t/:tag/edit", to: "tags#edit", as: :edit_tag
     get "/t/:tag/admin", to: "tags#admin"
     patch "/tag/:id", to: "tags#update"
-
-    get "/badge/:slug", to: "badges#show", as: :badge
 
     get "/top/:timeframe", to: "stories#index"
 

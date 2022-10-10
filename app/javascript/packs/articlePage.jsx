@@ -5,6 +5,7 @@ import { addFullScreenModeControl } from '../utilities/codeFullscreenModeSwitche
 import { initializeDropdown } from '../utilities/dropdownUtils';
 import { embedGists } from '../utilities/gist';
 import { initializeUserSubscriptionLiquidTagContent } from '../liquidTags/userSubscriptionLiquidTag';
+import { trackCommentClicks } from '@utilities/ahoy/trackEvents';
 import { isNativeAndroid, copyToClipboard } from '@utilities/runtime';
 import { i18next } from '@utilities/locale';
 
@@ -73,27 +74,6 @@ function showAnnouncer() {
   document.getElementById('article-copy-link-announcer').hidden = false;
 }
 
-// Temporary Ahoy Stats for comment section clicks on controls
-function trackCommentsSectionClicks() {
-  document
-    .getElementById('comments')
-    .addEventListener('click', ({ target }) => {
-      // We check for any parent container with a data-tracking-name attribute, as otherwise
-      // SVGs inside buttons can cause events to be missed
-      const relevantNode = target.closest('[data-tracking-name]');
-
-      if (!relevantNode) {
-        // We don't want to track this click
-        return;
-      }
-
-      ahoy.track('Comment section click', {
-        page: location.href,
-        element: relevantNode.dataset.trackingName,
-      });
-    });
-}
-
 // Temporary Ahoy Stats for displaying comments section either on page load or after scrolling
 function trackCommentsSectionDisplayed() {
   const callback = (entries, observer) => {
@@ -101,6 +81,12 @@ function trackCommentsSectionDisplayed() {
       if (entry.isIntersecting) {
         ahoy.track('Comment section viewable', { page: location.href });
         observer.disconnect();
+      }
+      if (location.hash === '#comments') {
+        //handle focus event on text area
+        const element = document.getElementById('text-area');
+        const event = new FocusEvent('focus');
+        element.dispatchEvent(event);
       }
     });
   };
@@ -176,5 +162,6 @@ const targetNode = document.querySelector('#comments');
 targetNode && embedGists(targetNode);
 
 initializeUserSubscriptionLiquidTagContent();
-trackCommentsSectionClicks();
+// Temporary Ahoy Stats for comment section clicks on controls
+trackCommentClicks('comments');
 trackCommentsSectionDisplayed();

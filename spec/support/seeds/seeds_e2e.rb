@@ -42,7 +42,8 @@ seeder.create_if_doesnt_exist(User, "email", "admin@forem.local") do
     username: "Admin_McAdmin",
     profile_image: File.open(Rails.root.join("app/assets/images/#{rand(1..40)}.png")),
     confirmed_at: Time.current,
-    registered_at: Time.current,
+    registered_at: "2020-01-01T13:09:47+0000",
+    created_at: "2020-01-01T13:09:47+0000",
     password: "password",
     password_confirmation: "password",
     saw_onboarding: true,
@@ -199,7 +200,7 @@ seeder.create_if_doesnt_exist(User, "email", "moderator-user@forem.local") do
 
   user.profile.update(website_url: Faker::Internet.url)
 
-  user.add_role(:moderator)
+  user.add_role(:super_moderator)
   user.add_role(:trusted)
 end
 
@@ -529,7 +530,7 @@ seeder.create_if_none(NavigationLink) do
     name: "Reading List",
     url: "#{base_url}/readinglist",
     icon: reading_icon,
-    display_only_when_signed_in: true,
+    display_to: :logged_in,
     position: 0,
     section: :default,
   )
@@ -538,9 +539,9 @@ end
 ##############################################################################
 
 seeder.create_if_doesnt_exist(NavigationLink, "url", "/contact") do
-  icon = '<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">'\
-         '<path d="M12 1l9.5 5.5v11L12 23l-9.5-5.5v-11L12 1zm0 2.311L4.5 7.653v8.694l7.5 4.342'\
-         '7.5-4.342V7.653L12 3.311zM12 16a4 4 0 110-8 4 4 0 010 8zm0-2a2 2 0 100-4 2 2 0 000 4z"/>'\
+  icon = '<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">' \
+         '<path d="M12 1l9.5 5.5v11L12 23l-9.5-5.5v-11L12 1zm0 2.311L4.5 7.653v8.694l7.5 4.342' \
+         '7.5-4.342V7.653L12 3.311zM12 16a4 4 0 110-8 4 4 0 010 8zm0-2a2 2 0 100-4 2 2 0 000 4z"/>' \
          '</svg>'
   6.times do |i|
     NavigationLink.create!(
@@ -965,6 +966,7 @@ seeder.create_if_none(DisplayAd) do
     organization_id: org_id,
     body_markdown: "<h1>This is an add</h1>",
     placement_area: "sidebar_left",
+    name: "Tests Display Ad",
     published: true,
     approved: true,
   )

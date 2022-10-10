@@ -1,5 +1,5 @@
-import { toggleFlagUserModal } from '../packs/flagUserModal';
-import { toggleModal } from '../packs/toggleUserSuspensionModal';
+import { toggleFlagUserModal } from '../packs/toggleUserFlagModal';
+import { toggleSuspendUserModal } from '../packs/toggleUserSuspensionModal';
 import { toggleUnpublishPostModal } from '../packs/unpublishPostModal';
 import { toggleUnpublishAllPostsModal } from '../packs/modals/unpublishAllPosts';
 import { request } from '@utilities/http';
@@ -349,7 +349,7 @@ export function addAdjustTagListeners() {
   }
 }
 
-export function addBottomActionsListeners() {
+export function addModActionsListeners() {
   addAdjustTagListeners();
   Array.from(document.getElementsByClassName('other-things-btn')).forEach(
     (btn) => {
@@ -393,30 +393,30 @@ export function addBottomActionsListeners() {
     });
   }
 
-  const unpublishArticleBtn = document.getElementById('unpublish-article-btn');
-  if (unpublishArticleBtn) {
-    unpublishArticleBtn.addEventListener('click', toggleUnpublishPostModal);
-  }
-
   document
-    .getElementById('open-flag-user-modal')
+    .getElementById('toggle-flag-user-modal')
     .addEventListener('click', toggleFlagUserModal);
 
   document
     .getElementById('suspend-user-btn')
-    ?.addEventListener('click', toggleModal);
+    ?.addEventListener('click', toggleSuspendUserModal);
 
   document
     .getElementById('unsuspend-user-btn')
-    ?.addEventListener('click', toggleModal);
+    ?.addEventListener('click', toggleSuspendUserModal);
 
-  document.getElementById('unpublish-all-posts-btn')
+  document
+    .getElementById('unpublish-all-posts-btn')
     ?.addEventListener('click', toggleUnpublishAllPostsModal);
+
+  document
+    .getElementById('unpublish-article-btn')
+    ?.addEventListener('click', toggleUnpublishPostModal);
 }
 
 export function initializeActionsPanel() {
   initializeHeight();
   addCloseListener();
   addReactionButtonListeners();
-  addBottomActionsListeners();
+  addModActionsListeners();
 }

@@ -13,7 +13,9 @@ function addRelevantButtonsToArticle(user) {
     articleContainer.dataset.buttonsInitialized !== 'true'
   ) {
     let actions = [];
+
     const published = JSON.parse(articleContainer.dataset.published);
+    const scheduled = JSON.parse(articleContainer.dataset.scheduled);
 
     if (parseInt(articleContainer.dataset.authorId, 10) === user.id) {
       actions.push(
@@ -27,11 +29,9 @@ function addRelevantButtonsToArticle(user) {
         clickToEditButton.style.display = 'inline-block';
       }
 
-      if (published === true) {
+      if (published === true && !scheduled) {
         actions.push(
-          `<a class="crayons-btn crayons-btn--s crayons-btn--ghost px-2" href="${
-            articleContainer.dataset.path
-          }/manage" rel="nofollow">${i18next.t(
+          `<a class="crayons-btn crayons-btn--s crayons-btn--ghost px-2" id ="article-action-space-manage" href="${articleContainer.dataset.path}/manage" rel="nofollow">${i18next.t(
             'dashboard.article.manage',
           )}</a>`,
         );

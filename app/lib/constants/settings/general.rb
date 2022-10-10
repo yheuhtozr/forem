@@ -35,6 +35,10 @@ module Constants
             description: I18n.t("lib.constants.settings.general.ga_tracking.description"),
             placeholder: ""
           },
+          ga_analytics_4_id: {
+            description: I18n.t("lib.constants.settings.general.ga_analytics_4.description"),
+            placeholder: ""
+          },
           health_check_token: {
             description: I18n.t("lib.constants.settings.general.health.description"),
             placeholder: I18n.t("lib.constants.settings.general.health.placeholder")
@@ -94,10 +98,6 @@ module Constants
           sidebar_tags: {
             description: I18n.t("lib.constants.settings.general.sidebar.description"),
             placeholder: I18n.t("lib.constants.settings.general.sidebar.placeholder")
-          },
-          sponsor_headline: {
-            description: I18n.t("lib.constants.settings.general.sponsor.description"),
-            placeholder: I18n.t("lib.constants.settings.general.sponsor.placeholder")
           },
           stripe_api_key: {
             description: I18n.t("lib.constants.settings.general.stripe_api.description"),

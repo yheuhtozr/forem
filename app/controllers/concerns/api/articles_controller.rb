@@ -83,7 +83,7 @@ module Api
 
     def me
       per_page = (params[:per_page] || 30).to_i
-      num = [per_page, 1000].min
+      num = [per_page, per_page_max].min
 
       @articles = case params[:status]
                   when "published"
@@ -105,7 +105,26 @@ module Api
         .decorate
     end
 
+    def unpublish
+      @article = Article.find(params[:id])
+
+      authorize @article, :revoke_publication?
+
+      if Articles::Unpublish.call(@user, @article)
+        payload = { action: "api_article_unpublish", article_id: @article.id }
+        Audit::Logger.log(:admin_api, @user, payload)
+
+        render status: :no_content
+      else
+        render json: { message: @article.errors.full_messages }, status: :unprocessable_entity
+      end
+    end
+
     private
+
+    def per_page_max
+      (ApplicationConfig["API_PER_PAGE_MAX"] || 1000).to_i
+    end
 
     def article_params
       allowed_params = [

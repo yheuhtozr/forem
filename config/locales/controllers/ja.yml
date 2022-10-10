@@ -13,6 +13,7 @@ ja:
     create:
       success: 書き込みました
       failure: すでに存在しています
+      authorization_error: あなたの権限は停止中です。
     delete:
       error: 問題が発生し、コメントが削除されませんでした。
       notice: コメントの削除が完了しました。
@@ -114,6 +115,7 @@ ja:
     updated_config: Your config has been updated. Refresh to see all changes.
     updated_profile: Your profile was successfully updated.
     token_expired: Your token has expired, please request a new one. Tokens only last for 12 hours after account deletion is initiated.
+    notifications_settings_updated: Your notifications settings have been updated.
   video_states_controller:
     related_article_not_found: Related article not found
     video_state_updated: Video state updated

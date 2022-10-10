@@ -1,7 +1,9 @@
 import { h } from 'preact';
 import PropTypes from 'prop-types';
 import { ImageUploader } from './ImageUploader';
-import { MarkdownToolbar } from '@crayons/MarkdownToolbar';
+import { MarkdownToolbar, Link } from '@crayons';
+import HelpIcon from '@images/help.svg';
+import { i18next } from '@utilities/locale';
 
 export const Toolbar = ({ version, textAreaId }) => {
   return (
@@ -13,7 +15,20 @@ export const Toolbar = ({ version, textAreaId }) => {
       {version === 'v1' ? (
         <ImageUploader editorVersion={version} />
       ) : (
-        <MarkdownToolbar textAreaId={textAreaId} />
+        <MarkdownToolbar
+          textAreaId={textAreaId}
+          additionalSecondaryToolbarElements={[
+            <Link
+              key="help-link"
+              block
+              href="/p/editor_guide"
+              target="_blank"
+              rel="noopener noreferrer"
+              icon={HelpIcon}
+              aria-label={i18next.t('editor.toolbar.aria_help')}
+            />,
+          ]}
+        />
       )}
     </div>
   );

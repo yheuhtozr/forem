@@ -12,7 +12,6 @@ module Admin
                                  approved
                                  email_digest_eligible
                                  main_image_background_hex_color
-                                 featured_number
                                  user_id
                                  co_author_ids_list
                                  published_at].freeze
@@ -40,7 +39,7 @@ module Admin
     def update
       article = Article.find(params[:id])
 
-      if article.update(article_params)
+      if article.update(article_params.merge(admin_update: true))
         flash[:success] = I18n.t("admin.articles_controller.saved")
       else
         flash[:danger] = article.errors_as_sentence
@@ -114,10 +113,10 @@ module Admin
     def articles_featured
       Article.published.or(Article.where(published_from_feed: true))
         .featured
-        .where("featured_number > ?", Time.current.to_i)
+        .where("published_at > ?", Time.current)
         .includes(:user)
         .limited_columns_internal_select
-        .order(featured_number: :desc)
+        .order(published_at: :desc)
     end
 
     def article_params

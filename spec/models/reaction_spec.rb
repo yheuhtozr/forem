@@ -17,6 +17,13 @@ RSpec.describe Reaction, type: :model do
     it "performs a valid query for the user" do
       expect { described_class.user_has_been_given_too_many_spammy_article_reactions?(user: user) }.not_to raise_error
     end
+
+    it "performs a valid query for the user with the include_user_profile logic" do
+      expect do
+        described_class.user_has_been_given_too_many_spammy_article_reactions?(user: user,
+                                                                               include_user_profile: true)
+      end.not_to raise_error
+    end
   end
 
   describe "counter_culture" do
@@ -322,6 +329,22 @@ RSpec.describe Reaction, type: :model do
       reaction = create(:vomit_reaction, user: moderator, reactable: user)
 
       expect(described_class.related_negative_reactions_for_user(moderator).first.id).to eq(reaction.id)
+    end
+  end
+
+  describe ".contradictory_mod_reactions" do
+    let(:moderator) { create(:user, :trusted) }
+
+    it "returns the contradictary reactions related to the category passed in" do
+      article = create(:article, user: moderator)
+      reaction = create(:vomit_reaction, user: moderator, reactable: article)
+
+      expect(described_class.contradictory_mod_reactions(
+        category: "thumbsup",
+        reactable_id: article.id,
+        reactable_type: "Article",
+        user: moderator,
+      ).first).to eq(reaction)
     end
   end
 end

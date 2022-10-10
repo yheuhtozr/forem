@@ -45,6 +45,8 @@ ja:
         series: '連載:'
         series_html: "<strong>連載:</strong> %{series}"
         draft: 下書き
+        scheduled: 予約投稿
+        scheduled_at: '公開予定:'
         reactions:
           title: 反響
           icon: 反響

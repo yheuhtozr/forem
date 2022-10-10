@@ -15,34 +15,57 @@ import { i18next } from '@utilities/locale';
  */
 export const DefaultSelectionTemplate = ({
   name,
+  enableValidation = false,
+  valid = true,
   buttonVariant = 'default',
   className = 'c-autocomplete--multi__selected',
   onEdit,
   onDeselect,
-}) => (
-  <div role="group" aria-label={name} className="flex mr-1 mb-1 w-max">
-    <Button
-      variant={buttonVariant}
-      className={`${className} p-1 cursor-text`}
-      aria-label={i18next.t('crayons.tagAutocomplete.aria_edit', {
+}) => {
+  const conditionalAttributes = () => {
+    if (enableValidation) {
+      return { 'aria-describedby': `invalid-item-${name}` };
+    }
+    return {};
+  };
+
+  return (
+    <>
+      {enableValidation && (
+        <div
+          id={`invalid-item-${name}`}
+          className="screen-reader-only"
+          aria-live="assertive"
+        >
+          {!valid ? i18next.t('crayons.tagAutocomplete.error_reader') : ''}
+        </div>
+      )}
+      <div role="group" aria-label={name} className="flex mr-1 mb-1 w-max">
+        <Button
+          variant={buttonVariant}
+          className={`${className} p-1 cursor-text`}
+          aria-label={i18next.t('crayons.tagAutocomplete.aria_edit', {
         item: name,
       })}
-      onClick={onEdit}
-    >
-      {name}
-    </Button>
-    <Button
-      variant={buttonVariant}
-      className={`${className} p-1`}
-      aria-label={i18next.t('crayons.tagAutocomplete.aria_remove', {
+          {...conditionalAttributes()}
+          onClick={onEdit}
+        >
+          {name}
+        </Button>
+        <Button
+          variant={buttonVariant}
+          className={`${className} p-1`}
+          aria-label={i18next.t('crayons.tagAutocomplete.aria_remove', {
         item: name,
       })}
-      onClick={onDeselect}
-    >
-      <Icon src={Close} />
-    </Button>
-  </div>
-);
+          onClick={onDeselect}
+        >
+          <Icon src={Close} />
+        </Button>
+      </div>
+    </>
+  );
+};
 
 DefaultSelectionTemplate.propTypes = {
   name: PropTypes.string.isRequired,

@@ -6,22 +6,11 @@ getCsrfToken().then(() => {
 
   if (articleContainer) {
     const user = userData();
-    const {
-      articleId,
-      articleSlug,
-      authorId: articleAuthorId,
-      authorName,
-      authorUsername,
-      path,
-    } = articleContainer.dataset;
+    const { authorId: articleAuthorId, path } = articleContainer.dataset;
 
     const initializeModerationsTools = async () => {
       const { initializeActionsPanel } = await import(
         '../actionsPanel/initializeActionsPanelToggle'
-      );
-      const { initializeFlagUserModal } = await import('./flagUserModal');
-      const { initializeUnpublishPostModal } = await import(
-        './unpublishPostModal.jsx'
       );
 
       // If the user can moderate an article give them access to this panel.
@@ -40,18 +29,9 @@ getCsrfToken().then(() => {
         // product to clarify if we want mods to boost their own posts.
         if (user?.id !== articleAuthorId && !isModerationPage()) {
           initializeActionsPanel(user, path);
-          initializeFlagUserModal(articleAuthorId);
-          initializeUnpublishPostModal(
-            articleId,
-            authorName,
-            authorUsername,
-            articleSlug,
-          );
           // "/mod" page
         } else if (isModerationPage()) {
           initializeActionsPanel(user, path);
-          initializeFlagUserModal(articleAuthorId);
-          initializeUnpublishPostModal(articleId, authorUsername, articleSlug);
         }
       }
     };

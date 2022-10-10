@@ -54,5 +54,3 @@ ja:
         new: 記事を作成
         older: '以前の #%{tag} 記事'
         published: 公開記事数 %{count}
-        sponsor: "「%{tag}」のスポンサー"
-      sponsor: "| %{org} が応援しています ❤️"

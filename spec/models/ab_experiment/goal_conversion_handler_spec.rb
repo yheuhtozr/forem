@@ -52,16 +52,16 @@ RSpec.describe AbExperiment::GoalConversionHandler do
       end
 
       it "records a conversion", :aggregate_failures do
-        create(:article, published_at: 2.days.ago, user_id: user.id)
+        create(:article, :past, past_published_at: 2.days.ago, user_id: user.id)
         handler.call
         expect(FieldTest::Event.last.field_test_membership.participant_id).to eq(user.id.to_s)
         expect(FieldTest::Event.last.name).to eq(goal)
       end
 
       it "records weekly post publishing conversions", :aggregate_failures do
-        create(:article, published_at: 2.days.ago, user_id: user.id)
-        create(:article, published_at: 3.days.ago, user_id: user.id)
-        create(:article, published_at: 13.days.ago, user_id: user.id)
+        create(:article, :past, past_published_at: 2.days.ago, user_id: user.id)
+        create(:article, :past, past_published_at: 3.days.ago, user_id: user.id)
+        create(:article, :past, past_published_at: 13.days.ago, user_id: user.id)
 
         handler.call
 
@@ -75,10 +75,10 @@ RSpec.describe AbExperiment::GoalConversionHandler do
       end
 
       it "records a conversion when they post 4 within a week" do
-        create(:article, published_at: 25.hours.ago, user_id: user.id)
-        create(:article, published_at: 49.hours.ago, user_id: user.id)
-        create(:article, published_at: 73.hours.ago, user_id: user.id)
-        create(:article, published_at: 97.hours.ago, user_id: user.id)
+        create(:article, :past, past_published_at: 25.hours.ago, user_id: user.id)
+        create(:article, :past, past_published_at: 49.hours.ago, user_id: user.id)
+        create(:article, :past, past_published_at: 73.hours.ago, user_id: user.id)
+        create(:article, :past, past_published_at: 97.hours.ago, user_id: user.id)
 
         handler.call
 
@@ -133,6 +133,17 @@ RSpec.describe AbExperiment::GoalConversionHandler do
           .to include(goal)
       end
 
+      it "records user_views_pages_on_at_least_two_different_days_within_a_week field test conversion",
+         :aggregate_failures do
+        3.times do |n|
+          create(:page_view, user_id: user.id, created_at: n.days.ago)
+        end
+        handler.call
+        expect(FieldTest::Event.last.field_test_membership.participant_id).to eq(user.id.to_s)
+        expect(FieldTest::Event.pluck(:name))
+          .to include("user_views_pages_on_at_least_two_different_days_within_a_week")
+      end
+
       it "records user_views_pages_on_at_least_four_different_days_within_a_week field test conversion",
          :aggregate_failures do
         7.times do |n|
@@ -176,6 +187,17 @@ RSpec.describe AbExperiment::GoalConversionHandler do
           .not_to include("user_views_pages_on_at_least_twelve_different_hours_within_five_days")
       end
 
+      it "records user_views_pages_on_at_least_three_different_hours_within_a_day field test conversionn",
+         :aggregate_failures do
+        3.times do |n|
+          create(:page_view, user_id: user.id, created_at: n.hours.ago)
+        end
+        handler.call
+        expect(FieldTest::Event.last.field_test_membership.participant_id).to eq(user.id.to_s)
+        expect(FieldTest::Event.pluck(:name))
+          .to eq([goal, "user_views_pages_on_at_least_three_different_hours_within_a_day"])
+      end
+
       it "records user_views_pages_on_at_least_four_different_hours_within_a_day field test conversionn",
          :aggregate_failures do
         7.times do |n|
@@ -184,7 +206,8 @@ RSpec.describe AbExperiment::GoalConversionHandler do
         handler.call
         expect(FieldTest::Event.last.field_test_membership.participant_id).to eq(user.id.to_s)
         expect(FieldTest::Event.pluck(:name))
-          .to eq([goal, "user_views_pages_on_at_least_four_different_hours_within_a_day"])
+          .to eq([goal, "user_views_pages_on_at_least_three_different_hours_within_a_day",
+                  "user_views_pages_on_at_least_four_different_hours_within_a_day"])
       end
 
       it "does not record user_views_article_four_hours_in_day field test conversion for non-qualifying activity" do

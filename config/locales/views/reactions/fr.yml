@@ -14,7 +14,7 @@ fr:
       summary:
         title: Reactions
       like:
-        title: Coeur
+        title: Like
         aria_label: Like
         icon: Favorite heart button
         text: Like
