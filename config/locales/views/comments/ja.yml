@@ -36,7 +36,7 @@ ja:
       hidden:
         text_html: 非表示にされているコメントがあります（%{info}）
         info: 詳細
-        comment_hidden: 作者が非表示にしたコメント
+        comment_hidden: 記事の作者が非表示にしたコメント
       hider:
         description_html: 本当にこのコメントを隠しますか？あなたの記事からは見えなくなりますが、このコメントの%{permalink}を開けば見ることができます。
         hide_child: コメントへの返信も隠す

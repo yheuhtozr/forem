@@ -1,5 +1,3 @@
-<% require './scripts/i18n_tasks/i18n_tasks_patches' %>
-
 # i18n-tasks finds and manages missing and unused translations: https://github.com/glebm/i18n-tasks
 
 # The "main" locale.
@@ -101,7 +99,10 @@ ignore_missing:
   - date.*
 
   # TODO: add translations for these
+  - 'activerecord.attributes.doorkeeper/*'
+  - 'activerecord.errors.models.doorkeeper/*'
   - devise.*
+  - doorkeeper.*
 
   # these are loaded from kaminari default gem
   - views.*
@@ -144,4 +145,3 @@ ignore_unused:
 #
 # <%# I18n::Tasks.add_scanner 'I18n::Tasks::Scanners::PatternMapper',
 #       patterns: [['\bSpree\.t[( ]\s*%{key}', 'spree.%{key}']] %>
-<% require './scripts/i18n_tasks/r18n_scanner' %>

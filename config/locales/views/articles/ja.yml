@@ -8,6 +8,16 @@ ja:
         aria_label: 記事へのアクション
       comments:
         aria_label: 記事「%{title}」にコメントを書く
+        sort:
+          heading: "コメントの並び順: "
+          title:
+            top: 人気順
+            latest: 新しい順
+            oldest: 古い順
+          desc:
+            top: 評価が高く重要なコメントから表示
+            latest: 新しいコメントから表示
+            oldest: 古いコメントから表示
         sort_button:
           aria_label: コメントを並び替える
         subtitle:
