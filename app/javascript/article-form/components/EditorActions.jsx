@@ -72,7 +72,7 @@ export const EditorActions = ({
       <Button
         variant="primary"
         className="mr-2 whitespace-nowrap"
-        onClick={onPublish}
+        onClick={schedule ? onPublish : () => setWannaPublish(true)}
         disabled={previewLoading}
       >
         {saveButtonText}
@@ -84,7 +84,9 @@ export const EditorActions = ({
           title={i18next.t('editor.publishConfirm.title')}
           onClose={() => setWannaPublish(false)}
         >
-          <p>{i18next.t('editor.publishConfirm.text')}</p>
+          <p>
+            <Trans i18nKey="editor.publishConfirm.text" />
+          </p>
           <div className="pt-4">
             <Button className="mr-2" variant="danger" onClick={onPublish}>
               {i18next.t('editor.publishConfirm.yes')}
