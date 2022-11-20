@@ -6,20 +6,23 @@ class LangTag < Liquid::Block
     (?:\{[a-z]{3}[a-z0-9]\})?(?<unkn>\S+)
   )/x
 
-  def initialize(tag_name, langtag, _parse_context)
+  def initialize(tag_name, params, _parse_context)
     super
     @name = tag_name == "ln" ? "span" : "div"
+    langtag, dir, * = params.strip.split(" ", 3)
     @lang = parse_lang(langtag)
+    @dir = %w[ltr rtl].include?(dir) ? %( dir="#{dir}") : ""
   end
 
   def render(_context)
-    content = super.gsub(/\A\s*(?:<br>\s)+|(?:<br>\s)+\z/, "").html_safe # rubocop:disable Rails/OutputSafety
+    content = super.gsub(/\A\s*(?:<br>\s)+|(?:<br>\s)+\z/, "")
 
     ApplicationController.render(
       partial: PARTIAL,
       locals: {
         name: @name,
         lang: @lang,
+        dir: @dir,
         content: content
       },
     )
