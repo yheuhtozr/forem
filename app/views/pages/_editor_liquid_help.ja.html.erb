@@ -1,29 +1,70 @@
 <article id="editor-liquid-help" lang="ja">
   <div class="text-styles">
-    <p>エディタでは標準の <a href="https://shopify.github.io/liquid" target="_blank" rel="noopener">Liquid タグ</a>が使えるほか、このサイト独自の拡張タグがあります。</p>
-    <h3><%= community_name %> 記事の埋め込み</h3>
-    <p>記事の URL をそのまま入れるだけです。</p>
-    <code>{% link <%= app_url("/kazz/boost-your-productivity-using-markdown-1be") %> %}</code>
-    <p>ページのスラグを使ってもできます。</p>
-    <code>{% link kazz/boost-your-productivity-using-markdown-1be %}</code>
-    <p><code>link</code> の別名として <code>post</code> も使えます。</p>
-    <code>{% post <%= app_url("/kazz/boost-your-productivity-using-markdown-1be") %> %}</code>
-    <p>あるいは、</p>
-    <code>{% post kazz/boost-your-productivity-using-markdown-1be %}</code>
-    <h3><%= community_name %> ユーザーの埋め込み</h3>
-    <p><%= community_name %> のユーザー名を入れるだけです。</p>
-    <code>{% user jess %}</code>
-    <h3><%= community_name %> タグの埋め込み</h3>
-    <p>タグ名を入れるだけです。</p>
-    <code>{% tag git %}</code>
-    <h3><%= community_name %> コメントの埋め込み</h3>
-    <p>コメントの URL 末尾の
-      <code>ID</code> を入れるだけです。コメントの URL を取得するには、投稿時間の部分をクリックするか、右上角のメニューから「リンクをコピー」をクリックします。使い方は以下の通りです。
-    </p>
-    <code>{% comment 2d1a %}</code>
+    <h3>URL での埋め込みに対応</h3>
+
+    <ul class="crayons-card grid gap-2 grid-cols-2 p-4 list-disc">
+      <li class="ml-4"><%= community_name %> コメント</li>
+      <li class="ml-4"><%= community_name %> リンク</li>
+      <li class="ml-4"><%= community_name %> 告知</li>
+      <li class="ml-4"><%= community_name %> グループ</li>
+      <li class="ml-4"><%= community_name %> ポッドキャスト配信</li>
+      <li class="ml-4"><%= community_name %> タグ</li>
+      <li class="ml-4"><%= community_name %> ユーザープロフィール</li>
+      <li class="ml-4">asciinema</li>
+      <li class="ml-4">CodePen</li>
+      <li class="ml-4">CodeSandbox</li>
+      <li class="ml-4">DotNetFiddle</li>
+      <li class="ml-4">GitHub Gist、イシュー、リポジトリ</li>
+      <li class="ml-4">Glitch</li>
+      <li class="ml-4">Instagram</li>
+      <li class="ml-4">JSFiddle</li>
+      <li class="ml-4">JSitor</li>
+      <li class="ml-4">Loom</li>
+      <li class="ml-4">Kotlin</li>
+      <li class="ml-4">Medium</li>
+      <li class="ml-4">Next Tech</li>
+      <li class="ml-4">Reddit</li>
+      <li class="ml-4">Replit</li>
+      <li class="ml-4">Slideshare</li>
+      <li class="ml-4">Speaker Deck</li>
+      <li class="ml-4">SoundCloud</li>
+      <li class="ml-4">Spotify</li>
+      <li class="ml-4">StackBlitz</li>
+      <li class="ml-4">Stackery</li>
+      <li class="ml-4">Stack Exchange または Stack Overflow</li>
+      <li class="ml-4">Twitch</li>
+      <li class="ml-4">Twitter</li>
+      <li class="ml-4">Twitter タイムライン</li>
+      <li class="ml-4">Wikipedia</li>
+      <li class="ml-4">Vimeo</li>
+      <li class="ml-4">YouTube</li>
+    </ul>
+
+    <hr />
+
+    <h3>URL 以外での埋め込みに対応</h3>
+
+    <h4>折りたたみ要素</h4>
+    <p><code>details</code>, <code>spoiler</code>, <code>collapsible</code> を使って、HTML の詳細折りたたみ要素を入れることができます。「要約」の部分はドロップダウンのタイトルに表示され、「内容」はドロップダウンを開くまで見えない部分です。これはユーザーの働きかけ（クリックなど）がないと表示されない隠し文章（クイズの答えなど）を作るのに便利です。</p>
+    <pre>
+      {% details 要約 %} 内容 {% enddetails %}
+      {% spoiler 要約 %} 内容 {% endspoiler %}
+      {% collapsible 要約 %} 内容 {% endcollapsible %}
+    </pre>
+
+    <h4>KaTeX</h4>
+    <p>数式を以下のように KaTeX Liquid ブロックに入れます。</p>
+    <pre>{% katex %}<br> c = \pm\sqrt{a^2 + b^2}<br>{% endkatex %}<br></pre>
+    <p>KaTeX を行の途中に入れるには "inline" オプションを使います。</p>
+    <pre>{% katex inline %}<br> c = \pm\sqrt{a^2 + b^2}<br>{% endkatex %}<br></pre>
+
+    <h4>RunKit</h4>
+    <p>実行可能なコードを以下のように runkit Liquid ブロックに入れます。</p>
+    <pre>{% runkit<br>// hidden setup JavaScript code goes in this preamble area<br>const hiddenVar = 42<br>%}<br>// visible, reader-editable JavaScript code goes here<br>console.log(hiddenVar)<br>{% endrunkit %}<br></pre>
+
     <% if @user_approved_liquid_tags.include? UserSubscriptionTag %>
-      <h3><%= community_name %> User Subscriptions</h3>
-      <p class="fs-s fw-bold">This tag can only be used in articles.</p>
+      <h4><%= community_name %> User Subscriptions</h4>
+      <p class="fs-s fw-bold">This embed can only be created within posts by Admins.</p>
       <p>You can add call-to-action text that will show above the subscribe button:</p>
       <code>{% user_subscription If you'd like to receive future updates, subscribe below! %}</code>
       <p class="fs-s">
@@ -32,275 +73,5 @@
         to subscribe.
       </p>
     <% end %>
-    <h3><%= community_name %> ポッドキャスト配信の埋め込み</h3>
-    <p>ポッドキャストの配信回の URL をそのまま入れるだけです。</p>
-    <code>{% podcast <%= app_url("/basecspodcast/s2e2--queues-irl") %> %}</code>
-    <h3><%= community_name %> 告知の埋め込み</h3>
-    <p>告知の URL をそのまま入れるだけです。</p>
-    <code>{% listing <%= app_url("/listings/collabs/dev-is-open-source-823") %> %}</code>
-    <p>カテゴリとスラグを使ってもできます。</p>
-    <code>{% listing collabs/dev-is-open-source-823 %}</code>
-    <p>注意: 期限が切れた告知はエラーになります。公開中か最近延長したことを確かめてください。</p>
-    <h3>詳細要素の埋め込み</h3>
-    <p><code>details</code>, <code>spoiler</code>, <code>collapsible</code> を使って、HTML の詳細折りたたみ要素を入れることができます。「要約」の部分はドロップダウンのタイトルに表示され、「内容」はドロップダウンを開くまで見えない部分です。これはユーザーの働きかけ（クリックなど）がないと表示されない隠し文章（クイズの答えなど）を作るのに便利です。</p>
-    <p><code>{% details 要約 %} 内容 {% enddetails %}</code></p>
-    <p><code>{% spoiler 要約 %} 内容 {% endspoiler %}</code></p>
-    <p><code>{% collapsible 要約 %} 内容 {% endcollapsible %}</code></p>
-    <h3>Twitter の埋め込み</h3>
-    <p>Twitter の Liquid タグを使うと、サーバー側でツイートを整形し、読者にわかりやすく表示できます。URL 中のツイート
-      <code>id</code> を入れるだけです。</p>
-    <code>{% twitter 834439977220112384 %}</code>
-    <h3>Glitch 埋め込み</h3>
-    <p>Glitch プロジェクトのスラグを入れるだけです。</p>
-    <code>{% glitch earthy-course %}</code>
-    <p>タグで使えるいくつかの
-      <a href="https://glitch.com/help/how-can-i-customize-a-glitch-app-embed">optional attributes</a> があります。ID の後ろに半角スペースに続けて追加できます。
-    </p>
-    <ul>
-      <li><code>app</code> – Shows the app preview without the code.<br>
-        <code>{% glitch earthy-course app %}</code>
-      </li>
-      <li><code>code</code> – Shows the code without the app preview.<br>
-        <code>{% glitch earthy-course code %}</code></li>
-      <li><code>preview-first</code> – Swap panes: Show the app preview on the left and the code on the right.<br>
-        <code>{% glitch earthy-course preview-first %}</code></li>
-      <li><code>no-attribution</code> – Hides the avatar of the creator(s).<br>
-        <code>{% glitch earthy-course no-attribution %}</code></li>
-      <li><code>no-files</code> – Hides the file browser.<br>
-        <code>{% glitch earthy-course no-files %}</code></li>
-      <li><code>file</code> – Lets you choose which file to display in the code panel. Defaults to index.html.<br>
-        <code>{% glitch earthy-course file=script.js %}</code></li>
-    </ul>
-    <h3>GitHub リポジトリの埋め込み</h3>
-    <p>GitHub ユーザー名とリポジトリ名が必要です。</p>
-    <code>{% github forem/forem %}</code>
-    <dl>
-      <dt><code>no-readme</code></dt>
-      <dd>
-        GitHub タグに<code>no-readme</code> オプションを加えると、プレビューに readme ファイルを表示しません。<br>
-        <code>{% github forem/forem no-readme %}</code>
-      </dd>
-    </dl>
-    <h3>GitHub イシュー、プルリクエスト、コメントの埋め込み</h3>
-    <p>GitHub イシュー、プルリク、コメントの URL を入れるだけです。</p>
-    <code>{% github https://github.com/forem/forem/issues/9 %}</code>
-    <h3>GitHub Gist の埋め込み</h3>
-    <p>Gist の URL を入れるだけです。</p>
-    <code>
-      {% gist https://gist.github.com/CristinaSolana/1885435 %}
-    </code>
-    <dl>
-      <dt>特定のファイルの埋め込み</dt>
-      <dd>
-        <p>特定の gist ファイル 1 件だけを埋め込むことができます。<br>
-        <code>{% gist https://gist.github.com/CristinaSolana/1885435 file=gistfile1.md %}</code></p>
-      </dd>
-      <dt>特定のバージョンの埋め込み</dt>
-      <dd>
-        <p>Gist ファイルの特定のバージョンだけを埋め込むことができます。リンクとそのバージョンのコミットハッシュだけが必要です。<br>
-        <code>{% gist [gist-link]/[commit-hash] %}</code> の形式で入れてください。<br>
-        例: <br>
-        <code>{% gist https://gist.github.com/suntong/3a31faf8129d3d7a380122d5a6d48ff6/f77d01e82defbf736ebf4879a812cf9c916a9252 %}</code></p>
-      </dd>
-      <dt>特定のバージョンのファイルの埋め込み</dt>
-      <dd>
-        <p>特定の gist ファイルの特定のバージョンだけを埋め込むことができます。ファイル名とリンクとバージョンのコミットハッシュだけが必要です。<br>
-        <code>{% gist [gist-link]/[commit-hash] file=[filename] %}</code> の形式で入れてください。<br>
-        例: <br>
-        <code>
-          {% gist https://gist.github.com/suntong/3a31faf8129d3d7a380122d5a6d48ff6/f77d01e82defbf736ebf4879a812cf9c916a9252 file=Images.tmpl %}
-        </code></p>
-      </dd>
-    </dl>
-    <h3>GitPitch の埋め込み</h3>
-    <p>GitPitch の URL を入れるだけです。</p>
-    <code>
-      {% gitpitch https://gitpitch.com/gitpitch/in-60-seconds %}
-    </code>
-    <h3>動画の埋め込み</h3>
-    <p>URL 中の <code>id</code> を入れるだけです。</p>
-    <ul>
-      <li><strong>YouTube:</strong> <code>{% youtube dQw4w9WgXcQ %}</code></li>
-      <li><strong>Vimeo:</strong> <code>{% vimeo 193110695 %}</code></li>
-      <li><strong>Twitch:</strong> <code>{% twitch ClumsyPrettiestOilLitFam %}</code></li>
-    </ul>
-    <h3>Medium の埋め込み</h3>
-    <p>埋め込みたい Medium 記事の URL をそのまま入れるだけです。</p>
-    <code>{% medium https://medium.com/s/story/boba-science-how-can-i-drink-a-bubble-tea-to-ensure-that-i-dont-finish-the-tea-before-the-bobas-7fc5fd0e442d %}</code>
-    <h3>SlideShare の埋め込み</h3>
-    <p>SlideShare の <code>key</code> を入れるだけです。</p>
-    <code>{% slideshare rdOzN9kr1yK5eE %}</code>
-    <h3>CodePen の埋め込み</h3>
-    <p>次のような pen ID code で終わる CodePen <code>link</code> をそのまま入れるだけです。</p>
-    <code>{% codepen https://codepen.io/twhite96/pen/XKqrJX %}</code>
-    <dl>
-      <dt><code>default-tab</code></dt>
-      <dd>
-        <code>default-tab</code> パラメータを CodePen 埋め込みタグに設定します。デフォルトは <i>result</i> です。<br>
-        <code>{% codepen https://codepen.io/twhite96/pen/XKqrJX default-tab=js,result %}</code>
-      </dd>
-    </dl>
-    <h3>Kotlin Playground</h3>
-    <p>実行可能な Kotlin スニペットを作るには、<a href="https://play.kotlinlang.org">https://play.kotlinlang.org</a> で Kotlin Snippet を作成してください。</p>
-    <p><code>Share</code> ダイアログを開き、<code>Medium</code> タブから完全な <code>link</code> をコピーし、次のように使います。</p>
-    <code>{% kotlin https://pl.kotl.in/owreUFFUG?theme=darcula&from=3&to=6&readOnly=true %}</code>
-    <h3>RunKit の埋め込み</h3>
-    <p>実行可能なコードを以下のように runkit liquid ブロックに入れます。</p>
-    <pre>{% runkit<br>// hidden setup JavaScript code goes in this preamble area<br>const hiddenVar = 42<br>%}<br>// visible, reader-editable JavaScript code goes here<br>console.log(hiddenVar)<br>{% endrunkit %}<br></pre>
-
-    <h3>KaTeX の埋め込み</h3>
-    <p>数式を以下のように KaTeX liquid ブロックに入れます。</p>
-    <pre>{% katex %}<br> c = \pm\sqrt{a^2 + b^2}<br>{% endkatex %}<br></pre>
-    <p>KaTeX を行の途中に入れるには "inline" オプションを使います。</p>
-    <pre>{% katex inline %}<br> c = \pm\sqrt{a^2 + b^2}<br>{% endkatex %}<br></pre>
-
-    <h3>Stackblitz の埋め込み</h3>
-    <p>Stackblitz の ID を入れるだけです。</p>
-    <code>{% stackblitz ball-demo %}</code>
-    <dl>
-      <dt>デフォルトビュー</dt>
-      <dd>
-        デフォルトビューを変更することができます。オプションは <i>both</i>, <i>preview</i>, <i>editor</i>で、デフォルトは
-        <i>both</i> です。<br>
-        <code>{% stackblitz ball-demo view=preview %}</code>
-      </dd>
-      <dt>デフォルトファイル</dt>
-      <dd>
-        埋め込みタグがデフォルトで指すファイルを変更することができます。<br>
-        <code>{% stackblitz ball-demo file=style.css %}</code>
-      </dd>
-    </dl>
-    <h3>CodeSandbox の埋め込み</h3>
-    <p>Sandbox の ID を入れるだけです。</p>
-    <code>{% codesandbox ppxnl191zx %}</code>
-    <p>Of CodeSandbox's many
-      <a href="https://codesandbox.io/docs/embedding#embed-options">optional attributes</a>, the following are supported by using them in your tag, just add them after the id, separated by spaces.
-    </p>
-    <dl>
-      <dt><code>initialpath</code></dt>
-      <dd>
-        Which url to initially load in address bar.<br>
-        <code>{% codesandbox ppxnl191zx initialpath=/initial/load/path %}</code>
-      </dd>
-      <dt><code>module</code></dt>
-      <dd>
-        Which module to open by default.<br>
-        <code>{% codesandbox ppxnl191zx module=/path/to/module %}</code>
-      </dd>
-      <dt><code>runonclick</code></dt>
-      <dd>
-        Delays when code is ran if <code>1</code> <br>
-        <code>{% codesandbox ppxnl191zx runonclick=1 %}</code>
-      </dd>
-    </dl>
-    <h3>JSFiddle の埋め込み</h3>
-    <p>以下のような fiddle ID code で終わる JSFiddle <code>link</code> をそのまま入れるだけです。</p>
-    <code>{% jsfiddle https://jsfiddle.net/link2twenty/v2kx9jcd %}</code>
-    <dl>
-      <dt><code>Custom tabs</code></dt>
-      <dd>
-        You can add a custom tab order to you JSFiddle embed tag. Defaults to <i>js,html,css,result</i><br>
-        <code>{% jsfiddle https://jsfiddle.net/webdevem/Q8KVC result,html,css %}</code>
-      </dd>
-    </dl>
-    <h3>DotnetFiddle の埋め込み</h3>
-    <p>以下のような fiddle ID code で終わる DotnetFiddle <code>link</code> をそのまま入れるだけです。</p>
-    <code>{% dotnetfiddle https://dotnetfiddle.net/PmoDip %}</code>
-
-    <h3>JSitor Liquid タグ</h3>
-    <p>
-      JSitor liquid タグを使うには完全な JSitor <code>link</code> を入れます（パラメータの有無は自由）。
-    </p>
-    <code>{% jsitor https://jsitor.com/embed/B7FQ5tHbY %}</code>
-    <br />
-    <code>{% jsitor https://jsitor.com/embed/B7FQ5tHbY?html&js&css&result&light %}</code>
-    <p>
-      Other options to use JSitor liquid tag is just by its ID, you can add it with or without the parameters
-    </p>
-    <code>{% jsitor B7FQ5tHbY %}</code>
-    <br />
-    <code>{% jsitor B7FQ5tHbY?html&js&css&result&light %}</code>
-
-    <h3>replit.com の埋め込み</h3>
-    <p>ドメイン名の後の URL を入れるだけです。</p>
-    <code>{% replit @WigWog/PositiveFineOpensource %}</code>
-    <h3>Stackery の埋め込み</h3>
-    <p>Visualize your AWS Serverless Application Model templates with <a href="https://www.stackery.io/">Stackery's</a> visualizer embed</p>
-    <p>All you need is the repository owner, repository name, and branch that you would like visualized</p>
-    <code>{% stackery deeheber lambda-layer-example master %}</code>
-    <br />
-    <p>The repository must be a public GitHub repository and have a valid AWS SAM template in the project root titled template.yaml</p>
-    <h3>Next Tech の埋め込み</h3>
-    <p>サンドボックスの share URL を入れるだけです。Share URL を取得するにはサンドボックスを開いた状態で右上の "Share" ボタンをクリックします。</p>
-    <p><img src="https://thepracticaldev.s3.amazonaws.com/i/r449xp8cay3383i139qv.png" alt="Share Replit sandbox" loading="lazy" /></p>
-    <code>{% nexttech https://nt.dev/s/6ba1fffbd09e %}</code>
-    <h3>Instagram の埋め込み</h3>
-    <p>Instagram の URL に含まれている投稿の <code>id</code> を入れるだけです。</p>
-    <code>{% instagram BXgGcAUjM39 %}</code>
-    <h3>Speakerdeck タグ</h3>
-    <p>埋め込みリンク中の data-id コードを入れるだけです。</p>
-    <pre><span style="color: gray;"># これが埋め込みリンクだとすると</span><br>&lt;script async class="speakerdeck-embed"<br>    data-id="<span style='color: orange;'>7e9f8c0fa0c949bd8025457181913fd0</span>"<br>    data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"&gt;&lt;/script&gt;</pre>
-    <pre>{% speakerdeck <span style="color: orange;">7e9f8c0fa0c949bd8025457181913fd0</span> %}</pre>
-    <h3>Soundcloud の埋め込み</h3>
-    <p>埋め込みたい Soundcloud トラックの URL をそのまま入れるだけです。</p>
-    <code>{% soundcloud https://soundcloud.com/user-261265215/dev-to-review-episode-1 %}</code>
-    <h3>Spotify の埋め込み</h3>
-    <p>
-      埋め込みたい Spotify トラック／プレイリスト／アルバム／アーティスト／ポッドキャストの URI を入れます。
-    </p>
-    <pre>{% spotify <span style="color: #1DB954;">spotify:episode:5V4XZWqZQJvbddd31n56mf</span> %}</pre>
-    <h3>Blogcast タグ</h3>
-    <p>埋め込みコードの中の記事 ID を入れるだけです。</p>
-    <pre>{% blogcast <span style="color: orange;">1234</span> %}</pre>
-    <h3>Parler タグ</h3>
-    <p>埋め込みたい Parler.io 音声ファイルの URL をそのまま入れるだけです。</p>
-    <pre>{% parler https://www.parler.io/audio/73240183203/d53cff009eac2ab1bc9dd8821a638823c39cbcea.7dd28611-b7fc-4cf8-9977-b6e3aaf644a1.mp3 %}</pre>
-    <h3>Stack Exchange / Stack Overflow タグ</h3>
-    <p>
-      質問や回答の ID とサイト名が必要です。<code>{% stackoverflow %}</code> タグを使う場合は、サイトはデフォルトで Stack Overflow になります。<br>
-      例:
-      <br>
-      <a href="https://stackoverflow.com/questions/24789130/colors-in-irb-rails-console">https://stackoverflow.com/questions/24789130/colors-in-irb-rails-console</a>
-      <ul>
-          <li>この質問 ID は: <code style="color: aquamarine; background-color: black;">24789130</code></li>
-      </ul>
-      <pre>{% stackoverflow <span style="color: aquamarine;">24789130</span> %}</pre>
-    </p>
-    <p>
-      他の Stack Exchange ネットワークサイトについては、<code>{% stackexchange %}</code> タグを使い、サイト名を入れる必要があります。<br>例:
-      <br>
-      <a href="https://diy.stackexchange.com/questions/169988/base-for-refrigerator-wine-shelf">https://diy.stackexchange.com/questions/169988/base-for-refrigerator-wine-shelf</a>
-      <ul>
-        <li>この質問 ID は: <code style="color: aquamarine; background-color: black;">169988</code></li>
-      <li>このサイト名は <code style="color: orange; background-color: black;">diy</code></li>
-      </ul>
-      <pre>{% stackexchange <span style="color: aquamarine;">169988</span> <span style="color: orange;">diy</span> %}</pre>
-    </p>
-    <p>
-    回答の場合、回答の ID はその回答の "Share" リンクから取得できます。<br>例:
-    <br>
-    <a href="https://diy.stackexchange.com/a/170185">https://diy.stackexchange.com/a/170185</a>
-    <ul>
-      <li>この質問 ID は: <code style="color: aquamarine; background-color: black;">170185</code></li>
-      <li>このサイト名は <code style="color: orange; background-color: black;">diy</code></li>
-    </ul>
-    <pre>{% stackexchange <span style="color: aquamarine;">170185</span> <span style="color: orange;">diy</span> %}</pre>
-    </p>
-    <h3>Wikipedia の埋め込み</h3>
-    <p>埋め込みたい Wikipedia 記事の URL をそのまま入れます（アンカーの有無は自由）。</p>
-    <p>
-      <code>{% wikipedia https://en.wikipedia.org/wiki/Wikipedia %}</code>
-      <br />
-      <code>{% wikipedia https://en.wikipedia.org/wiki/Wikipedia#Diversity %}</code>
-    </p>
-    <h3>Asciinema の埋め込み</h3>
-    <p>Asciinema ID を入れるだけです。</p>
-    <code>{% asciinema 239367 %}</code>
-    <h3>コードの例として Liquid タグを処理する</h3>
-    <p>Liquid タグをコードとして表示したい場合は、バッククォート 1 つまたは 3 つで挟むだけです。</p>
-    <p><code>`{% mytag %}{{ site.SOMETHING }}{% endmytag %}`</code></p>
-    <p>ただし <code>raw</code> タグを使う場合は例外で、正しくエスケープするには、このようにします。
-    </p>
-    <p><code>`{% raw %}{{site.SOMETHING }} {% ``endraw`` %}`</code></p>
   </div>
 </article>

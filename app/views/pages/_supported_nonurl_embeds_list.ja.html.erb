@@ -1,0 +1,31 @@
+<% @user_approved_liquid_tags = Users::ApprovedLiquidTags.call(@user) %>
+
+<h4>折りたたみ要素</h4>
+<p><code>details</code>, <code>spoiler</code>, <code>collapsible</code> を使って、HTML の詳細折りたたみ要素を入れることができます。「要約」の部分はドロップダウンのタイトルに表示され、「内容」はドロップダウンを開くまで見えない部分です。これはユーザーの働きかけ（クリックなど）がないと表示されない隠し文章（クイズの答えなど）を作るのに便利です。</p>
+<pre>
+  {% details 要約 %} 内容 {% enddetails %}
+  {% spoiler 要約 %} 内容 {% endspoiler %}
+  {% collapsible 要約 %} 内容 {% endcollapsible %}
+</pre>
+
+<h4>KaTeX</h4>
+<p>数式を以下のように KaTeX Liquid ブロックに入れます。</p>
+<pre>{% katex %}<br> c = \pm\sqrt{a^2 + b^2}<br>{% endkatex %}<br></pre>
+<p>KaTeX を行の途中に入れるには "inline" オプションを使います。</p>
+<pre>{% katex inline %}<br> c = \pm\sqrt{a^2 + b^2}<br>{% endkatex %}<br></pre>
+
+<h4>RunKit</h4>
+<p>実行可能なコードを以下のように runkit Liquid ブロックに入れます。</p>
+<pre>{% runkit<br>// hidden setup JavaScript code goes in this preamble area<br>const hiddenVar = 42<br>%}<br>// visible, reader-editable JavaScript code goes here<br>console.log(hiddenVar)<br>{% endrunkit %}<br></pre>
+
+<% if @user_approved_liquid_tags.include? UserSubscriptionTag %>
+  <h4><%= community_name %> User Subscriptions</h4>
+  <p class="fs-s fw-bold">This embed can only be created within posts by Admins.</p>
+  <p>You can add call-to-action text that will show above the subscribe button:</p>
+  <code>{% user_subscription If you'd like to receive future updates, subscribe below! %}</code>
+  <p class="fs-s">
+    If a reader is signed out, the button will prompt them to sign in first
+    to subscribe. If the reader is signed in, the button will prompt them
+    to subscribe.
+  </p>
+<% end %>
