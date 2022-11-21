@@ -14,7 +14,7 @@ class SocialPreviewsController < ApplicationController
       end
       format.png do
         html = render_to_string template, formats: :html, layout: false
-        redirect_to OgpGeneration.instance.url(html, params[:id])
+        redirect_to OgpGeneration.instance.url(html, params[:id]), status: :found
       end
     end
   end

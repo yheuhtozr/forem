@@ -33,8 +33,6 @@ class OgpGeneration
       page.wait_for_function "() => document.fonts.check('28px IBM Plex Sans JP')" # check if a used webfont loaded
       page.screenshot path: dir.join(IMAGE_PATH)
     end
-  ensure
-    @exec.stop
   end
 
   def url(html, id)
