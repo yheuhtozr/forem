@@ -1,7 +1,0 @@
----
-fr:
-  date:
-    order:
-    - :day
-    - :month
-    - :year

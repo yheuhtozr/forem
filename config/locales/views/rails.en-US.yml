@@ -1,7 +1,0 @@
----
-en-US:
-  date:
-    order:
-    - :month
-    - :day
-    - :year
