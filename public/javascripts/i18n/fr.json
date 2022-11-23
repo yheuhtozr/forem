@@ -1,0 +1,172 @@
+{
+  "archivedPosts": {
+    "hide": "Hide archived",
+    "show": "Show archived",
+    "show_regexp": "Show"
+  },
+  "articles": {
+    "for_org": "%{- start} for %{- end}%{- org}",
+    "reading_time_one": "%{count} words/chars",
+    "reading_time_other": "%{count} words/chars",
+    "save_to": "Save to reading list"
+  },
+  "campaign": {
+    "close": "Close campaign banner"
+  },
+  "comments": {
+    "form": {
+      "cancel": "Dismiss",
+      "guide": "Markdown Guide",
+      "preview": "Preview",
+      "reply": {
+        "aria_label": "Reply to a comment...",
+        "placeholder": "Reply...",
+        "text": "Reply"
+      },
+      "submit": "Submit",
+      "submit_upload": "Upload",
+      "template": {
+        "create": "Create template",
+        "desc": "Templates let you quickly answer FAQs or store snippets for re-use.",
+        "moderator": "Trusted User",
+        "personal": "Personal"
+      },
+      "use": "Use a response template"
+    },
+    "invalid": "Invalid file!",
+    "like": "Like",
+    "likes_one": "&nbsp;like",
+    "likes_other": "&nbsp;likes",
+    "menu": {
+      "aria_label": "Toggle dropdown menu",
+      "copy": {
+        "aria_label": "Copy link to %{user}'s comment",
+        "text": "Copy link"
+      },
+      "delete": {
+        "aria_label": "Delete this comment",
+        "text": "Delete"
+      },
+      "edit": {
+        "aria_label": "Edit this comment",
+        "text": "Edit"
+      },
+      "report": {
+        "aria_label": "Report %{user}'s comment as abusive or violating our code of conduct and/or terms and conditions",
+        "text": "Report abuse"
+      },
+      "settings": {
+        "aria_label": "Go to %{user}'s comment settings",
+        "text": "Settings"
+      }
+    },
+    "num_likes": "%{- num}%{- likes}",
+    "read": {
+      "code": "code of conduct",
+      "text": "I've read the %{- code}"
+    },
+    "replies_one": " + %{count} replies",
+    "replies_other": " + %{count} replies",
+    "sent": {
+      "check": "Check it out",
+      "text": "Reply sent — %{- check}"
+    },
+    "summary": {
+      "empty": "New"
+    },
+    "thread": "Thread",
+    "uploaded": "Uploaded! Paste into editor",
+    "uploading": "Uploading..."
+  },
+  "csrf": {
+    "error": "Could not locate CSRF meta tag on the page.",
+    "notify": "Could not locate CSRF metatag %{user}"
+  },
+  "dashboard": {
+    "article": {
+      "admin": "Admin",
+      "edit": "Edit",
+      "manage": "Manage",
+      "stats": "Stats",
+      "translate": "Translate"
+    },
+    "comments": {
+      "moderate": "Moderate",
+      "settings": "Settings"
+    }
+  },
+  "editor": {
+    "continue": "Continue editing",
+    "preview": "Preview"
+  },
+  "loginModal": {
+    "title": "Log in to continue"
+  },
+  "podcasts": {
+    "rate": "%{speed}x",
+    "time": "initializing..."
+  },
+  "tags": {
+    "following": {
+      "anti": {
+        "text": "Anti-follow",
+        "title": "This tag has negative follow weight"
+      },
+      "weight": {
+        "aria_label": "%{name} tag weight"
+      }
+    }
+  },
+  "unitAgo": {
+    "day_one": "1 day ago",
+    "day_other": "%{count} days ago",
+    "hour_one": "1 hour ago",
+    "hour_other": "%{count} hours ago",
+    "min_one": "1 min ago",
+    "min_other": "%{count} mins ago",
+    "month_one": "1 month ago",
+    "month_other": "%{count} months ago",
+    "now": "just now",
+    "second_one": "1 second ago",
+    "second_other": "%{count} seconds ago",
+    "week_one": "1 week ago",
+    "week_other": "%{count} weeks ago",
+    "year_one": "1 year ago",
+    "year_other": "%{count} years ago"
+  },
+  "userAlertModal": {
+    "action_ing": {
+      "follow": "following",
+      "make": "making",
+      "post": "posting",
+      "update": "updating"
+    },
+    "action_past": {
+      "follow": "followed",
+      "make": "made",
+      "post": "posted",
+      "update": "updating"
+    },
+    "confirm": "OK",
+    "element": {
+      "comment": "comment",
+      "image": "image",
+      "reaction": "reaction",
+      "user": "user"
+    },
+    "gotit": "Got it",
+    "rateLimit": "Since you recently %{action_past} a %{element}, you’ll need to wait %{timeframe} before %{action_ing} another %{element}.",
+    "timeframe": {
+      "a_moment": "a moment",
+      "for_a_day": "for a day"
+    },
+    "error_text": "Your %{element} could not be %{action_past} due to an error: %{error}",
+    "server_error_text": "Your %{element} could not be %{action_past} due to a server error",
+    "title": "Error %{action_ing} %{element}",
+    "wait": "Wait %{timeframe}...",
+    "why": "Why do I have to wait?"
+  },
+  "users": {
+    "details": "%{user} profile details"
+  }
+}
