@@ -30,7 +30,11 @@ module LocaleHelper
   end
 
   # temporary href locale prefix solution
-  def loc
-    I18n.locale == I18n.default_locale ? "" : "/:#{I18n.locale}"
+  def loc(path, locale = nil)
+    possible_locale = %r{\A/:[^/]*}.match(path).to_a[0].to_s # use the locale route format on this site
+    plain_path = path.delete_prefix possible_locale
+    explicit_locale = locale || I18n.locale
+
+    "#{root_path locale: explicit_locale if locale || I18n.locale != I18n.default_locale}#{plain_path}"
   end
 end

@@ -6,6 +6,7 @@ class Listing < ApplicationRecord
 
   include PgSearch::Model
   include Sluggifiable
+  include Localizable
 
   attr_accessor :action
 
@@ -82,7 +83,7 @@ class Listing < ApplicationRecord
     organization || user
   end
 
-  def path
+  def unlocalized_path
     "/listings/#{category}/#{slug}"
   end
 
@@ -144,7 +145,7 @@ class Listing < ApplicationRecord
   end
 
   def create_slug
-    self.slug = "#{sluggify(title).delete('_')}-#{rand(100_000).to_s(26)}"
+    self.slug = "#{sluggify(title).delete('_')}-#{rand(100_000).to_fs(26)}"
   end
 
   def notify_external_services_on_new_listing

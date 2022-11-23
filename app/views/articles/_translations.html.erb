@@ -23,7 +23,7 @@
         <% if a.id == this_id %>
           <span class="crayons-link--current"><%= by_lang[k].size > 1 ? "(#{i})" : label %></span>
         <% else %>
-          <a href="<%= loc << a.path %>" class="crayons-link"><%= by_lang[k].size > 1 ? "(#{i})" : label %></a>
+          <a href="<%= a.path %>" class="crayons-link"><%= by_lang[k].size > 1 ? "(#{i})" : label %></a>
         <% end %>
       <% end %>
     <% end %>

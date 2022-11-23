@@ -1,5 +1,6 @@
 class Badge < ApplicationRecord
   include Sluggifiable
+  include Localizable
 
   mount_uploader :badge_image, BadgeUploader
   resourcify
@@ -19,7 +20,7 @@ class Badge < ApplicationRecord
     select(:id).find_by(slug: slug)&.id
   end
 
-  def path
+  def unlocalized_path
     "/badge/#{slug}"
   end
 

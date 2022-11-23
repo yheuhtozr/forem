@@ -5,6 +5,7 @@ class Article < ApplicationRecord
   include UserSubscriptionSourceable
   include PgSearch::Model
   include Sluggifiable
+  include Localizable
 
   acts_as_taggable_on :tags
   resourcify

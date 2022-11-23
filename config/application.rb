@@ -79,7 +79,12 @@ module PracticalDeveloper
 
     config.i18n.load_path += Dir[Rails.root.join("config/locales/**/*.yml")]
 
-    config.i18n.fallbacks = { "en-US": %i[en-US en] }
+    # HACK: only keyed languages are used as available languages in routes
+    config.i18n.fallbacks = {
+      "en-US": %i[en-US en],
+      fr: :fr,
+      ja: :ja
+    }
 
     # Authorization / Authentication exception handling.
     config.action_dispatch.rescue_responses["Pundit::NotAuthorizedError"] = :not_found
@@ -93,7 +98,7 @@ module PracticalDeveloper
     config.action_dispatch.rescue_responses["ApplicationPolicy::UserRequiredError"] = :not_found
 
     # Forked: I18n setup
-    config.i18n.available_locales = %i[ja en-US en]
+    # config.i18n.available_locales = %i[ja en-US en fr]
     config.i18n.default_locale = :ja
 
     # After-initialize checker to add routes to reserved words
