@@ -16,7 +16,7 @@ class ListingTag < LiquidTagBase
 
   def get_hash(url)
     path = Addressable::URI.parse(url).path
-    path.slice!(0, 10) if path.starts_with?("/listings/") # remove leading slash if present
+    path.slice!(%r{.*/listings/}) if path.include?("/listings/") # remove leading slash if present
     path.slice!(-1) if path.ends_with?("/") # remove trailing slash if present
     Addressable::Template.new("{category}/{slug}").extract(path)&.symbolize_keys
   end

@@ -67,7 +67,7 @@
 
     <%- if Listing.feature_enabled? %>
     <li>
-      <a class="crayons-link crayons-link--block" href="/listings/dashboard" data-no-instant>
+      <a class="crayons-link crayons-link--block" href="<%= listings_dashboard_path %>" data-no-instant>
         <%= t("views.dashboard.actions.listings") %>
         <%= crayons_icon_tag("external-link", class: "ml-1") %>
       </a>

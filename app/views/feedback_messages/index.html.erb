@@ -9,7 +9,7 @@
     <h2><%= t("views.feedback.heading") %></h2>
     <h3><a href="/"><%= t("views.feedback.home") %></a></h3>
     <p>
-      <%= t("contact_prompts.if_any_questions_html") %>
+      <%= t("contact_prompts.if_any_questions_html", contact: contact_path) %>
     </p>
   </div>
 </div>

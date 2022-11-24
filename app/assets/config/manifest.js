@@ -2,5 +2,6 @@
 //= link_tree ../images
 //= link_directory ../javascripts .js
 //= link_directory ../stylesheets .css
+//= link minimal.css
 //= link s3_direct_upload.js
 //= link katex.css

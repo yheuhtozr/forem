@@ -11,7 +11,7 @@
       <button
         class="crayons-btn crayons-btn--danger"
         data-item-id="<%= @broadcast.id %>"
-        data-endpoint="/admin/advanced/broadcasts"
+        data-endpoint="<%= admin_broadcasts_path %>"
         data-username="<%= current_user.username %>"
         data-action="click->confirmation-modal#openModal">Destroy</button>
     </div>

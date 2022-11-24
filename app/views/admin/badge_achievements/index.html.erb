@@ -46,7 +46,7 @@
             <button
               class="crayons-btn crayons-btn--danger"
               data-item-id="<%= badge_achievement.id %>"
-              data-endpoint="/admin/content_manager/badge_achievements"
+              data-endpoint="<%= admin_badge_achievements_path %>"
               data-username="<%= current_user.username %>"
               data-action="click->confirmation-modal#openModal">Remove</button>
           </td>

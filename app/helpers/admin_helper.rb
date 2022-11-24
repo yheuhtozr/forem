@@ -1,10 +1,10 @@
 module AdminHelper
   def deduced_controller(request)
-    request.path.split("/").fourth
+    request.path.delete_prefix(admin_path).split("/").third
   end
 
   def deduced_scope(request)
-    request.path.split("/").third
+    request.path.delete_prefix(admin_path).split("/").second
   end
 
   def display_name(group_name)

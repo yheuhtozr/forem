@@ -70,13 +70,13 @@
       <div class="mb-2">
         <%= f.check_box :checked_code_of_conduct, class: "crayons-checkbox", required: true %>
         <%= f.label :checked_code_of_conduct do %>
-          I agree to uphold our <a href="/code-of-conduct" target="code-of-conduct">Code of Conduct</a>.
+          I agree to uphold our <a href="<%= code_of_conduct_path %>" target="code-of-conduct">Code of Conduct</a>.
         <% end %>
       </div>
       <div>
         <%= f.check_box :checked_terms_and_conditions, class: "crayons-checkbox", required: true %>
         <%= f.label :checked_terms_and_conditions do %>
-          I agree to our <a href="/terms" target="terms-and-conditions">Terms and Conditions</a>.
+          I agree to our <a href="<%= terms_path %>" target="terms-and-conditions">Terms and Conditions</a>.
         <% end %>
       </div>
     </div>

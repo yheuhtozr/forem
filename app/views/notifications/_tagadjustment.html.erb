@@ -24,7 +24,7 @@
         <p class="mb-2"><%= t("views.notifications.tag.check_html", other: link_to(t("views.notifications.tag.other"), "/tags")) %></p>
       <% end %>
       <p>
-        <%= t("views.notifications.tag.support_html", community: community_name, email: t("contact_prompts.if_any_questions_html")) %>
+        <%= t("views.notifications.tag.support_html", community: community_name, email: t("contact_prompts.if_any_questions_html", contact: contact_path)) %>
       </p>
   </div>
 </div>

@@ -4,7 +4,7 @@
     <header class="crayons-card__header">
       <h3 class="crayons-subtitle-2"><%= t("views.main.side.listings.heading") %></h3>
       <div class="crayons-card__actions">
-        <a href="/listings" class="crayons-link--branded fw-medium fs-s"><%= t("views.main.side.listings.all") %></a>
+        <a href="<%= listings_path %>" class="crayons-link--branded fw-medium fs-s"><%= t("views.main.side.listings.all") %></a>
       </div>
     </header>
 
@@ -15,7 +15,7 @@
           <div class="crayons-link__secondary"><%= listing.category %></div>
         </a>
       <% end %>
-      <a class="crayons-link crayons-link--branded block align-center p-3 fw-medium fs-s w-100" href="/listings/new"><%= t("views.main.side.listings.new") %></a>
+      <a class="crayons-link crayons-link--branded block align-center p-3 fw-medium fs-s w-100" href="<%= new_listing_path %>"><%= t("views.main.side.listings.new") %></a>
     </div>
   </section>
 <% end %>

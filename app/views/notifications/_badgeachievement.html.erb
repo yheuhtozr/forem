@@ -17,7 +17,7 @@
   <% if credits_awarded.to_i > 0 && Listing.feature_enabled? %>
     <p class="max-w-75 mx-auto">
       <%= t("views.notifications.badge.awarded_html", credits: link_to(t("views.notifications.badge.credits", count: json_data["badge_achievement"]["badge"]["credits_awarded"]), "/credits", class: "crayons-link crayons-link--brand fw-bold"),
-                                                      listings: link_to(t("views.notifications.badge.listings"), "/listings")) %>
+                                                      listings: link_to(t("views.notifications.badge.listings"), listings_path)) %>
     </p>
     <p class="fs-s"><a href="<%= about_listings_url %>" class="crayons-link crayons-link--secondary"><%= t("views.notifications.badge.more") %><a></p>
   <% end %>

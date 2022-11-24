@@ -89,7 +89,7 @@ class ListingsController < ApplicationController
 
   def destroy
     @listing.destroy!
-    redirect_to "/listings/dashboard", notice: I18n.t("listings_controller.deleted")
+    redirect_to listings_dashboard_path, notice: I18n.t("listings_controller.deleted")
   end
 
   private
@@ -99,7 +99,7 @@ class ListingsController < ApplicationController
   end
 
   def process_successful_draft
-    redirect_to "/listings/dashboard"
+    redirect_to listings_dashboard_path
   end
 
   def process_unsuccessful_draft
@@ -135,7 +135,7 @@ class ListingsController < ApplicationController
   end
 
   def process_after_unpublish
-    redirect_to "/listings/dashboard"
+    redirect_to listings_dashboard_path
   end
 
   # This is a convenience method to query listings for use in the index view in

@@ -16,7 +16,7 @@
   <% if params[:state] == "previous-registration" %>
     <div class="crayons-banner crayons-banner--error" role="alert">
       <%= t("views.settings.previous", email: contact_link) %>
-      <%= t("contact_prompts.if_any_questions_html") %>
+      <%= t("contact_prompts.if_any_questions_html", contact: contact_path) %>
     </div>
   <% end %>
 

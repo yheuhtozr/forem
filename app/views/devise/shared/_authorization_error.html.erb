@@ -20,6 +20,6 @@
     <% end %>
     If you haven't received your confirmation email yet, <a href="<%= confirm_email_path %>">click here</a> to resend it.
     <br>
-    <%= t("contact_prompts.if_continued_trouble_html") %>
+    <%= t("contact_prompts.if_continued_trouble_html", contact: contact_path) %>
   </div>
 <% end %>

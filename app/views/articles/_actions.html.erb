@@ -29,13 +29,13 @@
         </button>
       <% else %>
         <%= render partial: "articles/reaction_button",
-                  locals: {
-                    category: :unicorn,
-                    description: t("migdal.reactions.babel.title"),
-                    image_path: "babel.svg",
-                    image_active_path: "babel-filled.svg",
-                    aria_label: t("migdal.reactions.babel.aria_label")
-                  } %>
+                   locals: {
+                     category: :unicorn,
+                     description: t("migdal.reactions.babel.title"),
+                     image_path: "babel.svg",
+                     image_active_path: "babel-filled.svg",
+                     aria_label: t("migdal.reactions.babel.aria_label")
+                   } %>
       <% end %>
 
       <%= render partial: "articles/reaction_button",
@@ -111,7 +111,7 @@
           <a href="#" class="dropdown-link-row crayons-link crayons-link--block"><%= t("views.actions.share.link") %></a>
         </template>
 
-        <a href="/report-abuse" class="crayons-link crayons-link--block"><%= t("views.actions.share.report") %></a>
+        <a href="<%= report_abuse_path %>" class="crayons-link crayons-link--block"><%= t("views.actions.share.report") %></a>
       </div>
     </div>
   </div>

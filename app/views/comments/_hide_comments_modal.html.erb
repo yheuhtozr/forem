@@ -15,5 +15,5 @@
       </p>
     </div>
   <% end %>
-  <p class="fs-s color-base-60"><%= t("views.comments.hider.note_html", reporting: link_to(t("views.comments.hider.reporting"), "/report-abuse", id: "hide-comments-modal__report-link")) %></p>
+  <p class="fs-s color-base-60"><%= t("views.comments.hider.note_html", reporting: link_to(t("views.comments.hider.reporting"), report_abuse_path, id: "hide-comments-modal__report-link")) %></p>
 </div>

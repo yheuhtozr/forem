@@ -2,7 +2,7 @@
 <div class="ltag__listing">
   <div class="ltag__listing-content">
     <h3>
-      <a href="/listings">
+      <a href="<%= listings_path %>">
         <%= t("views.listings.expired") %>
       </a>
     </h3>
@@ -12,24 +12,24 @@
 <div class="ltag__listing">
   <div class="ltag__listing-content">
     <h3>
-      <a href="/listings/<%= listing.category %>/<%= listing.slug %>">
+      <a href="<%= listing_slug_path category: listing.category, slug: listing.slug %>">
         <%= listing.title %>
       </a>
     </h3>
     <div class="ltag__listing-body">
-      <a href="/listings/<%= listing.category %>/<%= listing.slug %>">
+      <a href="<%= listing_slug_path category: listing.category, slug: listing.slug %>">
         <%= listing.processed_html.html_safe %>
       </a>
     </div>
     <div class="ltag__listing-tags">
       <% listing.tag_list.each do |tag| %>
-      <span class='ltag__listing-tag'><a href='/listings?t=<%= tag %>'><%= tag %></a></span>
+      <span class='ltag__listing-tag'><a href='<%= listings_path %>?t=<%= tag %>'><%= tag %></a></span>
       <% end %>
     </div>
     <div class="ltag__listing-author-info">
-      <a href="/listings/<%= listing.category %>"><%= listing.category %></a>
+      <a href="<%= listing_category_path category: listing.category %>"><%= listing.category %></a>
       ・
-      <a href="/<%= listing.author.username %>"><%= listing.author.name %></a>
+      <a href="<%= user_profile_path username: listing.author.username %>"><%= listing.author.name %></a>
     </div>
   </div>
 </div>

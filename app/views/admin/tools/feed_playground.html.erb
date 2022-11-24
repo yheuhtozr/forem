@@ -14,10 +14,10 @@
 </div>
 
 <% if @user && @articles %>
-  <h1>Feed Preview for <a href="/<%= @user.username %>">@<%= @user.username %></a></h1>
+  <h1>Feed Preview for <a href="<%= user_profile_path username: @user.username %>">@<%= @user.username %></a></h1>
   <div>
     <% Follow.follower_tag(@user.id).includes(:followable).order("points DESC").each do |follow| %>
-      <a href="/t/<%= follow.followable.name %>" class="crayons-tag">
+      <a href="<%= tag_path tag: follow.followable.name %>" class="crayons-tag">
         <span class="crayons-tag__prefix">#</span><%= follow.followable.name %>: <%= follow.points.round(3) %>
       </a>
     <% end %>

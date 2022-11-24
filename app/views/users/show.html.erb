@@ -121,7 +121,7 @@
                 <textarea id="new-message" rows="4" cols="70" placeholder="<%= t("views.users.send_pm.placeholder") %>" class="crayons-textfield"></textarea>
                 <button type="submit" class="submit-message crayons-btn"><%= t("views.users.send_pm.submit") %></button>
               </form>
-              <p class="fs-s color-base-60"><%= t("views.users.send_pm.notice_html", code: link_to(t("views.users.send_pm.code"), "/code-of-conduct")) %></p>
+              <p class="fs-s color-base-60"><%= t("views.users.send_pm.notice_html", code: link_to(t("views.users.send_pm.code"), code_of_conduct_path)) %></p>
             </div>
           </div>
           <div class="crayons-modal__overlay"></div>

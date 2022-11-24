@@ -1,6 +1,6 @@
 <% if decorated_comment.low_quality %>
   <div class="crayons-notice crayons-notice--warning low-quality-comment-marker">
-    <%= t("views.comments.quality.low") %> <a href="/code-of-conduct"><strong><%= t("views.comments.quality.conduct") %></strong></a>
+    <%= t("views.comments.quality.low") %> <a href="<%= code_of_conduct_path %>"><strong><%= t("views.comments.quality.conduct") %></strong></a>
   </div>
 <% end %>
 
