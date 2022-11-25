@@ -12,7 +12,7 @@ class ProfilePinsController < ApplicationController
     else
       flash[:error] = I18n.t("views.pins.error")
     end
-    redirect_back(fallback_location: "/dashboard")
+    redirect_back(fallback_location: dashboard_path)
     bust_user_profile
   end
 
@@ -21,7 +21,7 @@ class ProfilePinsController < ApplicationController
     current_user.profile_pins.destroy_by(id: params[:id])
     bust_user_profile
     flash[:success] = I18n.t("views.pins.removed")
-    redirect_back(fallback_location: "/dashboard")
+    redirect_back(fallback_location: dashboard_path)
   end
 
   private

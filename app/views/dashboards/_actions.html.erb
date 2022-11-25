@@ -21,7 +21,7 @@
 
     <li>
       <a class="crayons-link crayons-link--block <%= "crayons-link--current" if params[:action] == "followers" %>"
-        href="/dashboard/user_followers"
+        href="<%= dashboard_path %>/user_followers"
         <%= params[:action] == "followers" ? ' aria-current="page"'.html_safe : "" %>>
         <%= t("views.dashboard.actions.followers") %>
         <span class="c-indicator"><%= @user.followers_count %></span>

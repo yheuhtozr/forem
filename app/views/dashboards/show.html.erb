@@ -26,9 +26,9 @@
 
         <% if @organizations && @organizations.size > 0 && (params[:which].blank? || params[:which] == "organization") %>
           <select id="dashboard_author" class="crayons-select w-auto">
-            <option value="/dashboard" <%= "selected" if params[:which].blank? %>><%= t("views.dashboard.posts.personal") %></option>
+            <option value="<%= dashboard_path %>" <%= "selected" if params[:which].blank? %>><%= t("views.dashboard.posts.personal") %></option>
             <% @organizations.each do |org| %>
-              <option value="/dashboard/organization/<%= org.id %>" <%= "selected" if params[:org_id].to_i == org.id %>><%= t("views.dashboard.posts.org", name: org.name, num: org.articles_count) %></option>
+              <option value="<%= dashboard_path %>/organization/<%= org.id %>" <%= "selected" if params[:org_id].to_i == org.id %>><%= t("views.dashboard.posts.org", name: org.name, num: org.articles_count) %></option>
             <% end %>
           </select>
         <% end %>
