@@ -1,6 +1,9 @@
 ---
 ja:
   migdal:
+    auth:
+      title:
+        text_html: <a href="%{root}" class="c-link c-link--branded">%{name}</a> は創作言語・世界愛好者の憩いの場です
     liquid:
       dartpad:
         invalid: 無効な DartPad (Gist) ID です
