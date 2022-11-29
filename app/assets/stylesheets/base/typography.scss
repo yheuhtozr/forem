@@ -106,6 +106,18 @@
   font-style: normal;
   font-weight: normal;
 }
+@font-face {
+  font-family: Endrata;
+  @include font-src('Endrata-regular.woff2');
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: Endrata;
+  @include font-src('Endrata-bold.woff2');
+  font-style: normal;
+  font-weight: bold;
+}
 
 // Content fonts
 body {
