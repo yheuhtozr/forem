@@ -10,7 +10,7 @@ module Stories
       @tag = Tag.find_by(name: params[:tag].downcase) || not_found
 
       if @tag.alias_for.present?
-        redirect_permanently_to("/t/#{@tag.alias_for}")
+        redirect_permanently_to(Addressable::URI.encode("/t/#{@tag.alias_for}"))
         return
       end
 

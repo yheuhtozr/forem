@@ -15,7 +15,7 @@ module Admin
         body_markdown: welcome_thread_content,
         user: User.staff_account,
       )
-      redirect_to "#{Addressable::URI.parse(welcome_thread.path).path}/edit"
+      redirect_to "#{Addressable::URI.encode(welcome_thread.path, Addressable::URI).path}/edit"
     end
 
     private

@@ -80,7 +80,7 @@ class StoriesController < ApplicationController
     potential_username = params[:username].tr("@", "").downcase
     @user = User.find_by("old_username = ? OR old_old_username = ?", potential_username, potential_username)
     if @user&.articles&.find_by(slug: params[:slug])
-      redirect_permanently_to(Addressable::URI.parse("/#{@user.username}/#{params[:slug]}").path)
+      redirect_permanently_to(Addressable::URI.encode("/#{@user.username}/#{params[:slug]}", Addressable::URI).path)
       return
     end
 
