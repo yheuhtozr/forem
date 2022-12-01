@@ -948,7 +948,7 @@ class Article < ApplicationRecord
   end
 
   def notify_external_services_on_new_post
-    return unless published
+    return unless published && !scheduled?
 
     if boost_states["boosted_new_post"]
       DiscordWebhook::Bot.edited_post self
