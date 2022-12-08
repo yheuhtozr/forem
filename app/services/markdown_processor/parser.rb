@@ -19,7 +19,7 @@ module MarkdownProcessor
       # compensation for missing scx function, and more
       [\u3001-\u303F\u3099-\u309C\u30A0\u30FB\u30FC\u3190-\u319F\u31C0-\u31EF\u3220-\u33FF\uA700-\uA707\uFE45\uFE46\uFF61-\uFF65\uFF70\uFF9E\uFF9F\u{1D360}-\u{1D371}\u{1F210}-\u{1F2FF}]
     )
-    /x.freeze
+    /x
     # rubocop:enable Layout/LineLength
 
     WORDS_READ_PER_MINUTE = 275.0
@@ -130,6 +130,11 @@ module MarkdownProcessor
         else
           "{% raw %}#{codeblock}{% endraw %}"
         end
+      end
+
+      # quick hack: escape Katex notation in order to survive Redcarpet no_intra_emphasis options
+      content.gsub(/{% *katex [a-zA-Z ]*%}.+?{% *endkatex *%}/m) do |katex|
+        katex.gsub!("_", '\\_')
       end
     end
 
