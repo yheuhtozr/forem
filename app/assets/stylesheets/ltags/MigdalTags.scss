@@ -84,6 +84,10 @@
   border-radius: 0 !important;
   height: 1em !important;
   width: fit-content;
+  _:lang(x)::-moz-placeholder, /* Firefox hack */
+  & {
+    width: auto; /* width: auto and fit-content seem to have opposite effect on GC and FF */
+  }
 }
 
 .ltag_hidden {
