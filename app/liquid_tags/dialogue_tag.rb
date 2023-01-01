@@ -3,7 +3,7 @@ class DialogueTag < Liquid::Block
 
   def initialize(_tag_name, params, _parse_context)
     super
-    @side, @back, @border, @icon, @name = parse_params(params)
+    @side, @back, @border, @text, @icon, @name = parse_params(params)
   end
 
   def render(_context)
@@ -17,6 +17,7 @@ class DialogueTag < Liquid::Block
         side: @side,
         back: @back,
         border: @border,
+        text: @text,
         content: content
       },
     )
@@ -24,10 +25,10 @@ class DialogueTag < Liquid::Block
 
   def parse_params(params)
     first, image, rest = ActionController::Base.helpers.strip_tags(params).strip.split(" ", 3)
-    side, back, border, * = first.split(":")
+    side, back, border, text, * = first.split(":")
     which = %w[left right].include?(side) ? side : "left"
 
-    [which, back, border, image, rest]
+    [which, back, border, text, image, rest]
   end
 end
 

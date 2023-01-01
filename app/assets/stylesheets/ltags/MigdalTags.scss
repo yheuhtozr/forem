@@ -19,7 +19,10 @@
     background-color: #{$bg};
     border: 3px solid #{$bd};
     border-radius: 0.5em;
-    &::before {
+    .light-theme & {
+      background-color: $white;
+    } /* Migdal theme */
+    &-before {
       content: '';
       position: absolute;
       top: 1.8em;
@@ -28,8 +31,11 @@
       border: 12px solid transparent;
       border-#{$anti}-color: #{$bg};
       z-index: 2;
+      .light-theme & {
+        border-#{$anti}-color: $white;
+      } /* Migdal theme */
     }
-    &::after {
+    &-after {
       content: '';
       position: absolute;
       top: 1.8em;
@@ -65,10 +71,10 @@
     }
   }
   &.dialogue-left {
-    @include dialogue-text(true, $white, $sky-blue);
+    @include dialogue-text(true, var(--body-bg), $sky-blue);
   }
   &.dialogue-right {
-    @include dialogue-text(false, $white, $sky-blue);
+    @include dialogue-text(false, var(--body-bg), $sky-blue);
   }
 }
 

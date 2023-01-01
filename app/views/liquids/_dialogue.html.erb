@@ -2,12 +2,14 @@
   <figure class="ltag_dialogue-fig">
     <img
       src="<%= icon %>" alt="[<%= name %>]"
-      <% if border %> style="border-color: <%= border %>"<% end %>>
+      <% if border.present? %> style="border-color: <%= border %>"<% end %>>
     <figcaption><%= name %></figcaption>
   </figure>
   <div
     class="ltag_dialogue-text"
-    style="<% if back %>background-color: <%= back %>;<% end %><% if border %>border-color: <%= border %>;<% end %>">
+    style="<% if back.present? %>background-color: <%= back %>;<% end %><% if border.present? %>border-color: <%= border %>;<% end %><% if text.present? %>color: <%= text %>;<% end %>">
+    <div class="ltag_dialogue-text-before" style="<% if back.present? %>border-<%= side == "left" ? "right" : "left" %>-color: <%= back %>;<% end %>" aria-hidden="true"></div>
     <%== content %>
+    <div class="ltag_dialogue-text-after" aria-hidden="true"></div>
   </div>
 </div>
