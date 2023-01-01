@@ -130,10 +130,8 @@ module MarkdownProcessor
         else
           "{% raw %}#{codeblock}{% endraw %}"
         end
-      end
-
-      # quick hack: escape Katex notation in order to survive Redcarpet no_intra_emphasis options
-      content.gsub(/{% *katex [a-zA-Z ]*%}.+?{% *endkatex *%}/m) do |katex|
+      end.gsub(/{% *katex [a-zA-Z ]*%}.+?{% *endkatex *%}/m) do |katex| # rubocop:disable Style/MultilineBlockChain
+        # quick hack: escape Katex notation in order to survive Redcarpet no_intra_emphasis options
         katex.gsub!("_", '\\_')
       end
     end
