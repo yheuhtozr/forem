@@ -48,8 +48,8 @@ ja:
           heading: 告知板
           all: すべての告知
           new: 告知を作成
-        trend: trending guides/resources
-        recent: recently queried
+        trend: 話題の情報記事
+        recent: 最近の検索ワード
       tags:
         aria_label: タグの優先度をカスタマイズ
         follow: フォロー
