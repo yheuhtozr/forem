@@ -1,12 +1,12 @@
 <% title "Contact #{community_name}" %>
 
 <%= content_for :page_meta do %>
-  <link rel="canonical" href="<%= app_url("/contact") %>" />
+  <link rel="canonical" href="<%= contact_url %>" />
   <meta name="description" content="Contact #{community_name}">
   <%= meta_keywords_default %>
 
   <meta property="og:type" content="article" />
-  <meta property="og:url" content="<%= app_url("/contact") %>" />
+  <meta property="og:url" content="<%= contact_url %>" />
   <meta property="og:title" content="Contact #{community_name}" />
   <meta property="og:image" content="<%= Settings::General.main_social_image %>" />
   <meta property="og:description" content="<%= community_name %> is great!" />

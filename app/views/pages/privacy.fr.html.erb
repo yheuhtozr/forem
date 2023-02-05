@@ -1,12 +1,12 @@
 <% title("Privacy Policy for #{community_name}") %>
 
 <%= content_for :page_meta do %>
-  <link rel="canonical" href="<%= app_url("/privacy") %>" />
+  <link rel="canonical" href="<%= privacy_url %>" />
   <meta name="description" content="Privacy Policy for <%= community_name %>">
   <%= meta_keywords_default %>
 
   <meta property="og:type" content="article" />
-  <meta property="og:url" content="<%= app_url("/privacy") %>" />
+  <meta property="og:url" content="<%= privacy_url %>" />
   <meta property="og:title" content="Privacy Policy for <%= community_name %>" />
   <meta property="og:image" content="<%= Settings::General.main_social_image %>" />
   <meta property="og:description" content="<%= community_name %> is great!" />
