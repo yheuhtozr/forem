@@ -9,14 +9,14 @@
     },
     "reading_time_other": "約 %{count} 字/語",
     "report": "通報する",
-    "save": "切り抜き帳に保存",
+    "save": "記事「%{title}」を切り抜き帳に保存",
     "timeAgo": "（%{ago}）"
   },
   "clipboard": {
     "alt_text": "画像の説明",
     "copied": "コピー完了！",
     "copy": "コピー…",
-    "copy_markdown": "画像用 Markdown をコピー",
+    "copy_markdown": "コピー",
     "message": "コピーしました"
   },
   "comments": {
@@ -252,7 +252,8 @@
     "error": "エラー: %{error}",
     "feed": "フィードの取得に問題が発生しました。",
     "file": {
-      "format": "非対応のファイル形式 (%{type}) です。%{list} ファイルのみ許可されています。",
+      "format": "非対応のファイル形式%{type}です。%{list} ファイルのみ許可されています。",
+      "format_type": " (%{fileType}) ",
       "format_sep": ", ",
       "limit": "上限は %{mb} MB です。",
       "too_large": "ファイルサイズが大きすぎます (%{mb} MB)。",
@@ -566,7 +567,7 @@
   },
   "templates": {
     "insert": "Insert",
-    "mascot": "\nAre you sure you want to submit this comment as Sloan?\n\nIt will be sent immediately and users will be notified.\n\nMake sure this is the appropriate comment for the situation.\n\nThis action is not reversible.",
+    "mascot": "\nAre you sure you want to submit this comment?\n\nIt will be sent immediately and users will be notified.\n\nMake sure this is the appropriate comment for the situation.\n\nThis action is not reversible.",
     "mod": "Send as Mod",
     "no_yet": "🤔... It looks like you don't have any templates yet.",
     "replace": "Are you sure you want to replace your current comment draft?"

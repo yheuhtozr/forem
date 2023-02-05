@@ -19,6 +19,8 @@ linters:
       - 'application/ld+json'
     allow_blank: true
     disallow_inline_scripts: false
+  RequireInputAutocomplete:
+    enabled: false
   Rubocop:
     enabled: true
     rubocop_config:

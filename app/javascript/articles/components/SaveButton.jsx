@@ -25,8 +25,8 @@ export const SaveButton = ({
       <Button
         id={`article-save-button-${article.id}`}
         variant="default"
-        title={i18next.t('articles.save')}
-        aria-label={i18next.t('articles.save')}
+        title={i18next.t('articles.save', { title: article.title })}
+        aria-label={i18next.t('articles.save', { title: article.title })}
         aria-pressed={isBookmarked}
         icon={isBookmarked ? BookmarkFilledSVG : BookmarkSVG}
         data-initial-feed

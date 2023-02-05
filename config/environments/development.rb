@@ -88,6 +88,9 @@ Rails.application.configure do
     config.hosts << /.*#{URI.parse(gitpod_workspace_url).host}/
   end
   config.hosts << "www.example.com" # rails console app.get
+  if (uffizzi_url = ENV.fetch("UFFIZZI_URL", nil))
+    config.hosts << /.*#{URI.parse(uffizzi_url).host}/
+  end
   config.app_domain = ENV.fetch("APP_DOMAIN", "localhost:3000")
 
   config.action_mailer.delivery_method = :smtp

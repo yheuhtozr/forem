@@ -5,15 +5,18 @@ module Admin
     def index
       relation = if params[:state] == "mine"
                    current_user.html_variants.order(created_at: :desc)
-                 elsif params[:state] == "admin"
-                   HtmlVariant.where(published: true, approved: false).order(created_at: :desc)
-                 elsif params[:state].present?
-                   HtmlVariant.where(published: true, approved: true, group: params[:state]).order(success_rate: :desc)
+                 elsif params[:state].present? && params[:state] != "admin"
+                   HtmlVariant.where(published: true, approved: true, group: params[:state]).order(created_at: :desc)
                  else
-                   HtmlVariant.where(published: true, approved: true).order(success_rate: :desc)
+                   HtmlVariant.where(published: true, approved: true).order(created_at: :desc)
                  end
 
       @html_variants = relation.includes(:user).page(params[:page]).per(30)
+    end
+
+    def show
+      @html_variant = HtmlVariant.find(params[:id])
+      render layout: "application"
     end
 
     def new
@@ -23,11 +26,6 @@ module Admin
       @fork = HtmlVariant.find(params[:fork_id])
       @html_variant.name = I18n.t("admin.html_variants_controller.fork", name: @fork.name, rand: rand(10_000))
       @html_variant.html = @fork.html
-    end
-
-    def show
-      @html_variant = HtmlVariant.find(params[:id])
-      render layout: "application"
     end
 
     def edit

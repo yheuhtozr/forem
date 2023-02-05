@@ -10,7 +10,7 @@ ja:
     existing_published_article_id_validator:
       default: must be a valid published Article identifier
     profile_validator:
-      too_long: is too long
+      bio_too_long: 紹介文が長すぎます
     unique_cross_model_slug_validator:
       is_taken: は取られています
     valid_domain_csv_validator:

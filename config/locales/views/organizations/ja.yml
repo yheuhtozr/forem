@@ -24,9 +24,18 @@ ja:
           tag: Tag
           media: Media
           devrel: Devrel
-      stack: our stack
-      story: our story
+      stack: Our stack
+      story: Our story
+      side:
+        post:
+            icon: 投稿
+            text:
+              other: "%{count} 件の記事を公開"
+        member:
+          icon: メンバー
+          text:
+            other: "%{count} 名のメンバー"
       support: Support email
-      team: meet the team
+      team: Meet the team
       twitter:
         icon: Twitter ページ

@@ -7,7 +7,7 @@
   "articles": {
     "for_org": "%{- start} が %{- end}%{- org}%{- start} へ執筆%{- end}",
     "reading_time_other": "約 %{count} 字/語",
-    "save_to": "切り抜き帳に保存"
+    "save_to": "記事「%{title}」を切り抜き帳に保存"
   },
   "campaign": {
     "close": "Close campaign banner"

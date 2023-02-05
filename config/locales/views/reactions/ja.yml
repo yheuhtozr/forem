@@ -11,6 +11,10 @@ ja:
         thumbsdown: 低評価
         unicorn: Unicorn
         vomit: 警戒
+        lightbulb: Lightbulb
+        raised_hands: Raised hands
+        rocket: Rocket
+      drawer_button: 反応を入れる
       summary:
         title: 反響
       like:

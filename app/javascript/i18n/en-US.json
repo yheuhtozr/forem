@@ -10,14 +10,14 @@
     "reading_time_one": "%{count} words/chars",
     "reading_time_other": "%{count} words/chars",
     "report": "Report abuse",
-    "save": "Save to reading list",
+    "save": "Save post %{title} to reading list",
     "timeAgo": " (%{ago})"
   },
   "clipboard": {
     "alt_text": "Image description",
     "copied": "Copied!",
     "copy": "Copy...",
-    "copy_markdown": "Copy Markdown for image",
+    "copy_markdown": "Copy",
     "message": "Copied to clipboard"
   },
   "comments": {
@@ -254,7 +254,8 @@
     "error": "Error: %{error}",
     "feed": "There was a problem fetching your feed.",
     "file": {
-      "format": "Invalid file format (%{type}). Only %{list} files are permitted.",
+      "format": "Invalid file format%{type}. Only %{list} files are permitted.",
+      "format_type": " (%{fileType})",
       "format_sep": ", ",
       "limit": " The limit is %{mb} MB.",
       "too_large": "File size too large (%{mb} MB).",
@@ -571,7 +572,7 @@
   },
   "templates": {
     "insert": "Insert",
-    "mascot": "\nAre you sure you want to submit this comment as Sloan?\n\nIt will be sent immediately and users will be notified.\n\nMake sure this is the appropriate comment for the situation.\n\nThis action is not reversible.",
+    "mascot": "\nAre you sure you want to submit this comment?\n\nIt will be sent immediately and users will be notified.\n\nMake sure this is the appropriate comment for the situation.\n\nThis action is not reversible.",
     "mod": "Send as Mod",
     "no_yet": "🤔... It looks like you don't have any templates yet.",
     "replace": "Are you sure you want to replace your current comment draft?"

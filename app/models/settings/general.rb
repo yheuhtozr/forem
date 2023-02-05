@@ -25,6 +25,9 @@ module Settings
     setting :ga_tracking_id, type: :string, default: ApplicationConfig["GA_TRACKING_ID"]
     setting :ga_analytics_4_id, type: :string, default: ApplicationConfig["GA_ANALYTICS_4_ID"]
 
+    # Ahoy Tracking
+    setting :ahoy_tracking, type: :boolean, default: false
+
     # Images
     setting :main_social_image,
             type: :string,
@@ -89,7 +92,8 @@ module Settings
       facebook: nil,
       github: nil,
       instagram: nil,
-      twitch: nil
+      twitch: nil,
+      mastodon: nil
     }
     setting :twitter_hashtag, type: :string
 

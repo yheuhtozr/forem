@@ -92,6 +92,7 @@ app/javascript/generated_stories/
 cypress/videos
 cypress/screenshots
 cypress/logs
+cypress/results
 
 # PostCSS error log
 postcss_error.log
@@ -105,6 +106,13 @@ dump.rdb
 
 # pry configuration file
 .pryrc
+
+# generated yarddoc
+doc/
+
+# spec reports
+/spec/reports
+/junit.xml
 
 /config/master.key
 

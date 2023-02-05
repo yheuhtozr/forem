@@ -21,7 +21,7 @@ ja:
       must_not_have_spaces: はスペースを入れないでください
       published: 公開しました
       unique_url: はすでに取られています。詳しくは %{email} にご連絡ください。
-      future_or_current_published_at: 記事の公開時は現在または未来の投稿時刻のみ指定できます
+      future_or_current_published_at: 現在または未来の投稿時刻のみ指定できます
       immutable_published_at: すでに投稿した記事の投稿時刻を変更することはできません
       mention_too_many: 1 つの記事内で %{count} 人より多く呼びかけることはできません！
     broadcast:
@@ -32,6 +32,7 @@ ja:
       hidden: "[記事作者により非表示]"
       is_not_valid: は無効です
       locked: 記事のコメント欄は凍結されています
+      published_article: は非公開の記事です
       type:
         Article: 記事
         item: 項目

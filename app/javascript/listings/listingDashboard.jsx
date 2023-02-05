@@ -82,7 +82,7 @@ export const ListingDashboard = () => {
     ).sort(customSort);
     return displayedListings.map((listing) =>
       listing.organization_id === selected ? (
-        <ListingRow listing={listing} />
+        <ListingRow key={listing.id} listing={listing} />
       ) : null,
     );
   };

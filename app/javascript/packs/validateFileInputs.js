@@ -1,5 +1,5 @@
-import { i18next } from '@utilities/locale';
 import { addSnackbarItem } from '../Snackbar';
+import { i18next } from '@utilities/locale';
 
 /**
  * @file Manages logic to validate file uploads client-side. In general, the
@@ -102,8 +102,12 @@ function handleFileTypeError(
   if (fileTypeErrorHandler) {
     fileTypeErrorHandler();
   } else {
+    const fileTypeBracketed =
+      fileType && fileType.length !== 0
+        ? i18next.t('errors.file.format_type', { fileType })
+        : '';
     const errorMessage = i18next.t('errors.file.format', {
-      type: fileType,
+      type: fileTypeBracketed,
       list: permittedFileTypes.join(i18next.t('errors.file.format_sep')),
     });
     addErrorMessage(errorMessage);

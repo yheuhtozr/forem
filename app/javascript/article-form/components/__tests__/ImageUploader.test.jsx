@@ -108,7 +108,7 @@ describe('<ImageUploader />', () => {
 
       waitForElementToBeRemoved(() => queryByText(/uploading.../i));
 
-      expect(await findByTitle(/copy markdown for image/i)).toBeInTheDocument();
+      expect(await findByTitle(/Copy/i)).toBeInTheDocument();
 
       expect(getByDisplayValue(/fake-link.jpg/i)).toBeInTheDocument();
     });
@@ -172,7 +172,7 @@ describe('<ImageUploader />', () => {
       ).toHaveBeenCalledTimes(1);
     });
 
-    it('handles a native bridge message correctly', () => {
+    it('handles a native bridge message correctly', async () => {
       const { findByTitle } = render(<ImageUploader editorVersion="v1" />);
 
       // Fire a change event in the hidden input with JSON payload for success
@@ -189,7 +189,7 @@ describe('<ImageUploader />', () => {
       );
       fireEvent(document, event);
 
-      expect(findByTitle(/copy markdown for image/i)).toBeInTheDocument();
+      expect(await findByTitle(/Copy/i)).toBeInTheDocument();
     });
   });
 

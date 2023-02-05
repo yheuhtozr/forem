@@ -33,6 +33,9 @@ ja:
         text_html: "&bull; %{on}修正"
         on_html: "%{date}に"
       expand: 展開する
+      visible_signed_in:
+        text_html: "ログインしないと見られないコメントがあります。すべてのコメントを確認するには%{sign_in}してください。"
+        sign_in: "ログイン"
       hidden:
         text_html: 非表示にされているコメントがあります（%{info}）
         info: 詳細

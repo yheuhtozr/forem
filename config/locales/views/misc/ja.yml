@@ -7,6 +7,7 @@ ja:
       all: 全 %{count} 個のバッジを表示
       heading: バッジ
       desc: 実績を積んでバッジをもらおう！バッジをクリックすると獲得条件が確認できます。
+      icon_close: 閉じる
       gotit: 了解
     campaign:
       subtitle: 投稿 (%{count})

@@ -1,5 +1,11 @@
+# Unpublish posts and delete comments w/ boolean attr (setting deleted: true) to allow revert
+# Create a corresponding audit_log record
 module Moderator
   class UnpublishAllArticles
+    def self.call(...)
+      new(...).call
+    end
+
     # @param target_user_id [Integer] the id of the user whose posts are being unpublished
     # @param action_user_id [Integer] the id of the user who unpublishes
     # @param listener [String] listener for the audit logger
@@ -10,10 +16,6 @@ module Moderator
     end
 
     delegate :user_data, to: Notifications
-
-    def self.call(...)
-      new(...).call
-    end
 
     def call
       user = User.find_by(id: target_user_id)

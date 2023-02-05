@@ -7,7 +7,7 @@
   <div class="crayons-field">
     <%= form.label :url, class: "crayons-field__label" %>
     <p class="crayons-field__description">A full (external) or relative (internal) URL for the link</p>
-    <%= form.text_field :url, class: "crayons-textfield", pattern: "^(https?:\/\/|\/)\\w+\.[^\s]+$|^\/[^\s]*$", title: "The URL can be absolute by beginning with http/s or it can be relative beginning with a /", required: true %>
+    <%= form.text_field :url, class: "crayons-textfield", pattern: "^(https?://|/)\\w+.[^\s]+$|^/[^\s]*$", title: "The URL can be absolute by beginning with http/s or it can be relative beginning with a /", required: true %>
   </div>
   <div class="crayons-field" data-controller="svg-icon-upload">
     <div data-svg-icon-upload-target="navId" nav-link-id="<%= form.object[:id] %>">
@@ -21,7 +21,6 @@
       <input
         type="file"
         accept="image/svg+xml"
-        class="form-control-file"
         data-action="svg-icon-upload#selectSvgIcon"
         <%= form.object[:icon].blank? ? "required=true" : "" %> />
 

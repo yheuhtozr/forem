@@ -57,13 +57,28 @@
       <div class="crayons-story__bottom">
         <div class="crayons-story__details">
           <% if story.public_reactions_count > 0 %>
-            <a href="<%= story.path %>" class="crayons-btn crayons-btn--s crayons-btn--ghost crayons-btn--story crayons-reaction" data-reaction-count data-reactable-id="<%= story.id %>"
-               aria-label="<%= t("views.articles.comments.aria_label", title: story.title) %>">
-              <%= crayons_icon_tag("small-heart", title: t("views.reactions.summary.title")) %>
-              <span class="crayons-reaction__count">
-                <%= story.public_reactions_count %>
-              </span>
-            </a>
+            <% if FeatureFlag.enabled?(:multiple_reactions) %>
+              <div class="multiple_reactions_aggregate">
+                <% ReactionCategory.for_view.each do |reaction_type| %>
+                  <% next unless story.reaction_categories.include?(reaction_type.slug.to_s) %>
+                  <span class="crayons_icon_container">
+                    <%= crayons_icon_tag(reaction_type.icon, width: "18px", height: "18px", native: true, aria_hidden: true) %>
+                  </span>
+                <% end %>
+                <span class="aggregate_reactions_counter"><%= t("views.reactions.summary.count_html",
+                                                                count: story.public_reactions_count,
+                                                                start: tag("span", { class: %w[hidden s:inline] }, true),
+                                                                end: "</span>".html_safe) %></span>
+              </div>
+            <% else %>
+              <a href="<%= story.path %>" class="crayons-btn crayons-btn--s crayons-btn--ghost crayons-btn--story crayons-reaction" data-reaction-count data-reactable-id="<%= story.id %>"
+                aria-label="<%= t("views.articles.comments.aria_label", title: story.title) %>">
+                <%= crayons_icon_tag("small-heart", title: t("views.reactions.summary.title")) %>
+                <span class="crayons-reaction__count">
+                  <%= story.public_reactions_count %>
+                </span>
+              </a>
+            <% end %>
           <% end %>
           <a href="<%= story.path %>#comments" class="crayons-btn crayons-btn--s crayons-btn--ghost crayons-btn--story crayons-reaction" aria-label="<%= t("views.articles.comments.aria_label", title: story.title) %>">
             <% if story.comments_count > 0 %>
@@ -158,21 +173,23 @@
       <% end %>
 
         <div class="crayons-story__save">
-          <button
-            type="button"
-            id="article-save-button-<%= story.id %>"
-            class="c-btn c-btn--icon-alone bookmark-button"
-            data-reactable-id="<%= story.id %>"
-            data-article-author-id="<%= story.user_id %>"
-            aria-label="<%= t("views.articles.save.aria_label") %>"
-            title="<%= t("views.articles.save.title") %>">
-            <span class="bm-initial">
-              <%= inline_svg_tag("small-save.svg", alt: "", aria_hidden: true) %>
-            </span>
-            <span class="bm-success">
-              <%= inline_svg_tag("small-save-filled.svg", alt: "", aria_hidden: true) %>
-            </span>
-          </button>
+          <% if (@user == nil) || (@user.id != story.user_id) %>
+            <button
+              type="button"
+              id="article-save-button-<%= story.id %>"
+              class="c-btn c-btn--icon-alone bookmark-button"
+              data-reactable-id="<%= story.id %>"
+              data-article-author-id="<%= story.user_id %>"
+              aria-label="<%= t("views.articles.save.aria_label", title: story.title) %>"
+              title="<%= t("views.articles.save.title", title: story.title) %>">
+              <span class="bm-initial">
+                <%= inline_svg_tag("small-save.svg", alt: "", aria_hidden: true) %>
+              </span>
+              <span class="bm-success">
+                <%= inline_svg_tag("small-save-filled.svg", alt: "", aria_hidden: true) %>
+              </span>
+            </button>
+          <% end %>
         </div>
     </div>
   </div>

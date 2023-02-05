@@ -253,7 +253,7 @@ describe('<ArticleCoverImage />', () => {
         expect(onMainImageUrlChangeSpy).toHaveBeenCalledTimes(1);
       });
 
-      it('displays an upload error when necessary', () => {
+      it('displays an upload error when necessary', async () => {
         const onMainImageUrlChange = jest.fn();
         const { findByText } = render(
           <ArticleCoverImage
@@ -278,12 +278,12 @@ describe('<ArticleCoverImage />', () => {
         );
         fireEvent(document, event);
 
-        const errorElement = findByText(error);
+        const errorElement = await findByText(error);
         expect(errorElement).toBeInTheDocument();
         expect(onMainImageUrlChange).not.toHaveBeenCalled();
       });
 
-      it('displays an uploading message', () => {
+      it('displays an uploading message', async () => {
         const onMainImageUrlChange = jest.fn();
         const { findByText } = render(
           <ArticleCoverImage
@@ -305,7 +305,7 @@ describe('<ArticleCoverImage />', () => {
         );
         fireEvent(document, event);
 
-        const uploadingText = findByText(/Uploading.../i);
+        const uploadingText = await findByText(/Uploading.../i);
         expect(uploadingText).toBeInTheDocument();
 
         expect(onMainImageUrlChange).not.toHaveBeenCalled();

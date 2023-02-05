@@ -8,7 +8,7 @@
     "for_org": "%{- start} for %{- end}%{- org}",
     "reading_time_one": "%{count} words/chars",
     "reading_time_other": "%{count} words/chars",
-    "save_to": "Save to reading list"
+    "save_to": "Save post %{title} to reading list"
   },
   "campaign": {
     "close": "Close campaign banner"

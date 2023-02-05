@@ -5,6 +5,12 @@ ja:
       meta:
         og:
           title: "%{user} — %{community} プロフィール"
+      comments_locked_cta:
+        title: "%{user} さんとつながるには"
+        description: アカウントを作成して %{user} さんとつながりましょう。すでにアカウントがある方は下よりログインしてください。
+        create_account: アカウントを作る
+        already_have_an_account: アカウントがある方は
+        sign_in: ログイン
       comments:
         all: コメント %{count} 件全部
         last: 最新のコメント %{count} 件
@@ -65,11 +71,6 @@ ja:
       location_icon: 場所
       logo: "%{user} のプロフィール画像"
       more: "@%{user} をもっと知る"
-      send_pm:
-        code: code of conduct
-        notice_html: All private interactions <b>must</b> abide by the %{code}.
-        placeholder: Enter your message here...
-        submit: Send
       social: "%{service} ページ"
       unflag: Unflag @%{user}
       website: 個人サイト

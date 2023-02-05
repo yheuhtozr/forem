@@ -5,3 +5,5 @@
 //= link minimal.css
 //= link s3_direct_upload.js
 //= link katex.css
+//= link icon.png
+//= link loading-ellipsis.svg

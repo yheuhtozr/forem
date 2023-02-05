@@ -61,8 +61,8 @@ ja:
         zero: New Discussion!
         other: '#discuss <img src="%{image}" />%{count}'
       save:
-        title: 切り抜き帳に保存
-        aria_label: 切り抜き帳に保存
+        title: 記事「%{title}」を切り抜き帳に保存
+        aria_label: 記事「%{title}」を切り抜き帳に保存
         initial: 保存
         success: 保存済
       scheduled:

@@ -76,9 +76,6 @@ Cypress.Commands.add(
 Cypress.Commands.add('testSetup', () => {
   const MAX_RETRIES = 3;
 
-  // Required for the moment because of https://github.com/cypress-io/cypress/issues/781
-  cy.clearCookies();
-
   function retryClearCookies(retryCount) {
     if (retryCount > MAX_RETRIES) {
       cy.log('Could not clear cookies');
@@ -123,17 +120,29 @@ Cypress.Commands.add('loginUser', ({ email, password }) => {
     );
   }
 
-  return getLoginRequest().then((response) => {
-    if (response.status === 200) {
-      return response;
-    }
+  return getLoginRequest()
+    .then((response) => {
+      if (response.status === 200) {
+        return response;
+      }
 
-    cy.log('Login failed. Attempting one more login.');
+      cy.log(
+        'Login failed. Attempting one more login after 0.2s delay to avoid retrying too quickly.',
+      );
 
-    // If we have a login failure, try one more time.
-    // This is to combat some flaky tests where the login fails occasionally.
-    return getLoginRequest();
-  });
+      // If we have a login failure, try one more time.
+      // This is to combat some flaky tests where the login fails occasionally.
+      return new Promise((resolve) => setTimeout(resolve(response), 200));
+    })
+    .then((response) => {
+      if (response.status === 200) {
+        // First login request was successful
+        return response;
+      } else {
+        // Retry login request
+        return getLoginRequest();
+      }
+    });
 });
 
 /**

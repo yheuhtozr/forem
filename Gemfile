@@ -39,7 +39,7 @@ gem "field_test", "~> 0.5" # A/B testing
 gem "flipper", "~> 0.25.0" # Feature flipping / flags for Ruby
 gem "flipper-active_record", "~> 0.25.0" # Store Flipper flags in ActiveRecord
 gem "flipper-active_support_cache_store", "~> 0.25.0" # Cache feature flags for a short time
-gem "flipper-ui", "~> 0.25.0"
+gem "flipper-ui", "~> 0.25.0" # UI for the Flipper gem
 gem "fog-aws", "~> 3.14" # 'fog' gem to support Amazon Web Services
 gem "front_matter_parser", "~> 1.0" # Parse a front matter from syntactically correct strings or files
 gem "gemoji", "~> 4.0.0.rc3" # Character information and metadata for standard and custom emoji
@@ -66,22 +66,21 @@ gem "omniauth", "~> 2.1" # A generalized Rack framework for multiple-provider au
 gem "omniauth-apple", "~> 1.0" # OmniAuth strategy for Sign In with Apple
 gem "omniauth-facebook", "~> 9.0" # OmniAuth strategy for Facebook
 gem "omniauth-github", "~> 2.0" # OmniAuth strategy for GitHub
-gem "omniauth-google-oauth2", "~> 1.0"
+gem "omniauth-google-oauth2", "~> 1.0" # OmniAuth strategy for Google OAuth2
 gem "omniauth-rails_csrf_protection", "~> 1.0" # Provides CSRF protection on OmniAuth request endpoint on Rails application.
 gem "omniauth-twitter", "~> 1.4" # OmniAuth strategy for Twitter
 gem "parallel", "~> 1.22" # Run any kind of code in parallel processes
-gem "patron", "~> 0.13.3" # HTTP client library based on libcurl, used with GitHub OAuth client
 gem "pg", "~> 1.4" # Pg is the Ruby interface to the PostgreSQL RDBMS
 gem "pg_query", ">= 0.9.0" # Allows PGHero to analyze queries
 gem "pg_search", "~> 2.3.6" # PgSearch builds Active Record named scopes that take advantage of PostgreSQL's full text search
-gem "pghero", "~> 2.8" # Dashboard for Postgres
+gem "pghero", "~> 3.1" # Dashboard for Postgres
 gem "playwright-ruby-client", "~> 1.20.1"
 gem "puma", "~> 5.6.4" # Puma is a simple, fast, threaded, and highly concurrent HTTP 1.1 server
 gem "pundit", "~> 2.2" # Object oriented authorization for Rails applications
 gem "rack-attack", "~> 6.6.1" # Used to throttle requests to prevent brute force attacks
 gem "rack-cors", "~> 1.1" # Middleware that will make Rack-based apps CORS compatible
 gem "rack-timeout", "~> 0.6" # Rack middleware which aborts requests that have been running for longer than a specified timeout
-gem "rails", "~> 7.0.3.1" # Ruby on Rails
+gem "rails", "~> 7.0.4.1" # Ruby on Rails
 gem "rails-i18n", "~> 7.0"
 gem "ransack", "~> 3.2" # Searching and sorting
 gem "recaptcha", "~> 5.10", require: "recaptcha/rails" # Helpers for the reCAPTCHA API
@@ -123,7 +122,7 @@ group :development do
   gem "deepsort", "~> 0.4.5"
   gem "derailed_benchmarks", "~> 2.1", require: false # A series of things you can use to benchmark a Rails or Ruby app
   gem "easy_translate", "~> 0.5.1" # Google translate tie-in to be used with i18n tasks
-  gem "erb_lint", "~> 0.0.37", require: false # ERB Linter tool
+  gem "erb_lint", "~> 0.3", require: false # ERB Linter tool
   gem "guard", "~> 2.18", require: false # Guard is a command line tool to easily handle events on file system modifications
   gem "guard-rspec", "~> 4.7", require: false # Guard::Rspec includes a DSL for running tests on change
   gem "i18n-tasks", "~> 1.0.11" # Helpers to find and manage missing and unused translations
@@ -133,8 +132,8 @@ group :development do
   gem "solargraph-rails", "~> 0.3.1", require: false # For LSP support with Rails
   gem "web-console", "~> 4.2" # Rails Console on the Browser
   gem "yard", "~> 0.9" # Documentation format
-  gem "yard-activerecord", "~> 0.0"
-  gem "yard-activesupport-concern", "~> 0.0"
+  gem "yard-activerecord", "~> 0.0" # Yard extension for ActiveRecord
+  gem "yard-activesupport-concern", "~> 0.0" # Yard extension for ActiveRecord::Concern
 end
 
 group :development, :test do
@@ -145,12 +144,13 @@ group :development, :test do
   gem "debug", ">= 1.0.0" # Provide a debug with step capabilities
   gem "dotenv-rails", "~> 2.8.1" # For loading ENV variables locally
   gem "faker", "~> 2.22" # A library for generating fake data such as names, addresses, and phone numbers
-  gem "knapsack_pro", "~> 3.3.1" # Help parallelize Ruby spec builds
+  gem "knapsack_pro", "~> 3.0" # Help parallelize Ruby spec builds
   gem "pry", "~> 0.14" # An IRB alternative and runtime developer console
   gem "pry-rails", "~> 0.3" # Use Pry as your rails console
   gem "rspec-rails", "~> 5.1" # rspec-rails is a testing framework for Rails 3+
+  gem "rspec_junit_formatter", "~> 0.6" # RSpec formatter for JUnit XML output
   gem "rswag-specs", "~> 2.5.1" # RSwag - Swagger-based DSL for rspec & accompanying rake task for generating Swagger files
-  gem "rubocop", "~> 1.33", require: false # Automatic Ruby code style checking tool
+  gem "rubocop", "~> 1.42", require: false # Automatic Ruby code style checking tool
   gem "rubocop-performance", "~> 1.14", require: false # A collection of RuboCop cops to check for performance optimizations in Ruby code
   gem "rubocop-rails", "~> 2.15", require: false # Automatic Rails code style checking tool
   gem "rubocop-rspec", "~> 2.12", require: false # Code style checking for RSpec files
@@ -166,7 +166,7 @@ group :test do
   gem "pundit-matchers", "~> 1.7" # A set of RSpec matchers for testing Pundit authorisation policies
   gem "rspec-retry", "~> 0.6" # retry intermittently failing rspec examples
   gem "ruby-prof", "~> 1.4", require: false # ruby-prof is a fast code profiler for Ruby
-  gem "shoulda-matchers", "~> 5.1.0", require: false # Simple one-liner tests for common Rails functionality
+  gem "shoulda-matchers", "~> 5.3", require: false # Simple one-liner tests for common Rails functionality
   gem "simplecov", "~> 0.21.2", require: false # Code coverage with a powerful configuration library and automatic merging of coverage across test suites
   gem "stackprof", "~> 0.2", require: false, platforms: :ruby # stackprof is a fast sampling profiler for ruby code, with cpu, wallclock and object allocation samplers
   gem "stripe-ruby-mock", "3.1.0.rc3", require: "stripe_mock" # A drop-in library to test stripe without hitting their servers

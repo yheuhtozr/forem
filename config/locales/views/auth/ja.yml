@@ -15,6 +15,8 @@ ja:
           icon: ユーザー名を編集
           text_html: "%{start}あなたのユーザー名は\_%{end}%{button}%{start}\_です%{end}"
         submit: 私のアカウントを作成
+      already_have_an_account: アカウントのある方は
+      sign_in: ログイン
       login:
         aria_label: ログイン
         text: ログイン
@@ -71,7 +73,7 @@ ja:
         step_3: 管理者はたくさんのことができます。少しずつ学んでいきましょう。
         step_4: わからないことがあったら、Forem 開発チームにお尋ねください！
         step_5: "For Empowering Community 🌱"
-      tagline: 交流や便利な機能を利用するにはログイン
+      tagline: We are a place where coders share, stay up-to-date and grow their careers.
       title:
-        text_html: <a href="/" class="c-link c-link--branded">%{name}</a> is a community of %{maybe_size}amazing %{label}
+        text_html: "%{name} is a community of %{maybe_size}amazing %{label}"
         size: "%{num} "

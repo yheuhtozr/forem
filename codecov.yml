@@ -1,0 +1,12 @@
+ignore:
+  - "vendor"
+  - "bin"
+  - "**/*.svg"
+  - "lib/sitemap_generator"
+  - "lib/generators"
+flag_management:
+  default_rules:
+    statuses:
+      - type: project
+        target: auto
+        threshold: 1%

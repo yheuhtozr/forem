@@ -105,7 +105,7 @@ ja:
           title: このタグには負の重みづけをしています
           text: Anti-follow
         default: デフォルト 1.0
-        empty: まだタグをフォローしていません……
+        empty_html: "<span>タグをフォローしてトップページに表示される記事を自分好みにしましょう。<a href=%{link}>人気のタグはこちら</a>から探せます</span>。"
         number:
           aria_label: "%{name} タグの重み"
         update: 重みを更新

@@ -5,6 +5,12 @@ import './app/assets/javascripts/lib/xss';
 global.setImmediate = global.setTimeout;
 Object.defineProperty(document.body.dataset, 'locale', { value: 'en-US' });
 
+global.ResizeObserver = class ResizeObserver {
+  disconnect() {}
+  observe() {}
+  unobserve() {}
+};
+
 // TODO: Remove this once https://github.com/nickcolley/jest-axe/issues/147 is fixed.
 const { getComputedStyle } = window;
 window.getComputedStyle = (elt) => getComputedStyle(elt);

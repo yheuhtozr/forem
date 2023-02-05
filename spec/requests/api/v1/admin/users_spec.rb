@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "/api/admin/users", type: :request do
+RSpec.describe "/api/admin/users" do
   let(:params) { { email: "test@example.com" } }
   let(:v1_headers) { { "Accept" => "application/vnd.forem.api-v1+json" } }
 
@@ -41,7 +41,7 @@ RSpec.describe "/api/admin/users", type: :request do
     let(:api_secret) { create(:api_secret, user: super_admin) }
     let(:headers) { v1_headers.merge({ "api-key" => api_secret.secret }) }
 
-    it "accepts reqeuest with a super-admin token" do
+    it "accepts request with a super-admin token" do
       expect do
         post api_admin_users_path, params: params, headers: headers
       end.to change(User, :count).by(1)

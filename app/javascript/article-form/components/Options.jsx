@@ -233,6 +233,7 @@ export const Options = ({
             placeholder="https://yoursite.com/post-title"
             name="canonicalUrl"
             onKeyUp={onConfigChange}
+            onInput={onConfigChange}
             id="canonicalUrl"
           />
         </div>

@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { h } from 'preact';
+import { Trans } from 'react-i18next';
 import { i18next } from '@utilities/locale';
 
 export const Categories = ({
@@ -34,7 +35,10 @@ export const Categories = ({
           return (
             <ul key={category.name}>
               <li>
-                {i18next.t('listings.format.category.details', { name: category.name, rules: category.rules })}
+                <Trans
+                  i18nKey="listings.form.category.details"
+                  values={{ name: category.name, rules: category.rules }}
+                />
               </li>
             </ul>
           );

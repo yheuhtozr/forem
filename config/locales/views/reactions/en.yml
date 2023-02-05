@@ -11,6 +11,10 @@ en:
         thumbsdown: Thumbs down
         unicorn: Unicorn
         vomit: Flag
+        lightbulb: Lightbulb
+        raised_hands: Raised hands
+        rocket: Rocket
+      drawer_button: Add reaction
       summary:
         title: Reactions
       like:

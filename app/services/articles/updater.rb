@@ -8,7 +8,7 @@ module Articles
       @article_params = article_params
     end
 
-    def self.call(...)
+    def self.call(...) # rubocop:disable Layout/ClassStructure
       new(...).call
     end
 
@@ -23,6 +23,7 @@ module Articles
 
       attrs = Articles::Attributes.new(article_params, article.user)
         .for_update(update_edited_at: update_edited_at)
+
       success = article.update(attrs)
       if success
         user.rate_limiter.track_limit_by_action(:article_update)
