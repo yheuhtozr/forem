@@ -99,7 +99,7 @@
   <% if organization && org_admin %>
     <%= form_for(article) do |f| %>
       <%= f.hidden_field :from_dashboard, value: 1 %>
-      <input type="hidden" name="destination" value="/dashboard/organization/<%= organization.id %>" />
+      <input type="hidden" name="destination" value="<%= dashboard_path %>/organization/<%= organization.id %>" />
       <%= t("views.dashboard.article.author_is") %><%= f.select(:user_id, options_for_select(organization.users.pluck(:name, :id), article.user_id)) %>
       <%= f.submit t("views.dashboard.article.submit"), class: "crayons-btn crayons-btn--secondary" %>
     <% end %>

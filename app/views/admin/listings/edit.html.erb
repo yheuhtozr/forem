@@ -9,7 +9,7 @@
       <%= f.submit "Bump Listing ⏫", class: "crayons-btn crayons-btn--secondary" %>
     <% end %>
 
-    <%= link_to "View", "/listings/#{@listing.category}/#{@listing.slug}", target: "_blank", rel: "noopener", class: "crayons-btn crayons-btn--primary ml-2" %>
+    <%= link_to "View", listing_slug_path(category: @listing.category, slug: @listing.slug), target: "_blank", rel: "noopener", class: "crayons-btn crayons-btn--primary ml-2" %>
 
   </div>
 </header>
