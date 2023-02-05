@@ -50,7 +50,7 @@ module Taggable
   def validate_tag_name(tag_list)
     tag_list.each do |tag|
       new_tag = Tag.new(name: tag)
-      new_tag.validate_name
+      new_tag.quick_validate
       new_tag.errors.messages[:name].each { |message| errors.add(:tag, "\"#{tag}\" #{message}") }
     end
   end
