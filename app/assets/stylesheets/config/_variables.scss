@@ -71,14 +71,14 @@
 
   // Font families
 
-  --ff-true-sans-serif: 'Luna Sans', 'Noto Sans JP', -apple-system,
+  --ff-true-sans-serif: 'Inter var', 'Noto Sans JP', -apple-system,
     BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   // --ff-sans-serif is now a default font variable
   --ff-sans-serif: var(--ff-true-sans-serif);
   --ff-monospace: 'SF Mono', SFMono-Regular, Consolas, 'Liberation Mono', Menlo,
     Courier, monospace;
-  --ff-serif: Newsreader, 'Noto Serif JP', Palatino, 'Palatino Linotype',
+  --ff-serif: 'Libertinus Serif', 'Noto Serif JP', Palatino, 'Palatino Linotype',
     'Palatino LT STD', 'Book Antiqua', Georgia, serif;
   --ff-comic: 'Comic Sans MS', cursive, sans-serif;
   --ff-dyslexic: OpenDyslexic, sans-serif;

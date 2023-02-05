@@ -17,6 +17,7 @@
         <meta name="monetization" content="<%= Settings::General.payment_pointer %>">
       <% end %>
       <meta name="environment" content="<%= Rails.env %>">
+      <link rel="stylesheet" href="https://rsms.me/inter/inter.css"><%# Font import %>
       <%= render "layouts/styles", qualifier: "main" %>
       <%= javascript_include_tag "base", defer: true %>
       <% if user_signed_in? %>
@@ -60,8 +61,7 @@
         data-deployed-at="<%= j(ForemInstance.deployed_at) %>"
         data-latest-commit-id="<%= j(ForemInstance.latest_commit_id) %>"
         data-ga-tracking="<%= j(Settings::General.ga_tracking_id) %>"
-        data-ga4-tracking-id="<%= j(Settings::General.ga_analytics_4_id) %>"
-        >
+        data-ga4-tracking-id="<%= j(Settings::General.ga_analytics_4_id) %>">
         <%# Repeat of stylesheets in <head> to fix rendering glitch: https://github.com/forem/forem/issues/12377 %>
         <%= render "layouts/styles", qualifier: "secondary" %>
         <div id="body-styles">
