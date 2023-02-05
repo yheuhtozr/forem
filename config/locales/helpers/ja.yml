@@ -226,3 +226,11 @@ ja:
       novice: 未経験
     social_link_helper:
       n_a: なし
+    admin:
+      user_helper:
+        today: Today, %{date}
+        yesterday: Yesterday, %{date}
+        org_join: ", "
+        org_overflow:
+          one: "%{orgs} & %{count} other"
+          other: "%{orgs} & %{count} others"

@@ -45,10 +45,14 @@ ja:
       wrong_length: は%{count}文字で入力してください
   time:
     formats:
+      admin_user: "%Y-%m-%d, %H:%M"
       comment: "%Y年%m月%d日"
+      email_verified: "%b %e '%y, %H:%M"
       github: "%b %d, %Y"
       json: "%Y年%_m月%e日"
       medium: "%b %-d, %Y"
+      members: "%d %b"
+      members_with_year: "%d %b, %Y"
       reddit: "%b %e '%y"
       stackexchange: "%b %e '%y"
       tweet: "%p%H:%M - %Y年%-m月%-d日"
