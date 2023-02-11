@@ -30,8 +30,8 @@ ja:
       collapse: たたむ
       edit: コメント編集中
       edited:
-        text_html: "&bull; %{on}修正"
-        on_html: "%{date}に"
+        text_html: "&bull; %{date}に編集"
+        short_html: "&bull; 編集済"
       expand: 展開する
       visible_signed_in:
         text_html: "ログインしないと見られないコメントがあります。すべてのコメントを確認するには%{sign_in}してください。"
