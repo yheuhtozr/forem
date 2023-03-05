@@ -80,6 +80,7 @@ module PracticalDeveloper
     config.i18n.load_path += Dir[Rails.root.join("config/locales/**/*.yml")]
 
     # HACK: only keyed languages are used as available languages in routes
+    # see config/routes.rb:26
     config.i18n.fallbacks = {
       "en-US": %i[en-US en],
       fr: :fr,

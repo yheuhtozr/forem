@@ -23,8 +23,8 @@ Rails.application.routes.draw do
   # [@forem/delightful] - all routes are nested under this optional scope to
   # begin supporting i18n.
 
-  # manually rejecting :en as a temporary workaround for https://github.com/ruby-i18n/i18n/issues/645
-  scope "(/::locale)", locale: /#{I18n.fallbacks.keys.reject { |k| k == :en }.join("|")}/ do
+  # HACK: see config/application.rb:82
+  scope "(/::locale)", locale: /#{I18n.fallbacks.keys.join("|")}/ do
     draw :admin
 
     # The lambda (e.g. `->`) allows for dynamic checking.  In other words we check with each
