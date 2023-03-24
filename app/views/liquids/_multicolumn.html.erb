@@ -1,7 +1,13 @@
 <% if include_js %>
 <script defer>
 function loadMC(event) {
+  if (navigator.userAgent.toLowerCase().indexOf('firefox') <= -1) { return false; }
+
   document.querySelectorAll(".migdal-mc-table").forEach((t) => {
+    t.innerHTML = t.innerHTML
+      .replace(/<(tbody|thead|tfoot|tr|td|th)\b/, '<div class="migdal-mc-\1"')
+      .replace(/<\/(?:table|tbody|thead|tfoot|tr|td|th)\b/, "</div");
+
     let max = Array.from(t.querySelectorAll(":scope .migdal-mc-tr")).reduce((a, b) => {
       return Math.max(a, b.querySelectorAll(":scope > .migdal-mc-td, :scope > .migdal-mc-th").length)
     }, 0);
@@ -18,6 +24,11 @@ loadMC();
 window.addEventListener('pageshow', loadMC);
 </script>
 <style>
+  <%# copied from typography.css but without overflow-y %>
+  .text-styles .table-wrapper-paragraph-multicolumn {
+    width: 100%;
+    margin: 0 0 var(--content-rhythm) 0;
+  }
   .migdal-mc-table, .migdal-mc-tbody, .migdal-mc-tfoot, .migdal-mc-thead, .migdal-mc-tr {
     display: block;
   }
