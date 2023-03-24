@@ -6,6 +6,7 @@ import { initializeDropdown } from '../utilities/dropdownUtils';
 import { embedGists } from '../utilities/gist';
 import { initializeUserSubscriptionLiquidTagContent } from '../liquidTags/userSubscriptionLiquidTag';
 import { loadLeipzig } from '../liquidTags/glossLiquidTag';
+import { loadMulticolumnFix } from '../liquidTags/multicolumnLiquidTag';
 import { trackCommentClicks } from '@utilities/ahoy/trackEvents';
 import { isNativeAndroid, copyToClipboard } from '@utilities/runtime';
 import { i18next } from '@utilities/locale';
@@ -178,6 +179,7 @@ targetNode && embedGists(targetNode);
 
 initializeUserSubscriptionLiquidTagContent();
 loadLeipzig();
+loadMulticolumnFix();
 // Temporary Ahoy Stats for comment section clicks on controls
 trackCommentClicks('comments');
 trackCommentsSectionDisplayed();

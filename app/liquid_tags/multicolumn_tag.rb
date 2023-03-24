@@ -9,9 +9,7 @@ class MulticolumnTag < Liquid::Block
 
   def render(context)
     content = super
-      .gsub(/<table\b/, '<div class="migdal-mc-table table-wrapper-paragraph"')
-      .gsub(/<(tbody|thead|tfoot|tr|td|th)\b/, '<div class="migdal-mc-\1"')
-      .gsub(%r{</(?:table|tbody|thead|tfoot|tr|td|th)\b}, "</div")
+      .gsub(/<table\b/, '<table class="migdal-mc-table"')
       .gsub(/\A\s*(?:<br>\s)+|(?:<br>\s)+\z/, "")
 
     no_js = !context[MULTICOLUMN_EXISTED]

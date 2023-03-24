@@ -1,23 +1,10 @@
 <% if include_js %>
-<script defer>
-function loadMC(event) {
-  document.querySelectorAll(".migdal-mc-table").forEach((t) => {
-    let max = Array.from(t.querySelectorAll(":scope .migdal-mc-tr")).reduce((a, b) => {
-      return Math.max(a, b.querySelectorAll(":scope > .migdal-mc-td, :scope > .migdal-mc-th").length)
-    }, 0);
-    if (max > 0) {
-      for (let nth = 1; nth <= max; nth++) {
-        let col = Array.from(t.querySelectorAll(`:scope .migdal-mc-tr > .migdal-mc-td:nth-child(${nth}), :scope .migdal-mc-tr > .migdal-mc-th:nth-child(${nth})`));
-        let wmax = col.reduce((a, b) => Math.max(a, b.offsetWidth), 0);
-        for (const cell of col) { cell.style.width = `${wmax}px` }
-      }
-    }
-  });
-}
-loadMC();
-window.addEventListener('pageshow', loadMC);
-</script>
 <style>
+  <%# copied from typography.css but without overflow-y %>
+  .text-styles .table-wrapper-paragraph-multicolumn {
+    width: 100%;
+    margin: 0 0 var(--content-rhythm) 0;
+  }
   .migdal-mc-table, .migdal-mc-tbody, .migdal-mc-tfoot, .migdal-mc-thead, .migdal-mc-tr {
     display: block;
   }
