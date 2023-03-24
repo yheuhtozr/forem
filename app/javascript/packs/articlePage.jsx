@@ -5,6 +5,7 @@ import { addFullScreenModeControl } from '../utilities/codeFullscreenModeSwitche
 import { initializeDropdown } from '../utilities/dropdownUtils';
 import { embedGists } from '../utilities/gist';
 import { initializeUserSubscriptionLiquidTagContent } from '../liquidTags/userSubscriptionLiquidTag';
+import { loadLeipzig } from '../liquidTags/glossLiquidTag';
 import { trackCommentClicks } from '@utilities/ahoy/trackEvents';
 import { isNativeAndroid, copyToClipboard } from '@utilities/runtime';
 import { i18next } from '@utilities/locale';
@@ -176,6 +177,7 @@ const targetNode = document.querySelector('#comments');
 targetNode && embedGists(targetNode);
 
 initializeUserSubscriptionLiquidTagContent();
+loadLeipzig();
 // Temporary Ahoy Stats for comment section clicks on controls
 trackCommentClicks('comments');
 trackCommentsSectionDisplayed();

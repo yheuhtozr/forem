@@ -1,13 +1,3 @@
-<% if include_js %>
-<script defer>
-window.addEventListener('pageshow', (event) => {
-  let lzscript = document.createElement('script');
-  lzscript.src = '/javascripts/leipzig.min.js';
-  document.body.appendChild(lzscript);
-  lzscript.onload = () => Leipzig(".ltag_gloss", { lastLineFree: false }).gloss();
-});
-</script>
-<% end %>
 <%# use <ul> instead of <div> to work around some quirks of the markdown parser %>
 <ul class="ltag_gloss">
   <% if orig %>
