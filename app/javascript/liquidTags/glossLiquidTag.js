@@ -11,7 +11,10 @@ export async function loadLeipzig() {
   lzscript.onload = () => {
     Leipzig('.ltag_gloss', { lastLineFree: false }).gloss();
     while (glossLiquidTags.length) {
-      glossLiquidTags[0].className = 'ltag_gloss--complete';
+      glossLiquidTags[0].classList.replace(
+        'ltag_gloss',
+        'ltag_gloss--complete',
+      );
     }
   };
 }
