@@ -21,7 +21,7 @@ export async function loadMulticolumnFix() {
       tr_array
         .find((tr) => tr.querySelectorAll(td_query).length === max)
         .querySelectorAll(td_query),
-    ).map((td) => td.offsetWidth);
+    ).map((td) => td.getBoundingClientRect().width);
 
     t.outerHTML = t.outerHTML
       .replace('<table class="migdal-mc-table"', '<div class="migdal-mc-table"')
@@ -43,8 +43,9 @@ export async function loadMulticolumnFix() {
           ),
         );
         for (const cell of col) {
-          cell.style.width = `${widthMap[i][nth - 1] + 1}px`;
-        } // +1px is needed to keep text contained in actual browser for some reason.
+          const colw = widthMap[i][nth - 1];
+          cell.style.width = `${colw + (Number.isInteger(colw) ? 1 : 0.01)}px`;
+        } // +1px is needed to keep text contained when width is integer in actual browser for some reason.
       }
     }
 
