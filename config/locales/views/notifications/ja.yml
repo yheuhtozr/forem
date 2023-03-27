@@ -57,7 +57,7 @@ ja:
         verb_html: "%{user} が%{if_org}新しい記事を投稿しました"
       reacted:
         and_html: "%{first} と %{last}"
-        and_other_html: "%{first} ほか %{count} 人が"
+        and_other_html: "%{first} ほか %{count} 人"
         verb_html: "%{start}%{actors} が「%{title}」に%{end} %{reactions} をつけました"
         your:
           article: （あなたの記事）
