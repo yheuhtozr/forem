@@ -1,5 +1,5 @@
 @function sel-lang($sel, $lang) {
-  @return '#{$sel}[lang="#{$lang}"]';
+  @return '#{$sel}:lang(#{$lang})';
 }
 @function article-lang($lang) {
   @return sel-lang('article', $lang);
@@ -14,19 +14,31 @@
   );
 
   #{$somefont-article-body} {
-    #{$l-lang} .text-styles,
+    &:lang(#{$lang}),
     #{$l-lang} .crayons-article__header h1,
     #{sel-lang('section#comments-container', $lang)} .text-styles p,
+    #{sel-lang('.localized-text-styles', $lang)},
     #{sel-lang('.with-content-font', $lang)} {
       font-family: #{$family};
+    }
+
+    #{$l-lang} .text-styles {
+      // explicitly override typography.scss
+      &,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: #{$family};
+      }
     }
   }
 }
 
-$l-ja: article-lang('ja');
 @mixin ja-styles {
   font-size: var(--fs-base);
-  font-family: var(--ff-sans-serif);
   $scale: 1.25;
   line-height: calc(var(--lh-base) * #{$scale});
 
@@ -38,27 +50,69 @@ $l-ja: article-lang('ja');
   h6 {
     line-height: calc(var(--lh-tight) * #{$scale});
   }
-}
 
-// overrides typography.scss
-#{$l-ja} .text-styles {
-  @include ja-styles;
-}
-#{sel-lang('.localized-text-styles', 'ja')} {
-  @include ja-styles;
-  pre {
+  pre,
+  code {
     font-size: var(--fs-base);
   }
 }
 
+@function article-langs($child, $langs...) {
+  $output: ();
+  @each $l in $langs {
+    $output: append($output, '#{article-lang($l)} #{$child}', comma);
+  }
+  @return $output;
+}
+@function text-style-langs($langs...) {
+  $output: ();
+  @each $l in $langs {
+    $output: append($output, '#{article-lang($l)} .text-styles', comma);
+  }
+  @return $output;
+}
+@mixin font-langs($langs, $family, $body-font: null) {
+  @each $l in $langs {
+    @include font-lang($l, $family, $body-font);
+  }
+}
+// overrides typography.scss
+#{text-style-langs('ja', 'zh', 'ko')} {
+  @include ja-styles;
+}
+// set explicit default font for ja (--ff-sans-serif points to sans-serif or serif on Migdal)
+@include font-lang(('ja'), var(--ff-sans-serif));
+// sans-serif style based on _variables.scss
+@function region-sans($region-font) {
+  @return "'Inter var', '#{$region-font}', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'";
+}
+@include font-langs(('zh', 'zh-hant-cn'), region-sans('Noto Sans SC'));
+@include font-langs(('zh-hant', 'zh-tw'), region-sans('Noto Sans TC'));
+@include font-langs(('ko'), region-sans('Noto Sans KR'));
+// serif style based on _variables.scss
+@function region-serif($region-font) {
+  @return "'Libertinus Serif', '#{$region-font}', Palatino, 'Palatino Linotype', 'Palatino LT STD', 'Book Antiqua', Georgia, serif";
+}
+@include font-langs(
+  ('zh', 'zh-hant-cn'),
+  region-serif('Noto Serif SC'),
+  'serif'
+);
+@include font-langs(
+  ('zh-hant', 'zh-tw'),
+  region-serif('Noto Serif TC'),
+  'serif'
+);
+@include font-langs(('ko'), region-serif('Noto Serif KR'), 'serif');
+
 .crayons-article__header {
-  #{$l-ja} & {
+  #{article-langs('&', 'ja', 'zh', 'ko')} {
     --locale-fs-5xl: 2.5rem;
     --locale-fs-4xl: 2rem;
     --locale-fs-3xl: 1.5rem;
   }
 }
-
+// conlang fonts
 @include font-lang('x-v3-zph0xl', 'Vekos, sans-serif');
 @include font-lang('x-v3-mqe0bm', 'Maqen, sans-serif');
 @include font-lang('x-v3-jrlrflll', 'Cirlxarli_liparxe, sans-serif');
