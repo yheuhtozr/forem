@@ -1,3 +1,5 @@
+/*eslint-disable prefer-rest-params*/
+
 function initializeBaseTracking() {
   trackGoogleAnalytics3();
   trackGoogleAnalytics4();

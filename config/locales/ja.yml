@@ -12,6 +12,14 @@ ja:
     if_continued_trouble_html: 問題が続くようでしたら<a href="%{contact}">お問い合わせ</a>ください。
     if_we_can_help_html: 何かございましたら<a href="%{contact}">お問い合わせ</a>ください。
     if_any_questions_html: わからないことがありましたら<a href="%{contact}">お問い合わせ</a>ください。
+  display_ad:
+    promoted: Promoted
+    menu:
+      aria_label: Toggle dropdown menu
+      icon: Dropdown menu
+      manage_preferences: Manage preferences
+      what_is_a_billboard: What's a billboard?
+      report_billboard: Report billboard
   errors:
     messages:
       accepted: を受諾してください

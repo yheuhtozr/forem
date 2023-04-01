@@ -3,13 +3,11 @@
   initializeAllTagEditButtons, initializeUserFollowButts,
   initializeCommentsPage,
   initializeArticleDate, initializeArticleReactions, initNotifications,
-  initializeSettings,
-  initializeCommentPreview, initializeRuntimeBanner,
-  initializeTimeFixer, initializeDashboardSort,
-  initializeArchivedPostFilter, initializeCreditsPage,
-  initializeProfileInfoToggle, initializeDrawerSliders,
-  initializeProfileBadgesToggle, initializeHeroBannerClose,
-  initializeOnboardingTaskCard, initScrolling, nextPage:writable,
+  initializeSettings, initializeRuntimeBanner,
+  initializeTimeFixer, initializeDashboardSort, initializeCreditsPage,
+  initializeDrawerSliders, initializeHeroBannerClose,
+  initializeOnboardingTaskCard,
+  initScrolling, nextPage:writable,
   fetching:writable, done:writable, initializePaymentPointers,
   initializeBroadcast, initializeDateHelpers
 */
@@ -21,13 +19,9 @@ function callInitializers() {
   initializeArticleReactions();
   initNotifications();
   initializeSettings();
-  initializeCommentPreview();
   initializeTimeFixer();
   initializeDashboardSort();
-  initializeArchivedPostFilter();
   initializeCreditsPage();
-  initializeProfileInfoToggle();
-  initializeProfileBadgesToggle();
   initializeDrawerSliders();
   initializeHeroBannerClose();
   initializeOnboardingTaskCard();

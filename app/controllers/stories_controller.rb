@@ -231,7 +231,7 @@ class StoriesController < ApplicationController
     if params[:timeframe].in?(Timeframe::FILTER_TIMEFRAMES)
       @stories = Articles::Feeds::Timeframe.call(params[:timeframe])
     elsif params[:timeframe] == Timeframe::LATEST_TIMEFRAME
-      @stories = Articles::Feeds::Latest.call
+      @stories = Articles::Feeds::Latest.call(minimum_score: Settings::UserExperience.home_feed_minimum_score)
     else
       @default_home_feed = true
       feed = Articles::Feeds::LargeForemExperimental.new(page: @page, tag: params[:tag])
@@ -289,12 +289,13 @@ class StoriesController < ApplicationController
 
   def assign_user_comments
     comment_count = helpers.comment_count(params[:view])
-    @comments = if @user.comments_count.positive?
-                  @user.comments.where(deleted: false)
-                    .order(created_at: :desc).includes(:commentable).limit(comment_count)
-                else
-                  []
-                end
+    @comments = []
+    return unless user_signed_in? && @user.comments_count.positive?
+
+    @comments = @user.comments.where(deleted: false)
+      .order(created_at: :desc)
+      .includes(commentable: [:podcast])
+      .limit(comment_count)
   end
 
   def assign_user_stories
@@ -302,6 +303,7 @@ class StoriesController < ApplicationController
       .limited_column_select
       .order(published_at: :desc).decorate
     @stories = ArticleDecorator.decorate_collection(@user.articles.published
+      .includes(:distinct_reaction_categories)
       .limited_column_select
       .where.not(id: @pinned_stories.map(&:id))
       .order(published_at: :desc).page(@page).per(user_signed_in? ? 2 : SIGNED_OUT_RECORD_COUNT))

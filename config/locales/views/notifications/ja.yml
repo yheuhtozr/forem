@@ -62,6 +62,13 @@ ja:
         your:
           article: （あなたの記事）
           comment: （あなたのコメント）
+        reaction:
+          like: いいね
+          unicorn: Unicorn
+          raised_hands: Raised hands
+          exploding_head: Exploding head
+          fire: Fire
+          unknown: 不明
       settings: 設定
       tag:
         heading: "いつもありがとう 👋"

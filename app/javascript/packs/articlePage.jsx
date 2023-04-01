@@ -3,6 +3,7 @@ import ahoy from 'ahoy.js';
 import { Snackbar, addSnackbarItem } from '../Snackbar';
 import { addFullScreenModeControl } from '../utilities/codeFullscreenModeSwitcher';
 import { initializeDropdown } from '../utilities/dropdownUtils';
+import { setupDisplayAdDropdown } from '../utilities/displayAdDropdown';
 import { embedGists } from '../utilities/gist';
 import { initializeUserSubscriptionLiquidTagContent } from '../liquidTags/userSubscriptionLiquidTag';
 import { loadLeipzig } from '../liquidTags/glossLiquidTag';
@@ -177,6 +178,7 @@ getCsrfToken().then(async () => {
 const targetNode = document.querySelector('#comments');
 targetNode && embedGists(targetNode);
 
+setupDisplayAdDropdown();
 initializeUserSubscriptionLiquidTagContent();
 loadLeipzig();
 loadMulticolumnFix();

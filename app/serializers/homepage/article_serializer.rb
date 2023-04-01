@@ -28,6 +28,7 @@ module Homepage
       :reading_time,
       :title,
       :user_id,
+      :public_reaction_categories,
       :base_lang,
     )
 

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Followers Dashboard", type: :system, js: true do
+RSpec.describe "Followers Dashboard", js: true do
   let(:default_per_page) { 3 }
   let(:user) { create(:user) }
   let(:followed_user) { create(:user) }
@@ -11,7 +11,7 @@ RSpec.describe "Followers Dashboard", type: :system, js: true do
   end
 
   context "when /dashboard/user_followers is visited" do
-    xit "displays correct following buttons" do
+    xit "displays correct following buttons" do # rubocop:disable RSpec/PendingWithoutReason
       following_user.follow(user)
       followed_user.follow(user)
       user.follow(followed_user)

@@ -513,7 +513,9 @@
     "unflag": "Unflag %{user}"
   },
   "reactions": {
-    "number": "Number of reactions"
+    "title": "Number of reactions",
+    "count_one": "%{count}\u00A0reaction",
+    "count_other": "%{count}\u00A0reactions"
   },
   "readingList": {
     "all": "All tags",

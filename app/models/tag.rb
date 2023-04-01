@@ -57,92 +57,6 @@ class Tag < ActsAsTaggableOn::Tag
   \z/ux
   ALLOWED_CATEGORIES = %w[uncategorized language library tool site_mechanic location subcommunity].freeze
   HEX_COLOR_REGEXP = /\A#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})\z/
-  def self.find_preferred_alias_for(word)
-    find_by(name: word.downcase)&.alias_for.presence || word.downcase
-  end
-
-  # @param follower [#id, #class_name] An object who's class "acts_as_follower" (e.g. a User).
-  #
-  # @return [ActiveRecord::Relation<Tag>] with the "points" attribute and limited field selection
-  #         for presenting followed tags on the front-end.
-  #
-  # @note This method will also add the follower's "points" for the given tag.  In the
-  #       ActiveRecord::Base implementation, we can add "virtual" attributes by including them in
-  #       the select statement (as shown in the method implementation).  Doing this can sometimes
-  #       result in a surprise, so you may want to consider casting the results into a well-defined
-  #       data structure.  But then you might be looking at implementing the DataMapper pattern.
-  #
-  #
-  # @example
-  #   Below is the SQL generated:
-  #
-  #   ```sql
-  #     SELECT tags.*, "followings"."points"
-  #       FROM "tags"
-  #         INNER JOIN "follows" "followings"
-  #           ON "followings"."followable_type" = 'ActsAsTaggableOn::Tag'
-  #           AND "followings"."followable_id" = "tags"."id"
-  #       WHERE "followings"."follower_id" = 1
-  #          AND "followings"."follower_type" = 'User'
-  #     ORDER BY "tags"."hotness_score" DESC
-  #   ```
-  #
-  # @see Tag#points
-  #
-  # @see UserDecorator::CACHED_TAGGED_BY_USER_ATTRIBUTES for discussion on why we're selecting this.
-  #
-  # @todo should we sort by hotness score?  Wouldn't the user's points make more sense?
-  def self.followed_tags_for(follower:)
-    Tag
-      .select(
-        "tags.bg_color_hex",
-        "tags.hotness_score",
-        "tags.id",
-        "tags.name",
-        "tags.text_color_hex",
-        "followings.points",
-      )
-      .joins(:followings)
-      .where("followings.follower_id" => follower.id, "followings.follower_type" => follower.class_name)
-      .order(hotness_score: :desc)
-  end
-
-  def self.smart_tr(str)
-    str&.tr("'", ?\u02BC) # ASCII apostrophe to MODIFIER LETTER APOSTROPHE
-  end
-
-  # While this non-end user facing flag is "in play", our goal is to say that when it's "false"
-  # we'll preserve existing behavior.  And when true, we're testing out new behavior.  This way we
-  # can push up changes and refactor towards improvements without unleashing a large pull request
-  # with many tendrils.
-  #
-  # @return [TrueClass] when we want to favor the "accessible_name" for the tag.
-  # @return [FalseClass] when we will use the all lower case name for the tag.
-  #
-  # @note This is a feature flag we're using to ease refactoring towards accessible tag labels.
-  #       Eventually, we would remove this method and always favor accessible names.
-  #
-  # @todo When we've fully tested this feature, we'll allways return true, and can effectively
-  #       remove it.
-  def self.favor_accessible_name_for_tag_label?
-    FeatureFlag.enabled?(:favor_accessible_name_for_tag_label)
-  end
-
-  def self.valid_categories
-    ALLOWED_CATEGORIES
-  end
-
-  # possible social previews templates for articles with a particular tag
-  def self.social_preview_templates
-    Rails.root.join("app/views/social_previews/articles").children.map { |ch| File.basename(ch, ".html.erb") }
-  end
-
-  def self.aliased_name(word)
-    tag = find_by(name: word.downcase)
-    return unless tag
-
-    tag.alias_for.presence || tag.name
-  end
 
   belongs_to :badge, optional: true
 
@@ -192,6 +106,89 @@ class Tag < ActsAsTaggableOn::Tag
   scope :eager_load_serialized_data, -> {}
   scope :supported, -> { where(supported: true) }
 
+  # possible social previews templates for articles with a particular tag
+  def self.social_preview_templates
+    Rails.root.join("app/views/social_previews/articles").children.map { |ch| File.basename(ch, ".html.erb") }
+  end
+
+  def self.valid_categories
+    ALLOWED_CATEGORIES
+  end
+
+  def self.aliased_name(word)
+    tag = find_by(name: word.downcase)
+    return unless tag
+
+    tag.alias_for.presence || tag.name
+  end
+
+  def self.find_preferred_alias_for(word)
+    find_by(name: word.downcase)&.alias_for.presence || word.downcase
+  end
+
+  # While this non-end user facing flag is "in play", our goal is to say that when it's "false"
+  # we'll preserve existing behavior.  And when true, we're testing out new behavior.  This way we
+  # can push up changes and refactor towards improvements without unleashing a large pull request
+  # with many tendrils.
+  #
+  # @return [TrueClass] when we want to favor the "accessible_name" for the tag.
+  # @return [FalseClass] when we will use the all lower case name for the tag.
+  #
+  # @note This is a feature flag we're using to ease refactoring towards accessible tag labels.
+  #       Eventually, we would remove this method and always favor accessible names.
+  #
+  # @todo When we've fully tested this feature, we'll allways return true, and can effectively
+  #       remove it.
+  def self.favor_accessible_name_for_tag_label?
+    FeatureFlag.enabled?(:favor_accessible_name_for_tag_label)
+  end
+
+  # @param follower [#id, #class_name] An object who's class "acts_as_follower" (e.g. a User).
+  #
+  # @return [ActiveRecord::Relation<Tag>] with the "points" attribute and limited field selection
+  #         for presenting followed tags on the front-end.
+  #
+  # @note This method will also add the follower's "points" for the given tag.  In the
+  #       ActiveRecord::Base implementation, we can add "virtual" attributes by including them in
+  #       the select statement (as shown in the method implementation).  Doing this can sometimes
+  #       result in a surprise, so you may want to consider casting the results into a well-defined
+  #       data structure.  But then you might be looking at implementing the DataMapper pattern.
+  #
+  #
+  # @example
+  #   Below is the SQL generated:
+  #
+  #   ```sql
+  #     SELECT tags.*, "followings"."points"
+  #       FROM "tags"
+  #         INNER JOIN "follows" "followings"
+  #           ON "followings"."followable_type" = 'ActsAsTaggableOn::Tag'
+  #           AND "followings"."followable_id" = "tags"."id"
+  #       WHERE "followings"."follower_id" = 1
+  #          AND "followings"."follower_type" = 'User'
+  #     ORDER BY "tags"."hotness_score" DESC
+  #   ```
+  #
+  # @see Tag#points
+  #
+  # @see UserDecorator::CACHED_TAGGED_BY_USER_ATTRIBUTES for discussion on why we're selecting this.
+  #
+  # @todo should we sort by hotness score?  Wouldn't the user's points make more sense?
+  def self.followed_tags_for(follower:)
+    Tag
+      .select(
+        "tags.bg_color_hex",
+        "tags.hotness_score",
+        "tags.id",
+        "tags.name",
+        "tags.text_color_hex",
+        "followings.points",
+      )
+      .joins(:followings)
+      .where("followings.follower_id" => follower.id, "followings.follower_type" => follower.class_name)
+      .order(hotness_score: :desc)
+  end
+
   # @return [String]
   #
   # @see ApplicationRecord#class_name
@@ -212,7 +209,7 @@ class Tag < ActsAsTaggableOn::Tag
     # [:alnum:] is not used here because it supports diacritical characters.
     # If we decide to allow diacritics in the future, we should replace the
     # following regex with [:alnum:].
-    errors.add(:name, I18n.t("errors.messages.contains_prohibited_characters")) unless name.match?(TAG_PATTERN)
+    errors.add(:name, I18n.t("errors.messages.contains_prohibited_characters")) unless name.match?(/\A[[:alnum:]]+\z/i)
   end
 
   # @note In the future we envision always favoring pretty name over the given name.
@@ -226,11 +223,6 @@ class Tag < ActsAsTaggableOn::Tag
 
   def errors_as_sentence
     errors.full_messages.to_sentence
-  end
-
-  def quick_validate
-    self.name = Tag.smart_tr name.normalize
-    validate_name
   end
 
   # What's going on here?  There are times where we want our "Tag" object to have a "points"

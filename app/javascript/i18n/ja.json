@@ -508,7 +508,8 @@
     "unflag": "%{user} を警戒解除"
   },
   "reactions": {
-    "number": "Number of reactions"
+    "title": "反響数",
+    "count_other": "%{count}\u00A0件の反響"
   },
   "readingList": {
     "all": "All tags",

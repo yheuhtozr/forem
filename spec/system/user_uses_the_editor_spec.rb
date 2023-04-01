@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Using the editor", type: :system do
+RSpec.describe "Using the editor" do
   let(:user) { create(:user) }
   let(:raw_text) { "../support/fixtures/sample_article_template_spec.txt" }
   # what are these
@@ -36,7 +36,7 @@ RSpec.describe "Using the editor", type: :system do
     before do
       fill_markdown_with(read_from_file(raw_text))
       page.execute_script("window.scrollTo(0, -100000)")
-      find("button", text: /\APreview\z/).click
+      find("button", text: /\APreview\z/).click # rubocop:disable Capybara/SpecificActions
     end
 
     after do
@@ -62,7 +62,7 @@ RSpec.describe "Using the editor", type: :system do
 
     it "fill out form and submit", cloudinary: true do
       fill_markdown_with(read_from_file(raw_text))
-      find("button", text: /\ASave changes\z/).click
+      find("button", text: /\ASave changes\z/).click # rubocop:disable Capybara/SpecificActions
       article_body = find(:xpath, "//div[@id='article-body']")["innerHTML"]
       article_body.gsub!(%r{"https://res\.cloudinary\.com/.{1,}"}, "cloudinary_link")
 
@@ -77,7 +77,7 @@ RSpec.describe "Using the editor", type: :system do
 
     it "user write and publish an article" do
       fill_markdown_with(template.gsub("false", "true"))
-      find("button", text: /\ASave changes\z/).click
+      find("button", text: /\ASave changes\z/).click # rubocop:disable Capybara/SpecificActions
       ["Sample Article", template[-200..], "test"].each do |text|
         expect(page).to have_text(text)
       end
@@ -86,7 +86,7 @@ RSpec.describe "Using the editor", type: :system do
     context "without a title", js: true do
       before do
         fill_markdown_with(template.gsub("Sample Article", ""))
-        find("button", text: /\ASave changes\z/).click
+        find("button", text: /\ASave changes\z/).click # rubocop:disable Capybara/SpecificActions
       end
 
       it "shows a message that the title cannot be blank" do
@@ -100,7 +100,7 @@ RSpec.describe "Using the editor", type: :system do
       visit "/new"
       within "form#article-form" do
         fill_in "article-form-title", with: "This is a <span> test"
-        find("#tag-input").native.send_keys("what", :return)
+        find_by_id("tag-input").native.send_keys("what", :return)
         fill_in "article_body_markdown", with: "Hello"
       end
       click_button "Publish"

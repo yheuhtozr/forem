@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Notifications page", type: :system, js: true do
+RSpec.describe "Notifications page", js: true do
   let(:alex) { create(:user) }
   let(:leslie) { create(:user) }
 
@@ -25,7 +25,7 @@ RSpec.describe "Notifications page", type: :system, js: true do
     expect(page).not_to have_css("span#notifications-number", text: "1")
   end
 
-  xcontext "when user is trusted" do
+  xcontext "when user is trusted" do # rubocop:disable RSpec/PendingWithoutReason
     before do
       dev_user = create(:user)
       allow(User).to receive(:staff_account).and_return(dev_user)

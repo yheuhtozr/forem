@@ -99,6 +99,7 @@ ja:
       missing: 記事は公開終了しました
       published_html: "%{date}投稿"
       scheduled_html: "%{date}投稿予定"
+      sign_in_for_full_latest_html: 一部の新しい投稿はメンバーのみ閲覧できます。最新の投稿を見るには<a href="%{link}">ログイン</a>してください。
       read_next: 次に読みたい
       reading_time: 約 %{count} 字/語
       right_nav: 作者情報

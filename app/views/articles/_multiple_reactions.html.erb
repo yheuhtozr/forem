@@ -11,8 +11,11 @@
       <span class="crayons-reaction__icon <%= "crayons-reaction__icon--borderless" if FeatureFlag.enabled?(:multiple_reactions) %> crayons-reaction__icon--active" style="width: 40px; height: 40px">
         <%= image_tag "heart-plus-active.svg", aria_hidden: true, height: 24, width: 24 %>
       </span>
-      <span class="crayons-reaction_total_count" id="reaction_total_count">
-        <%= @article.public_reactions_count %>
+      <span class="crayons-reaction__count" id="reaction_total_count">
+        <span class="bg-base-40 opacity-25 p-2 inline-block radius-default"></span>
+      </span>
+      <span class="crayons-tooltip__content">
+        <%= t("views.reactions.drawer_button") %>
       </span>
   </button>
 
@@ -22,10 +25,10 @@
         <%= render partial: "articles/multireaction_button",
                    locals: {
                      category: reaction_type.slug.to_sym,
-                     description: reaction_type.name,
+                     description: t("views.reactions.#{reaction_type.slug}.title", default: reaction_type.name),
                      image_path: "#{reaction_type.icon}.svg",
                      image_active_path: "#{reaction_type.icon}.svg",
-                     aria_label: reaction_type.name
+                     aria_label: t("views.reactions.#{reaction_type.slug}.title", default: reaction_type.name)
                    } %>
       <% end %>
     </div>
@@ -41,7 +44,9 @@
     <span class="crayons-reaction__icon <%= "crayons-reaction__icon--borderless" if FeatureFlag.enabled?(:multiple_reactions) %> crayons-reaction__icon--inactive">
       <%= crayons_icon_tag("comment.svg", aria_hidden: true) %>
     </span>
-    <span class="crayons-reaction__count" id="reaction-number-comment"><%= @article.comments_count %></span>
+    <span class="crayons-reaction__count" id="reaction-number-comment" data-count="<%= @article.comments_count %>">
+      <span class="bg-base-40 opacity-25 p-2 inline-block radius-default"></span>
+    </span>
 
     <span data-testid="tooltip" class="crayons-tooltip__content">
       <%= t("views.articles.jump_to_comments.label") %>

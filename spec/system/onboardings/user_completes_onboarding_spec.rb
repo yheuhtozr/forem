@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Completing Onboarding", type: :system, js: true do
+RSpec.describe "Completing Onboarding", js: true do
   let(:password) { Faker::Internet.password(min_length: 8) }
   let(:user) { create(:user, password: password, password_confirmation: password, saw_onboarding: false) }
 
@@ -9,7 +9,7 @@ RSpec.describe "Completing Onboarding", type: :system, js: true do
   end
 
   context "when the user hasn't seen onboarding" do
-    xit "does not render the onboarding task card on the feed" do
+    xit "does not render the onboarding task card on the feed" do # rubocop:disable RSpec/PendingWithoutReason
       sign_in(user)
       visit "/"
 
@@ -26,12 +26,12 @@ RSpec.describe "Completing Onboarding", type: :system, js: true do
       log_in_user(user)
     end
 
-    xit "logs in and renders the feed" do
+    xit "logs in and renders the feed" do # rubocop:disable RSpec/PendingWithoutReason
       expect(page).to have_current_path("/?signin=true")
       expect(page.html).not_to include("onboarding-container")
     end
 
-    xit "renders the feed and onboarding task card" do
+    xit "renders the feed and onboarding task card" do # rubocop:disable RSpec/PendingWithoutReason
       visit "/"
 
       wait_for_javascript

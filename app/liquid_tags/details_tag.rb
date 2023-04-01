@@ -13,7 +13,7 @@ class DetailsTag < Liquid::Block
     parsed_content = sanitize(
       content.xpath("//html/body").inner_html,
       tags: MarkdownProcessor::AllowedTags::RENDERED_MARKDOWN_SCRUBBER,
-      attributes: MarkdownProcessor::AllowedAttributes::RENDERED_MARKDOWN_SCRUBBER + %w[class lang height width],
+      attributes: MarkdownProcessor::AllowedAttributes::RENDERED_MARKDOWN_SCRUBBER,
     )
 
     ApplicationController.render(

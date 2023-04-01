@@ -61,6 +61,8 @@
       }
     },
     "num_likes": "%{- num}%{- likes}",
+    "reactions_one": "%{count}&nbsp;reaction",
+    "reactions_other": "%{count}&nbsp;reactions",
     "read": {
       "code": "code of conduct",
       "text": "I've read the %{- code}"

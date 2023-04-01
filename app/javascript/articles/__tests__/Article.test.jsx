@@ -182,7 +182,7 @@ describe('<Article /> component', () => {
 
     const reactions = getByTitle('Number of reactions');
 
-    expect(reactions.textContent).toEqual('232');
+    expect(reactions.textContent).toEqual('232\u00A0reactions');
   });
 
   it('should render with comments', () => {

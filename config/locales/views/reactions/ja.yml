@@ -14,6 +14,8 @@ ja:
         lightbulb: Lightbulb
         raised_hands: Raised hands
         rocket: Rocket
+        exploding_head: Exploding head
+        fire: Fire
       drawer_button: 反応を入れる
       summary:
         title: 反響
@@ -25,6 +27,12 @@ ja:
       unicorn:
         title: Unicorn
         aria_label: React with unicorn
+      exploding_head:
+        title: Exploding head
+      raised_hands:
+        title: Raised hands
+      fire:
+        title: Fire
       readingList:
         title: 保存
         aria_label: 切り抜き帳に追加

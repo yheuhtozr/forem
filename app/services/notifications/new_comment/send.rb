@@ -5,15 +5,15 @@ module Notifications
     class Send
       include ActionView::Helpers::TextHelper
 
+      def self.call(...)
+        new(...).call
+      end
+
       def initialize(comment)
         @comment = comment
       end
 
       delegate :user_data, :comment_data, to: Notifications
-
-      def self.call(...)
-        new(...).call
-      end
 
       def call
         return if comment.score.negative?
@@ -44,7 +44,7 @@ module Notifications
           user_ids: targets,
           title: I18n.t("services.notifications.new_comment.new"),
           body: "#{I18n.t('views.notifications.comment.commented_html', user: comment.user.username,
-                                                                    title: comment.commentable.title.strip)}:\n" \
+                                                                        title: comment.commentable.title.strip)}:\n" \
                 "#{strip_tags(comment.processed_html).strip}",
           payload: {
             url: URL.url(comment.path),

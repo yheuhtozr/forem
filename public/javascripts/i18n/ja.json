@@ -59,6 +59,7 @@
       }
     },
     "num_likes": "%{- likes}%{- num}",
+    "reactions_other": "%{count}&nbsp;件の反響",
     "read": {
       "code": "code of conduct",
       "text": "%{- code}を読みました"
