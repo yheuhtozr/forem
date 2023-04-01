@@ -189,6 +189,10 @@ class Tag < ActsAsTaggableOn::Tag
       .order(hotness_score: :desc)
   end
 
+  def self.smart_tr(str)
+    str&.tr("'", ?\u02BC) # ASCII apostrophe to MODIFIER LETTER APOSTROPHE
+  end
+
   # @return [String]
   #
   # @see ApplicationRecord#class_name
@@ -209,7 +213,7 @@ class Tag < ActsAsTaggableOn::Tag
     # [:alnum:] is not used here because it supports diacritical characters.
     # If we decide to allow diacritics in the future, we should replace the
     # following regex with [:alnum:].
-    errors.add(:name, I18n.t("errors.messages.contains_prohibited_characters")) unless name.match?(/\A[[:alnum:]]+\z/i)
+    errors.add(:name, I18n.t("errors.messages.contains_prohibited_characters")) unless name.match?(TAG_PATTERN)
   end
 
   # @note In the future we envision always favoring pretty name over the given name.
@@ -223,6 +227,11 @@ class Tag < ActsAsTaggableOn::Tag
 
   def errors_as_sentence
     errors.full_messages.to_sentence
+  end
+
+  def quick_validate
+    self.name = Tag.smart_tr name.normalize
+    validate_name
   end
 
   # What's going on here?  There are times where we want our "Tag" object to have a "points"
