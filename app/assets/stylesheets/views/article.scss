@@ -492,19 +492,23 @@
 .multiple_reactions_aggregate {
   display: flex;
   align-items: center;
+  flex-direction: column;
 
   .multiple_reactions_icons_container {
     display: flex;
     align-items: center;
     flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .crayons_icon_container {
     display: inline-block;
-    background-color: var(--body-bg);
+    background-color: var(--card-secondary-bg);
     border: 2px solid var(--card-bg);
     border-radius: 15px;
-    margin-right: -0.75em;
+    margin-inline: -0.375em;
+    margin-bottom: -0.75em;
     width: 28px;
     height: 28px;
   }
@@ -515,6 +519,6 @@
   }
 
   .aggregate_reactions_counter {
-    margin-left: 1em;
+    margin-top: 0.375em;
   }
 }

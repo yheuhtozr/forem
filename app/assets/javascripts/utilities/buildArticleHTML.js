@@ -128,18 +128,15 @@ function buildArticleHTML(article, currentUserId = null) {
 
       reactionsDisplay = `<a href="${
         article.path
-      }" class="crayons-btn crayons-btn--s crayons-btn--ghost crayons-btn--icon-left" data-reaction-count data-reactable-id="${
+      }" class="crayons-btn crayons-btn--s crayons-btn--ghost crayons-btn--story" data-reaction-count data-reactable-id="${
         article.id
       }">
                           <div class="multiple_reactions_aggregate">
-                            <span class="multiple_reactions_icons_container" dir="rtl">
+                            <span class="multiple_reactions_icons_container">
                                 ${icons.join()}
                             </span>
                             <span class="aggregate_reactions_counter">
-                              <span class="hidden s:inline">${i18next.t(
-                                'comments.reactions',
-                                { count: reactionsCount },
-                              )}</span>
+                              <span class="hidden s:inline">${reactionsCount}</span>
                             </span>
                         </span>
                           </div>

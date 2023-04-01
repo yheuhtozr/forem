@@ -32,18 +32,14 @@ export const ReactionsCount = ({ article }) => {
       );
     });
 
-    return (
-      <span className="multiple_reactions_icons_container" dir="rtl">
-        {icons}
-      </span>
-    );
+    return <span className="multiple_reactions_icons_container">{icons}</span>;
   }
 
   function buildCounter() {
     return (
       <span className="aggregate_reactions_counter">
         <span className="hidden s:inline" title={i18next.t('reactions.title')}>
-          {i18next.t('reactions.count', { count: totalReactions })}
+          {totalReactions}
         </span>
       </span>
     );
@@ -52,7 +48,7 @@ export const ReactionsCount = ({ article }) => {
   return (
     <a
       href={article.path}
-      className="crayons-btn crayons-btn--s crayons-btn--ghost crayons-btn--icon-left"
+      className="crayons-btn crayons-btn--s crayons-btn--ghost crayons-btn--story"
       data-reaction-count
       data-reactable-id={article.id}
     >
