@@ -5,19 +5,19 @@ like:
   icon: sparkle-heart
 unicorn:
   position: 2
-  name: Unicorn
-  icon: multi-unicorn
-exploding_head:
-  position: 3
-  icon: exploding-head
-raised_hands:
-  position: 4
-  icon: raised-hands
-fire:
-  position: 5
-  icon: fire
+  name: Babel
+  icon: babel-filled
+# exploding_head:
+#   # position: 3
+#   icon: exploding-head
+# raised_hands:
+#   # position: 4
+#   icon: raised-hands
+# fire:
+#   # position: 5
+#   icon: fire
 readinglist:
-  position: 5
+  # position: 5
   icon: save
   published: false
 thumbsup:

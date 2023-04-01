@@ -9,8 +9,11 @@ en-US:
         invalid: Invalid DartPad (Gist) ID
       glyph:
         no_name: unknown glyph
+    notifications:
+      reaction:
+        unicorn: Babel
     reactions:
-      babel:
+      unicorn:
         aria_label: React with babel
         title: Babel
     translations:

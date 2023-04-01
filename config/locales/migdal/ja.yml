@@ -9,8 +9,11 @@ ja:
         invalid: 無効な DartPad (Gist) ID です
       glyph:
         no_name: 外字
+    notifications:
+      reaction:
+        unicorn: バベル
     reactions:
-      babel:
+      unicorn:
         aria_label: バベルをつける
         title: バベル
     translations:
