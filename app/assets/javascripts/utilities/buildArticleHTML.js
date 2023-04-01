@@ -133,7 +133,7 @@ function buildArticleHTML(article, currentUserId = null) {
       }">
                           <div class="multiple_reactions_aggregate">
                             <span class="multiple_reactions_icons_container">
-                                ${icons.join()}
+                                ${icons.join('')}
                             </span>
                             <span class="aggregate_reactions_counter">
                               <span class="hidden s:inline">${reactionsCount}</span>
