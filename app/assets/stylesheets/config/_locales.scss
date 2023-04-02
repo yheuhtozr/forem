@@ -68,6 +68,7 @@
   $output: ();
   @each $l in $langs {
     $output: append($output, '#{article-lang($l)} .text-styles', comma);
+    $output: append($output, sel-lang('.localized-text-styles', $l), comma);
   }
   @return $output;
 }
