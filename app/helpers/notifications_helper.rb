@@ -24,7 +24,7 @@ module NotificationsHelper
   def reaction_category_name(slug)
     reaction_slug = ReactionCategory[slug]&.slug
     I18n.t("migdal.notifications.reaction.#{reaction_slug}",
-           default: "views.notifications.reacted.reaction.#{reaction_slug.presence || 'unknown'}")
+           default: I18n.t("views.notifications.reacted.reaction.#{reaction_slug.presence || 'unknown'}"))
   end
 
   def render_each_notification_or_error(notifications, error:, &block)
