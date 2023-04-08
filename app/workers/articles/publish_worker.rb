@@ -14,6 +14,8 @@ module Articles
         # create mentions and notifications
         # Send notifications to any mentioned users, followed by any users who follow the article's author.
         Notification.send_to_mentioned_users_and_followers(article)
+
+        article.notify_external_services_on_new_post
       end
     end
   end

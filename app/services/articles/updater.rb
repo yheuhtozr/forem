@@ -50,6 +50,11 @@ module Articles
                                     notifiable_type: "Mention")
           end
         end
+
+        # run update notification only when the content is updated (probably)
+        if article.saved_change_to_attribute?("edited_at")
+          article.notify_external_services_on_new_post
+        end
       end
       Result.new(success: success, article: article.decorate)
     end

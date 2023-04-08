@@ -211,7 +211,6 @@ class Article < ApplicationRecord
   after_save :bust_cache
   after_save :collection_cleanup
   after_save :eponymous_translation_group
-  after_save :notify_external_services_on_new_post
 
   after_update_commit :update_notifications, if: proc { |article|
                                                    article.notifications.any? && !article.saved_changes.empty?
@@ -570,6 +569,21 @@ class Article < ApplicationRecord
        !featured) ||
       published_at.to_i < 1_500_000_000 ||
       score < -1
+  end
+
+  # to be public method so that can be called from PublishWorker etc.
+  def notify_external_services_on_new_post
+    return unless published && !scheduled?
+
+    if boost_states["boosted_new_post"]
+      DiscordWebhook::Bot.edited_post self
+    else
+      TwitterClient::Bot.new_post self
+      DiscordWebhook::Bot.new_post self
+
+      boost_states["boosted_new_post"] = true
+      update_columns boost_states: boost_states
+    end
   end
 
   private
@@ -962,20 +976,6 @@ class Article < ApplicationRecord
 
     original = Article.find translation_group
     original.update_columns(translation_group: translation_group) unless original.translation_group
-  end
-
-  def notify_external_services_on_new_post
-    return unless published && !scheduled?
-
-    if boost_states["boosted_new_post"]
-      DiscordWebhook::Bot.edited_post self
-    else
-      TwitterClient::Bot.new_post self
-      DiscordWebhook::Bot.new_post self
-
-      boost_states["boosted_new_post"] = true
-      update_columns boost_states: boost_states
-    end
   end
 
   def remove_prohibited_unicode_characters
