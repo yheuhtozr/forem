@@ -16,6 +16,14 @@ unicorn:
 # fire:
 #   # position: 5
 #   icon: fire
+k30:
+  position: 3
+  name: K30
+  icon: katsu_30.png
+roman:
+  position: 4
+  name: Roman
+  icon: roman
 readinglist:
   # position: 5
   icon: save

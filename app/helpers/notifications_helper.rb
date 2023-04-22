@@ -12,7 +12,7 @@ module NotificationsHelper
   def reaction_image(slug)
     if FeatureFlag.enabled?(:multiple_reactions)
       if (category = ReactionCategory[slug] || ReactionCategory["like"])
-        "#{category.icon}.svg"
+        "#{category.icon}#{'.svg' if File.extname(category.icon).blank?}"
       end
     else
       # This is mostly original behavior, pre-multiple_reactions, modified to return

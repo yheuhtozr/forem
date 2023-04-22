@@ -12,10 +12,16 @@ ja:
     notifications:
       reaction:
         unicorn: バベル
+        k30: かつ 30
+        roman: ロマンがある
     reactions:
       unicorn:
         aria_label: バベルをつける
         title: バベル
+      k30:
+        title: かつ 30
+      roman:
+        title: ロマンがある
     translations:
       heading: 他言語版があります
       icon: 記事の言語版の一覧

@@ -12,10 +12,16 @@ en-US:
     notifications:
       reaction:
         unicorn: Babel
+        k30: Katsu 30
+        roman: Imaginative
     reactions:
       unicorn:
         aria_label: React with babel
         title: Babel
+      k30:
+        title: Katsu 30
+      roman:
+        title: Imaginative
     translations:
       heading: Available in other languages
       icon: Multi-language versions list

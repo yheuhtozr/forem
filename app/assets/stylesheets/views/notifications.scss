@@ -141,6 +141,11 @@
   color: var(--reaction-comment-color);
 }
 
+.reaction-image {
+  block-size: 24px;
+  object-fit: contain;
+}
+
 .crayons-btn--ghost {
   &.reaction-like {
     &.reacted {

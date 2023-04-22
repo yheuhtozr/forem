@@ -26,8 +26,8 @@
                    locals: {
                      category: reaction_type.slug.to_sym,
                      description: t("migdal.reactions.#{reaction_type.slug}.title", default: t("views.reactions.#{reaction_type.slug}.title", default: reaction_type.name)),
-                     image_path: "#{reaction_type.icon}.svg",
-                     image_active_path: "#{reaction_type.icon}.svg",
+                     image_path: "#{reaction_type.icon}#{'.svg' if File.extname(reaction_type.icon).blank?}",
+                     image_active_path: "#{reaction_type.icon}#{'.svg' if File.extname(reaction_type.icon).blank?}",
                      aria_label: t("migdal.reactions.#{reaction_type.slug}.title", default: t("views.reactions.#{reaction_type.slug}.title", default: reaction_type.name))
                    } %>
       <% end %>

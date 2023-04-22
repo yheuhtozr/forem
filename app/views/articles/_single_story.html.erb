@@ -62,7 +62,7 @@
               <span class="multiple_reactions_icons_container">
                 <% story.public_reaction_categories.reverse_each do |reaction_type| %>
                   <span class="crayons_icon_container">
-                    <%= image_tag "#{reaction_type.icon}.svg", size: "18x18" %>
+                    <%= image_tag "#{reaction_type.icon}#{'.svg' if File.extname(reaction_type.icon).blank?}", size: "18x18" %>
                   </span>
                 <% end %>
               </span>
