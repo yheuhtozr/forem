@@ -7,20 +7,28 @@ unicorn:
   position: 2
   name: Babel
   icon: babel-filled
-exploding_head:
+# exploding_head:
+#   position: 3
+#   name: Exploding Head
+#   icon: exploding-head
+# raised_hands:
+#   position: 4
+#   name: Raised Hands
+#   icon: raised-hands
+# fire:
+#   position: 5
+#   name: Fire
+#   icon: fire
+k30:
   position: 3
-  name: Exploding Head
-  icon: exploding-head
-raised_hands:
+  name: K30
+  icon: katsu_30.png
+roman:
   position: 4
-  name: Raised Hands
-  icon: raised-hands
-fire:
-  position: 5
-  name: Fire
-  icon: fire
+  name: Roman
+  icon: roman
 readinglist:
-  position: 5
+  # position: 5
   icon: save
   published: false
 thumbsup:

@@ -2,7 +2,7 @@ module NotificationsHelper
   def reaction_image(slug)
     return unless (category = ReactionCategory[slug] || ReactionCategory["like"])
 
-    "#{category.icon}.svg"
+    "#{category.icon}#{'.svg' if File.extname(category.icon).blank?}"
   end
 
   def reaction_category_name(slug)
