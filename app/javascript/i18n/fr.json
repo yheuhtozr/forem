@@ -474,8 +474,8 @@
     "skip": "Skip for now",
     "tag": {
       "aria_label": "Follow %{tag}",
-      "follow": "Follow",
-      "following": "Following",
+      "posts_one": "%{count} post",
+      "posts_other": "%{count} posts",
       "status_one": "%{count} tag selected",
       "status_other": "%{count} tags selected",
       "subtitle": "Follow tags to customize your feed",
@@ -486,14 +486,17 @@
       "deselect": "Deselect all",
       "follow": "Follow",
       "following": "Following",
-      "select_one": "Select %{count} person",
-      "select_other": "Select all %{count} people",
-      "status_all_other": "You're following %{count} people (everyone) -",
-      "status_no": "You're not following anyone",
-      "status_one": "You're following %{count} person",
-      "status_other": "You're following %{count} people -",
-      "subtitle": "Let's review a few things first",
-      "title": "Suggested people to follow"
+      "select1_one": "Select %{count}",
+      "select_all_other": "Select all %{count}",
+      "status": "Vous suivez %{details, list} -",
+      "status_all": "Vous suivez %{details, list} (toutes) -",
+      "status_no": "Vous ne suivez personne -",
+      "status_organization_one": "%{count} organisation",
+      "status_organization_other": "%{count} organisations",
+      "status_user_one": "%{count} personne",
+      "status_user_other": "%{count} personnes",
+      "subtitle": "Kickstart your community",
+      "title": "Suggested follows"
     }
   },
   "org": {

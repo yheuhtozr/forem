@@ -472,8 +472,7 @@
     "skip": "あとで",
     "tag": {
       "aria_label": "%{tag} をフォロー",
-      "follow": "フォロー",
-      "following": "フォロー中",
+      "posts_other": "記事数 %{count}",
       "status_other": "選択したタグ %{count} 個",
       "subtitle": "フォローしたタグに合わせて記事をおすすめします。",
       "title": "興味のある話題はなんですか？"
@@ -483,12 +482,16 @@
       "deselect": "すべて解除",
       "follow": "フォロー",
       "following": "フォロー中",
-      "select_other": "%{count} 人を選択",
-      "status_all_other": "現在 %{count} 人全員をフォロー中",
-      "status_no": "誰もフォローしていません",
-      "status_other": "現在 %{count} 人をフォロー中",
-      "subtitle": "いくつかの設定をしていきましょう。",
-      "title": "おすすめのユーザーをフォロー"
+      "select1_other": "%{count} 件を選択",
+      "select_all_other": "%{count} 件すべてを選択",
+      "status": "%{details, list}をフォロー中・",
+      "status_all": "%{details, list}（全員）をフォロー中・",
+      "status_no": "誰もフォローしていません・",
+      "status_details": "%{users}と %{orgs}",
+      "status_organization_other": "%{count} グループ",
+      "status_user_other": "%{count} 人",
+      "subtitle": "最高のスタートを切りましょう",
+      "title": "おすすめのフォロー先"
     }
   },
   "org": {

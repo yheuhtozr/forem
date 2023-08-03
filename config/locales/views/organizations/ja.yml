@@ -37,5 +37,6 @@ ja:
             other: "%{count} 名のメンバー"
       support: Support email
       team: Meet the team
+      all_members: 全メンバーを表示
       twitter:
         icon: Twitter ページ

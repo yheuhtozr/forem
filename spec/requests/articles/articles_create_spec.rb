@@ -7,6 +7,7 @@ RSpec.describe "ArticlesCreate" do
 
   before do
     sign_in user
+    allow(FeatureFlag).to receive(:enabled?).with(:consistent_rendering, any_args).and_return(true)
   end
 
   it "creates ordinary article with proper params" do
@@ -193,6 +194,13 @@ RSpec.describe "ArticlesCreate" do
       post "/articles", params: { article: { body_markdown: body_markdown } }
       a = Article.find_by(title: "super-article")
       expect(a.published_at).to be_within(1.minute).of(published_at)
+    end
+  end
+
+  context "when validation error" do
+    it "returns 422 status code" do
+      post "/articles", params: { article: { body_markdown: nil } }
+      expect(response).to have_http_status(:unprocessable_entity)
     end
   end
 end

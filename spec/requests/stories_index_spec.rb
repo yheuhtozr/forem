@@ -1,16 +1,16 @@
 require "rails_helper"
 
-RSpec.shared_examples "redirects to the lowercase route" do
-  context "when a path contains uppercase characters" do
-    it "redirects to the lowercase route" do
-      get path
-      expect(response).to have_http_status(:moved_permanently)
-      expect(response).to redirect_to(path.downcase)
-    end
-  end
-end
-
 RSpec.describe "StoriesIndex" do
+  it "redirects to the lowercase route", :aggregate_failures do
+    get "/Bad_name"
+    expect(response).to have_http_status(:moved_permanently)
+    expect(response).to redirect_to("/bad_name")
+
+    get "/Bad_name?i=i"
+    expect(response).to have_http_status(:moved_permanently)
+    expect(response).to redirect_to("/bad_name?i=i")
+  end
+
   describe "GET stories index" do
     let(:user) { create(:user) }
 
@@ -66,39 +66,32 @@ RSpec.describe "StoriesIndex" do
       expect(response.body).to include("This is a landing page!")
     end
 
-    it "renders all display_ads of different placements when published and approved" do
+    it "renders display_ads when published and approved" do
       org = create(:organization)
-      ad = create(:display_ad, published: true, approved: true, organization: org, placement_area: "sidebar_left")
-      second_left_ad = create(:display_ad, published: true, approved: true, organization: org,
-                                           placement_area: "sidebar_left_2")
-      right_ad = create(:display_ad, published: true, approved: true, placement_area: "sidebar_right",
-                                     organization: org)
+      ad = create(:display_ad, published: true, approved: true, placement_area: "sidebar_right",
+                               organization: org)
 
       get "/"
       expect(response.body).to include(ad.processed_html)
-      expect(response.body).to include(second_left_ad.processed_html)
-      expect(response.body).to include(right_ad.processed_html)
     end
 
     it "does not render display_ads when not approved" do
       org = create(:organization)
-      ad = create(:display_ad, published: true, approved: false, organization: org)
-      right_ad = create(:display_ad, published: true, approved: false, placement_area: "sidebar_right",
-                                     organization: org)
+      ad = create(:display_ad, published: true, approved: false, placement_area: "sidebar_right",
+                               organization: org)
 
       get "/"
       expect(response.body).not_to include(ad.processed_html)
-      expect(response.body).not_to include(right_ad.processed_html)
     end
 
-    it "renders only one display ad of placement" do
+    it "renders only one display ad per placement" do
       org = create(:organization)
-      left_ad = create(:display_ad, published: true, approved: true, placement_area: "sidebar_left", organization: org)
-      second_left_ad = create(:display_ad, published: true, approved: true, placement_area: "sidebar_left",
-                                           organization: org)
+      ad = create(:display_ad, published: true, approved: true, placement_area: "sidebar_right", organization: org)
+      second_ad = create(:display_ad, published: true, approved: true, placement_area: "sidebar_right",
+                                      organization: org)
 
       get "/"
-      expect(response.body).to include(left_ad.processed_html).or(include(second_left_ad.processed_html))
+      expect(response.body).to include(ad.processed_html).or(include(second_ad.processed_html))
       expect(response.body).to include("crayons-card crayons-card--secondary crayons-sponsorship").once
       expect(response.body).to include("sponsorship-dropdown-trigger-").once
     end
@@ -346,27 +339,11 @@ RSpec.describe "StoriesIndex" do
   end
 
   describe "GET podcast index" do
-    include_examples "redirects to the lowercase route" do
-      let(:path) { "/#{build(:podcast).slug.upcase}" }
-    end
-
     it "renders page with proper header" do
       podcast = create(:podcast)
       create(:podcast_episode, podcast: podcast)
       get "/#{podcast.slug}"
       expect(response.body).to include(podcast.title)
-    end
-  end
-
-  describe "GET user_path" do
-    include_examples "redirects to the lowercase route" do
-      let(:path) { "/#{build(:user).username.upcase}" }
-    end
-  end
-
-  describe "GET organization_path" do
-    include_examples "redirects to the lowercase route" do
-      let(:path) { "/#{build(:organization).slug.upcase}" }
     end
   end
 end

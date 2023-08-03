@@ -19,6 +19,12 @@ class Role < ApplicationRecord
     workshop_pass
   ].freeze
 
+  ROLES.each do |role|
+    define_method("#{role}?") do
+      name == role
+    end
+  end
+
   has_and_belongs_to_many :users, join_table: :users_roles # rubocop:disable Rails/HasAndBelongsToMany
 
   belongs_to :resource,
@@ -40,5 +46,15 @@ class Role < ApplicationRecord
     return resource_type unless resource_id
 
     Tag.find(resource_id).name
+  end
+
+  def name_labelize
+    if single_resource_admin?
+      Constants::Role::SPECIAL_ROLES_LABELS_TO_WHERE_CLAUSE.detect do |_k, v|
+        v[:name] == "single_resource_admin" && v[:resource_type] == resource_type
+      end&.first || name
+    else
+      name
+    end
   end
 end

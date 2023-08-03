@@ -1,6 +1,10 @@
 import { h, render } from 'preact';
 import ahoy from 'ahoy.js';
 import { TagsFollowed } from '../leftSidebar/TagsFollowed';
+import {
+  observeDisplayAds,
+  initializeDisplayAdVisibility,
+} from '../packs/billboardAfterRenderActions';
 import { setupDisplayAdDropdown } from '@utilities/displayAdDropdown';
 import { trackCreateAccountClicks } from '@utilities/ahoy/trackEvents';
 
@@ -93,8 +97,13 @@ if (!document.getElementById('featured-story-marker')) {
         return;
       }
       import('./homePageFeed').then(({ renderFeed }) => {
-        // We have user data, render followed tags.
-        renderFeed(feedTimeFrame);
+        const callback = () => {
+          initializeDisplayAdVisibility();
+          observeDisplayAds();
+          setupDisplayAdDropdown();
+        };
+
+        renderFeed(feedTimeFrame, callback);
 
         InstantClick.on('change', () => {
           const { userStatus: currentUserStatus } = document.body.dataset;
@@ -110,7 +119,13 @@ if (!document.getElementById('featured-story-marker')) {
             return;
           }
 
-          renderFeed(changedFeedTimeFrame);
+          const callback = () => {
+            initializeDisplayAdVisibility();
+            observeDisplayAds();
+            setupDisplayAdDropdown();
+          };
+
+          renderFeed(changedFeedTimeFrame, callback);
         });
       });
 
@@ -132,4 +147,3 @@ InstantClick.on('change', () => {
 InstantClick.init();
 
 trackCreateAccountClicks('sidebar-wrapper-left');
-trackCreateAccountClicks('authentication-feed-actions');

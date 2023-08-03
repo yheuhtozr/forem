@@ -1219,7 +1219,7 @@ RSpec.describe Article do
       co_author1 = create(:user)
       co_author2 = create(:user)
       article.co_author_ids_list = "#{co_author1.id}, #{co_author2.id}"
-      expect(article.co_author_ids).to match_array([co_author1.id, co_author2.id])
+      expect(article.co_author_ids).to contain_exactly(co_author1.id, co_author2.id)
     end
   end
 
@@ -1274,6 +1274,41 @@ RSpec.describe Article do
       expect(article).not_to be_valid
       expect(article.errors[:base])
         .to include("You cannot mention more than #{Settings::RateLimit.mention_creation} users in a post!")
+    end
+  end
+
+  describe "#privileged_reaction_counts" do
+    it "contains correct vomit count" do
+      user = create(:user, :trusted)
+      create(:reaction, reactable: article, category: "vomit", user: user)
+      counts = article.privileged_reaction_counts
+      expect(counts["vomit"]).to eq(1)
+      expect(counts["thumbsup"]).to be_nil
+      expect(counts["thumbsdown"]).to be_nil
+    end
+
+    it "contains correct thumbsup count" do
+      user = create(:user, :trusted)
+      create(:reaction, reactable: article, category: "thumbsup", user: user)
+      counts = article.privileged_reaction_counts
+      expect(counts["vomit"]).to be_nil
+      expect(counts["thumbsup"]).to eq(1)
+      expect(counts["thumbsdown"]).to be_nil
+    end
+
+    it "contains correct thumbsdown count" do
+      user = create(:user, :trusted)
+      create(:reaction, reactable: article, category: "thumbsdown", user: user)
+      counts = article.privileged_reaction_counts
+      expect(counts["vomit"]).to be_nil
+      expect(counts["thumbsup"]).to be_nil
+      expect(counts["thumbsdown"]).to eq(1)
+    end
+
+    it "returns an empty hash if there are no privileged reactions" do
+      counts = article.privileged_reaction_counts
+
+      expect(counts).to be_empty
     end
   end
 
@@ -1357,7 +1392,57 @@ RSpec.describe Article do
 
     it "reports accurately" do
       categories = article.public_reaction_categories
-      expect(categories.map(&:slug)).to contain_exactly(*%i[like])
+      expect(categories.map(&:slug)).to match_array(%i[like])
+    end
+  end
+
+  describe ".above_average and .average_score" do
+    context "when there are not yet any articles with score above 0" do
+      it "works as expected" do
+        expect(described_class.average_score).to be_within(0.1).of(0.0)
+        articles = described_class.above_average
+        expect(articles.pluck(:score)).to contain_exactly(0)
+      end
+    end
+
+    context "when there are articles with score" do
+      before do
+        create(:article, score: 10)
+        create(:article, score: 6)
+        create(:article, score: 4)
+        create(:article, score: 1)
+        # averages 4.2 with article created earlier, see let on line 13
+      end
+
+      it "works as expected" do
+        expect(described_class.average_score).to be_within(0.1).of(4.2)
+        articles = described_class.above_average
+        expect(articles.pluck(:score)).to contain_exactly(10, 6)
+      end
+    end
+  end
+
+  describe "#detect_language" do
+    let(:detected_language) { :kl } # kl for Klingon
+
+    before do
+      allow(Languages::Detection).to receive(:call).and_return(detected_language)
+    end
+
+    it "detects language using title and body for newly created articles" do
+      article = create(:article)
+      expect(Languages::Detection).to have_received(:call).with("#{article.title}. #{article.body_text}")
+    end
+
+    it "detects language using title and body for updated articles" do
+      article.update(body_markdown: "---title: This is a new english article\n---\n\n# Hello World")
+      expect(Languages::Detection).to have_received(:call).with("#{article.title}. #{article.body_text}")
+    end
+
+    it "does not call detection when title and body_markdown are unchanged" do
+      article.language = "es"
+      article.update(nth_published_by_author: 5)
+      expect(Languages::Detection).not_to have_received(:call)
     end
   end
 end

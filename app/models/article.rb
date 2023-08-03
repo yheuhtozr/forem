@@ -125,7 +125,7 @@ class Article < ApplicationRecord
   has_many :mentions, as: :mentionable, inverse_of: :mentionable, dependent: :delete_all
   has_many :comments, as: :commentable, inverse_of: :commentable, dependent: :nullify
   has_many :context_notifications, as: :context, inverse_of: :context, dependent: :delete_all
-  has_many :context_notifications_published, -> { where(context_notifications: { action: "Published" }) },
+  has_many :context_notifications_published, -> { where(context_notifications_published: { action: "Published" }) },
            as: :context, inverse_of: :context, class_name: "ContextNotification"
   has_many :notification_subscriptions, as: :notifiable, inverse_of: :notifiable, dependent: :delete_all
   has_many :notifications, as: :notifiable, inverse_of: :notifiable, dependent: :delete_all
@@ -204,6 +204,7 @@ class Article < ApplicationRecord
   before_save :calculate_base_scores
   before_save :fetch_video_duration
   before_save :set_caches
+  before_save :detect_language
   before_create :create_password
   before_destroy :before_destroy_actions, prepend: true
 
@@ -296,7 +297,7 @@ class Article < ApplicationRecord
            :video, :user_id, :organization_id, :video_source_url, :video_code,
            :video_thumbnail_url, :video_closed_caption_track_url, :social_image,
            :published_from_feed, :crossposted_at, :published_at, :created_at,
-           :body_markdown, :email_digest_eligible, :processed_html, :co_author_ids, :base_lang)
+           :body_markdown, :email_digest_eligible, :processed_html, :co_author_ids, :score, :base_lang)
   }
 
   scope :sorting, lambda { |value|
@@ -350,6 +351,16 @@ class Article < ApplicationRecord
                      }
 
   scope :eager_load_serialized_data, -> { includes(:user, :organization, :tags) }
+
+  scope :above_average, lambda {
+    order(:score).where("score >= ?", average_score)
+  }
+
+  def self.average_score
+    Rails.cache.fetch("article_average_score", expires_in: 1.day) do
+      unscoped { where(score: 0..).average(:score) } || 0.0
+    end
+  end
 
   def self.seo_boostable(tag = nil, time_ago = 18.days.ago)
     # Time ago sometimes returns this phrase instead of a date
@@ -567,8 +578,12 @@ class Article < ApplicationRecord
       (score < Settings::UserExperience.index_minimum_score &&
        user.comments_count < 1 &&
        !featured) ||
-      published_at.to_i < 1_500_000_000 ||
+      published_at.to_i < Settings::UserExperience.index_minimum_date.to_i ||
       score < -1
+  end
+
+  def privileged_reaction_counts
+    @privileged_reaction_counts ||= reactions.privileged_category.group(:category).count
   end
 
   # to be public method so that can be called from PublishWorker etc.
@@ -597,6 +612,12 @@ class Article < ApplicationRecord
 
     # Collection is empty
     collection.destroy
+  end
+
+  def detect_language
+    return unless title_changed? || body_markdown_changed?
+
+    self.language = Languages::Detection.call("#{title}. #{body_text}")
   end
 
   def search_score
@@ -655,10 +676,12 @@ class Article < ApplicationRecord
     content_renderer = processed_content
     return unless content_renderer
 
-    self.processed_html = content_renderer.process(calculate_reading_time: true)
-    self.reading_time = content_renderer.reading_time
+    result = content_renderer.process_article
 
-    front_matter = content_renderer.front_matter
+    self.processed_html = result.processed_html
+    self.reading_time = result.reading_time
+
+    front_matter = result.front_matter
 
     if front_matter.any?
       evaluate_front_matter(front_matter)
@@ -839,7 +862,7 @@ class Article < ApplicationRecord
   end
 
   def correct_published_at?
-    return unless changes["published_at"]
+    return true unless changes["published_at"]
 
     # for drafts (that were never published before) or scheduled articles
     # => allow future or current dates, or no published_at

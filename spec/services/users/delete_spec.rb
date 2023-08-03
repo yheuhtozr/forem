@@ -85,7 +85,7 @@ RSpec.describe Users::Delete, type: :service do
         audit_logs
         banished_users
         created_podcasts
-        display_ad_events
+        billboard_events
         offender_feedback_messages
         page_views
         rating_votes
@@ -136,6 +136,7 @@ RSpec.describe Users::Delete, type: :service do
     end
 
     it "keeps the kept associations" do
+      # NB: each association must have a factory defined!
       expect(kept_associations).not_to be_empty
       user.reload
       described_class.call(user)

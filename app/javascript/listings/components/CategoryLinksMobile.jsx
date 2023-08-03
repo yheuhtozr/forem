@@ -1,8 +1,6 @@
-/*
-  global selectNavigation
-*/
 import { h, Component } from 'preact';
 import PropTypes from 'prop-types';
+import { selectNavigation } from '../../packs/initializers/initializeDashboardSort';
 import { i18next } from '@utilities/locale';
 
 export class CategoryLinksMobile extends Component {

@@ -74,6 +74,65 @@ function defaultTagValues() {
   return defaultValue;
 }
 
+function displayUserTargets() {
+  const userTargetField = document.getElementsByClassName(
+    'js-audience-segment',
+  )[0].parentElement;
+  if (userTargetField) {
+    userTargetField.classList.remove('hidden');
+  }
+}
+
+function hideUserTargets() {
+  const userTargetField = document.getElementsByClassName(
+    'js-audience-segment',
+  )[0].parentElement;
+  if (userTargetField) {
+    userTargetField.classList.add('hidden');
+  }
+}
+
+function clearUserTargetSelection() {
+  const userTargetSelect = document.getElementsByClassName(
+    'js-audience-segment',
+  )[0];
+  if (userTargetSelect) {
+    userTargetSelect.value = '';
+  }
+}
+
+/**
+ * Shows and Renders Exclude Article IDs group
+ */
+function showExcludeIds() {
+  const excludeField = document.getElementsByClassName(
+    'js-exclude-ids-textfield',
+  )[0].parentElement;
+  excludeField?.classList.remove('hidden');
+}
+
+/**
+ * Hides the Exclude Article IDs group
+ */
+function hideExcludeIds() {
+  const excludeField = document.getElementsByClassName(
+    'js-exclude-ids-textfield',
+  )[0].parentElement;
+  excludeField?.classList.add('hidden');
+}
+
+/**
+ * Clears the content (i.e. value) of the Exclude Article IDs group
+ */
+function clearExcludeIds() {
+  const excludeField = document.getElementsByClassName(
+    'js-exclude-ids-textfield',
+  )[0];
+  if (excludeField) {
+    excludeField.value = '';
+  }
+}
+
 /**
  * Shows and sets up the Targeted Tag(s) field if the placement area value is "post_comments".
  * Listens for change events on the select placement area dropdown
@@ -81,17 +140,50 @@ function defaultTagValues() {
  */
 document.ready.then(() => {
   const select = document.getElementsByClassName('js-placement-area')[0];
-  const placementAreasWithTags = ['post_comments', 'post_sidebar'];
-  if (placementAreasWithTags.includes(select.value)) {
+  const articleSpecificPlacement = ['post_comments', 'post_sidebar'];
+  const targetedTagPlacements = [
+    'post_comments',
+    'post_sidebar',
+    'feed_first',
+    'feed_second',
+    'feed_third',
+  ];
+
+  if (targetedTagPlacements.includes(select.value)) {
     showTagsField();
   }
 
   select.addEventListener('change', (event) => {
-    if (placementAreasWithTags.includes(event.target.value)) {
+    if (targetedTagPlacements.includes(event.target.value)) {
       showTagsField();
     } else {
       hideTagsField();
       clearTagList();
     }
+  });
+
+  if (articleSpecificPlacement.includes(select.value)) {
+    showExcludeIds();
+  }
+
+  select.addEventListener('change', (event) => {
+    if (articleSpecificPlacement.includes(event.target.value)) {
+      showExcludeIds();
+    } else {
+      hideExcludeIds();
+      clearExcludeIds();
+    }
+  });
+
+  const userRadios = document.querySelectorAll('input[name=display_to]');
+  userRadios.forEach((radio) => {
+    radio.addEventListener('change', (event) => {
+      if (event.target.value == 'logged_in') {
+        displayUserTargets();
+      } else {
+        hideUserTargets();
+        clearUserTargetSelection();
+      }
+    });
   });
 });

@@ -5,7 +5,6 @@ RSpec.describe UnifiedEmbed::Tag, type: :liquid_tag do
 
   # See https://github.com/forem/forem/issues/17679; Note the document has `og:title` but not
   # `og:url`; should we fallback to the given URL instead?
-  # rubocop:disable RSpec/ExampleLength
   it "handles https://guides.rubyonrails.org" do
     link = "https://guides.rubyonrails.org/routing.html"
     stub_request(:head, link)
@@ -22,8 +21,7 @@ RSpec.describe UnifiedEmbed::Tag, type: :liquid_tag do
         headers: {
           "Accept" => "*/*",
           "Accept-Encoding" => "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
-          "Host" => "guides.rubyonrails.org",
-          "User-Agent" => "Ruby"
+          "User-Agent" => "DEV(local) (http://forem.test)"
         },
       )
       .to_return(
@@ -35,7 +33,6 @@ RSpec.describe UnifiedEmbed::Tag, type: :liquid_tag do
     parsed_tag = Liquid::Template.parse("{% embed #{link} %}")
     expect(parsed_tag.render).to include("<a href=\"#{link}\"")
   end
-  # rubocop:enable RSpec/ExampleLength
 
   it "delegates parsing to the link-matching class" do
     link = "https://gist.github.com/jeremyf/662585f5c4d22184a6ae133a71bf891a"
@@ -150,4 +147,5 @@ RSpec.describe UnifiedEmbed::Tag, type: :liquid_tag do
     result = described_class.safe_user_agent(unsafe)
     expect(result).to eq("Some of this.is_not_safe (but that-s okay-) -")
   end
+  # rubocop:enable RSpec/ExampleLength
 end

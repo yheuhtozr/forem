@@ -12,6 +12,8 @@ ja:
     profile_validator:
       bio_too_long: 紹介文が長すぎます
     unique_cross_model_slug_validator:
-      is_taken: は取られています
+      is_taken: はすでに取られています
+      is_invalid: は無効です
+      is_reserved: は予約語です
     valid_domain_csv_validator:
       invalid_list_format: must be a comma-separated list of valid domains

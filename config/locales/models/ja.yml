@@ -24,12 +24,29 @@ ja:
       future_or_current_published_at: 現在または未来の投稿時刻のみ指定できます
       immutable_published_at: すでに投稿した記事の投稿時刻を変更することはできません
       mention_too_many: 1 つの記事内で %{count} 人より多く呼びかけることはできません！
+    audience_segment:
+      type_ofs:
+        manual: Managed elsewhere
+        trusted: Are trusted
+        posted: Have at least one post
+        no_posts_yet: Have not posted yet
+        dark_theme: Have enabled dark theme
+        light_theme: Have enabled light theme
+        no_experience: Have not set an experience level
+        experience1: Have experience level one
+        experience2: Have experience level two
+        experience3: Have experience level three
+        experience4: Have experience level four
+        experience5: Have experience level five
+    billboard:
+      invalid_location: '%{location} is not a supported ISO 3166-2 code'
     broadcast:
       single_active: You can only have one active announcement broadcast
     comment:
       deleted: "[削除]"
       has_been_deleted: "%{type}は削除されました"
       hidden: "[記事作者により非表示]"
+      image_only: '[画像]'
       is_not_valid: は無効です
       locked: 記事のコメント欄は凍結されています
       published_article: は非公開の記事です
@@ -60,8 +77,6 @@ ja:
       reserved_word: "%<value>s is a reserved word. Contact site admins for help registering your organization."
     page:
       body_must_exist: must exist if body_html or body_json doesn't exist.
-    podcast:
-      slug_is_reserved: slug is reserved
     podcast_episode_appearance:
       provided_role_is_not_valid: provided role is not valid
     poll_skip:
@@ -106,9 +121,7 @@ ja:
       could_not_send: 確認メールが送信できませんでした。%{e_message}
       password_not_matched: が確認用パスワードと一致しません
       has_been_banished: は追放されました
-      is_taken: "%{username} は取られています"
       user_could_not_be_saved: ユーザーを保存できませんでした。%{e_message}
-      username_is_reserved: ユーザー名は予約されています
     user_block:
       cant_be_the_same: can't be the same as the blocked_id
     user_subscription:

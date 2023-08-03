@@ -85,6 +85,7 @@ ja:
         comments: コメント
         my_posts: 私の記事
         tags: タグ
+        organizations: グループ
       sort:
         aria_label: 検索結果の並べ替え
         relevance: 関連順

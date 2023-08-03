@@ -15,6 +15,7 @@ RSpec.describe "ArticlesUpdate" do
 
   before do
     sign_in user
+    allow(FeatureFlag).to receive(:enabled?).with(:consistent_rendering, any_args).and_return(true)
   end
 
   it "updates ordinary article with proper params" do
@@ -23,6 +24,15 @@ RSpec.describe "ArticlesUpdate" do
       article: { title: new_title, body_markdown: "Yo ho ho#{rand(100)}", tag_list: "yo" }
     }
     expect(article.reload.title).to eq(new_title)
+  end
+
+  it "returns an unprocessable status with invalid params" do
+    put "/articles/#{article.id}", params: {
+      article: { title: "", body_markdown: "Hello World" },
+      format: :json
+    }
+
+    expect(response).to have_http_status(:unprocessable_entity)
   end
 
   it "updates article with front matter params" do
@@ -194,7 +204,7 @@ RSpec.describe "ArticlesUpdate" do
 
     # draft => scheduled
     it "sets published_at according to the timezone when updating draft => scheduled" do
-      draft = create(:article, published: false, user_id: user.id, published_at: nil)
+      draft = create(:unpublished_article, user_id: user.id, published_at: nil)
       attributes[:published] = true
       attributes[:timezone] = "America/Mexico_City"
       put "/articles/#{draft.id}", params: { article: attributes }

@@ -19,7 +19,7 @@ describe('ProfileForm', () => {
         communityConfig={{
           communityName: 'Community Name',
           communityLogo: '/x.png',
-          communityBackground: '/y.jpg',
+          communityBackgroundColor: '#FFF000',
           communityDescription: 'Some community description',
         }}
         previousLocation={null}
@@ -100,6 +100,66 @@ describe('ProfileForm', () => {
     expect(getByTestId('onboarding-profile-subtitle')).toHaveTextContent(
       /Tell us a little bit about yourself — this is how others will see you on Community Name. You’ll always be able to edit this later in your Settings./i,
     );
+  });
+
+  it('should render TextInput with placeholder text', () => {
+    const { getByPlaceholderText } = render(
+      <ProfileForm
+        prev={jest.fn()}
+        next={jest.fn()}
+        slidesCount={3}
+        currentSlideIndex={1}
+        communityConfig={{ communityName: 'Community' }}
+      />,
+    );
+
+    const usernameInput = getByPlaceholderText('johndoe');
+    expect(usernameInput).toBeInTheDocument();
+  });
+
+  it('should render TextArea with placeholder text', () => {
+    const { getByPlaceholderText } = render(
+      <ProfileForm
+        prev={jest.fn()}
+        next={jest.fn()}
+        slidesCount={3}
+        currentSlideIndex={1}
+        communityConfig={{ communityName: 'Community' }}
+      />,
+    );
+
+    const bioTextArea = getByPlaceholderText('Tell us a little about yourself');
+    expect(bioTextArea).toBeInTheDocument();
+  });
+
+  it('should render TextInput with input type "text"', () => {
+    const { getByPlaceholderText } = render(
+      <ProfileForm
+        prev={jest.fn()}
+        next={jest.fn()}
+        slidesCount={3}
+        currentSlideIndex={1}
+        communityConfig={{ communityName: 'Community' }}
+      />,
+    );
+
+    const usernameInput = getByPlaceholderText('johndoe');
+    expect(usernameInput.type).toBe('text');
+  });
+
+  it('should render TextArea with description text', () => {
+    const { getByText } = render(
+      <ProfileForm
+        prev={jest.fn()}
+        next={jest.fn()}
+        slidesCount={3}
+        currentSlideIndex={1}
+        communityConfig={{ communityName: 'Community' }}
+      />,
+    );
+
+    const bioDescription = getByText('Bio');
+    expect(bioDescription).toBeInTheDocument();
   });
 
   it('should show the correct name and username', () => {

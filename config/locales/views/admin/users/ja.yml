@@ -2,6 +2,39 @@
 ja:
   views:
     admin:
+      articles:
+        flags:
+          score: Score affected by a particular flag
+        priviliged_actions:
+          description: All the moderator actions affect the score. The overall score is a combination of moderator actions and public reactions.
+          no_flags: Article has no flags.
+          no_quality_reactions: Article has no quality reactions by trusted users.
+          title: Moderator actions
+      comments:
+        flags:
+          score: Score affected by a particular flag
+        priviliged_actions:
+          description: All the moderator actions affect the score. The overall score is a combination of moderator actions and public reactions.
+          no_flags: Comment has no flags.
+          no_quality_reactions: Comment has no quality reactions by trusted users.
+          title: Moderator actions
+      shared:
+        flags:
+          actions:
+            mark_as_invalid: Mark as Invalid
+            mark_as_valid: Mark as Valid
+          invalid:
+            title: Flag marked as invalid by admin
+            value: Invalid
+          open:
+            title: Open Flag
+            value: Open
+          unidentified:
+            title: Unidentified
+            value: Unidentified
+          valid:
+            title: Flag marked as valid by admin
+            value: Valid
       users:
         heading: Members
         aria_paginate: Paginate users
@@ -80,6 +113,7 @@ ja:
             select: Select role
             note: "Add a note to this action:"
             submit: Add
+            warning: "Comma Delimited, All Lowercase, No @ Symbol Required In Front Of Usernames Warning: Usernames are case-sensitive and must be all lowercase! This task will fail silently when supplied with incorrect usernames."
           add_org:
             text: Add organization
             heading: Add organization
@@ -103,6 +137,8 @@ ja:
             aria_credits: Amount of credits to add or remove
             note: "Add a note to this action:"
             submit: Adjust balance
+          bulk_assign_role:
+            text: Bulk Assign Role
           copy_email: Copy email address
         danger:
           desc1: This action is irreversible.
@@ -114,7 +150,7 @@ ja:
           submit_html: Banish %{user}
         delete:
           heading: Delete %{user}'s account
-          onsubmit: Are you sure? This actions is irreversible.
+          onsubmit: Are you sure? This action is irreversible.
           desc2: Once deleted, all data relating to %{user} will be removed from our database.
           notice: Only Super Admins are allowed to delete users.
           submit: Delete now
@@ -188,6 +224,8 @@ ja:
             comment: Comment on "%{title}"
             profile: User's profile
           origin_html: Flagged by %{user}
+          score: Article and comment score affected by particular flag
+          total_score: Article and comment score affected by user flags
         notes:
           empty1: No previous notes found for %{user}.
           empty2: Any notes added for %{user} will be found here.
@@ -199,6 +237,9 @@ ja:
           note: Note
           note_placeholder: Add a note...
           submit: Submit
+          unknown_user: Unknown user
+          unknown_user_html: |
+            <em>Unknown user</em>
         overview:
           comments: Comments
           posts: Posts
@@ -238,6 +279,7 @@ ja:
             locked: You can't remove this role.
             remove: "Remove role:"
             remove_confirm: Are you sure?
+            remove_confirm_super_admin: You are removing super admin access from this account. Do this carefully and always ensure you retain access to one or more super admin accounts
             name:
               admin: Admin
               codeland_admin: Codeland Admin
@@ -248,6 +290,19 @@ ja:
               podcast_admin: Podcast Admin
               restricted_liquid_tag: Restricted Liquid Tag
               single_resource_admin: Single Resource Admin
+              resource_admin_article: Article Admin
+              resource_admin_badge: Badge Admin
+              resource_admin_badge_achievement: Badge Achievement Admin
+              resource_admin_broadcast: Broadcast Admin
+              resource_admin_comment: Comment Admin
+              resource_admin_config: Config Admin
+              resource_admin_display_ad: Display Ad Admin
+              resource_admin_data_update_script: Data Update Script Admin
+              resource_admin_feedback_message: Feedback Message Admin
+              resource_admin_html_variant: HTML Variant Admin
+              resource_admin_listing_category: Listing Category Admin
+              resource_admin_page: Page Admin
+              resource_admin_tag: Tag Admin
               super_admin: Super Admin
               support_admin: Support Admin
               suspended: Suspended
@@ -264,6 +319,10 @@ ja:
             remove: "Remove tag:"
             notice_html: Adding tags for moderation is currently only possible through a particular %{tag_page}, by providing the user's ID (%{user_id}).
             tag_page: tag's page
+        priviliged_actions:
+          description: The user flags affect the scores of articles and comments. Each valid or open user flag further reduces the score of the article and comment.
+          no_flags: No flags received against this user yet.
+          title: Flags received
         profile:
           locked:
             icon: Access locked
@@ -349,3 +408,22 @@ ja:
           facebook: Facebook
           github: GitHub
           twitter: Twitter
+      organizations:
+        profile:
+          id: ID %{organizationid}
+          since_html: Organization since %{time}
+          email: Email
+          github: GitHub
+          twitter: Twitter
+          visit: Visit organization
+          total_members: "%{count} members"
+        delete:
+          heading: Delete %{organization}
+          onsubmit: Are you sure? This action is irreversible.
+          desc2: "Note: Deleting organization, %{organization}, will dissasociate the existing members and articles from the organization but will not delete them."
+          role_notice: Only Super Admins are allowed to delete organizations.
+          credits_notice: You cannot delete an organization that has associated credits.
+          submit: Delete organizion now
+        options:
+          delete: Delete organization
+          icon: Options

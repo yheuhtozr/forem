@@ -45,7 +45,7 @@ class ApplicationController < ActionController::Base
   private_constant :PUBLIC_CONTROLLERS
 
   CONTENT_CHANGE_PATHS = [
-    "/tags/onboarding", # Needs to change when suggested_tags is edited.
+    "/onboarding/tags", # Needs to change when suggested_tags is edited.
     "/onboarding", # Page is cached at edge.
     "/", # Page is cached at edge.
   ].freeze
@@ -165,8 +165,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def redirect_permanently_to(location)
-    redirect_to location + internal_nav_param, status: :moved_permanently
+  def redirect_permanently_to(url = nil, **args)
+    if url
+      redirect_to(url + internal_nav_param, status: :moved_permanently)
+    else
+      redirect_to(args.merge({ i: params[:i] }), status: :moved_permanently)
+    end
   end
 
   def customize_params
@@ -288,6 +292,12 @@ class ApplicationController < ActionController::Base
     EdgeCache::Bust.call(CONTENT_CHANGE_PATHS)
     Settings::General.admin_action_taken_at = Time.current # Used as cache key
   end
+
+  def feature_flag_enabled?(flag_name, acting_as: current_user)
+    FeatureFlag.enabled?(flag_name, FeatureFlag::Actor[acting_as])
+  end
+
+  helper_method :feature_flag_enabled?
 
   private
 

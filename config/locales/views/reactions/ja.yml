@@ -38,3 +38,8 @@ ja:
         aria_label: 切り抜き帳に追加
         icon: 保存ボタン
         text: 保存
+      subscribe:
+        title: コメントツリーの更新を通知
+        aria_label: コメントツリーの更新を通知
+        icon: 保存ボタン
+        text: コメントツリーの更新を通知

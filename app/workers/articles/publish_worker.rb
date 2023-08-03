@@ -15,6 +15,10 @@ module Articles
         # Send notifications to any mentioned users, followed by any users who follow the article's author.
         Notification.send_to_mentioned_users_and_followers(article)
 
+        # using nth_published because it doesn't count draft articles by the new author
+        from_newish_author = article.nth_published_by_author < 3
+        Notification.send_moderation_notification(article) if from_newish_author
+
         article.notify_external_services_on_new_post
       end
     end

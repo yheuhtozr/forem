@@ -4,6 +4,23 @@ import he from 'he';
 import { getContentOfToken } from '../utilities';
 import { Navigation } from './Navigation';
 import { i18next } from '@utilities/locale';
+import { Spinner } from '@crayons/Spinner/Spinner';
+
+function groupFollowsByType(array) {
+  return array.reduce((returning, item) => {
+    const type = item.type_identifier;
+    returning[type] = (returning[type] || []).concat(item);
+    return returning;
+  }, {});
+}
+
+function groupFollowIdsByType(array) {
+  return array.reduce((returning, item) => {
+    const type = item.type_identifier;
+    returning[type] = (returning[type] || []).concat({ id: item.id });
+    return returning;
+  }, {});
+}
 
 export class FollowUsers extends Component {
   constructor(props) {
@@ -13,13 +30,14 @@ export class FollowUsers extends Component {
     this.handleComplete = this.handleComplete.bind(this);
 
     this.state = {
-      users: [],
-      selectedUsers: [],
+      follows: [],
+      selectedFollows: [],
+      loading: true,
     };
   }
 
   componentDidMount() {
-    fetch('/users?state=follow_suggestions', {
+    fetch('/onboarding/users_and_organizations', {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -28,7 +46,11 @@ export class FollowUsers extends Component {
     })
       .then((response) => response.json())
       .then((data) => {
-        this.setState({ users: data });
+        this.setState({
+          selectedFollows: data,
+          follows: data,
+          loading: false,
+        });
       });
 
     const csrfToken = getContentOfToken('csrf-token');
@@ -47,8 +69,9 @@ export class FollowUsers extends Component {
 
   handleComplete() {
     const csrfToken = getContentOfToken('csrf-token');
-    const { selectedUsers } = this.state;
+    const { selectedFollows } = this.state;
     const { next } = this.props;
+    const idsGroupedByType = groupFollowIdsByType(selectedFollows);
 
     fetch('/api/follows', {
       method: 'POST',
@@ -56,7 +79,10 @@ export class FollowUsers extends Component {
         'X-CSRF-Token': csrfToken,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ users: selectedUsers }),
+      body: JSON.stringify({
+        users: idsGroupedByType['user'],
+        organizations: idsGroupedByType['organization'],
+      }),
       credentials: 'same-origin',
     });
 
@@ -64,51 +90,64 @@ export class FollowUsers extends Component {
   }
 
   handleSelectAll() {
-    const { selectedUsers, users } = this.state;
-    if (selectedUsers.length === users.length) {
+    const { selectedFollows, follows } = this.state;
+    if (selectedFollows.length === follows.length) {
       this.setState({
-        selectedUsers: [],
+        selectedFollows: [],
       });
     } else {
       this.setState({
-        selectedUsers: users,
+        selectedFollows: follows,
       });
     }
   }
 
-  handleClick(user) {
-    let { selectedUsers } = this.state;
+  handleClick(follow) {
+    let { selectedFollows } = this.state;
 
-    if (!selectedUsers.includes(user)) {
+    if (!selectedFollows.includes(follow)) {
       this.setState((prevState) => ({
-        selectedUsers: [...prevState.selectedUsers, user],
+        selectedFollows: [...prevState.selectedFollows, follow],
       }));
     } else {
-      selectedUsers = [...selectedUsers];
-      const indexToRemove = selectedUsers.indexOf(user);
-      selectedUsers.splice(indexToRemove, 1);
+      selectedFollows = [...selectedFollows];
+      const indexToRemove = selectedFollows.indexOf(follow);
+      selectedFollows.splice(indexToRemove, 1);
       this.setState({
-        selectedUsers,
+        selectedFollows,
       });
     }
   }
 
   renderFollowCount() {
-    const { users, selectedUsers } = this.state;
+    const { follows, selectedFollows } = this.state;
+
     let followingStatus;
-    if (selectedUsers.length === 0) {
+    if (selectedFollows.length === 0) {
       followingStatus = i18next.t('onboarding.user.status_no');
-    } else if (selectedUsers.length === users.length) {
-      followingStatus = i18next.t('onboarding.user.status_all', {
-        count: selectedUsers.length,
-      });
     } else {
-      followingStatus = i18next.t('onboarding.user.status', {
-        count: selectedUsers.length,
-      });
+      const groups = groupFollowsByType(selectedFollows);
+      let together = [];
+      for (const type in groups) {
+        const counted = i18next.t(`onboarding.user.status_${type}`, {
+          count: groups[type].length,
+        });
+        together = together.concat(counted);
+      }
+
+      if (selectedFollows.length === follows.length) {
+        followingStatus = i18next.t('onboarding.user.status_all', {
+          details: together,
+        });
+      } else {
+        followingStatus = i18next.t('onboarding.user.status', {
+          details: together,
+        });
+      }
     }
+
     const klassName =
-      selectedUsers.length > 0
+      selectedFollows.length > 0
         ? 'fw-bold color-base-60 inline-block fs-base'
         : 'color-base-60 inline-block fs-base';
 
@@ -116,11 +155,19 @@ export class FollowUsers extends Component {
   }
 
   renderFollowToggle() {
-    const { users, selectedUsers } = this.state;
+    const { follows, selectedFollows } = this.state;
     let followText = '';
 
-    if (selectedUsers.length !== users.length) {
-      followText = i18next.t('onboarding.user.select', { count: users.length });
+    if (selectedFollows.length !== follows.length) {
+      if (follows.length === 1) {
+        followText = i18next.t('onboarding.user.select1', {
+          count: follows.length,
+        });
+      } else {
+        followText = i18next.t('onboarding.user.select_all', {
+          count: follows.length,
+        });
+      }
     } else {
       followText = i18next.t('onboarding.user.deselect');
     }
@@ -137,9 +184,9 @@ export class FollowUsers extends Component {
   }
 
   render() {
-    const { users, selectedUsers } = this.state;
+    const { follows, selectedFollows, loading } = this.state;
     const { prev, slidesCount, currentSlideIndex } = this.props;
-    const canSkip = selectedUsers.length === 0;
+    const canSkip = selectedFollows.length === 0;
 
     return (
       <div
@@ -171,16 +218,23 @@ export class FollowUsers extends Component {
                 {this.renderFollowCount()}
                 {this.renderFollowToggle()}
               </div>
+              <div
+                className={`loading-spinner align-center ${
+                  loading ? '' : 'hidden'
+                }`}
+              >
+                <Spinner />
+              </div>
             </header>
 
             <fieldset data-testid="onboarding-users">
-              {users.map((user) => {
-                const selected = selectedUsers.includes(user);
+              {follows.map((follow) => {
+                const selected = selectedFollows.includes(follow);
 
                 return (
                   // eslint-disable-next-line react/jsx-key
                   <div
-                    key={user.id}
+                    key={`${follow.id}-${follow.type_identifier}`}
                     data-testid="onboarding-user-button"
                     className={`user content-row ${
                       selected ? 'selected' : 'unselected'
@@ -189,32 +243,30 @@ export class FollowUsers extends Component {
                     <figure className="user-avatar-container">
                       <img
                         className="user-avatar"
-                        src={user.profile_image_url}
+                        src={follow.profile_image_url}
                         alt=""
                         loading="lazy"
                       />
                     </figure>
                     <div className="user-info">
-                      <h4 className="user-name">{user.name}</h4>
+                      <h4 className="user-name">{follow.name}</h4>
                       <p className="user-summary">
-                        {he.unescape(user.summary || '')}
+                        {he.unescape(follow.summary || '')}
                       </p>
                     </div>
                     <label
                       className={`relative user-following-status crayons-btn ${
-                        selected
-                          ? 'color-base-inverted'
-                          : 'crayons-btn--outlined'
+                        selected ? 'crayons-btn--outlined' : 'color-primary'
                       }`}
                     >
                       <input
                         aria-label={i18next.t('onboarding.user.aria_label', {
-                          user: user.name,
+                          user: follow.name,
                         })}
                         type="checkbox"
                         checked={selected}
                         className="absolute opacity-0 absolute top-0 bottom-0 right-0 left-0"
-                        onClick={() => this.handleClick(user)}
+                        onClick={() => this.handleClick(follow)}
                         data-testid="onboarding-user-following-status"
                       />
                       {i18next.t(

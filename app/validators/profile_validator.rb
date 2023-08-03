@@ -1,3 +1,5 @@
+# rubocop:disable Style/ReturnNilInPredicateMethodDefinition
+
 class ProfileValidator < ActiveModel::Validator
   SUMMARY_ATTRIBUTE = "summary".freeze
   MAX_SUMMARY_LENGTH = 200
@@ -34,12 +36,12 @@ class ProfileValidator < ActiveModel::Validator
   private
 
   def summary_too_long?(record)
-    record.summary&.gsub!(/\r\n/, "\n")
+    record.summary&.gsub!("\r\n", "\n")
     return if record.summary.blank?
 
     # Grandfather in people who had a too long summary before
     previous_summary = record.summary_was
-    previous_summary&.gsub!(/\r\n/, "\n")
+    previous_summary&.gsub!("\r\n", "\n")
     return if previous_summary && previous_summary.size > MAX_SUMMARY_LENGTH
 
     record.summary.size > MAX_SUMMARY_LENGTH
@@ -51,6 +53,7 @@ class ProfileValidator < ActiveModel::Validator
 
   def text_area_valid?(record, attribute)
     text = record.public_send(attribute)
+    text = remove_inner_newlines(text)
     text.nil? || text.size <= MAX_TEXT_AREA_LENGTH
   end
 
@@ -58,4 +61,10 @@ class ProfileValidator < ActiveModel::Validator
     text = record.public_send(attribute)
     text.nil? || text.size <= MAX_TEXT_FIELD_LENGTH
   end
+
+  def remove_inner_newlines(text)
+    text.presence && text.tr("\r\n\t", " ").squeeze(" ")
+  end
 end
+
+# rubocop:enable Style/ReturnNilInPredicateMethodDefinition

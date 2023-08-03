@@ -57,6 +57,7 @@ class Tag < ActsAsTaggableOn::Tag
   \z/ux
   ALLOWED_CATEGORIES = %w[uncategorized language library tool site_mechanic location subcommunity].freeze
   HEX_COLOR_REGEXP = /\A#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})\z/
+  ATTRIBUTES_FOR_SERIALIZATION = %i[id name bg_color_hex text_color_hex short_summary badge_id].freeze
 
   belongs_to :badge, optional: true
 
@@ -81,6 +82,7 @@ class Tag < ActsAsTaggableOn::Tag
   before_save :calculate_hotness_score
   before_save :mark_as_updated
 
+  after_save :update_suggested_tags, if: :saved_change_to_suggested?
   after_commit :bust_cache
 
   # @note Even though we have a data migration script (see further
@@ -99,12 +101,16 @@ class Tag < ActsAsTaggableOn::Tag
   #       this scope we have a name.
   scope :direct, -> { where(alias_for: [nil, ""]) }
 
+  scope :select_attributes_for_serialization, -> { select(ATTRIBUTES_FOR_SERIALIZATION) }
+
   pg_search_scope :search_by_name,
                   against: :name,
                   using: { tsearch: { prefix: true } }
 
   scope :eager_load_serialized_data, -> {}
   scope :supported, -> { where(supported: true) }
+
+  scope :suggested_for_onboarding, -> { where(suggested: true) }
 
   # possible social previews templates for articles with a particular tag
   def self.social_preview_templates
@@ -187,6 +193,20 @@ class Tag < ActsAsTaggableOn::Tag
       .joins(:followings)
       .where("followings.follower_id" => follower.id, "followings.follower_type" => follower.class_name)
       .order(hotness_score: :desc)
+  end
+
+  def self.followed_by(user, points = (1..))
+    where(
+      id: Follow.where(
+        follower_id: user.id,
+        followable_type: "ActsAsTaggableOn::Tag",
+        points: points,
+      ).select(:followable_id),
+    )
+  end
+
+  def self.antifollowed_by(user)
+    followed_by(user, (...1))
   end
 
   def self.smart_tr(str)
@@ -326,6 +346,10 @@ class Tag < ActsAsTaggableOn::Tag
 
   def mark_as_updated
     self.updated_at = Time.current # Acts-as-taggable didn't come with this by default
+  end
+
+  def update_suggested_tags
+    Settings::General.suggested_tags = Tag.suggested_for_onboarding.pluck(:name).join(",")
   end
 
   def normalize_names

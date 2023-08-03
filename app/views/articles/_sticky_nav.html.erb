@@ -1,5 +1,5 @@
 <% @actor = @article.organization || @article.user %>
-<div class="crayons-article-sticky grid gap-4 break-word" id="article-show-primary-sticky-nav">
+<div class="crayons-article-sticky grid gap-4 pb-4 break-word" id="article-show-primary-sticky-nav">
   <div class="crayons-card crayons-card--secondary branded-7 p-4 pt-0 gap-4 grid" style="border-top-color: <%= Color::CompareHex.new([user_colors(@actor)[:bg], user_colors(@actor)[:text]]).brightness(0.88) %>;">
     <%= render "shared/profile_card_content", actor: @actor, context: "sidebar" %>
   </div>
@@ -55,15 +55,4 @@
   <% end %>
 </div>
 
-<%# cache("article-sidebar-content-#{rand(5)}-#{@article.id}-#{user_signed_in?}-#{(@organization || @user).latest_article_updated_at}", expires_in: 15.minutes) do %>
-  <% sidebar_ad = DisplayAd.for_display(area: "post_sidebar",
-                                        user_signed_in: user_signed_in?,
-                                        organization_id: @article.organization_id,
-                                        article_tags: @article.decorate.cached_tag_list_array,
-                                        permit_adjacent_sponsors: @article.decorate.permit_adjacent_sponsors?) %>
-  <% if sidebar_ad %>
-    <div class="crayons-article-sticky grid gap-4 break-word pt-4">
-      <%= render partial: "shared/display_ad", locals: { display_ad: sidebar_ad, data_context_type: DisplayAdEvent::CONTEXT_TYPE_ARTICLE } %>
-    </div>
-  <% end %>
-<%# end %>
+<div class="crayons-article-sticky grid gap-4 break-word js-display-ad-container" data-async-url="<%= article_billboard_path(username: @article.username, slug: @article.slug, placement_area: :post_sidebar) %>"></div>

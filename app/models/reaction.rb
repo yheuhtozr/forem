@@ -7,9 +7,7 @@ class Reaction < ApplicationRecord
 
   counter_culture :reactable,
                   column_name: proc { |model|
-                    # After FeatureFlag :multiple_reactions, this could change to:
-                    # ReactionCategory[model.category].visible_to_public?
-                    public_reaction_types.include?(model.category.to_s) ? "public_reactions_count" : "reactions_count"
+                    ReactionCategory[model.category].visible_to_public? ? "public_reactions_count" : "reactions_count"
                   }
   counter_culture :user
 
@@ -80,18 +78,7 @@ class Reaction < ApplicationRecord
     end
 
     def public_reaction_types
-      if FeatureFlag.enabled?(:multiple_reactions)
-        reaction_types = ReactionCategory.public.map(&:to_s) - ["readinglist"]
-      else
-        # used to include "readinglist" but that's not correct now, even without the feature flag
-        # we aren't going to re-process these, they will gradually correct over time
-        reaction_types = %w[like]
-        unless FeatureFlag.enabled?(:replace_unicorn_with_jump_to_comments)
-          reaction_types << "unicorn"
-        end
-      end
-
-      reaction_types
+      @public_reaction_types ||= ReactionCategory.public.map(&:to_s) - ["readinglist"]
     end
 
     def for_analytics
@@ -152,6 +139,7 @@ class Reaction < ApplicationRecord
   # - reaction is negative
   # - receiver is the same user as the one who reacted
   # - reaction status is marked invalid
+  # - reaction is not in a category that should be notified
   def skip_notification_for?(_receiver)
     reactor_id = case reactable
                  when User
@@ -160,7 +148,7 @@ class Reaction < ApplicationRecord
                    reactable.user_id
                  end
 
-    (status == "invalid") || points.negative? || (user_id == reactor_id)
+    !should_notify? || (status == "invalid") || points.negative? || (user_id == reactor_id)
   end
 
   def reaction_on_organization_article?
@@ -195,14 +183,6 @@ class Reaction < ApplicationRecord
     Reactions::BustReactableCacheWorker.new.perform(id)
   end
 
-  def reading_time
-    reactable.reading_time if category == "readinglist"
-  end
-
-  def viewable_by
-    user_id
-  end
-
   def assign_points
     self.points = CalculateReactionPoints.call(self)
   end
@@ -215,7 +195,7 @@ class Reaction < ApplicationRecord
   end
 
   def negative_reaction_from_untrusted_user?
-    return if user&.any_admin? || user&.id == Settings::General.mascot_user_id
+    return if user&.any_admin? || user&.id == Settings::General.mascot_user_id # rubocop:disable Style/ReturnNilInPredicateMethodDefinition
 
     negative? && !user.trusted?
   end
@@ -236,5 +216,9 @@ class Reaction < ApplicationRecord
 
     Users::RecordFieldTestEventWorker
       .perform_async(user_id, AbExperiment::GoalConversionHandler::USER_CREATES_ARTICLE_REACTION_GOAL)
+  end
+
+  def should_notify?
+    ReactionCategory.notifiable.include?(category.to_sym)
   end
 end

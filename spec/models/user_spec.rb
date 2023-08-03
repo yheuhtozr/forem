@@ -33,6 +33,7 @@ RSpec.describe User do
 
   before do
     omniauth_mock_providers_payload
+    allow(SegmentedUserRefreshWorker).to receive(:perform_async)
     allow(Settings::Authentication).to receive(:providers).and_return(Authentication::Providers.available)
   end
 
@@ -78,7 +79,7 @@ RSpec.describe User do
       it { is_expected.to have_many(:comments).dependent(:destroy) }
       it { is_expected.to have_many(:credits).dependent(:destroy) }
       it { is_expected.to have_many(:discussion_locks).dependent(:delete_all) }
-      it { is_expected.to have_many(:display_ad_events).dependent(:nullify) }
+      it { is_expected.to have_many(:billboard_events).dependent(:nullify) }
       it { is_expected.to have_many(:email_authorizations).dependent(:delete_all) }
       it { is_expected.to have_many(:email_messages).class_name("Ahoy::Message").dependent(:destroy) }
       it { is_expected.to have_many(:field_test_memberships).class_name("FieldTest::Membership").dependent(:destroy) }
@@ -105,6 +106,8 @@ RSpec.describe User do
       it { is_expected.to have_many(:reactions).dependent(:destroy) }
       it { is_expected.to have_many(:response_templates).dependent(:delete_all) }
       it { is_expected.to have_many(:source_authored_user_subscriptions).dependent(:destroy) }
+      it { is_expected.to have_many(:segmented_users).dependent(:destroy) }
+      it { is_expected.to have_many(:audience_segments).through(:segmented_users) }
       it { is_expected.to have_many(:subscribed_to_user_subscriptions).dependent(:destroy) }
       it { is_expected.to have_many(:subscribers).dependent(:destroy) }
       it { is_expected.to have_many(:tweets).dependent(:nullify) }
@@ -190,6 +193,8 @@ RSpec.describe User do
       it { is_expected.to validate_length_of(:password).is_at_most(100).is_at_least(8) }
       it { is_expected.to validate_length_of(:username).is_at_most(30).is_at_least(2) }
 
+      it { is_expected.not_to allow_value("  ").for(:name) }
+
       it { is_expected.to validate_presence_of(:articles_count) }
       it { is_expected.to validate_presence_of(:badge_achievements_count) }
       it { is_expected.to validate_presence_of(:blocked_by_count) }
@@ -209,7 +214,7 @@ RSpec.describe User do
       context "when evaluating the custom error message for username uniqueness" do
         subject { create(:user, username: "test_user_123") }
 
-        it { is_expected.to validate_uniqueness_of(:username).with_message("test_user_123 is taken.").case_insensitive }
+        it { is_expected.to validate_uniqueness_of(:username).with_message("has already been taken").case_insensitive }
       end
       # rubocop:enable RSpec/NestedGroups
 
@@ -222,7 +227,7 @@ RSpec.describe User do
       create(:user, username: "test_user_123")
       same_username = build(:user, username: "test_user_123")
       expect(same_username).not_to be_valid
-      expect(same_username.errors[:username].to_s).to include("test_user_123 is taken.")
+      expect(same_username.errors[:username].to_s).to include("has already been taken")
     end
 
     it "validates username against reserved words" do
@@ -366,6 +371,13 @@ RSpec.describe User do
         expect(new_user.reload.notifications.count).to eq(0)
       end
     end
+
+    it "refreshes user segments" do
+      expect(user).to be_persisted
+      expect(SegmentedUserRefreshWorker).not_to have_received(:perform_async)
+      user.update name: "New Name Here"
+      expect(SegmentedUserRefreshWorker).to have_received(:perform_async).with(user.id)
+    end
   end
 
   context "when callbacks are triggered after commit" do
@@ -411,6 +423,15 @@ RSpec.describe User do
           user.update(credits_count: 100)
         end
       end
+    end
+  end
+
+  context "when a new role is added" do
+    let(:without_role) { create(:user, roles: []) }
+
+    it "refreshes user segments" do
+      without_role.add_role :trusted
+      expect(SegmentedUserRefreshWorker).to have_received(:perform_async).with(without_role.id)
     end
   end
 
@@ -816,6 +837,92 @@ RSpec.describe User do
       Timecop.freeze do
         user = create(:user, last_comment_at: 1.minute.ago)
         expect(user.last_activity).to eq(Time.zone.now)
+      end
+    end
+  end
+
+  describe ".recently_active" do
+    let(:early) { build(:user) }
+    let(:later) { build(:user) }
+
+    before do
+      later.save!
+
+      Timecop.travel(5.days.ago) do
+        early.save!
+      end
+    end
+
+    it "returns the most recently updated" do
+      results = described_class.recently_active(1)
+      expect(results).to contain_exactly(later)
+    end
+  end
+
+  describe "#currently_following_tags" do
+    before do
+      allow(Tag).to receive(:followed_by)
+    end
+
+    it "calls Tag.followed_by" do
+      user.currently_following_tags
+      expect(Tag).to have_received(:followed_by).with(user)
+    end
+  end
+
+  describe "#has_no_published_content?" do
+    it "returns true if the user has no published articles or comments" do
+      create(:article, user_id: user.id, published: false, published_at: Date.tomorrow)
+      expect(user.has_no_published_content?).to be(true)
+    end
+
+    it "returns false if the user has any published articles or comments" do
+      create(:article, user_id: user.id, published: true)
+      expect(user.has_no_published_content?).to be(false)
+    end
+  end
+
+  describe ".above_average and .average_x_count" do
+    context "when there are not yet any articles with score above 0" do
+      it "works as expected" do
+        expect(described_class.average_articles_count).to be_within(0.1).of(0.0)
+        expect(described_class.average_comments_count).to be_within(0.1).of(0.0)
+        users = described_class.above_average
+        expect(users.pluck(:articles_count)).to eq([])
+        expect(users.pluck(:comments_count)).to eq([])
+      end
+    end
+
+    context "when there are users with articles_count" do
+      before do
+        create(:user, articles_count: 10)
+        create(:user, articles_count: 6)
+        create(:user, articles_count: 4)
+        create(:user, articles_count: 1)
+        # averages 5.25
+      end
+
+      it "works as expected" do
+        expect(described_class.average_articles_count).to be_within(0.1).of(5.25)
+        articles = described_class.above_average
+        expect(articles.pluck(:articles_count)).to contain_exactly(10, 6)
+      end
+    end
+
+    context "when there are users with comments_count" do
+      before do
+        create(:user, comments_count: 5)
+        create(:user, comments_count: 4)
+        create(:user, comments_count: 3)
+        create(:user, comments_count: 2)
+        # averages 3.5
+      end
+
+      it "works as expected" do
+        expect(described_class.average_comments_count).to be_within(0.1).of(3.5)
+        articles = described_class.above_average
+        # average is decimal but gets floored by the query builder
+        expect(articles.pluck(:comments_count)).to contain_exactly(5, 4, 3)
       end
     end
   end

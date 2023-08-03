@@ -7,6 +7,8 @@ import {
 import { waitOnBaseData } from '../utilities/waitOnBaseData';
 import { initializePodcastPlayback } from '../utilities/podcastPlayback';
 import { initializeVideoPlayback } from '../utilities/videoPlayback';
+import { createRootFragment } from '../shared/preact/preact-root-fragment';
+import { initializeDashboardSort } from './initializers/initializeDashboardSort';
 import { trackCreateAccountClicks } from '@utilities/ahoy/trackEvents';
 import { showWindowModal, closeWindowModal } from '@utilities/showModal';
 import * as Runtime from '@utilities/runtime';
@@ -56,8 +58,7 @@ window.Forem = {
 
     render(
       <CommentTextArea vanillaTextArea={originalTextArea} />,
-      parentContainer,
-      originalTextArea,
+      createRootFragment(parentContainer, originalTextArea),
     );
   },
   showModal: showWindowModal,
@@ -65,9 +66,11 @@ window.Forem = {
   Runtime,
 };
 
+initializeDashboardSort();
 initializePodcastPlayback();
 initializeVideoPlayback();
 InstantClick.on('change', () => {
+  initializeDashboardSort();
   initializePodcastPlayback();
   initializeVideoPlayback();
 });
@@ -176,3 +179,10 @@ document.ready.then(() => {
 trackCreateAccountClicks('authentication-hamburger-actions');
 trackCreateAccountClicks('authentication-top-nav-actions');
 trackCreateAccountClicks('comments-locked-cta');
+
+// Our infinite scroll pattern causes problems with the browser's back button:
+// specifically, if you've scrolled into page 2+, click into a post, then back
+// to the feed, the browser scroll position will not be where you had previously
+// scrolled. This seems to fix it, even though it seems like it should have
+// the opposite effect.
+history.scrollRestoration = 'manual';

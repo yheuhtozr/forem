@@ -136,6 +136,9 @@ ja:
         view:
           icon: 表示するボタン
           text: 表示
+        subscribe:
+          icon: 更新通知ボタン
+          text: コメントの更新を通知
       count: コメント %{count}
       empty: 新着
       add: 書く

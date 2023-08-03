@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   resourcify
-  rolify
+  rolify after_add: :update_user_roles_cache, after_remove: :update_user_roles_cache
 
   include CloudinaryHelper
   include Localizable
@@ -25,8 +25,8 @@ class User < ApplicationRecord
 
   include StringAttributeCleaner.nullify_blanks_for(:email)
 
+  extend UniqueAcrossModels
   USERNAME_MAX_LENGTH = 30
-  USERNAME_REGEXP = /\A[a-zA-Z0-9_]+\z/
   # follow the syntax in https://interledger.org/rfcs/0026-payment-pointers/#payment-pointer-syntax
   PAYMENT_POINTER_REGEXP = %r{
     \A                # start
@@ -35,6 +35,8 @@ class User < ApplicationRecord
     (/[\x20-\x7F]+)?  # optional forward slash and identifier with printable ASCII characters
     \z
   }x
+
+  RECENTLY_ACTIVE_LIMIT = 10_000
 
   attr_accessor :scholar_email, :new_note, :note_for_current_role, :user_status, :merge_user_id,
                 :add_credits, :remove_credits, :add_org_credits, :remove_org_credits, :ip_address,
@@ -69,7 +71,7 @@ class User < ApplicationRecord
   has_many :created_podcasts, class_name: "Podcast", foreign_key: :creator_id, inverse_of: :creator, dependent: :nullify
   has_many :credits, dependent: :destroy
   has_many :discussion_locks, dependent: :delete_all, inverse_of: :locking_user, foreign_key: :locking_user_id
-  has_many :display_ad_events, dependent: :nullify
+  has_many :billboard_events, dependent: :nullify
   has_many :email_authorizations, dependent: :delete_all
   has_many :email_messages, class_name: "Ahoy::Message", dependent: :destroy
   has_many :field_test_memberships, class_name: "FieldTest::Membership", as: :participant, dependent: :destroy
@@ -96,6 +98,8 @@ class User < ApplicationRecord
   has_many :poll_skips, dependent: :delete_all
   has_many :poll_votes, dependent: :delete_all
   has_many :profile_pins, as: :profile, inverse_of: :profile, dependent: :delete_all
+  has_many :segmented_users, dependent: :destroy
+  has_many :audience_segments, through: :segmented_users
 
   # we keep rating votes as they belong to the article, not to the user who viewed it
   has_many :rating_votes, dependent: :nullify
@@ -128,7 +132,7 @@ class User < ApplicationRecord
   validates :following_orgs_count, presence: true
   validates :following_tags_count, presence: true
   validates :following_users_count, presence: true
-  validates :name, length: { in: 1..100 }
+  validates :name, length: { in: 1..100 }, presence: true
   validates :password, length: { in: 8..100 }, allow_nil: true
   validates :payment_pointer, format: PAYMENT_POINTER_REGEXP, allow_blank: true
   validates :rating_votes_count, presence: true
@@ -137,14 +141,6 @@ class User < ApplicationRecord
   validates :spent_credits_count, presence: true
   validates :subscribed_to_user_subscriptions_count, presence: true
   validates :unspent_credits_count, presence: true
-  validates :username, length: { in: 2..USERNAME_MAX_LENGTH }, format: USERNAME_REGEXP
-  validates :username, presence: true, exclusion: {
-    in: ReservedWords.all,
-    message: proc { I18n.t("models.user.username_is_reserved") }
-  }
-  validates :username, uniqueness: { case_sensitive: false, message: lambda do |_obj, data|
-    I18n.t("models.user.is_taken", username: (data[:value]))
-  end }, if: :username_changed?
 
   # add validators for provider related usernames
   Authentication::Providers.username_fields.each do |username_field|
@@ -159,7 +155,9 @@ class User < ApplicationRecord
   end
 
   validate :non_banished_username, :username_changed?
-  validates :username, unique_cross_model_slug: true, if: :username_changed?
+
+  unique_across_models :username, length: { in: 2..USERNAME_MAX_LENGTH }
+
   validate :can_send_confirmation_email
   validate :update_rate_limit
   # NOTE: when updating the password on a Devise enabled model, the :encrypted_password
@@ -207,12 +205,29 @@ class User < ApplicationRecord
       ),
     )
   }
+
+  scope :with_experience_level, lambda { |level = nil|
+    includes(:setting).where("users_settings.experience_level": level)
+  }
+
+  scope :recently_active, lambda { |active_limit = RECENTLY_ACTIVE_LIMIT|
+    order(updated_at: :desc).limit(active_limit)
+  }
+
+  scope :above_average, lambda {
+    where(
+      articles_count: average_articles_count..,
+      comments_count: average_comments_count..,
+    )
+  }
+
   before_validation :downcase_email
 
   # make sure usernames are not empty, to be able to use the database unique index
   before_validation :set_username
   before_validation :strip_payment_pointer
   before_create :create_users_settings_and_notification_settings_records
+  after_update :refresh_auto_audience_segments
   before_destroy :remove_from_mailchimp_newsletters, prepend: true
   before_destroy :destroy_follows, prepend: true
 
@@ -222,8 +237,16 @@ class User < ApplicationRecord
   after_commit :subscribe_to_mailchimp_newsletter
   after_commit :bust_cache
 
-  def self.reserved_username
-    I18n.t("models.user.username_is_reserved")
+  def self.average_articles_count
+    Rails.cache.fetch("established_user_article_count", expires_in: 1.day) do
+      unscoped { where(articles_count: 1..).average(:articles_count) || average(:articles_count) } || 0.0
+    end
+  end
+
+  def self.average_comments_count
+    Rails.cache.fetch("established_user_comment_count", expires_in: 1.day) do
+      unscoped { where(comments_count: 1..).average(:comments_count) || average(:comments_count) } || 0.0
+    end
   end
 
   def self.staff_account
@@ -301,7 +324,7 @@ class User < ApplicationRecord
   end
 
   def cached_following_podcasts_ids
-    cache_key = "user-#{id}-#{last_followed_at}/following_podcasts_ids"
+    cache_key = "#{cache_key_with_version}/following_podcasts_ids"
     Rails.cache.fetch(cache_key, expires_in: 12.hours) do
       Follow.follower_podcast(id).pluck(:followable_id)
     end
@@ -323,32 +346,22 @@ class User < ApplicationRecord
     true
   end
 
-  # @todo Move the Query logic into Tag.  It represents User understanding the inner working of Tag.
   def cached_followed_tag_names
     cache_name = "user-#{id}-#{following_tags_count}-#{last_followed_at&.rfc3339}/followed_tag_names"
     Rails.cache.fetch(cache_name, expires_in: 24.hours) do
-      Tag.where(
-        id: Follow.where(
-          follower_id: id,
-          followable_type: "ActsAsTaggableOn::Tag",
-          points: 1..,
-        ).select(:followable_id),
-      ).pluck(:name)
+      Tag.followed_by(self).pluck(:name)
     end
   end
 
-  # @todo Move the Query logic into Tag.  It represents User understanding the inner working of Tag.
   def cached_antifollowed_tag_names
     cache_name = "user-#{id}-#{following_tags_count}-#{last_followed_at&.rfc3339}/antifollowed_tag_names"
     Rails.cache.fetch(cache_name, expires_in: 24.hours) do
-      Tag.where(
-        id: Follow.where(
-          follower_id: id,
-          followable_type: "ActsAsTaggableOn::Tag",
-          points: ...1,
-        ).select(:followable_id),
-      ).pluck(:name)
+      Tag.antifollowed_by(self).pluck(:name)
     end
+  end
+
+  def refresh_auto_audience_segments
+    SegmentedUserRefreshWorker.perform_async(id)
   end
 
   ##############################################################################
@@ -551,6 +564,14 @@ class User < ApplicationRecord
      last_moderation_notification, last_notification_activity].compact.max
   end
 
+  def currently_following_tags
+    Tag.followed_by(self)
+  end
+
+  def has_no_published_content?
+    articles.published.empty? && comments_count.zero?
+  end
+
   protected
 
   # Send emails asynchronously
@@ -574,7 +595,7 @@ class User < ApplicationRecord
   end
 
   def set_username
-    self.username = username&.downcase&.presence || generate_username
+    self.username = username&.downcase&.presence || generate_username # rubocop:disable Lint/RedundantSafeNavigation
   end
 
   def auth_provider_usernames
@@ -637,5 +658,12 @@ class User < ApplicationRecord
 
   def confirmation_required?
     ForemInstance.smtp_enabled?
+  end
+
+  def update_user_roles_cache(...)
+    authorizer.clear_cache
+    Rails.cache.delete("user-#{id}/has_trusted_role")
+    refresh_auto_audience_segments
+    trusted?
   end
 end

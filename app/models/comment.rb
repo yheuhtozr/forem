@@ -94,6 +94,10 @@ class Comment < ApplicationRecord
     I18n.t("models.comment.hidden")
   end
 
+  def self.title_image_only
+    I18n.t("models.comment.image_only")
+  end
+
   def self.build_comment(params, &blk)
     includes(user: :profile).new(params, &blk)
   end
@@ -150,6 +154,8 @@ class Comment < ApplicationRecord
     return self.class.title_hidden if hidden_by_commentable_user
 
     text = ActionController::Base.helpers.strip_tags(processed_html).strip
+    return self.class.title_image_only if only_contains_image?(text)
+
     truncated_text = ActionController::Base.helpers.truncate(text, length: length).gsub("&#39;", "'").gsub("&amp;", "&")
     Nokogiri::HTML.fragment(truncated_text).text # unescapes all HTML entities
   end
@@ -176,6 +182,14 @@ class Comment < ApplicationRecord
 
   def root_exists?
     ancestry && Comment.exists?(id: ancestry)
+  end
+
+  def by_staff_account?
+    user == User.staff_account
+  end
+
+  def privileged_reaction_counts
+    @privileged_reaction_counts ||= reactions.privileged_category.group(:category).count
   end
 
   private_class_method :build_sort_query
@@ -212,19 +226,11 @@ class Comment < ApplicationRecord
     end
   end
 
-  def processed_content
-    return @processed_content if @processed_content && !body_markdown_changed?
+  def extracted_evaluate_markdown
     return unless user
 
-    @processed_content = ContentRenderer.new(body_markdown, source: self, user: user)
-  end
-
-  def extracted_evaluate_markdown
-    content_renderer = processed_content
-
-    return unless content_renderer
-
-    self.processed_html = content_renderer.process(link_attributes: { rel: "nofollow" })
+    renderer = ContentRenderer.new(body_markdown, source: self, user: user)
+    self.processed_html = renderer.process(link_attributes: { rel: "nofollow" }).processed_html
     wrap_timestamps_if_video_present! if commentable
     shorten_urls!
   rescue ContentRenderer::ContentParsingError => e
@@ -386,5 +392,10 @@ class Comment < ApplicationRecord
 
   def parent_exists?
     parent_id && Comment.exists?(id: parent_id)
+  end
+
+  def only_contains_image?(stripped_text)
+    # If stripped text is blank and processed html has <img> tags, then it's an image-only comment
+    stripped_text.blank? && processed_html.include?("<img")
   end
 end

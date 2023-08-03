@@ -7,6 +7,12 @@ ja:
         og:
           title: 通知 - %{community}
       heading: 通知
+      article:
+        published_html: "%{user} が「%{title}」を公開しました"
+        mod_greeting: "ようこそ %{user} さん👋"
+        welcome_html: "%{user} は新メンバーです。ぜひ記事を見にいき、暖かい返信で迎えてあげましょう。"
+        mod_opt_out: このような通知を受け取らないようにしますか？
+        change_settings: 設定を変更
       badge:
         heading_html: "%{badge} バッジを獲得しました"
         awarded_html: 何か宣伝したいことがあった時に%{listings}できる %{credits}も贈呈します🎉
@@ -23,8 +29,10 @@ ja:
         first_reply: "最初の返信をしてあげましょう！🎉"
         left_html: "%{user} が今「%{title}」にコメントしました。"
         replied_html: "%{user} が「%{title}」のスレッドに返信しました"
-        report: 悪い評価をつけたことは 100% 非公開です。もしこのコメントがルールに反しているなら、低評価をつけるか不適切な投稿として通報してください。
-        welcome_html: このユーザーは新メンバーです。暖かい返信で迎えてあげましょう。<strong>よろしくお願いします！</strong>
+        mod_greeting: "ようこそ %{user} さん👋"
+        welcome_html: "%{user} は新メンバーです。ぜひ暖かい返信で迎えてあげましょう。"
+        mod_opt_out: このような通知を受け取らないようにしますか？
+        change_settings: 設定を変更
       error:
         subtitle: エラーが発生しました
         desc: 対応までしばらくお待ちください。

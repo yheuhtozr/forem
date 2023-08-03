@@ -4,6 +4,7 @@ import { render } from '@testing-library/preact';
 import { axe } from 'jest-axe';
 import '@testing-library/jest-dom';
 import { Article } from '..';
+import { reactionImagesSupport } from '../../__support__/reaction_images';
 import {
   article,
   articleWithOrganization,
@@ -11,6 +12,7 @@ import {
   articleWithReactions,
   videoArticle,
   articleWithComments,
+  articleWithCommentWithLongParagraph,
   podcastArticle,
   podcastEpisodeArticle,
   userArticle,
@@ -25,6 +27,10 @@ const commonProps = {
 };
 
 describe('<Article /> component', () => {
+  beforeAll(() => {
+    reactionImagesSupport();
+  });
+
   it('should have no a11y violations for a standard article', async () => {
     const { container } = render(
       <Article
@@ -197,6 +203,36 @@ describe('<Article /> component', () => {
     const comments = getByTitle('Number of comments');
 
     expect(comments.textContent).toEqual('213');
+  });
+
+  it('should render second paragraph, but not third', () => {
+    const { queryByTestId } = render(
+      <Article
+        {...commonProps}
+        isBookmarked={false}
+        article={articleWithComments}
+      />,
+    );
+
+    const comments = queryByTestId('comment-content');
+
+    expect(comments.textContent).toContain('Kitsch hoodie artisan');
+    expect(comments.classList).not.toContain('Third paragraph');
+  });
+
+  it('should render the first part of a long paragraph', () => {
+    const { queryByTestId } = render(
+      <Article
+        {...commonProps}
+        isBookmarked={false}
+        article={articleWithCommentWithLongParagraph}
+      />,
+    );
+
+    const comments = queryByTestId('comment-content');
+
+    expect(comments.textContent).toContain('Start of paragraph');
+    expect(comments.classList).not.toContain('End of paragraph');
   });
 
   it('should render with an add comment button when there are no comments', () => {

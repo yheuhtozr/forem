@@ -8,6 +8,7 @@ RSpec.describe Images::Optimizer, type: :service do
   describe "#call" do
     before do
       allow(described_class).to receive(:cloudinary)
+      allow(described_class).to receive(:cloudflare)
       allow(described_class).to receive(:imgproxy)
     end
 
@@ -76,12 +77,66 @@ RSpec.describe Images::Optimizer, type: :service do
   end
 
   describe "#imgproxy" do
-    it "works" do
+    it "generates correct url" do
       allow(described_class).to receive(:imgproxy_enabled?).and_return(true)
       imgproxy_url = described_class.imgproxy(image_url, width: 500, height: 500)
       # mb = maximum bytes, defaults to 500_000 bytes
       # ar = autorotate, defaults to "true", serialized as "1"
       expect(imgproxy_url).to match(%r{/s:500:500/mb:500000/ar:1/aHR0cHM6Ly9pLmlt/Z3VyLmNvbS9mS1lL/Z280LnBuZw})
+    end
+  end
+
+  describe "#cloudflare" do
+    let(:cloudfare_domain) { ApplicationConfig["CLOUDFLARE_IMAGES_DOMAIN"] }
+    let(:cloudfare_basic_url) { "https://#{cloudfare_domain}/cdn-cgi/image/width=821,height=900,fit=cover,gravity=auto,format=auto/" }
+
+    before do
+      allow(ApplicationConfig).to receive(:[]).with("CLOUDFLARE_IMAGES_DOMAIN").and_return("images.example.com")
+    end
+
+    it "generates correct url based on h/w input" do
+      cloudflare_url = described_class.cloudflare(image_url, width: 821, height: 420)
+      url_regexp = %r{/width=821,height=420,fit=cover,gravity=auto,format=auto/#{CGI.escape(image_url)}}
+      expect(cloudflare_url).to match(url_regexp)
+    end
+
+    it "does not error if nil" do
+      cloudflare_url = described_class.cloudflare(nil, width: 821, height: 420)
+      expect(cloudflare_url).to match(%r{/width=821,height=420,fit=cover,gravity=auto,format=auto/})
+    end
+
+    it "pulls suffix if nested cloudflare url is provided" do
+      cloudflare_url = described_class.cloudflare(
+        [cloudfare_basic_url, CGI.escape(image_url)].join,
+        width: 821, height: 420,
+      )
+      expect(cloudflare_url).to eq("https://#{cloudfare_domain}/cdn-cgi/image/width=821,height=420,fit=cover,gravity=auto,format=auto/#{CGI.escape(image_url)}")
+    end
+
+    it "does not error out if image is empty" do
+      cloudflare_url = described_class.cloudflare(
+        cloudfare_basic_url,
+        width: 821, height: 420,
+      )
+      expect(cloudflare_url).to eq("https://#{cloudfare_domain}/cdn-cgi/image/width=821,height=420,fit=cover,gravity=auto,format=auto/")
+    end
+
+    it "does not error out if image is not proper url and has https" do
+      image_url = "https:hello"
+      cloudflare_url = described_class.cloudflare(
+        [cloudfare_basic_url, CGI.escape(image_url)].join,
+        width: 821, height: 420,
+      )
+      expect(cloudflare_url).to eq("https://#{cloudfare_domain}/cdn-cgi/image/width=821,height=420,fit=cover,gravity=auto,format=auto/https%3Ahello")
+    end
+
+    it "does not error out if image is not proper url and does not have https" do
+      image_url = "hello"
+      cloudflare_url = described_class.cloudflare(
+        [cloudfare_basic_url, CGI.escape(image_url)].join,
+        width: 821, height: 420,
+      )
+      expect(cloudflare_url).to eq("https://#{cloudfare_domain}/cdn-cgi/image/width=821,height=420,fit=cover,gravity=auto,format=auto/")
     end
   end
 
@@ -124,6 +179,18 @@ RSpec.describe Images::Optimizer, type: :service do
       allow(Imgproxy).to receive(:config).and_return(imgproxy_config_stub)
 
       expect(described_class.imgproxy_enabled?).to be(true)
+    end
+  end
+
+  describe "#cloudflare_enabled?" do
+    it "returns false if config missing" do
+      allow(ApplicationConfig).to receive(:[]).with("CLOUDFLARE_IMAGES_DOMAIN").and_return(nil)
+      expect(described_class.cloudflare_enabled?).to be(false)
+    end
+
+    it "returns true if config is present" do
+      allow(ApplicationConfig).to receive(:[]).with("CLOUDFLARE_IMAGES_DOMAIN").and_return("images.com")
+      expect(described_class.cloudflare_enabled?).to be(true)
     end
   end
 

@@ -102,5 +102,4 @@ ja:
     users:
       remove_role:
         remove_self: Admins cannot remove roles from themselves.
-        remove_super: Super Admin roles cannot be removed.
         error: There was an issue removing this role. %{e_message}

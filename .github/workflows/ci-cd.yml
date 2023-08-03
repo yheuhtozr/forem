@@ -19,6 +19,7 @@ env:
   DATABASE_NAME_TEST: Forem_test
   KNAPSACK_PRO_FIXED_QUEUE_SPLIT: true
   POSTGRES_PASSWORD: postgres
+  KNAPSACK_PRO_LOG_LEVEL: info
 
 jobs:
   bundle_install:
@@ -100,7 +101,7 @@ jobs:
 
   audit:
     runs-on: ubuntu-latest
-    needs: [bundle_install]
+    needs: [bundle_install, yarn_install]
 
     steps:
       - uses: actions/checkout@v3
@@ -122,7 +123,7 @@ jobs:
         uses: reviewdog/action-rubocop@v2
         with:
           rubocop_version: gemfile
-          rubocop_extensions: rubocop-performance:gemfile rubocop-rails:gemfile rubocop-rspec:gemfile
+          rubocop_extensions: rubocop-performance:gemfile rubocop-rails:gemfile rubocop-rspec:gemfile rubocop-capybara:gemfile
           reporter: github-pr-review # Default is github-pr-check
       - run: yarn lint:frontend
       - run: bundle exec bundle-audit check --update
@@ -188,11 +189,14 @@ jobs:
         if: failure()
         with:
           name: rspec-artifacts
-          path: |
-            tmp/capybara
-      - uses: codecov/codecov-action@v3
+          path: tmp/capybara
+      - name: Rename folder
+        run: mv coverage/simplecov coverage/simplecov-${{ matrix.ci_node_index }}
+      - name: Upload test coverage result
+        uses: actions/upload-artifact@v3
         with:
-          flags: ruby
+          name: coverage
+          path: coverage/
       - name: Upload test results to BuildPulse for flaky test detection
         if: '!cancelled()' # Run this step even when the tests fail. Skip if the workflow is cancelled.
         uses: Workshop64/buildpulse-action@master
@@ -230,9 +234,11 @@ jobs:
           path: junit.xml
           key: ${{ secrets.BUILDPULSE_ACCESS_KEY_ID }}
           secret: ${{ secrets.BUILDPULSE_SECRET_ACCESS_KEY }}
-      - uses: codecov/codecov-action@v3
+      - name: Upload test coverage result
+        uses: actions/upload-artifact@v3
         with:
-          flags: jest, javascript
+          name: coverage
+          path: coverage/
 
   storybook:
     runs-on: ubuntu-latest
@@ -364,6 +370,8 @@ jobs:
       - run: yarn cypress install
       - name: cypress
         env:
+          CYPRESS_RAILS_HOST: localhost
+          CYPRESS_RAILS_PORT: 3000
           KNAPSACK_PRO_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
           KNAPSACK_PRO_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
           KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS: ${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS }}
@@ -381,10 +389,15 @@ jobs:
           path: |
             tmp/cypress_screenshots
             cypress/logs
-      - uses: codecov/codecov-action@v3
+      - name: rename folder
+        run: |
+          rm -rf coverage/cypress/lcov-report
+          mv coverage/cypress coverage/cypress-${{ matrix.ci_node_index }}
+      - name: Upload test coverage result
+        uses: actions/upload-artifact@v3
         with:
-          flags: cypress, javascript
-          fail_ci_if_error: false
+          name: coverage
+          path: coverage/
       - name: Upload test results to BuildPulse for flaky test detection
         if: '!cancelled()' # Run this step even when the tests fail. Skip if the workflow is cancelled.
         uses: Workshop64/buildpulse-action@master
@@ -395,10 +408,50 @@ jobs:
           key: ${{ secrets.BUILDPULSE_ACCESS_KEY_ID }}
           secret: ${{ secrets.BUILDPULSE_SECRET_ACCESS_KEY }}
 
+  upload-coverage:
+    runs-on: ubuntu-latest
+    needs: [rspec, jest, cypress]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/download-artifact@v3
+        with:
+          name: coverage
+      - run: |
+          mkdir coverage coverage/simplecov coverage/cypress
+          mv simplecov-* coverage/simplecov
+          mv cypress-* coverage/cypress
+          mv jest coverage/jest
+      - uses: Wandalen/wretry.action@master
+        with:
+          action: codecov/codecov-action@v3
+          with: |
+            flags: ruby
+            directory: coverage/simplecov
+            fail_ci_if_error: ${{  github.ref != 'refs/heads/main' }}
+          attempt_limit: 5
+          attempt_delay: 30000
+      - uses: Wandalen/wretry.action@master
+        with:
+          action: codecov/codecov-action@v3
+          with: |
+            flags: jest, javascript
+            directory: coverage/jest
+            fail_ci_if_error: ${{  github.ref != 'refs/heads/main' }}
+          attempt_limit: 5
+          attempt_delay: 30000
+      - uses: Wandalen/wretry.action@master
+        with:
+          action: codecov/codecov-action@v3
+          with: |
+            flags: cypress, javascript
+            directory: coverage/cypress
+            fail_ci_if_error: ${{  github.ref != 'refs/heads/main' }}
+          attempt_limit: 5
+          attempt_delay: 30000
 
   CI-status-report:
     runs-on: ubuntu-latest
-    needs: [rspec, jest, cypress, build_test]
+    needs: [rspec, jest, cypress, build_test, audit, storybook]
     if: always()
 
     steps:
@@ -425,3 +478,11 @@ jobs:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
+      - uses: honeybadger-io/github-notify-deploy-action@v1
+        with:
+          api_key: ${{ secrets.HONEYBADGER_API_KEY_RUBY }}
+        if: matrix.environment == 'production'
+      - uses: honeybadger-io/github-notify-deploy-action@v1
+        with:
+          api_key: ${{ secrets.HONEYBADGER_API_KEY_JAVASCRIPT }}
+        if: matrix.environment == 'production'

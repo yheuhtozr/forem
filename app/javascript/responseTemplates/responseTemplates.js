@@ -36,7 +36,9 @@ function buildHTML(response, typeOf) {
               <p>${obj.content}</p>
             </div>
             <div class="pl-2">
-              <button class="crayons-btn crayons-btn--secondary crayons-btn--s insert-template-button" type="button" data-content="${content}">${i18next.t('templates.insert')}</button>
+              <button class="crayons-btn crayons-btn--secondary crayons-btn--s insert-template-button" type="button" data-content="${content}">${i18next.t(
+          'templates.insert',
+        )}</button>
             </div>
           </div>
         `;
@@ -54,8 +56,12 @@ function buildHTML(response, typeOf) {
                 <p>${obj.content}</p>
               </div>
               <div class="flex flex-nowrap pl-2">
-                <button class="crayons-btn crayons-btn--s crayons-btn--secondary moderator-submit-button m-1" type="submit" data-response-template-id="${obj.id}">${i18next.t('templates.mod')}</button>
-                <button class="crayons-btn crayons-btn--s crayons-btn--outlined insert-template-button m-1" type="button" data-content="${content}">${i18next.t('templates.insert')}</button>
+                <button class="crayons-btn crayons-btn--s crayons-btn--secondary moderator-submit-button m-1" type="submit" data-response-template-id="${
+                  obj.id
+                }">${i18next.t('templates.mod')}</button>
+                <button class="crayons-btn crayons-btn--s crayons-btn--outlined insert-template-button m-1" type="button" data-content="${content}">${i18next.t(
+          'templates.insert',
+        )}</button>
               </div>
             </div>
           `;
@@ -162,8 +168,6 @@ function fetchResponseTemplates(formId, onTemplateSelected) {
   })
     .then((response) => response.json())
     .then((response) => {
-      form.querySelector('img.loading-img').classList.toggle('hidden');
-
       let revealed;
       const topLevelData = document.getElementById('response-templates-data');
 
@@ -218,7 +222,6 @@ function copyData(responsesContainer) {
 }
 
 function loadData(form, onTemplateSelected) {
-  form.querySelector('img.loading-img').classList.toggle('hidden');
   fetchResponseTemplates(form.id, onTemplateSelected);
 }
 
