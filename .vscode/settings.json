@@ -8,5 +8,13 @@
   },
   "ruby.format": "rubocop",
   "ruby.intellisense": "rubyLocate",
-  "yaml.customTags": ["!html scalar", "!pl mapping"]
+  "yaml.customTags": ["!html scalar", "!pl mapping"],
+  "i18n-ally.localesPaths": [
+    "config/locales",
+    "app/javascript/i18n",
+    "app/services/languages",
+    "public/javascripts/i18n",
+    "spec/services/languages",
+    "public/packs/media/i18n"
+  ]
 }
