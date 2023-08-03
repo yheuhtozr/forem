@@ -39,7 +39,7 @@ ja:
         icon: 保存ボタン
         text: 保存
       subscribe:
-        title: コメントツリーの更新を通知
-        aria_label: コメントツリーの更新を通知
+        title: 全コメントの更新を通知
+        aria_label: 全コメントの更新を通知
         icon: 保存ボタン
-        text: コメントツリーの更新を通知
+        text: 全コメントの更新を通知

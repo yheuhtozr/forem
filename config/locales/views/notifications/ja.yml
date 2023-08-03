@@ -9,7 +9,7 @@ ja:
       heading: 通知
       article:
         published_html: "%{user} が「%{title}」を公開しました"
-        mod_greeting: "ようこそ %{user} さん👋"
+        mod_greeting: "%{user} さん👋"
         welcome_html: "%{user} は新メンバーです。ぜひ記事を見にいき、暖かい返信で迎えてあげましょう。"
         mod_opt_out: このような通知を受け取らないようにしますか？
         change_settings: 設定を変更
@@ -29,7 +29,7 @@ ja:
         first_reply: "最初の返信をしてあげましょう！🎉"
         left_html: "%{user} が今「%{title}」にコメントしました。"
         replied_html: "%{user} が「%{title}」のスレッドに返信しました"
-        mod_greeting: "ようこそ %{user} さん👋"
+        mod_greeting: "%{user} さん👋"
         welcome_html: "%{user} は新メンバーです。ぜひ暖かい返信で迎えてあげましょう。"
         mod_opt_out: このような通知を受け取らないようにしますか？
         change_settings: 設定を変更
