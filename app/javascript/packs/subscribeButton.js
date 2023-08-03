@@ -1,4 +1,5 @@
 // /* global showModalAfterError*/
+import { i18next } from '@utilities/locale';
 
 export function updateSubscribeButtonText(
   button,
@@ -20,7 +21,7 @@ export function updateSubscribeButtonText(
   }
 
   const pressed = subscriptionIsActive;
-  const verb = subscriptionIsActive ? 'Subscribed' : 'Subscribe';
+  const verb = subscriptionIsActive ? 'subscribed' : 'subscribe';
 
   // comment_id should only be present if there's a subscription, so a button
   // that initially renders as 'Subscribed-to-thread' can be a toggle until refreshed
@@ -33,16 +34,24 @@ export function updateSubscribeButtonText(
 
   switch (subscription_config) {
     case 'top_level_comments':
-      label = `${verb} to top-level comments`;
-      mobileLabel = `Top-level ${noun}`;
+      label = i18next.t(
+        `notifications.subscription.${verb}_${subscription_config}`,
+      );
+      mobileLabel = i18next.t(
+        `notifications.subscription.mobile_${subscription_config}`,
+      );
       break;
     case 'only_author_comments':
-      label = `${verb} to author comments`;
-      mobileLabel = `Author ${noun}`;
+      label = i18next.t(
+        `notifications.subscription.${verb}_${subscription_config}`,
+      );
+      mobileLabel = i18next.t(
+        `notifications.subscription.mobile_${subscription_config}`,
+      );
       break;
     default:
-      label = `${verb} to ${noun}`;
-      mobileLabel = `${noun}`.charAt(0).toUpperCase() + noun.slice(1);
+      label = i18next.t(`notifications.subscription.${verb}_${noun}`);
+      mobileLabel = i18next.t(`notifications.subscription.mobile_${noun}`);
   }
 
   button.setAttribute('aria-label', label);

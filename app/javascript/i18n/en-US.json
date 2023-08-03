@@ -444,7 +444,21 @@
     "mute": "Mute Notifications",
     "muted": "Notifications Muted",
     "receive": "Receive Notifications",
-    "restored": "Notifications Restored"
+    "restored": "Notifications Restored",
+    "subscription": {
+      "mobile_comments": "Comments",
+      "mobile_only_author_comments": "Author comments",
+      "mobile_top_level_comments": "Top-level comments",
+      "mobile_thread": "Thread",
+      "subscribe_comments": "Subscribe to comments",
+      "subscribed_comments": "Subscribed to comments",
+      "subscribe_only_author_comments": "Subscribe to author comments",
+      "subscribed_only_author_comments": "Subscribed to author comments",
+      "subscribe_top_level_comments": "Subscribe to top-level comments",
+      "subscribed_top_level_comments": "Subscribed to top-level comments",
+      "subscribe_thread": "Subscribe to thread",
+      "subscribed_thread": "Subscribed to thread"
+    }
   },
   "onboarding": {
     "aria_label": "Back to previous onboarding step",

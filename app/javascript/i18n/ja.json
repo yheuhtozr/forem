@@ -442,7 +442,21 @@
     "mute": "Mute Notifications",
     "muted": "Notifications Muted",
     "receive": "Receive Notifications",
-    "restored": "Notifications Restored"
+    "restored": "Notifications Restored",
+    "subscription": {
+      "mobile_comments": "全コメントに",
+      "mobile_only_author_comments": "作者コメントに",
+      "mobile_top_level_comments": "独立コメントに",
+      "mobile_thread": "スレッドに",
+      "subscribe_comments": "全コメントの更新を通知",
+      "subscribed_comments": "全コメントを更新通知中",
+      "subscribe_only_author_comments": "作者コメントの更新を通知",
+      "subscribed_only_author_comments": "作者コメントを更新通知中",
+      "subscribe_top_level_comments": "独立コメントの更新を通知",
+      "subscribed_top_level_comments": "独立コメントを更新通知中",
+      "subscribe_thread": "スレッドの更新を通知",
+      "subscribed_thread": "スレッドを更新通知中"
+    }
   },
   "onboarding": {
     "aria_label": "ようこそ設定を一段階戻る",
