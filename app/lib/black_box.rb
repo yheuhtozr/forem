@@ -38,7 +38,7 @@ class BlackBox
     private
 
     def calculate_bonus_score(body_markdown)
-      size_bonus = body_markdown.size > 200 ? 2 : 0
+      size_bonus = body_markdown.bytesize > 200 ? 2 : 0
       code_bonus = body_markdown.include?("`") ? 1 : 0
       size_bonus + code_bonus
     end
