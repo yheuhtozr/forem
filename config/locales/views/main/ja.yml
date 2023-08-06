@@ -66,6 +66,7 @@ ja:
         powered:
           text_html: '%{rails} と、みんなの愛でできている。%{community} <span title="copyright">&copy;</span> %{copyright}.'
           rails: Ruby on Rails
+        sidebar_desc_html: "%{community}\n%{desc}"
       home: トップページ
       create_post: 記事を作成
       signout: ログアウト
