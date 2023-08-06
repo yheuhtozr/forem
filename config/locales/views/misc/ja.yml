@@ -47,6 +47,8 @@ ja:
       preview:
         icon: アプリロゴ
         text: 'プレビュー:'
+    mailers:
+      contact_mailto_html: 他にわからないことがありましたら <a href="mailto:%{contact_email}">%{contact_email}</a> までお問い合わせください。
     onboardings:
       meta:
         title: "%{community} へようこそ！"
