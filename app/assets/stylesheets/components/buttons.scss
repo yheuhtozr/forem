@@ -146,6 +146,16 @@
       pointer-events: revert;
     }
   }
+
+  &--story {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    width: 2.5em;
+    .crayons-reaction__icon {
+      padding: 0;
+    }
+  }
 }
 
 .crayons-btn--secondary {
