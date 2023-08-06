@@ -28,27 +28,19 @@ Object {
         width="18"
       />
       <img
-        data-name="Exploding Head"
+        data-name="K30"
         data-position="3"
-        data-slug="exploding_head"
+        data-slug="k30"
         height="18"
-        src="/assets/exploding-head.svg"
+        src="/assets/katsu_30.png.svg"
         width="18"
       />
       <img
-        data-name="Raised Hands"
+        data-name="Roman"
         data-position="4"
-        data-slug="raised_hands"
+        data-slug="roman"
         height="18"
-        src="/assets/raised-hands.svg"
-        width="18"
-      />
-      <img
-        data-name="Fire"
-        data-position="5"
-        data-slug="fire"
-        height="18"
-        src="/assets/fire.svg"
+        src="/assets/roman.svg"
         width="18"
       />
     </div>

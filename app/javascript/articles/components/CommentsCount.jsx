@@ -27,7 +27,7 @@ export const CommentsCount = ({ count, articlePath, articleTitle }) => {
         url={`${articlePath}#comments`}
         icon={commentsSVG}
         tagName="a"
-        className="crayons-reaction"
+        className="flex items-center"
         aria-label={commentsAriaLabelText}
       >
         <span title={i18next.t('comments.number')}>

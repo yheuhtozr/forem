@@ -54,14 +54,14 @@ describe('<ReactionsCount /> component', () => {
     expect(queryByAltText('Like').getAttribute('src')).toContain(
       '/assets/sparkle-heart.svg',
     );
-    expect(queryByAltText('Unicorn').getAttribute('src')).toContain(
+    expect(queryByAltText('Babel').getAttribute('src')).toContain(
       '/assets/babel-filled.svg',
     );
-    expect(queryByAltText('Fire').getAttribute('src')).toContain(
-      '/assets/fire.svg',
+    expect(queryByAltText('Roman').getAttribute('src')).toContain(
+      '/assets/roman.svg',
     );
-    expect(queryByAltText('Raised Hands').getAttribute('src')).toContain(
-      '/assets/raised-hands.svg',
+    expect(queryByAltText('K30').getAttribute('src')).toContain(
+      '/assets/katsu_30.png',
     );
     expect(queryByAltText('Exploding Head')).not.toExist();
   });

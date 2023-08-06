@@ -151,7 +151,7 @@ export class FollowUsers extends Component {
         ? 'fw-bold color-base-60 inline-block fs-base'
         : 'color-base-60 inline-block fs-base';
 
-    return <p className={klassName}>{followingStatus}</p>;
+    return <p className={klassName}>{followingStatus} -</p>;
   }
 
   renderFollowToggle() {

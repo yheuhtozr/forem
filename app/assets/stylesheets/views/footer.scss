@@ -9,6 +9,10 @@
   }
 }
 
+.stories-index + #footer {
+  display: none;
+}
+
 .crayons-footer {
   --footer-padding: var(--su-5);
   background: var(--footer-bg);
@@ -28,6 +32,10 @@
     flex-direction: column;
     gap: var(--su-2);
   }
+}
+
+.sidebar-footer {
+  color: var(--color-secondary);
 }
 
 .dot {
