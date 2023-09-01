@@ -590,13 +590,30 @@ class Article < ApplicationRecord
   def notify_external_services_on_new_post
     return unless published && !scheduled?
 
-    if boost_states["boosted_new_post"]
-      DiscordWebhook::Bot.edited_post self
+    if boost_states["boosted_new_post"] # deprecated for new updates
+      begin
+        DiscordWebhook::Bot.edited_post self
+      rescue StandardError => e
+        Honeybadger.notify e
+      end
     else
-      TwitterClient::Bot.new_post self
-      DiscordWebhook::Bot.new_post self
+      begin
+        TwitterClient::Bot.new_post self unless boost_states["twitter_new_post"]
+        boost_states["twitter_new_post"] = true
+      rescue StandardError => e
+        Honeybadger.notify e
+      end
+      begin
+        if boost_states["discord_new_post"]
+          DiscordWebhook::Bot.edited_post self
+        else
+          DiscordWebhook::Bot.new_post self
+          boost_states["discord_new_post"] = true
+        end
+      rescue StandardError => e
+        Honeybadger.notify e
+      end
 
-      boost_states["boosted_new_post"] = true
       update_columns boost_states: boost_states
     end
   end
