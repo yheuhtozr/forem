@@ -1,10 +1,14 @@
 <div class="registration__actions-providers">
+  <%= tag.div t("migdal.auth.twitter_deprecated"), class: "registration__error-notice w-max my-0 px-0 align-center" if params[:state] == "new-user" %>
   <% authentication_enabled_providers.each do |provider| %>
     <% next unless display_social_login?(provider.provider_name) %>
+    <% depr_x = provider.provider_name == :twitter && params[:state] == "new-user" %>
     <%= form_with url: provider.sign_in_path(state: "navbar_basic"), class: "flex w-100", local: true do |f| %>
-      <%= f.button type: :submit, class: "crayons-btn crayons-btn--l crayons-btn--brand-#{provider.provider_name} crayons-btn--icon-left grow-1 whitespace-nowrap" do %>
+      <%= f.button type: :submit, class: "crayons-btn crayons-btn--l crayons-btn--brand-#{provider.provider_name} crayons-btn--icon-left grow-1 whitespace-nowrap", disabled: depr_x do %>
+        <%= tag("s", {}, true) if depr_x %>
         <%= crayons_icon_tag(provider.provider_name, aria_hidden: true, title: provider.provider_name) %>
         <%= t("views.auth.provider.text", action: params[:state] == "new-user" ? t("views.auth.provider.signup") : t("views.auth.provider.login"), provider: provider.official_name) %>
+        <%= "</s>".html_safe if depr_x %>
       <% end %>
     <% end %>
   <% end %>

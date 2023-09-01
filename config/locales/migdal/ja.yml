@@ -2,6 +2,7 @@
 ja:
   migdal:
     auth:
+      twitter_deprecated: Twitter (X) による新規登録は一時停止中です。ご了承ください。
       title:
         text_html: <a href="%{root}" class="c-link c-link--branded">%{name}</a> は創作言語・世界愛好者の憩いの場です
     liquid:
