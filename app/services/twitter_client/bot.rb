@@ -1,9 +1,53 @@
 module TwitterClient
-  # Twitter client (users twitter gem as a backend)
+  # Use Twitter v2 API (cf. https://hawksnowlog.blogspot.com/2023/05/ruby-sample-code-for-twitterv2-api.html)
   class Bot
+    require "json"
+    # require "typhoeus"
+    # require "oauth"
+    require "oauth/request_proxy/typhoeus_request"
+
     class << self
+      def options(payload)
+        {
+          method: :post,
+          headers: {
+            "User-Agent": "MigdalTwitterV2Bot",
+            "content-type": "application/json"
+          },
+          body: JSON.dump(payload)
+        }
+      end
+
+      def consumer
+        OAuth::Consumer.new(_consumer_key, _consumer_secret, { site: "https://api.twitter.com", debug_output: false })
+      end
+
+      def access_token
+        OAuth::AccessToken.new(consumer, _access_token, _access_token_secret)
+      end
+
+      def post_tweet(url, oauth_params, payload)
+        request = Typhoeus::Request.new(url, options(payload))
+        oauth_helper = OAuth::Client::Helper.new(request, oauth_params.merge(request_uri: url))
+        request.options[:headers][:Authorization] = oauth_helper.header
+
+        request.on_complete do |response|
+          if response.failure?
+            raise TwitterClient::Errors::Error, response.body
+          end
+        end
+        request.run
+      end
+
       def tweet(status)
-        target.update(status) if active?
+        return unless active?
+
+        payload = { text: status }
+        oauth_params = {
+          consumer: consumer,
+          token: access_token
+        }
+        post_tweet(_endpoint, oauth_params, payload)
       end
 
       def new_post(article)
@@ -13,63 +57,31 @@ module TwitterClient
 
       private
 
-      # def request
-      #   Honeycomb.add_field("name", "twitter.client")
-      #   yield
-      # rescue Twitter::Error => e
-      #   record_error(e)
-      #   handle_error(e)
-      # end
-
-      # def record_error(exception)
-      #   class_name = exception.class.name.demodulize
-
-      #   Honeycomb.add_field("twitter.result", "error")
-      #   Honeycomb.add_field("twitter.error", class_name)
-      #   ForemStatsClient.increment(
-      #     "twitter.errors",
-      #     tags: ["error:#{class_name}", "message:#{exception.message}"],
-      #   )
-      # end
-
-      # def handle_error(exception)
-      #   class_name = exception.class.name.demodulize
-
-      #   # raise specific error if known, generic one if unknown
-      #   error_class = "::TwitterClient::Errors::#{class_name}".safe_constantize
-      #   raise error_class, exception.message if error_class
-
-      #   error_class = if exception.class < Twitter::Error::ClientError
-      #                   TwitterClient::Errors::ClientError
-      #                 elsif exception.class < Twitter::Error::ServerError
-      #                   TwitterClient::Errors::ServerError
-      #                 else
-      #                   TwitterClient::Errors::Error
-      #                 end
-
-      #   raise error_class, exception.message
-      # end
-
-      def target
-        Twitter::REST::Client.new(
-          consumer_key: ApplicationConfig["TWITTER_BOT_API_KEY"],
-          consumer_secret: ApplicationConfig["TWITTER_BOT_API_SECRET"],
-          access_token: ApplicationConfig["TWITTER_BOT_ACCESS_TOKEN"],
-          access_token_secret: ApplicationConfig["TWITTER_BOT_ACCESS_SECRET"],
-          user_agent: "TwitterRubyGem/#{Twitter::Version} (#{URL.url})",
-          timeouts: {
-            connect: 5,
-            read: 5,
-            write: 5
-          },
-        )
-      end
-
       def active?
-        ApplicationConfig["TWITTER_BOT_API_KEY"] &&
-          ApplicationConfig["TWITTER_BOT_API_SECRET"] &&
+        (Settings::Authentication.twitter_key.presence || ApplicationConfig["TWITTER_KEY"]) &&
+          (Settings::Authentication.twitter_secret.presence || ApplicationConfig["TWITTER_SECRET"]) &&
           ApplicationConfig["TWITTER_BOT_ACCESS_TOKEN"] &&
           ApplicationConfig["TWITTER_BOT_ACCESS_SECRET"]
+      end
+
+      def _consumer_key
+        Settings::Authentication.twitter_key.presence || ApplicationConfig["TWITTER_KEY"]
+      end
+
+      def _consumer_secret
+        Settings::Authentication.twitter_secret.presence || ApplicationConfig["TWITTER_SECRET"]
+      end
+
+      def _access_token
+        ApplicationConfig["TWITTER_BOT_ACCESS_TOKEN"]
+      end
+
+      def _access_token_secret
+        ApplicationConfig["TWITTER_BOT_ACCESS_SECRET"]
+      end
+
+      def _endpoint
+        "https://api.twitter.com/2/tweets"
       end
     end
   end
