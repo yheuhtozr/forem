@@ -1,12 +1,18 @@
-@function sel-lang($sel, $lang) {
-  @return '#{$sel}:lang(#{$lang})';
+// variable $ff-debug is a temp workaround for a FF >= 114 :lang() bug.
+
+@function sel-lang($sel, $lang, $ff-debug: false) {
+  @if $ff-debug {
+    @return '#{$sel}[lang=#{$lang}]';
+  } @else {
+    @return '#{$sel}:lang(#{$lang})';
+  }
 }
-@function article-lang($lang) {
-  @return sel-lang('article', $lang);
+@function article-lang($lang, $ff-debug: false) {
+  @return sel-lang('article', $lang, $ff-debug);
 }
 
-@mixin font-lang($lang, $family, $body-font: null) {
-  $l-lang: article-lang($lang);
+@mixin font-lang($lang, $family, $body-font: null, $ff-debug: false) {
+  $l-lang: article-lang($lang, $ff-debug);
   $somefont-article-body: if(
     $body-font,
     'body.#{$body-font}-article-body',
@@ -15,10 +21,11 @@
 
   #{$somefont-article-body} {
     &:lang(#{$lang}),
+    &[lang=#{$lang}], // FF temp debug
     #{$l-lang} .crayons-article__header h1,
-    #{sel-lang('section#comments-container', $lang)} .text-styles p,
-    #{sel-lang('.localized-text-styles', $lang)},
-    #{sel-lang('.with-content-font', $lang)} {
+    #{sel-lang('section#comments-container', $lang, $ff-debug)} .text-styles p,
+    #{sel-lang('.localized-text-styles', $lang, $ff-debug)},
+    #{sel-lang('.with-content-font', $lang, $ff-debug)} {
       font-family: #{$family};
     }
 
@@ -114,9 +121,14 @@
   }
 }
 // conlang fonts
-@include font-lang('x-v3-zph0xl', 'Vekos, sans-serif');
-@include font-lang('x-v3-mqe0bm', 'Maqen, sans-serif');
-@include font-lang('x-v3-jrlrflll', 'Cirlxarli_liparxe, sans-serif');
-@include font-lang('x-v3-arx0as', 'Kardinal, sans-serif');
-@include font-lang('x-v3-arx0as', 'Alblant, serif', 'serif');
-@include font-lang('x-v3-zas0id', 'Endrata, sans-serif');
+@include font-lang('x-v3-zph0xl', 'Vekos, sans-serif', null, true);
+@include font-lang('x-v3-mqe0bm', 'Maqen, sans-serif', null, true);
+@include font-lang(
+  'x-v3-jrlrflll',
+  'Cirlxarli_liparxe, sans-serif',
+  null,
+  true
+);
+@include font-lang('x-v3-arx0as', 'Kardinal, sans-serif', null, true);
+@include font-lang('x-v3-arx0as', 'Alblant, serif', 'serif', true);
+@include font-lang('x-v3-zas0id', 'Endrata, sans-serif', null, true);
