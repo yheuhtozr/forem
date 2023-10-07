@@ -72,9 +72,10 @@ module MarkdownProcessor
 
     RENDERED_MARKDOWN_SCRUBBER = %w[alt colspan controls data-conversation data-lang
                                     data-no-instant data-url href id loop name ref rel
-                                    rowspan span src start title type value].freeze
+                                    rowspan span src start title type value
+                                    ruby rb rp rt].freeze
 
-    MARKDOWN_PROCESSOR = %w[alt href src].freeze
+    MARKDOWN_PROCESSOR = %w[alt href src ruby rb rp rt].freeze
 
     BADGE_ACHIEVEMENT_CONTEXT_MESSAGE = %w[href name].freeze
   end

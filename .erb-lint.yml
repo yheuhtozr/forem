@@ -21,6 +21,9 @@ linters:
     disallow_inline_scripts: false
   RequireInputAutocomplete:
     enabled: false
+  FinalNewline:
+    exclude:
+      - '**/app/views/liquids/*'
   Rubocop:
     enabled: true
     rubocop_config:
