@@ -1,5 +1,4 @@
-<% if include_js %>
-<style>
+<% if include_js %><style>
   <%# copied from typography.css but without overflow-y %>
   .text-styles .table-wrapper-paragraph-multicolumn {
     width: 100%;
@@ -28,9 +27,7 @@
     /* copied from table styles */
     background: var(--body-bg);
   }
-</style>
-<% end %>
-
+</style><% end %>
 <div style="column-count: <%= columns %>; margin-bottom: var(--content-rhythm)">
   <%== content %>
 </div>

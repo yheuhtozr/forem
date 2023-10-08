@@ -1,1 +1,1 @@
-<ruby><% annotations.each do |r| %><%== r[0] %><rp> (</rp><rt><%== r[1] %></rt><rp>) </rp><% end %></ruby>
+<ruby><% annotations.each do |r| %><%== r[0] %><% if r[1].present? %><rp> (</rp><rt><%== r[1] %></rt><rp>) </rp><% else %><rt></rt><% end %><% end %></ruby>

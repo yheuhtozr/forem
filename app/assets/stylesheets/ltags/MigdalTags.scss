@@ -19,9 +19,9 @@
     background-color: #{$bg};
     border: 3px solid #{$bd};
     border-radius: 0.5em;
-    .light-theme & {
+    :not(.minimal-theme):not(.dark-theme) & {
       background-color: $white;
-    } /* Migdal theme */
+    } /* Migdal theme, logged in or out */
     &-before {
       content: '';
       position: absolute;
@@ -31,9 +31,9 @@
       border: 12px solid transparent;
       border-#{$anti}-color: #{$bg};
       z-index: 2;
-      .light-theme & {
+      :not(.minimal-theme):not(.dark-theme) & {
         border-#{$anti}-color: $white;
-      } /* Migdal theme */
+      } /* Migdal theme, logged in or out */
     }
     &-after {
       content: '';
@@ -71,10 +71,10 @@
     }
   }
   &.dialogue-left {
-    @include dialogue-text(true, var(--body-bg), $sky-blue);
+    @include dialogue-text(true, var(--card-bg), $sky-blue);
   }
   &.dialogue-right {
-    @include dialogue-text(false, var(--body-bg), $sky-blue);
+    @include dialogue-text(false, var(--card-bg), $sky-blue);
   }
 }
 
