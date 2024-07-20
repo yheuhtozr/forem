@@ -118,4 +118,5 @@ doc/
 /config/master.key
 
 # auto-generated locale ymls
+config/locales/liis_langs.*.yml
 config/locales/cla_langs.*.yml
