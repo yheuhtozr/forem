@@ -144,6 +144,18 @@
   font-style: normal;
   font-weight: bold;
 }
+@font-face {
+  font-family: 'Phun Sans Rounded';
+  @include font-src('Phun-Sans-Rounded-Regular.woff');
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'Bohnimic Alphabet Serif';
+  @include font-src('BohnimicAlphabetSerif2.woff2');
+  font-style: normal;
+  font-weight: normal;
+}
 
 // Content fonts
 body {
