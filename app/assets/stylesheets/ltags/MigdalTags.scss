@@ -19,7 +19,7 @@
     background-color: #{$bg};
     border: 3px solid #{$bd};
     border-radius: 0.5em;
-    :not(.minimal-theme):not(.dark-theme) & {
+    body:not(.minimal-theme):not(.dark-theme) & {
       background-color: $white;
     } /* Migdal theme, logged in or out */
     &-before {
@@ -31,7 +31,7 @@
       border: 12px solid transparent;
       border-#{$anti}-color: #{$bg};
       z-index: 2;
-      :not(.minimal-theme):not(.dark-theme) & {
+      body:not(.minimal-theme):not(.dark-theme) & {
         border-#{$anti}-color: $white;
       } /* Migdal theme, logged in or out */
     }
