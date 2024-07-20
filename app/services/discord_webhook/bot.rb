@@ -9,6 +9,7 @@ module DiscordWebhook
         builder = Discordrb::Webhooks::Builder.new(content: "Migdal の新着記事です", embeds: [post_embed(article)])
         target.execute builder
         target(url: ApplicationConfig["DISCORD_KIITA_HOOK_URL"]).execute builder
+        target(url: ApplicationConfig["DISCORD_LOUNGE_HOOK_URL"]).execute builder
       end
 
       def edited_post(article)
@@ -23,23 +24,15 @@ module DiscordWebhook
       def new_listing(listing)
         return unless ApplicationConfig["DISCORD_WEBHOOK_URL"]
 
-        target.execute do |post|
-          post.content = "Migdal の告知情報です"
-          post.add_embed do |embed|
-            embed.title = "[告知] #{listing.title}"
-            embed.url = URL.url(listing.path)
-            embed.description = ActionView::Base.full_sanitizer.sanitize(listing.processed_html)
-              .truncate(100, separator: /[\p{P}\p{Z}\p{Ideo}\p{Hang}]/).tr("\n", " ").strip
-            embed.author = embed_author(listing.user)
-            embed.timestamp = listing.originally_published_at
-          end
-        end
+        builder = Discordrb::Webhooks::Builder.new(content: "Migdal の告知情報です", embeds: [list_embed(listing)])
+        target.execute builder
+        target(url: ApplicationConfig["DISCORD_LOUNGE_HOOK_URL"]).execute builder
       end
 
       private
 
       def target(url: ApplicationConfig["DISCORD_WEBHOOK_URL"])
-        Discordrb::Webhooks::Client.new(url: url)
+        Discordrb::Webhooks::Client.new(url: url) if url
       end
 
       def post_embed(article)
@@ -57,6 +50,17 @@ module DiscordWebhook
           name: user.name,
           url: URL.url(user.path),
           icon_url: URL.url(user.profile_image_90),
+        )
+      end
+
+      def list_embed(listing)
+        Discordrb::Webhooks::Embed.new(
+          title: "[告知] #{listing.title}",
+          url: URL.url(listing.path),
+          description: ActionView::Base.full_sanitizer.sanitize(listing.processed_html)
+            .truncate(100, separator: /[\p{P}\p{Z}\p{Ideo}\p{Hang}]/).tr("\n", " ").strip,
+          author: embed_author(listing.user),
+          timestamp: listing.originally_published_at,
         )
       end
     end
