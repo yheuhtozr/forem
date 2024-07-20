@@ -203,6 +203,12 @@
   --reaction-save-bg: var(--accent-brand-a10);
   --reaction-comment-color: var(--accent-warning);
   --reaction-comment-bg: var(--accent-warning-a10);
+
+  /* Code */
+  --code-inline-bg: rgb(var(--black), 0.1);
+
+  /* Onboarding suggested people */
+  --content-row-hover-bg: rgb(var(--grey-100));
 }
 
 :root {
